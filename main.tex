@@ -652,12 +652,12 @@ We also note that all type-theoretic constructions are homotopy invariant, in th
 
 In Section \ref{section:intW} below, these and related homotopy-theoretic insights will be used to study inductive types, but first we must briefly review some basic facts about  inductive types in the extensional setting.
 
+\newpage
 
-
-\section{Simple inductive types}
+\section{Basic inductive types}
 \label{section:simple}
 
-\subsection{Simple inductive types: extensional case}
+\subsection{Basic inductive types: extensional case}
 \label{subsection:bool}
 
 
@@ -779,50 +779,66 @@ We can prove the dependent uniqueness principle by using the induction principle
 
 We now introduce some terminology in order to talk about the above rules more economically. The elimination and computation rules motivate the following definitions:
 
-\begin{definition}\label{def:BoolAlg}
-Define the type of \emph{$\Bool$-algebras} on a universe $\UU_i$ as 
-\[\BoolAlg_{\UU_i} \defeq \sm{C : \UU_i} C \times C \]
+\begin{definition}\label{def:BoolAlg} \label{def:BoolHom} \hfill
+\begin{enumerate}[(i)]
+\item  Define the type of \emph{$\Bool$-algebras} on a universe $\UU_i$ as 
+\[
+\BoolAlg_{\UU_i} 
+\defeq 
+\sm{C : \UU_i} C \times C 
+\] 
+\item Given algebras $\X : \BoolAlg_{\UU_i}$ and $\Y : \BoolAlg_{\UU_j}$, define the type of \emph{$\Bool$-homomorphisms} from $\X$ to $\Y$ by \[\BoolHom \; (C,c_0,c_1) \; (D,d_0,d_1) \defeq \sm{f:C \to D} (f(c_0) = d_0) \times (f(c_1) = d_1) \]
+\end{enumerate}
 \end{definition}
 
-\begin{definition}\label{def:BoolFibAlg}
-Define the type of \emph{fibered $\Bool$-algebras} on a universe $\UU_j$ over $\mathcal{X} : \BoolAlg_{\UU_i}$ by
-\[\BoolFibAlg_{\UU_j} \; (C,c_0,c_1) \defeq \sm{E : C \to \UU_j} E(c_0) \times E(c_1) \]
+\begin{definition}\label{def:BoolFibAlg} \label{def:BoolFibHom} \hfill
+\begin{enumerate}[(i)] 
+\item Define the type of \emph{fibered $\Bool$-algebras} on a universe $\UU_j$ over $\mathcal{X} : \BoolAlg_{\UU_i}$ by
+\[
+\BoolFibAlg_{\UU_j} \; (C,c_0,c_1) 
+\defeq 
+\sm{E : C \to \UU_j} E(c_0) \times E(c_1)
+\]
+\item Given algebras $\X : \BoolFibAlg_{\UU_i}$ and $\Y : \BoolFibAlg_{\UU_j} \; \X$, define the type of \emph{fibered $\Bool$-homomorphisms} from $\X$ to $\Y$ by
+\[
+\BoolFibHom \; (C,c_0,c_1) \; (E,e_0,e_1) \defeq \sm{(f:\prd{x:C} E(x))} (f(c_0) = e_0) \times (f(c_1) = e_1) 
+\]
+\end{enumerate}
 \end{definition}
 
-\begin{definition}\label{def:BoolHom}
-Given algebras $\X : \BoolAlg_{\UU_i}$ and $\Y : \BoolAlg_{\UU_j}$, define the type of \emph{$\Bool$-homomorphisms} from $\X$ to $\Y$ by \[\BoolHom \; (C,c_0,c_1) \; (D,d_0,d_1) \defeq \sm{f:C \to D} (f(c_0) = d_0) \times (f(c_1) = d_1) \]
-\end{definition}
-
-\begin{definition}\label{def:BoolFibHom}
-Given algebras $\X : \BoolAlg_{\UU_i}$ and $\Y : \BoolFibAlg_{\UU_j} \; \X$, define the type of \emph{fibered $\Bool$-homomorphisms} from $\X$ to $\Y$ by
-\[\BoolFibHom \; (C,c_0,c_1) \; (E,e_0,e_1) \defeq \sm{(f:\prd{x:C} E(x))} (f(c_0) = e_0) \times (f(c_1) = e_1) \]
-\end{definition}
 
 We note that in order to form the type of homomorphisms, we had to use propositional rather than definitional equality. Of course, in the setting of an extensional type theory this distinction is immaterial; however, it will become important in Chpt.~\ref{section:intW}.
 
-\begin{definition}\label{def:BoolRec}
+
+
+\begin{definition}\label{def:BoolInd} \label{def:BoolIndUniq} \hfill
+\begin{enumerate}[(i)] 
+\item An algebra $\mathcal{X} : \BoolAlg_{\UU_i}$ \emph{satisfies the induction principle} on a universe $\UU_j$ if for any 
+fibered algebra $\Y : \BoolFibAlg_{\UU_j} \; \X$ there exists a fibered $\Bool$-homomorphism between $\X$ and $\Y$:
+\[\HasBoolInd_{\UU_j}(\X) \defeq \prd{(\Y:\BoolFibAlg_{\UU_j} \; \X)} \BoolFibHom \; \X \; \Y\] 
+\item An algebra $\X : \BoolAlg_{\UU_i}$ satisfies the \emph{induction uniqueness principle} on a universe $\UU_j$ if for any fibered algebra $\Y : \BoolFibAlg_{\UU_j}\;\X$ any two fibered $\Bool$-homomorphisms between $\X$ and $\Y$ are equal:
+\[ \HasBoolIndUniq_{\UU_j}(\X) \defeq \prd{(\Y:\BoolFibAlg_{\UU_j} \; \X)} \isprop(\BoolFibHom \; \X \; \Y)\]
+\end{enumerate}
+\end{definition}
+
+
+
+
+
+
+
+\begin{definition}\label{def:BoolRec} \label{def:BoolRecUniq} \hfill
+\begin{enumerate}[(i)]
+\item 
 An algebra $\X : \BoolAlg_{\UU_i}$ \emph{satisfies the recursion principle} on a universe $\UU_j$ if for any 
 algebra $\Y : \BoolAlg_{\UU_j}$ there exists a $\Bool$-homomorphism between $\X$ and $\Y$:
 \[\HasBoolRec_{\UU_j}(\X) \defeq \prd{(\Y:\BoolAlg_{\UU_j})} \BoolHom \; \X \; \Y\] 
-\end{definition}
-
-\begin{definition}\label{def:BoolInd}
-An algebra $\mathcal{X} : \BoolAlg_{\UU_i}$ \emph{satisfies the induction principle} on a universe $\UU_j$ if for any 
-fibered algebra $\Y : \BoolFibAlg_{\UU_j} \; \X$ there exists a fibered $\Bool$-homomorphism between $\X$ and $\Y$:
-\[\HasBoolInd_{\UU_j}(\X) \defeq \prd{(\Y:\BoolFibAlg_{\UU_j} \; \X)} \BoolFibHom \; \X \; \Y\] 
-\end{definition}
-
-The uniqueness principles motivate the following definitions:
-
-\begin{definition}\label{def:BoolRecUniq}
+\item 
 An algebra $\X : \BoolAlg_{\UU_i}$ satisfies the \emph{recursion uniqueness principle} on a universe $\UU_j$ if for any algebra $\Y : \BoolAlg_{\UU_j}$ any two $\Bool$-homomorphisms between $\X$ and $\Y$ are equal:
 \[ \HasBoolRecUniq_{\UU_j}(\X) \defeq \prd{(\Y:\BoolAlg_{\UU_j})} \isprop(\BoolHom \; \X \; \Y)\]
+\end{enumerate}
 \end{definition}
 
-\begin{definition}\label{def:BoolIndUniq}
-An algebra $\X : \BoolAlg_{\UU_i}$ satisfies the \emph{induction uniqueness principle} on a universe $\UU_j$ if for any fibered algebra $\Y : \BoolFibAlg_{\UU_j}\;\X$ any two fibered $\Bool$-homomorphisms between $\X$ and $\Y$ are equal:
-\[ \HasBoolIndUniq_{\UU_j}(\X) \defeq \prd{(\Y:\BoolFibAlg_{\UU_j} \; \X)} \isprop(\BoolFibHom \; \X \; \Y)\]
-\end{definition}
 
 The uniqueness principles as in definitions~\ref{def:BoolRecUniq},~\ref{def:BoolIndUniq} require that
 any two homomorphisms $\mu \defeq (f,\gamma_0,\gamma_1)$ and $\nu \defeq (g,\delta_0,\delta_1)$ be equal as \emph{tuples}; however, in the presence of the UIP axiom this is equivalent to saying that their first components agree, i.e., $f = g$ (and hence $f \equiv g$).
@@ -874,10 +890,13 @@ provided $j \geq i$.
 Let algebras $(C,c_0,c_1) : \BoolAlg_{\UU_i}$ and $(E,e_0,e_1) : \BoolFibAlg_{\UU_j} \; (C,c_0,c_1)$ be given. 
 We use the recursion principle with the algebra $\big(\sm{x:C} E(x), (c_0,e_0), (c_1,e_1)\big)$. We note that the carrier type belongs to $\UU_j$ as $i \leq j$. This gives us a homomorphism $(u,\theta_0,\theta_1)$, where $u : C \to \sm{x:C} E(x)$, $\theta_0 : u(c_0) = (c_0,e_0)$, and $\theta_1 : u(c_1) = (c_1,e_1)$. We can now form two homomorphisms $\big(\fst \comp u, \refl(c_0), \refl(c_1)\big), \big(\idfun{C}, \refl(c_0), \refl(c_1)\big) : \BoolHom \; (C,c_0,c_1) \; (C,c_0,c_1)$; the former type-checks due to $\theta_0, \theta_1$. The recursion uniqueness principle tells us that these homomorphisms are equal. Thus, we have $\fst \comp u = \idfun{C}$ and in particular $\fst \comp u \equiv \idfun{C}$. 
 
-We can thus define the desired fibered homomorphism as $\big(\snd \comp u, \refl(e_0), \refl(e_1)\big) : \BoolFibHom \; (C,c_0,c_1) \; (E,e_0,e_1)$.
+We can thus define the desired fibered homomorphism as 
+\[
+\big(\snd \comp u, \refl(e_0), \refl(e_1)\big) : \BoolFibHom \; (C,c_0,c_1) \; (E,e_0,e_1) \, .
+\]
 \end{proof}
 
-\begin{corollary}\label{lem:BoolMain}
+\begin{theorem}\label{lem:BoolMain}
 In $\Hext$, the following conditions on an algebra $\X : \BoolAlg_{\UU_i}$ are equivalent:
 \begin{enumerate}
 \item $\mathcal{X}$ satisfies the induction principle on the universe $\UU_j$
@@ -886,7 +905,7 @@ In $\Hext$, the following conditions on an algebra $\X : \BoolAlg_{\UU_i}$ are e
 \end{enumerate}
 for $j \geq i$. In other words, we have \[ \HasBoolInd_{\UU_j}(\X)  \;\; \simeq \;\; \HasBoolRec_{\UU_j}(\X) \times \HasBoolRecUniq_{\UU_j}(\X) \;\; \simeq \;\; \IsBoolInit_{\UU_j}(\X) \]
 provided $j \geq i$. Furthermore, all 3 conditions are mere propositions.
-\end{corollary}
+\end{theorem}
 \begin{proof}
 Conditions (1) and (3) are mere propositions by Lem.~\ref{lem:IsContrIsProp}\ednote{Which says $\isprop(\iscontr(A))$} (for the latter), Lem.~\ref{lem:PropChar}\ednote{Which says $\isprop(A) \simeq A \to \isprop(A)$},~\ref{lem:BoolIndImpUniq} (for the former), and the fact that a family of mere propositions is itself a mere proposition.
 \end{proof}
@@ -902,12 +921,37 @@ In $\Hext$ extended with an algebra $\X : \BoolAlg_{\UU_0}$ which is initial on 
 We have an algebra $\cdot \vdash \X : \BoolAlg_{\UU_0}$ such that for any $j$, there exists a term $\cdot \vdash h_j  : \IsBoolInit_{\UU_j}(\X)$. Since the requirement $j \geq 0$ always holds, Cor.~\ref{lem:BoolMain} implies that for any $j$, we have a term $\cdot \vdash r_j : \HasBoolInd_{\UU_j}(\X)$. This implies that the type $\Bool$ is definable.
 \end{proof}
 
-\subsection{Simple inductive types: intensional case}
+\subsection{Basic inductive types: intensional case}
 
 
 Although the rules for the type $\Bool$ as presented in section \ref{subsection:bool} are the natural ones to consider in the setting of homotopy type theory, they do not imply a strict universal property. For example, given a type $C:\UU_i$ and elements $c_0, c_1 : C$, the function $\lam{x:\Bool}\boolrec(C,c_0,c_1,x) : \Bool \rightarrow C$ cannot, in general, be shown to be definitionally unique among the functions $f : \Bool \rightarrow C$ with the property that $f(0) \equiv c_0 : C$ and $f(1) \equiv c_1 : C$.\ednote{Do we need a reference for this?}
 The best that one can do is to show that it is unique among all such maps up to a path, which itself is unique up to a higher path, which in turn is unique up to a yet higher path, etc. This sort of ``homotopy" $\omega$-universality, which apparently involves infinitely much data, can nonetheless be captured directly within the system of type theory (without resorting to coinduction) using ideas from higher category theory. To obtain a full characterization of the type $\Bool$ using this alternate universal condition, we relax the computation rules from section \ref{subsection:bool} to involve propositional, rather than definitional, equality: \smallskip
+
+
+\begin{table}[ht]
+\fbox{ 
+\begin{minipage}{12cm}
+\medskip
 \begin{itemize}
+\item $\Bool$-formation rule.
+\[
+ \Bool : \UU_i \, .
+ \]
+\item $\Bool$-introduction rules.
+\[
+0 : \Bool \, ,  \qquad  1 : \Bool \, .
+\]
+\item $\Bool$-elimination rule (``induction").\smallskip
+\[
+\begin{prooftree}
+x:\Bool \vdash E(x) : \UU_i \qquad
+e_0 : E(0) \qquad
+e_1 : E(1) \qquad
+b : \Bool
+\justifies
+\boolind(x.E, e_0, e_1,b) : E(b) 
+\end{prooftree}
+\]
 \item Propositional $\Bool$-computation rules. \smallskip
 \begin{equation*}
 \begin{prooftree}
@@ -939,23 +983,21 @@ b : \Bool
 \right.
 \end{prooftree}
  \end{equation*} 
-\end{itemize} \smallskip
-As discussed above, the uniqueness principles can still be shown to hold, albeit in a propositional form: \smallskip
+\end{itemize} 
+\end{minipage}
+}
+\end{table}
 
+
+\begin{table}[ht]
+\fbox{ 
+\begin{minipage}{12cm}
+\medskip
 \begin{itemize}
 \item Propositional $\Bool$-uniqueness principle.\smallskip
 \begin{mathpar}
 \inferrule{b : \Bool \\ x : \Bool \vdash E(x) : \UU_i \\ e_0 : E(0) \\ e_1 : E(1) \\ \\\\ x : \Bool \vdash f(x) : E(x) \\ \gamma_0 : f(0) = e_0 \\ \gamma_1 : f(1) = e_1 \\ \\\\ x : \Bool \vdash g(x) : E(x) \\ \delta_0 : g(0) = e_0 \\ \delta_1 : g(1) = e_1}{\boolinduniq_{\UU_i}(x.E, e_0, e_1, x.f, \gamma_0, \gamma_1, x.g, \delta_0, \delta_1, b) : f(b) = g(b)}
 \end{mathpar}
-\item Simple propositional $\Bool$-uniqueness principle.\smallskip
-\begin{mathpar}
-\inferrule{b : \Bool \\ C : \UU_i \\ c_0 : C \\ c_1 : C \\ \\\\ x : \Bool \vdash f(x) : C \\ \gamma_0 : f(0) = c_0 \\ \gamma_1 : f(1) \equiv c_1 \\ \\\\ x : \Bool \vdash g(x) : C \\ \delta_0 : g(0) = c_0 \\ \delta_1 : g(1) = c_1}{\boolrecuniq_{\UU_i}(C, c_0, c_1, x.f, \gamma_0, \gamma_1, x.g, \delta_0, \delta_1, b) : f(b) = g(b)}
-\end{mathpar}
-\end{itemize} \smallskip
-The witness terms will be shortened to $\boolinduniq(b)$, $\boolrecuniq(b)$ where appropriate. In showing the above laws, we proceed analogously to the extensional case: we use the induction principle with the type family $x \mapsto f(x) =_{E(x)} g(x)$ and for the cases $x \defeq 0$, $x \defeq 1$ we supply the paths $\gamma_0 \ct \delta_0^{-1}$ and $\gamma_1 \ct \delta_1^{-1}$ respectively. This gives us a pointwise propositional equality between $f$ and $g$ as desired. The simple uniqueness principle follows at once from the dependent one.
-
-Unlike in the extensional setting, however, $\boolinduniq(b)$ will generally not be an identity path. The natural question to ask is how $\boolinduniq(-)$ behaves on the constructors $0$, $1$. Since $\boolinduniq(b)$ was constructed using the $\Bool$-induction principle, we invoke the corresponding (propositional) computation rules to get the following coherence rules:\smallskip
-\begin{itemize}
 \item Propositional $\Bool$-coherence principles.\smallskip
 \begin{equation*}
 \begin{prooftree}
@@ -973,6 +1015,26 @@ Unlike in the extensional setting, however, $\boolinduniq(b)$ will generally not
 \right.
 \end{prooftree}
 \end{equation*}
+\end{itemize} 
+\end{minipage}
+}
+\end{table}
+
+
+\smallskip
+The witness terms will be shortened to $\boolinduniq(b)$, $\boolrecuniq(b)$ where appropriate. In showing the above laws, we proceed analogously to the extensional case: we use the induction principle with the type family $x \mapsto f(x) =_{E(x)} g(x)$ and for the cases $x \defeq 0$, $x \defeq 1$ we supply the paths $\gamma_0 \ct \delta_0^{-1}$ and $\gamma_1 \ct \delta_1^{-1}$ respectively. This gives us a pointwise propositional equality between $f$ and $g$ as desired. The simple uniqueness principle follows at once from the dependent one.
+
+Unlike in the extensional setting, however, $\boolinduniq(b)$ will generally not be an identity path. The natural question to ask is how $\boolinduniq(-)$ behaves on the constructors $0$, $1$. Since $\boolinduniq(b)$ was constructed using the $\Bool$-induction principle, we invoke the corresponding (propositional) computation rules to get the following coherence rules:\smallskip
+
+\begin{table}[ht]
+\fbox{ 
+\begin{minipage}{12cm}
+\medskip
+\begin{itemize}
+\item Simple propositional $\Bool$-uniqueness principle.\smallskip
+\begin{mathpar}
+\inferrule{b : \Bool \\ C : \UU_i \\ c_0 : C \\ c_1 : C \\ \\\\ x : \Bool \vdash f(x) : C \\ \gamma_0 : f(0) = c_0 \\ \gamma_1 : f(1) \equiv c_1 \\ \\\\ x : \Bool \vdash g(x) : C \\ \delta_0 : g(0) = c_0 \\ \delta_1 : g(1) = c_1}{\boolrecuniq_{\UU_i}(C, c_0, c_1, x.f, \gamma_0, \gamma_1, x.g, \delta_0, \delta_1, b) : f(b) = g(b)}
+\end{mathpar}
 \item Simple propositional $\Bool$-coherence principles.\smallskip
 \begin{equation*}
 \begin{prooftree}
@@ -990,7 +1052,11 @@ Unlike in the extensional setting, however, $\boolinduniq(b)$ will generally not
 \right.
 \end{prooftree}
  \end{equation*} 
-\end{itemize} \smallskip
+\end{itemize} 
+\end{minipage}
+}
+\end{table}
+
 This motivates the following definitions.
 \begin{definition}\label{def:BoolCell}
 For $\X : \BoolAlg_{\UU_i}$, $\Y : \BoolAlg_{\UU_j}$ and homomorphisms $\mu, \nu : \BoolHom \; \X \; \Y$, define the type of \emph{2-cells} between $\mu$ and $\nu$ by
@@ -1167,7 +1233,7 @@ where $\phi_0$ is the path
 and $\phi_1$ is defined analogously.
 \end{proof}
 
-\begin{corollary}\label{lem:BoolMainInt}
+\begin{theorem}\label{lem:BoolMainInt}
 In $\Hint$, the following conditions on an algebra $\X : \BoolAlg_{\UU_i}$ are equivalent:
 \begin{enumerate}
 \item $\X$ satisfies the induction principle on the universe $\UU_j$
@@ -1176,7 +1242,7 @@ In $\Hint$, the following conditions on an algebra $\X : \BoolAlg_{\UU_i}$ are e
 \end{enumerate}
 for $j \geq i$. In other words, we have \[ \HasBoolInd_{\UU_j}(\X)  \;\; \simeq \;\; \HasBoolRec_{\UU_j}(\X) \times \HasBoolRecUniq_{\UU_j}(\X) \;\; \simeq \;\; \IsBoolHInit_{\UU_j}(\X) \]
 provided $j \geq i$. Furthermore, all 3 conditions are mere propositions.
-\end{corollary}
+\end{theorem}
 \begin{proof}
 Conditions (1) and (3) are mere propositions by Lem.~\ref{lem:IsContrIsProp} (for the latter), Lem.~\ref{lem:PropChar},~\ref{lem:BoolIndImpUniqInt} (for the former), and the fact that a family of mere propositions is itself a mere proposition.
 \end{proof}
@@ -1213,7 +1279,7 @@ It is worth emphasizing that homotopy-initiality is a purely type-theoretic noti
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
+\newpage
 
 \section{W-types}
 \label{section:wfiles}
