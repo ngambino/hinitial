@@ -1,18 +1,15 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2013.9.5)  10 JUN 2014 13:37
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.7.25)  11 JUN 2014 15:22
 entering extended mode
+ restricted \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
 **main.tex
-(C:\Users\Kristina\Dropbox\tcs\main.tex
+(./main.tex
 LaTeX2e <2011/06/27>
-Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, arabic, armenian, assamese, basque, bengali
-, bokmal, bulgarian, catalan, coptic, croatian, czech, danish, dutch, esperanto, estonian, farsi, finnish, french, galic
-ian, german, german-x-2013-05-26, greek, gujarati, hindi, hungarian, icelandic, indonesian, interlingua, irish, italian,
- kannada, kurmanji, latin, latvian, lithuanian, malayalam, marathi, mongolian, mongolianlmc, monogreek, ngerman, ngerman
--x-2013-05-26, nynorsk, oriya, panjabi, pinyin, polish, portuguese, romanian, russian, sanskrit, serbian, slovak, sloven
-ian, spanish, swedish, swissgerman, tamil, telugu, turkish, turkmen, ukenglish, ukrainian, uppersorbian, usenglishmax, w
-elsh, loaded.
-(C:\Users\Kristina\Dropbox\tcs\acmsmall.cls
+Babel <3.9f> and hyphenation patterns for 78 languages loaded.
+(./acmsmall.cls
 Document Class: acmsmall 2012/03/05, fonts included on 28 June 2010
-("C:\Program Files\MiKTeX\tex\latex\url\url.sty"
+(/usr/local/texlive/2013/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip10
 Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
 )
@@ -20,39 +17,46 @@ ACM, Production Font style: 2010/06/28 by Aptara
 
 Using ACM, JACM's option: 2010/05/04 by Aptara
 
-("C:\Program Files\MiKTeX\tex\latex\base\latexsym.sty"
+(/usr/local/texlive/2013/texmf-dist/tex/latex/base/latexsym.sty
 Package: latexsym 1998/08/17 v2.2e Standard LaTeX package (lasy symbols)
 \symlasy=\mathgroup4
 LaTeX Font Info:    Overwriting symbol font `lasy' in version `bold'
 (Font)                  U/lasy/m/n --> U/lasy/b/n on input line 47.
-) ("C:\Program Files\MiKTeX\tex\latex\graphics\color.sty"
+)
+(/usr/local/texlive/2013/texmf-dist/tex/latex/graphics/color.sty
 Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
 
-("C:\Program Files\MiKTeX\tex\latex\00miktex\color.cfg"
+(/usr/local/texlive/2013/texmf-dist/tex/latex/latexconfig/color.cfg
 File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
 )
 Package color Info: Driver file: pdftex.def on input line 130.
- ("C:\Program Files\MiKTeX\tex\latex\pdftex-def\pdftex.def"
+
+(/usr/local/texlive/2013/texmf-dist/tex/latex/pdftex-def/pdftex.def
 File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
 
-("C:\Program Files\MiKTeX\tex\generic\oberdiek\infwarerr.sty"
+(/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/infwarerr.sty
 Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
-) ("C:\Program Files\MiKTeX\tex\generic\oberdiek\ltxcmds.sty"
+)
+(/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
 Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 )
 \Gread@gobject=\count79
-)) ("C:\Program Files\MiKTeX\tex\latex\graphics\graphicx.sty"
+))
+(/usr/local/texlive/2013/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
- ("C:\Program Files\MiKTeX\tex\latex\graphics\keyval.sty"
+
+(/usr/local/texlive/2013/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
 \KV@toks@=\toks14
-) ("C:\Program Files\MiKTeX\tex\latex\graphics\graphics.sty"
+)
+(/usr/local/texlive/2013/texmf-dist/tex/latex/graphics/graphics.sty
 Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
- ("C:\Program Files\MiKTeX\tex\latex\graphics\trig.sty"
+
+(/usr/local/texlive/2013/texmf-dist/tex/latex/graphics/trig.sty
 Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
 )
-("C:\Program Files\MiKTeX\tex\latex\00miktex\graphics.cfg"
-File: graphics.cfg 2007/01/18 v1.5 graphics configuration of teTeX/TeXLive
+(/usr/local/texlive/2013/texmf-dist/tex/latex/latexconfig/graphics.cfg
+File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
 )
 Package graphics Info: Driver file: pdftex.def on input line 91.
 )
@@ -99,24 +103,26 @@ LaTeX Font Info:    Overwriting math alphabet `\mathbb' in version `normal'
 (Font)                  OT1/ams/bx/n --> OT1/ams/bx/n on input line 3619.
 LaTeX Font Info:    Overwriting math alphabet `\mathbb' in version `bold'
 (Font)                  OT1/ams/bx/n --> OT1/ams/bx/n on input line 3620.
-) ("C:\Program Files\MiKTeX\tex\latex\amsmath\amsmath.sty"
+) (/usr/local/texlive/2013/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2013/01/14 v2.14 AMS math features
 \@mathmargin=\skip46
 
 For additional information on amsmath, use the `?' option.
-("C:\Program Files\MiKTeX\tex\latex\amsmath\amstext.sty"
+(/usr/local/texlive/2013/texmf-dist/tex/latex/amsmath/amstext.sty
 Package: amstext 2000/06/29 v2.01
- ("C:\Program Files\MiKTeX\tex\latex\amsmath\amsgen.sty"
+
+(/usr/local/texlive/2013/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0
 \@emptytoks=\toks15
 \ex@=\dimen113
 )
 LaTeX Info: Redefining \text on input line 39.
 )
-("C:\Program Files\MiKTeX\tex\latex\amsmath\amsbsy.sty"
+(/usr/local/texlive/2013/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d
 \pmbraise@=\dimen114
-) ("C:\Program Files\MiKTeX\tex\latex\amsmath\amsopn.sty"
+)
+(/usr/local/texlive/2013/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 1999/12/14 v2.01 operator names
 )
 \inf@bad=\count91
@@ -157,9 +163,11 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
 LaTeX Info: Redefining \[ on input line 2665.
 LaTeX Info: Redefining \] on input line 2666.
 )
-("C:\Program Files\MiKTeX\tex\generic\xypic\xy.sty" ("C:\Program Files\MiKTeX\tex\generic\xypic\xy.tex" Bootstrap'ing:
-catcodes, docmode, ("C:\Program Files\MiKTeX\tex\generic\xypic\xyrecat.tex")
-("C:\Program Files\MiKTeX\tex\generic\xypic\xyidioms.tex")
+(/usr/local/texlive/2013/texmf-dist/tex/generic/xypic/xy.sty
+(/usr/local/texlive/2013/texmf-dist/tex/generic/xypic/xy.tex Bootstrap'ing:
+catcodes, docmode,
+(/usr/local/texlive/2013/texmf-dist/tex/generic/xypic/xyrecat.tex)
+(/usr/local/texlive/2013/texmf-dist/tex/generic/xypic/xyidioms.tex)
 
  Xy-pic version 3.8.8 <2012/05/24>
  Copyright (c) 1991-2011 by Kristoffer H. Rose <krisrose@tug.org>
@@ -205,21 +213,25 @@ Loading kernel: messages; fonts; allocations: state,
 \xywrite@=\write3
 \csp@=\count106
 \quotPTK@=\dimen149
- utility macros; pictures: \xy, positions,
+
+utility macros; pictures: \xy, positions,
 \swaptoks@@=\toks22
 \connectobjectbox@@=\box38
  objects,
 \styletoks@=\toks23
-
-decorations; kernel objects: directionals, circles, text; options; algorithms: directions, edges, connections;
- Xy-pic loaded) ("C:\Program Files\MiKTeX\tex\generic\oberdiek\ifpdf.sty"
+ decorations;
+kernel objects: directionals, circles, text; options; algorithms: directions,
+edges, connections;  Xy-pic loaded)
+(/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/ifpdf.sty
 Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
 Package ifpdf Info: pdfTeX in PDF mode is detected.
 )
 Package: xy 2012/05/24 Xy-pic version 3.8.8
 
-("C:\Program Files\MiKTeX\tex\generic\xypic\xyall.tex"  Xy-pic option: All features v.3.8
-("C:\Program Files\MiKTeX\tex\generic\xypic\xycurve.tex"  Xy-pic option: Curve and Spline extension v.3.12 curve,
+(/usr/local/texlive/2013/texmf-dist/tex/generic/xypic/xyall.tex
+ Xy-pic option: All features v.3.8
+(/usr/local/texlive/2013/texmf-dist/tex/generic/xypic/xycurve.tex
+ Xy-pic option: Curve and Spline extension v.3.12 curve,
 \crv@cnt@=\count107
 \crvpts@=\toks24
 \splinebox@=\box39
@@ -227,18 +239,24 @@ Package: xy 2012/05/24 Xy-pic version 3.8.8
 \splinedepth@=\dimen151
 \splinetol@=\dimen152
 \splinelength@=\dimen153
-
-circles,
+ circles,
 \L@=\dimen154
- loaded) ("C:\Program Files\MiKTeX\tex\generic\xypic\xyframe.tex"
- Xy-pic option: Frame and Bracket extension v.3.14 loaded) ("C:\Program Files\MiKTeX\tex\generic\xypic\xycmtip.tex"
- Xy-pic option: Computer Modern tip extension v.3.7 ("C:\Program Files\MiKTeX\tex\generic\xypic\xytips.tex"
- Xy-pic option: More Tips extension v.3.9 loaded) loaded) ("C:\Program Files\MiKTeX\tex\generic\xypic\xyline.tex"
+ loaded)
+(/usr/local/texlive/2013/texmf-dist/tex/generic/xypic/xyframe.tex
+ Xy-pic option: Frame and Bracket extension v.3.14 loaded)
+(/usr/local/texlive/2013/texmf-dist/tex/generic/xypic/xycmtip.tex
+ Xy-pic option: Computer Modern tip extension v.3.7
+(/usr/local/texlive/2013/texmf-dist/tex/generic/xypic/xytips.tex
+ Xy-pic option: More Tips extension v.3.9 loaded) loaded)
+(/usr/local/texlive/2013/texmf-dist/tex/generic/xypic/xyline.tex
  Xy-pic option: Line styles extension v.3.10
 \xylinethick@=\dimen155
- loaded) ("C:\Program Files\MiKTeX\tex\generic\xypic\xyrotate.tex"
- Xy-pic option: Rotate and Scale extension v.3.8 loaded) ("C:\Program Files\MiKTeX\tex\generic\xypic\xycolor.tex"
- Xy-pic option: Colour extension v.3.11 loaded) ("C:\Program Files\MiKTeX\tex\generic\xypic\xymatrix.tex"
+ loaded)
+(/usr/local/texlive/2013/texmf-dist/tex/generic/xypic/xyrotate.tex
+ Xy-pic option: Rotate and Scale extension v.3.8 loaded)
+(/usr/local/texlive/2013/texmf-dist/tex/generic/xypic/xycolor.tex
+ Xy-pic option: Colour extension v.3.11 loaded)
+(/usr/local/texlive/2013/texmf-dist/tex/generic/xypic/xymatrix.tex
  Xy-pic option: Matrix feature v.3.14
 \Row=\count108
 \Col=\count109
@@ -247,36 +265,46 @@ circles,
 \qcount@=\count110
 \qcount@@=\count111
 \matrixsize@=\count112
- loaded) ("C:\Program Files\MiKTeX\tex\generic\xypic\xyarrow.tex"
- Xy-pic option: Arrow and Path feature v.3.9 path, \ar, loaded) ("C:\Program Files\MiKTeX\tex\generic\xypic\xygraph.tex"
- Xy-pic option: Graph feature v.3.11 loaded) loaded) ("C:\Program Files\MiKTeX\tex\generic\xypic\xypdf.tex"
+ loaded)
+(/usr/local/texlive/2013/texmf-dist/tex/generic/xypic/xyarrow.tex
+ Xy-pic option: Arrow and Path feature v.3.9 path, \ar, loaded)
+(/usr/local/texlive/2013/texmf-dist/tex/generic/xypic/xygraph.tex
+ Xy-pic option: Graph feature v.3.11 loaded) loaded)
+(/usr/local/texlive/2013/texmf-dist/tex/generic/xypic/xypdf.tex
  Xy-pic option: PDF driver v.1.7 Xy-pic pdf driver: `color' extension support
-("C:\Program Files\MiKTeX\tex\generic\xypic\xypdf-co.tex" loaded) Xy-pic pdf driver: `curve' extension support
-("C:\Program Files\MiKTeX\tex\generic\xypic\xypdf-cu.tex" loaded) Xy-pic pdf driver: `frame' extension support
-("C:\Program Files\MiKTeX\tex\generic\xypic\xypdf-fr.tex" loaded) Xy-pic pdf driver: `line' extension support
-("C:\Program Files\MiKTeX\tex\generic\xypic\xypdf-li.tex" loaded) Xy-pic pdf driver: `rotate' extension support
-("C:\Program Files\MiKTeX\tex\generic\xypic\xypdf-ro.tex" loaded) loaded))
-("C:\Program Files\MiKTeX\tex\latex\amsfonts\amssymb.sty"
+(/usr/local/texlive/2013/texmf-dist/tex/generic/xypic/xypdf-co.tex loaded)
+Xy-pic pdf driver: `curve' extension support
+(/usr/local/texlive/2013/texmf-dist/tex/generic/xypic/xypdf-cu.tex loaded)
+Xy-pic pdf driver: `frame' extension support
+(/usr/local/texlive/2013/texmf-dist/tex/generic/xypic/xypdf-fr.tex loaded)
+Xy-pic pdf driver: `line' extension support
+(/usr/local/texlive/2013/texmf-dist/tex/generic/xypic/xypdf-li.tex loaded)
+Xy-pic pdf driver: `rotate' extension support
+(/usr/local/texlive/2013/texmf-dist/tex/generic/xypic/xypdf-ro.tex loaded)
+loaded)) (/usr/local/texlive/2013/texmf-dist/tex/latex/amsfonts/amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
- ("C:\Program Files\MiKTeX\tex\latex\amsfonts\amsfonts.sty"
+
+(/usr/local/texlive/2013/texmf-dist/tex/latex/amsfonts/amsfonts.sty
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 \symAMSa=\mathgroup6
 \symAMSb=\mathgroup7
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 ))
-(C:\Users\Kristina\Dropbox\tcs\mathpartir.sty
-Package: mathpartir 2005/12/20 version 1.2.0 Math Paragraph for Typesetting Inference Rules
+(./mathpartir.sty
+Package: mathpartir 2005/12/20 version 1.2.0 Math Paragraph for Typesetting Inf
+erence Rules
 \mpr@andskip=\skip49
 \mpr@lista=\toks27
 \mpr@listb=\toks28
 \mpr@hlist=\box40
 \mpr@vlist=\box41
 \mpr@right=\box42
-) ("C:\Program Files\MiKTeX\tex\latex\mh\mathtools.sty"
+)
+(/usr/local/texlive/2013/texmf-dist/tex/latex/mh/mathtools.sty
 Package: mathtools 2013/02/12 v1.13 mathematical typesetting tools
 
-("C:\Program Files\MiKTeX\tex\latex\tools\calc.sty"
+(/usr/local/texlive/2013/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
 \calc@Acount=\count113
 \calc@Bcount=\count114
@@ -288,7 +316,8 @@ LaTeX Info: Redefining \setlength on input line 76.
 LaTeX Info: Redefining \addtolength on input line 77.
 \calc@Ccount=\count115
 \calc@Cskip=\skip52
-) ("C:\Program Files\MiKTeX\tex\latex\mh\mhsetup.sty"
+)
+(/usr/local/texlive/2013/texmf-dist/tex/latex/mh/mhsetup.sty
 Package: mhsetup 2010/01/21 v1.2a programming setup (MH)
 )
 LaTeX Info: Thecontrolsequence`\['isalreadyrobust on input line 129.
@@ -303,20 +332,22 @@ LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
 \l_MT_above_shortintertext_sep=\dimen163
 \l_MT_below_shortintertext_sep=\dimen164
 )
-("C:\Program Files\MiKTeX\tex\latex\ed\ed.sty"
+(/usr/local/texlive/2013/texmf-dist/tex/latex/ed/ed.sty
 Package: ed 2012/01/29 v1.8 Editorial Notes
- ed.sty: showing ednotes
-("C:\Program Files\MiKTeX\tex\latex\paralist\paralist.sty"
-Package: paralist 2013/06/09 v2.4 Extended list environments
+
+ed.sty: showing ednotes
+(/usr/local/texlive/2013/texmf-dist/tex/latex/paralist/paralist.sty
+Package: paralist 2002/03/18 v2.3b Extended list environments (BS)
 \pltopsep=\skip54
 \plpartopsep=\skip55
 \plitemsep=\skip56
 \plparsep=\skip57
 \pl@lab=\toks29
-) ("C:\Program Files\MiKTeX\tex\latex\xcolor\xcolor.sty"
+)
+(/usr/local/texlive/2013/texmf-dist/tex/latex/xcolor/xcolor.sty
 Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
 
-("C:\Program Files\MiKTeX\tex\latex\00miktex\color.cfg"
+(/usr/local/texlive/2013/texmf-dist/tex/latex/latexconfig/color.cfg
 File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
 )
 Package xcolor Info: Driver file: pdftex.def on input line 225.
@@ -332,35 +363,36 @@ Package xcolor Info: Model `Gray' substituted by `gray' on input line 1359.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
 )
 \c@ednote=\count117
-) ("C:\Program Files\MiKTeX\tex\latex\leftidx\leftidx.sty"
+)
+(/usr/local/texlive/2013/texmf-dist/tex/latex/leftidx/leftidx.sty
 Package: leftidx 2003/09/24 v1.03 Left indices
 )
-("C:\Program Files\MiKTeX\tex\latex\pgf\frontendlayer\tikz.sty"
-("C:\Program Files\MiKTeX\tex\latex\pgf\basiclayer\pgf.sty" ("C:\Program Files\MiKTeX\tex\latex\pgf\utilities\pgfrcs.sty
-" ("C:\Program Files\MiKTeX\tex\generic\pgf\utilities\pgfutil-common.tex"
+(/usr/local/texlive/2013/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
+(/usr/local/texlive/2013/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
+(/usr/local/texlive/2013/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
+(/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.te
+x
 \pgfutil@everybye=\toks30
 )
-("C:\Program Files\MiKTeX\tex\generic\pgf\utilities\pgfutil-latex.def"
+(/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
 \pgfutil@abb=\box43
-
-("C:\Program Files\MiKTeX\tex\latex\ms\everyshi.sty"
+(/usr/local/texlive/2013/texmf-dist/tex/latex/ms/everyshi.sty
 Package: everyshi 2001/05/15 v3.00 EveryShipout Package (MS)
 ))
-("C:\Program Files\MiKTeX\tex\generic\pgf\utilities\pgfrcs.code.tex"
+(/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
 Package: pgfrcs 2010/10/25 v2.10 (rcs-revision 1.24)
 ))
 Package: pgf 2008/01/15 v2.10 (rcs-revision 1.12)
-
-("C:\Program Files\MiKTeX\tex\latex\pgf\basiclayer\pgfcore.sty"
-("C:\Program Files\MiKTeX\tex\latex\pgf\systemlayer\pgfsys.sty"
-("C:\Program Files\MiKTeX\tex\generic\pgf\systemlayer\pgfsys.code.tex"
+(/usr/local/texlive/2013/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
+(/usr/local/texlive/2013/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
+(/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
 Package: pgfsys 2010/06/30 v2.10 (rcs-revision 1.37)
-
-("C:\Program Files\MiKTeX\tex\generic\pgf\utilities\pgfkeys.code.tex"
+(/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
 \pgfkeys@pathtoks=\toks31
 \pgfkeys@temptoks=\toks32
 
-("C:\Program Files\MiKTeX\tex\generic\pgf\utilities\pgfkeysfiltered.code.tex"
+(/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/utilities/pgfkeysfiltered.c
+ode.tex
 \pgfkeys@tmptoks=\toks33
 ))
 \pgf@x=\dimen165
@@ -378,32 +410,35 @@ Package: pgfsys 2010/06/30 v2.10 (rcs-revision 1.37)
 \c@pgf@countc=\count120
 \c@pgf@countd=\count121
 
-("C:\Program Files\MiKTeX\tex\generic\pgf\systemlayer\pgf.cfg"
+(/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
 File: pgf.cfg 2008/05/14  (rcs-revision 1.7)
 )
 Package pgfsys Info: Driver file for pgf: pgfsys-pdftex.def on input line 900.
 
-("C:\Program Files\MiKTeX\tex\generic\pgf\systemlayer\pgfsys-pdftex.def"
+(/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.d
+ef
 File: pgfsys-pdftex.def 2009/05/22  (rcs-revision 1.26)
 
-("C:\Program Files\MiKTeX\tex\generic\pgf\systemlayer\pgfsys-common-pdf.def"
+(/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-p
+df.def
 File: pgfsys-common-pdf.def 2008/05/19  (rcs-revision 1.10)
 )))
-("C:\Program Files\MiKTeX\tex\generic\pgf\systemlayer\pgfsyssoftpath.code.tex"
+(/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.
+code.tex
 File: pgfsyssoftpath.code.tex 2008/07/18  (rcs-revision 1.7)
 \pgfsyssoftpath@smallbuffer@items=\count122
 \pgfsyssoftpath@bigbuffer@items=\count123
 )
-("C:\Program Files\MiKTeX\tex\generic\pgf\systemlayer\pgfsysprotocol.code.tex"
+(/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.
+code.tex
 File: pgfsysprotocol.code.tex 2006/10/16  (rcs-revision 1.4)
 ))
-("C:\Program Files\MiKTeX\tex\generic\pgf\basiclayer\pgfcore.code.tex"
+(/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
 Package: pgfcore 2010/04/11 v2.10 (rcs-revision 1.7)
-
-("C:\Program Files\MiKTeX\tex\generic\pgf\math\pgfmath.code.tex"
-("C:\Program Files\MiKTeX\tex\generic\pgf\math\pgfmathcalc.code.tex"
-("C:\Program Files\MiKTeX\tex\generic\pgf\math\pgfmathutil.code.tex")
-("C:\Program Files\MiKTeX\tex\generic\pgf\math\pgfmathparser.code.tex"
+(/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
+(/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex
+(/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
+(/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
 \pgfmath@dimen=\dimen173
 \pgfmath@count=\count124
 \pgfmath@box=\box44
@@ -411,18 +446,27 @@ Package: pgfcore 2010/04/11 v2.10 (rcs-revision 1.7)
 \pgfmath@stack@operand=\toks35
 \pgfmath@stack@operation=\toks36
 )
-("C:\Program Files\MiKTeX\tex\generic\pgf\math\pgfmathfunctions.code.tex"
-("C:\Program Files\MiKTeX\tex\generic\pgf\math\pgfmathfunctions.basic.code.tex")
-("C:\Program Files\MiKTeX\tex\generic\pgf\math\pgfmathfunctions.trigonometric.code.tex")
-("C:\Program Files\MiKTeX\tex\generic\pgf\math\pgfmathfunctions.random.code.tex")
-("C:\Program Files\MiKTeX\tex\generic\pgf\math\pgfmathfunctions.comparison.code.tex")
-("C:\Program Files\MiKTeX\tex\generic\pgf\math\pgfmathfunctions.base.code.tex")
-("C:\Program Files\MiKTeX\tex\generic\pgf\math\pgfmathfunctions.round.code.tex")
-("C:\Program Files\MiKTeX\tex\generic\pgf\math\pgfmathfunctions.misc.code.tex")))
-("C:\Program Files\MiKTeX\tex\generic\pgf\math\pgfmathfloat.code.tex"
+(/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.
+tex
+(/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic
+.code.tex)
+(/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigo
+nometric.code.tex)
+(/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.rando
+m.code.tex)
+(/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.compa
+rison.code.tex)
+(/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.
+code.tex)
+(/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round
+.code.tex)
+(/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.
+code.tex)))
+(/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
 \c@pgfmathroundto@lastzeros=\count125
 ))
-("C:\Program Files\MiKTeX\tex\generic\pgf\basiclayer\pgfcorepoints.code.tex"
+(/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.co
+de.tex
 File: pgfcorepoints.code.tex 2010/04/09  (rcs-revision 1.20)
 \pgf@picminx=\dimen174
 \pgf@picmaxx=\dimen175
@@ -439,95 +483,116 @@ File: pgfcorepoints.code.tex 2010/04/09  (rcs-revision 1.20)
 \pgf@zx=\dimen186
 \pgf@zy=\dimen187
 )
-("C:\Program Files\MiKTeX\tex\generic\pgf\basiclayer\pgfcorepathconstruct.code.tex"
+(/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconst
+ruct.code.tex
 File: pgfcorepathconstruct.code.tex 2010/08/03  (rcs-revision 1.24)
 \pgf@path@lastx=\dimen188
 \pgf@path@lasty=\dimen189
 )
-("C:\Program Files\MiKTeX\tex\generic\pgf\basiclayer\pgfcorepathusage.code.tex"
+(/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage
+.code.tex
 File: pgfcorepathusage.code.tex 2008/04/22  (rcs-revision 1.12)
 \pgf@shorten@end@additional=\dimen190
 \pgf@shorten@start@additional=\dimen191
 )
-("C:\Program Files\MiKTeX\tex\generic\pgf\basiclayer\pgfcorescopes.code.tex"
+(/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.co
+de.tex
 File: pgfcorescopes.code.tex 2010/09/08  (rcs-revision 1.34)
 \pgfpic=\box45
 \pgf@hbox=\box46
 \pgf@layerbox@main=\box47
 \pgf@picture@serial@count=\count126
 )
-("C:\Program Files\MiKTeX\tex\generic\pgf\basiclayer\pgfcoregraphicstate.code.tex"
+(/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicst
+ate.code.tex
 File: pgfcoregraphicstate.code.tex 2008/04/22  (rcs-revision 1.9)
 \pgflinewidth=\dimen192
 )
-("C:\Program Files\MiKTeX\tex\generic\pgf\basiclayer\pgfcoretransformations.code.tex"
+(/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransform
+ations.code.tex
 File: pgfcoretransformations.code.tex 2009/06/10  (rcs-revision 1.11)
 \pgf@pt@x=\dimen193
 \pgf@pt@y=\dimen194
 \pgf@pt@temp=\dimen195
 )
-("C:\Program Files\MiKTeX\tex\generic\pgf\basiclayer\pgfcorequick.code.tex"
+(/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.cod
+e.tex
 File: pgfcorequick.code.tex 2008/10/09  (rcs-revision 1.3)
 )
-("C:\Program Files\MiKTeX\tex\generic\pgf\basiclayer\pgfcoreobjects.code.tex"
+(/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.c
+ode.tex
 File: pgfcoreobjects.code.tex 2006/10/11  (rcs-revision 1.2)
 )
-("C:\Program Files\MiKTeX\tex\generic\pgf\basiclayer\pgfcorepathprocessing.code.tex"
+(/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathproce
+ssing.code.tex
 File: pgfcorepathprocessing.code.tex 2008/10/09  (rcs-revision 1.8)
 )
-("C:\Program Files\MiKTeX\tex\generic\pgf\basiclayer\pgfcorearrows.code.tex"
+(/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.co
+de.tex
 File: pgfcorearrows.code.tex 2008/04/23  (rcs-revision 1.11)
 )
-("C:\Program Files\MiKTeX\tex\generic\pgf\basiclayer\pgfcoreshade.code.tex"
+(/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.cod
+e.tex
 File: pgfcoreshade.code.tex 2008/11/23  (rcs-revision 1.13)
 \pgf@max=\dimen196
 \pgf@sys@shading@range@num=\count127
 )
-("C:\Program Files\MiKTeX\tex\generic\pgf\basiclayer\pgfcoreimage.code.tex"
+(/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.cod
+e.tex
 File: pgfcoreimage.code.tex 2010/03/25  (rcs-revision 1.16)
 
-("C:\Program Files\MiKTeX\tex\generic\pgf\basiclayer\pgfcoreexternal.code.tex"
+(/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.
+code.tex
 File: pgfcoreexternal.code.tex 2010/09/01  (rcs-revision 1.17)
 \pgfexternal@startupbox=\box48
 ))
-("C:\Program Files\MiKTeX\tex\generic\pgf\basiclayer\pgfcorelayers.code.tex"
+(/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.co
+de.tex
 File: pgfcorelayers.code.tex 2010/08/27  (rcs-revision 1.2)
 )
-("C:\Program Files\MiKTeX\tex\generic\pgf\basiclayer\pgfcoretransparency.code.tex"
+(/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretranspare
+ncy.code.tex
 File: pgfcoretransparency.code.tex 2008/01/17  (rcs-revision 1.2)
 )
-("C:\Program Files\MiKTeX\tex\generic\pgf\basiclayer\pgfcorepatterns.code.tex"
+(/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.
+code.tex
 File: pgfcorepatterns.code.tex 2009/07/02  (rcs-revision 1.3)
 )))
-("C:\Program Files\MiKTeX\tex\generic\pgf\modules\pgfmoduleshapes.code.tex"
+(/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.cod
+e.tex
 File: pgfmoduleshapes.code.tex 2010/09/09  (rcs-revision 1.13)
 \pgfnodeparttextbox=\box49
 )
-("C:\Program Files\MiKTeX\tex\generic\pgf\modules\pgfmoduleplot.code.tex"
+(/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.
+tex
 File: pgfmoduleplot.code.tex 2010/10/22  (rcs-revision 1.8)
 )
-("C:\Program Files\MiKTeX\tex\latex\pgf\compatibility\pgfcomp-version-0-65.sty"
+(/usr/local/texlive/2013/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
+-0-65.sty
 Package: pgfcomp-version-0-65 2007/07/03 v2.10 (rcs-revision 1.7)
 \pgf@nodesepstart=\dimen197
 \pgf@nodesepend=\dimen198
 )
-("C:\Program Files\MiKTeX\tex\latex\pgf\compatibility\pgfcomp-version-1-18.sty"
+(/usr/local/texlive/2013/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
+-1-18.sty
 Package: pgfcomp-version-1-18 2007/07/23 v2.10 (rcs-revision 1.1)
 ))
-("C:\Program Files\MiKTeX\tex\latex\pgf\utilities\pgffor.sty"
-("C:\Program Files\MiKTeX\tex\latex\pgf\utilities\pgfkeys.sty"
-("C:\Program Files\MiKTeX\tex\generic\pgf\utilities\pgfkeys.code.tex"))
-("C:\Program Files\MiKTeX\tex\generic\pgf\utilities\pgffor.code.tex"
+(/usr/local/texlive/2013/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
+(/usr/local/texlive/2013/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
+(/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex)
+) (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
 Package: pgffor 2010/03/23 v2.10 (rcs-revision 1.18)
 \pgffor@iter=\dimen199
 \pgffor@skip=\dimen200
 \pgffor@stack=\toks37
 \pgffor@toks=\toks38
 ))
-("C:\Program Files\MiKTeX\tex\generic\pgf\frontendlayer\tikz\tikz.code.tex"
+(/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.cod
+e.tex
 Package: tikz 2010/10/13 v2.10 (rcs-revision 1.76)
 
-("C:\Program Files\MiKTeX\tex\generic\pgf\libraries\pgflibraryplothandlers.code.tex"
+(/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothan
+dlers.code.tex
 File: pgflibraryplothandlers.code.tex 2010/05/31 v2.10 (rcs-revision 1.15)
 \pgf@plot@mark@count=\count128
 \pgfplotmarksize=\dimen201
@@ -545,7 +610,8 @@ File: pgflibraryplothandlers.code.tex 2010/05/31 v2.10 (rcs-revision 1.15)
 \tikznumberofcurrentchild=\count131
 \tikz@fig@count=\count132
 
-("C:\Program Files\MiKTeX\tex\generic\pgf\modules\pgfmodulematrix.code.tex"
+(/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.cod
+e.tex
 File: pgfmodulematrix.code.tex 2010/08/24  (rcs-revision 1.4)
 \pgfmatrixcurrentrow=\count133
 \pgfmatrixcurrentcolumn=\count134
@@ -553,10 +619,11 @@ File: pgfmodulematrix.code.tex 2010/08/24  (rcs-revision 1.4)
 )
 \tikz@expandcount=\count136
 
-("C:\Program Files\MiKTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarytopaths.code.tex"
+(/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
+s/tikzlibrarytopaths.code.tex
 File: tikzlibrarytopaths.code.tex 2008/06/17 v2.10 (rcs-revision 1.2)
-)))
-(C:\Users\Kristina\Dropbox\tcs\prooftree.tex <Paul Taylor's Proof Trees, 2 August 1996>
+))) (./prooftree.tex
+<Paul Taylor's Proof Trees, 2 August 1996>
 \proofrulebreadth=\dimen208
 \proofdotseparation=\dimen209
 \proofrulebaseline=\dimen210
@@ -567,27 +634,9 @@ File: tikzlibrarytopaths.code.tex 2008/06/17 v2.10 (rcs-revision 1.2)
 \proofabove=\box52
 \proofbelow=\box53
 \proofrulename=\box54
-)
-(C:\Users\Kristina\Dropbox\tcs\main.aux
+) (./main.aux)
+\openout1 = `main.aux'.
 
-LaTeX Warning: Label `section:extW' multiply defined.
-
-
-LaTeX Warning: Label `section:intW' multiply defined.
-
-
-LaTeX Warning: Label `subsection:main' multiply defined.
-
-
-LaTeX Warning: Label `thm:wtypesinvariance' multiply defined.
-
-
-LaTeX Warning: Label `subsec:define' multiply defined.
-
-
-LaTeX Warning: Label `section:future' multiply defined.
-
-)
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 142.
 LaTeX Font Info:    ... okay on input line 142.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 142.
@@ -601,9 +650,12 @@ LaTeX Font Info:    ... okay on input line 142.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 142.
 LaTeX Font Info:    ... okay on input line 142.
 LaTeX Font Info:    Try loading font information for OT1+pnc on input line 142.
- ("C:\Program Files\MiKTeX\tex\latex\psnfss\ot1pnc.fd"
+
+
+(/usr/local/texlive/2013/texmf-dist/tex/latex/psnfss/ot1pnc.fd
 File: ot1pnc.fd 2001/06/04 font definitions for OT1/pnc.
-) ("C:\Program Files\MiKTeX\tex\context\base\supp-pdf.mkii"
+)
+(/usr/local/texlive/2013/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count138
 \scratchdimen=\dimen214
@@ -616,31 +668,80 @@ File: ot1pnc.fd 2001/06/04 font definitions for OT1/pnc.
 \MPnumerator=\count142
 \makeMPintoPDFobject=\count143
 \everyMPtoPDFconversion=\toks40
+) (/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
 )
+
+(/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+(/usr/local/texlive/2013/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
+
+(/usr/local/texlive/2013/texmf-dist/tex/latex/oberdiek/grfext.sty
+Package: grfext 2010/08/19 v1.1 Manage graphics extensions (HO)
+
+(/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
+Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
+))
+(/usr/local/texlive/2013/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
+
+(/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
+
+(/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/etexcmds.sty
+Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)))
+Package grfext Info: Graphics extension search list:
+(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 452.
+
+(/usr/local/texlive/2013/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
 LaTeX Font Info:    Try loading font information for U+lasy on input line 142.
- ("C:\Program Files\MiKTeX\tex\latex\base\ulasy.fd"
+
+(/usr/local/texlive/2013/texmf-dist/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
 LaTeX Font Info:    Try loading font information for U+msa on input line 142.
- ("C:\Program Files\MiKTeX\tex\latex\amsfonts\umsa.fd"
+
+(/usr/local/texlive/2013/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
 LaTeX Font Info:    Try loading font information for U+msb on input line 142.
 
-("C:\Program Files\MiKTeX\tex\latex\amsfonts\umsb.fd"
+(/usr/local/texlive/2013/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 Package xypdf Info: Line width: 0.39998pt on input line 142.
- ABD: EveryShipout initializing macros
+
+ABD: EveryShipout initializing macros
 LaTeX Font Info:    Try loading font information for OMS+pnc on input line 172.
 
-("C:\Program Files\MiKTeX\tex\latex\psnfss\omspnc.fd"
+
+(/usr/local/texlive/2013/texmf-dist/tex/latex/psnfss/omspnc.fd
 File: omspnc.fd 
 )
 LaTeX Font Info:    Font shape `OMS/pnc/m/n' in size <8> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 172.
 LaTeX Font Info:    Try loading font information for OT1+phv on input line 174.
- ("C:\Program Files\MiKTeX\tex\latex\psnfss\ot1phv.fd"
+
+
+(/usr/local/texlive/2013/texmf-dist/tex/latex/psnfss/ot1phv.fd
 File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
 )
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <12> not available
@@ -650,119 +751,136 @@ LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <8> not available
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <9> not available
 (Font)              Font shape `OT1/phv/b/n' tried instead on input line 176.
 
-(C:\Users\Kristina\Dropbox\tcs\intro.tex
-Overfull \vbox (72.27pt too high) has occurred while \output is active []
-
- [1{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}
-Non-PDF special ignored!
-
-])
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [2] (C:\Users\Kristina\Dropbox\tcs\prelim.tex
-[3] [4]
-LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <9> not available
-(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 121.
- [5] [6]) (C:\Users\Kristina\Dropbox\tcs\extW.tex [7] [8] [9] [10]
+
+Overfull \vbox (72.27pt too high) has occurred while \output is active []
+
+ [1{/usr/local/texlive/2013/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
+Non-PDF special ignored!
+
+]
 LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <10> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 204.
+(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 185.
 
 
-LaTeX Warning: Reference `lem:IsContrIsProp' on page 11 undefined on input line 204.
+LaTeX Warning: Reference `section:intW' on page 2 undefined on input line 185.
+
+[2] [3] [4]
+LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <9> not available
+(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 305.
+ [5] [6]
+
+LaTeX Warning: Reference `section:intW' on page 7 undefined on input line 451.
+
+[7] [8]
+
+LaTeX Warning: Reference `section:intW' on page 9 undefined on input line 571.
+
+[9]
+
+LaTeX Warning: Reference `lem:IsContrIsProp' on page 10 undefined on input line
+ 661.
 
 EdNote!
 
-LaTeX Warning: Reference `lem:PropChar' on page 11 undefined on input line 204.
+LaTeX Warning: Reference `lem:PropChar' on page 10 undefined on input line 661.
 
-EdNote!
+
+EdNote! [10]
 
 LaTeX Warning: Marginpar on page 11 moved.
 
-[11] [12] [13]
+EdNote! [11] [12]
 
-LaTeX Warning: Reference `lem:IsContrIsProp' on page 14 undefined on input line 401.
+LaTeX Warning: Reference `lem:contr_path_space' on page 13 undefined on input l
+ine 778.
 
+[13] [14]
 
-LaTeX Warning: Reference `lem:PropChar' on page 14 undefined on input line 401.
-
-[14]
-
-LaTeX Warning: Reference `lem:apeq' on page 15 undefined on input line 432.
-
-EdNote!) (C:\Users\Kristina\Dropbox\tcs\intW.tex [15] EdNote! [16]
-
-LaTeX Warning: Reference `lem:contr_path_space' on page 17 undefined on input line 104.
-
-[17] [18]
-
-LaTeX Warning: Reference `lem_singl_contr' on page 19 undefined on input line 192.
+LaTeX Warning: Reference `lem_singl_contr' on page 15 undefined on input line 8
+66.
 
 EdNote!
 
-LaTeX Warning: Reference `lem_singl_equiv_contr' on page 19 undefined on input line 194.
+LaTeX Warning: Reference `lem_singl_equiv_contr' on page 15 undefined on input 
+line 868.
 
 EdNote!
 
-LaTeX Warning: Reference `lem_ap_equiv' on page 19 undefined on input line 194.
-
-EdNote! [19]
-
-LaTeX Warning: Marginpar on page 20 moved.
-
-[20]
-
-LaTeX Warning: Reference `lem:IsContrIsProp' on page 21 undefined on input line 277.
+LaTeX Warning: Reference `lem_ap_equiv' on page 15 undefined on input line 868.
 
 
-LaTeX Warning: Reference `lem:PropChar' on page 21 undefined on input line 277.
+EdNote!
 
-[21] [22] [23]
-Underfull \vbox (badness 2376) has occurred while \output is active []
+LaTeX Warning: Marginpar on page 15 moved.
 
- [24]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+[15]
 
- [25]
-
-LaTeX Warning: Reference `lem_singl_equiv_contr' on page 26 undefined on input line 480.
+LaTeX Warning: Reference `lem:IsContrIsProp' on page 16 undefined on input line
+ 951.
 
 
-LaTeX Warning: Reference `lem_ap_equiv' on page 26 undefined on input line 480.
+LaTeX Warning: Reference `lem:PropChar' on page 16 undefined on input line 951.
 
 
-LaTeX Warning: Reference `lem_equiv_comp' on page 26 undefined on input line 480.
+[16] [17] [18] [19] [20]
 
-EdNote! [26]
-
-LaTeX Warning: Reference `lem_singl_contr' on page 27 undefined on input line 494.
-
-[27]
-Underfull \vbox (badness 1062) has occurred while \output is active []
-
- [28]
-
-LaTeX Warning: Reference `lem:IsContrIsProp' on page 29 undefined on input line 589.
+LaTeX Warning: Reference `lem:IsContrIsProp' on page 21 undefined on input line
+ 1172.
 
 
-LaTeX Warning: Reference `lem:PropChar' on page 29 undefined on input line 589.
+LaTeX Warning: Reference `lem:PropChar' on page 21 undefined on input line 1172
+.
+
+[21]
+
+LaTeX Warning: Reference `lem:apeq' on page 22 undefined on input line 1203.
+
+EdNote! [22] [23] [24] [25]
+
+LaTeX Warning: Reference `lem_singl_equiv_contr' on page 26 undefined on input 
+line 1378.
+
+
+LaTeX Warning: Reference `lem_ap_equiv' on page 26 undefined on input line 1378
+.
+
+
+LaTeX Warning: Reference `lem_equiv_comp' on page 26 undefined on input line 13
+78.
+
+EdNote!
+
+LaTeX Warning: Reference `lem_singl_contr' on page 26 undefined on input line 1
+392.
+
+
+Underfull \vbox (badness 4454) has occurred while \output is active []
+
+ [26]
+
+LaTeX Warning: Reference `subsection:wtypes' on page 27 undefined on input line
+ 1407.
+
+[27] [28]
+
+LaTeX Warning: Reference `lem:IsContrIsProp' on page 29 undefined on input line
+ 1487.
+
+
+LaTeX Warning: Reference `lem:PropChar' on page 29 undefined on input line 1487
+.
 
 [29]
 
-LaTeX Warning: Reference `lem:apeq' on page 30 undefined on input line 629.
+LaTeX Warning: Reference `lem:apeq' on page 30 undefined on input line 1527.
 
 [30] [31] [32]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 1297) has occurred while \output is active []
 
- [33] [34]) (C:\Users\Kristina\Dropbox\tcs\old.tex
-[35] <xymatrix 2x2 141> [36] [37] [38] [39] [40] <xymatrix 2x2 223>
-Underfull \hbox (badness 1286) in paragraph at lines 373--374
-[] \OT1/pnc/m/n/10 A $\OML/cmm/m/it/10 P$\OT1/pnc/m/n/10 -algebra $\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 C; s[]\OT1/cmr/m/n/
-10 )$ \OT1/pnc/m/n/10 is \OT1/pnc/m/it/10 homotopy-initial \OT1/pnc/m/n/10 if for ev-ery $\OML/cmm/m/it/10 P$\OT1/pnc/m/
-n/10 -algebra
- []
-
-[41] <xymatrix 2x2 327> <xymatrix 2x2 326> [42] <xymatrix 3x2 313> [43]) (C:\Users\Kristina\Dropbox\tcs\conc.tex
-[44]) (C:\Users\Kristina\Dropbox\tcs\main.bbl [45]
+ [33]
+[34] (./main.bbl [35]
 Missing character: There is no â in font pncr7t!
 Missing character: There is no € in font pncr7t!
 Missing character: There is no “ in font pncr7t!
@@ -776,44 +894,54 @@ Missing character: There is no “ in font pncr7t!
 
 There are still 8 EdNotes, New/Oldparts, and Issues to resolve!
 
-[46] (C:\Users\Kristina\Dropbox\tcs\main.aux)
+[36] (./main.aux)
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: There were multiply-defined labels.
-
  ) 
 Here is how much of TeX's memory you used:
- 15024 strings out of 493921
- 250610 string characters out of 3148878
- 364049 words of memory out of 3000000
- 17953 multiletter control sequences out of 15000+200000
- 42002 words of font info for 105 fonts, out of 3000000 for 9000
- 841 hyphenation exceptions out of 8191
- 56i,16n,55p,3256b,801s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files/MiKTeX/fonts/enc/dvips/fontname/8r.enc}<C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmex1
-0.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cmextra/cmex8.pfb><C:/Program Files/MiKTeX/fonts/type1/public
-/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program Files/MiKTeX/fonts
-/type1/public/amsfonts/cm/cmmi6.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files/
-MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Pr
-ogram Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.
-pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfont
-s/cm/cmr8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmss10.pfb><C:/Program Files/MiKTeX/fonts/type1/pu
-blic/amsfonts/cm/cmss8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmss9.pfb><C:/Program Files/MiKTeX/fo
-nts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Program Fi
-les/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C
-:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy9.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/
-cmtt8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/latxfont/lasy10.pfb><C:/Program Files/MiKTeX/fonts/type1/
-public/amsfonts/symbols/msam10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Program F
-iles/MiKTeX/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/Program Files/MiKTeX/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Program
- Files/MiKTeX/fonts/type1/urw/helvetic/uhvro8a.pfb><C:/Program Files/MiKTeX/fonts/type1/urw/ncntrsbk/uncb8a.pfb><C:/Prog
-ram Files/MiKTeX/fonts/type1/urw/ncntrsbk/uncr8a.pfb><C:/Program Files/MiKTeX/fonts/type1/urw/ncntrsbk/uncri8a.pfb><C:/P
-rogram Files/MiKTeX/fonts/type1/public/xypic/xyatip10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/xypic/xybtip10.pfb
->
-Output written on main.pdf (46 pages, 516912 bytes).
+ 15304 strings out of 493315
+ 258587 string characters out of 6137904
+ 380264 words of memory out of 5000000
+ 18382 multiletter control sequences out of 15000+600000
+ 40570 words of font info for 102 fonts, out of 8000000 for 9000
+ 957 hyphenation exceptions out of 8191
+ 56i,16n,55p,3256b,614s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2013/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
+exlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
+xlive/2013/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/local
+/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/
+texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/te
+xlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texl
+ive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texliv
+e/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/
+2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/20
+13/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2013/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2013/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2013/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2013/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/texlive/2013/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/texlive/2013/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmss9.pfb></usr/local/texlive/2013/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2013/texmf-dist/font
+s/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2013/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2013/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2013/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmtt8.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/pu
+blic/amsfonts/latxfont/lasy10.pfb></usr/local/texlive/2013/texmf-dist/fonts/typ
+e1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2013/texmf-dist/fonts
+/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2013/texmf-dist/f
+onts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2013/texmf-dist/fonts/ty
+pe1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/urw
+/helvetic/uhvro8a.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/urw/ncntr
+sbk/uncb8a.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/urw/ncntrsbk/unc
+r8a.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/urw/ncntrsbk/uncri8a.pf
+b>
+Output written on main.pdf (36 pages, 424525 bytes).
 PDF statistics:
- 283 PDF objects out of 1000 (max. 8388607)
+ 244 PDF objects out of 1000 (max. 8388607)
+ 174 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
