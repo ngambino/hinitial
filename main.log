@@ -1,195 +1,15 @@
-<<<<<<< HEAD
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.7.25)  11 JUN 2014 15:22
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.7.25)  11 JUN 2014 15:30
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
-=======
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  11 JUN 2014 15:21
-entering extended mode
- \write18 enabled.
->>>>>>> FETCH_HEAD
  %&-line parsing enabled.
 **main.tex
 (./main.tex
 LaTeX2e <2011/06/27>
-<<<<<<< HEAD
 Babel <3.9f> and hyphenation patterns for 78 languages loaded.
-(./acmsmall.cls
-Document Class: acmsmall 2012/03/05, fonts included on 28 June 2010
-(/usr/local/texlive/2013/texmf-dist/tex/latex/url/url.sty
-\Urlmuskip=\muskip10
-Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
-)
-ACM, Production Font style: 2010/06/28 by Aptara
-
-Using ACM, JACM's option: 2010/05/04 by Aptara
-
-(/usr/local/texlive/2013/texmf-dist/tex/latex/base/latexsym.sty
-Package: latexsym 1998/08/17 v2.2e Standard LaTeX package (lasy symbols)
-\symlasy=\mathgroup4
-LaTeX Font Info:    Overwriting symbol font `lasy' in version `bold'
-(Font)                  U/lasy/m/n --> U/lasy/b/n on input line 47.
-)
-(/usr/local/texlive/2013/texmf-dist/tex/latex/graphics/color.sty
-Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
-
-(/usr/local/texlive/2013/texmf-dist/tex/latex/latexconfig/color.cfg
-File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
-)
-Package color Info: Driver file: pdftex.def on input line 130.
-
-(/usr/local/texlive/2013/texmf-dist/tex/latex/pdftex-def/pdftex.def
-File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
-
-(/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/infwarerr.sty
-Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
-)
-(/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
-Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
-)
-\Gread@gobject=\count79
-))
-(/usr/local/texlive/2013/texmf-dist/tex/latex/graphics/graphicx.sty
-Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
-
-(/usr/local/texlive/2013/texmf-dist/tex/latex/graphics/keyval.sty
-Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
-\KV@toks@=\toks14
-)
-(/usr/local/texlive/2013/texmf-dist/tex/latex/graphics/graphics.sty
-Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
-
-(/usr/local/texlive/2013/texmf-dist/tex/latex/graphics/trig.sty
-Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
-)
-(/usr/local/texlive/2013/texmf-dist/tex/latex/latexconfig/graphics.cfg
-File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
-)
-Package graphics Info: Driver file: pdftex.def on input line 91.
-)
-\Gin@req@height=\dimen102
-\Gin@req@width=\dimen103
-)
-Document Class `acmsmall' Electronic Submissions v1.4 <July 09, 2012> (ACM).
-\@firstpg=\count80
-\@lastpg=\count81
-\trimheight=\dimen104
-\trimwidth=\dimen105
-\normaltextheight=\dimen106
-\tempdimen=\dimen107
-\tempbox=\box26
-\tbbox=\box27
-\tabledim=\dimen108
-\symnewlargesymbols=\mathgroup5
-LaTeX Font Info:    Redeclaring math symbol \bigsqcup on input line 2037.
-\normalparindent=\dimen109
-\footheight=\skip41
-\@maxsep=\skip42
-\@dblmaxsep=\skip43
-\@totalpg=\count82
-\@abstract=\box28
-\@permissionbox=\box29
-\c@part=\count83
-\c@section=\count84
-\c@subsection=\count85
-\c@subsubsection=\count86
-\c@paragraph=\count87
-\enumdim=\dimen110
-\c@theorem=\count88
-\belowcaptionskip=\skip44
-\abovecaptionskip=\skip45
-\c@figure=\count89
-\c@table=\count90
-\@narrowfig=\dimen111
-\@nfigbox=\box30
-\@nfcapbox=\box31
-\@nfigbox=\box32
-\@nfcapbox=\box33
-\bibindent=\dimen112
-LaTeX Font Info:    Overwriting math alphabet `\mathbb' in version `normal'
-(Font)                  OT1/ams/bx/n --> OT1/ams/bx/n on input line 3619.
-LaTeX Font Info:    Overwriting math alphabet `\mathbb' in version `bold'
-(Font)                  OT1/ams/bx/n --> OT1/ams/bx/n on input line 3620.
-) (/usr/local/texlive/2013/texmf-dist/tex/latex/amsmath/amsmath.sty
-Package: amsmath 2013/01/14 v2.14 AMS math features
-\@mathmargin=\skip46
-
-For additional information on amsmath, use the `?' option.
-(/usr/local/texlive/2013/texmf-dist/tex/latex/amsmath/amstext.sty
-Package: amstext 2000/06/29 v2.01
-
-(/usr/local/texlive/2013/texmf-dist/tex/latex/amsmath/amsgen.sty
-File: amsgen.sty 1999/11/30 v2.0
-\@emptytoks=\toks15
-\ex@=\dimen113
-)
-LaTeX Info: Redefining \text on input line 39.
-)
-(/usr/local/texlive/2013/texmf-dist/tex/latex/amsmath/amsbsy.sty
-Package: amsbsy 1999/11/29 v1.2d
-\pmbraise@=\dimen114
-)
-(/usr/local/texlive/2013/texmf-dist/tex/latex/amsmath/amsopn.sty
-Package: amsopn 1999/12/14 v2.01 operator names
-)
-\inf@bad=\count91
-LaTeX Info: Redefining \frac on input line 210.
-\uproot@=\count92
-\leftroot@=\count93
-LaTeX Info: Redefining \overline on input line 306.
-\classnum@=\count94
-\DOTSCASE@=\count95
-LaTeX Info: Redefining \ldots on input line 378.
-LaTeX Info: Redefining \dots on input line 381.
-LaTeX Info: Redefining \cdots on input line 466.
-\Mathstrutbox@=\box34
-\strutbox@=\box35
-\big@size=\dimen115
-LaTeX Font Info:    Redeclaring font encoding OML on input line 566.
-LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
-\macc@depth=\count96
-\c@MaxMatrixCols=\count97
-\dotsspace@=\muskip11
-\c@parentequation=\count98
-\dspbrk@lvl=\count99
-\tag@help=\toks16
-\row@=\count100
-\column@=\count101
-\maxfields@=\count102
-\andhelp@=\toks17
-\eqnshift@=\dimen116
-\alignsep@=\dimen117
-\tagshift@=\dimen118
-\tagwidth@=\dimen119
-\totwidth@=\dimen120
-\lineht@=\dimen121
-\@envbody=\toks18
-\multlinegap=\skip47
-\multlinetaggap=\skip48
-\mathdisplay@stack=\toks19
-LaTeX Info: Redefining \[ on input line 2665.
-LaTeX Info: Redefining \] on input line 2666.
-)
-(/usr/local/texlive/2013/texmf-dist/tex/generic/xypic/xy.sty
-(/usr/local/texlive/2013/texmf-dist/tex/generic/xypic/xy.tex Bootstrap'ing:
-catcodes, docmode,
-(/usr/local/texlive/2013/texmf-dist/tex/generic/xypic/xyrecat.tex)
-(/usr/local/texlive/2013/texmf-dist/tex/generic/xypic/xyidioms.tex)
-=======
-Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, ge
-rman-x-2012-05-30, ngerman-x-2012-05-30, afrikaans, ancientgreek, ibycus, arabi
-c, armenian, basque, bulgarian, catalan, pinyin, coptic, croatian, czech, danis
-h, dutch, ukenglish, usenglishmax, esperanto, estonian, ethiopic, farsi, finnis
-h, french, friulan, galician, german, ngerman, swissgerman, monogreek, greek, h
-ungarian, icelandic, assamese, bengali, gujarati, hindi, kannada, malayalam, ma
-rathi, oriya, panjabi, tamil, telugu, indonesian, interlingua, irish, italian, 
-kurmanji, latin, latvian, lithuanian, mongolian, mongolianlmc, bokmal, nynorsk,
- polish, portuguese, romanian, romansh, russian, sanskrit, serbian, serbianc, s
-lovak, slovenian, spanish, swedish, turkish, turkmen, ukrainian, uppersorbian, 
-welsh, loaded.
-(/usr/local/texlive/2012/texmf-dist/tex/latex/base/article.cls
+(/usr/local/texlive/2013/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
-(/usr/local/texlive/2012/texmf-dist/tex/latex/base/size11.clo
+(/usr/local/texlive/2013/texmf-dist/tex/latex/base/size11.clo
 File: size11.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 )
 \c@part=\count79
@@ -204,69 +24,17 @@ File: size11.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
 )
-(/usr/local/texlive/2012/texmf-dist/tex/generic/xypic/xy.sty
-(/usr/local/texlive/2012/texmf-dist/tex/generic/xypic/xy.tex Bootstrap'ing:
+(/usr/local/texlive/2013/texmf-dist/tex/generic/xypic/xy.sty
+(/usr/local/texlive/2013/texmf-dist/tex/generic/xypic/xy.tex Bootstrap'ing:
 catcodes, docmode,
-(/usr/local/texlive/2012/texmf-dist/tex/generic/xypic/xyrecat.tex)
-(/usr/local/texlive/2012/texmf-dist/tex/generic/xypic/xyidioms.tex)
->>>>>>> FETCH_HEAD
+(/usr/local/texlive/2013/texmf-dist/tex/generic/xypic/xyrecat.tex)
+(/usr/local/texlive/2013/texmf-dist/tex/generic/xypic/xyidioms.tex)
 
  Xy-pic version 3.8.8 <2012/05/24>
  Copyright (c) 1991-2011 by Kristoffer H. Rose <krisrose@tug.org>
  Xy-pic is free software: see the User's Guide for details.
 
 Loading kernel: messages; fonts; allocations: state,
-<<<<<<< HEAD
-\X@c=\dimen122
-\Y@c=\dimen123
-\U@c=\dimen124
-\D@c=\dimen125
-\L@c=\dimen126
-\R@c=\dimen127
-\Edge@c=\toks20
-\X@p=\dimen128
-\Y@p=\dimen129
-\U@p=\dimen130
-\D@p=\dimen131
-\L@p=\dimen132
-\R@p=\dimen133
-\Edge@p=\toks21
-\X@origin=\dimen134
-\Y@origin=\dimen135
-\X@xbase=\dimen136
-\Y@xbase=\dimen137
-\X@ybase=\dimen138
-\Y@ybase=\dimen139
-\X@min=\dimen140
-\Y@min=\dimen141
-\X@max=\dimen142
-\Y@max=\dimen143
-\lastobjectbox@=\box36
-\zerodotbox@=\box37
-\almostz@=\dimen144
- direction,
-\d@X=\dimen145
-\d@Y=\dimen146
-\K@=\count103
-\KK@=\count104
-\Direction=\count105
-\K@dXdY=\dimen147
-\K@dYdX=\dimen148
-\xyread@=\read1
-\xywrite@=\write3
-\csp@=\count106
-\quotPTK@=\dimen149
-
-utility macros; pictures: \xy, positions,
-\swaptoks@@=\toks22
-\connectobjectbox@@=\box38
- objects,
-\styletoks@=\toks23
- decorations;
-kernel objects: directionals, circles, text; options; algorithms: directions,
-edges, connections;  Xy-pic loaded)
-(/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/ifpdf.sty
-=======
 \X@c=\dimen103
 \Y@c=\dimen104
 \U@c=\dimen105
@@ -315,27 +83,25 @@ utility macros; pictures: \xy, positions,
  decorations;
 kernel objects: directionals, circles, text; options; algorithms: directions,
 edges, connections;  Xy-pic loaded)
-(/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/ifpdf.sty
->>>>>>> FETCH_HEAD
+(/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/ifpdf.sty
 Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
 Package ifpdf Info: pdfTeX in PDF mode is detected.
 )
 Package: xy 2012/05/24 Xy-pic version 3.8.8
 
-<<<<<<< HEAD
 (/usr/local/texlive/2013/texmf-dist/tex/generic/xypic/xyall.tex
  Xy-pic option: All features v.3.8
 (/usr/local/texlive/2013/texmf-dist/tex/generic/xypic/xycurve.tex
  Xy-pic option: Curve and Spline extension v.3.12 curve,
-\crv@cnt@=\count107
-\crvpts@=\toks24
-\splinebox@=\box39
-\splineval@=\dimen150
-\splinedepth@=\dimen151
-\splinetol@=\dimen152
-\splinelength@=\dimen153
+\crv@cnt@=\count91
+\crvpts@=\toks18
+\splinebox@=\box29
+\splineval@=\dimen131
+\splinedepth@=\dimen132
+\splinetol@=\dimen133
+\splinelength@=\dimen134
  circles,
-\L@=\dimen154
+\L@=\dimen135
  loaded)
 (/usr/local/texlive/2013/texmf-dist/tex/generic/xypic/xyframe.tex
  Xy-pic option: Frame and Bracket extension v.3.14 loaded)
@@ -345,7 +111,7 @@ Package: xy 2012/05/24 Xy-pic version 3.8.8
  Xy-pic option: More Tips extension v.3.9 loaded) loaded)
 (/usr/local/texlive/2013/texmf-dist/tex/generic/xypic/xyline.tex
  Xy-pic option: Line styles extension v.3.10
-\xylinethick@=\dimen155
+\xylinethick@=\dimen136
  loaded)
 (/usr/local/texlive/2013/texmf-dist/tex/generic/xypic/xyrotate.tex
  Xy-pic option: Rotate and Scale extension v.3.8 loaded)
@@ -353,13 +119,13 @@ Package: xy 2012/05/24 Xy-pic version 3.8.8
  Xy-pic option: Colour extension v.3.11 loaded)
 (/usr/local/texlive/2013/texmf-dist/tex/generic/xypic/xymatrix.tex
  Xy-pic option: Matrix feature v.3.14
-\Row=\count108
-\Col=\count109
-\queue@=\toks25
-\queue@@=\toks26
-\qcount@=\count110
-\qcount@@=\count111
-\matrixsize@=\count112
+\Row=\count92
+\Col=\count93
+\queue@=\toks19
+\queue@@=\toks20
+\qcount@=\count94
+\qcount@@=\count95
+\matrixsize@=\count96
  loaded)
 (/usr/local/texlive/2013/texmf-dist/tex/generic/xypic/xyarrow.tex
  Xy-pic option: Arrow and Path feature v.3.9 path, \ar, loaded)
@@ -376,104 +142,41 @@ Xy-pic pdf driver: `line' extension support
 (/usr/local/texlive/2013/texmf-dist/tex/generic/xypic/xypdf-li.tex loaded)
 Xy-pic pdf driver: `rotate' extension support
 (/usr/local/texlive/2013/texmf-dist/tex/generic/xypic/xypdf-ro.tex loaded)
-loaded)) (/usr/local/texlive/2013/texmf-dist/tex/latex/amsfonts/amssymb.sty
-Package: amssymb 2013/01/14 v3.01 AMS font symbols
-
-(/usr/local/texlive/2013/texmf-dist/tex/latex/amsfonts/amsfonts.sty
-Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
-\symAMSa=\mathgroup6
-\symAMSb=\mathgroup7
-LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
-(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
-=======
-(/usr/local/texlive/2012/texmf-dist/tex/generic/xypic/xyall.tex
- Xy-pic option: All features v.3.8
-(/usr/local/texlive/2012/texmf-dist/tex/generic/xypic/xycurve.tex
- Xy-pic option: Curve and Spline extension v.3.12 curve,
-\crv@cnt@=\count91
-\crvpts@=\toks18
-\splinebox@=\box29
-\splineval@=\dimen131
-\splinedepth@=\dimen132
-\splinetol@=\dimen133
-\splinelength@=\dimen134
- circles,
-\L@=\dimen135
- loaded)
-(/usr/local/texlive/2012/texmf-dist/tex/generic/xypic/xyframe.tex
- Xy-pic option: Frame and Bracket extension v.3.14 loaded)
-(/usr/local/texlive/2012/texmf-dist/tex/generic/xypic/xycmtip.tex
- Xy-pic option: Computer Modern tip extension v.3.7
-(/usr/local/texlive/2012/texmf-dist/tex/generic/xypic/xytips.tex
- Xy-pic option: More Tips extension v.3.9 loaded) loaded)
-(/usr/local/texlive/2012/texmf-dist/tex/generic/xypic/xyline.tex
- Xy-pic option: Line styles extension v.3.10
-\xylinethick@=\dimen136
- loaded)
-(/usr/local/texlive/2012/texmf-dist/tex/generic/xypic/xyrotate.tex
- Xy-pic option: Rotate and Scale extension v.3.8 loaded)
-(/usr/local/texlive/2012/texmf-dist/tex/generic/xypic/xycolor.tex
- Xy-pic option: Colour extension v.3.11 loaded)
-(/usr/local/texlive/2012/texmf-dist/tex/generic/xypic/xymatrix.tex
- Xy-pic option: Matrix feature v.3.14
-\Row=\count92
-\Col=\count93
-\queue@=\toks19
-\queue@@=\toks20
-\qcount@=\count94
-\qcount@@=\count95
-\matrixsize@=\count96
- loaded)
-(/usr/local/texlive/2012/texmf-dist/tex/generic/xypic/xyarrow.tex
- Xy-pic option: Arrow and Path feature v.3.9 path, \ar, loaded)
-(/usr/local/texlive/2012/texmf-dist/tex/generic/xypic/xygraph.tex
- Xy-pic option: Graph feature v.3.11 loaded) loaded)
-(/usr/local/texlive/2012/texmf-dist/tex/generic/xypic/xypdf.tex
- Xy-pic option: PDF driver v.1.7 Xy-pic pdf driver: `color' extension support
-(/usr/local/texlive/2012/texmf-dist/tex/generic/xypic/xypdf-co.tex loaded)
-Xy-pic pdf driver: `curve' extension support
-(/usr/local/texlive/2012/texmf-dist/tex/generic/xypic/xypdf-cu.tex loaded)
-Xy-pic pdf driver: `frame' extension support
-(/usr/local/texlive/2012/texmf-dist/tex/generic/xypic/xypdf-fr.tex loaded)
-Xy-pic pdf driver: `line' extension support
-(/usr/local/texlive/2012/texmf-dist/tex/generic/xypic/xypdf-li.tex loaded)
-Xy-pic pdf driver: `rotate' extension support
-(/usr/local/texlive/2012/texmf-dist/tex/generic/xypic/xypdf-ro.tex loaded)
-loaded)) (/usr/local/texlive/2012/texmf-dist/tex/latex/amsmath/amsmath.sty
-Package: amsmath 2000/07/18 v2.13 AMS math features
+loaded)) (/usr/local/texlive/2013/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2013/01/14 v2.14 AMS math features
 \@mathmargin=\skip43
 
 For additional information on amsmath, use the `?' option.
-(/usr/local/texlive/2012/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/local/texlive/2013/texmf-dist/tex/latex/amsmath/amstext.sty
 Package: amstext 2000/06/29 v2.01
 
-(/usr/local/texlive/2012/texmf-dist/tex/latex/amsmath/amsgen.sty
+(/usr/local/texlive/2013/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0
 \@emptytoks=\toks21
 \ex@=\dimen137
 ))
-(/usr/local/texlive/2012/texmf-dist/tex/latex/amsmath/amsbsy.sty
+(/usr/local/texlive/2013/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d
 \pmbraise@=\dimen138
 )
-(/usr/local/texlive/2012/texmf-dist/tex/latex/amsmath/amsopn.sty
+(/usr/local/texlive/2013/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 1999/12/14 v2.01 operator names
 )
 \inf@bad=\count97
-LaTeX Info: Redefining \frac on input line 211.
+LaTeX Info: Redefining \frac on input line 210.
 \uproot@=\count98
 \leftroot@=\count99
-LaTeX Info: Redefining \overline on input line 307.
+LaTeX Info: Redefining \overline on input line 306.
 \classnum@=\count100
 \DOTSCASE@=\count101
-LaTeX Info: Redefining \ldots on input line 379.
-LaTeX Info: Redefining \dots on input line 382.
-LaTeX Info: Redefining \cdots on input line 467.
+LaTeX Info: Redefining \ldots on input line 378.
+LaTeX Info: Redefining \dots on input line 381.
+LaTeX Info: Redefining \cdots on input line 466.
 \Mathstrutbox@=\box30
 \strutbox@=\box31
 \big@size=\dimen139
-LaTeX Font Info:    Redeclaring font encoding OML on input line 567.
-LaTeX Font Info:    Redeclaring font encoding OMS on input line 568.
+LaTeX Font Info:    Redeclaring font encoding OML on input line 566.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
 \macc@depth=\count102
 \c@MaxMatrixCols=\count103
 \dotsspace@=\muskip10
@@ -494,70 +197,24 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 568.
 \multlinegap=\skip44
 \multlinetaggap=\skip45
 \mathdisplay@stack=\toks25
-LaTeX Info: Redefining \[ on input line 2666.
-LaTeX Info: Redefining \] on input line 2667.
+LaTeX Info: Redefining \[ on input line 2665.
+LaTeX Info: Redefining \] on input line 2666.
 )
-(/usr/local/texlive/2012/texmf-dist/tex/latex/amsfonts/amssymb.sty
-Package: amssymb 2009/06/22 v3.00
+(/usr/local/texlive/2013/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
 
-(/usr/local/texlive/2012/texmf-dist/tex/latex/amsfonts/amsfonts.sty
-Package: amsfonts 2009/06/22 v3.00 Basic AMSFonts support
+(/usr/local/texlive/2013/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 \symAMSa=\mathgroup4
 \symAMSb=\mathgroup5
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
-(Font)                  U/euf/m/n --> U/euf/b/n on input line 96.
->>>>>>> FETCH_HEAD
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 ))
 (./mathpartir.sty
 Package: mathpartir 2005/12/20 version 1.2.0 Math Paragraph for Typesetting Inf
 erence Rules
-<<<<<<< HEAD
-\mpr@andskip=\skip49
-\mpr@lista=\toks27
-\mpr@listb=\toks28
-\mpr@hlist=\box40
-\mpr@vlist=\box41
-\mpr@right=\box42
-)
-(/usr/local/texlive/2013/texmf-dist/tex/latex/mh/mathtools.sty
-Package: mathtools 2013/02/12 v1.13 mathematical typesetting tools
 
-(/usr/local/texlive/2013/texmf-dist/tex/latex/tools/calc.sty
-Package: calc 2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count113
-\calc@Bcount=\count114
-\calc@Adimen=\dimen156
-\calc@Bdimen=\dimen157
-\calc@Askip=\skip50
-\calc@Bskip=\skip51
-LaTeX Info: Redefining \setlength on input line 76.
-LaTeX Info: Redefining \addtolength on input line 77.
-\calc@Ccount=\count115
-\calc@Cskip=\skip52
-)
-(/usr/local/texlive/2013/texmf-dist/tex/latex/mh/mhsetup.sty
-Package: mhsetup 2010/01/21 v1.2a programming setup (MH)
-)
-LaTeX Info: Thecontrolsequence`\['isalreadyrobust on input line 129.
-LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
-\g_MT_multlinerow_int=\count116
-\l_MT_multwidth_dim=\dimen158
-\origjot=\skip53
-\l_MT_shortvdotswithinadjustabove_dim=\dimen159
-\l_MT_shortvdotswithinadjustbelow_dim=\dimen160
-\l_MT_above_intertext_sep=\dimen161
-\l_MT_below_intertext_sep=\dimen162
-\l_MT_above_shortintertext_sep=\dimen163
-\l_MT_below_shortintertext_sep=\dimen164
-)
-(/usr/local/texlive/2013/texmf-dist/tex/latex/ed/ed.sty
-Package: ed 2012/01/29 v1.8 Editorial Notes
-
-ed.sty: showing ednotes
-(/usr/local/texlive/2013/texmf-dist/tex/latex/paralist/paralist.sty
-=======
-
-(/usr/local/texlive/2012/texmf-dist/tex/latex/graphics/keyval.sty
+(/usr/local/texlive/2013/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
 \KV@toks@=\toks26
 )
@@ -568,10 +225,10 @@ Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
 \mpr@vlist=\box33
 \mpr@right=\box34
 )
-(/usr/local/texlive/2012/texmf-dist/tex/latex/mh/mathtools.sty
-Package: mathtools 2012/04/24 v1.12 mathematical typesetting tools
+(/usr/local/texlive/2013/texmf-dist/tex/latex/mh/mathtools.sty
+Package: mathtools 2013/02/12 v1.13 mathematical typesetting tools
 
-(/usr/local/texlive/2012/texmf-dist/tex/latex/tools/calc.sty
+(/usr/local/texlive/2013/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
 \calc@Acount=\count109
 \calc@Bcount=\count110
@@ -584,27 +241,29 @@ LaTeX Info: Redefining \addtolength on input line 77.
 \calc@Ccount=\count111
 \calc@Cskip=\skip49
 )
-(/usr/local/texlive/2012/texmf-dist/tex/latex/mh/mhsetup.sty
+(/usr/local/texlive/2013/texmf-dist/tex/latex/mh/mhsetup.sty
 Package: mhsetup 2010/01/21 v1.2a programming setup (MH)
 )
+LaTeX Info: Thecontrolsequence`\['isalreadyrobust on input line 129.
+LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
 \g_MT_multlinerow_int=\count112
 \l_MT_multwidth_dim=\dimen148
 \origjot=\skip50
 \l_MT_shortvdotswithinadjustabove_dim=\dimen149
 \l_MT_shortvdotswithinadjustbelow_dim=\dimen150
-\l_MT_above_intertext_dim=\dimen151
-\l_MT_below_intertext_dim=\dimen152
-\l_MT_above_shortintertext_dim=\dimen153
-\l_MT_below_shortintertext_dim=\dimen154
+\l_MT_above_intertext_sep=\dimen151
+\l_MT_below_intertext_sep=\dimen152
+\l_MT_above_shortintertext_sep=\dimen153
+\l_MT_below_shortintertext_sep=\dimen154
 )
-(/usr/local/texlive/2012/texmf-dist/tex/latex/base/latexsym.sty
+(/usr/local/texlive/2013/texmf-dist/tex/latex/base/latexsym.sty
 Package: latexsym 1998/08/17 v2.2e Standard LaTeX package (lasy symbols)
 \symlasy=\mathgroup6
 LaTeX Font Info:    Overwriting symbol font `lasy' in version `bold'
 (Font)                  U/lasy/m/n --> U/lasy/b/n on input line 47.
 )
-(/usr/local/texlive/2012/texmf-dist/tex/latex/amscls/amsthm.sty
-Package: amsthm 2009/07/02 v2.20.1
+(/usr/local/texlive/2013/texmf-dist/tex/latex/amscls/amsthm.sty
+Package: amsthm 2004/08/06 v2.20
 \thm@style=\toks29
 \thm@bodyfont=\toks30
 \thm@headfont=\toks31
@@ -615,19 +274,17 @@ Package: amsthm 2009/07/02 v2.20.1
 \thm@headsep=\skip53
 \dth@everypar=\toks34
 )
-(/usr/local/texlive/2012/texmf-dist/tex/latex/ed/ed.sty
+(/usr/local/texlive/2013/texmf-dist/tex/latex/ed/ed.sty
 Package: ed 2012/01/29 v1.8 Editorial Notes
 
 ed.sty: showing ednotes
-(/usr/local/texlive/2012/texmf-dist/tex/latex/paralist/paralist.sty
->>>>>>> FETCH_HEAD
+(/usr/local/texlive/2013/texmf-dist/tex/latex/paralist/paralist.sty
 Package: paralist 2002/03/18 v2.3b Extended list environments (BS)
 \pltopsep=\skip54
 \plpartopsep=\skip55
 \plitemsep=\skip56
 \plparsep=\skip57
-<<<<<<< HEAD
-\pl@lab=\toks29
+\pl@lab=\toks35
 )
 (/usr/local/texlive/2013/texmf-dist/tex/latex/xcolor/xcolor.sty
 Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
@@ -636,30 +293,18 @@ Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
 File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
 )
 Package xcolor Info: Driver file: pdftex.def on input line 225.
-LaTeX Info: Redefining \color on input line 702.
-=======
-\pl@lab=\toks35
-)
-(/usr/local/texlive/2012/texmf-dist/tex/latex/xcolor/xcolor.sty
-Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
 
-(/usr/local/texlive/2012/texmf-dist/tex/latex/latexconfig/color.cfg
-File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
-)
-Package xcolor Info: Driver file: pdftex.def on input line 225.
-
-(/usr/local/texlive/2012/texmf-dist/tex/latex/pdftex-def/pdftex.def
+(/usr/local/texlive/2013/texmf-dist/tex/latex/pdftex-def/pdftex.def
 File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
 
-(/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+(/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/infwarerr.sty
 Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
 )
-(/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+(/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
 Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 )
 \Gread@gobject=\count113
 )
->>>>>>> FETCH_HEAD
 Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1337.
 Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1341.
 Package xcolor Info: Model `RGB' extended on input line 1353.
@@ -670,8 +315,7 @@ Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1358.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1359.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
 )
-<<<<<<< HEAD
-\c@ednote=\count117
+\c@ednote=\count114
 )
 (/usr/local/texlive/2013/texmf-dist/tex/latex/leftidx/leftidx.sty
 Package: leftidx 2003/09/24 v1.03 Left indices
@@ -681,10 +325,10 @@ Package: leftidx 2003/09/24 v1.03 Left indices
 (/usr/local/texlive/2013/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.te
 x
-\pgfutil@everybye=\toks30
+\pgfutil@everybye=\toks36
 )
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
-\pgfutil@abb=\box43
+\pgfutil@abb=\box35
 (/usr/local/texlive/2013/texmf-dist/tex/latex/ms/everyshi.sty
 Package: everyshi 2001/05/15 v3.00 EveryShipout Package (MS)
 ))
@@ -693,66 +337,16 @@ Package: pgfrcs 2010/10/25 v2.10 (rcs-revision 1.24)
 ))
 Package: pgf 2008/01/15 v2.10 (rcs-revision 1.12)
 (/usr/local/texlive/2013/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
-(/usr/local/texlive/2013/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
-(/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
-Package: pgfsys 2010/06/30 v2.10 (rcs-revision 1.37)
-(/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
-\pgfkeys@pathtoks=\toks31
-\pgfkeys@temptoks=\toks32
-
-(/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/utilities/pgfkeysfiltered.c
-ode.tex
-\pgfkeys@tmptoks=\toks33
-))
-\pgf@x=\dimen165
-\pgf@y=\dimen166
-\pgf@xa=\dimen167
-\pgf@ya=\dimen168
-\pgf@xb=\dimen169
-\pgf@yb=\dimen170
-\pgf@xc=\dimen171
-\pgf@yc=\dimen172
-\w@pgf@writea=\write4
-\r@pgf@reada=\read2
-\c@pgf@counta=\count118
-\c@pgf@countb=\count119
-\c@pgf@countc=\count120
-\c@pgf@countd=\count121
-
-(/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
-=======
-\c@ednote=\count114
-)
-(/usr/local/texlive/2012/texmf-dist/tex/latex/leftidx/leftidx.sty
-Package: leftidx 2003/09/24 v1.03 Left indices
-)
-(/usr/local/texlive/2012/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
-(/usr/local/texlive/2012/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
-(/usr/local/texlive/2012/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
-(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.te
-x
-\pgfutil@everybye=\toks36
-)
-(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
-\pgfutil@abb=\box35
-(/usr/local/texlive/2012/texmf-dist/tex/latex/ms/everyshi.sty
-Package: everyshi 2001/05/15 v3.00 EveryShipout Package (MS)
-))
-(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
-Package: pgfrcs 2010/10/25 v2.10 (rcs-revision 1.24)
-))
-Package: pgf 2008/01/15 v2.10 (rcs-revision 1.12)
-(/usr/local/texlive/2012/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
-(/usr/local/texlive/2012/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/local/texlive/2013/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
 
-(/usr/local/texlive/2012/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/local/texlive/2013/texmf-dist/tex/latex/graphics/graphics.sty
 Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
 
-(/usr/local/texlive/2012/texmf-dist/tex/latex/graphics/trig.sty
+(/usr/local/texlive/2013/texmf-dist/tex/latex/graphics/trig.sty
 Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
 )
-(/usr/local/texlive/2012/texmf-dist/tex/latex/latexconfig/graphics.cfg
+(/usr/local/texlive/2013/texmf-dist/tex/latex/latexconfig/graphics.cfg
 File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
 )
 Package graphics Info: Driver file: pdftex.def on input line 91.
@@ -760,14 +354,14 @@ Package graphics Info: Driver file: pdftex.def on input line 91.
 \Gin@req@height=\dimen155
 \Gin@req@width=\dimen156
 )
-(/usr/local/texlive/2012/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
-(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
+(/usr/local/texlive/2013/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
+(/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
 Package: pgfsys 2010/06/30 v2.10 (rcs-revision 1.37)
-(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+(/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
 \pgfkeys@pathtoks=\toks37
 \pgfkeys@temptoks=\toks38
 
-(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/utilities/pgfkeysfiltered.c
+(/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/utilities/pgfkeysfiltered.c
 ode.tex
 \pgfkeys@tmptoks=\toks39
 ))
@@ -786,13 +380,11 @@ ode.tex
 \c@pgf@countc=\count117
 \c@pgf@countd=\count118
 
-(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
->>>>>>> FETCH_HEAD
+(/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
 File: pgf.cfg 2008/05/14  (rcs-revision 1.7)
 )
 Package pgfsys Info: Driver file for pgf: pgfsys-pdftex.def on input line 900.
 
-<<<<<<< HEAD
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.d
 ef
 File: pgfsys-pdftex.def 2009/05/22  (rcs-revision 1.26)
@@ -804,8 +396,8 @@ File: pgfsys-common-pdf.def 2008/05/19  (rcs-revision 1.10)
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.
 code.tex
 File: pgfsyssoftpath.code.tex 2008/07/18  (rcs-revision 1.7)
-\pgfsyssoftpath@smallbuffer@items=\count122
-\pgfsyssoftpath@bigbuffer@items=\count123
+\pgfsyssoftpath@smallbuffer@items=\count119
+\pgfsyssoftpath@bigbuffer@items=\count120
 )
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.
 code.tex
@@ -817,12 +409,12 @@ Package: pgfcore 2010/04/11 v2.10 (rcs-revision 1.7)
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
-\pgfmath@dimen=\dimen173
-\pgfmath@count=\count124
-\pgfmath@box=\box44
-\pgfmath@toks=\toks34
-\pgfmath@stack@operand=\toks35
-\pgfmath@stack@operation=\toks36
+\pgfmath@dimen=\dimen165
+\pgfmath@count=\count121
+\pgfmath@box=\box36
+\pgfmath@toks=\toks40
+\pgfmath@stack@operand=\toks41
+\pgfmath@stack@operation=\toks42
 )
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.
 tex
@@ -841,57 +433,57 @@ code.tex)
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.
 code.tex)))
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
-\c@pgfmathroundto@lastzeros=\count125
+\c@pgfmathroundto@lastzeros=\count122
 ))
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.co
 de.tex
 File: pgfcorepoints.code.tex 2010/04/09  (rcs-revision 1.20)
-\pgf@picminx=\dimen174
-\pgf@picmaxx=\dimen175
-\pgf@picminy=\dimen176
-\pgf@picmaxy=\dimen177
-\pgf@pathminx=\dimen178
-\pgf@pathmaxx=\dimen179
-\pgf@pathminy=\dimen180
-\pgf@pathmaxy=\dimen181
-\pgf@xx=\dimen182
-\pgf@xy=\dimen183
-\pgf@yx=\dimen184
-\pgf@yy=\dimen185
-\pgf@zx=\dimen186
-\pgf@zy=\dimen187
+\pgf@picminx=\dimen166
+\pgf@picmaxx=\dimen167
+\pgf@picminy=\dimen168
+\pgf@picmaxy=\dimen169
+\pgf@pathminx=\dimen170
+\pgf@pathmaxx=\dimen171
+\pgf@pathminy=\dimen172
+\pgf@pathmaxy=\dimen173
+\pgf@xx=\dimen174
+\pgf@xy=\dimen175
+\pgf@yx=\dimen176
+\pgf@yy=\dimen177
+\pgf@zx=\dimen178
+\pgf@zy=\dimen179
 )
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconst
 ruct.code.tex
 File: pgfcorepathconstruct.code.tex 2010/08/03  (rcs-revision 1.24)
-\pgf@path@lastx=\dimen188
-\pgf@path@lasty=\dimen189
+\pgf@path@lastx=\dimen180
+\pgf@path@lasty=\dimen181
 )
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage
 .code.tex
 File: pgfcorepathusage.code.tex 2008/04/22  (rcs-revision 1.12)
-\pgf@shorten@end@additional=\dimen190
-\pgf@shorten@start@additional=\dimen191
+\pgf@shorten@end@additional=\dimen182
+\pgf@shorten@start@additional=\dimen183
 )
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.co
 de.tex
 File: pgfcorescopes.code.tex 2010/09/08  (rcs-revision 1.34)
-\pgfpic=\box45
-\pgf@hbox=\box46
-\pgf@layerbox@main=\box47
-\pgf@picture@serial@count=\count126
+\pgfpic=\box37
+\pgf@hbox=\box38
+\pgf@layerbox@main=\box39
+\pgf@picture@serial@count=\count123
 )
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicst
 ate.code.tex
 File: pgfcoregraphicstate.code.tex 2008/04/22  (rcs-revision 1.9)
-\pgflinewidth=\dimen192
+\pgflinewidth=\dimen184
 )
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransform
 ations.code.tex
 File: pgfcoretransformations.code.tex 2009/06/10  (rcs-revision 1.11)
-\pgf@pt@x=\dimen193
-\pgf@pt@y=\dimen194
-\pgf@pt@temp=\dimen195
+\pgf@pt@x=\dimen185
+\pgf@pt@y=\dimen186
+\pgf@pt@temp=\dimen187
 )
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.cod
 e.tex
@@ -912,8 +504,8 @@ File: pgfcorearrows.code.tex 2008/04/23  (rcs-revision 1.11)
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.cod
 e.tex
 File: pgfcoreshade.code.tex 2008/11/23  (rcs-revision 1.13)
-\pgf@max=\dimen196
-\pgf@sys@shading@range@num=\count127
+\pgf@max=\dimen188
+\pgf@sys@shading@range@num=\count124
 )
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.cod
 e.tex
@@ -922,7 +514,7 @@ File: pgfcoreimage.code.tex 2010/03/25  (rcs-revision 1.16)
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.
 code.tex
 File: pgfcoreexternal.code.tex 2010/09/01  (rcs-revision 1.17)
-\pgfexternal@startupbox=\box48
+\pgfexternal@startupbox=\box40
 ))
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.co
 de.tex
@@ -939,7 +531,7 @@ File: pgfcorepatterns.code.tex 2009/07/02  (rcs-revision 1.3)
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.cod
 e.tex
 File: pgfmoduleshapes.code.tex 2010/09/09  (rcs-revision 1.13)
-\pgfnodeparttextbox=\box49
+\pgfnodeparttextbox=\box41
 )
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.
 tex
@@ -948,8 +540,8 @@ File: pgfmoduleplot.code.tex 2010/10/22  (rcs-revision 1.8)
 (/usr/local/texlive/2013/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
 -0-65.sty
 Package: pgfcomp-version-0-65 2007/07/03 v2.10 (rcs-revision 1.7)
-\pgf@nodesepstart=\dimen197
-\pgf@nodesepend=\dimen198
+\pgf@nodesepstart=\dimen189
+\pgf@nodesepend=\dimen190
 )
 (/usr/local/texlive/2013/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
 -1-18.sty
@@ -960,222 +552,16 @@ Package: pgfcomp-version-1-18 2007/07/23 v2.10 (rcs-revision 1.1)
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex)
 ) (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
 Package: pgffor 2010/03/23 v2.10 (rcs-revision 1.18)
-\pgffor@iter=\dimen199
-\pgffor@skip=\dimen200
-\pgffor@stack=\toks37
-\pgffor@toks=\toks38
+\pgffor@iter=\dimen191
+\pgffor@skip=\dimen192
+\pgffor@stack=\toks43
+\pgffor@toks=\toks44
 ))
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.cod
 e.tex
 Package: tikz 2010/10/13 v2.10 (rcs-revision 1.76)
 
 (/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothan
-dlers.code.tex
-File: pgflibraryplothandlers.code.tex 2010/05/31 v2.10 (rcs-revision 1.15)
-\pgf@plot@mark@count=\count128
-\pgfplotmarksize=\dimen201
-)
-\tikz@lastx=\dimen202
-\tikz@lasty=\dimen203
-\tikz@lastxsaved=\dimen204
-\tikz@lastysaved=\dimen205
-\tikzleveldistance=\dimen206
-\tikzsiblingdistance=\dimen207
-\tikz@figbox=\box50
-\tikz@tempbox=\box51
-\tikztreelevel=\count129
-\tikznumberofchildren=\count130
-\tikznumberofcurrentchild=\count131
-\tikz@fig@count=\count132
-
-(/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.cod
-e.tex
-File: pgfmodulematrix.code.tex 2010/08/24  (rcs-revision 1.4)
-\pgfmatrixcurrentrow=\count133
-\pgfmatrixcurrentcolumn=\count134
-\pgf@matrix@numberofcolumns=\count135
-)
-\tikz@expandcount=\count136
-
-(/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
-=======
-(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.d
-ef
-File: pgfsys-pdftex.def 2009/05/22  (rcs-revision 1.26)
-
-(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-p
-df.def
-File: pgfsys-common-pdf.def 2008/05/19  (rcs-revision 1.10)
-)))
-(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.
-code.tex
-File: pgfsyssoftpath.code.tex 2008/07/18  (rcs-revision 1.7)
-\pgfsyssoftpath@smallbuffer@items=\count119
-\pgfsyssoftpath@bigbuffer@items=\count120
-)
-(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.
-code.tex
-File: pgfsysprotocol.code.tex 2006/10/16  (rcs-revision 1.4)
-))
-(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
-Package: pgfcore 2010/04/11 v2.10 (rcs-revision 1.7)
-(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
-(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex
-(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
-(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
-\pgfmath@dimen=\dimen165
-\pgfmath@count=\count121
-\pgfmath@box=\box36
-\pgfmath@toks=\toks40
-\pgfmath@stack@operand=\toks41
-\pgfmath@stack@operation=\toks42
-)
-(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.
-tex
-(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic
-.code.tex)
-(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigo
-nometric.code.tex)
-(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.rando
-m.code.tex)
-(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.compa
-rison.code.tex)
-(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.
-code.tex)
-(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round
-.code.tex)
-(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.
-code.tex)))
-(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
-\c@pgfmathroundto@lastzeros=\count122
-))
-(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.co
-de.tex
-File: pgfcorepoints.code.tex 2010/04/09  (rcs-revision 1.20)
-\pgf@picminx=\dimen166
-\pgf@picmaxx=\dimen167
-\pgf@picminy=\dimen168
-\pgf@picmaxy=\dimen169
-\pgf@pathminx=\dimen170
-\pgf@pathmaxx=\dimen171
-\pgf@pathminy=\dimen172
-\pgf@pathmaxy=\dimen173
-\pgf@xx=\dimen174
-\pgf@xy=\dimen175
-\pgf@yx=\dimen176
-\pgf@yy=\dimen177
-\pgf@zx=\dimen178
-\pgf@zy=\dimen179
-)
-(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconst
-ruct.code.tex
-File: pgfcorepathconstruct.code.tex 2010/08/03  (rcs-revision 1.24)
-\pgf@path@lastx=\dimen180
-\pgf@path@lasty=\dimen181
-)
-(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage
-.code.tex
-File: pgfcorepathusage.code.tex 2008/04/22  (rcs-revision 1.12)
-\pgf@shorten@end@additional=\dimen182
-\pgf@shorten@start@additional=\dimen183
-)
-(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.co
-de.tex
-File: pgfcorescopes.code.tex 2010/09/08  (rcs-revision 1.34)
-\pgfpic=\box37
-\pgf@hbox=\box38
-\pgf@layerbox@main=\box39
-\pgf@picture@serial@count=\count123
-)
-(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicst
-ate.code.tex
-File: pgfcoregraphicstate.code.tex 2008/04/22  (rcs-revision 1.9)
-\pgflinewidth=\dimen184
-)
-(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransform
-ations.code.tex
-File: pgfcoretransformations.code.tex 2009/06/10  (rcs-revision 1.11)
-\pgf@pt@x=\dimen185
-\pgf@pt@y=\dimen186
-\pgf@pt@temp=\dimen187
-)
-(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.cod
-e.tex
-File: pgfcorequick.code.tex 2008/10/09  (rcs-revision 1.3)
-)
-(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.c
-ode.tex
-File: pgfcoreobjects.code.tex 2006/10/11  (rcs-revision 1.2)
-)
-(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathproce
-ssing.code.tex
-File: pgfcorepathprocessing.code.tex 2008/10/09  (rcs-revision 1.8)
-)
-(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.co
-de.tex
-File: pgfcorearrows.code.tex 2008/04/23  (rcs-revision 1.11)
-)
-(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.cod
-e.tex
-File: pgfcoreshade.code.tex 2008/11/23  (rcs-revision 1.13)
-\pgf@max=\dimen188
-\pgf@sys@shading@range@num=\count124
-)
-(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.cod
-e.tex
-File: pgfcoreimage.code.tex 2010/03/25  (rcs-revision 1.16)
-
-(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.
-code.tex
-File: pgfcoreexternal.code.tex 2010/09/01  (rcs-revision 1.17)
-\pgfexternal@startupbox=\box40
-))
-(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.co
-de.tex
-File: pgfcorelayers.code.tex 2010/08/27  (rcs-revision 1.2)
-)
-(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretranspare
-ncy.code.tex
-File: pgfcoretransparency.code.tex 2008/01/17  (rcs-revision 1.2)
-)
-(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.
-code.tex
-File: pgfcorepatterns.code.tex 2009/07/02  (rcs-revision 1.3)
-)))
-(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.cod
-e.tex
-File: pgfmoduleshapes.code.tex 2010/09/09  (rcs-revision 1.13)
-\pgfnodeparttextbox=\box41
-)
-(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.
-tex
-File: pgfmoduleplot.code.tex 2010/10/22  (rcs-revision 1.8)
-)
-(/usr/local/texlive/2012/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
--0-65.sty
-Package: pgfcomp-version-0-65 2007/07/03 v2.10 (rcs-revision 1.7)
-\pgf@nodesepstart=\dimen189
-\pgf@nodesepend=\dimen190
-)
-(/usr/local/texlive/2012/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version
--1-18.sty
-Package: pgfcomp-version-1-18 2007/07/23 v2.10 (rcs-revision 1.1)
-))
-(/usr/local/texlive/2012/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
-(/usr/local/texlive/2012/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
-(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex)
-) (/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
-Package: pgffor 2010/03/23 v2.10 (rcs-revision 1.18)
-\pgffor@iter=\dimen191
-\pgffor@skip=\dimen192
-\pgffor@stack=\toks43
-\pgffor@toks=\toks44
-))
-(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.cod
-e.tex
-Package: tikz 2010/10/13 v2.10 (rcs-revision 1.76)
-
-(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothan
 dlers.code.tex
 File: pgflibraryplothandlers.code.tex 2010/05/31 v2.10 (rcs-revision 1.15)
 \pgf@plot@mark@count=\count125
@@ -1194,7 +580,7 @@ File: pgflibraryplothandlers.code.tex 2010/05/31 v2.10 (rcs-revision 1.15)
 \tikznumberofcurrentchild=\count128
 \tikz@fig@count=\count129
 
-(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.cod
+(/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.cod
 e.tex
 File: pgfmodulematrix.code.tex 2010/08/24  (rcs-revision 1.4)
 \pgfmatrixcurrentrow=\count130
@@ -1203,63 +589,11 @@ File: pgfmodulematrix.code.tex 2010/08/24  (rcs-revision 1.4)
 )
 \tikz@expandcount=\count133
 
-(/usr/local/texlive/2012/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
->>>>>>> FETCH_HEAD
+(/usr/local/texlive/2013/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
 s/tikzlibrarytopaths.code.tex
 File: tikzlibrarytopaths.code.tex 2008/06/17 v2.10 (rcs-revision 1.2)
 ))) (./prooftree.tex
 <Paul Taylor's Proof Trees, 2 August 1996>
-<<<<<<< HEAD
-\proofrulebreadth=\dimen208
-\proofdotseparation=\dimen209
-\proofrulebaseline=\dimen210
-\proofdotnumber=\count137
-\shortenproofleft=\dimen211
-\shortenproofright=\dimen212
-\proofbelowshift=\dimen213
-\proofabove=\box52
-\proofbelow=\box53
-\proofrulename=\box54
-) (./main.aux)
-\openout1 = `main.aux'.
-
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 142.
-LaTeX Font Info:    ... okay on input line 142.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 142.
-LaTeX Font Info:    ... okay on input line 142.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 142.
-LaTeX Font Info:    ... okay on input line 142.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 142.
-LaTeX Font Info:    ... okay on input line 142.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 142.
-LaTeX Font Info:    ... okay on input line 142.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 142.
-LaTeX Font Info:    ... okay on input line 142.
-LaTeX Font Info:    Try loading font information for OT1+pnc on input line 142.
-
-
-(/usr/local/texlive/2013/texmf-dist/tex/latex/psnfss/ot1pnc.fd
-File: ot1pnc.fd 2001/06/04 font definitions for OT1/pnc.
-)
-(/usr/local/texlive/2013/texmf-dist/tex/context/base/supp-pdf.mkii
-[Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count138
-\scratchdimen=\dimen214
-\scratchbox=\box55
-\nofMPsegments=\count139
-\nofMParguments=\count140
-\everyMPshowfont=\toks39
-\MPscratchCnt=\count141
-\MPscratchDim=\dimen215
-\MPnumerator=\count142
-\makeMPintoPDFobject=\count143
-\everyMPtoPDFconversion=\toks40
-) (/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
-Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
-)
-
-(/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/ifluatex.sty
-=======
 \proofrulebreadth=\dimen200
 \proofdotseparation=\dimen201
 \proofrulebaseline=\dimen202
@@ -1272,54 +606,39 @@ Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
 \proofrulename=\box46
 )
 \c@theorem=\count135
- (./main.aux
 
-LaTeX Warning: Label `section:extW' multiply defined.
-
-
-LaTeX Warning: Label `section:intW' multiply defined.
-
-
-LaTeX Warning: Label `subsection:main' multiply defined.
-
-
-LaTeX Warning: Label `thm:wtypesinvariance' multiply defined.
-
-
-LaTeX Warning: Label `subsec:define' multiply defined.
-
-)
+No file main.aux.
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 158.
-LaTeX Font Info:    ... okay on input line 158.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 158.
-LaTeX Font Info:    ... okay on input line 158.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 158.
-LaTeX Font Info:    ... okay on input line 158.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 158.
-LaTeX Font Info:    ... okay on input line 158.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 158.
-LaTeX Font Info:    ... okay on input line 158.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 158.
-LaTeX Font Info:    ... okay on input line 158.
-LaTeX Font Info:    Try loading font information for U+msa on input line 158.
- (/usr/local/texlive/2012/texmf-dist/tex/latex/amsfonts/umsa.fd
-File: umsa.fd 2009/06/22 v3.00 AMS symbols A
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 159.
+LaTeX Font Info:    ... okay on input line 159.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 159.
+LaTeX Font Info:    ... okay on input line 159.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 159.
+LaTeX Font Info:    ... okay on input line 159.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 159.
+LaTeX Font Info:    ... okay on input line 159.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 159.
+LaTeX Font Info:    ... okay on input line 159.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 159.
+LaTeX Font Info:    ... okay on input line 159.
+LaTeX Font Info:    Try loading font information for U+msa on input line 159.
+(/usr/local/texlive/2013/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 158.
+LaTeX Font Info:    Try loading font information for U+msb on input line 159.
 
-(/usr/local/texlive/2012/texmf-dist/tex/latex/amsfonts/umsb.fd
-File: umsb.fd 2009/06/22 v3.00 AMS symbols B
+(/usr/local/texlive/2013/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+lasy on input line 158.
+LaTeX Font Info:    Try loading font information for U+lasy on input line 159.
 
-(/usr/local/texlive/2012/texmf-dist/tex/latex/base/ulasy.fd
+(/usr/local/texlive/2013/texmf-dist/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
-Package xypdf Info: Line width: 0.43799pt on input line 158.
+Package xypdf Info: Line width: 0.43799pt on input line 159.
 
-(/usr/local/texlive/2012/texmf-dist/tex/context/base/supp-pdf.mkii
+(/usr/local/texlive/2013/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count136
 \scratchdimen=\dimen206
@@ -1333,12 +652,11 @@ Package xypdf Info: Line width: 0.43799pt on input line 158.
 \makeMPintoPDFobject=\count141
 \everyMPtoPDFconversion=\toks46
 ) ABD: EveryShipout initializing macros
-(/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+(/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
 )
 
-(/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/ifluatex.sty
->>>>>>> FETCH_HEAD
+(/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/ifluatex.sty
 Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
 Package ifluatex Info: LuaTeX not detected.
 )
@@ -1347,7 +665,6 @@ Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
 )
-<<<<<<< HEAD
 (/usr/local/texlive/2013/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
 
@@ -1364,24 +681,6 @@ Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
 Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
 
 (/usr/local/texlive/2013/texmf-dist/tex/generic/oberdiek/etexcmds.sty
-=======
-(/usr/local/texlive/2012/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
-Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
-
-(/usr/local/texlive/2012/texmf-dist/tex/latex/oberdiek/grfext.sty
-Package: grfext 2010/08/19 v1.1 Manage graphics extensions (HO)
-
-(/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
-Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
-))
-(/usr/local/texlive/2012/texmf-dist/tex/latex/oberdiek/kvoptions.sty
-Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
-
-(/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
-Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
-
-(/usr/local/texlive/2012/texmf-dist/tex/generic/oberdiek/etexcmds.sty
->>>>>>> FETCH_HEAD
 Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
 Package etexcmds Info: Could not find \expanded.
 (etexcmds)             That can mean that you are not using pdfTeX 1.50 or
@@ -1393,1194 +692,257 @@ Package grfext Info: Graphics extension search list:
 G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 452.
 
-<<<<<<< HEAD
 (/usr/local/texlive/2013/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
-File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
-e
-))
-LaTeX Font Info:    Try loading font information for U+lasy on input line 142.
-
-(/usr/local/texlive/2013/texmf-dist/tex/latex/base/ulasy.fd
-File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
-)
-LaTeX Font Info:    Try loading font information for U+msa on input line 142.
-
-(/usr/local/texlive/2013/texmf-dist/tex/latex/amsfonts/umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Try loading font information for U+msb on input line 142.
-
-(/usr/local/texlive/2013/texmf-dist/tex/latex/amsfonts/umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-Package xypdf Info: Line width: 0.39998pt on input line 142.
-
-ABD: EveryShipout initializing macros
-LaTeX Font Info:    Try loading font information for OMS+pnc on input line 172.
-
-
-(/usr/local/texlive/2013/texmf-dist/tex/latex/psnfss/omspnc.fd
-File: omspnc.fd 
-)
-LaTeX Font Info:    Font shape `OMS/pnc/m/n' in size <8> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 172.
-LaTeX Font Info:    Try loading font information for OT1+phv on input line 174.
-
-
-(/usr/local/texlive/2013/texmf-dist/tex/latex/psnfss/ot1phv.fd
-File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
-)
-LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <12> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 174.
-LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <8> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 174.
-LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <9> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 176.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Overfull \vbox (72.27pt too high) has occurred while \output is active []
-
- [1{/usr/local/texlive/2013/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
-Non-PDF special ignored!
-
-]
-LaTeX Font Info:    Font shape `OT1/pnc/bx/n' in size <10> not available
-(Font)              Font shape `OT1/pnc/b/n' tried instead on input line 185.
-
-
-LaTeX Warning: Reference `section:intW' on page 2 undefined on input line 185.
-
-[2] [3] [4]
-LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <9> not available
-(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 305.
- [5] [6]
-
-LaTeX Warning: Reference `section:intW' on page 7 undefined on input line 451.
-
-[7] [8]
-
-LaTeX Warning: Reference `section:intW' on page 9 undefined on input line 571.
-
-[9]
-
-LaTeX Warning: Reference `lem:IsContrIsProp' on page 10 undefined on input line
- 661.
-
-EdNote!
-
-LaTeX Warning: Reference `lem:PropChar' on page 10 undefined on input line 661.
-
-
-EdNote! [10]
-
-LaTeX Warning: Marginpar on page 11 moved.
-
-EdNote! [11] [12]
-
-LaTeX Warning: Reference `lem:contr_path_space' on page 13 undefined on input l
-ine 778.
-
-[13] [14]
-
-LaTeX Warning: Reference `lem_singl_contr' on page 15 undefined on input line 8
-66.
-
-EdNote!
-
-LaTeX Warning: Reference `lem_singl_equiv_contr' on page 15 undefined on input 
-line 868.
-
-EdNote!
-
-LaTeX Warning: Reference `lem_ap_equiv' on page 15 undefined on input line 868.
-
-
-EdNote!
-
-LaTeX Warning: Marginpar on page 15 moved.
-
-[15]
-
-LaTeX Warning: Reference `lem:IsContrIsProp' on page 16 undefined on input line
- 951.
-
-
-LaTeX Warning: Reference `lem:PropChar' on page 16 undefined on input line 951.
-
-
-[16] [17] [18] [19] [20]
-
-LaTeX Warning: Reference `lem:IsContrIsProp' on page 21 undefined on input line
- 1172.
-
-
-LaTeX Warning: Reference `lem:PropChar' on page 21 undefined on input line 1172
-.
-
-[21]
-
-LaTeX Warning: Reference `lem:apeq' on page 22 undefined on input line 1203.
-
-EdNote! [22] [23] [24] [25]
-
-LaTeX Warning: Reference `lem_singl_equiv_contr' on page 26 undefined on input 
-line 1378.
-
-
-LaTeX Warning: Reference `lem_ap_equiv' on page 26 undefined on input line 1378
-.
-
-
-LaTeX Warning: Reference `lem_equiv_comp' on page 26 undefined on input line 13
-78.
-
-EdNote!
-
-LaTeX Warning: Reference `lem_singl_contr' on page 26 undefined on input line 1
-392.
-
-
-Underfull \vbox (badness 4454) has occurred while \output is active []
-
- [26]
-
-LaTeX Warning: Reference `subsection:wtypes' on page 27 undefined on input line
- 1407.
-
-[27] [28]
-
-LaTeX Warning: Reference `lem:IsContrIsProp' on page 29 undefined on input line
- 1487.
-
-
-LaTeX Warning: Reference `lem:PropChar' on page 29 undefined on input line 1487
-.
-
-[29]
-
-LaTeX Warning: Reference `lem:apeq' on page 30 undefined on input line 1527.
-
-[30] [31] [32]
-Underfull \vbox (badness 1297) has occurred while \output is active []
-
- [33]
-[34] (./main.bbl [35]
-Missing character: There is no â in font pncr7t!
-Missing character: There is no € in font pncr7t!
-Missing character: There is no “ in font pncr7t!
-Missing character: There is no â in font pncr7t!
-Missing character: There is no € in font pncr7t!
-Missing character: There is no “ in font pncr7t!
-Missing character: There is no â in font pncr7t!
-Missing character: There is no € in font pncr7t!
-Missing character: There is no “ in font pncr7t!
-)
-
-There are still 8 EdNotes, New/Oldparts, and Issues to resolve!
-
-[36] (./main.aux)
-
-LaTeX Warning: There were undefined references.
-
- ) 
-Here is how much of TeX's memory you used:
- 15304 strings out of 493315
- 258587 string characters out of 6137904
- 380264 words of memory out of 5000000
- 18382 multiletter control sequences out of 15000+600000
- 40570 words of font info for 102 fonts, out of 8000000 for 9000
- 957 hyphenation exceptions out of 8191
- 56i,16n,55p,3256b,614s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2013/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
-exlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
-xlive/2013/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/local
-/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/
-texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/te
-xlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texl
-ive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texliv
-e/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/
-2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/20
-13/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2013/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2013/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2013/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2013/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/texlive/2013/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/texlive/2013/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmss9.pfb></usr/local/texlive/2013/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2013/texmf-dist/font
-s/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2013/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2013/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2013/texmf-dist/fonts/type
-1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmtt8.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/pu
-blic/amsfonts/latxfont/lasy10.pfb></usr/local/texlive/2013/texmf-dist/fonts/typ
-e1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2013/texmf-dist/fonts
-/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2013/texmf-dist/f
-onts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2013/texmf-dist/fonts/ty
-pe1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/urw
-/helvetic/uhvro8a.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/urw/ncntr
-sbk/uncb8a.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/urw/ncntrsbk/unc
-r8a.pfb></usr/local/texlive/2013/texmf-dist/fonts/type1/urw/ncntrsbk/uncri8a.pf
-b>
-Output written on main.pdf (36 pages, 424525 bytes).
-PDF statistics:
- 244 PDF objects out of 1000 (max. 8388607)
- 174 compressed objects within 2 object streams
-=======
-(/usr/local/texlive/2012/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 [1
 
-{/usr/local/texlive/2012/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-(./intro.tex
-! Undefined control sequence.
-\b@MartinLofP:intttp ->\citeauthoryear 
-                                       {Martin-L{\"o}f}{Martin-L{\"o}f}{1975}
-l.3 ...:inttt,NordstromB:promlt,NordstromB:marltt}
-                                                  .
-? 
-! Undefined control sequence.
-\b@MartinLofP:conmcp ->\citeauthoryear 
-                                       {Martin-L{\"o}f}{Martin-L{\"o}f}{1982}
-l.3 ...:inttt,NordstromB:promlt,NordstromB:marltt}
-                                                  .
-? 
-! Undefined control sequence.
-\b@MartinLofP:inttt ->\citeauthoryear 
-                                      {Martin-L{\"o}f}{Martin-L{\"o}f}{1984}
-l.3 ...:inttt,NordstromB:promlt,NordstromB:marltt}
-                                                  .
-? q
-OK, entering \batchmode...
-! Undefined control sequence.
-\b@NordstromB:promlt ->\citeauthoryear 
-                                       {Nordstrom, Petersson, and Smith}{Nor...
-l.3 ...:inttt,NordstromB:promlt,NordstromB:marltt}
-                                                  .
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
+{/usr/local/texlive/2013/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 
-! Undefined control sequence.
-\b@NordstromB:marltt ->\citeauthoryear 
-                                       {Nordstrom, Petersson, and Smith}{Nor...
-l.3 ...:inttt,NordstromB:promlt,NordstromB:marltt}
-                                                  .
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\b@HowardWH:foratn ->\citeauthoryear 
-                                     {Howard}{Howard}{1980}
-l.5 ...types correspondence~\cite{HowardWH:foratn}
-                                                  . The different systems in...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\b@GrifforE:strsml ->\citeauthoryear 
-                                     {Griffor and Rathjen}{Griffor and Rathj...
-l.6 ...f-theoretic strength~\cite{GrifforE:strsml}
-                                                   and computational
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\b@HofmannM:extcit ->\citeauthoryear 
-                                     {Hofmann}{Hofmann}{1997}
-l.10 ...ecking is decidable~\cite{HofmannM:extcit}
-                                                  . For example, the type th...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\b@MartinLofP:inttt ->\citeauthoryear 
-                                      {Martin-L{\"o}f}{Martin-L{\"o}f}{1984}
-l.10 ...heory presented in~\cite{MartinLofP:inttt}
-                                                   is extensional, while tha...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\b@NordstromB:marltt ->\citeauthoryear 
-                                       {Nordstrom, Petersson, and Smith}{Nor...
-l.10 ...al, while that in~\cite{NordstromB:marltt}
-                                                   is
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
+LaTeX Warning: Citation `MartinLofP:conmcp' on page 2 undefined on input line 2
+21.
 
 
-Overfull \hbox (89.68802pt too wide) in paragraph at lines 1--12
-\OT1/cmr/m/n/10.95 ucts $(^^E\OML/cmm/m/it/10.95 x[]A\OT1/cmr/m/n/10.95 )\OML/c
-mm/m/it/10.95 B\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 x\OT1/cmr/m/n/10.95 )$ a
-nd de-pen-dent sums $(^^F\OML/cmm/m/it/10.95 x[]A\OT1/cmr/m/n/10.95 )\OML/cmm/m
-/it/10.95 B\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 x\OT1/cmr/m/n/10.95 )$, amon
-g oth-ers [[],
- []
+LaTeX Warning: Citation `AwodeyS:homtmi' on page 2 undefined on input line 221.
 
 
-Overfull \hbox (169.6157pt too wide) in paragraph at lines 1--12
-[]\OT1/cmr/m/n/10.95 , [], [],
- []
+
+LaTeX Warning: Citation `VoevodskyV:notts' on page 2 undefined on input line 22
+1.
 
 
-Overfull \hbox (9.68468pt too wide) in paragraph at lines 1--12
-\OT1/cmr/m/n/10.95 both in proof-theoretic strength [[]]
- []
-
-! Undefined control sequence.
-\b@MartinLofP:conmcp ->\citeauthoryear 
-                                       {Martin-L{\"o}f}{Martin-L{\"o}f}{1982}
-l.15 ...lists and W-types~\cite{MartinLofP:conmcp}
-                                                  .  Within extensional type...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\b@DybjerP:repids ->\citeauthoryear 
-                                    {Dybjer}{Dybjer}{1997}
-l.18 ...tors~\cite{DybjerP:repids,MoerdijkI:weltc}
-                                                  . Furthermore, within exte...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\b@MoerdijkI:weltc ->\citeauthoryear 
-                                     {Moerdijk and Palmgren}{Moerdijk and Pa...
-l.18 ...tors~\cite{DybjerP:repids,MoerdijkI:weltc}
-                                                  . Furthermore, within exte...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\b@DybjerP:repids ->\citeauthoryear 
-                                    {Dybjer}{Dybjer}{1997}
-l.18 ...erP:repids,GambinoN:weltdp,AbbottM:concsp}
-                                                  .
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\b@GambinoN:weltdp ->\citeauthoryear 
-                                     {Gambino and Hyland}{Gambino and Hyland...
-l.18 ...erP:repids,GambinoN:weltdp,AbbottM:concsp}
-                                                  .
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\b@AbbottM:concsp ->\citeauthoryear 
-                                    {Abbott, Altenkirch, and Ghani}{Abbott e...
-l.18 ...erP:repids,GambinoN:weltdp,AbbottM:concsp}
-                                                  .
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\b@DybjerP:repids ->\citeauthoryear 
-                                    {Dybjer}{Dybjer}{1997}
-l.21 ...fails~\cite{DybjerP:repids,GoguenH:inddtw}
-                                                  .
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\b@GoguenH:inddtw ->\citeauthoryear 
-                                    {Goguen and Luo}{Goguen and Luo}{1993}
-l.21 ...fails~\cite{DybjerP:repids,GoguenH:inddtw}
-                                                  .
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
+LaTeX Warning: Citation `vandenBergB:topsmi' on page 2 undefined on input line 
+221.
 
 
-Overfull \hbox (122.77397pt too wide) in paragraph at lines 13--22
-\OT1/cmr/m/n/10.95 bras of poly-no-mial func-tors [[], []].
- []
+LaTeX Warning: Citation `AwodeyS:typth' on page 2 undefined on input line 221.
 
 
-Overfull \hbox (1.07672pt too wide) in paragraph at lines 13--22
-\OT1/cmr/m/n/10.95 of lists [[], [],
- []
-
- [2]
-! Undefined control sequence.
-\b@AwodeyS:homtmi ->\citeauthoryear 
-                                    {Awodey and Warren}{Awodey and Warren}{2...
-l.25 ...omtmi,VoevodskyV:notts,vandenBergB:topsmi}
-                                                   to
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\b@VoevodskyV:notts ->\citeauthoryear 
-                                      {Voevodsky}{Voevodsky}{2009}
-l.25 ...omtmi,VoevodskyV:notts,vandenBergB:topsmi}
-                                                   to
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\b@vandenBergB:topsmi ->\citeauthoryear 
-                                        {van\nobreakspace {}den Berg and Gar...
-l.25 ...omtmi,VoevodskyV:notts,vandenBergB:topsmi}
-                                                   to
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
+LaTeX Warning: Citation `MartinLofP:inttt' on page 2 undefined on input line 22
+6.
 
 
-Overfull \hbox (140.71973pt too wide) in paragraph at lines 24--35
-\OT1/cmr/m/n/10.95 in-ten-sional type the-ory based on homotopy-theoretic ideas
- [[],
- []
+LaTeX Warning: Citation `DybjerP:repids' on page 2 undefined on input line 226.
 
 
-Overfull \hbox (38.61092pt too wide) in paragraph at lines 24--35
-[]\OT1/cmr/m/n/10.95 , []]
- []
 
-! Undefined control sequence.
-\b@VoevodskyV:unifp ->\citeauthoryear 
-                                      {Voevodsky}{Voevodsky}{2010b}
-l.37 Voevodsky~\cite{VoevodskyV:unifp}
-                                      .  This ambitious program intends to p...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\b@AwodeyS:indtht ->\citeauthoryear 
-                                    {Awodey, Gambino, and Sojakova}{Awodey e...
-l.37 ...nloadable repository~\cite{AwodeyS:indtht}
-                                                  . An overview of these fil...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
- [3]) (./prelim.tex
-! Undefined control sequence.
-\b@MartinLofP:conmcp ->\citeauthoryear 
-                                       {Martin-L{\"o}f}{Martin-L{\"o}f}{1982}
-l.1 ...gramming languages~\cite{MartinLofP:conmcp}
-                                                  .  They are prized for the...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\b@AwodeyS:homtmi ->\citeauthoryear 
-                                    {Awodey and Warren}{Awodey and Warren}{2...
-l.1 ...kyV:notts,vandenBergB:topsmi,AwodeyS:typth}
-                                                  , it has emerged that the ...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\b@VoevodskyV:notts ->\citeauthoryear 
-                                      {Voevodsky}{Voevodsky}{2009}
-l.1 ...kyV:notts,vandenBergB:topsmi,AwodeyS:typth}
-                                                  , it has emerged that the ...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\b@vandenBergB:topsmi ->\citeauthoryear 
-                                        {van\nobreakspace {}den Berg and Gar...
-l.1 ...kyV:notts,vandenBergB:topsmi,AwodeyS:typth}
-                                                  , it has emerged that the ...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\b@AwodeyS:typth ->\citeauthoryear 
-                                   {Awodey}{Awodey}{2010}
-l.1 ...kyV:notts,vandenBergB:topsmi,AwodeyS:typth}
-                                                  , it has emerged that the ...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
+LaTeX Warning: Citation `BertotY:inttpp' on page 2 undefined on input line 227.
 
 
-Overfull \hbox (38.61092pt too wide) in paragraph at lines 1--2
-[]\OT1/cmr/m/n/10.95 , [],
- []
 
- [4]
-! Undefined control sequence.
-\b@MartinLofP:inttt ->\citeauthoryear 
-                                      {Martin-L{\"o}f}{Martin-L{\"o}f}{1984}
-l.6 ... of a well-ordering~\cite{MartinLofP:inttt}
-                                                   and to uniformly define a...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\b@DybjerP:repids ->\citeauthoryear 
-                                    {Dybjer}{Dybjer}{1997}
-l.6 ...ty of inductive types~\cite{DybjerP:repids}
-                                                  .
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\b@BertotY:inttpp ->\citeauthoryear 
-                                    {Bertot and Cast{\'e}ran}{Bertot and Cas...
-l.7 ...sistants, such as Coq~\cite{BertotY:inttpp}
-                                                  , Agda~\cite{NorellU:towpp...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\b@NorellU:towppl ->\citeauthoryear 
-                                    {Norell}{Norell}{2007}
-l.7 ...BertotY:inttpp}, Agda~\cite{NorellU:towppl}
-                                                   and Epigram~\cite{McBride...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\b@McBrideC:viefl ->\citeauthoryear 
-                                    {McBride and McKinna}{McBride and McKinn...
-l.7 ...U:towppl} and Epigram~\cite{McBrideC:viefl}
-                                                   use schematic inductive d...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\b@CoquandT:inddt ->\citeauthoryear 
-                                    {Coquand and Paulin-Mohring}{Coquand and...
-l.7 ...cite{CoquandT:inddt,PaulinMorhringC:inddsc}
-                                                   rather than W-types to de...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\b@PaulinMorhringC:inddsc ->\citeauthoryear 
-                                            {Paulin-Mohring}{Paulin-Mohring}...
-l.7 ...cite{CoquandT:inddt,PaulinMorhringC:inddsc}
-                                                   rather than W-types to de...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\b@DybjerP:repids ->\citeauthoryear 
-                                    {Dybjer}{Dybjer}{1997}
-l.7 ... fail~\cite{DybjerP:repids,McBrideC:wtygnb}
-                                                  .
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\b@McBrideC:wtygnb ->\citeauthoryear 
-                                     {McBride}{McBride}{2010}
-l.7 ... fail~\cite{DybjerP:repids,McBrideC:wtygnb}
-                                                  .
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
+LaTeX Warning: Citation `NorellU:towppl' on page 2 undefined on input line 227.
 
 
-Overfull \hbox (37.24217pt too wide) in paragraph at lines 6--9
-\OT1/cmr/m/n/10.95 tive coun-ter-part of the clas-si-cal no-tion of a well-orde
-ring [[]]
- []
+
+LaTeX Warning: Citation `McBrideC:viefl' on page 2 undefined on input line 227.
 
 
-Overfull \hbox (211.3473pt too wide) in paragraph at lines 6--9
-\OT1/cmr/m/n/10.95 How-ever, most pro-gram-ming lan-guages and proof as-sis-tan
-ts, such as Coq [[]],
- []
+
+LaTeX Warning: Citation `CoquandT:inddt' on page 2 undefined on input line 227.
 
 
-Overfull \hbox (67.35475pt too wide) in paragraph at lines 6--9
-\OT1/cmr/m/n/10.95 Agda [[]] and Epi-gram [[]]
- []
+
+LaTeX Warning: Citation `PaulinMorhringC:inddsc' on page 2 undefined on input l
+ine 227.
 
 
-Overfull \hbox (119.00218pt too wide) in paragraph at lines 6--9
-\OT1/cmr/m/n/10.95 use schematic in-duc-tive def-i-ni-tions [[],
- []
-
-! Undefined control sequence.
-\b@NordstromB:marltt ->\citeauthoryear 
-                                       {Nordstrom, Petersson, and Smith}{Nor...
-l.23 ...n in~\cite[Section~5.5]{NordstromB:marltt}
-                                                  . We recall them here in a...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
+LaTeX Warning: Citation `DybjerP:repids' on page 2 undefined on input line 227.
 
 
-Overfull \hbox (26.96129pt too wide) in paragraph at lines 16--24
-\OT1/cmr/m/n/10.95 type the-o-ries are given in [[],
- []
 
- [5]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 26.
+LaTeX Warning: Citation `McBrideC:wtygnb' on page 2 undefined on input line 227
+.
 
-(/usr/local/texlive/2012/texmf-dist/tex/latex/base/omscmr.fd
+
+LaTeX Warning: Reference `section:intW' on page 2 undefined on input line 228.
+
+[2] [3]
+
+LaTeX Warning: Citation `NordstromB:marltt' on page 4 undefined on input line 2
+34.
+
+
+LaTeX Warning: Citation `DybjerP:repids' on page 4 undefined on input line 237.
+
+
+
+LaTeX Warning: Citation `StreicherT:invitt' on page 4 undefined on input line 2
+39.
+
+
+LaTeX Warning: Citation `AltenkirchT:obsen' on page 4 undefined on input line 2
+40.
+
+
+LaTeX Warning: Citation `McBrideC:wtygnb' on page 4 undefined on input line 240
+.
+
+[4]
+
+LaTeX Warning: Citation `NordstromB:marltt' on page 5 undefined on input line 2
+59.
+
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 262.
+
+(/usr/local/texlive/2013/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 26.
-! Undefined control sequence.
-\b@DybjerP:repids ->\citeauthoryear 
-                                    {Dybjer}{Dybjer}{1997}
-l.72 ...erP:repids,MoerdijkI:weltc,AbbottM:concsp}
-                                                  ) has been in the setting ...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\b@MoerdijkI:weltc ->\citeauthoryear 
-                                     {Moerdijk and Palmgren}{Moerdijk and Pa...
-l.72 ...erP:repids,MoerdijkI:weltc,AbbottM:concsp}
-                                                  ) has been in the setting ...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\b@AbbottM:concsp ->\citeauthoryear 
-                                    {Abbott, Altenkirch, and Ghani}{Abbott e...
-l.72 ...erP:repids,MoerdijkI:weltc,AbbottM:concsp}
-                                                  ) has been in the setting ...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 262.
 
 
-Overfull \hbox (22.89929pt too wide) in paragraph at lines 70--74
-\OT1/cmr/m/n/10.95 type $[](\OML/cmm/m/it/10.95 a; b\OT1/cmr/m/n/10.95 )$ is in
--hab-ited. Most work on W-types to date (\OT1/cmr/m/it/10.95 e.g. \OT1/cmr/m/n/
-10.95 [[],
- []
+LaTeX Warning: Citation `DybjerP:repids' on page 5 undefined on input line 308.
 
 
-Overfull \hbox (135.4121pt too wide) in paragraph at lines 70--74
-[]\OT1/cmr/m/n/10.95 , []])
- []
 
-! Undefined control sequence.
-\b@HofmannM:extcit ->\citeauthoryear 
-                                     {Hofmann}{Hofmann}{1997}
-l.85 ...hecking undecidable~\cite{HofmannM:extcit}
-                                                  . For this reason, it is n...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\b@NordstromB:marltt ->\citeauthoryear 
-                                       {Nordstrom, Petersson, and Smith}{Nor...
-l.86 ..."of type theories~\cite{NordstromB:marltt}
-                                                   or in automated proof ass...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\b@BertotY:inttpp ->\citeauthoryear 
-                                    {Bertot and Cast{\'e}ran}{Bertot and Cas...
-l.86 ... assistants like Coq~\cite{BertotY:inttpp}
-                                                  .
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
+LaTeX Warning: Citation `MoerdijkI:weltc' on page 5 undefined on input line 308
+.
 
 
-Overfull \hbox (228.1678pt too wide) in paragraph at lines 84--87
-\OT1/cmr/m/n/10.95 as-sumed in the most re-cent for-mu-la-tions of Martin-L^^?o
-f type the-o-ries [[]]
- []
+LaTeX Warning: Citation `AbbottM:concsp' on page 5 undefined on input line 308.
 
 
-Overfull \hbox (61.5147pt too wide) in paragraph at lines 84--87
-\OT1/cmr/m/n/10.95 or in au-to-mated proof as-sis-tants like Coq [[]]. 
- []
 
-! Undefined control sequence.
-\b@NordstromB:marltt ->\citeauthoryear 
-                                       {Nordstrom, Petersson, and Smith}{Nor...
-l.91 ...s in~\cite[Section~5.2]{NordstromB:marltt}
-                                                  , thus making it impossibl...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\b@DybjerP:repids ->\citeauthoryear 
-                                    {Dybjer}{Dybjer}{1997}
-l.94 ... no longer derivable~\cite{DybjerP:repids}
-                                                  . Similarly, it is not pos...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
+LaTeX Warning: Citation `HofmannM:extcit' on page 5 undefined on input line 321
+.
 
 
-Overfull \hbox (104.55434pt too wide) in paragraph at lines 89--95
-\OT1/cmr/m/n/10.95 tion out of the empty type with rules as in [[],
- []
-
- [6]
-! Undefined control sequence.
-\b@StreicherT:invitt ->\citeauthoryear 
-                                       {Streicher}{Streicher}{1993}
-l.96 ...tity Proofs (UIP)~\cite{StreicherT:invitt}
-                                                  , which has recently been ...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\b@AltenkirchT:obsen ->\citeauthoryear 
-                                       {Altenkirch, McBride, and Swierstra}{...
-l.97 ...ional Type Theory \cite{AltenkirchT:obsen}
-                                                  .  Inductive types in such...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\b@McBrideC:wtygnb ->\citeauthoryear 
-                                     {McBride}{McBride}{2010}
-l.97 ...than one might wish~\cite{McBrideC:wtygnb}
-                                                  .  Moreover, these interme...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
+LaTeX Warning: Citation `NordstromB:marltt' on page 5 undefined on input line 3
+22.
 
 
-Overfull \hbox (100.99562pt too wide) in paragraph at lines 96--98
-\OT1/cmr/m/n/10.95 con-text of Ob-ser-va-tional Type The-ory [[]].
- []
-
-! Undefined control sequence.
-\b@NordstromB:marltt ->\citeauthoryear 
-                                       {Nordstrom, Petersson, and Smith}{Nor...
-l.105 ... in~\cite[Section~5.8]{NordstromB:marltt}
-                                                  ;
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
+LaTeX Warning: Citation `BertotY:inttpp' on page 5 undefined on input line 322.
 
 
-Overfull \hbox (38.94548pt too wide) in paragraph at lines 105--106
-[]\OT1/cmr/m/n/10.95 rules for $^^F$-types as in [[],
- []
+[5]
 
-! Undefined control sequence.
-\b@GarnerR:strdpt ->\citeauthoryear 
-                                    {Garner}{Garner}{2009}
-l.106 ... as in~\cite[Section~3.2]{GarnerR:strdpt}
-                                                  ;
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
- [7]
-! Undefined control sequence.
-\b@NordstromB:marltt ->\citeauthoryear 
-                                       {Nordstrom, Petersson, and Smith}{Nor...
-l.122 in~\cite[Section~5.4]{NordstromB:marltt}
-                                              . For simplicity,
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
+LaTeX Warning: Citation `NordstromB:marltt' on page 6 undefined on input line 3
+33.
 
 
-Overfull \hbox (184.35257pt too wide) in paragraph at lines 121--124
-[]\OT1/cmr/m/n/10.95 The rules for $^^E$-types of $\OMS/cmsy/m/n/10.95 H$ \OT1/
-cmr/m/n/10.95 are deriv-able from those in [[],
- []
-
-! Undefined control sequence.
-\b@VoevodskyV:unifc ->\citeauthoryear 
-                                      {Voevodsky}{Voevodsky}{2010a}
-l.124 \item As shown in~\cite{VoevodskyV:unifc}
-                                               , the principle of propositio...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\b@GoguenH:inddtw ->\citeauthoryear 
-                                    {Goguen and Luo}{Goguen and Luo}{1993}
-l.150 ...ypes (as is done in~\cite{GoguenH:inddtw}
-                                                  ).
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
+LaTeX Warning: Citation `GarnerR:strdpt' on page 6 undefined on input line 334.
 
 
-Overfull \hbox (18.84009pt too wide) in paragraph at lines 150--151
-\OT1/cmr/m/n/10.95 types or for $^^E$-types (as is done in [[]]). 
- []
 
-! Undefined control sequence.
-\b@VoevodskyV:unifc ->\citeauthoryear 
-                                      {Voevodsky}{Voevodsky}{2010a}
-l.159 ...undations library~\cite{VoevodskyV:unifc}
-                                                  .  In particular, the
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\b@VoevodskyV:notts ->\citeauthoryear 
-                                      {Voevodsky}{Voevodsky}{2009}
-l.160 ... Univalence axiom~\cite{VoevodskyV:notts}
-                                                  ,
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\b@HofmannM:gromtt ->\citeauthoryear 
-                                     {Hofmann and Streicher}{Hofmann and Str...
-l.164 ...the groupoid model~\cite{HofmannM:gromtt}
-                                                  , in which the rules of $\...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
+LaTeX Warning: Citation `NordstromB:marltt' on page 6 undefined on input line 3
+50.
 
 
-Overfull \hbox (69.81854pt too wide) in paragraph at lines 156--165
-\OT1/cmr/m/n/10.95 ity ax-iom is for-mally im-plied by Vo-evod-sky's Uni-va-len
-ce ax-iom [[]],
- []
+LaTeX Warning: Citation `VoevodskyV:unifc' on page 6 undefined on input line 35
+2.
 
- [8]
-! Undefined control sequence.
-\b@AwodeyS:typth ->\citeauthoryear 
-                                   {Awodey}{Awodey}{2010}
-l.191  see~\cite{AwodeyS:typth}
-                               .
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
+[6]
 
- [9]
-! Undefined control sequence.
-\b@BataninM:mongcn ->\citeauthoryear 
-                                     {Batanin}{Batanin}{1998}
-l.194 ...f~\cite{BataninM:mongcn,LeinsterT:higohc}
-                                                   with the elements of $A$ ...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\b@LeinsterT:higohc ->\citeauthoryear 
-                                      {Leinster}{Leinster}{2004}
-l.194 ...f~\cite{BataninM:mongcn,LeinsterT:higohc}
-                                                   with the elements of $A$ ...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\b@vandenBergB:typwg ->\citeauthoryear 
-                                       {van\nobreakspace {}den Berg and Garn...
-l.196 ...\cite{vandenBergB:typwg,LumsdaineP:weaci}
-                                                  . Furthermore, $\Hint$
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\b@LumsdaineP:weaci ->\citeauthoryear 
-                                      {Lumsdaine}{Lumsdaine}{2010b}
-l.196 ...\cite{vandenBergB:typwg,LumsdaineP:weaci}
-                                                  . Furthermore, $\Hint$
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\b@Lumsdaine:higcft ->\citeauthoryear 
-                                      {Lumsdaine}{Lumsdaine}{2010a}
-l.198 as~$n$-cells~\cite{Lumsdaine:higcft}
-                                          .   The relation between the weak ...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\b@VoevodskyV:unifc ->\citeauthoryear 
-                                      {Voevodsky}{Voevodsky}{2010a}
-l.200 ...d by Voevodsky in~\cite{VoevodskyV:unifc}
-                                                  .
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
+LaTeX Warning: Citation `GoguenH:inddtw' on page 7 undefined on input line 378.
 
 
-Overfull \hbox (74.86763pt too wide) in paragraph at lines 193--201
-\OT1/cmr/m/n/10.95 cells [[], []].
- []
 
-! Undefined control sequence.
-\b@VoevodskyV:unifc ->\citeauthoryear 
-                                      {Voevodsky}{Voevodsky}{2010a}
-l.214 ...r \emph{h-levels} \cite{VoevodskyV:unifc}
-                                                  . This classification has ...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\b@VoevodskyV:unifc ->\citeauthoryear 
-                                      {Voevodsky}{Voevodsky}{2010a}
-l.215 ...cs in type theory~\cite{VoevodskyV:unifc}
-                                                  .
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\b@AwodeyS:indtht ->\citeauthoryear 
-                                    {Awodey, Gambino, and Sojakova}{Awodey e...
-l.218 ...y $\Id$-elimination~\cite{AwodeyS:indtht}
-                                                  .
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
+LaTeX Warning: Citation `VoevodskyV:unifc' on page 7 undefined on input line 38
+7.
 
 
-Overfull \hbox (211.76443pt too wide) in paragraph at lines 218--219
-[][]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 a; b\OT1/cmr/m/n/10.95 )$ is again 
-con-tractible. This can be proved by $[]$-elimination [[]]. 
- []
-
-! Undefined control sequence.
-\b@VoevodskyV:unifc ->\citeauthoryear 
-                                      {Voevodsky}{Voevodsky}{2010a}
-l.221 ... also recall from~\cite{VoevodskyV:unifc}
-                                                   the notions of weak equiv...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
- [10]
-! Undefined control sequence.
-\b@VoevodskyV:unifc ->\citeauthoryear 
-                                      {Voevodsky}{Voevodsky}{2010a}
-l.260 ...otopy equivalence~\cite{VoevodskyV:unifc}
-                                                  .
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\b@VoevodskyV:notts ->\citeauthoryear 
-                                      {Voevodsky}{Voevodsky}{2009}
-l.261 ... Univalence axiom~\cite{VoevodskyV:notts}
-                                                  .
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
+LaTeX Warning: Citation `VoevodskyV:notts' on page 7 undefined on input line 38
+8.
 
 
-Overfull \hbox (55.97887pt too wide) in paragraph at lines 260--262
-\OT1/cmr/m/n/10.95 weak equiv-a-lence if and only if it is a ho-mo-topy equiv-a
--lence [[]].
- []
+LaTeX Warning: Citation `HofmannM:gromtt' on page 7 undefined on input line 392
+.
 
-) (./extW.tex
-! Undefined control sequence.
-\b@NordstromB:marltt ->\citeauthoryear 
-                                       {Nordstrom, Petersson, and Smith}{Nor...
-l.2 ...alues~\cite[Section~5.1]{NordstromB:marltt}
-                                                  .
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
+[7]
+
+LaTeX Warning: Reference `equ:deptype' on page 8 undefined on input line 412.
 
 
-Overfull \hbox (130.6823pt too wide) in paragraph at lines 1--3
-\OT1/cmr/m/n/10.95 first con-sider the type $\OT1/cmss/m/n/10.95 2$ \OT1/cmr/m/
-n/10.95 of Boolean truth val-ues [[],
- []
+LaTeX Warning: Citation `AwodeyS:typth' on page 8 undefined on input line 419.
 
- [11] [12] [13]
-Overfull \hbox (23.06499pt too wide) in paragraph at lines 131--132
+
+LaTeX Warning: Citation `BataninM:mongcn' on page 8 undefined on input line 422
+.
+
+
+LaTeX Warning: Citation `LeinsterT:higohc' on page 8 undefined on input line 42
+2.
+
+
+LaTeX Warning: Citation `vandenBergB:typwg' on page 8 undefined on input line 4
+24.
+
+
+LaTeX Warning: Citation `LumsdaineP:weaci' on page 8 undefined on input line 42
+4.
+
+
+LaTeX Warning: Citation `Lumsdaine:higcft' on page 8 undefined on input line 42
+6.
+
+
+LaTeX Warning: Citation `VoevodskyV:unifc' on page 8 undefined on input line 42
+8.
+
+
+LaTeX Warning: Citation `VoevodskyV:unifc' on page 8 undefined on input line 44
+2.
+
+
+LaTeX Warning: Citation `VoevodskyV:unifc' on page 8 undefined on input line 44
+3.
+
+[8]
+
+LaTeX Warning: Citation `AwodeyS:indtht' on page 9 undefined on input line 446.
+
+
+
+LaTeX Warning: Citation `VoevodskyV:unifc' on page 9 undefined on input line 44
+9.
+
+
+LaTeX Warning: Citation `VoevodskyV:unifc' on page 9 undefined on input line 48
+8.
+
+
+LaTeX Warning: Citation `VoevodskyV:notts' on page 9 undefined on input line 48
+9.
+
+[9]
+
+LaTeX Warning: Reference `section:intW' on page 10 undefined on input line 494.
+
+
+[10]
+
+LaTeX Warning: Reference `def:BoolFibHom' on page 11 undefined on input line 58
+9.
+
+
+LaTeX Warning: Reference `def:BoolIndUniq' on page 11 undefined on input line 5
+89.
+
+[11]
+
+LaTeX Warning: Reference `section:intW' on page 12 undefined on input line 614.
+
+
+
+Overfull \hbox (23.06499pt too wide) in paragraph at lines 631--632
 \OT1/cmr/m/it/10.95 prin-ci-ple \OT1/cmr/m/n/10.95 on a uni-verse $\OMS/cmsy/m/
 n/10.95 U[]$ \OT1/cmr/m/n/10.95 if for any al-ge-bra $\OMS/cmsy/m/n/10.95 Y \OT
 1/cmr/m/n/10.95 : \OT1/cmss/m/n/10.95 2[][][]$ \OT1/cmr/m/n/10.95 any two $\OT1
 /cmss/m/n/10.95 2$\OT1/cmr/m/n/10.95 -homomorphisms
  []
 
- [14]
-Overfull \hbox (1.27904pt too wide) in paragraph at lines 187--189
+[12]
+
+LaTeX Warning: Reference `def:BoolRecUniq' on page 13 undefined on input line 6
+40.
+
+
+LaTeX Warning: Reference `def:BoolIndUniq' on page 13 undefined on input line 6
+40.
+
+[13]
+Overfull \hbox (1.27904pt too wide) in paragraph at lines 687--689
 []\OT1/cmr/m/n/10.95 Let al-ge-bras $(\OML/cmm/m/it/10.95 C; c[]; c[]\OT1/cmr/m
 /n/10.95 ) : \OT1/cmss/m/n/10.95 2[][][]$ \OT1/cmr/m/n/10.95 and $(\OML/cmm/m/i
 t/10.95 E; e[]; e[]\OT1/cmr/m/n/10.95 ) : \OT1/cmss/m/n/10.95 2[][][][][] \OT1/
@@ -2588,7 +950,7 @@ cmr/m/n/10.95 (\OML/cmm/m/it/10.95 C; c[]; c[]\OT1/cmr/m/n/10.95 )$
  []
 
 
-Overfull \hbox (41.12149pt too wide) in paragraph at lines 187--189
+Overfull \hbox (41.12149pt too wide) in paragraph at lines 687--689
 \OT1/cmr/m/n/10.95 be given. We use the re-cur-sion prin-ci-ple with the al-ge-
 bra $[]^^F[]\OML/cmm/m/it/10.95 E\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 x\OT1/
 cmr/m/n/10.95 )\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 c[
@@ -2596,8 +958,8 @@ cmr/m/n/10.95 )\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 c[
 it/10.95 c[]; e[]\OT1/cmr/m/n/10.95 )[]$.
  []
 
- [15]
-Overfull \hbox (42.58235pt too wide) in paragraph at lines 190--191
+
+Overfull \hbox (42.58235pt too wide) in paragraph at lines 690--691
 []\OT1/cmr/m/n/10.95 We can thus de-fine the de-sired fibered ho-mo-mor-phism a
 s $[][] \OMS/cmsy/m/n/10.95 ^^N \OML/cmm/m/it/10.95 u; []\OT1/cmr/m/n/10.95 (\O
 ML/cmm/m/it/10.95 e[]\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 ; []\OT1/cmr/m/n/1
@@ -2605,155 +967,49 @@ ML/cmm/m/it/10.95 e[]\OT1/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 ; []\OT1/cmr/m/n/1
  []
 
 
-LaTeX Warning: Reference `lem:IsContrIsProp' on page 16 undefined on input line
- 204.
+LaTeX Warning: Reference `lem:IsContrIsProp' on page 14 undefined on input line
+ 704.
 
- EdNote!
+EdNote!
 
-LaTeX Warning: Reference `lem:PropChar' on page 16 undefined on input line 204.
-
-
- EdNote! [16]
-! Undefined control sequence.
-\b@MartinLofP:inttt ->\citeauthoryear 
-                                      {Martin-L{\"o}f}{Martin-L{\"o}f}{1984}
-l.222 ... for W-types from~\cite{MartinLofP:inttt}
-                                                  ; to state them more conve...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
+LaTeX Warning: Reference `lem:PropChar' on page 14 undefined on input line 704.
 
 
-Overfull \hbox (3.85039pt too wide) in paragraph at lines 222--223
-\OT1/cmr/m/n/10.95 them more con-ve-niently, we some-times write $\OT1/cmss/m/n
-/10.95 W$ \OT1/cmr/m/n/10.95 in-stead of $\OT1/cmss/m/n/10.95 W[]\OML/cmm/m/it/
-10.95 B\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 x\OT1/cmr/m/n/10.95 )$; $[](\OML
-/cmm/m/it/10.95 a; t\OT1/cmr/m/n/10.95 )$
- []
+EdNote!
 
- [17] [18]
-Overfull \hbox (20.11662pt too wide) detected at line 303
-\OT1/cmss/m/n/10.95 W[][][][][]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 A; B\OT1
-/cmr/m/n/10.95 ) (\OML/cmm/m/it/10.95 C; c\OT1/cmr/m/n/10.95 ) [] ^^F[]^^E[]^^E
-[][]^^E[]\OML/cmm/m/it/10.95 E\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 t b\OT1/c
-mr/m/n/10.95 )[] \OMS/cmsy/m/n/10.95 ! \OML/cmm/m/it/10.95 E\OT1/cmr/m/n/10.95 
-(\OML/cmm/m/it/10.95 c\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 a; t\OT1/cmr/m/n/
-10.95 ))
- []
+LaTeX Warning: Reference `lem:BoolIndImpUniq' on page 14 undefined on input lin
+e 704.
+
+[14]
+
+LaTeX Warning: Reference `lem:BoolMain' on page 15 undefined on input line 715.
 
 
-Overfull \hbox (13.44989pt too wide) in paragraph at lines 307--308
-[]\OT1/cmr/bx/n/10.95 Definition 21. []\OT1/cmr/m/n/10.95 For $\OML/cmm/m/it/10
-.95 A \OT1/cmr/m/n/10.95 : \OMS/cmsy/m/n/10.95 U[]$\OT1/cmr/m/n/10.95 , $\OML/c
-mm/m/it/10.95 B \OT1/cmr/m/n/10.95 : \OML/cmm/m/it/10.95 A \OMS/cmsy/m/n/10.95 
-! U[]$\OT1/cmr/m/n/10.95 , $\OMS/cmsy/m/n/10.95 X \OT1/cmr/m/n/10.95 : \OT1/cms
-s/m/n/10.95 W[][][]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 A; B\OT1/cmr/m/n/10.
-95 )$, $\OMS/cmsy/m/n/10.95 Y \OT1/cmr/m/n/10.95 : \OT1/cmss/m/n/10.95 W[][][]\
-OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 A; B\OT1/cmr/m/n/10.95 )$,
- []
 
+LaTeX Warning: Reference `subsection:bool' on page 15 undefined on input line 7
+21.
 
-Overfull \hbox (0.82541pt too wide) detected at line 308
-\OT1/cmss/m/n/10.95 W[][] \OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 C; c\OT1/cmr/
-m/n/10.95 ) (\OML/cmm/m/it/10.95 D; d\OT1/cmr/m/n/10.95 ) [] ^^F[]^^E[]^^E[]\OM
-L/cmm/m/it/10.95 f\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 c\OT1/cmr/m/n/10.95 (
-\OML/cmm/m/it/10.95 a; t\OT1/cmr/m/n/10.95 )) = \OML/cmm/m/it/10.95 d\OT1/cmr/m
-/n/10.95 (\OML/cmm/m/it/10.95 a; ^^U[]f\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 
-t b\OT1/cmr/m/n/10.95 ))
- []
+EdNote!
 
+LaTeX Warning: Reference `subsection:bool' on page 15 undefined on input line 7
+22.
 
-Overfull \hbox (44.06425pt too wide) in paragraph at lines 312--313
-[]\OT1/cmr/bx/n/10.95 Definition 22. []\OT1/cmr/m/n/10.95 For $\OML/cmm/m/it/10
-.95 A \OT1/cmr/m/n/10.95 : \OMS/cmsy/m/n/10.95 U[]$\OT1/cmr/m/n/10.95 , $\OML/c
-mm/m/it/10.95 B \OT1/cmr/m/n/10.95 : \OML/cmm/m/it/10.95 A \OMS/cmsy/m/n/10.95 
-! U[]$\OT1/cmr/m/n/10.95 , $\OMS/cmsy/m/n/10.95 X \OT1/cmr/m/n/10.95 : \OT1/cms
-s/m/n/10.95 W[][][]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 A; B\OT1/cmr/m/n/10.
-95 )$, $\OMS/cmsy/m/n/10.95 Y \OT1/cmr/m/n/10.95 : \OT1/cmss/m/n/10.95 W[][][][
-][]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 A; B\OT1/cmr/m/n/10.95 ) \OMS/cmsy/m
-/n/10.95 X$\OT1/cmr/m/n/10.95 ,
- []
-
-
-Overfull \hbox (47.18285pt too wide) detected at line 313
-\OT1/cmss/m/n/10.95 W[][][][] \OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 C; c\OT1/
-cmr/m/n/10.95 ) (\OML/cmm/m/it/10.95 E; e\OT1/cmr/m/n/10.95 ) [] ^^F[]^^E[]^^E[
-]\OML/cmm/m/it/10.95 f\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 c\OT1/cmr/m/n/10.
-95 (\OML/cmm/m/it/10.95 a; t\OT1/cmr/m/n/10.95 )) = \OML/cmm/m/it/10.95 e\OT1/c
-mr/m/n/10.95 (\OML/cmm/m/it/10.95 a; t; ^^U[]f\OT1/cmr/m/n/10.95 (\OML/cmm/m/it
-/10.95 t b\OT1/cmr/m/n/10.95 ))
- []
-
- [19]
-Overfull \hbox (3.09108pt too wide) in paragraph at lines 346--347
-[]\OT1/cmr/bx/n/10.95 Lemma 28. []\OT1/cmr/m/it/10.95 In $\OMS/cmsy/m/n/10.95 H
-[]$\OT1/cmr/m/it/10.95 , for $\OML/cmm/m/it/10.95 A \OT1/cmr/m/n/10.95 : \OMS/c
-msy/m/n/10.95 U[]$\OT1/cmr/m/it/10.95 , $\OML/cmm/m/it/10.95 B \OT1/cmr/m/n/10.
-95 : \OML/cmm/m/it/10.95 A \OMS/cmsy/m/n/10.95 ! U[]$\OT1/cmr/m/it/10.95 , if a
-n al-ge-bra $\OMS/cmsy/m/n/10.95 X \OT1/cmr/m/n/10.95 : \OT1/cmss/m/n/10.95 W[]
-[][]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 A; B\OT1/cmr/m/n/10.95 )$
- []
-
-
-Overfull \hbox (3.09108pt too wide) in paragraph at lines 375--376
-[]\OT1/cmr/bx/n/10.95 Lemma 30. []\OT1/cmr/m/it/10.95 In $\OMS/cmsy/m/n/10.95 H
-[]$\OT1/cmr/m/it/10.95 , for $\OML/cmm/m/it/10.95 A \OT1/cmr/m/n/10.95 : \OMS/c
-msy/m/n/10.95 U[]$\OT1/cmr/m/it/10.95 , $\OML/cmm/m/it/10.95 B \OT1/cmr/m/n/10.
-95 : \OML/cmm/m/it/10.95 A \OMS/cmsy/m/n/10.95 ! U[]$\OT1/cmr/m/it/10.95 , if a
-n al-ge-bra $\OMS/cmsy/m/n/10.95 X \OT1/cmr/m/n/10.95 : \OT1/cmss/m/n/10.95 W[]
-[][]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 A; B\OT1/cmr/m/n/10.95 )$
- []
-
- [20]
-Overfull \hbox (20.05342pt too wide) detected at line 397
-[][]\OT1/cmss/m/n/10.95 W[][][]\OT1/cmr/m/n/10.95 (\OMS/cmsy/m/n/10.95 X\OT1/cm
-r/m/n/10.95 )   \OMS/cmsy/m/n/10.95 '   [][]\OT1/cmss/m/n/10.95 W[][][]\OT1/cmr
-/m/n/10.95 (\OMS/cmsy/m/n/10.95 X\OT1/cmr/m/n/10.95 ) \OMS/cmsy/m/n/10.95 ^^B [
-][]\OT1/cmss/m/n/10.95 W[][][][][]\OT1/cmr/m/n/10.95 (\OMS/cmsy/m/n/10.95 X\OT1
-/cmr/m/n/10.95 )   \OMS/cmsy/m/n/10.95 '   [][]\OT1/cmss/m/n/10.95 W[][][]\OT1/
-cmr/m/n/10.95 (\OMS/cmsy/m/n/10.95 X\OT1/cmr/m/n/10.95 )
- []
-
-
-LaTeX Warning: Reference `lem:IsContrIsProp' on page 21 undefined on input line
- 401.
-
-
-LaTeX Warning: Reference `lem:PropChar' on page 21 undefined on input line 401.
-
-
- [21]
-Overfull \hbox (0.6547pt too wide) in paragraph at lines 413--414
-[]\OT1/cmr/m/n/10.95 For any $\OML/cmm/m/it/10.95 i$\OT1/cmr/m/n/10.95 , the al
--ge-bra $\OML/cmm/m/it/10.95 A \OT1/cmr/m/n/10.95 : \OMS/cmsy/m/n/10.95 U[]\OML
-/cmm/m/it/10.95 ; B \OT1/cmr/m/n/10.95 : \OML/cmm/m/it/10.95 A \OMS/cmsy/m/n/10
-.95 ! U[] ` X[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 A; B\OT1/cmr/m/n/10.95 )
- : \OT1/cmss/m/n/10.95 W[][][]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 A; B\OT1/
-cmr/m/n/10.95 )$
- []
-
- [22]
-
-LaTeX Warning: Reference `lem:apeq' on page 23 undefined on input line 432.
-
- EdNote!) (./intW.tex EdNote! [23]
-Overfull \hbox (15.87091pt too wide) detected at line 71
+[15]
+Overfull \hbox (15.87091pt too wide) detected at line 788
 []
  []
 
- [24]
-Overfull \hbox (4.22536pt too wide) detected at line 88
+[16]
+Overfull \hbox (4.22536pt too wide) detected at line 805
 []
  []
 
 
-LaTeX Warning: Reference `lem:contr_path_space' on page 25 undefined on input l
-ine 104.
+LaTeX Warning: Reference `lem:contr_path_space' on page 17 undefined on input l
+ine 821.
 
- [25]
-Overfull \hbox (39.32391pt too wide) detected at line 127
+[17]
+Overfull \hbox (39.32391pt too wide) detected at line 844
 \OT1/cmss/m/n/10.95 2[][][][] \OMS/cmsy/m/n/10.95 X Y [] \OT1/cmr/m/n/10.95 ^^F
 [][]^^F[]\OML/cmm/m/it/10.95 ^^V \OMS/cmsy/m/n/10.95 ^^N \OML/cmm/m/it/10.95 ^^
 Z \OT1/cmr/m/n/10.95 = \OT1/cmss/m/n/10.95 1[][] \OMS/cmsy/m/n/10.95 ^^B []\OT1
@@ -2761,18 +1017,18 @@ Z \OT1/cmr/m/n/10.95 = \OT1/cmss/m/n/10.95 1[][] \OMS/cmsy/m/n/10.95 ^^B []\OT1
 it/10.95 ^^W \OT1/cmr/m/n/10.95 = \OT1/cmss/m/n/10.95 1[][]
  []
 
- [26]
-Overfull \hbox (42.81422pt too wide) in paragraph at lines 164--164
+[18]
+Overfull \hbox (42.81422pt too wide) in paragraph at lines 881--881
 [] 
  []
 
 
-Overfull \hbox (52.6399pt too wide) in paragraph at lines 179--179
+Overfull \hbox (52.6399pt too wide) in paragraph at lines 896--896
 [] 
  []
 
- [27]
-Overfull \hbox (28.35669pt too wide) detected at line 191
+[19]
+Overfull \hbox (28.35669pt too wide) detected at line 908
 \OT1/cmr/m/n/10.95 ^^F[][]\OML/cmm/m/it/10.95 \OT1/cmr/m/n/10.95 (\OML/cmm/m/i
 t/10.95 c[]\OT1/cmr/m/n/10.95 ) = [][](\OML/cmm/m/it/10.95 ^^O[]\OT1/cmr/m/n/10
 .95 ) [] \OML/cmm/m/it/10.95 ^^M[][]    \OMS/cmsy/m/n/10.95 '    \OT1/cmr/m/n/1
@@ -2783,11 +1039,11 @@ ss/m/n/10.95 1
  []
 
 
-LaTeX Warning: Reference `lem_singl_contr' on page 28 undefined on input line 1
-92.
+LaTeX Warning: Reference `lem_singl_contr' on page 20 undefined on input line 9
+09.
 
- EdNote!
-Overfull \hbox (24.5408pt too wide) detected at line 193
+EdNote!
+Overfull \hbox (24.5408pt too wide) detected at line 910
 \OT1/cmr/m/n/10.95 ^^F[][]\OML/cmm/m/it/10.95 ^^L\OT1/cmr/m/n/10.95 (\OML/cmm/m
 /it/10.95 d[]\OT1/cmr/m/n/10.95 ) = [][](\OML/cmm/m/it/10.95 ^^N[]\OT1/cmr/m/n/
 10.95 ) [] \OML/cmm/m/it/10.95 ^^O[][]    \OMS/cmsy/m/n/10.95 '    \OT1/cmr/m/n
@@ -2797,25 +1053,34 @@ OML/cmm/m/it/10.95 ^^O[][]    \OMS/cmsy/m/n/10.95 '    \OT1/cmss/m/n/10.95 1
  []
 
 
-LaTeX Warning: Reference `lem_singl_equiv_contr' on page 28 undefined on input 
-line 194.
+LaTeX Warning: Reference `lem_singl_equiv_contr' on page 20 undefined on input 
+line 911.
 
- EdNote!
+EdNote!
 
-LaTeX Warning: Reference `lem_ap_equiv' on page 28 undefined on input line 194.
-
-
- EdNote!
-
-LaTeX Warning: Marginpar on page 28 moved.
+LaTeX Warning: Reference `lem_ap_equiv' on page 20 undefined on input line 911.
 
 
-Overfull \hbox (8.67241pt too wide) in paragraph at lines 204--204
+EdNote!
+
+LaTeX Warning: Marginpar on page 20 moved.
+
+
+Overfull \hbox (8.67241pt too wide) in paragraph at lines 921--921
 [] 
  []
 
- [28] [29]
-Overfull \hbox (1.27904pt too wide) in paragraph at lines 241--243
+
+LaTeX Warning: Reference `subsection:bool' on page 20 undefined on input line 9
+24.
+
+[20]
+
+LaTeX Warning: Reference `BoolFibHomSpace' on page 21 undefined on input line 9
+31.
+
+
+Overfull \hbox (1.27904pt too wide) in paragraph at lines 958--960
 []\OT1/cmr/m/n/10.95 Let al-ge-bras $(\OML/cmm/m/it/10.95 C; c[]; c[]\OT1/cmr/m
 /n/10.95 ) : \OT1/cmss/m/n/10.95 2[][][]$ \OT1/cmr/m/n/10.95 and $(\OML/cmm/m/i
 t/10.95 E; e[]; e[]\OT1/cmr/m/n/10.95 ) : \OT1/cmss/m/n/10.95 2[][][][][] \OT1/
@@ -2823,7 +1088,7 @@ cmr/m/n/10.95 (\OML/cmm/m/it/10.95 C; c[]; c[]\OT1/cmr/m/n/10.95 )$
  []
 
 
-Overfull \hbox (41.12149pt too wide) in paragraph at lines 241--243
+Overfull \hbox (41.12149pt too wide) in paragraph at lines 958--960
 \OT1/cmr/m/n/10.95 be given. We use the re-cur-sion prin-ci-ple with the al-ge-
 bra $[]^^F[]\OML/cmm/m/it/10.95 E\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 x\OT1/
 cmr/m/n/10.95 )\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 c[
@@ -2832,7 +1097,7 @@ it/10.95 c[]; e[]\OT1/cmr/m/n/10.95 )[]$.
  []
 
 
-Overfull \hbox (40.24019pt too wide) detected at line 243
+Overfull \hbox (40.24019pt too wide) detected at line 960
 [][] \OMS/cmsy/m/n/10.95 ^^N \OML/cmm/m/it/10.95 u; []\OT1/cmr/m/n/10.95 ([][][
 ][](\OML/cmm/m/it/10.95 ^^R[]\OT1/cmr/m/n/10.95 ))\OML/cmm/m/it/10.95 ; []\OT1/
 cmr/m/n/10.95 ([][][][](\OML/cmm/m/it/10.95 ^^R[]\OT1/cmr/m/n/10.95 ))[]\OML/cm
@@ -2841,8 +1106,12 @@ m/m/it/10.95 ; [][][]; [][]; [][][] \OT1/cmr/m/n/10.95 : \OT1/cmss/m/n/10.95 2[
 ML/cmm/m/it/10.95 C; c[]; c[]\OT1/cmr/m/n/10.95 )
  []
 
- [30]
-Overfull \hbox (2.94452pt too wide) detected at line 273
+
+LaTeX Warning: Reference `BoolHomSpace' on page 21 undefined on input line 961.
+
+
+[21]
+Overfull \hbox (2.94452pt too wide) detected at line 990
 [][]\OT1/cmss/m/n/10.95 2[][][]\OT1/cmr/m/n/10.95 (\OMS/cmsy/m/n/10.95 X\OT1/cm
 r/m/n/10.95 )   \OMS/cmsy/m/n/10.95 '   [][]\OT1/cmss/m/n/10.95 2[][][]\OT1/cmr
 /m/n/10.95 (\OMS/cmsy/m/n/10.95 X\OT1/cmr/m/n/10.95 ) \OMS/cmsy/m/n/10.95 ^^B [
@@ -2852,49 +1121,190 @@ cmr/m/n/10.95 (\OMS/cmsy/m/n/10.95 X\OT1/cmr/m/n/10.95 )
  []
 
 
-LaTeX Warning: Reference `lem:IsContrIsProp' on page 31 undefined on input line
- 277.
+LaTeX Warning: Reference `lem:IsContrIsProp' on page 22 undefined on input line
+ 994.
 
 
-LaTeX Warning: Reference `lem:PropChar' on page 31 undefined on input line 277.
+LaTeX Warning: Reference `lem:PropChar' on page 22 undefined on input line 994.
 
 
 
-Overfull \hbox (3.15335pt too wide) in paragraph at lines 295--296
-[]\OT1/cmr/bx/n/10.95 Corollary 51. []\OT1/cmr/m/it/10.95 In $\OMS/cmsy/m/n/10.
+LaTeX Warning: Reference `lem:BoolIndImpUniqInt' on page 22 undefined on input 
+line 994.
+
+
+LaTeX Warning: Reference `BoolAlgSpace' on page 22 undefined on input line 1003
+.
+
+[22]
+Overfull \hbox (3.15335pt too wide) in paragraph at lines 1012--1013
+[]\OT1/cmr/bx/n/10.95 Corollary 34. []\OT1/cmr/m/it/10.95 In $\OMS/cmsy/m/n/10.
 95 H$ \OT1/cmr/m/it/10.95 ex-tended with an al-ge-bra $\OMS/cmsy/m/n/10.95 X \O
 T1/cmr/m/n/10.95 : \OT1/cmss/m/n/10.95 2[][][]$ \OT1/cmr/m/it/10.95 which is ho
 motopy-
  []
 
-! Undefined control sequence.
-\b@AwodeyS:indtht ->\citeauthoryear 
-                                    {Awodey, Gambino, and Sojakova}{Awodey e...
-l.305 ...Coq proof assistant~\cite{AwodeyS:indtht}
-                                                  .
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
 
- [31]
-Overfull \hbox (45.81519pt too wide) in paragraph at lines 323--325
+LaTeX Warning: Reference `lem:BoolMainInt' on page 23 undefined on input line 1
+015.
+
+
+LaTeX Warning: Reference `lem:BoolCharInt' on page 23 undefined on input line 1
+018.
+
+
+LaTeX Warning: Reference `lem:BoolInitInt' on page 23 undefined on input line 1
+018.
+
+
+LaTeX Warning: Reference `lem:BoolMainInt' on page 23 undefined on input line 1
+022.
+
+
+LaTeX Warning: Citation `AwodeyS:indtht' on page 23 undefined on input line 102
+2.
+
+
+LaTeX Warning: Citation `MartinLofP:inttt' on page 23 undefined on input line 1
+036.
+
+[23] [24] [25]
+Overfull \hbox (20.11662pt too wide) detected at line 1117
+\OT1/cmss/m/n/10.95 W[][][][][]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 A; B\OT1
+/cmr/m/n/10.95 ) (\OML/cmm/m/it/10.95 C; c\OT1/cmr/m/n/10.95 ) [] ^^F[]^^E[]^^E
+[][]^^E[]\OML/cmm/m/it/10.95 E\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 t b\OT1/c
+mr/m/n/10.95 )[] \OMS/cmsy/m/n/10.95 ! \OML/cmm/m/it/10.95 E\OT1/cmr/m/n/10.95 
+(\OML/cmm/m/it/10.95 c\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 a; t\OT1/cmr/m/n/
+10.95 ))
+ []
+
+
+Overfull \hbox (13.44989pt too wide) in paragraph at lines 1121--1122
+[]\OT1/cmr/bx/n/10.95 Definition 37. []\OT1/cmr/m/n/10.95 For $\OML/cmm/m/it/10
+.95 A \OT1/cmr/m/n/10.95 : \OMS/cmsy/m/n/10.95 U[]$\OT1/cmr/m/n/10.95 , $\OML/c
+mm/m/it/10.95 B \OT1/cmr/m/n/10.95 : \OML/cmm/m/it/10.95 A \OMS/cmsy/m/n/10.95 
+! U[]$\OT1/cmr/m/n/10.95 , $\OMS/cmsy/m/n/10.95 X \OT1/cmr/m/n/10.95 : \OT1/cms
+s/m/n/10.95 W[][][]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 A; B\OT1/cmr/m/n/10.
+95 )$, $\OMS/cmsy/m/n/10.95 Y \OT1/cmr/m/n/10.95 : \OT1/cmss/m/n/10.95 W[][][]\
+OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 A; B\OT1/cmr/m/n/10.95 )$,
+ []
+
+
+Overfull \hbox (0.82541pt too wide) detected at line 1122
+\OT1/cmss/m/n/10.95 W[][] \OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 C; c\OT1/cmr/
+m/n/10.95 ) (\OML/cmm/m/it/10.95 D; d\OT1/cmr/m/n/10.95 ) [] ^^F[]^^E[]^^E[]\OM
+L/cmm/m/it/10.95 f\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 c\OT1/cmr/m/n/10.95 (
+\OML/cmm/m/it/10.95 a; t\OT1/cmr/m/n/10.95 )) = \OML/cmm/m/it/10.95 d\OT1/cmr/m
+/n/10.95 (\OML/cmm/m/it/10.95 a; ^^U[]f\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 
+t b\OT1/cmr/m/n/10.95 ))
+ []
+
+
+Overfull \hbox (44.06425pt too wide) in paragraph at lines 1126--1127
+[]\OT1/cmr/bx/n/10.95 Definition 38. []\OT1/cmr/m/n/10.95 For $\OML/cmm/m/it/10
+.95 A \OT1/cmr/m/n/10.95 : \OMS/cmsy/m/n/10.95 U[]$\OT1/cmr/m/n/10.95 , $\OML/c
+mm/m/it/10.95 B \OT1/cmr/m/n/10.95 : \OML/cmm/m/it/10.95 A \OMS/cmsy/m/n/10.95 
+! U[]$\OT1/cmr/m/n/10.95 , $\OMS/cmsy/m/n/10.95 X \OT1/cmr/m/n/10.95 : \OT1/cms
+s/m/n/10.95 W[][][]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 A; B\OT1/cmr/m/n/10.
+95 )$, $\OMS/cmsy/m/n/10.95 Y \OT1/cmr/m/n/10.95 : \OT1/cmss/m/n/10.95 W[][][][
+][]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 A; B\OT1/cmr/m/n/10.95 ) \OMS/cmsy/m
+/n/10.95 X$\OT1/cmr/m/n/10.95 ,
+ []
+
+
+Overfull \hbox (47.18285pt too wide) detected at line 1127
+\OT1/cmss/m/n/10.95 W[][][][] \OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 C; c\OT1/
+cmr/m/n/10.95 ) (\OML/cmm/m/it/10.95 E; e\OT1/cmr/m/n/10.95 ) [] ^^F[]^^E[]^^E[
+]\OML/cmm/m/it/10.95 f\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 c\OT1/cmr/m/n/10.
+95 (\OML/cmm/m/it/10.95 a; t\OT1/cmr/m/n/10.95 )) = \OML/cmm/m/it/10.95 e\OT1/c
+mr/m/n/10.95 (\OML/cmm/m/it/10.95 a; t; ^^U[]f\OT1/cmr/m/n/10.95 (\OML/cmm/m/it
+/10.95 t b\OT1/cmr/m/n/10.95 ))
+ []
+
+[26]
+Overfull \hbox (3.09108pt too wide) in paragraph at lines 1160--1161
+[]\OT1/cmr/bx/n/10.95 Lemma 44. []\OT1/cmr/m/it/10.95 In $\OMS/cmsy/m/n/10.95 H
+[]$\OT1/cmr/m/it/10.95 , for $\OML/cmm/m/it/10.95 A \OT1/cmr/m/n/10.95 : \OMS/c
+msy/m/n/10.95 U[]$\OT1/cmr/m/it/10.95 , $\OML/cmm/m/it/10.95 B \OT1/cmr/m/n/10.
+95 : \OML/cmm/m/it/10.95 A \OMS/cmsy/m/n/10.95 ! U[]$\OT1/cmr/m/it/10.95 , if a
+n al-ge-bra $\OMS/cmsy/m/n/10.95 X \OT1/cmr/m/n/10.95 : \OT1/cmss/m/n/10.95 W[]
+[][]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 A; B\OT1/cmr/m/n/10.95 )$
+ []
+
+
+Overfull \hbox (3.09108pt too wide) in paragraph at lines 1189--1190
+[]\OT1/cmr/bx/n/10.95 Lemma 46. []\OT1/cmr/m/it/10.95 In $\OMS/cmsy/m/n/10.95 H
+[]$\OT1/cmr/m/it/10.95 , for $\OML/cmm/m/it/10.95 A \OT1/cmr/m/n/10.95 : \OMS/c
+msy/m/n/10.95 U[]$\OT1/cmr/m/it/10.95 , $\OML/cmm/m/it/10.95 B \OT1/cmr/m/n/10.
+95 : \OML/cmm/m/it/10.95 A \OMS/cmsy/m/n/10.95 ! U[]$\OT1/cmr/m/it/10.95 , if a
+n al-ge-bra $\OMS/cmsy/m/n/10.95 X \OT1/cmr/m/n/10.95 : \OT1/cmss/m/n/10.95 W[]
+[][]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 A; B\OT1/cmr/m/n/10.95 )$
+ []
+
+[27]
+Overfull \hbox (20.05342pt too wide) detected at line 1211
+[][]\OT1/cmss/m/n/10.95 W[][][]\OT1/cmr/m/n/10.95 (\OMS/cmsy/m/n/10.95 X\OT1/cm
+r/m/n/10.95 )   \OMS/cmsy/m/n/10.95 '   [][]\OT1/cmss/m/n/10.95 W[][][]\OT1/cmr
+/m/n/10.95 (\OMS/cmsy/m/n/10.95 X\OT1/cmr/m/n/10.95 ) \OMS/cmsy/m/n/10.95 ^^B [
+][]\OT1/cmss/m/n/10.95 W[][][][][]\OT1/cmr/m/n/10.95 (\OMS/cmsy/m/n/10.95 X\OT1
+/cmr/m/n/10.95 )   \OMS/cmsy/m/n/10.95 '   [][]\OT1/cmss/m/n/10.95 W[][][]\OT1/
+cmr/m/n/10.95 (\OMS/cmsy/m/n/10.95 X\OT1/cmr/m/n/10.95 )
+ []
+
+
+LaTeX Warning: Reference `lem:IsContrIsProp' on page 28 undefined on input line
+ 1215.
+
+
+LaTeX Warning: Reference `lem:PropChar' on page 28 undefined on input line 1215
+.
+
+
+LaTeX Warning: Reference `lem:BoolIndImpUniq' on page 28 undefined on input lin
+e 1215.
+
+
+LaTeX Warning: Reference `lem:BoolMain' on page 28 undefined on input line 1227
+.
+
+
+Overfull \hbox (0.6547pt too wide) in paragraph at lines 1227--1228
+[]\OT1/cmr/m/n/10.95 For any $\OML/cmm/m/it/10.95 i$\OT1/cmr/m/n/10.95 , the al
+-ge-bra $\OML/cmm/m/it/10.95 A \OT1/cmr/m/n/10.95 : \OMS/cmsy/m/n/10.95 U[]\OML
+/cmm/m/it/10.95 ; B \OT1/cmr/m/n/10.95 : \OML/cmm/m/it/10.95 A \OMS/cmsy/m/n/10
+.95 ! U[] ` X[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 A; B\OT1/cmr/m/n/10.95 )
+ : \OT1/cmss/m/n/10.95 W[][][]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 A; B\OT1/
+cmr/m/n/10.95 )$
+ []
+
+[28]
+
+LaTeX Warning: Reference `lem:ExtLambek' on page 29 undefined on input line 124
+6.
+
+
+LaTeX Warning: Reference `lem:WInit' on page 29 undefined on input line 1246.
+
+
+LaTeX Warning: Reference `lem:apeq' on page 29 undefined on input line 1246.
+
+EdNote! [29]
+Overfull \hbox (45.81519pt too wide) in paragraph at lines 1264--1266
  $[]$ 
  []
 
 
-Overfull \hbox (14.46594pt too wide) in paragraph at lines 328--330
- $[]$ 
- []
-
- [32]
-Overfull \hbox (10.0434pt too wide) in paragraph at lines 342--344
+Overfull \hbox (14.46594pt too wide) in paragraph at lines 1269--1271
  $[]$ 
  []
 
 
-Overfull \hbox (3.4317pt too wide) in paragraph at lines 351--352
+Overfull \hbox (10.0434pt too wide) in paragraph at lines 1283--1285
+ $[]$ 
+ []
+
+[30]
+Overfull \hbox (3.4317pt too wide) in paragraph at lines 1292--1293
 \OML/cmm/m/it/10.95 f\OT1/cmr/m/n/10.95 ([](\OML/cmm/m/it/10.95 x; p\OT1/cmr/m/
 n/10.95 )) = \OML/cmm/m/it/10.95 g\OT1/cmr/m/n/10.95 ([](\OML/cmm/m/it/10.95 x;
  p\OT1/cmr/m/n/10.95 ))$ un-der the in-duc-tion hy-poth-e-sis $\OML/cmm/m/it/10
@@ -2903,17 +1313,17 @@ mm/m/it/10.95 p b\OT1/cmr/m/n/10.95 ) =
  []
 
 
-Overfull \hbox (40.94937pt too wide) in paragraph at lines 357--359
+Overfull \hbox (40.94937pt too wide) in paragraph at lines 1298--1300
  $[]$ 
  []
 
- [33]
-Overfull \hbox (34.34467pt too wide) in paragraph at lines 362--364
+[31]
+Overfull \hbox (34.34467pt too wide) in paragraph at lines 1303--1305
  $[]$ 
  []
 
 
-Overfull \hbox (10.40822pt too wide) in paragraph at lines 369--370
+Overfull \hbox (10.40822pt too wide) in paragraph at lines 1310--1311
 []\OT1/cmr/bx/n/10.95 Definition 53. []\OT1/cmr/m/n/10.95 For $\OML/cmm/m/it/10
 .95 A \OT1/cmr/m/n/10.95 : \OMS/cmsy/m/n/10.95 U[]$\OT1/cmr/m/n/10.95 , $\OML/c
 mm/m/it/10.95 B \OT1/cmr/m/n/10.95 : \OML/cmm/m/it/10.95 A \OMS/cmsy/m/n/10.95 
@@ -2924,7 +1334,7 @@ OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 A; B\OT1/cmr/m/n/10.95 )$
  []
 
 
-Overfull \hbox (41.02258pt too wide) in paragraph at lines 375--376
+Overfull \hbox (41.02258pt too wide) in paragraph at lines 1316--1317
 []\OT1/cmr/bx/n/10.95 Definition 54. []\OT1/cmr/m/n/10.95 For $\OML/cmm/m/it/10
 .95 A \OT1/cmr/m/n/10.95 : \OMS/cmsy/m/n/10.95 U[]$\OT1/cmr/m/n/10.95 , $\OML/c
 mm/m/it/10.95 B \OT1/cmr/m/n/10.95 : \OML/cmm/m/it/10.95 A \OMS/cmsy/m/n/10.95 
@@ -2936,20 +1346,20 @@ s/m/n/10.95 W[][][]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 A; B\OT1/cmr/m/n/10.
  []
 
 
-Overfull \hbox (4.05762pt too wide) in paragraph at lines 377--377
+Overfull \hbox (4.05762pt too wide) in paragraph at lines 1318--1318
 [] 
  []
 
 
-Overfull \hbox (1.11407pt too wide) in paragraph at lines 381--382
+Overfull \hbox (1.11407pt too wide) in paragraph at lines 1322--1323
 \OT1/cmr/m/n/10.95 called \OT1/cmr/m/it/10.95 homotopy-initial \OT1/cmr/m/n/10.
 95 on a uni-verse $\OMS/cmsy/m/n/10.95 U[]$ \OT1/cmr/m/n/10.95 if for any al-ge
 -bra $\OMS/cmsy/m/n/10.95 Y \OT1/cmr/m/n/10.95 : \OT1/cmss/m/n/10.95 W[][][]\OT
 1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 A; B\OT1/cmr/m/n/10.95 )$,
  []
 
- [34]
-Overfull \hbox (13.44989pt too wide) in paragraph at lines 392--393
+
+Overfull \hbox (13.44989pt too wide) in paragraph at lines 1333--1334
 []\OT1/cmr/bx/n/10.95 Definition 57. []\OT1/cmr/m/n/10.95 For $\OML/cmm/m/it/10
 .95 A \OT1/cmr/m/n/10.95 : \OMS/cmsy/m/n/10.95 U[]$\OT1/cmr/m/n/10.95 , $\OML/c
 mm/m/it/10.95 B \OT1/cmr/m/n/10.95 : \OML/cmm/m/it/10.95 A \OMS/cmsy/m/n/10.95 
@@ -2960,12 +1370,12 @@ OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 A; B\OT1/cmr/m/n/10.95 )$,
  []
 
 
-Overfull \hbox (49.26772pt too wide) in paragraph at lines 394--394
+Overfull \hbox (49.26772pt too wide) in paragraph at lines 1335--1335
 [] 
  []
 
-
-Overfull \hbox (10.40822pt too wide) in paragraph at lines 399--400
+[32]
+Overfull \hbox (10.40822pt too wide) in paragraph at lines 1340--1341
 []\OT1/cmr/bx/n/10.95 Definition 58. []\OT1/cmr/m/n/10.95 For $\OML/cmm/m/it/10
 .95 A \OT1/cmr/m/n/10.95 : \OMS/cmsy/m/n/10.95 U[]$\OT1/cmr/m/n/10.95 , $\OML/c
 mm/m/it/10.95 B \OT1/cmr/m/n/10.95 : \OML/cmm/m/it/10.95 A \OMS/cmsy/m/n/10.95 
@@ -2976,7 +1386,7 @@ OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 A; B\OT1/cmr/m/n/10.95 )$
  []
 
 
-Overfull \hbox (56.03035pt too wide) detected at line 400
+Overfull \hbox (56.03035pt too wide) detected at line 1341
 \OT1/cmss/m/n/10.95 W[][][][] \OMS/cmsy/m/n/10.95 X Y [] \OT1/cmr/m/n/10.95 ^^F
 [][]^^F[]\OML/cmm/m/it/10.95 ^^V \OMS/cmsy/m/n/10.95 ^^N \OML/cmm/m/it/10.95 ^^
 Z \OT1/cmr/m/n/10.95 = \OT1/cmss/m/n/10.95 1[][] \OMS/cmsy/m/n/10.95 ^^B []\OT1
@@ -2985,7 +1395,7 @@ it/10.95 ^^W \OT1/cmr/m/n/10.95 = \OT1/cmss/m/n/10.95 1[][]
  []
 
 
-Overfull \hbox (30.54771pt too wide) in paragraph at lines 404--405
+Overfull \hbox (30.54771pt too wide) in paragraph at lines 1345--1346
 []\OT1/cmr/bx/n/10.95 Lemma 59. []\OT1/cmr/m/it/10.95 For $\OML/cmm/m/it/10.95 
 A \OT1/cmr/m/n/10.95 : \OMS/cmsy/m/n/10.95 U[]$\OT1/cmr/m/it/10.95 , $\OML/cmm/
 m/it/10.95 B \OT1/cmr/m/n/10.95 : \OML/cmm/m/it/10.95 A \OMS/cmsy/m/n/10.95 ! U
@@ -2997,12 +1407,12 @@ m/n/10.95 W[][][][][]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 A; B\OT1/cmr/m/n/1
  []
 
 
-Overfull \hbox (19.09756pt too wide) in paragraph at lines 417--417
+Overfull \hbox (19.09756pt too wide) in paragraph at lines 1358--1358
 [] 
  []
 
- [35]
-Overfull \hbox (11.20877pt too wide) in paragraph at lines 421--422
+
+Overfull \hbox (11.20877pt too wide) in paragraph at lines 1362--1363
 []\OT1/cmr/bx/n/10.95 Corollary 60. []\OT1/cmr/m/it/10.95 For $\OML/cmm/m/it/10
 .95 A \OT1/cmr/m/n/10.95 : \OMS/cmsy/m/n/10.95 U[]$\OT1/cmr/m/it/10.95 , $\OML/
 cmm/m/it/10.95 B \OT1/cmr/m/n/10.95 : \OML/cmm/m/it/10.95 A \OMS/cmsy/m/n/10.95
@@ -3013,46 +1423,54 @@ mss/m/n/10.95 W[][][]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 A; B\OT1/cmr/m/n/1
 0.95 )$
  []
 
-
-Overfull \hbox (51.1626pt too wide) in paragraph at lines 437--437
+[33]
+Overfull \hbox (51.1626pt too wide) in paragraph at lines 1378--1378
 [] 
  []
 
 
-Overfull \hbox (64.15129pt too wide) in paragraph at lines 454--454
-[] 
- []
-
- [36]
-Overfull \hbox (63.9034pt too wide) in paragraph at lines 458--458
+Overfull \hbox (64.15129pt too wide) in paragraph at lines 1395--1395
 [] 
  []
 
 
-Overfull \hbox (41.64049pt too wide) in paragraph at lines 462--462
+Overfull \hbox (63.9034pt too wide) in paragraph at lines 1399--1399
 [] 
  []
 
- [37]
-
-LaTeX Warning: Reference `lem_singl_equiv_contr' on page 38 undefined on input 
-line 480.
-
-
-LaTeX Warning: Reference `lem_ap_equiv' on page 38 undefined on input line 480.
+[34]
+Overfull \hbox (41.64049pt too wide) in paragraph at lines 1403--1403
+[] 
+ []
 
 
+LaTeX Warning: Reference `lem_singl_equiv_contr' on page 35 undefined on input 
+line 1421.
 
-LaTeX Warning: Reference `lem_equiv_comp' on page 38 undefined on input line 48
-0.
 
- EdNote!
+LaTeX Warning: Reference `lem_ap_equiv' on page 35 undefined on input line 1421
+.
 
-LaTeX Warning: Reference `lem_singl_contr' on page 38 undefined on input line 4
-94.
 
- [38]
-Overfull \hbox (2.67023pt too wide) in paragraph at lines 533--534
+LaTeX Warning: Reference `lem_equiv_comp' on page 35 undefined on input line 14
+21.
+
+EdNote! [35]
+
+LaTeX Warning: Reference `lem_singl_contr' on page 36 undefined on input line 1
+435.
+
+
+LaTeX Warning: Reference `subsection:wtypes' on page 36 undefined on input line
+ 1450.
+
+[36]
+
+LaTeX Warning: Reference `WFibHomSpace' on page 37 undefined on input line 1457
+.
+
+
+Overfull \hbox (2.67023pt too wide) in paragraph at lines 1474--1475
 []\OT1/cmr/bx/n/10.95 Corollary 63. []\OT1/cmr/m/it/10.95 In $\OMS/cmsy/m/n/10.
 95 H$\OT1/cmr/m/it/10.95 , for $\OML/cmm/m/it/10.95 A \OT1/cmr/m/n/10.95 : \OMS
 /cmsy/m/n/10.95 U[]$\OT1/cmr/m/it/10.95 , $\OML/cmm/m/it/10.95 B \OT1/cmr/m/n/1
@@ -3061,8 +1479,8 @@ Overfull \hbox (2.67023pt too wide) in paragraph at lines 533--534
 [][][]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 A; B\OT1/cmr/m/n/10.95 )$
  []
 
- [39]
-Overfull \hbox (4.47366pt too wide) detected at line 546
+
+Overfull \hbox (4.47366pt too wide) detected at line 1487
 [][] \OMS/cmsy/m/n/10.95 ^^N \OML/cmm/m/it/10.95 u\OT1/cmr/m/n/10.95 ; \OML/cmm
 /m/it/10.95 a; t \OMS/cmsy/m/n/10.95 7! []\OT1/cmr/m/n/10.95 ([][][][](\OML/cmm
 /m/it/10.95 ^^R\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 a; t\OT1/cmr/m/n/10.95 )
@@ -3073,12 +1491,15 @@ OMS/cmsy/m/n/10.95 7! [][][] \OT1/cmr/m/n/10.95 : \OT1/cmss/m/n/10.95 W[][] \OT
  []
 
 
-Overfull \hbox (58.3254pt too wide) in paragraph at lines 551--551
+LaTeX Warning: Reference `WHomSpace' on page 37 undefined on input line 1488.
+
+
+Overfull \hbox (58.3254pt too wide) in paragraph at lines 1492--1492
 [] 
  []
 
- [40]
-Overfull \hbox (25.71094pt too wide) detected at line 585
+[37] [38]
+Overfull \hbox (25.71094pt too wide) detected at line 1526
 [][]\OT1/cmss/m/n/10.95 W[][][]\OT1/cmr/m/n/10.95 (\OMS/cmsy/m/n/10.95 X\OT1/cm
 r/m/n/10.95 )   \OMS/cmsy/m/n/10.95 '   [][]\OT1/cmss/m/n/10.95 W[][][]\OT1/cmr
 /m/n/10.95 (\OMS/cmsy/m/n/10.95 X\OT1/cmr/m/n/10.95 ) \OMS/cmsy/m/n/10.95 ^^B [
@@ -3088,15 +1509,19 @@ cmr/m/n/10.95 (\OMS/cmsy/m/n/10.95 X\OT1/cmr/m/n/10.95 )
  []
 
 
-LaTeX Warning: Reference `lem:IsContrIsProp' on page 41 undefined on input line
- 589.
+LaTeX Warning: Reference `lem:IsContrIsProp' on page 39 undefined on input line
+ 1530.
 
 
-LaTeX Warning: Reference `lem:PropChar' on page 41 undefined on input line 589.
+LaTeX Warning: Reference `lem:PropChar' on page 39 undefined on input line 1530
+.
 
 
+LaTeX Warning: Reference `lem:WIndImpUniqInt' on page 39 undefined on input lin
+e 1530.
 
-Overfull \hbox (15.47566pt too wide) in paragraph at lines 594--595
+
+Overfull \hbox (15.47566pt too wide) in paragraph at lines 1535--1536
 []\OT1/cmr/bx/n/10.95 Corollary 66. []\OT1/cmr/m/it/10.95 In $\OMS/cmsy/m/n/10.
 95 H$\OT1/cmr/m/it/10.95 , for $\OML/cmm/m/it/10.95 A \OT1/cmr/m/n/10.95 : \OMS
 /cmsy/m/n/10.95 U[]$\OT1/cmr/m/it/10.95 , $\OML/cmm/m/it/10.95 B \OT1/cmr/m/n/1
@@ -3106,8 +1531,15 @@ o al-ge-bras $\OMS/cmsy/m/n/10.95 X\OML/cmm/m/it/10.95 ; \OMS/cmsy/m/n/10.95 Y
 it/10.95 A; B\OT1/cmr/m/n/10.95 )$
  []
 
- [41]
-Overfull \hbox (0.6547pt too wide) in paragraph at lines 610--611
+
+LaTeX Warning: Reference `WAlgSpace' on page 39 undefined on input line 1539.
+
+
+LaTeX Warning: Reference `lem:WMainInt' on page 39 undefined on input line 1551
+.
+
+
+Overfull \hbox (0.6547pt too wide) in paragraph at lines 1551--1552
 []\OT1/cmr/m/n/10.95 For any $\OML/cmm/m/it/10.95 i$\OT1/cmr/m/n/10.95 , the al
 -ge-bra $\OML/cmm/m/it/10.95 A \OT1/cmr/m/n/10.95 : \OMS/cmsy/m/n/10.95 U[]\OML
 /cmm/m/it/10.95 ; B \OT1/cmr/m/n/10.95 : \OML/cmm/m/it/10.95 A \OMS/cmsy/m/n/10
@@ -3116,12 +1548,20 @@ Overfull \hbox (0.6547pt too wide) in paragraph at lines 610--611
 cmr/m/n/10.95 )$
  []
 
- [42]
+[39]
 
-LaTeX Warning: Reference `lem:apeq' on page 43 undefined on input line 629.
+LaTeX Warning: Reference `lem:IntLambek' on page 40 undefined on input line 157
+0.
 
 
-Overfull \hbox (30.03804pt too wide) in paragraph at lines 638--639
+LaTeX Warning: Reference `lem:WInitInt' on page 40 undefined on input line 1570
+.
+
+
+LaTeX Warning: Reference `lem:apeq' on page 40 undefined on input line 1570.
+
+[40]
+Overfull \hbox (30.03804pt too wide) in paragraph at lines 1579--1580
 \OT1/cmr/m/n/10.95 in-duc-tion on $\OML/cmm/m/it/10.95 u$\OT1/cmr/m/n/10.95 , i
 t suf-fices to show that for any $\OML/cmm/m/it/10.95 a; t$ \OT1/cmr/m/n/10.95 
 we have $^^E[][][]\OT1/cmss/m/n/10.95 n[][]\OT1/cmr/m/n/10.95 ([](\OML/cmm/m/it
@@ -3129,15 +1569,19 @@ we have $^^E[][][]\OT1/cmss/m/n/10.95 n[][]\OT1/cmr/m/n/10.95 ([](\OML/cmm/m/it
  []
 
 
-Overfull \hbox (58.2623pt too wide) in paragraph at lines 640--642
+Overfull \hbox (58.2623pt too wide) in paragraph at lines 1581--1583
 \OT1/cmr/m/n/10.95 we have $[][]\OT1/cmss/m/n/10.95 n[][][][]\OT1/cmr/m/n/10.95
  (\OML/cmm/m/it/10.95 a; t\OT1/cmr/m/n/10.95 ) = [](\OML/cmm/m/it/10.95 a[]; t[
 ]\OT1/cmr/m/n/10.95 )[]$ un-der the hy-poth-e-sis $^^E[][][]\OT1/cmss/m/n/10.95
  n[][][][]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 a; t\OT1/cmr/m/n/10.95 ) =
  []
 
- [43]
-Overfull \hbox (14.89331pt too wide) detected at line 673
+
+LaTeX Warning: Reference `lem:suppath' on page 41 undefined on input line 1590.
+
+
+[41]
+Overfull \hbox (14.89331pt too wide) detected at line 1613
 \U/msb/m/n/10.95 N[][] \OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 C; c[]; c[]\OT1/
 cmr/m/n/10.95 ) (\OML/cmm/m/it/10.95 D; d[]; d[]\OT1/cmr/m/n/10.95 ) [] ^^F[](\
 OML/cmm/m/it/10.95 f\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 c[]\OT1/cmr/m/n/10.
@@ -3149,7 +1593,7 @@ T1/cmr/m/n/10.95 ^^E[]\OML/cmm/m/it/10.95 f\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10
  []
 
 
-Overfull \hbox (62.95407pt too wide) detected at line 678
+Overfull \hbox (62.95407pt too wide) detected at line 1618
 \U/msb/m/n/10.95 N[][][][] \OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 C; c[]; c[]\
 OT1/cmr/m/n/10.95 ) (\OML/cmm/m/it/10.95 E; e[]; e[]\OT1/cmr/m/n/10.95 ) [] ^^F
 [](\OML/cmm/m/it/10.95 f\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 c[]\OT1/cmr/m/n
@@ -3160,8 +1604,8 @@ t/10.95 c[] x\OT1/cmr/m/n/10.95 ) = \OML/cmm/m/it/10.95 d[]\OT1/cmr/m/n/10.95 (
 0.95 ))[]
  []
 
- [44]
-Overfull \hbox (25.12949pt too wide) in paragraph at lines 722--723
+[42]
+Overfull \hbox (25.12949pt too wide) in paragraph at lines 1662--1663
 \OT1/cmr/m/n/10.95 Since $\OML/cmm/m/it/10.95 B\OT1/cmr/m/n/10.95 (0) = 0$, the
  type $\OML/cmm/m/it/10.95 B\OT1/cmr/m/n/10.95 (0) \OMS/cmsy/m/n/10.95 ! \OML/c
 mm/m/it/10.95 C$ \OT1/cmr/m/n/10.95 is con-tractible, with cen-ter $\OML/cmm/m/
@@ -3169,13 +1613,13 @@ it/10.95 ^^U[][]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 C; F b\OT1/cmr/m/n/10.9
 5 )$.
  []
 
- [45]
-Overfull \hbox (43.97833pt too wide) in paragraph at lines 754--755
+[43]
+Overfull \hbox (43.97833pt too wide) in paragraph at lines 1694--1695
  [] 
  []
 
 
-Overfull \hbox (25.12949pt too wide) in paragraph at lines 756--758
+Overfull \hbox (25.12949pt too wide) in paragraph at lines 1696--1698
 \OT1/cmr/m/n/10.95 Since $\OML/cmm/m/it/10.95 B\OT1/cmr/m/n/10.95 (0) = 0$, the
  type $\OML/cmm/m/it/10.95 B\OT1/cmr/m/n/10.95 (0) \OMS/cmsy/m/n/10.95 ! \OML/c
 mm/m/it/10.95 C$ \OT1/cmr/m/n/10.95 is con-tractible, with cen-ter $\OML/cmm/m/
@@ -3184,15 +1628,15 @@ it/10.95 ^^U[][]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 C; F b\OT1/cmr/m/n/10.9
  []
 
 
-Overfull \hbox (79.27702pt too wide) in paragraph at lines 756--758
+Overfull \hbox (79.27702pt too wide) in paragraph at lines 1696--1698
 \OT1/cmr/m/n/10.95 Like-wise, $^^E[]\OML/cmm/m/it/10.95 E\OT1/cmr/m/n/10.95 ([]
 (\OML/cmm/m/it/10.95 C; F b\OT1/cmr/m/n/10.95 ))$ is con-tractible, with cen-te
 r $\OML/cmm/m/it/10.95 ^^U[][][]E\OT1/cmr/m/n/10.95 ([](\OML/cmm/m/it/10.95 C; 
 F b\OT1/cmr/m/n/10.95 ))\OML/cmm/m/it/10.95 ; F b[]$\OT1/cmr/m/n/10.95 .
  []
 
- [46]
-Overfull \hbox (65.57944pt too wide) detected at line 778
+
+Overfull \hbox (65.57944pt too wide) detected at line 1718
 \OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 E; e\OT1/cmr/m/n/10.95 ) \OMS/cmsy/m/n/
 10.95 7! []\OML/cmm/m/it/10.95 E; e[]\OT1/cmr/m/n/10.95 0\OML/cmm/m/it/10.95 ; 
 ^^U[][]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 C; F b\OT1/cmr/m/n/10.95 )\OML/c
@@ -3203,7 +1647,7 @@ ML/cmm/m/it/10.95 ; ^^U[] x; ^^U[] y\OT1/cmr/m/n/10.95 )[]
  []
 
 
-Overfull \hbox (35.81325pt too wide) in paragraph at lines 778--780
+Overfull \hbox (35.81325pt too wide) in paragraph at lines 1718--1720
 \OT1/cmr/m/n/10.95 is an equiv-a-lence from $\OT1/cmss/m/n/10.95 W[][][][][]\OT
 1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 A; B\OT1/cmr/m/n/10.95 ) (\OML/cmm/m/it/10
 .95 C; c\OT1/cmr/m/n/10.95 )$ to $\U/msb/m/n/10.95 N[][][][][]\OT1/cmr/m/n/10.9
@@ -3211,8 +1655,8 @@ Overfull \hbox (35.81325pt too wide) in paragraph at lines 778--780
 /cmm/m/it/10.95 C; c\OT1/cmr/m/n/10.95 ))$.
  []
 
-
-Overfull \hbox (5.63434pt too wide) detected at line 784
+[44]
+Overfull \hbox (5.63434pt too wide) detected at line 1724
 \OT1/cmss/m/n/10.95 W[][][][] \OMS/cmsy/m/n/10.95 X Y   '   \U/msb/m/n/10.95 N[
 ][][][] []\OT1/cmss/m/n/10.95 W[][][]\U/msb/m/n/10.95 N[][][]\OT1/cmr/m/n/10.95
  (\OMS/cmsy/m/n/10.95 X\OT1/cmr/m/n/10.95 )[] []\OT1/cmss/m/n/10.95 W[][][]\U/m
@@ -3221,7 +1665,7 @@ sb/m/n/10.95 N[][][][][]\OT1/cmr/m/n/10.95 (\OMS/cmsy/m/n/10.95 Y\OT1/cmr/m/n/1
  []
 
 
-Overfull \hbox (14.5421pt too wide) in paragraph at lines 787--788
+Overfull \hbox (14.5421pt too wide) in paragraph at lines 1727--1728
 []\OT1/cmr/m/n/10.95 Let al-ge-bras $(\OML/cmm/m/it/10.95 C; c\OT1/cmr/m/n/10.9
 5 ) : \OT1/cmss/m/n/10.95 W[][][]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 A; B\O
 T1/cmr/m/n/10.95 )$ and $(\OML/cmm/m/it/10.95 E; e\OT1/cmr/m/n/10.95 ) : \OT1/c
@@ -3230,12 +1674,12 @@ mss/m/n/10.95 W[][][][][]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 A; B\OT1/cmr/m
  []
 
 
-Overfull \hbox (35.22867pt too wide) in paragraph at lines 793--794
+Overfull \hbox (35.22867pt too wide) in paragraph at lines 1733--1734
  [] 
  []
 
- [47]
-Overfull \hbox (25.12949pt too wide) in paragraph at lines 795--796
+
+Overfull \hbox (25.12949pt too wide) in paragraph at lines 1735--1736
 \OT1/cmr/m/n/10.95 Since $\OML/cmm/m/it/10.95 B\OT1/cmr/m/n/10.95 (0) = 0$, the
  type $\OML/cmm/m/it/10.95 B\OT1/cmr/m/n/10.95 (0) \OMS/cmsy/m/n/10.95 ! \OML/c
 mm/m/it/10.95 C$ \OT1/cmr/m/n/10.95 is con-tractible, with cen-ter $\OML/cmm/m/
@@ -3243,8 +1687,8 @@ it/10.95 ^^U[][]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 C; F b\OT1/cmr/m/n/10.9
 5 )$.
  []
 
- [48]
-Overfull \hbox (12.67786pt too wide) detected at line 840
+[45]
+Overfull \hbox (12.67786pt too wide) detected at line 1780
 [][]\U/msb/m/n/10.95 N[][][]\OT1/cmr/m/n/10.95 (\OMS/cmsy/m/n/10.95 X\OT1/cmr/m
 /n/10.95 )   \OMS/cmsy/m/n/10.95 '   [][]\U/msb/m/n/10.95 N[][][]\OT1/cmr/m/n/1
 0.95 (\OMS/cmsy/m/n/10.95 X\OT1/cmr/m/n/10.95 ) \OMS/cmsy/m/n/10.95 ^^B [][]\U/
@@ -3254,423 +1698,69 @@ msb/m/n/10.95 N[][][][][]\OT1/cmr/m/n/10.95 (\OMS/cmsy/m/n/10.95 X\OT1/cmr/m/n/
  []
 
 
-Overfull \hbox (5.58669pt too wide) in paragraph at lines 850--851
+Overfull \hbox (5.58669pt too wide) in paragraph at lines 1790--1791
 []\OT1/cmr/bx/n/10.95 Corollary 88. []\OT1/cmr/m/it/10.95 In $\OMS/cmsy/m/n/10.
 95 H$ \OT1/cmr/m/it/10.95 ex-tended with an al-ge-bra $\OMS/cmsy/m/n/10.95 X \O
 T1/cmr/m/n/10.95 : \U/msb/m/n/10.95 N[][][]$ \OT1/cmr/m/it/10.95 which is homot
 opy-
  []
 
-) (./old.tex
-! Undefined control sequence.
-\b@MartinLofP:inttt ->\citeauthoryear 
-                                      {Martin-L{\"o}f}{Martin-L{\"o}f}{1984}
-l.7 ...es for W-types from~\cite{MartinLofP:inttt}
-                                                  . To state them more conve...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
 
- [49]
-Overfull \hbox (1.98631pt too wide) in paragraph at lines 71--78
-[]\OT1/cmr/m/n/10.95 In ex-ten-sional type the-o-ries, this in-for-mal de-scrip
--tion can eas-ily be turned
- []
+LaTeX Warning: Reference `lem:NatMainInt' on page 46 undefined on input line 17
+93.
 
- [50] <xymatrix 2x2 141>
-Overfull \hbox (15.60207pt too wide) in paragraph at lines 98--99
-[]\OT1/cmr/m/n/10.95 The fore-go-ing elim-i-na-tion rule im-plies what we call 
-the \OT1/cmr/m/it/10.95 sim-ple $\OT1/cmss/m/n/10.95 W$\OT1/cmr/m/n/10.95 -elim
-ination
- []
-
- [51]
-! Undefined control sequence.
-\b@MartinLofP:inttt ->\citeauthoryear 
-                                      {Martin-L{\"o}f}{Martin-L{\"o}f}{1984}
-l.151 ... many others (see \cite{MartinLofP:inttt}
-                                                  , \cite{DybjerP:repids}, \...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\b@DybjerP:repids ->\citeauthoryear 
-                                    {Dybjer}{Dybjer}{1997}
-l.151 ...{MartinLofP:inttt}, \cite{DybjerP:repids}
-                                                  , \cite{GoguenH:inddtw}, \...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\b@GoguenH:inddtw ->\citeauthoryear 
-                                    {Goguen and Luo}{Goguen and Luo}{1993}
-l.151 ...te{DybjerP:repids}, \cite{GoguenH:inddtw}
-                                                  , \cite{MoerdijkI:weltc}, ...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\b@MoerdijkI:weltc ->\citeauthoryear 
-                                     {Moerdijk and Palmgren}{Moerdijk and Pa...
-l.151 ...e{GoguenH:inddtw}, \cite{MoerdijkI:weltc}
-                                                  , \cite{GambinoN:weltdp}, ...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\b@GambinoN:weltdp ->\citeauthoryear 
-                                     {Gambino and Hyland}{Gambino and Hyland...
-l.151 ...{MoerdijkI:weltc}, \cite{GambinoN:weltdp}
-                                                  , \cite{AbbottM:concsp}):
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\b@AbbottM:concsp ->\citeauthoryear 
-                                    {Abbott, Altenkirch, and Ghani}{Abbott e...
-l.151 ...e{GambinoN:weltdp}, \cite{AbbottM:concsp}
-                                                  ):
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-Overfull \hbox (91.90097pt too wide) in paragraph at lines 151--153
-\OT1/cmr/m/n/10.95 [[]], [[]],
- []
-
-
-Overfull \hbox (126.86502pt too wide) in paragraph at lines 151--153
-\OT1/cmr/m/n/10.95 [[]], [[]]): 
- []
-
- [52]
-! Undefined control sequence.
-\b@MartinLofP:inttt ->\citeauthoryear 
-                                      {Martin-L{\"o}f}{Martin-L{\"o}f}{1984}
-l.165 As shown in~\cite{MartinLofP:inttt}
-                                         , the second number class can be ob...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\b@NordstromB:marltt ->\citeauthoryear 
-                                       {Nordstrom, Petersson, and Smith}{Nor...
-l.190 ... in~\cite[Section~5.1]{NordstromB:marltt}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-Overfull \hbox (102.18181pt too wide) in paragraph at lines 190--192
-\OT1/cmr/m/n/10.95 The stan-dard rules for the type $\OT1/cmss/m/n/10.95 2$ \OT
-1/cmr/m/n/10.95 given in [[],
- []
-
- [53] [54] [55]
-! Undefined control sequence.
-\b@AwodeyS:indtht ->\citeauthoryear 
-                                    {Awodey, Gambino, and Sojakova}{Awodey e...
-l.318 ...Coq proof assistant~\cite{AwodeyS:indtht}
-                                                  .
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-Overfull \hbox (69.49898pt too wide) in paragraph at lines 314--319
-\OT1/cmr/m/n/10.95 for-mal-ized in the Coq proof as-sis-tant [[]]. 
- []
-
-! Undefined control sequence.
-\b@NordstromB:marltt ->\citeauthoryear 
-                                       {Nordstrom, Petersson, and Smith}{Nor...
-l.325 ...les~\cite[Section~5.3]{NordstromB:marltt}
-                                                   with propositional equali...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
- [56] [57] <xymatrix 2x2 223>
-! Undefined control sequence.
-\b@AwodeyS:indtht ->\citeauthoryear 
-                                    {Awodey, Gambino, and Sojakova}{Awodey e...
-l.393 ...tiality, or consult~\cite{AwodeyS:indtht}
-                                                  .
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
- [58]
-! Undefined control sequence.
-\b@AwodeyS:indtht ->\citeauthoryear 
-                                    {Awodey, Gambino, and Sojakova}{Awodey e...
-l.444 ...ts are available at~\cite{AwodeyS:indtht}
-                                                  ; thus we provide only an ...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-Overfull \hbox (127.32115pt too wide) in paragraph at lines 443--445
-\OT1/cmr/m/n/10.95 Coq sys-tem, and the proof scripts are avail-able at [[]];
- []
-
- [59] <xymatrix 2x2 327> <xymatrix 2x2 326> [60] <xymatrix 3x2 313> [61]
-! Undefined control sequence.
-\b@AwodeyS:indtht ->\citeauthoryear 
-                                    {Awodey, Gambino, and Sojakova}{Awodey e...
-l.577 ... in Coq provided in~\cite{AwodeyS:indtht}
-                                                  .  Observe that as a W-typ...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\b@MartinLofP:inttt ->\citeauthoryear 
-                                      {Martin-L{\"o}f}{Martin-L{\"o}f}{1984}
-l.580 as discussed in~\cite{MartinLofP:inttt}
-                                             , carries over equally well. In...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\b@AwodeyS:indtht ->\citeauthoryear 
-                                    {Awodey, Gambino, and Sojakova}{Awodey e...
-l.585 ...Coq can be found in~\cite{AwodeyS:indtht}
-                                                  .
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
- [62]) (./conc.tex
-! Undefined control sequence.
-\b@DybjerP:repids ->\citeauthoryear 
-                                    {Dybjer}{Dybjer}{1997}
-l.4 ...l type theory, Dybjer \cite{DybjerP:repids}
-                                                   showed that every strictl...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\b@GambinoN:weltdp ->\citeauthoryear 
-                                     {Gambino and Hyland}{Gambino and Hyland...
-l.6 ..., Gambino and Hyland~\cite{GambinoN:weltdp}
-                                                   showed that
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\b@PeterssonK:setcis ->\citeauthoryear 
-                                       {Petersson and Synek}{Petersson and S...
-l.7 general tree types~\cite{PeterssonK:setcis}
-                                               ~\cite[Chapter~16]{NordstromB...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\b@NordstromB:promlt ->\citeauthoryear 
-                                       {Nordstrom, Petersson, and Smith}{Nor...
-l.7 ...etcis}~\cite[Chapter~16]{NordstromB:promlt}
-                                                  , viewed as
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-Overfull \hbox (151.35051pt too wide) in paragraph at lines 6--10
-[]\OT1/cmr/m/n/10.95 Also in the ex-ten-sional set-ting, Gam-bino and Hy-land [
-[]]
- []
-
-
-Overfull \hbox (308.07245pt too wide) in paragraph at lines 6--10
-\OT1/cmr/m/n/10.95 showed that gen-eral tree types [[]] [[],
- []
-
-! Undefined control sequence.
-\b@VoevodskyV:notts ->\citeauthoryear 
-                                      {Voevodsky}{Voevodsky}{2009}
-l.11 \item In \cite{VoevodskyV:notts}
-                                      Voevodsky has shown that all inductive...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\b@LumsdaineP:higit ->\citeauthoryear 
-                                      {Lumsdaine}{Lumsdaine}{2011}
-l.21 ...ure~\cite{LumsdaineP:higit,ShulmanM:higit}
-                                                  .   This allows for algebr...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\b@ShulmanM:higit ->\citeauthoryear 
-                                    {Shulman}{Shulman}{2011}
-l.21 ...ure~\cite{LumsdaineP:higit,ShulmanM:higit}
-                                                  .   This allows for algebr...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\b@AwodeyS:prot ->\citeauthoryear 
-                                  {Awodey and Bauer}{Awodey and Bauer}{2004}
-l.21 ...as the [bracket] types \cite{AwodeyS:prot}
-                                                  ; various kinds of quotien...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-)
-Overfull \hbox (36.96844pt too wide) in paragraph at lines 20--219
-\OT1/cmr/m/n/10.95 iden-tity terms in their sig-na-ture [[], []].
- []
-
-
-Overfull \hbox (73.9044pt too wide) in paragraph at lines 20--219
-\OT1/cmr/m/n/10.95 plexes; trun-ca-tions, such as the [bracket] types [[]];
- []
-
- [63]
-Overfull \hbox (11.14462pt too wide) in paragraph at lines 226--237
+[46]
+Overfull \hbox (11.14462pt too wide) in paragraph at lines 1807--1817
 \OT1/cmr/m/n/10.95 ence Foun-da-tion, Grant DMS-1001191 and the Air Force OSR, 
 Grant 11NL035.
  []
 
- (./main.bbl
-! Undefined control sequence.
+(./main.bbl
+./main.bbl:37: Undefined control sequence.
 <argument> \protect \citeauthoryear 
                                     {Abbott, Altenkirch, and Ghani}{Abbott e...
 l.37         {AbbottM:concsp}
                              
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
+? 
 
 Underfull \hbox (badness 10000) in paragraph at lines 38--43
 []\OT1/cmr/m/n/10.95 M. Ab-bott, T. Al-
  []
 
-! Undefined control sequence.
+./main.bbl:47: Undefined control sequence.
 <argument> \protect \citeauthoryear 
                                     {Altenkirch, McBride, and Swierstra}{Alt...
 l.47         {AltenkirchT:obsen}
                                 
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
+? 
 
 Underfull \hbox (badness 10000) in paragraph at lines 48--52
 []\OT1/cmr/m/n/10.95 T. Al-tenkirch,
  []
 
-! Undefined control sequence.
+./main.bbl:55: Undefined control sequence.
 <argument> \protect \citeauthoryear 
                                     {Awodey}{Awodey}{2010}
 l.55         {AwodeyS:typth}
                             
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
- [64]
-! Undefined control sequence.
+? 
+./main.bbl:65: Undefined control sequence.
 <argument> \protect \citeauthoryear 
                                     {Awodey and Bauer}{Awodey and Bauer}{2004}
 l.65         {AwodeyS:prot}
                            
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
+? 
 
 Underfull \hbox (badness 2245) in paragraph at lines 66--70
 []\OT1/cmr/m/n/10.95 S. Awodey and A. Bauer.
  []
 
-! Undefined control sequence.
+./main.bbl:74: Undefined control sequence.
 <argument> \protect \citeauthoryear 
                                     {Awodey, Gambino, and Sojakova}{Awodey e...
 l.74         {AwodeyS:indtht}
                              
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
+? 
 
 Underfull \hbox (badness 5924) in paragraph at lines 75--81
 \OT1/cmr/m/n/10.95 bino, and K. So-jakova. 2011.  In-duc-tive types in Ho-mo-
@@ -3681,112 +1771,68 @@ Underfull \hbox (badness 3219) in paragraph at lines 75--81
 \OT1/cmr/m/n/10.95 topy Type The-ory: Coq proofs.  (2011).   Avail-able at:
  []
 
-! Undefined control sequence.
+./main.bbl:84: Undefined control sequence.
 <argument> \protect \citeauthoryear 
                                     {Awodey and Warren}{Awodey and Warren}{2...
 l.84         {AwodeyS:homtmi}
                              
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
+? 
+[47]
+./main.bbl:93: Undefined control sequence.
 <argument> \protect \citeauthoryear 
                                     {Batanin}{Batanin}{1998}
 l.93         {BataninM:mongcn}
                               
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
+? 
+./main.bbl:103: Undefined control sequence.
 <argument> \protect \citeauthoryear 
                                     {Bertot and Cast{\'e}ran}{Bertot and Cas...
 l.103         {BertotY:inttpp}
                               
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
+? 
+./main.bbl:113: Undefined control sequence.
 <argument> \protect \citeauthoryear 
                                     {Coquand and Paulin-Mohring}{Coquand and...
 l.113         {CoquandT:inddt}
                               
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
+? 
 
 Underfull \hbox (badness 10000) in paragraph at lines 114--118
 []\OT1/cmr/m/n/10.95 T. Co-
  []
 
-! Undefined control sequence.
+./main.bbl:121: Undefined control sequence.
 <argument> \protect \citeauthoryear 
                                     {Dybjer}{Dybjer}{1997}
 l.121         {DybjerP:repids}
                               
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
+? 
+./main.bbl:131: Undefined control sequence.
 <argument> \protect \citeauthoryear 
                                     {Gambino and Hyland}{Gambino and Hyland}...
 l.131         {GambinoN:weltdp}
                                
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
+? 
+./main.bbl:140: Undefined control sequence.
 <argument> \protect \citeauthoryear 
                                     {Garner}{Garner}{2009}
 l.140         {GarnerR:strdpt}
                               
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
+? 
+./main.bbl:149: Undefined control sequence.
 <argument> \protect \citeauthoryear 
                                     {Goguen and Luo}{Goguen and Luo}{1993}
 l.149         {GoguenH:inddtw}
                               
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
- [65]
-! Undefined control sequence.
+? 
+./main.bbl:159: Undefined control sequence.
 <argument> \protect \citeauthoryear 
                                     {Griffor and Rathjen}{Griffor and Rathje...
 l.159         {GrifforE:strsml}
                                
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
+? q
+OK, entering \batchmode...
+./main.bbl:168: Undefined control sequence.
 <argument> \protect \citeauthoryear 
                                     {Hofmann}{Hofmann}{1997}
 l.168         {HofmannM:extcit}
@@ -3797,7 +1843,7 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-! Undefined control sequence.
+./main.bbl:177: Undefined control sequence.
 <argument> \protect \citeauthoryear 
                                     {Hofmann and Streicher}{Hofmann and Stre...
 l.177         {HofmannM:gromtt}
@@ -3808,7 +1854,8 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-! Undefined control sequence.
+ [48]
+./main.bbl:186: Undefined control sequence.
 <argument> \protect \citeauthoryear 
                                     {Howard}{Howard}{1980}
 l.186         {HowardWH:foratn}
@@ -3819,7 +1866,7 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-! Undefined control sequence.
+./main.bbl:196: Undefined control sequence.
 <argument> \protect \citeauthoryear 
                                     {Leinster}{Leinster}{2004}
 l.196         {LeinsterT:higohc}
@@ -3830,7 +1877,7 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-! Undefined control sequence.
+./main.bbl:204: Undefined control sequence.
 <argument> \protect \citeauthoryear 
                                     {Lumsdaine}{Lumsdaine}{2010a}
 l.204         {Lumsdaine:higcft}
@@ -3841,7 +1888,7 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-! Undefined control sequence.
+./main.bbl:212: Undefined control sequence.
 <argument> \protect \citeauthoryear 
                                     {Lumsdaine}{Lumsdaine}{2010b}
 l.212         {LumsdaineP:weaci}
@@ -3852,7 +1899,7 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-! Undefined control sequence.
+./main.bbl:221: Undefined control sequence.
 <argument> \protect \citeauthoryear 
                                     {Lumsdaine}{Lumsdaine}{2011}
 l.221         {LumsdaineP:higit}
@@ -3863,7 +1910,7 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-! Undefined control sequence.
+./main.bbl:231: Undefined control sequence.
 <argument> \protect \citeauthoryear 
                                     {Martin-L{\"o}f}{Martin-L{\"o}f}{1975}
 l.231         {MartinLofP:intttp}
@@ -3877,7 +1924,7 @@ and I'll forget about whatever was undefined.
 Missing character: There is no â in font cmr10!
 Missing character: There is no € in font cmr10!
 Missing character: There is no “ in font cmr10!
-! Undefined control sequence.
+./main.bbl:240: Undefined control sequence.
 <argument> \protect \citeauthoryear 
                                     {Martin-L{\"o}f}{Martin-L{\"o}f}{1982}
 l.240         {MartinLofP:conmcp}
@@ -3891,7 +1938,7 @@ and I'll forget about whatever was undefined.
 Missing character: There is no â in font cmr10!
 Missing character: There is no € in font cmr10!
 Missing character: There is no “ in font cmr10!
-! Undefined control sequence.
+./main.bbl:249: Undefined control sequence.
 <argument> \protect \citeauthoryear 
                                     {Martin-L{\"o}f}{Martin-L{\"o}f}{1984}
 l.249         {MartinLofP:inttt}
@@ -3902,8 +1949,7 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
- [66]
-! Undefined control sequence.
+./main.bbl:260: Undefined control sequence.
 <argument> \protect \citeauthoryear 
                                     {McBride}{McBride}{2010}
 l.260         {McBrideC:wtygnb}
@@ -3914,7 +1960,7 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-! Undefined control sequence.
+./main.bbl:271: Undefined control sequence.
 <argument> \protect \citeauthoryear 
                                     {McBride and McKinna}{McBride and McKinn...
 l.271         {McBrideC:viefl}
@@ -3930,7 +1976,7 @@ Underfull \hbox (badness 3209) in paragraph at lines 272--276
 []\OT1/cmr/m/n/10.95 C. McBride and J.
  []
 
-! Undefined control sequence.
+./main.bbl:280: Undefined control sequence.
 <argument> \protect \citeauthoryear 
                                     {Moerdijk and Palmgren}{Moerdijk and Pal...
 l.280         {MoerdijkI:weltc}
@@ -3941,7 +1987,8 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-! Undefined control sequence.
+ [49]
+./main.bbl:289: Undefined control sequence.
 <argument> \protect \citeauthoryear 
                                     {Nordstrom, Petersson, and Smith}{Nordst...
 l.289         {NordstromB:promlt}
@@ -3952,7 +1999,7 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-! Undefined control sequence.
+./main.bbl:298: Undefined control sequence.
 <argument> \protect \citeauthoryear 
                                     {Nordstrom, Petersson, and Smith}{Nordst...
 l.298         {NordstromB:marltt}
@@ -3966,7 +2013,7 @@ and I'll forget about whatever was undefined.
 Missing character: There is no â in font cmr10!
 Missing character: There is no € in font cmr10!
 Missing character: There is no “ in font cmr10!
-! Undefined control sequence.
+./main.bbl:306: Undefined control sequence.
 <argument> \protect \citeauthoryear 
                                     {Norell}{Norell}{2007}
 l.306         {NorellU:towppl}
@@ -3977,7 +2024,7 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-! Undefined control sequence.
+./main.bbl:315: Undefined control sequence.
 <argument> \protect \citeauthoryear 
                                     {Paulin-Mohring}{Paulin-Mohring}{1993}
 l.315         {PaulinMorhringC:inddsc}
@@ -3988,7 +2035,7 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-! Undefined control sequence.
+./main.bbl:325: Undefined control sequence.
 <argument> \protect \citeauthoryear 
                                     {Petersson and Synek}{Petersson and Syne...
 l.325         {PeterssonK:setcis}
@@ -3999,7 +2046,7 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-! Undefined control sequence.
+./main.bbl:334: Undefined control sequence.
 <argument> \protect \citeauthoryear 
                                     {Shulman}{Shulman}{2011}
 l.334         {ShulmanM:higit}
@@ -4010,7 +2057,7 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-! Undefined control sequence.
+./main.bbl:344: Undefined control sequence.
 <argument> \protect \citeauthoryear 
                                     {Streicher}{Streicher}{1993}
 l.344         {StreicherT:invitt}
@@ -4021,7 +2068,7 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-! Undefined control sequence.
+./main.bbl:355: Undefined control sequence.
 <argument> \protect \citeauthoryear 
                                     {van~den Berg and Garner}{van~den Berg a...
 l.355         {vandenBergB:typwg}
@@ -4032,8 +2079,7 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
- [67]
-! Undefined control sequence.
+./main.bbl:364: Undefined control sequence.
 <argument> \protect \citeauthoryear 
                                     {van~den Berg and Garner}{van~den Berg a...
 l.364         {vandenBergB:topsmi}
@@ -4044,7 +2090,7 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-! Undefined control sequence.
+./main.bbl:373: Undefined control sequence.
 <argument> \protect \citeauthoryear 
                                     {Voevodsky}{Voevodsky}{2009}
 l.373         {VoevodskyV:notts}
@@ -4055,7 +2101,7 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-! Undefined control sequence.
+./main.bbl:383: Undefined control sequence.
 <argument> \protect \citeauthoryear 
                                     {Voevodsky}{Voevodsky}{2010a}
 l.383         {VoevodskyV:unifc}
@@ -4066,7 +2112,7 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-! Undefined control sequence.
+./main.bbl:393: Undefined control sequence.
 <argument> \protect \citeauthoryear 
                                     {Voevodsky}{Voevodsky}{2010b}
 l.393         {VoevodskyV:unifp}
@@ -4077,10 +2123,10 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-)
-! Undefined control sequence.
-l.242 \received
-               {}{}{}
+ [50])
+./main.tex:1824: Undefined control sequence.
+l.1824 \received
+                {}{}{}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -4090,56 +2136,53 @@ and I'll forget about whatever was undefined.
 
 There are still 8 EdNotes, New/Oldparts, and Issues to resolve!
 
- [68] (./main.aux)
+ [51] (./main.aux)
 
 LaTeX Warning: There were undefined references.
 
 
-LaTeX Warning: There were multiply-defined labels.
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
- 14824 strings out of 493488
- 252885 string characters out of 3141326
- 364777 words of memory out of 3000000
- 17759 multiletter control sequences out of 15000+200000
- 19698 words of font info for 80 fonts, out of 3000000 for 9000
+ 14805 strings out of 493315
+ 253202 string characters out of 6137904
+ 362555 words of memory out of 5000000
+ 17906 multiletter control sequences out of 15000+600000
+ 22608 words of font info for 94 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 56i,16n,55p,3215b,869s stack positions out of 5000i,500n,10000p,200000b,50000s
-</usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
-></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
-</usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb>
-</usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><
-/usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex9.pf
-b></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
-></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><
-/usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></u
-sr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr
-/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/l
-ocal/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/loc
-al/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local
-/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/te
-xlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texli
-ve/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/
-2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/texlive/2
-012/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/local/texlive/20
-12/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/texlive/2012
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmss9.pfb></usr/local/texlive/2012/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2012/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2012/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2012/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2012/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2012/texmf-dis
-t/fonts/type1/public/amsfonts/latxfont/lasy10.pfb></usr/local/texlive/2012/texm
-f-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2012/
-texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2
-012/texmf-dist/fonts/type1/public/xypic/xyatip10.pfb></usr/local/texlive/2012/t
-exmf-dist/fonts/type1/public/xypic/xybtip10.pfb>
-Output written on main.pdf (68 pages, 505889 bytes).
+ 56i,16n,55p,3215b,631s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
+></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
+</usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb>
+</usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><
+/usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex9.pf
+b></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
+></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><
+/usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></u
+sr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr
+/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/l
+ocal/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/loc
+al/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local
+/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/te
+xlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texli
+ve/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/
+2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/texlive/2
+013/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/local/texlive/20
+13/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/texlive/2013
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmss9.pfb></usr/local/texlive/2013/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2013/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2013/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2013/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2013/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2013/texmf-dis
+t/fonts/type1/public/amsfonts/latxfont/lasy10.pfb></usr/local/texlive/2013/texm
+f-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2013/
+texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on main.pdf (51 pages, 447031 bytes).
 PDF statistics:
- 344 PDF objects out of 1000 (max. 8388607)
- 242 compressed objects within 3 object streams
->>>>>>> FETCH_HEAD
+ 281 PDF objects out of 1000 (max. 8388607)
+ 199 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
