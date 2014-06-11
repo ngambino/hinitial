@@ -826,8 +826,6 @@ The best that one can do is to show that it is unique among all such maps up to 
 
 
 
-We now introduce some terminology in order to talk about the above rules more economically. The elimination and computation rules motivate the following definitions:
-
 \begin{definition}\label{def:BoolFibAlg} \label{def:BoolFibHom} \hfill
 \begin{enumerate}[(i)] 
 \item Define the type of \emph{fibered $\Bool$-algebras} on a universe $\UU_j$ over $\mathcal{X} : \BoolAlg_{\UU_i}$ by
@@ -882,7 +880,7 @@ For $\X : \BoolAlg_{\UU_i}$, $\Y : \BoolAlg_{\UU_j}$ we define the type of \emph
 
 
 
-This motivates the following definitions.
+
 \begin{definition}\label{def:BoolCell}
 For $\X : \BoolAlg_{\UU_i}$, $\Y : \BoolAlg_{\UU_j}$ and homomorphisms $\mu, \nu : \BoolHom \; \X \; \Y$, define the type of \emph{2-cells} between $\mu$ and $\nu$ by
 \begin{align*} & \BoolCell \; (C,c_0,c_1) \; (D, d_0 \; d_1) \; (f,\gamma_0,\gamma_1) \; (g,\delta_0,\delta_1) \defeq \\ & \;\;\; \;\;\;\BoolFibHom \; (C,c_0,c_1) \; (f \sim g, \gamma_0 \ct \delta_0^{-1}, \gamma_1 \ct \delta_1^{-1})
@@ -898,10 +896,13 @@ For brevity, we will often leave out the first two arguments.
 
 
 
-\begin{lemma}\label{BoolFibHomSpace}
+\begin{theorem}\label{BoolFibHomSpace}
 For $\X : \BoolAlg_{\UU_i}$, $\Y : \BoolFibAlg_{\UU_j} \; \X$ and $\mu,\nu : \BoolFibHom \; \X \; \Y$, the path space $\mu = \nu$ is equivalent to the space of fibered 2-cells between $\mu$ and $\nu$:
 \[ \mu = \nu \;\; \simeq \;\; \BoolFibCell \; \mu \; \nu \] 
-\end{lemma}
+\end{theorem}
+
+
+
 \begin{proof}
 Let algebras $(C,c_0,c_1) : \BoolAlg_{\UU_i}$, $(E,e_0,e_1) : \BoolFibAlg_{\UU_j} \; (C,c_0,c_1)$ and homomorphisms $(f,\gamma_0,\gamma_1), (g,\delta_0,\delta_1) : \BoolFibHom \; (C,c_0,c_1) \; (E,e_0,e_1)$ be given. We have
 \begin{alignat*}{4}
