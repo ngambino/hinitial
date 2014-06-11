@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.7.25)  11 JUN 2014 16:51
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2013.7.25)  11 JUN 2014 23:14
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -772,46 +772,26 @@ LaTeX Warning: Reference `section:intW' on page 1 undefined on input line 379.
 
 LaTeX Warning: Reference `section:intW' on page 6 undefined on input line 653.
 
-[6] [7]
+[6] [7] [8] [9]
+Underfull \vbox (badness 3199) has occurred while \output is active []
 
-LaTeX Warning: Reference `section:intW' on page 8 undefined on input line 810.
+ [10]
 
-[8] [9]
-
-LaTeX Warning: Reference `lem:IsContrIsProp' on page 10 undefined on input line
- 910.
-
-EdNote!
-
-LaTeX Warning: Reference `lem:PropChar' on page 10 undefined on input line 910.
-
+LaTeX Warning: Reference `lem_singl_contr' on page 11 undefined on input line 9
+63.
 
 EdNote!
 
-LaTeX Warning: Marginpar on page 10 moved.
-
-EdNote! [10] [11]
-
-LaTeX Warning: Reference `lem:contr_path_space' on page 12 undefined on input l
-ine 1074.
-
-[12] [13]
-
-LaTeX Warning: Reference `lem_singl_contr' on page 14 undefined on input line 1
-162.
+LaTeX Warning: Reference `lem_singl_equiv_contr' on page 11 undefined on input 
+line 965.
 
 EdNote!
 
-LaTeX Warning: Reference `lem_singl_equiv_contr' on page 14 undefined on input 
-line 1164.
+LaTeX Warning: Reference `lem_ap_equiv' on page 11 undefined on input line 965.
+
 
 EdNote!
-
-LaTeX Warning: Reference `lem_ap_equiv' on page 14 undefined on input line 1164
-.
-
-EdNote!
-Overfull \hbox (26.15993pt too wide) in paragraph at lines 1163--1165
+Overfull \hbox (26.15993pt too wide) in paragraph at lines 964--966
 \OT1/cmr/m/n/10 by Lem. [][], [][], and the fact that $\OML/cmm/m/it/10 g; ; h
 ; ^^L$ \OT1/cmr/m/n/10 make $\OML/cmm/m/it/10 f$ \OT1/cmr/m/n/10 into an equiv-
 a-lence. Sim-i-larly, $^^F[][]\OML/cmm/m/it/10 ^^L\OT1/cmr/m/n/10 (\OML/cmm/m/i
@@ -819,23 +799,45 @@ t/10 d[]\OT1/cmr/m/n/10 ) =
  []
 
 
-LaTeX Warning: Marginpar on page 14 moved.
+Overfull \vbox (1.43845pt too high) has occurred while \output is active []
 
 
-Underfull \vbox (badness 3323) has occurred while \output is active []
+[11]
 
- [14]
+LaTeX Warning: Marginpar on page 12 moved.
+
+[12]
+Underfull \vbox (badness 1371) has occurred while \output is active []
+
+ [13]
+
+LaTeX Warning: Reference `lem:IsContrIsProp' on page 14 undefined on input line
+ 1092.
+
+
+LaTeX Warning: Reference `lem:PropChar' on page 14 undefined on input line 1092
+.
+
+[14]
+
+LaTeX Warning: Reference `tab:hbool' on page 15 undefined on input line 1127.
+
 [15]
 
 LaTeX Warning: Reference `lem:IsContrIsProp' on page 16 undefined on input line
- 1247.
+ 1242.
 
+EdNote!
 
-LaTeX Warning: Reference `lem:PropChar' on page 16 undefined on input line 1247
+LaTeX Warning: Reference `lem:PropChar' on page 16 undefined on input line 1242
 .
 
+EdNote!
+
+LaTeX Warning: Marginpar on page 16 moved.
+
 [16] [17]
-Overfull \hbox (35.55814pt too wide) in paragraph at lines 1289--1290
+Overfull \hbox (35.55814pt too wide) in paragraph at lines 1266--1267
 \OT1/cmr/m/n/10 in-stead of $\OT1/cmss/m/n/10 W[]\OML/cmm/m/it/10 B\OT1/cmr/m/n
 /10 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 )$; $[](\OML/cmm/m/it/10 a; t\OT1/cmr/m/
 n/10 )$ in-stead of $[][](\OML/cmm/m/it/10 a; t\OT1/cmr/m/n/10 )$; and $[](\OML
@@ -844,7 +846,7 @@ n/10 )$ in-stead of $[][](\OML/cmm/m/it/10 a; t\OT1/cmr/m/n/10 )$; and $[](\OML
  []
 
 [18] [19]
-Overfull \hbox (44.29707pt too wide) in paragraph at lines 1417--1419
+Overfull \hbox (44.29707pt too wide) in paragraph at lines 1394--1396
 \OT1/cmr/m/n/10 ple, take any al-ge-bra $(\OML/cmm/m/it/10 E; e\OT1/cmr/m/n/10 
 ) : \OT1/cmss/m/n/10 W[][][][][] \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 C; c\OT1/cmr
 /m/n/10 )$ and ho-mo-mor-phisms $(\OML/cmm/m/it/10 f; ^^M\OT1/cmr/m/n/10 )\OML/
@@ -854,7 +856,7 @@ cmss/m/n/10 W[][][][] \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 C; c\OT1/cmr/m/n/10 ) (
  []
 
 
-Overfull \hbox (13.29887pt too wide) in paragraph at lines 1417--1419
+Overfull \hbox (13.29887pt too wide) in paragraph at lines 1394--1396
 \OML/cmm/m/it/10 e\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 a; t; ^^U[]g\OT1/cmr/m/n/10
  (\OML/cmm/m/it/10 t b\OT1/cmr/m/n/10 ))$; and $\OML/cmm/m/it/10 s$ \OT1/cmr/m/
 n/10 to-gether with func-tion ex-ten-sion-al-ity gives us $\OML/cmm/m/it/10 ^^U
@@ -865,15 +867,15 @@ U[]g\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t b\OT1/cmr/m/n/10 )$.
 [20]
 
 LaTeX Warning: Reference `lem:IsContrIsProp' on page 21 undefined on input line
- 1468.
+ 1445.
 
 
-LaTeX Warning: Reference `lem:PropChar' on page 21 undefined on input line 1468
+LaTeX Warning: Reference `lem:PropChar' on page 21 undefined on input line 1445
 .
 
 [21]
 
-LaTeX Warning: Reference `lem:apeq' on page 22 undefined on input line 1499.
+LaTeX Warning: Reference `lem:apeq' on page 22 undefined on input line 1476.
 
 EdNote! [22] [23]
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -884,40 +886,40 @@ Underfull \vbox (badness 5203) has occurred while \output is active []
  [25]
 
 LaTeX Warning: Reference `lem_singl_equiv_contr' on page 26 undefined on input 
-line 1674.
+line 1651.
 
 
-LaTeX Warning: Reference `lem_ap_equiv' on page 26 undefined on input line 1674
+LaTeX Warning: Reference `lem_ap_equiv' on page 26 undefined on input line 1651
 .
 
 
 LaTeX Warning: Reference `lem_equiv_comp' on page 26 undefined on input line 16
-74.
+51.
 
 EdNote! [26]
 
 LaTeX Warning: Reference `lem_singl_contr' on page 27 undefined on input line 1
-688.
+665.
 
 
 LaTeX Warning: Reference `subsection:wtypes' on page 27 undefined on input line
- 1703.
+ 1680.
 
 [27] [28]
 
 LaTeX Warning: Reference `lem:IsContrIsProp' on page 29 undefined on input line
- 1783.
+ 1760.
 
 
-LaTeX Warning: Reference `lem:PropChar' on page 29 undefined on input line 1783
+LaTeX Warning: Reference `lem:PropChar' on page 29 undefined on input line 1760
 .
 
 [29]
 
-LaTeX Warning: Reference `lem:apeq' on page 30 undefined on input line 1823.
+LaTeX Warning: Reference `lem:apeq' on page 30 undefined on input line 1800.
 
 
-Overfull \hbox (27.85796pt too wide) in paragraph at lines 1834--1836
+Overfull \hbox (27.85796pt too wide) in paragraph at lines 1811--1813
 []\OT1/cmr/m/n/10 By an-other in-duc-tion, this time on $\OML/cmm/m/it/10 w$\OT
 1/cmr/m/n/10 , it suf-fices to show that for any $\OML/cmm/m/it/10 a[]; t[]$ \O
 T1/cmr/m/n/10 we have $[][]\OT1/cmss/m/n/10 n[][][][]\OT1/cmr/m/n/10 (\OML/cmm/
@@ -925,7 +927,7 @@ m/it/10 a; t\OT1/cmr/m/n/10 ) =
  []
 
 [30]
-Overfull \hbox (5.78322pt too wide) in paragraph at lines 1865--1866
+Overfull \hbox (5.78322pt too wide) in paragraph at lines 1842--1843
 []\OT1/cmr/bx/n/10 Definition 5.3. []\OT1/cmr/m/n/10 Given al-ge-bras $\OMS/cms
 y/m/n/10 X \OT1/cmr/m/n/10 : \U/msb/m/n/10 N[][][]$ \OT1/cmr/m/n/10 and $\OMS/c
 msy/m/n/10 Y \OT1/cmr/m/n/10 : \U/msb/m/n/10 N[][][]$\OT1/cmr/m/n/10 , de-fine 
@@ -941,24 +943,21 @@ Missing character: There is no € in font cmr8!
 Missing character: There is no “ in font cmr8!
 )
 
-There are still 8 EdNotes, New/Oldparts, and Issues to resolve!
+There are still 7 EdNotes, New/Oldparts, and Issues to resolve!
 
 [36] (./main.aux)
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
  ) 
 Here is how much of TeX's memory you used:
- 15658 strings out of 493315
- 263701 string characters out of 6137904
- 386111 words of memory out of 5000000
- 18591 multiletter control sequences out of 15000+600000
+ 15657 strings out of 493315
+ 263675 string characters out of 6137904
+ 386114 words of memory out of 5000000
+ 18590 multiletter control sequences out of 15000+600000
  18121 words of font info for 76 fonts, out of 8000000 for 9000
  1118 hyphenation exceptions out of 8191
- 56i,18n,55p,3272b,636s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 56i,17n,55p,3272b,636s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2013/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb>
@@ -989,7 +988,7 @@ ts/type1/public/amsfonts/cm/cmti8.pfb></usr/local/texlive/2013/texmf-dist/fonts
 fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2013/texmf-d
 ist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2013/tex
 mf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on main.pdf (36 pages, 478677 bytes).
+Output written on main.pdf (36 pages, 477144 bytes).
 PDF statistics:
  243 PDF objects out of 1000 (max. 8388607)
  173 compressed objects within 2 object streams
