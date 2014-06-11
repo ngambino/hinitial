@@ -1,0 +1,41 @@
+The constructive type theories introduced by Martin-L\"of are dependently-typed
+$\lambda$-calculi with operations for identity types $\id{A}(a,b)$, dependent products 
+$(\Pi x {\, : \,}  A)B(x)$ and dependent sums $(\Sigma x {\, : \,} A)B(x)$,  among others~\cite{MartinLofP:intttp,MartinLofP:conmcp,MartinLofP:inttt,NordstromB:promlt,NordstromB:marltt}.   
+These are related to the basic concepts of predicate logic, \emph{viz.}
+equality and quantification, via the familiar propositions-as-types correspondence~\cite{HowardWH:foratn}. The different systems introduced by Martin-L\"of over the years 
+vary greatly both in proof-theoretic strength~\cite{GrifforE:strsml} and computational
+properties. From the computational point of view, it is important to
+distinguish between the extensional systems, that have a stronger
+notion of equality, but for which type-checking is undecidable, and the intensional ones, that have a
+weaker notion of equality, but for which type-checking is decidable~\cite{HofmannM:extcit}. For example, the type theory presented in~\cite{MartinLofP:inttt} is extensional, while that in~\cite{NordstromB:marltt} is 
+intensional.
+
+The difference between the extensional and the intensional treatment of equality has a strong 
+impact also on the properties of the various types that may be assumed in a type theory, and in particular
+on those of inductive types, such as the types of Booleans, natural numbers, lists and W-types~\cite{MartinLofP:conmcp}.  Within extensional type theories, inductive types can be 
+characterized (up to isomorphism) as initial algebras of certain definable functors. The initiality condition 
+translates directly into a recursion principle that expresses the existence and uniqueness of 
+recursively-defined functions. In particular, W-types can be characterized as initial algebras of polynomial functors~\cite{DybjerP:repids,MoerdijkI:weltc}. Furthermore, within extensional type theories, W-types allow us to define a wide range of inductive types, such as the type of natural numbers and types of lists~\cite{DybjerP:repids,GambinoN:weltdp,AbbottM:concsp}.
+Within intensional type theories, by contrast, the correspondence between inductive types and initial algebras 
+breaks down, since it is not possible to prove the uniqueness of recursively-defined functions. 
+Furthermore, the reduction of inductive types like the natural numbers to W-types fails~\cite{DybjerP:repids,GoguenH:inddtw}.
+ 
+ 
+In the present work, we exploit insights derived from the new models of intensional type theory based on 
+homotopy-theoretic ideas~\cite{AwodeyS:homtmi,VoevodskyV:notts,vandenBergB:topsmi} to 
+investigate inductive types, thus contributing to the new area known as Homotopy Type Theory.
+Homotopical intuition justifies the assumption of a limited form of function extensionality, which, 
+as we show, suffices to deduce uniqueness properties of recursively-defined functions up to  
+homotopy.
+Building on this observation, we introduce the notions of \emph{weak algebra homomorphism} and \emph
+{homotopy-initial algebra}, which require uniqueness of homomorphisms up to homotopy. We modify the rules for W-types by replacing the definitional equality in the standard
+computation rule with its propositional counterpart, yielding a weak form of the corresponding inductive type. 
+Our main result is that these new, weak W-types correspond precisely to homotopy-initial algebras of 
+polynomial functors.   Furthermore, we indicate how homotopical versions of various inductive types can be defined as special cases of the general construction in the new setting
+
+The work presented here is motivated in part by the Univalent Foundations program formulated by 
+Voevodsky~\cite{VoevodskyV:unifp}.  This ambitious program intends to provide comprehensive foundations for mathematics on the basis of homotopically-motivated type theories, with an associated computational implementation in the Coq proof assistant.  The present investigation of inductive types   serves as an example of this new paradigm: despite the fact that the intuitive basis lies in higher-dimensional category theory and homotopy theory, the actual development is strictly syntactic, allowing for direct formalization in Coq.  Proof scripts of the definitions, results, and all necessary preliminaries are provided in a downloadable repository~\cite{AwodeyS:indtht}. An overview of these files is provided as an appendix to this paper.
+
+The paper is organized as follows.  In section \ref{section:prelim}, we describe and motivate the dependent type theory over which we will work and compare it to some other well-known systems in the literature. The basic properties of the system and its homotopical interpretation are developed to the extent required for the present purposes. Section \ref{section:extW} reviews the basic theory of W-types in extensional type theory and sketches the proof that these correspond to initial algebras of polynomial functors; there is nothing new in this section, rather it serves as a framework for the generalization that follows.  Section \ref{section:extW} on intensional W-types contains the development of our new theory; it begins with a simple example, that of the type $\Bool$ of Boolean truth values, which serves to indicate the main issues involved with inductive types in the intensional setting, and our proposed solution.  We then give the general notion of weak W-types, including the crucial new notion of \emph{homotopy-initiality}, and state our main result, the equivalence between the type-theoretic rules for weak W-types and the existence of a homotopy-initial algebra of the corresponding polynomial functor.  
+Moreover, we show how some of the difficulties with intensional W-types are remedied in the new setting by showing that the type of natural numbers can be defined as an appropriate W-type.
+Finally, we conclude by indicating how this work fits into the larger study of inductive types in Homotopy Type Theory and the Univalent Foundations program generally.

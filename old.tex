@@ -1,0 +1,594 @@
+\subsection{Extensional W-types}\label{section:extW}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\noindent 
+We briefly recall the theory of W-types in fully extensional type theories. Let us begin by recalling
+the rules for W-types from~\cite{MartinLofP:inttt}. To state them more conveniently, we sometimes
+write~$W$ instead of $(\W x : A) B(x)$. 
+
+\smallskip
+
+\begin{itemize}
+\item $\W$-formation rule.
+\[
+\begin{prooftree}
+ A : \type \qquad
+ x : A \vdash B(x) : \type
+ \justifies
+ (\W x : A) B(x) : \type
+\end{prooftree}
+\]
+\item $\W$-introduction rule.
+\[
+\begin{prooftree}
+a:A \qquad
+t : B(a) \rightarrow W
+\justifies
+\wsup(a, t): W
+\end{prooftree}
+\]
+\item $\W$-elimination rule.
+\[
+ \begin{prooftree}
+ \hspace{-1ex} \begin{array}{l}
+ w : W \vdash C(w) : \type \\ 
+ x:A \, , u:  B(x) \rightarrow W \, ,  v : (\Pi y : B(x)) C(u(y))  \vdash \\ 
+   \qquad c(x,u,v) : C(\wsup(x,u))
+   \end{array}
+ \justifies
+w : W \vdash    \wrec(w,c) : C(w) 
+\end{prooftree}
+\]
+\item $\W$-computation rule.
+\[
+ \begin{prooftree}
+ \hspace{-1ex} \begin{array}{l}
+ w : W \vdash C(w) : \type \\ 
+ x:A \, , u:  B(x) \rightarrow W \, ,  v : (\Pi y : B(x)) C(u(y))  \vdash \\ 
+   \qquad c(x,u,v) : C(\wsup(x,u))
+   \end{array}
+ \justifies
+ \begin{array}{l} 
+x : A, u : B(x) \rightarrow W \vdash 
+\wrec(\wsup(x,u), c) = \\ 
+  \qquad c(x,u, \lambda y. \wrec(u(y), c)) : C(\wsup(x,u)) \, .
+\end{array}
+\end{prooftree}
+\]
+\end{itemize}
+
+\noindent
+
+
+\medskip
+
+W-types can be seen informally as the free algebras for signatures
+with operations of possibly infinite arity, but no equations. Indeed, the premisses 
+of the formation rule above can be thought of as specifying a signature that has the elements of~$A$ 
+as operations and in which the arity of~ $a : A$ is the cardinality of the type~$B(a)$. Then, the introduction rule specifies the canonical way of forming an element of the free algebra, and the elimination rule can be seen as the propositions-as-types translation of the appropriate induction principle.
+
+In extensional type theories, this informal description can easily be turned into a precise
+mathematical characterization. To do so, let us use the theory $\Hext$ obtained
+by extending $\Hint$ with the reflection rule in~\eqref{equ:collapse}. Let $\mathcal{C}(\Hext)$ be the category with
+types as objects and elements $f : A \rightarrow B$ as maps, in which two maps are
+considered equal if and only if they are definitionally equal. The premisses of the introduction
+rule determines the \emph{polynomial endofunctor} $P : \mathcal{C}(\Hext) \rightarrow \mathcal{C}(\Hext)$
+defined by 
+\[
+    P(X) \defeq (\Sigma x : A ) (B(x) \rightarrow X) \, .
+\]
+A $P$-algebra is a pair consisting of a type $C$ and a function $s_C : PC \rightarrow C$, called 
+the structure map of the algebra. The formation rule gives us an object $W \defeq (\W x : A)
+B(x)$ and the introduction rule (in combination with the rules for $\Pi$-types
+and $\Sigma$-types) provides a structure map
+\[
+s_W : PW \rightarrow W \, .
+\]
+The elimination rule, on the other hand, states that in order for the projection $\pi_1 \colon C \rightarrow W$, where
+$C \defeq (\Sigma w {\, : \, } W) C(w)$, to have a section $s$, as in the diagram
+\[
+\xymatrix{
+& C  \ar[d]^{\pi_1} \\
+W \ar[ru]^{s} \ar[r]_{1_W} & W, 
+}
+\]
+it is sufficient for the type $C$ to have a $P$-algebra structure over $W$. Finally, the computation rule states that the section $s$ given by the elimination rule is also a $P$-algebra homomorphism. 
+
+The foregoing elimination rule implies what we call the \emph{simple} $\W$-elimination rule:
+\[
+\begin{prooftree}
+C : \type  \qquad
+ x : A, v : B(x) \rightarrow C \vdash c(x,v) : C
+ \justifies
+w : W \vdash \wrecs(w,c) :  C
+\end{prooftree}
+\]
+This can be recognized as a recursion principle for maps from $W$ into $P$-algebras, since
+the premisses of the rule describe exactly a type $C$ equipped with a structure map $s_C 
+: PC  \rightarrow C$. For this special case of the elimination rule, the corresponding computation rule again states that the function
+\[
+\lambda w. \wrecs(w,c) : W \rightarrow C \, ,
+\] 
+where $c(x,v) = s_C(\pair(x,v))$ for $x : A$ and $v : B(x) \rightarrow C$, is a $P$-algebra homomorphism.
+Moreover, this homomorphism can then be shown to be definitionally unique using the elimination
+rule, the principle of function extensionality and the reflection rule.  The converse implication also holds: one can derive the general $\W$-elimination rule from the simple elimination rule and the following $\eta$-rule
+%
+\begin{equation*}
+\begin{prooftree}
+\begin{array}{l}
+C : \type  \qquad w : W \vdash h(w) : C \\ 
+x : A, v : B(x) \rightarrow C \vdash c(x,v) : C\\
+x:A \, , u:  B(x) \rightarrow W  \vdash h\left(\wsup(x,u)) = c(x,\lambda y. hu(y)\right) : C
+  \end{array}
+ \justifies
+w : W \vdash  h(w) =  \wrecs(w,c) :  C
+\end{prooftree}
+\end{equation*}
+%
+stating the uniqueness of the $\wrecs$ term among algebra maps. 
+Overall, we therefore have that  in 
+$\Hext$ induction and recursion are interderivable: 
+\[
+\begin{array}{ccc}
+\text{\underline{\myemph{Induction}}} & \Leftrightarrow & \text{\underline{\myemph{Recursion}}}\\[1ex]
+\text{$\W$-elimination} & & \text{Simple $\W$-elimination}\\
+\text{$\W$-computation} &&  \text{Simple $\W$-computation + $\eta$-rule} 
+\end{array}
+\]
+
+Finally, observe that what we are calling recursion is equivalent to the statement that the
+type $W$, equipped with the structure map $s_W : PW \rightarrow W$ 
+is the initial $P$-algebra. Indeed, assume the simple elimination rule, the simple computation
+rule and the $\eta$-rule; then for any $P$-algebra $s_C : PC\rightarrow C$, there is a 
+function $f : W \rightarrow C$ by the simple elimination rule, which is a homomorphism by the computational 
+rule, and is the unique such homomorphism by the $\eta$-rule.  The converse implication from initiality to recursion is just as direct. Thus, in the extensional theory, to have an initial algebra for the endofunctor $P$ is the same thing
+as having a type~$W$ satisfying the introduction, elimination and computation rules above.  Section~\ref{section:intW} will be devoted to generalizing this equivalence to the setting of Homotopy Type Theory.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Inductive types as W-types}
+
+\noindent To conclude our review, recall that in extensional type theory, many inductive types can be reduced to W-types.  We mention the following  examples, among many others (see \cite{MartinLofP:inttt}, \cite{DybjerP:repids}, \cite{GoguenH:inddtw}, \cite{MoerdijkI:weltc}, \cite{GambinoN:weltdp}, \cite{AbbottM:concsp}):
+\begin{enumerate}
+\item \emph{Natural numbers}. \label{extnatW}
+The usual rules for $\nat$ as an inductive type can be derived from its formalization as the following W-type. Consider the signature with two operations, one of which has arity $0$ and one of which has arity $1$; it is presented type-theoretically by a dependent type with corresponding polynomial functor (naturally isomorphic to)
+\[
+P(X) = \mathsf{1} + X \, ,
+\]
+%
+and the natural numbers $\nat$ together with the canonical element $0:\nat$ and the successor function $s : \nat\rightarrow\nat$ form an initial $P$-algebra
+\[
+(0, s) : \mathsf{1} + \nat \rightarrow \nat\, .
+\]
+%
+\item \emph{Second number class.}
+As shown in~\cite{MartinLofP:inttt}, the second number class can be obtained as a W-type determined by the polynomial functor 
+\[
+P(X) = \mathsf{1} + X + (\nat \rightarrow X) \, .
+\]
+This has algebras with three operations, one of arity $0$, one of arity $1$, and one of arity (the cardinality of) $\nat$.
+%
+%\item \emph{Lists.}  The type $\List(A)$ of finite lists of elements of type $A$ can be built as a W-type determined by the polynomial functor 
+%\[
+%P(X) = \mathsf{1} + A\!\times\! X \, .
+%\]
+%We refer to \cite{xxx} % need a reference here !
+% for details.
+\end{enumerate}
+
+\smallskip
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Intensional W-types}\label{section:intW}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\noindent We begin with an example which serves to illustrate, in an especially simple case, some aspects of our theory.  The type of Boolean truth values is not a W-type, but it can be formulated as an inductive type in the familiar way by means of  formation, introduction, elimination, and computation rules.  It then has an ``up to homotopy" universal property of the same general kind as the one that we shall formulate in section \ref{subsection:main} below for W-types, albeit in a simpler form.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Preliminary example}\label{subsection:prelimex}
+
+\noindent The standard rules for the type $\Bool$ given in~\cite[Section~5.1]{NordstromB:marltt}
+can be stated equivalently as follows.
+
+\begin{itemize}
+\item $\Bool$-formation rule.
+\[
+ \Bool : \type \, .
+ \]
+\item $\Bool$-introduction rules.
+\[
+0 : \Bool \, ,  \qquad  1 : \Bool \, .
+\]
+\item $\Bool$-elimination rule.\smallskip
+\[
+\begin{prooftree}
+x : \Bool \vdash C(x) : \type \qquad
+c_0 : C(0) \qquad
+c_1 : C(1) 
+\justifies
+x: \Bool \vdash \boolrec(x, c_0, c_1) : C(x) 
+\end{prooftree}
+\]
+\item $\Bool$-computation rules. 
+\begin{equation*}
+\begin{prooftree}
+x : \Bool \vdash C(x) : \type \qquad
+c_0 : C(0) \qquad
+c_1 : C(1) 
+\justifies
+\left\{
+\begin{array}{c} 
+ \boolrec(0, c_0, c_1)  =  c_0 : C(0)  \, , \\
+ \boolrec(1, c_0, c_1)  =  c_1 : C(1) \, .
+ \end{array}
+\right.
+\end{prooftree}
+ \end{equation*} 
+\end{itemize}
+
+Although these rules are natural ones to consider in the intensional setting, they do not imply a strict universal property. For example, given a type $C$ and elements $c_0, c_1 : 
+C$, the function $\lambda x . \boolrec(x, c_0,c_1) : \Bool \rightarrow C$ cannot  be shown to be definitionally unique among the functions $f :  
+\Bool \rightarrow C$ with the property that $f(0)=c_0 : C$ and $f(1)=c_1 : C$.  
+The best that one can do by using $\Bool$-elimination over a suitable identity type, and function extensionality, is to show that it is unique among all such maps up to an identity term, which itself is unique up to a higher identity, which in turn is unique up to \ldots. This sort of weak $\omega$-universality, which apparently involves infinitely much data, can nonetheless be captured directly within the system of type theory (without resorting to coinduction) using ideas from higher category theory. To do so, let us define a \emph{$\Bool$-algebra} to be a type $C$ equipped with two elements
+$c_0 \, , c_1 : C$. Then, a \emph{weak homomorphism} of $\Bool$-algebras
+$(f, p_0, p_1) : (C, c_0,c_1)\rightarrow (D,d_0,d_1)$  
+consists of a  function $f : C\rightarrow D$ together with identity terms 
+\[
+p_0 :  \id{D}(f (c_0) ,d_0) \, , \qquad p_1 :   \id{D}(f (c_1), d_1) \, .
+\]
+This is a \emph{strict homomorphism} when $f (c_0) = d_0 : D$, $f (c_1) = d_1 : D $ and the identity terms $p_0$ and $p_1$ are the corresponding reflexivity terms.  We can then define the type of weak homomorphisms from $(C, c_0,c_1)$ to $(D,d_0,d_1)$ by letting
+\begin{multline*}
+\BoolAlg [ (C, c_0,c_1), (D,d_0,d_1) \big] \defeq \\
+ (\Sigma f: C \rightarrow D) \Id(f (c_0), d_0) \times\id{D}(f (c_1), d_1) \, .
+\end{multline*}
+The weak universality condition on the $\Bool$-algebra $(\Bool, 0, 1)$ that we seek can now be determined as follows. 
+
+\begin{definition} \label{thm:boolhinitial}
+A $\Bool$-algebra $(C, c_0,c_1)$ is \emph{homotopy-initial} if for any $\Bool$-algebra $(D,d_0,d_1)$, the type 
+\[
+\BoolAlg \big[ (C, c_0,c_1), (D,d_0,d_1)\big]
+\] 
+is contractible.
+\end{definition}
+
+\noindent The notion of homotopy initiality, or h-initiality for short, captures in a precise way the informal idea that there is essentially one weak algebra homomorphism $(\Bool, 0, 1) \rightarrow (C,c_0,c_1)$.  Moreover, h-initiality can be shown to follow from the rules of inference for $\Bool$ stated above.  Indeed, the  computation rules for $\Bool$ stated above
+ evidently make the function
+\[
+\lambda x . \boolrec(x, c_0,c_1) : \Bool \rightarrow C
+\]
+into a \emph{strict} algebra map, a stronger condition than is required for h-initiality.  Relaxing these 
+definitional equalities to propositional ones, we arrive at the following rules.
+
+\smallskip
+
+\noindent
+\begin{itemize}
+\item Propositional $\Bool$-computation rules.
+\[
+\begin{prooftree}
+x : \Bool \vdash C(x) : \type \qquad
+c_0 : C(0) \qquad
+c_1 : C(1) 
+\justifies
+\left\{
+\begin{array}{c} 
+\boolcomp_0(c_0, c_1) :  \id{C(0)} \big(\boolrec(0, c_0, c_1), c_0)  \, , \\ 
+\boolcomp_1(c_0, c_1)  : \id{C(1)} \big(\boolrec(1, c_0, c_1), c_1)  \, .
+\end{array}
+\right.
+\end{prooftree}
+\]
+\end{itemize}
+
+\smallskip
+
+This variant is not only still sufficient for h-initiality, but also necessary, as we state precisely in the following.
+
+\begin{proposition} \label{prop:2hinitial}
+Over the type theory $\Hint$, the formation, introduction, elimination, and propositional computation rules
+for $\Bool$ are equivalent to the existence of a homotopy-initial $\Bool$-algebra.
+\end{proposition}
+%%
+\begin{proof}[Proof sketch] 
+Suppose we have a type $\Bool$ satisfying the stated rules.  Then clearly $(\Bool, 0, 1)$ is a $\Bool$-algebra; to show that it is h-initial, take any $\Bool$-algebra $(C,c_0,c_1)$.  By elimination with respect to the constant family $C$ and the elements $c_0$ and $c_1$, we have the map $\lambda x . \boolrec(x, c_0,c_1) : \Bool \rightarrow C$, which is a weak algebra homomorphism by the propositional computation rules.  Thus we obtain a term $h:\BoolAlg\big[ (\Bool, 0, 1), (C, c_0,c_1)\big]$.  Now given any $k:\BoolAlg\big[ (\Bool, 0, 1), (C, c_0,c_1)\big]$, we need a term of type $\id{}(h,k)$.  This term follows from a propositional $\eta$-rule, which is derivable by $\Bool$-elimination over a suitable identity type.
+
+Conversely, let $(\Bool, 0, 1)$ be an h-initial $\Bool$-algebra.  To prove elimination, let $x:\Bool \vdash C(x):\type$ with $c_0 : C(0)$ and $ c_1 : C(1)$ be given, and consider the $\Bool$-algebra $(C', c'_0, c'_1)$ defined by:
+%
+\begin{align*}
+C' &\defeq (\Sigma x: \Bool)C(x) \, , \\
+c'_0 &\defeq \pair(0, c_0) \, , \\
+c'_1 &\defeq \pair(1, c_1)\, .
+\end{align*}
+%
+Since $\Bool$ is h-initial, there is a map $r : \Bool\rightarrow C'$ with identities $p_0:\id{}(r  0, c'_0)$ and $p_1:\id{}(r  1, c'_1)$.  Now, we would like to set 
+$$\boolrec(x, c_0, c_1) = \pi_2 (r x) : C(x),$$
+ where $\pi_2$ is the second projection from $C'=(\Sigma x: \Bool)C(x)$.  But recall that in general 
+ $\pi_2(z) : C(\pi_1(z))$, and so (taking the case $x=0$) we have $\pi_2(r   0) : C(\pi_1(r   0))$ rather than the required $\pi_2(r   0) {\, : \, } C(0)$; that is, since it need not be that $\pi_1(r   0) = 0$, the term $\pi_2(r   0)$ has the wrong type to be $\boolrec(0, c_0, c_1)$.  However, we can show that $$\pi_1: (\Sigma x: \Bool)C(x)\rightarrow \Bool$$ is a weak homomorphism, so that the composite $\pi_1\circ r : (\Bool, 0, 1)\rightarrow (\Bool, 0, 1)$ must be propositionally equal to the identity homomorphism $1_\Bool : (\Bool, 0, 1)\rightarrow (\Bool, 0, 1)$, by the contractibility of $\BoolAlg \big[ (\Bool, 0, 1), (\Bool, 0, 1)\big]$.  Thus there is an identity term $p : \id{}(\pi_1\circ r, 1_\Bool)$, along which we can transport using $p_! : C(\pi_1( r   0)) \rightarrow C(0)$, thus taking $\pi_2(r   0 ) : C(\pi_1 (r   0))$ to the term  $p_! ( \pi_2( r   0) ) :C(0)$ of the correct type.  We can then set
+\[
+\boolrec(x, c_0, c_1) = p_! (\pi_2 (r x)) : C(x)
+\]
+to get the required elimination term.  The computation rules follow by a rather lengthy calculation.
+\end{proof}
+
+%%
+Proposition~\ref{prop:2hinitial} is the analogue in Homotopy Type Theory of the characterization of 
+$\Bool$ as a strict coproduct $1+1$ in extensional type theory. It makes precise the rough idea that, 
+in intensional type theory, $\Bool$ is a kind of homotopy coproduct or weak $\omega$-coproduct 
+in the weak $\omega$-category $\mathcal{C}(\Hint)$ of types, terms, identity terms, higher identity terms, \ldots.  
+It is worth emphasizing that h-initiality is a purely type-theoretic notion; despite having an obvious semantic interpretation, it is formulated in terms of inhabitation of specific, definable types.  Indeed, Proposition~\ref{prop:2hinitial} and its proof have been completely formalized in the Coq proof assistant~\cite{AwodeyS:indtht}.  
+
+\begin{remark} A development entirely analogous to the foregoing can be given for the type
+$\nat$ of natural numbers. In somewhat more detail, one introduces the notions of a $\nat$-algebra and 
+of a weak homomorphism of $\nat$-algebras. Using these, it is possible to define the notion of
+a homotopy-initial $\nat$-algebra, analogue to that of a homotopy-initial
+$\Bool$-algebra in Definition~\ref{thm:boolhinitial}. With these definitions in place, one can prove an equivalence between the formation, introduction, elimination and propositional computation rules for $\nat$ and the existence of a homotopy-initial $\nat$-algebra. 
+Here, the propositional computation rules are formulated like those above, \emph{i.e.} by replacing the definitional equalities in the conclusion of the usual computation rules~\cite[Section~5.3]{NordstromB:marltt} with propositional equalities. 
+ We do not pursue this further here, however, since $\nat$ can also be presented as a W-type, as we discuss in section \ref{subsec:define} below.
+\end{remark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The main theorem}\label{subsection:main}
+
+\noindent Although it is more elaborate to state (and difficult to prove) owing to the presence of 
+recursively generated data, our main result on  W-types is analogous to 
+the foregoing example in the following respect: rather than being strict initial algebras, as in the 
+extensional case, weak W-types are instead homotopy-initial algebras.  This fact can again be stated 
+entirely syntactically, as an equivalence between two sets of rules:  the 
+formation, introduction, elimination, and propositional computation rules (which we spell
+out below) for W-types, and the existence of an h-initial algebra, in the appropriate sense.  Moreover, as in the simple case of the type $\Bool$, the proof of the equivalence is again entirely constructive. 
+
+The required definitions in the current setting are as follows. Let us assume that
+\[
+x:A \vdash B(x) : \type \, ,
+\]
+and define the associated polynomial functor as before: 
+\begin{equation}
+\label{eq:polyfunc}
+PX = (\Sigma x : A) (B(x) \rightarrow X) \, .
+\end{equation}
+(Actually, this is now functorial only up to propositional equality, but this change makes no difference in what follows.)
+By definition, a $P$-algebra is a type $C$ equipped a function
+$s_C :  PC \rightarrow C$. For $P$-algebras $(C,s_C)$ and $(D,s_D)$, a \emph{weak 
+homomorphism} between them $(f, s_f) : (C, s_C) \rightarrow (D, s_D)$
+consists of a function $f : C \rightarrow D$ and an identity proof
+\[
+s_f : \id{PC \rightarrow D}\big( f \circ s_C \, ,  s_{D} \circ Pf \big) \, ,
+\]
+where $Pf : PC\rightarrow PD$ is the result of the easily-definable action of $P$ on $f: C \rightarrow D$. Such an algebra homomorphism can be represented suggestively in the form:
+\[
+\xymatrix{
+ PC \ar[d]_{s_C} \ar[r]^{Pf}  \ar@{}[dr]|{s_f} &  PD \ar[d]^{s_D}\\
+C \ar[r]_{f}   & D }
+\] 
+Accordingly, the type of weak algebra maps is defined by
+\begin{multline*}
+\Palg
+\big[ (C,s_C), (D, s_D)  \big]
+ \defeq   \\
+(\Sigma f:  C \rightarrow D) \, \Id(f\circ s_C, s_D\circ Pf) \, .
+\end{multline*}
+
+
+\begin{definition} 
+A $P$-algebra $(C, s_C)$ is \emph{homotopy-initial} if for every $P$-algebra $(D, s_D)$, the type 
+$$\Palg \big[ (C, s_C), (D, s_D) \big]$$ of weak algebra maps is contractible.
+\end{definition} 
+
+
+\begin{remark} 
+The notion of h-initiality captures a universal property in which the usual conditions of existence and uniqueness  are replaced by conditions of existence and uniqueness up to a system of higher and higher identity proofs. To explain this, let us fix a $P$-algebra  $(C,s_C)$ and assume that it is homotopy-initial. Then, given any 
+$P$-algebra~$(D,s_D)$, there is a weak homomorphism $(f,s_f) : (C,s_C) \rightarrow (D,s_D)$, since
+the type of weak maps from $(C,s_C)$ to $(D,s_D)$, being contractible, is inhabited. Furthermore, for any weak map $(g,s_g) : (C,s_C) \rightarrow (D,s_D)$, the
+contractibility of the type of weak maps  implies that there is an identity proof 
+\[
+ p  : \Id\big( (f,s_f), (g, s_g) \big) \, , 
+\]
+witnessing the uniqueness up to propositional equality of the homomorphism $(f,s_f)$. But it
+is also possible to prove that the identity proof $p$ is unique up to propositional equality. Indeed, since 
+$(f,s_f)$ and $(g,s_g)$ are elements of a contractible type, the identity type $\Id( (f,s_f), (g, s_g) )$ 
+is also contractible, as observed in Remark~\ref{thm:idcontrcontr}. Thus, if we have another 
+identity proof $q : \Id( (f,s_f), (g, s_g) )$, there will be an identity term $\alpha : \Id(p,q)$, which is again
+essentially unique, and so on.  It should also be pointed out that, just as strictly initial algebras are unique
+up to isomorphism, h-initial algebras are unique up to weak equivalence. It then follows from
+the Univalence axiom that two h-initial algebras are propositionally equal, a fact that we mention only by the way. Finally, we note that there is also a homotopical version of Lambek's Lemma, asserting that the structure map of an h-initial algebra is itself a weak equivalence, making the algebra a \emph{homotopy fixed point} of the associated polynomial functor. The reader can work out the details from the usual proof and the definition of  h-initiality, or consult~\cite{AwodeyS:indtht}.
+\end{remark}
+
+\medskip
+
+The deduction rules that characterize homotopy-initial algebras are
+obtained from the formation, introduction, elimination and computation rules for W-types 
+stated in Section~\ref{section:extW} by simply replacing the $\W$-computation rule with the
+following rule, that we call the propositional $\W$-computation rule.
+
+\smallskip
+
+\begin{itemize} 
+\item Propositional $\W$-computation rule.
+\[
+\begin{prooftree}
+\begin{array}{l} 
+w : W \vdash C(w) : \type \\ 
+\hspace{-1ex}
+\begin{array}{c} 
+x : A, u : B(x) \rightarrow W, v : (\Pi y : B(x)) C(u(y)) \vdash \\ 
+c(x,u,v) : C(\wsup(x,u))  
+\end{array}
+\end{array}
+\justifies
+\begin{array}{l} 
+x : A, u : B(x) \rightarrow W \vdash 
+\wcomp(x,u,c) :  \\
+\qquad \Id
+\big(
+\wrec(\wsup(x,u), c), c(x,u,\lambda y.\wrec( u(y), c )
+\big)
+\end{array}
+\end{prooftree}
+\]
+\end{itemize}
+
+
+
+ \begin{remark}\label{thm:wtypesinvariance}
+One interesting aspect of this group of rules, to which we shall refer as the \emph{rules for homotopical
+W-types}, is that, unlike the standard rules for W-types, they are invariant under propositional
+equality. To explain this  more precisely, let us work in a type theory with a type universe $\UU$ closed
+under all the forms of types of $\Hint$ and W-types. Let $A : \UU$, $B : A
+\rightarrow \UU$ and define $W \defeq (\W x : A) B(x)$. The invariance of
+the rules for homotopy W-types under propositional equality can now be expressed by saying that if we have a type $W' : \UU$  and an identity proof $p : \id{U}(W, W')$, then the $\Id$-elimination rule 
+implies that  $W'$ satisfies the same rules as $W$, in the sense that there are definable terms playing the role of the primitive  constants that
+appear in the rules for $W$.
+\end{remark}
+
+We can now state our main result. Its proof has been formalized in the Coq system,
+and the proof scripts are available at~\cite{AwodeyS:indtht}; thus we provide only an outline of the proof. 
+
+\begin{theorem}\label{theorem:main}
+Over the type theory $\Hint$, 
+the rules for homotopical W-types
+are equivalent to the existence of homotopy-initial algebras for polynomial functors.
+\end{theorem}
+
+%%%%%
+\begin{proof}[Proof sketch] 
+The two implications are proved separately.
+First, we show that the rules for homotopical W-types imply the existence
+of homotopy-initial algebras for polynomial functors. Let us assume that
+$x : A \vdash B(x) : \type$ 
+and consider the associated polynomial functor $P$, defined as in~\eqref{eq:polyfunc}.
+Using the $\W$-formation rule, we define $W \defeq (\W x : A) B(x)$ and using
+the $\W$-introduction rule we define a structure map $s_W : PW \rightarrow W$,
+exactly as in the extensional theory. We claim that the algebra $(W, s_W)$ is
+h-initial. So, let us consider another algebra $(C,s_C)$ and prove that the type $T$ 
+of weak homomorphisms from $(W, s_W)$ to $(C,s_C)$ is contractible. To do
+so, observe that the $\W$-elimination rule and the propositional $\W$-computation
+rule allow us to define a weak homomorphism $(f, s_f) : (W, s_W) \rightarrow (C, s_C)$, 
+thus showing that $T$ is inhabited. Finally, it is necessary to show that for every weak homomorphism $(g, s_g) : (W, s_W) \rightarrow (C, s_C)$, there
+is an identity proof 
+\begin{equation}
+\label{equ:prequired}
+p : \Id( (f,s_f), (g,s_g) ) \, .
+\end{equation}
+This uses the fact that, in general, a type of the form $\Id( (f,s_f), (g,s_g) )$,
+is weakly equivalent to the type of what we call \emph{algebra $2$-cells}, whose canonical
+elements are pairs of the form $(e, s_e)$, where $e : \Id(f,g)$ and $s_e$ is a higher identity proof witnessing the propositional equality between the identity proofs represented by the following pasting diagrams:
+\[
+\xymatrix{
+PW \ar@/^1pc/[r]^{Pg}   \ar[d]_{s_W} \ar@{}[r]_(.52){s_g}  & PD \ar[d]^{s_D}  \\
+W \ar@/^1pc/[r]^g  \ar@/_1pc/[r]_f  \ar@{}[r]|{e} & D } \qquad
+\xymatrix{
+PW \ar@/^1pc/[r]^{Pg}   \ar[d]_{s_W}   \ar@/_1pc/[r]_{Pf} \ar@{}[r]|{Pe}
+& PD \ar[d]^{s_D}  \\
+W  \ar@/_1pc/[r]_f  \ar@{}[r]^{s_f} & D }
+\]
+In light of this fact, to prove that there exists a term as in~\eqref{equ:prequired}, it is 
+sufficient to show that there is an algebra 2-cell 
+\[
+(e,s_e) : (f,s_f) \Rightarrow (g,s_g) \, .
+\]
+The identity proof $e : \Id(f,g)$ is now constructed by function extensionality and
+$\W$-elimination so as to guarantee the existence of the required identity
+proof $s_e$. 
+
+\smallskip
+
+For the converse implication, let us assume that the polynomial functor associated
+to the judgement $x : A \vdash B(x) : \type$ 
+%\[
+%x : A \vdash B(x) : \type
+%\] 
+has an h-initial algebra $(W,s_W)$. To derive the $\W$-formation rule, we 
+let  $(\W x {\, : \, } A) B(x) \defeq W$. The $\W$-introduction rule is equally simple to
+derive; namely, for $a : A$ and $t \colon B(a) \rightarrow W$,  we define $\wsup(a,t) : W$ as the 
+result of applying the structure map $s_W \colon PW \rightarrow W$ to $\pair(a,t) : PW$.
+For the $\W$-elimination rule, let us assume its premisses and in particular that $w : W \vdash C(w) : \type$.
+%\[
+%w : W \vdash C(w) : \type \, .
+%\]
+Using the other premisses, one shows that the type $C \defeq (\Sigma w : W) C(w)$
+can be equipped with a structure map $s_C : PC \rightarrow C$. By the h-initiality of $W$,
+we obtain a weak homomorphism $(f, s_f) : (W, s_W) \rightarrow (C, s_C)$. Furthermore,
+the first projection $\pi_1 : C \rightarrow W$ can be equipped with the structure of a weak 
+homomorphism, so that we obtain a diagram of the form
+\[
+\xymatrix{
+PW \ar[r]^{Pf} \ar[d]_{s_W}  & PC \ar[d]^{s_C}  \ar[r]^{P \pi_1}  & PW  \ar[d]^{s_W}  \\
+W \ar[r]_f  & C \ar[r]_{\pi_1}  & W \, .}
+\]
+But the identity function $1_W : W \rightarrow W$ has a canonical structure of a weak
+algebra homomorphism and so, by the contractibility of the type of weak homorphisms
+from $(W,s_W)$ to itself, there must be an identity proof between the composite
+of $(f,s_f)$ with $(\pi_1, s_{\pi_1})$ and $(1_W, s_{1_W})$. This implies, in particular,
+that there is an identity proof $p : \Id( \pi_1 \circ f, 1_W)$. 
+%\[
+%p : \Id( \pi_1 \circ f, 1_W) \, .
+%\]
+Since $(\pi_2 \circ f) w : C( (\pi_1 \circ f) w)$, we can define
+\[
+\wrec(w,c) \defeq
+p_{\, ! \,}( ( \pi_2 \circ  f)   w )   : C(w) 
+\]
+where the transport $p_{\, ! \,}$ is defined via $\Id$-elimination over the dependent type
+\[
+u : W \rightarrow W \vdash C ( u (w)) : \type \, .
+\]
+The verification of the propositional $\W$-computation rule is a rather long calculation,
+involving several lemmas concerning the naturality properties of operations of the form $p_{\, ! \,}$.
+\end{proof}
+%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Definability of inductive types}\label{subsec:define}
+
+\noindent We conclude this section by indicating how the limited form of extensionality that is assumed in the type theory~$\Hint$, namely the principle of function extensionality, allows us to overcome the obstacles in defining various inductive types as W-types mentioned at the end of Section~\ref{section:extW}, provided that both are understood in the appropriate homotopical way, \emph{i.e.} with all types being formulated with propositional computation rules. 
+
+Consider first the paradigmatic case of the type of natural numbers. To define it as a W-type, we work in an extension of the type theory $\Hint$ with
+\begin{itemize}
+\item formation, introduction, elimination and propositional computation rules 
+for types $\mathsf{0}$, $\mathsf{1}$ and $\mathsf{2}$ that have zero, one and two canonical elements,
+respectively; 
+\item the rules for homotopy W-types, as stated above;
+\item rules for a type universe $\UU$ reflecting all the forms of types of $\Hint$, W-types, and
+$\mathsf{0}$, $\mathsf{1}$ and $\mathsf{2}$.
+\end{itemize}
+In particular, the rules for $\mathsf{2}$ are those given in Section~\ref{subsection:prelimex}.
+We then proceed as follows. We begin by setting $A =\mathsf{2}$, as in the extensional case.  
+We then define a dependent type
+\[
+x : A \vdash B(x) : \UU
+\]
+by $\mathsf{2}$-elimination, so that the propositional $\mathsf{2}$-computation rules give us 
+propositional equalities
+\[
+ p_0 : \id{U}( \mathsf{0}, B(0)) \, , \qquad
+ p_1 : \id{U}( \mathsf{1}, B(1)) \, .
+\]
+Because of the invariance of the rules for $\mathsf{0}$ and $\mathsf{1}$ under propositional
+equalities (as observed in Remark~\ref{thm:wtypesinvariance}), we can then derive that the types~$B(0)$ and~$B(1)$ satisfy rules analogous to those for $\mathsf{0}$ and $\mathsf{1}$, respectively. This allows us to show that the type 
+\[
+\nat \defeq (\W x : A) B(x)
+\]
+satisfies the introduction, elimination and propositional computation rules for the type of natural numbers. 
+The proof of this fact proceeds essentially as one would expect, but to derive the propositional computation rules it
+is useful to observe that for every type $X : \UU$, there are adjoint homotopy equivalences,
+in the sense of Definition \ref{thm:weq}, between the types $\mathsf{0}  \rightarrow X$ and $\mathsf{1}$, 
+and between $\mathsf{1} \rightarrow X$ and $X$. Indeed, the propositional identities witnessing 
+the triangular laws are useful in the verification of the propositional computation rules for $\nat$. For 
+details, see the formal development in Coq provided in~\cite{AwodeyS:indtht}.  Observe that as a W-type, $\nat$ is therefore also an h-initial algebra for the equivalent polynomial functor $P(X) = \mathsf{1}+ X$, as expected.
+
+Finally, let us observe that the definition of a type representing the second number class as a W-type,
+as discussed in~\cite{MartinLofP:inttt}, carries over equally well. Indeed, one
+now must represent type-theoretically a signature with three operations: the first of arity zero, 
+the second of arity one, and the third of arity $\nat$. For the first two we can proceed exactly as
+before, while for the third there is no need to prove auxiliary results on adjoint homotopy 
+equivalences. As before, the second number class supports an h-initial algebra structure for the corresponding polynomial functor $P(X) = \mathsf{1} + X + (\nat \rightarrow X)$.
+Again, the formal development of this result in Coq can be found in~\cite{AwodeyS:indtht}.
+
+%Finally, the case $\List(A)$ of finite lists of elements of type $A$ can be treated analogously, in terms of the polynomial functor 
+%\[
+%P(X) = \mathsf{1} + A\!\times\! X\, .
+%\]
+%%
+%We again refer to~\cite{AwodeyS:indtht} for details.
+
+

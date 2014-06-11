@@ -1,0 +1,471 @@
+We briefly recall here the theory of inductive types, particularly W-types, in fully extensional type theories. 
+As an especially simple running example, we first consider the type $\Bool$ of Boolean truth values~\cite[Section~5.1]{NordstromB:marltt}. 
+
+\subsection{The type $\Bool$}\label{subsection:bool}
+The type $\Bool$ is not a W-type, but can be formulated as an inductive type in the familiar way by means of formation, introduction, elimination, and computation rules:
+\smallskip
+
+\begin{itemize}
+\item $\Bool$-formation rule.
+\[
+ \Bool : \UU_i \, .
+ \]
+\item $\Bool$-introduction rules.
+\[
+0 : \Bool \, ,  \qquad  1 : \Bool \, .
+\]
+\item $\Bool$-elimination rule (``induction").\smallskip
+\[
+\begin{prooftree}
+x:\Bool \vdash E(x) : \UU_i \qquad
+e_0 : E(0) \qquad
+e_1 : E(1) \qquad
+b : \Bool
+\justifies
+\boolind(x.E, e_0, e_1,b) : E(b) 
+\end{prooftree}
+\]
+\item $\Bool$-computation rules. \smallskip
+\begin{equation*}
+\begin{prooftree}
+x:\Bool \vdash E(x) : \UU_i \qquad
+e_0 : E(0) \qquad
+e_1 : E(1)
+\justifies
+\left\{
+\begin{array}{c} 
+ \boolind(x.E,e_0, e_1,0)  \equiv  e_0 : E(0)  \, , \\
+ \boolind(x.E,e_0, e_1,1)  \equiv  e_1 : E(1) \, .
+ \end{array}
+\right.
+\end{prooftree}
+ \end{equation*} 
+\end{itemize}\smallskip
+The above rules imply a non-dependent (simple) version of elimination and the corresponding computation rules:
+\smallskip
+
+\begin{itemize}
+\item Simple $\Bool$-elimination rule (``recursion").\smallskip
+\[
+\begin{prooftree}
+C : \UU_i \qquad
+c_0 : C \qquad
+c_1 : C \qquad
+b : \Bool
+\justifies
+\boolrec(C,c_0, c_1,b) : C
+\end{prooftree}
+\]
+\item Simple $\Bool$-computation rules. \smallskip 
+\begin{equation*}
+\begin{prooftree}
+C : \UU_i \qquad
+c_0 : C \qquad
+c_1 : C \qquad
+\justifies
+\left\{
+\begin{array}{c} 
+ \boolrec(C,c_0, c_1,0)  \equiv  c_0 : C  \, , \\
+ \boolrec(C,c_0, c_1,1)  \equiv  c_1 : C \, .
+ \end{array}
+\right.
+\end{prooftree}
+ \end{equation*} 
+\end{itemize}
+Furthermore, the induction principle implies the following uniqueness principles, which state that any two functions out of $\Bool$ which agree on the constructors are (pointwise) equal:
+\smallskip
+
+\begin{itemize}
+\item $\Bool$-uniqueness principle.\smallskip
+\begin{mathpar}
+\inferrule{b : \Bool \\ x : \Bool \vdash E(x) : \UU_i \\ e_0 : E(0) \\ e_1 : E(1) \\ \\\\ x : \Bool \vdash f(x) : E(x) \\ f(0) \equiv e_0 \\ f(1) \equiv e_1 \\ \\\\ x : \Bool \vdash g(x) : E(x) \\ g(0) \equiv e_0 \\ g(1) \equiv e_1}{f(b) \equiv g(b) : E(b)}
+\end{mathpar}
+\item Simple $\Bool$-uniqueness principle.\smallskip
+\begin{mathpar}
+\inferrule{b : \Bool \\ C : \UU_i \\ c_0 : C \\ c_1 : C \\ \\\\ x : \Bool \vdash f(x) : C \\ f(0) \equiv c_0 \\ f(1) \equiv c_1 \\ \\\\ x : \Bool \vdash g(x) : C \\ g(0) \equiv c_0 \\ g(1) \equiv c_1}{f(b) \equiv g(b) : C}
+\end{mathpar}
+\end{itemize} \smallskip
+
+\emph{Remark}: In this particular case, we could also write $f(0) \equiv g(0) : E(0)$ and $f(1) \equiv g(1) : E(1)$ in the premises, avoiding the mention of $e_0$ and $e_1$ altogether (and similarly for the simple uniqueness principle). However, the form we chose follows a general schema (see Defs.~\ref{def:BoolFibHom} and~\ref{def:BoolIndUniq}) which scales to more complicated inductive types.
+
+We can prove the dependent uniqueness principle by using the induction principle with the type family $x \mapsto f(x) =_{E(x)} g(x)$; the cases when $x \defeq 0$ and $x \defeq 1$ are straightforward. This gives us pointwise propositional equality between $f$ and $g$; we appeal to the identity reflection rule to finish the proof. The simple uniqueness principle clearly follows from the dependent one.
+
+We now introduce some terminology in order to talk about the above rules more economically. The elimination and computation rules motivate the following definitions:
+
+\begin{definition}\label{def:BoolAlg}
+Define the type of \emph{$\Bool$-algebras} on a universe $\UU_i$ as 
+\[\BoolAlg_{\UU_i} \defeq \sm{C : \UU_i} C \times C \]
+\end{definition}
+
+\begin{definition}\label{def:BoolFibAlg}
+Define the type of \emph{fibered $\Bool$-algebras} on a universe $\UU_j$ over $\mathcal{X} : \BoolAlg_{\UU_i}$ by
+\[\BoolFibAlg_{\UU_j} \; (C,c_0,c_1) \defeq \sm{E : C \to \UU_j} E(c_0) \times E(c_1) \]
+\end{definition}
+
+\begin{definition}\label{def:BoolHom}
+Given algebras $\X : \BoolAlg_{\UU_i}$ and $\Y : \BoolAlg_{\UU_j}$, define the type of \emph{$\Bool$-homomorphisms} from $\X$ to $\Y$ by \[\BoolHom \; (C,c_0,c_1) \; (D,d_0,d_1) \defeq \sm{f:C \to D} (f(c_0) = d_0) \times (f(c_1) = d_1) \]
+\end{definition}
+
+\begin{definition}\label{def:BoolFibHom}
+Given algebras $\X : \BoolAlg_{\UU_i}$ and $\Y : \BoolFibAlg_{\UU_j} \; \X$, define the type of \emph{fibered $\Bool$-homomorphisms} from $\X$ to $\Y$ by
+\[\BoolFibHom \; (C,c_0,c_1) \; (E,e_0,e_1) \defeq \sm{(f:\prd{x:C} E(x))} (f(c_0) = e_0) \times (f(c_1) = e_1) \]
+\end{definition}
+
+We note that in order to form the type of homomorphisms, we had to use propositional rather than definitional equality. Of course, in the setting of an extensional type theory this distinction is immaterial; however, it will become important in Chpt.~\ref{section:intW}.
+
+\begin{definition}\label{def:BoolRec}
+An algebra $\X : \BoolAlg_{\UU_i}$ \emph{satisfies the recursion principle} on a universe $\UU_j$ if for any 
+algebra $\Y : \BoolAlg_{\UU_j}$ there exists a $\Bool$-homomorphism between $\X$ and $\Y$:
+\[\HasBoolRec_{\UU_j}(\X) \defeq \prd{(\Y:\BoolAlg_{\UU_j})} \BoolHom \; \X \; \Y\] 
+\end{definition}
+
+\begin{definition}\label{def:BoolInd}
+An algebra $\mathcal{X} : \BoolAlg_{\UU_i}$ \emph{satisfies the induction principle} on a universe $\UU_j$ if for any 
+fibered algebra $\Y : \BoolFibAlg_{\UU_j} \; \X$ there exists a fibered $\Bool$-homomorphism between $\X$ and $\Y$:
+\[\HasBoolInd_{\UU_j}(\X) \defeq \prd{(\Y:\BoolFibAlg_{\UU_j} \; \X)} \BoolFibHom \; \X \; \Y\] 
+\end{definition}
+
+The uniqueness principles motivate the following definitions:
+
+\begin{definition}\label{def:BoolRecUniq}
+An algebra $\X : \BoolAlg_{\UU_i}$ satisfies the \emph{recursion uniqueness principle} on a universe $\UU_j$ if for any algebra $\Y : \BoolAlg_{\UU_j}$ any two $\Bool$-homomorphisms between $\X$ and $\Y$ are equal:
+\[ \HasBoolRecUniq_{\UU_j}(\X) \defeq \prd{(\Y:\BoolAlg_{\UU_j})} \isprop(\BoolHom \; \X \; \Y)\]
+\end{definition}
+
+\begin{definition}\label{def:BoolIndUniq}
+An algebra $\X : \BoolAlg_{\UU_i}$ satisfies the \emph{induction uniqueness principle} on a universe $\UU_j$ if for any fibered algebra $\Y : \BoolFibAlg_{\UU_j}\;\X$ any two fibered $\Bool$-homomorphisms between $\X$ and $\Y$ are equal:
+\[ \HasBoolIndUniq_{\UU_j}(\X) \defeq \prd{(\Y:\BoolFibAlg_{\UU_j} \; \X)} \isprop(\BoolFibHom \; \X \; \Y)\]
+\end{definition}
+
+The uniqueness principles as in definitions~\ref{def:BoolRecUniq},~\ref{def:BoolIndUniq} require that
+any two homomorphisms $\mu \defeq (f,\gamma_0,\gamma_1)$ and $\nu \defeq (g,\delta_0,\delta_1)$ be equal as \emph{tuples}; however, in the presence of the UIP axiom this is equivalent to saying that their first components agree, i.e., $f = g$ (and hence $f \equiv g$).
+
+\begin{definition}\label{def:BoolInit}
+An algebra $\X : \BoolAlg_{\UU_i}$ is \emph{initial} on a universe $\UU_j$ if for any algebra $\Y : \BoolAlg_{\UU_j}$ there exists a unique $\Bool$-homomorphism between $\X$ and $\Y$:
+\[ \IsBoolInit_{\UU_j}(\X) \defeq \prd{(\Y:\BoolAlg_{\UU_j})} \iscontr(\BoolHom \; \X \; \Y) \]  
+\end{definition}
+
+The contractibility requirement precisely captures the notion of initiality: in the presence of the identity reflection rule, a contractible type is one which contains a definitionally unique element.
+
+The following lemma in particular implies that it is not necessary to have a ``fibered" version of the initiality property, which quantifies over all fibered algebras $\Y : \BoolFibAlg_{\UU_j} \; \X$.
+
+\begin{lemma}\label{lem:BoolIndImpUniq}
+In $\Hext$, if an algebra $\X : \BoolAlg_{\UU_i}$ satisfies the induction principle on the universe $\UU_j$, it also satisfies the induction uniqueness principle on $\UU_j$. In other words, we have
+\[ \HasBoolInd_{\UU_j}(\X) \;\; \rightarrow \;\; \HasBoolIndUniq_{\UU_j}(\X) \]
+\end{lemma}
+\begin{proof}
+Let an algebra $(C,c_0,c_1) : \BoolAlg_{\UU_i}$ be given. To prove the induction uniqueness principle, take any algebra $(E,e_0,e_1) : \BoolFibAlg_{\UU_j} \; (C,c_0,c_1)$ and homomorphisms $(f,\gamma_0, \gamma_1), (g,\delta_0,\delta_1) : \BoolFibHom \; (C,c_0,c_1) \; (E,e_0,e_1)$. Because of UIP, showing $(f,\gamma_0,\gamma_1) = (g,\delta_0,\delta_1)$ is equivalent to showing $f = g$. For the latter, we use the induction principle with the fibered algebra $\big(x \mapsto f(x) = g(x), \refl(f(c_0)), \refl(g(c_0))\big)$. This is indeed well-typed since
+$\gamma_0,\delta_0$ give us $f(c_0) = e_0 = g(c_0)$ and $\gamma_1,\delta_1$ give us $f(c_1) = e_1 = g(c_1)$.  
+
+The first component of the resulting homomorphism together with the function extensionality principle then give us $f = g$.
+\end{proof}
+
+%\begin{lemma}\label{lem:BoolRecUniqEqInit}
+%In $\Hext$, the following conditions on an algebra $\X : \BoolAlg_{\UU_i}$ are equivalent:
+%\begin{enumerate}
+%\item $\X$ satisfies the recursion and recursion uniqueness principles on the universe $\UU_j$
+%\item $\X$ is initial on the universe $\UU_j$
+%\end{enumerate}
+%In other words, we have
+%\[ \HasBoolRec_{\UU_j}(\X) \times \HasBoolRecUniq_{\UU_j}(\X) \;\; \simeq \;\; \IsBoolInit_{\UU_j}(\X) \]
+%\end{lemma}
+%\begin{proof}
+%By Lem.~\ref{lem:ContrChar}\ednote{Which says $\iscontr(A) \simeq A \times \isprop(A)$}.
+%\end{proof}
+
+\begin{corollary}
+In $\Hext$, if an algebra $\X : \BoolAlg_{\UU_i}$ satisfies the induction principle on the universe $\UU_j$, it is initial on $\UU_j$. In other words, we have
+\[ \HasBoolInd_{\UU_j}(\X) \;\; \rightarrow \;\; \IsBoolInit_{\UU_j}(\X) \]
+\end{corollary}
+
+\begin{lemma}\label{lem:BoolRecUniqImpInd}
+In $\Hext$, if an algebra $\X : \BoolAlg_{\UU_i}$ satisfies the recursion and recursion uniqueness principles on the universe $\UU_j$ and $j \geq i$, then it satisfies the induction principle on $\UU_j$. In other words, we have
+\[ \HasBoolRec_{\UU_j}(\X) \times \HasBoolRecUniq_{\UU_j}(\X) \;\; \rightarrow \; \; \HasBoolInd_{\UU_j}(\X) \]
+provided $j \geq i$.
+\end{lemma}
+\begin{proof}
+Let algebras $(C,c_0,c_1) : \BoolAlg_{\UU_i}$ and $(E,e_0,e_1) : \BoolFibAlg_{\UU_j} \; (C,c_0,c_1)$ be given. 
+We use the recursion principle with the algebra $\big(\sm{x:C} E(x), (c_0,e_0), (c_1,e_1)\big)$. We note that the carrier type belongs to $\UU_j$ as $i \leq j$. This gives us a homomorphism $(u,\theta_0,\theta_1)$, where $u : C \to \sm{x:C} E(x)$, $\theta_0 : u(c_0) = (c_0,e_0)$, and $\theta_1 : u(c_1) = (c_1,e_1)$. We can now form two homomorphisms $\big(\fst \comp u, \refl(c_0), \refl(c_1)\big), \big(\idfun{C}, \refl(c_0), \refl(c_1)\big) : \BoolHom \; (C,c_0,c_1) \; (C,c_0,c_1)$; the former type-checks due to $\theta_0, \theta_1$. The recursion uniqueness principle tells us that these homomorphisms are equal. Thus, we have $\fst \comp u = \idfun{C}$ and in particular $\fst \comp u \equiv \idfun{C}$. 
+
+We can thus define the desired fibered homomorphism as $\big(\snd \comp u, \refl(e_0), \refl(e_1)\big) : \BoolFibHom \; (C,c_0,c_1) \; (E,e_0,e_1)$.
+\end{proof}
+
+\begin{corollary}\label{lem:BoolMain}
+In $\Hext$, the following conditions on an algebra $\X : \BoolAlg_{\UU_i}$ are equivalent:
+\begin{enumerate}
+\item $\mathcal{X}$ satisfies the induction principle on the universe $\UU_j$
+\item $\mathcal{X}$ satisfies the recursion and recursion uniqueness principles on the universe $\UU_j$
+\item $\mathcal{X}$ is initial on the universe $\UU_j$  
+\end{enumerate}
+for $j \geq i$. In other words, we have \[ \HasBoolInd_{\UU_j}(\X)  \;\; \simeq \;\; \HasBoolRec_{\UU_j}(\X) \times \HasBoolRecUniq_{\UU_j}(\X) \;\; \simeq \;\; \IsBoolInit_{\UU_j}(\X) \]
+provided $j \geq i$. Furthermore, all 3 conditions are mere propositions.
+\end{corollary}
+\begin{proof}
+Conditions (1) and (3) are mere propositions by Lem.~\ref{lem:IsContrIsProp}\ednote{Which says $\isprop(\iscontr(A))$} (for the latter), Lem.~\ref{lem:PropChar}\ednote{Which says $\isprop(A) \simeq A \to \isprop(A)$},~\ref{lem:BoolIndImpUniq} (for the former), and the fact that a family of mere propositions is itself a mere proposition.
+\end{proof}
+We can thus characterize the type $\Bool$ using the universal property of initiality as follows.
+\begin{corollary}
+In $\Hext$ extended with the type $\Bool$, the algebra $(\Bool,0,1) : \BoolAlg_{\UU_0}$ is initial on any universe $\UU_j$.
+\end{corollary}
+
+\begin{corollary}\label{lem:BoolChar}
+In $\Hext$ extended with an algebra $\X : \BoolAlg_{\UU_0}$ which is initial on any universe $\UU_j$, the type $\Bool$ is definable. 
+\end{corollary}
+\begin{proof}
+We have an algebra $\cdot \vdash \X : \BoolAlg_{\UU_0}$ such that for any $j$, there exists a term $\cdot \vdash h_j  : \IsBoolInit_{\UU_j}(\X)$. Since the requirement $j \geq 0$ always holds, Cor.~\ref{lem:BoolMain} implies that for any $j$, we have a term $\cdot \vdash r_j : \HasBoolInd_{\UU_j}(\X)$. This implies that the type $\Bool$ is definable.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{W-types}\label{subsection:wtypes}
+We recall the rules for W-types from~\cite{MartinLofP:inttt}; to state them more conveniently, we sometimes write $\W$ instead of $\W^{\UU_i}_{x : A}B(x)$; $\wsup(a,t)$ instead of $\wsup^{A,x.B}_{\UU_i}(a,t)$; and $\wind(m)$ instead of $\wind^{A,x.B}_{\UU_j}\big(w.E,a.t.s.e,m\big)$.
+
+\smallskip
+
+\begin{itemize}
+\item $\W$-formation rule.\smallskip
+\[
+\begin{prooftree}
+ A : \UU_i \qquad
+ x:A \vdash B(x) : \UU_i
+ \justifies
+ \W^{\UU_i}_{x : A}B(x)
+\end{prooftree}
+\]
+\item $\W$-introduction rule.\smallskip
+\[
+\begin{prooftree}
+A : \UU_i \qquad
+x:A \vdash B(x) : \UU_i \qquad
+a:A \qquad
+t : B(a) \to \W
+\justifies
+\wsup^{A,x.B}_{\UU_i}(a,t): \W
+\end{prooftree}
+\]
+\item $\W$-elimination rule.\smallskip
+\begin{mathpar}
+\inferrule{A : \UU_i \\ x:A \vdash B(x) : \UU_i \\ m : \W \\ w : \W \vdash E(w) : \UU_j \\ x:A, p: B(x) \to \W, r : \prd{b:B(x)} E(p \;b) \vdash e(x,p,r) :E(\wsup(x,p))}{\wind^{A,x.B}_{\UU_j}\big(w.E,x.p.r.e,m\big) : E(m)}
+\end{mathpar}
+\item $\W$-computation rule.\smallskip
+\begin{mathpar}
+\inferrule{A : \UU_i \\ x:A \vdash B(x) : \UU_i \\ a : A \\ t : B(a) \to \W \\ w : \W \vdash E(w) : \UU_j \\ x:A, p: B(x) \to \W, r : \prd{b:B(x)} E(p \;b) \vdash
+e(x,p,r) :E(\wsup(x,p))}
+{\wind(\wsup(a,t)) \equiv e(a,t,\lam{b:B(a)} \wind(t\;b)) : E(\wsup(a,t))}
+\end{mathpar}
+\end{itemize}
+
+\noindent
+\medskip
+
+W-types can be seen informally as the free algebras for signatures
+with operations of possibly infinite arity, but no equations. Indeed, the premises 
+of the formation rule above can be thought of as specifying a signature that has the elements of~$A$ 
+as operations and in which the arity of $a : A$ is the cardinality of the type $B(a)$. Then, the introduction rule specifies the canonical way of forming an element of the free algebra, and the elimination rule can be seen as the propositions-as-types translation of the appropriate induction principle.
+
+As before, the above rules imply a non-dependent version of elimination and the corresponding computation rule, where we write $\wrec(m)$ instead of $\wrec^{A,x.B}_{\UU_j}\big(C,x.r.c,m\big)$ where appropriate. \smallskip
+\begin{itemize}
+\item Simple $\W$-elimination rule.\smallskip
+\begin{mathpar}
+\inferrule{A : \UU_i \\ x:A \vdash B(x) : \UU_i \\ m : \W \\ C : \UU_j \\x:A, r : B(x) \to C \vdash c(x,r) : C}{\wrec^{A,x.B}_{\UU_j}\big(C,x.r.c,m\big) : C}
+\end{mathpar}
+\item Simple $\W$-computation rule.\smallskip
+\begin{mathpar}
+\inferrule{A : \UU_i \\ x:A \vdash B(x) : \UU_i \\ a : A \\ t : B(a) \to \W \\ C : \UU_j \\ x:A, r : B(x) \to C \vdash c(x,r) : C}
+{\wrec(\wsup(a,t)) \equiv c(a,\lam{b:B(a)} \wrec(t \;b)) : C}
+\end{mathpar}
+\end{itemize} \smallskip
+
+The induction principle also implies the following uniqueness principles, which state that any two functions out of $\W$ which satisfy the same recurrence are pointwise equal:
+\begin{itemize}
+\item $\W$-uniqueness principle.\smallskip
+\begin{mathpar}
+\inferrule{A : \UU_i \\ x:A \vdash B(x) : \UU_i \\ m : \W \\ w:\W \vdash E(w) : \UU_j \\ x:A, p: B(x) \to \W, r : \prd{b:B(x)} E(p \;b) \vdash
+e(x,p,r) :E(\wsup(x,p)) \\ w:\W \vdash f(w) : E(w) \\ x:A, p: B(x) \to \W \vdash f(\wsup(x,p)) \equiv e(x,p,\lam{b:B(x)} f(p \;b)) \\ w:\W \vdash g(w) : E(w) \\ x:A, p: B(x) \to \W \vdash g(\wsup(x,p)) \equiv e(x,p,\lam{b:B(x)} g(p \;b))}{f(m) \equiv g(m) : E(m)}
+\end{mathpar}
+\item Simple $\W$-uniqueness principle.\smallskip
+\begin{mathpar}
+\inferrule{A : \UU_i \\ x:A \vdash B(x) : \UU_i \\ m : \W \\ C : \UU_j \\ x:A, r : B(x) \to C \vdash c(x,r) : C \\ w:\W\vdash f(w) : C \\ x:A, p: B(x) \to \W \vdash f(\wsup(x,p)) \equiv c(x,\lam{b:B(x)} f(p \;b)) \\ w:\W\vdash g(x) : C \\ x:A, p: B(x) \to \W \vdash g(\wsup(x,p)) \equiv c(x,\lam{b:B(x)} g(p \;b))}{f(m) \equiv g(m) : C}
+\end{mathpar}
+\end{itemize} \smallskip
+As before, we can prove the dependent uniqueness principle by using the induction principle with the type family $w \mapsto f(w) =_{E(w)} g(w)$. For this we need to show that for any $x,p$ we have $f(\wsup(x,p)) = g(\wsup(x,p))$ under the induction hypothesis $\prd{b:B(x)} f(p\;b) = g(p\;b)$. Using this hypothesis with function extensionality we get $\lam{b:B(x)} f(p\;b) = \lam{b:B(x)} g(p\;b)$. Together with the premises of the uniqueness rule this gives us $f(\wsup(a,t)) = g(\wsup(a,t))$ as desired. The induction principle thus gives us pointwise propositional equality between $f$ and $g$ and we appeal to the identity reflection rule to finish the proof. The simple uniqueness principle again follows from the dependent one.
+
+We can now formulate the notions of algebras, homomorphisms, etc. accordingly:
+
+\begin{definition}\label{def:WAlg}
+For $A:\UU_i$, $B : A \to \UU_i$, define the type of \emph{$\W$-algebras} on a universe $\UU_j$ as
+\[\WAlg_{\UU_j}(A,B) \; \defeq \sm{C : \UU_j} \prd{a:A} (B(a) \to C) \to C \]
+\end{definition}
+
+\begin{definition}\label{def:WFibAlg}
+For $A:\UU_i$, $B : A \to \UU_i$, define the type of \emph{fibered $\W$-algebras} on a universe $\UU_k$ over $\mathcal{X} : \WAlg_{\UU_j}(A,B)$ by
+\[\WFibAlg_{\UU_k}(A,B) \; (C,c) \defeq \sm{E : C \to \UU_k} \prd{a:A}\prd{t: B(a) \to C} \big(\prd{b:B(a)} E(t \;b) \big) \to E(c(a,t)) \]
+\end{definition}
+
+\begin{definition}\label{def:WHom}
+For $A:\UU_i$, $B : A \to \UU_i$, $\X : \WAlg_{\UU_j}(A,B)$, $\Y : \WAlg_{\UU_k}(A,B)$, define the type of \emph{$\W$-homomorphisms} from $\X$ to $\Y$ by
+\[ \WHom \; (C,c) \; (D,d) \defeq \sm{f:C\to D}\prd{a:A}\prd{t: B(a) \to C} f(c(a,t)) = d(a,\lam{b:B(a)} f(t\;b)) \]
+\end{definition}
+
+\begin{definition}\label{def:WFibHom}
+For $A:\UU_i$, $B : A \to \UU_i$, $\X : \WAlg_{\UU_j}(A,B)$, $\Y : \WFibAlg_{\UU_k}(A,B) \; \X$, define the type of \emph{fibered $\W$-homomorphisms} from $\X$ to $\Y$ by
+\[ \WFibHom \; (C,c) \; (E,e) \defeq \sm{(f:\prd{x:C}E(x))}\prd{a:A}\prd{t: B(a) \to C} f(c(a,t)) = e(a,t,\lam{b:B(a)} f(t\;b)) \]
+\end{definition}
+
+\begin{definition}\label{def:WRec}
+For $A:\UU_i$, $B : A \to \UU_i$, an algebra $\X : \WAlg_{\UU_j}(A,B)$ \emph{satisfies the recursion principle} on a universe $\UU_k$ if for any algebra $\Y : \WAlg_{\UU_k}(A,B)$ there exists
+a $\W$-homomorphism between $\X$ and $\Y$:
+\[ \HasWRec_{\UU_k}(\X) \defeq \prd{(\Y:\WAlg_{\UU_k}(A,B))} \WHom \; \X \; \Y \]
+\end{definition}
+
+\begin{definition}\label{def:WInd}
+For $A:\UU_i$, $B : A \to \UU_i$, an algebra $\X : \WAlg_{\UU_j}(A,B)$ \emph{satisfies the induction principle} on a universe $\UU_k$ if for any fibered algebra $\Y : \WFibAlg_{\UU_k}(A,B) \; \X$ there exists a fibered $\W$-homomorphism between $\X$ and $\Y$:
+\[ \HasWInd_{\UU_k}(\X) \defeq \prd{(\Y:\WFibAlg_{\UU_k}(A,B) \; \X)} \WFibHom \; \X \; \Y \]
+\end{definition}
+
+\begin{definition}\label{def:WRecUniq}
+For $A:\UU_i$, $B : A \to \UU_i$, an algebra $\X : \WAlg_{\UU_j}(A,B)$ \emph{satisfies the recursion uniqueness principle} on a universe $\UU_k$ if for any algebra $\Y : \WAlg_{\UU_k}(A,B)$
+any two $\W$-homomorphisms between $\X$ and $\Y$ are equal:
+\[ \HasWRecUniq_{\UU_k}(\X) \defeq \prd{(\Y:\WAlg_{\UU_k}(A,B))} \isprop(\WHom \; \X \; \Y) \]
+\end{definition}
+
+\begin{definition}\label{def:WIndUniq}
+For $A:\UU_i$ and $B : A \to \UU_i$, an algebra $\X : \WAlg_{\UU_j}(A,B)$ \emph{satisfies the induction uniqueness principle} on a universe $\UU_k$ if for any fibered algebra $\Y : \WFibAlg_{\UU_k}(A,B) \; \X$ any two fibered $\W$-homomorphisms between $\X$ and $\Y$ are equal:
+\[ \HasWIndUniq_{\UU_k}(\X) \defeq \prd{(\Y:\WFibAlg_{\UU_k}(A,B) \; \X)} \isprop(\WFibHom \; \X \; \Y) \]
+\end{definition}
+
+\begin{definition}\label{def:WInit}
+For $A:\UU_i$ and $B : A \to \UU_i$, an algebra $\X : \WAlg_{\UU_j}(A,B)$ is \emph{initial} on a universe $\UU_k$ if for any algebra $\Y : \WAlg_{\UU_k}(A,B)$ there exists a unique $\W$-homomorphism between $\X$ and $\Y$:
+\[ \IsWInit_{\UU_k}(\X) \defeq \prd{(\Y:\WAlg_{\UU_k}(A,B))} \iscontr(\WHom \; \X \; \Y) \]  
+\end{definition}
+
+As before, the induction principle implies induction uniqueness:
+
+\begin{lemma}\label{lem:WIndImpUniq}
+In $\Hext$, for $A:\UU_i$, $B : A \to \UU_i$, if an algebra $\X : \WAlg_{\UU_j}(A,B)$ satisfies the induction principle on the universe $\UU_k$, it also satisfies the induction uniqueness principle on $\UU_k$. In other words, we have
+\[ \HasWInd_{\UU_k}(\X) \;\; \rightarrow \;\; \HasWIndUniq_{\UU_k}(\X) \]
+\end{lemma}
+\begin{proof}
+Let an algebra $(C,c) : \WAlg_{\UU_j}(A,B)$ be given. To prove the induction uniqueness principle, take any algebra $(E,e) : \WFibAlg_{\UU_k} \; (C,c)$ and homomorphisms $(f,\gamma), (g,\delta) : \WFibHom \; (C,c) \; (E,e)$. Because of UIP, showing $(f,\gamma) = (g,\delta)$ is equivalent to showing $f = g$. For the latter, we use the induction principle with the fibered algebra $\big(x \mapsto f(x) = g(x); a,t,s \mapsto \refl(f(c(a,t)) \big)$. This is indeed well-typed since $\gamma(a,t)$ gives us $f(c(a,t)) = e(a,t,\lam{b:B(a)} f(t\;b))$; $\delta(a,t)$ gives us $g(c(a,t)) = e(a,t,\lam{b:B(a)} g(t\;b))$; and $s$ together with function extensionality gives us
+$\lam{b:B(a)} f(t\;b) = \lam{b:B(a)} g(t\;b)$.
+
+The first component of the resulting homomorphism together with the function extensionality principle then give us $f = g$.
+\end{proof}
+
+%\begin{lemma}\label{lem:WRecUniqEqInit}
+%In $\Hext$, for $A:\UU_i$, $B : A \to \UU_i$, the following conditions on an algebra $\X : \WAlg_{\UU_j}(A,B)$ are equivalent:
+%\begin{enumerate}
+%\item $\X$ satisfies the recursion and recursion uniqueness principles on the universe $\UU_k$
+%\item $\X$ is initial on the universe $\UU_k$
+%\end{enumerate}
+%In other words, we have
+%\[ \HasWRec_{\UU_k}(\X) \times \HasWRecUniq_{\UU_k}(\X) \;\; \simeq \;\; \IsWInit_{\UU_k}(\X) \]
+%\end{lemma}
+%\begin{proof}
+%By Lem.~\ref{lem:ContrChar}.
+%\end{proof}
+
+\begin{corollary}\label{lem:WIndImpInit}
+In $\Hext$, for $A:\UU_i$, $B : A \to \UU_i$, if an algebra $\X : \WAlg_{\UU_j}(A,B)$ satisfies the induction principle on the universe $\UU_k$, it is initial on $\UU_k$. In other words, we have
+\[ \HasWInd_{\UU_k}(\X) \;\; \rightarrow \;\; \IsWInit_{\UU_k}(\X) \]
+\end{corollary}
+
+\begin{lemma}\label{lem:WRecUniqImpInd}
+In $\Hext$, for $A:\UU_i$, $B : A \to \UU_i$, if an algebra $\X : \WAlg_{\UU_j}(A,B)$ satisfies the recursion and recursion uniqueness principles on the universe $\UU_k$ and $k \geq j$, then it satisfies the induction principle on $\UU_k$. In other words, we have
+\[ \HasWRec_{\UU_k}(\X) \times \HasWRecUniq_{\UU_k}(\X) \;\; \rightarrow \; \; \HasWInd_{\UU_k}(\X) \]
+provided $k \geq j$.
+\end{lemma}
+\begin{proof}
+Let algebras $(C,c) : \WAlg_{\UU_j}(A,B)$ and $(E,e) : \WFibAlg_{\UU_k} \; (C,c)$ be given. 
+We use the recursion principle with the algebra $(\sm{x:C} E(x); a,s \mapsto d(a,s))$ where
+\[ d(a,s) \defeq \Big(c\big(a,\lam{b:B(a)} \fst(s\;b)\big), e\big(a, \lam{b:B(a)} \fst(s\;b), \lam{b:B(a)} \snd(s\;b)\big) \Big) \big) \]
+We note that the carrier type belongs to $\UU_k$ as $j \leq k$. This gives us a homomorphism $(u,\theta)$, where $u : C \to \sm{x:C} E(x)$ and $\theta : \prd{a}\prd{t} u(c(a,t)) = d(a,\lam{b:B(a)}u(t\;b))$. We can now form two homomorphisms 
+\[\big(\fst \comp u; a,t \mapsto \refl_{c(a,\lam{b:B(a)}u(t\;b))}\big), \big(\idfun{C}; a,t \mapsto \refl_{c(a,t)}\big) : \WHom \; (C,c) \; (C,c)\] The first one type-checks due to $\theta$. The recursion uniqueness principle tells us that these homomorphisms are equal. Thus, $\fst \comp u = \idfun{C}$ and in particular $\fst \comp u \equiv \idfun{C}$. 
+
+We can thus define the desired fibered homomorphism as \[\big(\snd \comp u; a,t \mapsto \refl(e(a,t,\lam{b:B(a)}\snd(u(t\;b))))\big) : \WFibHom \; (C,c) \; (E,e)\]
+which type-checks due to $\theta$ and the fact that $\fst \comp u \equiv \idfun{C}$.
+\end{proof}
+
+\begin{corollary}\label{lem:WMain}
+In $\Hext$, for $A:\UU_i$, $B : A \to \UU_i$, the following conditions on an algebra $\X : \WAlg_{\UU_j}(A,B)$ are equivalent:
+\begin{enumerate}
+\item $\X$ satisfies the induction principle on the universe $\UU_k$
+\item $\X$ satisfies the recursion and recursion uniqueness principles on the universe $\UU_k$
+\item $\X$ is initial on the universe $\UU_k$  
+\end{enumerate}
+for $k \geq j$. In other words, we have \[ \HasWInd_{\UU_k}(\X)  \;\; \simeq \;\; \HasWRec_{\UU_k}(\X) \times \HasWRecUniq_{\UU_k}(\X) \;\; \simeq \;\; \IsWInit_{\UU_k}(\X) \]
+provided $k \geq j$. Furthermore, all 3 conditions are mere propositions.
+\end{corollary}
+\begin{proof}
+Conditions (1) and (3) are mere propositions by Lem.~\ref{lem:IsContrIsProp} (for the latter), Lem.~\ref{lem:PropChar},~\ref{lem:BoolIndImpUniq} (for the former), and the fact that a family of mere propositions is itself a mere proposition.
+\end{proof}
+
+We can thus characterize $\W$-types using the universal property of initiality as follows.
+\begin{corollary}\label{lem:WInit}
+In $\Hext$ with $\W$-types, for any $A:\UU_i$, $B : A \to \UU_i$, the algebra \[\Big(\W^{\UU_i}_{x:A}B(x),\lam{a}\lam{t} \wsup_{\UU_i}^{A,x.B(x)}(a,t) \Big) : \WAlg_{\UU_i}(A,B)\] is initial on any universe $\UU_j$.
+\end{corollary}
+
+\begin{corollary}\label{lem:WChar}
+In $\Hext$ extended with an algebra $\X_{\UU_i}(A,B) : \WAlg_{\UU_i}(A,B)$ for any $\UU_i$, $A : \UU_i$, $B : A \to \UU_i$, which is initial on any universe $\UU_j$, Martin-L{\"o}f's $\W$-types are definable.
+\end{corollary}
+\begin{proof}
+For any $i$, the algebra $A:\UU_i,B:A\to \UU_i \vdash \X_{\UU_i}(A,B) : \WAlg_{\UU_i}(A,B)$ is such that for any $j$, there exists a term $A:\UU_i,B:A\to \UU_i \vdash h^i_j  : \IsWInit_{\UU_j}(\X_{\UU_i}(A,B))$. By Cor.~\ref{lem:BoolMain}, for any $j \geq i$ there is a term $A:\UU_i,B:A\to \UU_i \vdash r^i_j : \HasWInd_{\UU_j}(\X_{\UU_i}(A,B))$. Since universes are cumulative, this implies that such a term $r^i_j$ exists \emph{for any $j$}. This in turn implies that $\W$-types are definable.
+\end{proof}
+
+We conclude by the type-theoretic analogue of Lambek's lemma for $\W$-types, which asserts that the structure map of an initial algebra is an equivalence. In $\Hext$ any equivalence is also a type isomorphism, which then gives us the more familiar formulation of Lambek's lemma.
+
+\begin{lemma}\label{lem:ExtLambek}
+Over $\Hext$, for $A:\UU_i$, $B : A \to \UU_i$, if an algebra $(C,c) : \WAlg_{\UU_j}(A,B)$ is initial on $\UU_j$ and $j \geq i$, then the map from $\sm{x:A} B(x) \to C$ to $C$ given by $c$ is an equivalence.
+\end{lemma}
+\begin{proof}
+By abuse of notation we refer to both the curried and uncurried versions of the structure map by $c$. Since $(C,c)$ is initial on $\UU_j$, it satisfies the recursion principle on $\UU_j$. We use it with the algebra \[\Big(\sm{x:A} B(x) \to C; a,s \mapsto \big(a,\lam{b:B(a)} c(s\;b)\big)\Big)\]
+We note that the carrier type belongs to $\UU_j$ as $i \leq j$. This gives us a homomorphism $(u,\theta)$ where $u : C \to \big(\sm{x:A} B(x) \to C\big)$ and $\theta : \prd{a}\prd{t} u(c(a,t)) = \big(a,\lam{b:B(a)} c(u(t\;b))\big)$.  We can now form two homomorphisms
+\[\big(c \comp u; a,t \mapsto \refl_{c(a,\lam{b:B(a)}u(t\;b))}\big), \big(\idfun{C}; a,t \mapsto \refl_{c(a,t)}\big) : \WHom \; (C,c) \; (C,c)\] where the first one type-checks due to $\theta$. Since $(C,c)$ is initial on $\UU_j$, it satisfies the recursion uniqueness principle on $\UU_j$, thus the above homomorphisms are equal. Thus, we have $c \comp u = \idfun{C}$, hence $c \comp u \sim \idfun{C}$ and also $c \comp u \equiv \idfun{C}$. The latter together with $\theta$ implies that for any $a,t$, we have $u(c(a,t)) \equiv (a,t)$. Thus $u \comp c \sim \idfun{\sm{x:A} B(x) \to C}$.
+\end{proof}
+
+\begin{corollary}
+Over $\Hext$, given $A:\UU_i$, $B : A \to \UU_i$ and $a_1,a_2:A$, $t_1 : B(a_1) \to \W$, $t_2 : B(a_2) \to \W$ we have
+\[ \wsup(a_1,t_1) = \wsup(a_2,t_2) \;\;\; \simeq \;\;\; (a_1,t_1) = (a_2,t_2)\]
+\end{corollary}
+\begin{proof}
+By Lem.~\ref{lem:ExtLambek} and Cor.~\ref{lem:WInit}, the structure map $\wsup$ defines an equivalence between $\sm{x:A} B(x) \to \W$ and $\W$. The rest follows from Lem.~\ref{lem:apeq}\ednote{Which says that $a = b$ is equivalent to $f(a) = f(b)$ if $f$ is an equivalence}.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%
+
+
+%\subsection{Inductive types as W-types}
+%
+%\noindent To conclude our review, recall that in extensional type theory, many inductive types can be reduced to W-types.  We mention the following  examples, among many others (see \cite{MartinLofP:inttt}, \cite{DybjerP:repids}, \cite{GoguenH:inddtw}, \cite{MoerdijkI:weltc}, \cite{GambinoN:weltdp}, \cite{AbbottM:concsp}):
+%\begin{enumerate}
+%\item \emph{Natural numbers}. \label{extnatW}
+%The usual rules for $\nat$ as an inductive type can be derived from its formalization as the following W-type. Consider the signature with two operations, one of which has arity $0$ and one of which has arity $1$; it is presented type-theoretically by a dependent type with corresponding polynomial functor (naturally isomorphic to)
+%\[
+%P(X) = \mathsf{1} + X \, ,
+%\]
+%%
+%and the natural numbers $\nat$ together with the canonical element $0:\nat$ and the successor function $s : \nat\rightarrow\nat$ form an initial $P$-algebra
+%\[
+%(0, s) : \mathsf{1} + \nat \rightarrow \nat\, .
+%\]
+%%
+%\item \emph{Second number class.}
+%As shown in~\cite{MartinLofP:inttt}, the second number class can be obtained as a W-type determined by the polynomial functor 
+%\[
+%P(X) = \mathsf{1} + X + (\nat \rightarrow X) \, .
+%\]
+%This has algebras with three operations, one of arity $0$, one of arity $1$, and one of arity (the cardinality of) $\nat$.
+%%
+%%\item \emph{Lists.}  The type $\List(A)$ of finite lists of elements of type $A$ can be built as a W-type determined by the polynomial functor 
+%%\[
+%%P(X) = \mathsf{1} + A\!\times\! X \, .
+%%\]
+%%We refer to \cite{xxx} % need a reference here !
+%% for details.
+%\end{enumerate}
+%
+%\smallskip

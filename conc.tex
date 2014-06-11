@@ -1,0 +1,21 @@
+The treatment of W-types presented here is part of a larger investigation of general inductive types in Homotopy Type Theory.  We sketch the projected course of our further research.
+
+\begin{enumerate}
+\item  In the setting of  extensional type theory, Dybjer \cite{DybjerP:repids} showed that every strictly positive definable functor can be represented as a polynomial functor, so that all such inductive types are in fact W-types.  This result should generalize to the present setting in a straightforward way.
+
+\item Also in the extensional setting, Gambino and Hyland~\cite{GambinoN:weltdp} showed that 
+general tree types~\cite{PeterssonK:setcis}~\cite[Chapter~16]{NordstromB:promlt}, viewed as 
+initial algebras for general polynomial functors, can be constructed from W-types in
+locally cartesian closed categories, using equalizers. We expect this result to carry over to the present setting as well, using $\id{}$-types in place of equalizers.
+
+\item In \cite{VoevodskyV:notts} Voevodsky has shown that all inductive types of the Predicative Calculus of Inductive Constructions can be reduced to the following special cases:
+\begin{itemize}
+\item $\mathsf{0}$,\ $\mathsf{1}$,\ $A+B$,\  $(\Sigma x : A)B(x)$,
+\item $\id{A}(a,b)$,
+\item general tree types.
+\end{itemize}
+Combining this with the foregoing, we expect to be able to extend our Theorem \ref{theorem:main} to the full system of predicative inductive types underlying Coq.
+\end{enumerate}
+
+\noindent Finally, one of the most exciting recent developments in Univalent Foundations is the 
+idea of Higher Inductive Types (HITs), which can also involve identity terms in their signature~\cite{LumsdaineP:higit,ShulmanM:higit}.   This allows for algebras with equations between terms, like associative laws, coherence laws, etc.; but the really exciting aspect of HITs comes from the homotopical interpretation of identity terms as paths.  Viewed thus, HITs should permit direct formalization of many basic geometric spaces and constructions, such as the unit interval $I$; the spheres $S^n$, tori, and cell complexes; truncations, such as the [bracket] types \cite{AwodeyS:prot}; various kinds of quotient types; homotopy (co)limits; and many more fundamental and fascinating objects of geometry not previously captured by type-theoretic formalizations.  Our investigation of conventional inductive types in the homotopical setting should lead to a deeper understanding of these new and important geometric analogues. 
