@@ -1,0 +1,14 @@
+\contentsline {section}{\tocsection {}{1}{Introduction}}{1}
+\contentsline {section}{\tocsection {}{2}{The dependent type theories $\mathcal {H}$ and $\mathcal {H}_{\mathrm {ext}}$}}{3}
+\contentsline {subsection}{\tocsubsection {}{2.1}{The system $\mathcal {H}$}}{3}
+\contentsline {subsubsection}{\tocsubsubsection {}{}{Remarks}}{4}
+\contentsline {subsection}{\tocsubsection {}{2.2}{Homotopy-theoretic notions in type theory}}{4}
+\contentsline {section}{\tocsection {}{3}{Simple inductive types}}{6}
+\contentsline {subsection}{\tocsubsection {}{3.1}{Simple inductive types: extensional case}}{6}
+\contentsline {subsection}{\tocsubsection {}{3.2}{Simple inductive types: intensional case}}{10}
+\contentsline {section}{\tocsection {}{4}{W-types}}{16}
+\contentsline {subsection}{\tocsubsection {}{4.1}{W-types: extensional case}}{16}
+\contentsline {subsection}{\tocsubsection {}{4.2}{W-types: intensional case}}{20}
+\contentsline {section}{\tocsection {}{5}{Definability}}{29}
+\contentsline {section}{\tocsection {}{6}{Acknowledgements}}{33}
+\contentsline {section}{\tocsection {}{}{References}}{33}

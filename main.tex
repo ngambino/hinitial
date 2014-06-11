@@ -1,16 +1,19 @@
-\documentclass[11pt]{article}
-\usepackage[all]{xy}
+\documentclass[reqno,10pt,a4paper,oneside]{amsart}
 
-\usepackage{amsmath}
+\usepackage{amsmath,geometry}
 \usepackage{amssymb,mathpartir,mathtools}
 \usepackage{latexsym}
 \usepackage{amsthm}
-\usepackage[show]{ed}
+ \usepackage[show]{ed}
 \usepackage{leftidx}
 \usepackage{tikz}
+
+\usepackage[all]{xy}
+\newcommand{\xycenter}[1]{\vcenter{\hbox{\xymatrix{#1}}}}
+\SelectTips{cm}{}
+
 \input{prooftree}
 
-\newcommand{\xycenter}[1]{\vcenter{\hbox{\xymatrix{#1}}}}
 
 % Commands
 
@@ -136,18 +139,154 @@
              {\mathbin{\raisebox{0.1ex}{$\scriptscriptstyle\,\centerdot\,$}}}}
 
 
-% theorem styles
-\newtheorem{theorem}{Theorem}
+% Table of contents
+
+\makeatletter
+\def\@tocline#1#2#3#4#5#6#7{\relax
+\ifnum #1>\c@tocdepth % then omit
+  \else 
+    \par \addpenalty\@secpenalty\addvspace{#2}% 
+\begingroup \hyphenpenalty\@M
+    \@ifempty{#4}{%
+      \@tempdima\csname r@tocindent\number#1\endcsname\relax
+ }{%
+   \@tempdima#4\relax
+ }%
+ \parindent\z@ \leftskip#3\relax \advance\leftskip\@tempdima\relax
+ \rightskip\@pnumwidth plus4em \parfillskip-\@pnumwidth
+ #5\leavevmode\hskip-\@tempdima #6\nobreak\relax
+ \ifnum#1<0\hfill\else\dotfill\fi\hbox to\@pnumwidth{\@tocpagenum{#7}}\par
+ \nobreak
+ \endgroup
+  \fi}
+\makeatother
+
+\setcounter{tocdepth}{1}
+
+% Part
+
+\makeatletter
+
+\renewcommand{\part}{\@startsection
+  {part}% name
+  {0}% level
+  {0mm}% indent
+  {2\baselineskip}% beforeskip
+  {1\baselineskip}% afterskip
+  {\centering \Large\sc}}% style
+
+\makeatother
+
+ \renewcommand{\thepart}{\Roman{part}} 
+
+% Section 
+
+\makeatletter
+
+  \renewcommand{\section}{\@startsection
+  {section}% name
+   {1}% level
+  {0mm}% indent
+   {-\baselineskip}% beforeskip
+  {0.5\baselineskip}% afterskip
+   {\Large\bfseries}}% style
+
+ \renewcommand{\subsection}{\@startsection
+  {subsection}% name
+  {2}% level
+  {0mm}% indent
+  {-\baselineskip}% beforeskip
+  {0.5\baselineskip}% afterskip
+  {\normalfont\normalsize\bf}}% styles
+
+\makeatother
+
+% Text abbreviations
+
+\newcommand{\ie}{\text{i.e.\ }}
+\newcommand{\eg}{\text{e.g.}}
+\newcommand{\resp}{\text{resp.\ }}
+
+
+% Theorems
+
+%%% Definition of the theorem environments
+
+\numberwithin{equation}{section}
+
+\newtheoremstyle{mythm}% 
+{10pt}% Space above 
+{}% Space below 
+{\itshape}% Body font 
+{}% Indent amount 
+{\bfseries}%  Theorem head font 
+{.}% Punctuation after theorem head 
+{.5em}% Space after theorem head 
+{}% 
+
+\newtheoremstyle{mydef}% 
+{10pt}% Space above 
+{3pt}% Space below 
+{}% Body font 
+{}% Indent amount 
+{\bfseries}%  Theorem head font 
+{.}% Punctuation after theorem head 
+{.5em}% Space after theorem head 
+{}% 
+
+\newtheoremstyle{myrmk}% 
+{10pt}% Space above 
+{3pt}% Space below 
+{}% Body font 
+{}% Indent amount 
+{\bfseries}%  Theorem head font 
+{.}% Punctuation after theorem head 
+{.5em}% Space after theorem head 
+{}% 
+
+
+
+\theoremstyle{mythm}
+\newtheorem{theorem}{Theorem}[section]
 \newtheorem*{theorem*}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma} 
 \newtheorem{proposition}[theorem]{Proposition} 
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{corollary}[theorem]{Corollary} 
-\theoremstyle{definition}
-\newtheorem{definition}[theorem]{Definition}
-%\theoremstyle{remark}
+\newtheorem{corollary}[theorem]{Corollary}  
+\newtheorem{apptheorem}{Theorem}
+
+\newtheorem{atheorem}{Theorem}
+\renewcommand*{\theatheorem}{\Alph{atheorem}}
+
+
+
+
+\theoremstyle{mydef}
+\newtheorem{definition}[theorem]{Definition}	
+\newtheorem*{definition*}{Definition}	
+
+\theoremstyle{myrmk}
+
 \newtheorem{remark}[theorem]{Remark} 
-\newtheorem*{remarks*}{Remarks}
+\newtheorem*{remark*}{Remark} 
 \newtheorem{example}[theorem]{Example}
+\newtheorem{examples}[theorem]{Examples}
+\newtheorem*{example*}{Example}
+\newtheorem*{examples*}{Examples}
+
+
+
+% theorem styles
+%\newtheorem{theorem}{Theorem}[section]
+%\newtheorem*{theorem*}{Theorem}
+%\newtheorem{proposition}[theorem]{Proposition} 
+%\newtheorem{lemma}[theorem]{Lemma}
+%\newtheorem{corollary}[theorem]{Corollary} 
+%\theoremstyle{definition}
+%\newtheorem{definition}[theorem]{Definition}
+%\theoremstyle{remark}
+%\newtheorem{remark}[theorem]{Remark} 
+%\newtheorem*{remarks*}{Remarks}
+%\newtheorem{example}[theorem]{Example}
 
 
 %\acmVolume{V}
@@ -163,7 +302,6 @@
 
 
 
-\markboth{S. Awodey et al.}{Homotopy Initial Algebras in Type Theory}
 
 %\title{Inductive Types in Homotopy Type Theory}
 %\author{STEVE AWODEY
@@ -173,23 +311,22 @@
 %KRISTINA SOJAKOVA
 %\affil{Carnegie Mellon University}}
 
-\title{Homotopy Initial Algebras in Type Theory}
-\author{STEVE AWODEY\thanks{Carnegie Mellon University}
-\and NICOLA GAMBINO
-\thanks{Institute for Advanced Study}
-\and KRISTINA SOJAKOVA
-\thanks{Carnegie Mellon University}
-}
+\title{Homotopy-initial algebras in type theory}
+\author[S. Awodey]{STEVE AWODEY}
+
+\address{Carnegie Mellon University}
+\author[N. Gambino]{NICOLA GAMBINO}
+
+\address{School of Mathematics, University of Leeds}
+
+
+\author[K. Sojakova]{KRISTINA SOJAKOVA}
+
+\address{Carnegie Mellon University}
+
 
 
 %
-
-\begin{abstract}
-Homotopy type theory is an interpretation of Martin-L\"of's constructive type theory into abstract homotopy theory.   There results a link between constructive mathematics and algebraic topology, providing topological semantics for intensional systems of type theory as well as a computational approach to algebraic topology via type theory-based proof assistants such as~Coq.
-
-The present work investigates inductive types in this setting. Modified rules for inductive types, including types of well-founded trees, or W-types, are presented, and the basic homotopical semantics of such types are determined.  Proofs of all results have been formally verified by the Coq proof assistant, and the proof scripts for this verification form an essential component of this research.      
-\end{abstract}
-
 
 % \category{F.4.1}{Mathematical Logic and Formal Languages}{Mathematical Logic}
 
@@ -213,7 +350,21 @@ The present work investigates inductive types in this setting. Modified rules fo
 %\end{bottomstuff}
 
 
+
+\begin{abstract}
+Homotopy type theory is an interpretation of Martin-L\"of's constructive type theory into abstract homotopy theory.   There results a link between constructive mathematics and algebraic topology, providing topological semantics for intensional systems of type theory as well as a computational approach to algebraic topology via type theory-based proof assistants such as~Coq.
+
+The present work investigates inductive types in this setting. Modified rules for inductive types, including types of well-founded trees, or W-types, are presented, and the basic homotopical semantics of such types are determined.  Proofs of all results have been formally verified by the Coq proof assistant, and the proof scripts for this verification form an essential component of this research.      
+\end{abstract}
+
+
 \maketitle
+
+
+\begin{small}
+\tableofcontents
+\end{small}
+
 
 \section{Introduction}
 
@@ -227,7 +378,7 @@ In the present work, we build on this homotopical interpretation to study induct
 However, most programming languages and proof assistants, such as Coq~\cite{BertotY:inttpp}, Agda~\cite{NorellU:towppl} and Epigram~\cite{McBrideC:viefl} use schematic inductive definitions~\cite{CoquandT:inddt,PaulinMorhringC:inddsc} rather than W-types to define inductive types.  This is due in part to the practical convenience of the schematic approach, but it is also a matter of necessity; these systems are based on intensional rather than extensional type theories, and in the intensional theory the usual reductions of inductive types to W-types fail~\cite{DybjerP:repids,McBrideC:wtygnb}.
 Nonetheless, W-types retain great importance from a theoretical perspective, since they allow us to internalize in type theory arguments about inductive types. Furthermore, as we will see in Section~\ref{section:intW}, a limited form of extensionality licensed by the homotopical interpretation suffices to develop the theory of W-types in a satisfactory way. In particular, we shall make use of ideas from higher category theory and homotopy theory to understand W-types as ``homotopy-initial" algebras of an appropriate kind.
 
-\newpage
+\vspace{3cm}
 
 In intensional type theories, inductive types cannot be characterized by standard category-theoretic
 universal properties. For instance, in this setting it is not possible to show that there exists a 
@@ -258,6 +409,11 @@ rules we make use of standard conventions to simplify the exposition, such as om
 of a context that is common to premisses and conclusions of the rule.
 The rules for identity types in intensional type theories are given in~\cite[Section~5.5]{NordstromB:marltt}. We recall them here in a slighly different, but equivalent, formulation.
 
+
+\begin{table}[ht]
+\fbox{ 
+\begin{minipage}{12cm}
+\medskip
 \begin{itemize}
 \item $\Id$-formation rule.
 \[
@@ -299,7 +455,10 @@ x, y :  A, u :  \id{A}(x,y) \vdash C(x,y,u) :  \type \\
 x :  A \vdash \idrec(x,x,\refl(x), c) = c(x) :  C(x, x, \refl(x)) \, .
 \end{prooftree}
 \]
-\end{itemize}
+\end{itemize} \medskip
+\end{minipage}}
+\medskip
+\end{table}
 
 \medskip
 
@@ -498,13 +657,18 @@ In Section \ref{section:intW} below, these and related homotopy-theoretic insigh
 \section{Simple inductive types}
 \label{section:simple}
 
-\subsection{Extensional case}
+\subsection{Simple inductive types: extensional case}
 \label{subsection:bool}
 
 
 The type $\Bool$ is not a W-type, but can be formulated as an inductive type in the familiar way by means of formation, introduction, elimination, and computation rules:
 \smallskip
 
+
+\begin{table}[ht]
+\fbox{ 
+\begin{minipage}{12cm}
+\medskip
 \begin{itemize}
 \item $\Bool$-formation rule.
 \[
@@ -540,11 +704,30 @@ e_1 : E(1)
 \right.
 \end{prooftree}
  \end{equation*} 
-\end{itemize}\smallskip
+\end{itemize}
+\medskip
+\end{minipage}}
+\end{table}
+
+
+
 The above rules imply a non-dependent (simple) version of elimination and the corresponding computation rules:
 \smallskip
 
+
+\begin{table}[ht]
+\fbox{ 
+\begin{minipage}{12cm}
+\medskip
 \begin{itemize}
+\item $\Bool$-formation rule.
+\[
+ \Bool : \UU_i \, .
+ \]
+\item $\Bool$-introduction rules.
+\[
+0 : \Bool \, ,  \qquad  1 : \Bool \, .
+\]
 \item Simple $\Bool$-elimination rule (``recursion").\smallskip
 \[
 \begin{prooftree}
@@ -571,12 +754,7 @@ c_1 : C \qquad
 \right.
 \end{prooftree}
  \end{equation*} 
-\end{itemize}
-Furthermore, the induction principle implies the following uniqueness principles, which state that any two functions out of $\Bool$ which agree on the constructors are (pointwise) equal:
-\smallskip
-
-\begin{itemize}
-\item $\Bool$-uniqueness principle.\smallskip
+ \item $\Bool$-uniqueness principle.\smallskip
 \begin{mathpar}
 \inferrule{b : \Bool \\ x : \Bool \vdash E(x) : \UU_i \\ e_0 : E(0) \\ e_1 : E(1) \\ \\\\ x : \Bool \vdash f(x) : E(x) \\ f(0) \equiv e_0 \\ f(1) \equiv e_1 \\ \\\\ x : \Bool \vdash g(x) : E(x) \\ g(0) \equiv e_0 \\ g(1) \equiv e_1}{f(b) \equiv g(b) : E(b)}
 \end{mathpar}
@@ -584,7 +762,16 @@ Furthermore, the induction principle implies the following uniqueness principles
 \begin{mathpar}
 \inferrule{b : \Bool \\ C : \UU_i \\ c_0 : C \\ c_1 : C \\ \\\\ x : \Bool \vdash f(x) : C \\ f(0) \equiv c_0 \\ f(1) \equiv c_1 \\ \\\\ x : \Bool \vdash g(x) : C \\ g(0) \equiv c_0 \\ g(1) \equiv c_1}{f(b) \equiv g(b) : C}
 \end{mathpar}
-\end{itemize} \smallskip
+\end{itemize}
+\end{minipage}
+}
+\end{table}
+
+
+
+Furthermore, the induction principle implies the following uniqueness principles, which state that any two functions out of $\Bool$ which agree on the constructors are (pointwise) equal:
+\smallskip
+
 
 \emph{Remark}: In this particular case, we could also write $f(0) \equiv g(0) : E(0)$ and $f(1) \equiv g(1) : E(1)$ in the premises, avoiding the mention of $e_0$ and $e_1$ altogether (and similarly for the simple uniqueness principle). However, the form we chose follows a general schema (see Defs.~\ref{def:BoolFibHom} and~\ref{def:BoolIndUniq}) which scales to more complicated inductive types.
 
@@ -715,9 +902,9 @@ In $\Hext$ extended with an algebra $\X : \BoolAlg_{\UU_0}$ which is initial on 
 We have an algebra $\cdot \vdash \X : \BoolAlg_{\UU_0}$ such that for any $j$, there exists a term $\cdot \vdash h_j  : \IsBoolInit_{\UU_j}(\X)$. Since the requirement $j \geq 0$ always holds, Cor.~\ref{lem:BoolMain} implies that for any $j$, we have a term $\cdot \vdash r_j : \HasBoolInd_{\UU_j}(\X)$. This implies that the type $\Bool$ is definable.
 \end{proof}
 
-\subsection{Intensional case}
+\subsection{Simple inductive types: intensional case}
 
-\subsection{The type $\Bool$}
+
 Although the rules for the type $\Bool$ as presented in section \ref{subsection:bool} are the natural ones to consider in the setting of homotopy type theory, they do not imply a strict universal property. For example, given a type $C:\UU_i$ and elements $c_0, c_1 : C$, the function $\lam{x:\Bool}\boolrec(C,c_0,c_1,x) : \Bool \rightarrow C$ cannot, in general, be shown to be definitionally unique among the functions $f : \Bool \rightarrow C$ with the property that $f(0) \equiv c_0 : C$ and $f(1) \equiv c_1 : C$.\ednote{Do we need a reference for this?}
 The best that one can do is to show that it is unique among all such maps up to a path, which itself is unique up to a higher path, which in turn is unique up to a yet higher path, etc. This sort of ``homotopy" $\omega$-universality, which apparently involves infinitely much data, can nonetheless be captured directly within the system of type theory (without resorting to coinduction) using ideas from higher category theory. To obtain a full characterization of the type $\Bool$ using this alternate universal condition, we relax the computation rules from section \ref{subsection:bool} to involve propositional, rather than definitional, equality: \smallskip
 \begin{itemize}
@@ -1031,7 +1218,7 @@ It is worth emphasizing that homotopy-initiality is a purely type-theoretic noti
 \section{W-types}
 \label{section:wfiles}
 
-\subsection{Extensional case}
+\subsection{W-types: extensional case}
 
 We recall the rules for W-types from~\cite{MartinLofP:inttt}; to state them more conveniently, we sometimes write $\W$ instead of $\W^{\UU_i}_{x : A}B(x)$; $\wsup(a,t)$ instead of $\wsup^{A,x.B}_{\UU_i}(a,t)$; and $\wind(m)$ instead of $\wind^{A,x.B}_{\UU_j}\big(w.E,a.t.s.e,m\big)$.
 
@@ -1247,7 +1434,7 @@ By Lem.~\ref{lem:ExtLambek} and Cor.~\ref{lem:WInit}, the structure map $\wsup$ 
 \end{proof}
 
 
-\subsection{Intensional case}
+\subsection{W-types: intensional case}
 
 
 Although it is more elaborate to state (and difficult to prove) owing to the presence of 
@@ -1794,7 +1981,7 @@ We have an algebra $\cdot \vdash \X : \NatAlg_{\UU_0}$ such that for any $j$, th
 \end{proof}
 
 
-\section{Future work}\label{section:future}
+
 
 
 
@@ -1821,6 +2008,6 @@ Research Office.
 
 \bibliography{references}
                         
-\received{}{}{}
+
 
 \end{document}
