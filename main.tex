@@ -1,8 +1,19 @@
+<<<<<<< HEAD
 \documentclass[prodmode,acmjacm]{acmsmall}
 
 \usepackage{amsmath}
 \usepackage[all]{xy}
 \usepackage{amssymb,mathpartir,mathtools}
+=======
+%\documentclass[prodmode,acmjacm]{acmsmall}
+\documentclass[11pt]{article}
+\usepackage[all]{xy}
+
+\usepackage{amsmath}
+\usepackage{amssymb,mathpartir,mathtools}
+\usepackage{latexsym}
+\usepackage{amsthm}
+>>>>>>> FETCH_HEAD
 \usepackage[show]{ed}
 \usepackage{leftidx}
 \usepackage{tikz}
@@ -133,6 +144,22 @@
              {\mathbin{\raisebox{0.25ex}{$\scriptstyle\,\centerdot\,$}}}%
              {\mathbin{\raisebox{0.1ex}{$\scriptscriptstyle\,\centerdot\,$}}}}
 
+<<<<<<< HEAD
+=======
+% theorem styles
+\newtheorem{theorem}{Theorem}
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition} 
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary} 
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+%\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark} 
+\newtheorem*{remarks*}{Remarks}
+\newtheorem{example}[theorem]{Example}
+
+>>>>>>> FETCH_HEAD
 %\acmVolume{V}
 %\acmNumber{N}
 %\acmArticle{A}
@@ -141,6 +168,7 @@
 
 \begin{document}
 
+<<<<<<< HEAD
 \markboth{S. Awodey et al.}{Inductive Types in Homotopy Type Theory}
 
 \title{Inductive Types in Homotopy Type Theory}
@@ -151,12 +179,35 @@ NICOLA GAMBINO
 KRISTINA SOJAKOVA
 \affil{Carnegie Mellon University}}
 
+=======
+\markboth{S. Awodey et al.}{Homotopy Initial Algebras in Type Theory}
+
+%\title{Inductive Types in Homotopy Type Theory}
+%\author{STEVE AWODEY
+%\affil{Carnegie Mellon University}
+%NICOLA GAMBINO
+%\affil{Institute for Advanced Study}
+%KRISTINA SOJAKOVA
+%\affil{Carnegie Mellon University}}
+
+\title{Inductive Types in Homotopy Type Theory}
+\author{STEVE AWODEY\thanks{Carnegie Mellon University}
+\and NICOLA GAMBINO
+\thanks{Institute for Advanced Study}
+\and KRISTINA SOJAKOVA
+\thanks{Carnegie Mellon University}
+}
+
+
+%
+>>>>>>> FETCH_HEAD
 \begin{abstract}
 Homotopy type theory is an interpretation of Martin-L\"of's constructive type theory into abstract homotopy theory.   There results a link between constructive mathematics and algebraic topology, providing topological semantics for intensional systems of type theory as well as a computational approach to algebraic topology via type theory-based proof assistants such as~Coq.
 
 The present work investigates inductive types in this setting. Modified rules for inductive types, including types of well-founded trees, or W-types, are presented, and the basic homotopical semantics of such types are determined.  Proofs of all results have been formally verified by the Coq proof assistant, and the proof scripts for this verification form an essential component of this research.      
 \end{abstract}
 
+<<<<<<< HEAD
 \category{F.4.1}{Mathematical Logic and Formal Languages}{Mathematical Logic}
 
 \terms{Theory, Verification}
@@ -170,10 +221,26 @@ Author's addresses: S. Awodey, Philosophy Department, Carnegie Mellon University
 N. Gambino, (Current address) School of Mathematics, University of Leeds; 
 K. Sojakova, Computer Science Department, Carnegie Mellon University.
 \end{bottomstuff}
+=======
+%\category{F.4.1}{Mathematical Logic and Formal Languages}{Mathematical Logic}
+
+%\terms{Theory, Verification}
+
+%\keywords{Homotopy type theory, homotopy-initial algebras, inductive types}
+
+%\acmformat{Steve Awodey, Nicola Gambino, and Kristina Sojakova, 2014. Inductive Types in Homotopy Type Theory.}
+
+%\begin{bottomstuff}
+%Author's addresses: S. Awodey, Philosophy Department, Carnegie Mellon University;
+%N. Gambino, (Current address) School of Mathematics, University of Leeds; 
+%K. Sojakova, Computer Science Department, Carnegie Mellon University.
+%\end{bottomstuff}
+>>>>>>> FETCH_HEAD
 
 \maketitle
 
 \section{Introduction}
+<<<<<<< HEAD
 
 The general topic of Homotopy Type Theory is concerned with the study of the constructive type theories of Martin-L\"of under their new interpretation into abstract homotopy theory and higher-dimensional category theory. Martin-L\"of type theories are foundational systems which have been used to formalize large parts of constructive mathematics, and also for the development of high-level programming languages~\cite{MartinLofP:conmcp}.  They are prized for their combination of expressive strength and desirable proof-theoretic properties.  One aspect of these type theories that has led to special difficulties in providing semantics is the intensional character of equality.  In recent work \cite{AwodeyS:homtmi,VoevodskyV:notts,vandenBergB:topsmi,AwodeyS:typth}, it has emerged that the topological notion of \emph{homotopy} provides an adequate basis for the semantics of intensionality.  This extends the paradigm of computability as continuity, familiar from domain theory, beyond the simply-typed 
 $\lambda$-calculus to dependently-typed theories involving:\begin{enumerate}[(i)]
@@ -1758,6 +1825,27 @@ We have an algebra $\cdot \vdash \X : \NatAlg_{\UU_0}$ such that for any $j$, th
 
 
 \begin{acks}
+=======
+\input{intro}
+
+\section{Preliminaries}\label{section:prelim}
+\input{prelim}
+
+\section{Inductive types in Extensional Type Theory}\label{section:extW}
+\input{extW}
+
+\section{Inductive types in Homotopy Type Theory}\label{section:intW}
+\input{intW}
+
+\section{Old Part}
+\input{old}
+
+\section{Future work}\label{section:future}
+\input{conc}
+
+%\begin{acks}
+\section{Acknowledgements}
+>>>>>>> FETCH_HEAD
 We would like to thank Vladimir Voevodsky and Michael Warren for helpful discussions
 on the subject of this paper. In particular, Vladimir Voevodsky suggested a simplification of the 
 proof that the rules for homotopical W-types imply h-initiality.
@@ -1772,9 +1860,16 @@ the National Science Foundation.
 Kristina Sojakova is grateful for the support of CyLab at Carnegie
 Mellon under grants DAAD19-02-1-0389 and W911NF-09-1-0273 from the Army
 Research Office.
+<<<<<<< HEAD
 \end{acks}
 
 \bibliographystyle{ACM-Reference-Format-Journals}
+=======
+%\end{acks}
+
+%\bibliographystyle{ACM-Reference-Format-Journals}
+\bibliographystyle{plain}
+>>>>>>> FETCH_HEAD
 \bibliography{references}
                         
 \received{}{}{}
