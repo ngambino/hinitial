@@ -1,4 +1,10 @@
 .aux
+<<<<<<< HEAD
 .pdf
 .log
 .bbl
+=======
+.log
+.bbl
+.pdf
+>>>>>>> FETCH_HEAD
