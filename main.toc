@@ -6,11 +6,11 @@
 \contentsline {section}{\tocsection {}{3}{Basic inductive types}}{7}
 \contentsline {subsection}{\tocsubsection {}{3.1}{Basic inductive types: homotopical rules}}{7}
 \contentsline {subsection}{\tocsubsection {}{3.2}{$\mathsf {2}$-algebras, morphisms and 2-cells}}{9}
-\contentsline {subsection}{\tocsubsection {}{3.3}{Homotopy-initial algebras}}{12}
-\contentsline {subsection}{\tocsubsection {}{3.4}{Basic inductive types: the extensional case}}{15}
-\contentsline {section}{\tocsection {}{4}{W-types}}{17}
-\contentsline {subsection}{\tocsubsection {}{4.1}{W-types: extensional case}}{17}
-\contentsline {subsection}{\tocsubsection {}{4.2}{W-types: intensional case}}{21}
-\contentsline {section}{\tocsection {}{5}{Definability}}{30}
-\contentsline {section}{\tocsection {}{6}{Acknowledgements}}{34}
-\contentsline {section}{\tocsection {}{}{References}}{34}
+\contentsline {subsection}{\tocsubsection {}{3.3}{Homotopy-initial algebras}}{13}
+\contentsline {subsection}{\tocsubsection {}{3.4}{Basic inductive types: the extensional case}}{16}
+\contentsline {section}{\tocsection {}{4}{W-types}}{18}
+\contentsline {subsection}{\tocsubsection {}{4.1}{W-types: extensional case}}{18}
+\contentsline {subsection}{\tocsubsection {}{4.2}{W-types: intensional case}}{22}
+\contentsline {section}{\tocsection {}{5}{Definability}}{31}
+\contentsline {section}{\tocsection {}{6}{Acknowledgements}}{35}
+\contentsline {section}{\tocsection {}{}{References}}{35}

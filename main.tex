@@ -678,7 +678,7 @@ The type $\Bool$ is not a W-type, but can be formulated as an inductive type in 
 \[
 0 : \Bool \, ,  \qquad  1 : \Bool \, .
 \]
-\item $\Bool$-elimination rule (``induction").\smallskip
+\item $\Bool$-elimination rule.\smallskip
 \[
 \begin{prooftree}
 x:\Bool \vdash E(x) : \UU_i \qquad
@@ -825,6 +825,73 @@ Unlike in the extensional setting, however, $\boolinduniq(b)$ will generally not
 Although the rules for the type $\Bool$ as presented in section \ref{subsection:bool} are the natural ones to consider in the setting of homotopy type theory, they do not imply a strict universal property. For example, given a type $C:\UU_i$ and elements $c_0, c_1 : C$, the function $\lam{x:\Bool}\boolrec(C,c_0,c_1,x) : \Bool \rightarrow C$ cannot, in general, be shown to be definitionally unique among the functions $f : \Bool \rightarrow C$ with the property that $f(0) \equiv c_0 : C$ and $f(1) \equiv c_1 : C$.
 
 The best that one can do is to show that it is unique among all such maps up to a path, which itself is unique up to a higher path, which in turn is unique up to a yet higher path, etc. This sort of ``homotopy" $\omega$-universality, which apparently involves infinitely much data, can nonetheless be captured directly within the system of type theory (without resorting to coinduction) using ideas from higher category theory. 
+
+
+\begin{table}[ht]
+\fbox{ 
+\begin{minipage}{14cm}
+\medskip
+\begin{itemize}
+\item $\Bool$-formation rule.
+\[
+ \Bool : \UU_i \, .
+ \]
+\item $\Bool$-introduction rules.
+\[
+0 : \Bool \, ,  \qquad  1 : \Bool \, .
+\]
+\item  Simple $\Bool$-elimination rule. \smallskip
+\[
+\begin{prooftree}
+C : \UU_i \qquad
+c_0 : C \qquad
+c_1 : C \qquad
+b : \Bool
+\justifies
+\boolrec(C,c_0, c_1,b) : C
+\end{prooftree}
+\]
+\item  Simple propositional $\Bool$-computation rules. \smallskip 
+\begin{equation*}
+\begin{prooftree}
+C : \UU_i \qquad
+c_0 : C \qquad
+c_1 : C \qquad
+b : \Bool
+\justifies
+\left\{
+\begin{array}{c} 
+ \boolreccompo_{\UU_i}(C,c_0,c_1) : \boolrec(0)  =  c_0  \, , \\
+ \boolreccompi_{\UU_i}(C,c_0,c_1) : \boolrec(1)  =  c_1 \, .
+ \end{array}
+\right.
+\end{prooftree}
+ \end{equation*} 
+\item Simple propositional $\Bool$-uniqueness principle.\smallskip
+\begin{mathpar}
+\inferrule{b : \Bool \\ C : \UU_i \\ c_0 : C \\ c_1 : C \\ \\\\ x : \Bool \vdash f(x) : C \\ \gamma_0 : f(0) = c_0 \\ \gamma_1 : f(1) \equiv c_1 \\ \\\\ x : \Bool \vdash g(x) : C \\ \delta_0 : g(0) = c_0 \\ \delta_1 : g(1) = c_1}{\boolrecuniq_{\UU_i}(C, c_0, c_1, x.f, \gamma_0, \gamma_1, x.g, \delta_0, \delta_1, b) : f(b) = g(b)}
+\end{mathpar}
+ \item Simple propositional $\Bool$-coherence principles.\smallskip
+\begin{equation*}
+\begin{prooftree}
+\begin{array}{ccc} 
+ C : \UU_i & c_0 : C & c_1 : C \\
+ x : \Bool \vdash f(x) : C \;\;\;\;\;\; & \gamma_0 : f(0) = c_0 \;\;\;\;\;\; & \gamma_1 : f(1) = c_1 \\
+ x : \Bool \vdash g(x) : C \;\;\;\;\;\; & \delta_0 : g(0) = c_0 \;\;\;\;\;\; & \delta_1 : g(1) = c_1 \\
+\end{array}
+\justifies
+\left\{
+\begin{array}{c} 
+ \boolreccoho_{\UU_i}(C, c_0, c_1, x.f, \gamma_0, \gamma_1, x.g, \delta_0, \delta_1) : \boolrecuniq(0) = \gamma_0 \ct \delta_0^{-1}  \, , \\
+ \boolreccohi_{\UU_i}(C, c_0, c_1, x.f, \gamma_0, \gamma_1, x.g, \delta_0, \delta_1) : \boolrecuniq(1) = \gamma_1 \ct \delta_1^{-1} \, .
+ \end{array}
+\right.
+\end{prooftree}
+ \end{equation*} 
+\end{itemize} 
+\end{minipage}
+}
+\end{table}
 
 
 \subsection{$\Bool$-algebras, morphisms and 2-cells}
