@@ -1,0 +1,163 @@
+\begin{thebibliography}{10}
+
+\bibitem{AbbottM:concsp}
+M.~Abbott, T.~Altenkirch, and N.~Ghani.
+\newblock Containers: {C}onstructing strictly positive types.
+\newblock {\em Theoretical Computer Science}, 342(1):3--27, 2005.
+
+\bibitem{AltenkirchT:obsen}
+T.~Altenkirch, C.~McBride, and W.~Swierstra.
+\newblock Observational equality, now.
+\newblock In {\em Programming languages meets program verification (PLPV '07)},
+  pages 57--68. ACM, 2007.
+
+\bibitem{AwodeyS:typth}
+S.~Awodey.
+\newblock Type theory and homotopy, 2010.
+\newblock Available from the author's web page.
+
+\bibitem{AwodeyS:indtht}
+S.~Awodey, N.~Gambino, and K.~Sojakova.
+\newblock Inductive types in {H}omotopy {T}ype {T}heory: {C}oq proofs, 2011.
+\newblock Available at: www.andrew.cmu.edu/$\sim$awodey/hott/ithottCoq.zip.
+
+\bibitem{AwodeyS:homtmi}
+S.~Awodey and M.~Warren.
+\newblock Homotopy-theoretic models of identity types.
+\newblock {\em Mathematical Proceedings of the Cambridge Philosophical
+  Society}, 146(1):45--55, 2009.
+
+\bibitem{BataninM:mongcn}
+M.~Batanin.
+\newblock Monoidal globular categories as a natural environment for the theory
+  of weak $n$-categories.
+\newblock {\em Advances in Mathematics}, 136(1):39--103, 1998.
+
+\bibitem{BertotY:inttpp}
+Y.~Bertot and P.~Cast{\'e}ran.
+\newblock {\em Interactive Theorem Proving and Program Development.
+  {C}oq'{A}rt: the {C}alculus of {I}nductive {C}onstructions}.
+\newblock Springer-Verlag, 2004.
+
+\bibitem{CoquandT:inddt}
+T.~Coquand and C.~Paulin-Mohring.
+\newblock Inductively defined types.
+\newblock In {\em International Conference on Computer Logic (COLOG '88)},
+  volume 417 of {\em LNCS}. Springer, 1990.
+
+\bibitem{DybjerP:repids}
+P.~Dybjer.
+\newblock Representing inductively defined sets by well-orderings in
+  {M}artin-{L}{\"o}f's type theory.
+\newblock {\em Theoretical Computer Science}, 176:329--335, 1997.
+
+\bibitem{GarnerR:strdpt}
+R.~Garner.
+\newblock On the strength of dependent products in the type theory of
+  {M}artin-{L}\"of.
+\newblock {\em Annals of Pure and Applied Logic}, 160:1--12, 2009.
+
+\bibitem{GoguenH:inddtw}
+H.~Goguen and Z.~Luo.
+\newblock Inductive data types: well-ordering types revisited.
+\newblock In G.~Huet and G.~Plotkin, editors, {\em Logical Environments}, pages
+  198--218. Cambridge University Press, 1993.
+
+\bibitem{HofmannM:extcit}
+M.~Hofmann.
+\newblock {\em Extensional constructs in intensional type theory}.
+\newblock Springer-Verlag, 1997.
+
+\bibitem{HofmannM:gromtt}
+M.~Hofmann and T.~Streicher.
+\newblock The groupoid interpretation of type theory.
+\newblock In {\em Twenty-five years of constructive type theory 1995},
+  volume~36 of {\em Oxford Logic Guides}, pages 83--111. Oxford Univ. Press,
+  1998.
+
+\bibitem{LeinsterT:higohc}
+T.~Leinster.
+\newblock {\em Higher operads, higher categories}.
+\newblock Cambridge University Press, 2004.
+
+\bibitem{Lumsdaine:higcft}
+P.~Lumsdaine.
+\newblock {\em Higher categories from type theories}.
+\newblock PhD thesis, Carnegie Mellon University, 2010.
+
+\bibitem{LumsdaineP:weaci}
+P.~Lumsdaine.
+\newblock Weak $\omega$-categories from intensional type theory.
+\newblock {\em Logical Methods in Computer Science}, 6:1--19, 2010.
+
+\bibitem{MartinLofP:conmcp}
+P.~Martin-L{\"o}f.
+\newblock Constructive mathematics and computer programming.
+\newblock In {\em Logic, Methodology and Philosophy of Science}, pages
+  153–--175. North-Holland, 1982.
+
+\bibitem{MartinLofP:inttt}
+P.~Martin-L{\"o}f.
+\newblock Intuitionistic type theory. notes by g. {S}ambin of a series of
+  lectures given in padua, 1980, 1984.
+\newblock Bibliopolis.
+
+\bibitem{McBrideC:wtygnb}
+C.~McBride.
+\newblock W-types: good news and bad news, 2010.
+\newblock Post on the Epigram blog.
+
+\bibitem{McBrideC:viefl}
+C.~McBride and J.~McKinna.
+\newblock The view from the left.
+\newblock {\em Journal of Functional Programming}, 14(1):16--111, 2004.
+
+\bibitem{MoerdijkI:weltc}
+I.~Moerdijk and E.~Palmgren.
+\newblock Well-founded trees in categories.
+\newblock {\em Annals of Pure and Applied Logic}, 104:189--218, 2000.
+
+\bibitem{NordstromB:marltt}
+B.~Nordstrom, K.~Petersson, and J.~Smith.
+\newblock {M}artin-{L}\"of type theory.
+\newblock In {\em Handbook of Logic in Computer Science}, volume~5, pages
+  1–--37. Oxford University Press, 2000.
+
+\bibitem{NorellU:towppl}
+U.~Norell.
+\newblock {\em Towards a Practical Programming Language Based on Dependent Type
+  Theory}.
+\newblock PhD thesis, Chalmers University of Technology, 2007.
+
+\bibitem{PaulinMorhringC:inddsc}
+C.~Paulin-Mohring.
+\newblock Inductive definitions in the system {C}oq - rules and properties.
+\newblock In {\em Typed Lambda Calculi and Applications (TLCA '93)}, volume
+  664. Springer, 1993.
+
+\bibitem{StreicherT:invitt}
+T.~Streicher.
+\newblock Investigations into intensional type theory, 1993.
+\newblock {H}abilitation Thesis. Available from the author's web page.
+
+\bibitem{vandenBergB:typwg}
+B.~van~den Berg and R.~Garner.
+\newblock Types are weak $\omega$-groupoids.
+\newblock {\em London Mathematical Society}, 102(2):370--394, 2011.
+
+\bibitem{vandenBergB:topsmi}
+B.~van~den Berg and R.~Garner.
+\newblock Topological and simplicial models of identity types.
+\newblock {\em ACM Transactions on Computational Logic}, 13(1), 2012.
+
+\bibitem{VoevodskyV:notts}
+V.~Voevodsky.
+\newblock Notes on type systems, 2009.
+\newblock Available from the author's web page.
+
+\bibitem{VoevodskyV:unifc}
+V.~Voevodsky.
+\newblock Univalent foundations {C}oq files, 2010.
+\newblock Available from the author's web page.
+
+\end{thebibliography}
