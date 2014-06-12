@@ -749,32 +749,12 @@ b : \Bool
 
 Furthermore, the induction principle implies the following uniqueness principles, which state that any two functions out of $\Bool$ which agree on the constructors are (pointwise) equal.
 
-\begin{proposition} In $\Hint$, the rules for $\Bool$ imply the following rules:
-\begin{itemize}[(i)]
+\begin{proposition}\label{thm:depunicoh} In $\Hint$, the rules for $\Bool$ imply the following rules:
+\begin{enumerate}[(i)]
 \item Dependent propositional $\Bool$-uniqueness principle.\smallskip
 \begin{mathpar}
 \inferrule{b : \Bool \\ x : \Bool \vdash E(x) : \UU_i \\ e_0 : E(0) \\ e_1 : E(1) \\ \\\\ x : \Bool \vdash f(x) : E(x) \\ \gamma_0 : f(0) = e_0 \\ \gamma_1 : f(1) = e_1 \\ \\\\ x : \Bool \vdash g(x) : E(x) \\ \delta_0 : g(0) = e_0 \\ \delta_1 : g(1) = e_1}{\boolinduniq_{\UU_i}(x.E, e_0, e_1, x.f, \gamma_0, \gamma_1, x.g, \delta_0, \delta_1, b) : f(b) = g(b)}
 \end{mathpar}
-\item Simple propositional $\Bool$-uniqueness principle.\smallskip
-\begin{mathpar}
-\inferrule{b : \Bool \\ C : \UU_i \\ c_0 : C \\ c_1 : C \\ \\\\ x : \Bool \vdash f(x) : C \\ \gamma_0 : f(0) = c_0 \\ \gamma_1 : f(1) \equiv c_1 \\ \\\\ x : \Bool \vdash g(x) : C \\ \delta_0 : g(0) = c_0 \\ \delta_1 : g(1) = c_1}{\boolrecuniq_{\UU_i}(C, c_0, c_1, x.f, \gamma_0, \gamma_1, x.g, \delta_0, \delta_1, b) : f(b) = g(b)}
-\end{mathpar}
-\end{itemize} 
-\end{proposition}
-
-\begin{proof} We prove the dependent uniqueness principle by using the induction principle with the type family $x \mapsto f(x) =_{E(x)} g(x)$; the cases when $x \defeq 0$ and $x \defeq 1$ are straightforward. This gives us pointwise propositional equality between $f$ and $g$. The simple uniqueness principle clearly follows from the dependent one.
-\end{proof}
-
-\begin{remark} The witness terms will be shortened to $\boolinduniq(b)$, $\boolrecuniq(b)$ where appropriate. Note that in this particular case, we could also write $f(0) \equiv g(0) : E(0)$ and $f(1) \equiv g(1) : E(1)$ in the premises, avoiding the mention of $e_0$ and $e_1$ altogether (and similarly for the simple uniqueness principle). However, the form we chose follows a general schema (see Defs.~\ref{def:BoolFibHom} and~\ref{def:BoolIndUniq}) which scales to more complicated inductive types. 
-\end{remark}
-
-
-Unlike in the extensional setting, however, $\boolinduniq(b)$ will generally not be an identity path. The natural question to ask is how $\boolinduniq(-)$ behaves on the constructors $0$, $1$. Since $\boolinduniq(b)$ was constructed using the $\Bool$-induction principle, we invoke the corresponding (propositional) computation rules to get the following coherence rules:\smallskip
-
-
-
-\begin{proposition}  In $\Hint$, the rules for $\Bool$ imply the following rule
-\begin{enumerate}[(i)]
 \item Dependent propositional $\Bool$-coherence principles.\smallskip
 \begin{equation*}
 \begin{prooftree}
@@ -792,6 +772,32 @@ Unlike in the extensional setting, however, $\boolinduniq(b)$ will generally not
 \right.
 \end{prooftree}
 \end{equation*}
+\end{enumerate}
+\end{proposition}
+
+
+
+\begin{proof} \hfill
+\begin{enumerate}[(i)] 
+\item We prove the dependent uniqueness principle by using the induction principle with the type family $x \mapsto f(x) =_{E(x)} g(x)$; the cases when $x \defeq 0$ and $x \defeq 1$ are straightforward. This gives us pointwise propositional equality between $f$ and $g$. 
+\item We use the induction principle with the type family $x \mapsto f(x) =_{E(x)} g(x)$ and for the cases $x \defeq 0$, $x \defeq 1$ we supply the paths $\gamma_0 \ct \delta_0^{-1}$ and $\gamma_1 \ct \delta_1^{-1}$ respectively. This gives us a pointwise propositional equality between $f$ and $g$ as desired.
+\end{enumerate}
+\end{proof}
+
+\begin{remark} The witness terms will be shortened to $\boolinduniq(b)$, $\boolrecuniq(b)$ where appropriate. Note that in this particular case, we could also write $f(0) \equiv g(0) : E(0)$ and $f(1) \equiv g(1) : E(1)$ in the premises, avoiding the mention of $e_0$ and $e_1$ altogether (and similarly for the simple uniqueness principle). However, the form we chose follows a general schema (see Defs.~\ref{def:BoolFibHom} and~\ref{def:BoolIndUniq}) which scales to more complicated inductive types. 
+\end{remark}
+
+
+Unlike in the extensional setting, however, $\boolinduniq(b)$ will generally not be an identity path. The natural question to ask is how $\boolinduniq(-)$ behaves on the constructors $0$, $1$. Since $\boolinduniq(b)$ was constructed using the $\Bool$-induction principle, we invoke the corresponding (propositional) computation rules to get the following coherence rules:\smallskip
+
+
+
+\begin{corollary}  In $\Hint$, the rules for $\Bool$ imply the following rule
+\begin{enumerate}[(i)]
+\item Simple propositional $\Bool$-uniqueness principle.\smallskip
+\begin{mathpar}
+\inferrule{b : \Bool \\ C : \UU_i \\ c_0 : C \\ c_1 : C \\ \\\\ x : \Bool \vdash f(x) : C \\ \gamma_0 : f(0) = c_0 \\ \gamma_1 : f(1) \equiv c_1 \\ \\\\ x : \Bool \vdash g(x) : C \\ \delta_0 : g(0) = c_0 \\ \delta_1 : g(1) = c_1}{\boolrecuniq_{\UU_i}(C, c_0, c_1, x.f, \gamma_0, \gamma_1, x.g, \delta_0, \delta_1, b) : f(b) = g(b)}
+\end{mathpar}
  \item Simple propositional $\Bool$-coherence principles.\smallskip
 \begin{equation*}
 \begin{prooftree}
@@ -810,9 +816,9 @@ Unlike in the extensional setting, however, $\boolinduniq(b)$ will generally not
 \end{prooftree}
  \end{equation*} 
 \end{enumerate} 
-\end{proposition}
+\end{corollary}
 
-\begin{proof} We use the induction principle with the type family $x \mapsto f(x) =_{E(x)} g(x)$ and for the cases $x \defeq 0$, $x \defeq 1$ we supply the paths $\gamma_0 \ct \delta_0^{-1}$ and $\gamma_1 \ct \delta_1^{-1}$ respectively. This gives us a pointwise propositional equality between $f$ and $g$ as desired. The simple uniqueness principle follows at once from the dependent one.
+\begin{proof}  Consequences of Proposition~\ref{thm:depunicoh}
 \end{proof} 
 
 
@@ -826,7 +832,7 @@ The best that one can do is to show that it is unique among all such maps up to 
 
 
 
-\begin{definition}\label{def:BoolFibAlg} \label{def:BoolFibHom} \hfill
+\begin{definition}\label{def:BoolFibAlg} \label{def:BoolFibHom} \label{def:BoolFibCell} \hfill
 \begin{enumerate}[(i)] 
 \item Define the type of \emph{fibered $\Bool$-algebras} on a universe $\UU_j$ over $\mathcal{X} : \BoolAlg_{\UU_i}$ by
 \[
@@ -838,12 +844,16 @@ The best that one can do is to show that it is unique among all such maps up to 
 \[
 \BoolFibHom \; (C,c_0,c_1) \; (E,e_0,e_1) \defeq \sm{(f:\prd{x:C} E(x))} (f(c_0) = e_0) \times (f(c_1) = e_1) 
 \]
+\item
+For $\X : \BoolAlg_{\UU_i}$, $\Y : \BoolFibAlg_{\UU_j} \; \X$ and fibered homomorphisms $\mu, \nu : \BoolFibHom \; \X \; \Y$, define the type of \emph{fibered 2-cells} between $\mu$ and $\nu$ by
+\begin{align*} & \BoolFibCell \; (C,c_0,c_1) \; (E, e_0 \; e_1) \; (f,\gamma_0,\gamma_1) \; (g,\delta_0,\delta_1) \defeq \\ & \;\;\; \;\;\;\BoolFibHom \; (C,c_0,c_1) \; (f \sim g, \gamma_0 \ct \delta_0^{-1}, \gamma_1 \ct \delta_1^{-1})
+\end{align*}
 \end{enumerate}
 \end{definition}
 
 
 
-\begin{definition}\label{def:BoolAlg} \label{def:BoolHom} \hfill
+\begin{definition}\label{def:BoolAlg} \label{def:BoolHom} \label{def:BoolCell} \hfill
 \begin{enumerate}[(i)]
 \item  Define the type of \emph{$\Bool$-algebras} on a universe $\UU_i$ as 
 \[
@@ -852,16 +862,14 @@ The best that one can do is to show that it is unique among all such maps up to 
 \sm{C : \UU_i} C \times C 
 \] 
 \item Given algebras $\X : \BoolAlg_{\UU_i}$ and $\Y : \BoolAlg_{\UU_j}$, define the type of \emph{$\Bool$-homomorphisms} from $\X$ to $\Y$ by \[\BoolHom \; (C,c_0,c_1) \; (D,d_0,d_1) \defeq \sm{f:C \to D} (f(c_0) = d_0) \times (f(c_1) = d_1) \]
+\item For $\X : \BoolAlg_{\UU_i}$, $\Y : \BoolAlg_{\UU_j}$ and homomorphisms $\mu, \nu : \BoolHom \; \X \; \Y$, define the type of \emph{2-cells} between $\mu$ and $\nu$ by
+\begin{align*} & \BoolCell \; (C,c_0,c_1) \; (D, d_0 \; d_1) \; (f,\gamma_0,\gamma_1) \; (g,\delta_0,\delta_1) \defeq \\ & \;\;\; \;\;\;\BoolFibHom \; (C,c_0,c_1) \; (f \sim g, \gamma_0 \ct \delta_0^{-1}, \gamma_1 \ct \delta_1^{-1})
+\end{align*}
 \end{enumerate}
 \end{definition}
 
 
 In certain respects, algebras and algebra homomorphisms behave much like objects and morphisms in a category:
-\begin{definition}
-For any $\X : \BoolAlg_{\UU_i}$ there is a designated \emph{identity} homomorphism from $\X$ to itself, defined by
-\[ \BoolIdHom \; (C,c_0,c_1) \defeq (\idfun{C}, \refl(c_0), \refl(c_1)) \]
-\end{definition}
-We often denote this homomorphism by $\one_\X$.
 
 \begin{definition}
 For algebras $\X : \BoolAlg_{\UU_i}$, $\Y : \BoolAlg_{\UU_j}$, $\Z : \BoolAlg_{\UU_k}$ and homomorphisms $\mu : \BoolHom \; \X \; \Y$, $\nu : \BoolHom \; \Y \; \Z$, the \emph{composition} of $\mu$ and $\nu$ is a homomorphism from $\X$ to $\Z$ defined by
@@ -869,6 +877,13 @@ For algebras $\X : \BoolAlg_{\UU_i}$, $\Y : \BoolAlg_{\UU_j}$, $\Z : \BoolAlg_{\
 \end{align*}
 \end{definition}
 We often leave out the first three arguments and denote the composition by $\nu \comp \mu$.
+
+\begin{definition}
+For any $\X : \BoolAlg_{\UU_i}$ there is a designated \emph{identity} homomorphism from $\X$ to itself, defined by
+\[ \BoolIdHom \; (C,c_0,c_1) \defeq (\idfun{C}, \refl(c_0), \refl(c_1)) \]
+\end{definition}
+We often denote this homomorphism by $\one_\X$.
+
 
 \begin{definition}
 For $\X : \BoolAlg_{\UU_i}$, $\Y : \BoolAlg_{\UU_j}$ we define the type of \emph{isomorphisms} between $\X$ and $\Y$ as
@@ -879,20 +894,7 @@ For $\X : \BoolAlg_{\UU_i}$, $\Y : \BoolAlg_{\UU_j}$ we define the type of \emph
 
 
 
-
-
-\begin{definition}\label{def:BoolCell}
-For $\X : \BoolAlg_{\UU_i}$, $\Y : \BoolAlg_{\UU_j}$ and homomorphisms $\mu, \nu : \BoolHom \; \X \; \Y$, define the type of \emph{2-cells} between $\mu$ and $\nu$ by
-\begin{align*} & \BoolCell \; (C,c_0,c_1) \; (D, d_0 \; d_1) \; (f,\gamma_0,\gamma_1) \; (g,\delta_0,\delta_1) \defeq \\ & \;\;\; \;\;\;\BoolFibHom \; (C,c_0,c_1) \; (f \sim g, \gamma_0 \ct \delta_0^{-1}, \gamma_1 \ct \delta_1^{-1})
-\end{align*}
-\end{definition}
-
-\begin{definition}\label{def:BoolFibCell}
-For $\X : \BoolAlg_{\UU_i}$, $\Y : \BoolFibAlg_{\UU_j} \; \X$ and fibered homomorphisms $\mu, \nu : \BoolFibHom \; \X \; \Y$, define the type of \emph{fibered 2-cells} between $\mu$ and $\nu$ by
-\begin{align*} & \BoolFibCell \; (C,c_0,c_1) \; (E, e_0 \; e_1) \; (f,\gamma_0,\gamma_1) \; (g,\delta_0,\delta_1) \defeq \\ & \;\;\; \;\;\;\BoolFibHom \; (C,c_0,c_1) \; (f \sim g, \gamma_0 \ct \delta_0^{-1}, \gamma_1 \ct \delta_1^{-1})
-\end{align*}
-\end{definition}
-For brevity, we will often leave out the first two arguments.
+.
 
 
 
@@ -991,9 +993,18 @@ An algebra $\X : \BoolAlg_{\UU_i}$ is \emph{homotopy-initial} on a universe $\UU
 \begin{enumerate}[(i)] 
 \item An algebra $\mathcal{X} : \BoolAlg_{\UU_i}$ \emph{satisfies the induction principle} on a universe $\UU_j$ if for any 
 fibered algebra $\Y : \BoolFibAlg_{\UU_j} \; \X$ there exists a fibered $\Bool$-homomorphism between $\X$ and $\Y$:
-\[\HasBoolInd_{\UU_j}(\X) \defeq \prd{(\Y:\BoolFibAlg_{\UU_j} \; \X)} \BoolFibHom \; \X \; \Y\] 
+\[
+\HasBoolInd_{\UU_j}(\X) 
+\defeq 
+\prd{(\Y:\BoolFibAlg_{\UU_j} \; \X)} \BoolFibHom \; \X \; \Y
+\] 
 \item An algebra $\X : \BoolAlg_{\UU_i}$ satisfies the \emph{induction uniqueness principle} on a universe $\UU_j$ if for any fibered algebra $\Y : \BoolFibAlg_{\UU_j}\;\X$ any two fibered $\Bool$-homomorphisms between $\X$ and $\Y$ are equal:
-\[ \HasBoolIndUniq_{\UU_j}(\X) \defeq \prd{(\Y:\BoolFibAlg_{\UU_j} \; \X)} \isprop(\BoolFibHom \; \X \; \Y)\]
+\[ 
+\HasBoolIndUniq_{\UU_j}(\X) 
+\defeq 
+\prd{(\Y:\BoolFibAlg_{\UU_j} \; \X)}
+ \isprop(\BoolFibHom \; \X \; \Y)
+ \]
 \end{enumerate}
 \end{definition}
 
@@ -1020,7 +1031,7 @@ The uniqueness principles as in definitions~\ref{def:BoolRecUniq},~\ref{def:Bool
 any two homomorphisms $\mu \defeq (f,\gamma_0,\gamma_1)$ and $\nu \defeq (g,\delta_0,\delta_1)$ be equal as \emph{tuples}.
 Note that in the presence of the UIP axiom this is equivalent to saying that their first components agree, i.e., $f = g$ (and hence $f \equiv g$).
 
-As desired, the analogues of the lemmas from section \ref{subsection:bool} still hold in the setting of homotopy type theory:
+
 
 \begin{lemma}\label{lem:BoolIndImpUniqInt}
 In $\Hint$, if an algebra $\X : \BoolAlg_{\UU_i}$ satisfies the induction principle on the universe $\UU_j$, it also satisfies the induction uniqueness principle on $\UU_j$. In other words, we have
@@ -1124,9 +1135,7 @@ It is worth emphasizing that homotopy-initiality is a purely type-theoretic noti
 
 \subsection{Basic inductive types: the extensional case}
 
-We conclude this section by describing how our analysis above restricts to the extensional setting. From now on, we work in $\Hext$. First of all,
-observe that the rules for $\Bool$ given in Table~\ref{tab:hbool} are equivalent to the familiar ones.
-
+We conclude this section by describing how our analysis above restricts to the extensional setting. From now on, we work in $\Hext$. 
 
 \begin{table}[ht]
 \fbox{ 
@@ -1141,7 +1150,7 @@ observe that the rules for $\Bool$ given in Table~\ref{tab:hbool} are equivalent
 \[
 0 : \Bool \, ,  \qquad  1 : \Bool \, .
 \]
-\item Simple $\Bool$-elimination rule (``recursion").\smallskip
+\item Simple $\Bool$-elimination rule.\smallskip
 \[
 \begin{prooftree}
 C : \UU_i \qquad
@@ -1167,10 +1176,6 @@ c_1 : C \qquad
 \right.
 \end{prooftree}
  \end{equation*} 
- \item $\Bool$-uniqueness principle.\smallskip
-\begin{mathpar}
-\inferrule{b : \Bool \\ x : \Bool \vdash E(x) : \UU_i \\ e_0 : E(0) \\ e_1 : E(1) \\ \\\\ x : \Bool \vdash f(x) : E(x) \\ f(0) \equiv e_0 \\ f(1) \equiv e_1 \\ \\\\ x : \Bool \vdash g(x) : E(x) \\ g(0) \equiv e_0 \\ g(1) \equiv e_1}{f(b) \equiv g(b) : E(b)}
-\end{mathpar}
 \item Simple $\Bool$-uniqueness principle.\smallskip
 \begin{mathpar}
 \inferrule{b : \Bool \\ C : \UU_i \\ c_0 : C \\ c_1 : C \\ \\\\ x : \Bool \vdash f(x) : C \\ f(0) \equiv c_0 \\ f(1) \equiv c_1 \\ \\\\ x : \Bool \vdash g(x) : C \\ g(0) \equiv c_0 \\ g(1) \equiv c_1}{f(b) \equiv g(b) : C}
