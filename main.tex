@@ -657,7 +657,7 @@ In Section \ref{section:intW} below, these and related homotopy-theoretic insigh
 \section{Basic inductive types}
 \label{section:simple}
 
-\subsection{Basic inductive types: homotopical rules}
+\subsection{Induction rules}
 \label{subsection:bool}
 
 
@@ -706,12 +706,15 @@ e_1 : E(1)
  \end{equation*}  
 \end{itemize}
 \medskip
-\end{minipage}}
+\end{minipage}} \medskip
+\caption{Induction rules for $\Bool$.}
 \end{table}
 
 
 
-The above rules imply the non-dependent version of the elimination computation rules.
+The above rules clearly imply the non-dependent version of the elimination and computation rules. We state this fact as a 
+lemma for future reference.
+
 \smallskip
 
 \begin{lemma} In $\Hint$, the rules for $\Bool$ imply the following rules:
@@ -889,8 +892,10 @@ b : \Bool
 \end{prooftree}
  \end{equation*} 
 \end{itemize} 
-\end{minipage}
-}
+\medskip
+\end{minipage} 
+} \medskip
+\caption{Recursion rules for $\Bool$.}
 \end{table}
 
 
@@ -1249,59 +1254,14 @@ c_1 : C \qquad
 \end{mathpar}
 \end{itemize}
 \end{minipage}
-}
+} \medskip
+\caption{Extensional recursion rules for $\Bool$.}
 \end{table}
 
 
 
 
-The following lemma in particular implies that it is not necessary to have a ``fibered" version of the initiality property, which quantifies over all fibered algebras $\Y : \BoolFibAlg_{\UU_j} \; \X$.
-
-\begin{lemma}\label{lem:BoolIndImpUniq}
-In $\Hext$, if an algebra $\X : \BoolAlg_{\UU_i}$ satisfies the induction principle on the universe $\UU_j$, it also satisfies the induction uniqueness principle on $\UU_j$. In other words, we have
-\[ \HasBoolInd_{\UU_j}(\X) \;\; \rightarrow \;\; \HasBoolIndUniq_{\UU_j}(\X) \]
-\end{lemma}
-\begin{proof}
-Let an algebra $(C,c_0,c_1) : \BoolAlg_{\UU_i}$ be given. To prove the induction uniqueness principle, take any algebra $(E,e_0,e_1) : \BoolFibAlg_{\UU_j} \; (C,c_0,c_1)$ and homomorphisms $(f,\gamma_0, \gamma_1), (g,\delta_0,\delta_1) : \BoolFibHom \; (C,c_0,c_1) \; (E,e_0,e_1)$. Because of UIP, showing $(f,\gamma_0,\gamma_1) = (g,\delta_0,\delta_1)$ is equivalent to showing $f = g$. For the latter, we use the induction principle with the fibered algebra $\big(x \mapsto f(x) = g(x), \refl(f(c_0)), \refl(g(c_0))\big)$. This is indeed well-typed since
-$\gamma_0,\delta_0$ give us $f(c_0) = e_0 = g(c_0)$ and $\gamma_1,\delta_1$ give us $f(c_1) = e_1 = g(c_1)$.  
-
-The first component of the resulting homomorphism together with the function extensionality principle then give us $f = g$.
-\end{proof}
-
-%\begin{lemma}\label{lem:BoolRecUniqEqInit}
-%In $\Hext$, the following conditions on an algebra $\X : \BoolAlg_{\UU_i}$ are equivalent:
-%\begin{enumerate}
-%\item $\X$ satisfies the recursion and recursion uniqueness principles on the universe $\UU_j$
-%\item $\X$ is initial on the universe $\UU_j$
-%\end{enumerate}
-%In other words, we have
-%\[ \HasBoolRec_{\UU_j}(\X) \times \HasBoolRecUniq_{\UU_j}(\X) \;\; \simeq \;\; \IsBoolInit_{\UU_j}(\X) \]
-%\end{lemma}
-%\begin{proof}
-%By Lem.~\ref{lem:ContrChar}\ednote{Which says $\iscontr(A) \simeq A \times \isprop(A)$}.
-%\end{proof}
-
-\begin{corollary}
-In $\Hext$, if an algebra $\X : \BoolAlg_{\UU_i}$ satisfies the induction principle on the universe $\UU_j$, it is initial on $\UU_j$. In other words, we have
-\[ \HasBoolInd_{\UU_j}(\X) \;\; \rightarrow \;\; \IsBoolInit_{\UU_j}(\X) \]
-\end{corollary}
-
-\begin{lemma}\label{lem:BoolRecUniqImpInd}
-In $\Hext$, if an algebra $\X : \BoolAlg_{\UU_i}$ satisfies the recursion and recursion uniqueness principles on the universe $\UU_j$ and $j \geq i$, then it satisfies the induction principle on $\UU_j$. In other words, we have
-\[ \HasBoolRec_{\UU_j}(\X) \times \HasBoolRecUniq_{\UU_j}(\X) \;\; \rightarrow \; \; \HasBoolInd_{\UU_j}(\X) \]
-provided $j \geq i$.
-\end{lemma}
-\begin{proof}
-Let algebras $(C,c_0,c_1) : \BoolAlg_{\UU_i}$ and $(E,e_0,e_1) : \BoolFibAlg_{\UU_j} \; (C,c_0,c_1)$ be given. 
-We use the recursion principle with the algebra $\big(\sm{x:C} E(x), (c_0,e_0), (c_1,e_1)\big)$. We note that the carrier type belongs to $\UU_j$ as $i \leq j$. This gives us a homomorphism $(u,\theta_0,\theta_1)$, where $u : C \to \sm{x:C} E(x)$, $\theta_0 : u(c_0) = (c_0,e_0)$, and $\theta_1 : u(c_1) = (c_1,e_1)$. We can now form two homomorphisms $\big(\fst \comp u, \refl(c_0), \refl(c_1)\big), \big(\idfun{C}, \refl(c_0), \refl(c_1)\big) : \BoolHom \; (C,c_0,c_1) \; (C,c_0,c_1)$; the former type-checks due to $\theta_0, \theta_1$. The recursion uniqueness principle tells us that these homomorphisms are equal. Thus, we have $\fst \comp u = \idfun{C}$ and in particular $\fst \comp u \equiv \idfun{C}$. 
-
-We can thus define the desired fibered homomorphism as 
-\[
-\big(\snd \comp u, \refl(e_0), \refl(e_1)\big) : \BoolFibHom \; (C,c_0,c_1) \; (E,e_0,e_1) \, .
-\]
-\end{proof}
-
-\begin{theorem}\label{lem:BoolMain}
+\begin{corollary} \label{lem:BoolMain}
 In $\Hext$, the following conditions on an algebra $\X : \BoolAlg_{\UU_i}$ are equivalent:
 \begin{enumerate}
 \item $\mathcal{X}$ satisfies the induction principle on the universe $\UU_j$
@@ -1309,22 +1269,13 @@ In $\Hext$, the following conditions on an algebra $\X : \BoolAlg_{\UU_i}$ are e
 \item $\mathcal{X}$ is initial on the universe $\UU_j$  
 \end{enumerate}
 for $j \geq i$. In other words, we have \[ \HasBoolInd_{\UU_j}(\X)  \;\; \simeq \;\; \HasBoolRec_{\UU_j}(\X) \times \HasBoolRecUniq_{\UU_j}(\X) \;\; \simeq \;\; \IsBoolInit_{\UU_j}(\X) \]
-provided $j \geq i$. Furthermore, all 3 conditions are mere propositions.
-\end{theorem}
-\begin{proof}
-Conditions (1) and (3) are mere propositions by Lem.~\ref{lem:IsContrIsProp}\ednote{Which says $\isprop(\iscontr(A))$} (for the latter), Lem.~\ref{lem:PropChar}\ednote{Which says $\isprop(A) \simeq A \to \isprop(A)$},~\ref{lem:BoolIndImpUniq} (for the former), and the fact that a family of mere propositions is itself a mere proposition.
-\end{proof}
-We can thus characterize the type $\Bool$ using the universal property of initiality as follows.
-\begin{corollary}
-In $\Hext$ extended with the type $\Bool$, the algebra $(\Bool,0,1) : \BoolAlg_{\UU_0}$ is initial on any universe $\UU_j$.
+provided $j \geq i$. 
 \end{corollary}
 
-\begin{corollary}\label{lem:BoolChar}
-In $\Hext$ extended with an algebra $\X : \BoolAlg_{\UU_0}$ which is initial on any universe $\UU_j$, the type $\Bool$ is definable. 
-\end{corollary}
-\begin{proof}
-We have an algebra $\cdot \vdash \X : \BoolAlg_{\UU_0}$ such that for any $j$, there exists a term $\cdot \vdash h_j  : \IsBoolInit_{\UU_j}(\X)$. Since the requirement $j \geq 0$ always holds, Cor.~\ref{lem:BoolMain} implies that for any $j$, we have a term $\cdot \vdash r_j : \HasBoolInd_{\UU_j}(\X)$. This implies that the type $\Bool$ is definable.
-\end{proof}
+
+
+In $\Hext$ extended with the type $\Bool$, the algebra $(\Bool,0,1) : \BoolAlg_{\UU_0}$ is initial on any universe $\UU_j$. Conversely,  in $\Hext$ extended with an algebra $\X : \BoolAlg_{\UU_0}$ which is initial on any universe $\UU_j$, the type $\Bool$ is definable. 
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
