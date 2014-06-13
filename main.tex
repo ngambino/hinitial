@@ -919,7 +919,7 @@ b : \Bool
 \]
 \item
 For $\X : \BoolAlg_{\UU_i}$, $\Y : \BoolFibAlg_{\UU_j} \; \X$ and fibered homomorphisms $\mu, \nu : \BoolFibHom \; \X \; \Y$, define the type of \emph{fibered 2-cells} between $\mu$ and $\nu$ by
-\begin{align*} & \BoolFibCell \; (C,c_0,c_1) \; (E, e_0 \; e_1) \; (f,\gamma_0,\gamma_1) \; (g,\delta_0,\delta_1) \defeq \\ & \;\;\; \;\;\;\BoolFibHom \; (C,c_0,c_1) \; (f \sim g, \gamma_0 \ct \delta_0^{-1}, \gamma_1 \ct \delta_1^{-1})
+\begin{align*} & \BoolFibCell \; (C,c_0,c_1) \; (E, e_0 \; e_1) \; (f,\gamma_0,\gamma_1) \; (g,\delta_0,\delta_1) \defeq \\ & \;\;\; \;\;\;\BoolFibHom \; (C,c_0,c_1) \; (f \sim g, \gamma_0 \ct \delta_0^{-1}, \gamma_1 \ct \delta_1^{-1}) \text{[TO BE FIXED]}
 \end{align*}
 \end{enumerate}
 \end{definition}
@@ -936,27 +936,21 @@ For $\X : \BoolAlg_{\UU_i}$, $\Y : \BoolFibAlg_{\UU_j} \; \X$ and fibered homomo
 \] 
 \item Given algebras $\X : \BoolAlg_{\UU_i}$ and $\Y : \BoolAlg_{\UU_j}$, define the type of \emph{$\Bool$-homomorphisms} from $\X$ to $\Y$ by \[\BoolHom \; (C,c_0,c_1) \; (D,d_0,d_1) \defeq \sm{f:C \to D} (f(c_0) = d_0) \times (f(c_1) = d_1) \]
 \item For $\X : \BoolAlg_{\UU_i}$, $\Y : \BoolAlg_{\UU_j}$ and homomorphisms $\mu, \nu : \BoolHom \; \X \; \Y$, define the type of \emph{2-cells} between $\mu$ and $\nu$ by
-\begin{align*} & \BoolCell \; (C,c_0,c_1) \; (D, d_0 \; d_1) \; (f,\gamma_0,\gamma_1) \; (g,\delta_0,\delta_1) \defeq \\ & \;\;\; \;\;\;\BoolFibHom \; (C,c_0,c_1) \; (f \sim g, \gamma_0 \ct \delta_0^{-1}, \gamma_1 \ct \delta_1^{-1})
+\begin{align*} & \BoolCell \; (C,c_0,c_1) \; (D, d_0 \; d_1) \; (f,\gamma_0,\gamma_1) \; (g,\delta_0,\delta_1) \defeq \\ & \;\;\; \;\;\;\BoolFibHom \; (C,c_0,c_1) \; (f \sim g, \gamma_0 \ct \delta_0^{-1}, \gamma_1 \ct \delta_1^{-1}) \text{[TO BE FIXED]}
 \end{align*}
 \end{enumerate}
 \end{definition}
 
-
+\begin{remark} 
 In certain respects, algebras and algebra homomorphisms behave much like objects and morphisms in a category:
-
-\begin{definition}
 For algebras $\X : \BoolAlg_{\UU_i}$, $\Y : \BoolAlg_{\UU_j}$, $\Z : \BoolAlg_{\UU_k}$ and homomorphisms $\mu : \BoolHom \; \X \; \Y$, $\nu : \BoolHom \; \Y \; \Z$, the \emph{composition} of $\mu$ and $\nu$ is a homomorphism from $\X$ to $\Z$ defined by
 \begin{align*} & \BoolCompHom \; (C,c_0,c_1) \; (D,d_0,d_1) \; (E,e_0,e_1) \; (f,\gamma_0,\gamma_1) \; (g,\delta_0,\delta_1) \defeq \\ & \;\;\;\;\;\; \big(g \comp f, g(\gamma_0) \ct \delta_0, g(\gamma_1) \ct \delta_1\big)
 \end{align*}
-\end{definition}
 We often leave out the first three arguments and denote the composition by $\nu \comp \mu$.
-
-\begin{definition}
 For any $\X : \BoolAlg_{\UU_i}$ there is a designated \emph{identity} homomorphism from $\X$ to itself, defined by
 \[ \BoolIdHom \; (C,c_0,c_1) \defeq (\idfun{C}, \refl(c_0), \refl(c_1)) \]
-\end{definition}
 We often denote this homomorphism by $\one_\X$.
-
+\end{remark}
 
 \begin{definition}
 For $\X : \BoolAlg_{\UU_i}$, $\Y : \BoolAlg_{\UU_j}$ we define the type of \emph{isomorphisms} between $\X$ and $\Y$ as
@@ -1127,10 +1121,10 @@ Let an algebra $(C,c_0,c_1) : \BoolAlg_{\UU_i}$ be given. To prove the induction
 %By Lem.~\ref{lem:ContrChar}.
 %\end{proof}
 
-\begin{corollary}
+\begin{theorem}
 In $\Hint$, if an algebra $\X : \BoolAlg_{\UU_i}$ satisfies the induction principle on the universe $\UU_j$, it is homotopy-initial on $\UU_j$. In other words, we have
 \[ \HasBoolInd_{\UU_j}(\X) \;\; \rightarrow \;\; \IsBoolHInit_{\UU_j}(\X) \]
-\end{corollary}
+\end{theorem}
 
 \begin{lemma}\label{lem:BoolRecUniqImpIndInt}
 In $\Hint$, if an algebra $\X : \BoolAlg_{\UU_i}$ satisfies the recursion and recursion uniqueness principles on the universe $\UU_j$ and $j \geq i$, then it satisfies the induction principle on $\UU_j$. In other words, we have
