@@ -663,7 +663,7 @@ In Section \ref{section:intW} below, these and related homotopy-theoretic insigh
 \section{Basic inductive types}
 \label{section:simple}
 
-\subsection{Induction rules}
+\subsection{Bipointed types}
 \label{subsection:bool}
 
 
@@ -719,7 +719,7 @@ e_1 : E(1)
 \end{itemize}
 \medskip
 \end{minipage}} \medskip
-\caption{Standard deduction rules for the type $\Bool$ of Boolean truth values.}
+\caption{Deduction rules for the type $\Bool$ over $\Hint$.}
 \label{tab:boolrules}
 \end{table}
 
@@ -734,20 +734,18 @@ In order to organize our study of these types and their properties, it is conven
 As usual, when referring to a bipointed type we sometimes suppress mention of its distinguished elements. In the following, it will be convenient to represent a bipointed type $A$ diagrammatically as follows:
 \[
 \xymatrix{
- 1 \ar[dr]_-{a_0}& & 1 \ar[dl]^-{a_1} \\
-   & A \, .& }
-\]
+ 1 \ar[r]^-{a_0}&  A & 1 \ar[l]_-{a_1} \, .}
+ \]
 The type $\Bool$ and its canonical elements give us a bipointed type:
 \[
 \xymatrix{
- 1 \ar[dr]_-{0}& & 1 \ar[dl]^-{1} \\
-   & \Bool \, . & }
-\]
+ 1 \ar[r]^-{0}&  \Bool  & 1 \ar[l]_-{1} \, . }
+ \]
 If $A = (A, a_0, a_1)$ is a bipointed type and $B$ is an arbitrary type, any equivalence $f \co A \to B$ clearly induces the structure of a bipointed type on $B$,
 by taking~$b_0 \defeq f(a_0) : B$ and $b_1 \defeq f(a_1) : B$ as its distinguished elements. In the next definition, we isolate the rules that are transferred via
 equivalences from $\Bool$ to any other type. 
 
-\begin{definition} Let $A = (A, a_0, a_1)$ be a bipointed type. We say that $A$ \emph{satisfies the induction property} if it satisfies the following
+\begin{definition} Let $A = (A, a_0, a_1)$ be a bipointed type. We say that $A$ is \emph{inductive} if it satisfies the following
 deduction rules:
 
 \begin{itemize}
@@ -782,8 +780,14 @@ e_1 : E(a_1)
 \end{definition} 
 
 
+\begin{proposition} Let $A$ be a bipointed type, $B$ a type and $f \co A \to B$ an equivalence of types. If $A$ is inductive then
+so is $B$ with the induced bipointed structure.
+\end{proposition} 
 
-\begin{definition} Let $A = (A, a_0, a_1)$ be a bipointed type. We say that $A$ \emph{satisfies the recursion principle} if the following rules
+We begin to explore some consequences of the assumption that a bipointed type is inductive. We begin by adapting to our
+context the proof that induction implies recursion. In order to do this, it is convenient to introduce the following definition.
+
+\begin{definition} Let $A = (A, a_0, a_1)$ be a bipointed type. We say that $A$ is \emph{recursive} if the following rules
 are satisfied:
 \begin{itemize}
 \item  Recursion rule. \smallskip
@@ -841,7 +845,7 @@ p_f \co \Id \big(  \beta_0 \cdot \eta_f(a_0), \refl(f(a_0)) \big)
 
 
 
-\begin{proposition} If a bipointed type satisfies the induction principle, then it satisfies the recursion principle.
+\begin{proposition} If a bipointed type is inductive then it is recursive.
 \end{proposition}
 
 
@@ -856,7 +860,64 @@ hold. [TO BE ADDED - WHAT FOLLOWS IS AN OLD PROOF]
 
 
 
-\begin{remark} How everything reduces in the case of extensional type theory. 
+\begin{remark}[Extensional type theory] How everything reduces in the case of extensional type theory. 
+
+\begin{table}[ht]
+\fbox{ 
+\begin{minipage}{12cm}
+\medskip
+\begin{itemize}
+\item Formation rule.
+\[
+ \Bool : \type \, .
+ \]
+\item Introduction rules.
+\[
+0 : \Bool \, ,  \qquad  1 : \Bool \, .
+\]
+\item Recursion rule.\smallskip
+\[
+\begin{prooftree}
+B : \type \qquad
+b_0 : B \qquad
+b_1 : B 
+\justifies
+x: \Bool \vdash \boolrec(x,b_0, b_1) : B
+\end{prooftree}
+\]
+\item $\beta$-rules. \smallskip 
+\begin{equation*}
+\begin{prooftree}
+B : \type \qquad
+b_0 : B \qquad
+b_1 : B \qquad
+\justifies
+ \rec(x,b_0, b_1)  =  b_0 : B  \, ,
+\end{prooftree}
+ \end{equation*}  \medskip
+ \begin{equation*}
+\begin{prooftree}
+B : \type \qquad
+b_0 : B \qquad
+b_1 : B \qquad
+\justifies
+ \rec(x,b_0, b_1)  = b_1 : B \, .
+\end{prooftree}
+ \end{equation*} 
+ 
+\item $\eta$-rule.\smallskip
+\[
+\begin{prooftree}
+x \co \Bool \vdash f(x) : B 
+\justifies
+x \co \Bool \vdash f(x) = \rec(x, f(0), f(1) ) : B
+\end{prooftree}
+\]
+\end{itemize}
+\end{minipage} \medskip }  \medskip
+\caption{Equivalent rules for $\Bool$ over $\Hext$.}
+\end{table}
+
 \end{remark}
 
 
@@ -963,12 +1024,7 @@ Let algebras $(C,c_0,c_1) : \BoolAlg_{\UU_i}$, $(E,e_0,e_1) : \BoolFibAlg_{\UU_j
 
 
 
-\begin{theorem}\label{lem:BoolMainInt} The following conditions on a bipointed type $A$ are equivalent:
-\begin{enumerate}[(i)]
-\item $A$ satisfies the induction principle
-\item $A$ satisfies the recursion principle
-\item $A$ is homotopy-initial.
-\end{enumerate}
+\begin{theorem}\label{lem:BoolMainInt} For a bipointed type $A$, the properties of being inductive, recursive and homotopy-initial are equivalent.
 \end{theorem}
 
 \begin{proof} This needs to be fixed. 
@@ -1022,77 +1078,6 @@ $\Bool$ as a strict coproduct $1+1$ in extensional type theory. It makes precise
 in intensional type theory, $\Bool$ is a kind of homotopy coproduct or weak $\omega$-coproduct 
 in the weak $\omega$-category $\mathcal{C}(\Hint)$ of types, terms, identity terms, higher identity terms, \ldots.  
 It is worth emphasizing that homotopy-initiality is a purely type-theoretic notion; despite having an obvious semantic interpretation, it is formulated in terms of inhabitation of specific, definable types. Indeed, Corollary~\ref{lem:BoolMainInt} and its proof have been completely formalized in the Coq proof assistant~\cite{AwodeyS:indtht}.
-
-
-
-We conclude this section by describing how our analysis above restricts to the extensional setting. From now on, we work in $\Hext$. 
-
-\begin{table}[ht]
-\fbox{ 
-\begin{minipage}{12cm}
-\medskip
-\begin{itemize}
-\item $\Bool$-formation rule.
-\[
- \Bool : \UU_i \, .
- \]
-\item $\Bool$-introduction rules.
-\[
-0 : \Bool \, ,  \qquad  1 : \Bool \, .
-\]
-\item Simple $\Bool$-elimination rule.\smallskip
-\[
-\begin{prooftree}
-C : \UU_i \qquad
-c_0 : C \qquad
-c_1 : C \qquad
-b : \Bool
-\justifies
-\boolrec(C,c_0, c_1,b) : C
-\end{prooftree}
-\]
-\item Simple $\Bool$-computation rules. \smallskip 
-\begin{equation*}
-\begin{prooftree}
-C : \UU_i \qquad
-c_0 : C \qquad
-c_1 : C \qquad
-\justifies
-\left\{
-\begin{array}{c} 
- \boolrec(C,c_0, c_1,0)  \equiv  c_0 : C  \, , \\
- \boolrec(C,c_0, c_1,1)  \equiv  c_1 : C \, .
- \end{array}
-\right.
-\end{prooftree}
- \end{equation*} 
-\item Simple $\Bool$-uniqueness principle.\smallskip
-\begin{mathpar}
-\inferrule{b : \Bool \\ C : \UU_i \\ c_0 : C \\ c_1 : C \\ \\\\ x : \Bool \vdash f(x) : C \\ f(0) \equiv c_0 \\ f(1) \equiv c_1 \\ \\\\ x : \Bool \vdash g(x) : C \\ g(0) \equiv c_0 \\ g(1) \equiv c_1}{f(b) \equiv g(b) : C}
-\end{mathpar}
-\end{itemize}
-\end{minipage}
-} \medskip
-\caption{Equivalent recursion rules for $\Bool$ in extensional.}
-\end{table}
-
-
-
-
-\begin{corollary} \label{lem:BoolMain}
-In $\Hext$, the following conditions on an algebra $\X : \BoolAlg_{\UU_i}$ are equivalent:
-\begin{enumerate}
-\item $\mathcal{X}$ satisfies the induction principle on the universe $\UU_j$
-\item $\mathcal{X}$ satisfies the recursion and recursion uniqueness principles on the universe $\UU_j$
-\item $\mathcal{X}$ is initial on the universe $\UU_j$  
-\end{enumerate}
-for $j \geq i$. In other words, we have \[ \HasBoolInd_{\UU_j}(\X)  \;\; \simeq \;\; \HasBoolRec_{\UU_j}(\X) \times \HasBoolRecUniq_{\UU_j}(\X) \;\; \simeq \;\; \IsBoolInit_{\UU_j}(\X) \]
-provided $j \geq i$. 
-\end{corollary}
-
-
-
-In $\Hext$ extended with the type $\Bool$, the algebra $(\Bool,0,1) : \BoolAlg_{\UU_0}$ is initial on any universe $\UU_j$. Conversely,  in $\Hext$ extended with an algebra $\X : \BoolAlg_{\UU_0}$ which is initial on any universe $\UU_j$, the type $\Bool$ is definable. 
 
 
 \subsection{Univalence for bipointed types} 
@@ -1177,8 +1162,6 @@ Any two algebras $\X,\Y : \BoolAlg_{\UU_i}$ which are homotopy-initial on $\UU_i
 \begin{proof}
 By Lem.~\ref{BoolAlgSpace} it suffices to construct an isomorphism between $\X$ and $\Y$. Since $\X$ and $\Y$ are both homotopy-initial on $\UU_i$, there exist homomorphisms $\mu : \BoolHom \; \X \; \Y$ and $\nu : \BoolHom \; \Y \; \X$. Again by homotopy-initiality, we have $\nu \comp \mu = \one_\X$ and $\mu \comp \nu = \one_\Y$, which gives us the desired isomorphism.
 \end{proof}
-
-
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
