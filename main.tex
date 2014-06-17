@@ -372,7 +372,7 @@ The present work investigates inductive types in this setting. Modified rules fo
 \tableofcontents
 \end{small}
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
 
 The general topic of Homotopy Type Theory is concerned with the study of the constructive type theories of Martin-L\"of under their new interpretation into abstract homotopy theory and higher-dimensional category theory. Martin-L\"of type theories are foundational systems which have been used to formalize large parts of constructive mathematics, and also for the development of high-level programming languages~\cite{MartinLofP:conmcp}.  They are prized for their combination of expressive strength and desirable proof-theoretic properties.  One aspect of these type theories that has led to special difficulties in providing semantics is the intensional character of equality.  In recent work \cite{AwodeyS:homtmi,VoevodskyV:notts,vandenBergB:topsmi,AwodeyS:typth}, it has emerged that the topological notion of \emph{homotopy} provides an adequate basis for the semantics of intensionality.  This extends the paradigm of computability as continuity, familiar from domain theory, beyond the simply-typed 
@@ -398,8 +398,8 @@ in the context of Observational Type Theory \cite{AltenkirchT:obsen}.  Inductive
 
 \newpage
 
-
-\section{The dependent type theories $\Hint$ and $\Hext$}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The dependent type theory $\Hint$}
 \label{section:prelim}
 
 
@@ -660,6 +660,7 @@ In Section \ref{section:intW} below, these and related homotopy-theoretic insigh
 
 \newpage
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Basic inductive types}
 \label{section:simple}
 
@@ -925,7 +926,7 @@ x \co \Bool \vdash f(x) = \rec(x, f(0), f(1) ) : B
 The best that one can do is to show that it is unique among all such maps up to a path, which itself is unique up to a higher path, which in turn is unique up to a yet higher path, etc. This sort of ``homotopy" $\omega$-universality, which apparently involves infinitely much data, can nonetheless be captured directly within the system of type theory (without resorting to coinduction) using ideas from higher category theory. 
 
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Homotopy-initial bipointed types}
 
 
@@ -943,19 +944,23 @@ as follows:
 1 \ar[r]  \ar@{=}[d]  \ar[r]^{a_0}  \ar@{}[dr]|{\bar{f}_0} & A  \ar[d]^{f} & 1 \ar@{=}[d] \ar[l]_{a_1} \ar@{}[dl]|{\bar{f}_1} \\
 1 \ar[r] \ar[r]_{b_0}   & B  & 1\ar[l]^{b_1} }
  \]
-For bipointed types $A = (A, a_0, a_1)$ and $B = (B, b_0, b_1)$, we define the type of morphisms from $A$ to $B$ by letting
+For bipointed types $A = (A, a_0, a_1)$ and $B = (B, b_0, b_1)$, we define the type of morphisms from $A$ to $B$ by
 \[
 \Hom[A,B] \defeq (\Sigma f \co A \to B) \big( \Id( f(a_0), b_0) \times \Id( f(a_1), b_1) \big) \, .
 \]
 In certain respects, algebras and algebra morphisms behave much like objects and morphisms in a category.
 Given two morphisms of bipointed sets $(f, \bar{f}_0, \bar{f}_1) \co A \to B$ and $(g, \bar{g}_0, \bar{g}_1) \co B \to C$, we can define their composite 
  as the triple consisting of the composite $g \circ f \co A \to C$ and the identity proofs represented
-by the following pasting diagrams
+by the following pasting diagram.
 \[
 \xymatrix{
-1 \ar[r]  \ar@{=}[d]  \ar[r]^{a_0} & A  \ar[d]^{f} & 1 \ar@{=}[d] \ar[l]_{a_1} \\
-1 \ar[r] \ar[r]^{b_0} \ar@{=}[d]  & B \ar[d]^g & 1 \ar@{=}[d] \ar[l]_{b_1} \\
+1 \ar[r]  \ar@{=}[d]  \ar[r]^{a_0} \ar@{}[dr]|{\bar{f}_0} & A  \ar[d]^{f} & 1 \ar@{=}[d] \ar[l]_{a_1} \ar@{}[dl]|{\bar{f}_1}\\
+1 \ar[r] \ar[r]_{b_0} \ar@{=}[d]  \ar@{}[dr]|{\bar{g}_0} & B \ar[d]^g & 1 \ar@{=}[d] \ar[l]^{b_1} \ar@{}[dl]|{\bar{g}_1} \\
 1 \ar[r]_{c_0}  & C & 1 \ar[l]^{c_1} }
+\]
+Explicitly,
+\[
+\overline{(g \circ f)}_0 = \bar{g}_0\cdot g(\bar{f}_0),\quad \overline{g \circ f }_1 = \bar{g}_1\cdot g(\bar{f}_1).
 \]
 For any bipointed type $A$, there is also an identity morphism $(1_A, \refl(a_0), \refl(a_1)) \co A \to A$. 
 
@@ -969,13 +974,18 @@ is contractible, \ie the following type is inhabilited
 \]  
 \end{definition}
 
-
+[THE FOLLOWING PARAGRAPH DOESN'T FIT -- SHOULD BE REMOVED OR REVISED]
 The uniqueness principles as in Definition~\ref{def:BoolRecUniq} and Definition~\ref{def:BoolIndUniq} require that
 any two homomorphisms $f = (f,\bar{f}_0,\bar{f}_1)$ and $g = (g,\bar{g}_0,\bar{g}_1)$ be equal as tuples.
 Note that in the presence of the UIP axiom this is equivalent to saying that their first components agree, i.e., $f = g$.
 In turn, in the presence of the identity reflection rule, this is equivalent to $f \equiv g$.
+[TO HERE]
+\bigskip
 
-
+%
+% Proposed revision below
+%
+[THE FOLLOWING DEFINITION AND REMARK ARE REVISED BELOW]
 \begin{definition}\ \label{def:BoolCell} For morphisms $f = (f, \bar{f})$ and $g =  (g, \bar{g}) : A \to B$, an \emph{$2$-cell} $\alpha \co f \to g$ consists of a homotopy $\alpha \co (\Pi x : A)  \Id( f(x), g(x))$
 equipped with paths
 \[
@@ -991,7 +1001,21 @@ For parallel morphisms $f, g \co A \to B$, we can define type of algebra 2-cells
  \bar{\alpha}_0 \co \bar{g}_0 \cdot \alpha_0 = \bar{f}_0 \big) \times 
 \big( \bar{\alpha}_1 \co \bar{g}_1 \cdot \alpha_1 = \bar{f}_1 \big)
 \]
+[TO HERE -- REVISIONS FOLLOWS]
 
+\begin{definition}\ \label{def:BoolCell} For parallel morphisms $f, g \co A \to B$ of bipointed types, a \emph{$2$-cell} $\alpha \co f \to g$ consists of a homotopy of the underlying maps $\alpha \co  f = g$ together with homotopies relating the resulting paths between the points,
+\[
+\bar{\alpha}_0 \co \bar{g}_0 \cdot \alpha(a_0) = \bar{f}_0  \, , \quad 
+\bar{\alpha}_1 \co \bar{g}_1 \cdot \alpha(a_1) = \bar{f}_1  \, .
+\]
+Accordingly, we define the \emph{type of algebra 2-cells from $f$ to $g$} by
+\[
+ \BoolCell \;  [ (f,\bar{f}_0, \bar{f}_1), (g, \bar{g}_0, \bar{g}_1)]     \defeq   \Sigma (\alpha \co f = g)  \big(  
+ \bar{g}_0 \cdot \alpha(a_0) = \bar{f}_0 \big) \times 
+\big( \bar{g}_1 \cdot \alpha(a_1) = \bar{f}_1 \big)
+\]
+\end{definition}
+[END REVISION]
 
 
 
@@ -1003,7 +1027,11 @@ F \co \Id( (f, \bar{f}_0, \bar{f}_1), (g, \bar{g}_0, \bar{g}_1) ) \to \BoolCell[
 \]
 is an equivalence.
 \end{lemma}
+[WHAT IS THE FUNCTION F ??]
 
+[WHAT IS THE IDENTITY TYPE ON THE LEFT??]
+
+[WHAT IS THIS LEMMA USED FOR??]
 
 
 \begin{proof}   (TO BE MODIFIED: THIS WAS THE PROOF FOR THE FIBERED CASE)
@@ -1079,7 +1107,7 @@ in intensional type theory, $\Bool$ is a kind of homotopy coproduct or weak $\om
 in the weak $\omega$-category $\mathcal{C}(\Hint)$ of types, terms, identity terms, higher identity terms, \ldots.  
 It is worth emphasizing that homotopy-initiality is a purely type-theoretic notion; despite having an obvious semantic interpretation, it is formulated in terms of inhabitation of specific, definable types. Indeed, Corollary~\ref{lem:BoolMainInt} and its proof have been completely formalized in the Coq proof assistant~\cite{AwodeyS:indtht}.
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Univalence for bipointed types} 
 
 
@@ -1168,7 +1196,7 @@ By Lem.~\ref{BoolAlgSpace} it suffices to construct an isomorphism between $\X$ 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newpage
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{W-types}
 \label{section:wfiles}
 
@@ -1387,7 +1415,7 @@ Over $\Hext$, given $A:\UU_i$, $B : A \to \UU_i$ and $a_1,a_2:A$, $t_1 : B(a_1) 
 By Lem.~\ref{lem:ExtLambek} and Cor.~\ref{lem:WInit}, the structure map $\wsup$ defines an equivalence between $\sm{x:A} B(x) \to \W$ and $\W$. The rest follows from Lem.~\ref{lem:apeq}\ednote{Which says that $a = b$ is equivalent to $f(a) = f(b)$ if $f$ is an equivalence}.
 \end{proof}
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{W-types: intensional case}
 
 
@@ -1733,7 +1761,7 @@ where the first equality follows by Cor.~\ref{lem:suppath}. Since $A$ is an $(n+
 
 We note that there is no restriction on the homotopy level of the fibers of $B$ since they only appear contravariantly. Furthermore, we note that the lemma is no longer true if $n+1$ is replaced by $n$: if $A \defeq \one$ and $B(x) \defeq \one$, then $\W^{\UU_0}_{x:A} B(x) \simeq \zero$, which is of course not contractible. 
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Definability}
 \label{sec:definability}
 
@@ -1939,7 +1967,7 @@ We have an algebra $\cdot \vdash \X : \NatAlg_{\UU_0}$ such that for any $j$, th
 
 
 
-\section{Acknowledgements}
+\subsection*{Acknowledgements}
 
 We would like to thank Vladimir Voevodsky and Michael Warren for helpful discussions
 on the subject of this paper. In particular, Vladimir Voevodsky suggested a simplification of the 
