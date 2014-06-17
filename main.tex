@@ -1335,15 +1335,18 @@ t : B(a) \to \W
 \begin{mathpar}
 \inferrule{
 %A : \type \\  x:A \vdash B(x) : \type \\ 
- m : \W  \\  w : \W \vdash E(w) : \type \\ 
-x:A,\, p: B(x) \to \W,\, r : \big(\Pi{b:B(x)}\big) E(p\,b) \vdash e(x,p,r) :E(\wsup(x,p))}
-{\wind\big(w.E, e, m\big) : E(m)}
+% m : \W  \\  
+w : \W \vdash C(w) : \type \\ 
+x:A,\, u : B(x) \to \W,\, v : \big(\Pi{y:B(x)}\big) C(u(y)) \vdash c(x,u,v) :C(\wsup(x,u))}
+{ w : \W \vdash \wind(c, w) : C(w)}
 \end{mathpar}
 \item $\W$-computation rule.\smallskip
 \begin{mathpar}
-\inferrule{A : \UU_i \\ x:A \vdash B(x) : \UU_i \\ a : A \\ t : B(a) \to \W \\ w : \W \vdash E(w) : \UU_j \\ x:A, p: B(x) \to \W, r : \prd{b:B(x)} E(p \;b) \vdash
-e(x,p,r) :E(\wsup(x,p))}
-{\wind(\wsup(a,t)) \equiv e(a,t,\lam{b:B(a)} \wind(t\;b)) : E(\wsup(a,t))}
+\inferrule{
+w : \W \vdash C(w) : \type \\ 
+x:A,\, u : B(x) \to \W,\, v : \big(\Pi{y:B(x)}\big) C(u(y)) \vdash c(x,u,v) :C(\wsup(x,u))}
+{x:A,\, u : B(x) \to \W \vdash \\
+ \wind(c,\wsup(x,u)) \equiv c\big(x,u,\lambda{y}.\wind(c,u(y))\big) : C(\wsup(a,t))}
 \end{mathpar}
 \end{itemize}
 \medskip
