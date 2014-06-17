@@ -664,6 +664,8 @@ In Section \ref{section:intW} below, these and related homotopy-theoretic insigh
 \section{Basic inductive types}
 \label{section:simple}
 
+By \emph{basic inductive types} we mean types with an inductive specification that are however not W-types, specifically, the initial type $0$, the terminal type $1$, the type of booleans $\Bool$, and the coproduct of two types $A + B$.  We present here as an example the type $\Bool$, in sufficient detail for the reader to recognize the basic issues and the general pattern for dealing with them --- a precisely analogous development can be given for the other cases mentioned.  Moreover, the treatment of W-types in the next section will also follow the pattern given in this section, which therefore serves as a warm-up.
+
 \subsection{Bipointed types}
 \label{subsection:bool}
 
@@ -1099,7 +1101,7 @@ Let algebras $(C,c_0,c_1) : \BoolAlg_{\UU_i}$, $(E,e_0,e_1) : \BoolFibAlg_{\UU_j
 \begin{enumerate}[(i)]
 \item $A$ is inductive, 
 \item $A$ is recursive,
-\item $A$ homotopy-initial.
+\item $A$ is homotopy-initial.
 \end{enumerate}
 \end{theorem}
 
@@ -1279,36 +1281,74 @@ By Lem.~\ref{BoolAlgSpace} it suffices to construct an isomorphism between $\X$ 
 \section{W-types}
 \label{section:wfiles}
 
-\subsection{W-types: extensional case}
+\subsection{W-types}
 
-We recall the rules for W-types from~\cite{MartinLofP:inttt}; to state them more conveniently, we sometimes write $\W$ instead of $\W^{\UU_i}_{x : A}B(x)$; $\wsup(a,t)$ instead of $\wsup^{A,x.B}_{\UU_i}(a,t)$; and $\wind(m)$ instead of $\wind^{A,x.B}_{\UU_j}\big(w.E,a.t.s.e,m\big)$.
+We recall the rules for W-types from~\cite{MartinLofP:inttt}; to state them more conveniently, we sometimes write simply $\W$ instead of $(\W{x : A})B(x)$.
+%; and $\wsup(a,t)$ instead of $\wsup^{A,x.B}_{\UU_i}(a,t)$; 
+%and $\wind(m)$ instead of $\wind^{A,x.B}_{\UU_j}\big(w.E,a.t.s.e,m\big)$.
 
-\smallskip
 
+\begin{table}[ht]
+\fbox{ 
+\begin{minipage}{12cm}
+\medskip
 \begin{itemize}
+%\item $\W$-formation rule.\smallskip
+%\[
+%\begin{prooftree}
+% A : \UU_i \qquad
+% x:A \vdash B(x) : \UU_i
+% \justifies
+% \W^{\UU_i}_{x : A}B(x)
+%\end{prooftree}
+%\]
+%\item $\W$-introduction rule.\smallskip
+%\[
+%\begin{prooftree}
+%A : \UU_i \qquad
+%x:A \vdash B(x) : \UU_i \qquad
+%a:A \qquad
+%t : B(a) \to \W
+%\justifies
+%\wsup^{A,x.B}_{\UU_i}(a,t): \W
+%\end{prooftree}
+%\]
+%\item $\W$-elimination rule.\smallskip
+%\begin{mathpar}
+%\inferrule{A : \UU_i \\ x:A \vdash B(x) : \UU_i \\ m : \W \\ w : \W \vdash E(w) : \UU_j \\ x:A, p: B(x) \to \W, r : \prd{b:B(x)} E(p \;b) \vdash e(x,p,r) :E(\wsup(x,p))}{\wind^{A,x.B}_{\UU_j}\big(w.E,x.p.r.e,m\big) : E(m)}
+%\end{mathpar}
+%\item $\W$-computation rule.\smallskip
+%\begin{mathpar}
+%\inferrule{A : \UU_i \\ x:A \vdash B(x) : \UU_i \\ a : A \\ t : B(a) \to \W \\ w : \W \vdash E(w) : \UU_j \\ x:A, p: B(x) \to \W, r : \prd{b:B(x)} E(p \;b) \vdash
+%e(x,p,r) :E(\wsup(x,p))}
+%{\wind(\wsup(a,t)) \equiv e(a,t,\lam{b:B(a)} \wind(t\;b)) : E(\wsup(a,t))}
 \item $\W$-formation rule.\smallskip
 \[
 \begin{prooftree}
- A : \UU_i \qquad
- x:A \vdash B(x) : \UU_i
+ A : \type \qquad
+ x:A \vdash B(x) : \type
  \justifies
- \W^{\UU_i}_{x : A}B(x)
+ (\W{x : A})B(x) : \type
 \end{prooftree}
 \]
 \item $\W$-introduction rule.\smallskip
 \[
 \begin{prooftree}
-A : \UU_i \qquad
-x:A \vdash B(x) : \UU_i \qquad
+%A : \type \qquad
+%x:A \vdash B(x) : \type \qquad
 a:A \qquad
 t : B(a) \to \W
 \justifies
-\wsup^{A,x.B}_{\UU_i}(a,t): \W
+\wsup(a,t): \W
 \end{prooftree}
 \]
 \item $\W$-elimination rule.\smallskip
 \begin{mathpar}
-\inferrule{A : \UU_i \\ x:A \vdash B(x) : \UU_i \\ m : \W \\ w : \W \vdash E(w) : \UU_j \\ x:A, p: B(x) \to \W, r : \prd{b:B(x)} E(p \;b) \vdash e(x,p,r) :E(\wsup(x,p))}{\wind^{A,x.B}_{\UU_j}\big(w.E,x.p.r.e,m\big) : E(m)}
+\inferrule{
+%A : \type \\  x:A \vdash B(x) : \type \\ 
+ m : \W  \\  w : \W \vdash E(w) : \type \\ 
+x:A,\, p: B(x) \to \W,\, r : \big(\Pi{b:B(x)}\big) E(p\,b) \vdash e(x,p,r) :E(\wsup(x,p))}
+{\wind\big(w.E, e, m\big) : E(m)}
 \end{mathpar}
 \item $\W$-computation rule.\smallskip
 \begin{mathpar}
@@ -1317,9 +1357,12 @@ e(x,p,r) :E(\wsup(x,p))}
 {\wind(\wsup(a,t)) \equiv e(a,t,\lam{b:B(a)} \wind(t\;b)) : E(\wsup(a,t))}
 \end{mathpar}
 \end{itemize}
-
-\noindent
 \medskip
+\end{minipage}} \medskip
+\caption{Deduction rules for W-types over $\Hint$.}
+\label{tab:boolrules}
+\end{table}
+
 
 W-types can be seen informally as the free algebras for signatures
 with operations of possibly infinite arity, but no equations. Indeed, the premises 
