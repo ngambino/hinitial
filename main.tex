@@ -1338,7 +1338,7 @@ t : B(a) \to \W
 % m : \W  \\  
 w : \W \vdash C(w) : \type \\ 
 x:A,\, u : B(x) \to \W,\, v : \big(\Pi{y:B(x)}\big) C(u(y)) \vdash c(x,u,v) :C(\wsup(x,u))}
-{ w : \W \vdash \wind(c, w) : C(w)}
+{ w : \W \vdash \ind(c, w) : C(w)}
 \end{mathpar}
 \item $\W$-computation rule.\smallskip
 \begin{mathpar}
@@ -1346,7 +1346,7 @@ x:A,\, u : B(x) \to \W,\, v : \big(\Pi{y:B(x)}\big) C(u(y)) \vdash c(x,u,v) :C(\
 w : \W \vdash C(w) : \type \\ 
 x:A,\, u : B(x) \to \W,\, v : \big(\Pi{y:B(x)}\big) C(u(y)) \vdash c(x,u,v) :C(\wsup(x,u))}
 {x:A,\, u : B(x) \to \W \vdash \\
- \wind(c,\wsup(x,u)) \equiv c\big(x,u,\lambda{y}.\wind(c,u(y))\big) : C(\wsup(a,t))}
+ \ind(c,\wsup(x,u)) \equiv c\big(x,u,\lambda{y}.\ind(c,u(y))\big) : C(\wsup(a,t))}
 \end{mathpar}
 \end{itemize}
 \medskip
