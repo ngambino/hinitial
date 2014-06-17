@@ -954,6 +954,7 @@ is contractible, \ie the following type is inhabilited
 \end{definition}
 
 
+<<<<<<< HEAD
 It is worth emphasizing that homotopy-initiality is a purely type-theoretic notion; despite having an obvious semantic interpretation, it is formulated in terms of inhabitation of specific, definable types. The uniqueness implicit in Definition~\ref{def:BoolInit} requires that
 any two morphisms $f = (f,\bar{f}_0,\bar{f}_1)$ and $g = (g,\bar{g}_0,\bar{g}_1)$ of bipointed types are propositionally equal as tuples.
  In order
@@ -983,9 +984,9 @@ f(a_1) \ar[r]^{\alpha(a_1)}  \ar@/_1pc/[dr]_{\bar{f}_1}
  \] 
 We define the type of algebra 2-cells from $f$ to $g$ by
 \[
- \BoolCell \;  [ (f,\bar{f}_0, \bar{f}_1), (g, \bar{g}_0, \bar{g}_1)]     \defeq   \Sigma (\alpha \co f = g)  \big(  
- \bar{g}_0 \cdot \alpha(a_0) = \bar{f}_0 \big) \times 
-\big( \bar{g}_1 \cdot \alpha(a_1) = \bar{f}_1 \big)
+ \BoolCell \;  [ (f,\bar{f}_0, \bar{f}_1), (g, \bar{g}_0, \bar{g}_1)]     \defeq   \Sigma (\alpha \co f = g)  \big[\big(  
+  \bar{f}_0 = \bar{g}_0 \cdot \alpha(a_0)\big) \times 
+\big( \bar{f}_1=  \bar{g}_1 \cdot \alpha(a_1) \big)\big]
 \]
 
 
@@ -1001,13 +1002,11 @@ For every parallel pair of morphisms $f, g \co A \to B$ of bipointed types, ther
 
 
 
-
-
-\begin{theorem}\label{lem:BoolMainInt} For a bipointed type $A$, the following conditions are equivalent:
+\begin{theorem}\label{lem:BoolMainInt} For a bipointed type $A = (A, a_0, a_1)$, the following are equivalent:
 \begin{enumerate}[(i)]
 \item $A$ is inductive, 
 \item $A$ is recursive,
-\item $A$ is  homotopy-initial.
+\item $A$ homotopy-initial.
 \end{enumerate}
 \end{theorem}
 
@@ -1134,31 +1133,31 @@ category theory), since we have
 \[
 (\pi_1 \circ s)(x) = \pi_1 (\pair(x, sx)) = x 
 \]
-for every $x \co A$.
+for every $x \co A$. MORE TO ADD.
 
 
 \begin{definition} \label{def:2cellsection} Let $E = (E, e_0, e_1)$ be a fibered bipointed type over $A = (A, a_0, a_1)$. If $s = (s, \bar{s}_0, 
-\bar{s}_1)$ and $t = (t, \bar{t}_0, \bar{t}_1)$ are sections of $E$, a \emph{section $2$-cell} $\alpha \co s \rightarrow t$ is a
+\bar{s}_1)$ and $t = (t, \bar{t}_0, \bar{t}_1)$ are sections of $E$, a \emph{section homotopy} $\alpha \co s \rightarrow t$ is a
 homotopy~$\alpha \co s \sim t$ together with $\bar{\alpha}_0 \co s(a_0) = t(a_0)$ and $\bar{\alpha}_1 \co s(a_1) = t(a_1)$. 
 \end{definition} 
 
 
-We define the type of section 2-cells as follows:
+We define the type of section homotopy as follows:
 \[
-\mathsf{2}\text{-}\mathsf{Cell}[ (s, \bar{s}_0, \bar{s}_1), (t, \bar{t}_0, \bar{t}_1)] \defeq
+\mathsf{SHom}[ (s, \bar{s}_0, \bar{s}_1), (t, \bar{t}_0, \bar{t}_1)] \defeq
 (\Sigma \alpha \co s \sim t) \big( s(a_0) = t(a_0) \big) \times \big( s(a_1) = t(a_1) \big) \, .
 \]
 
 
-\begin{proposition} Let $E = (E, e_0, e_1)$ be a fibered bipointed type over $A = (A, a_0, a_1)$. 
+\begin{lemma} Let $E = (E, e_0, e_1)$ be a fibered bipointed type over $A = (A, a_0, a_1)$. 
 For every pair of sections $s = (s, \bar{s}_0, \bar{s}_1)$ and $t = (t, \bar{t}_0, \bar{t}_1)$, 
 there is an equivalence of types
 \[
-\mathsf{2}\text{-}\mathsf{Cell}[ (s, \bar{s}_0, \bar{s}_1), (t, \bar{t}_0, \bar{t}_1)] 
+\mathsf{SHom}[ (s, \bar{s}_0, \bar{s}_1), (t, \bar{t}_0, \bar{t}_1)] 
 \simeq 
 \Id\big( (s, \bar{s}_0, \bar{s}_1), (t, \bar{t}_0, \bar{t}_1) \big) \, .
 \]
-\end{proposition}
+\end{lemma}
 
 
 \begin{proof}  
