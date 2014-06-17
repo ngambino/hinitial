@@ -1127,18 +1127,35 @@ which we represent by the diagram
 1 \ar@/_1pc/[dr]_{e'_0} \ar[r]^{a_0} & A  \ar[d]^f & 1 \ar[l]_{a_1} \ar@/^1pc/[dl]^{e'_1} \\
  & E' & }
  \]
-
-
- This gives us a homomorphism $(u,\theta_0,\theta_1)$, where $u : C \to \sm{x:C} E(x)$, $\theta_0 : u(c_0) = (c_0,e_0)$, and $\theta_1 : u(c_1) = (c_1,e_1)$. We can now form two homomorphisms 
-\[\Big(\fst \comp u, \fst(\idtodpair(\theta_0)), \fst(\idtodpair(\theta_1))\Big), \Big(\idfun{C}, \refl_{c_0}, \refl_{c_1}\Big) : \BoolHom \; (C,c_0,c_1) \; (C,c_0,c_1)\]
-The recursion uniqueness principle tells us that these homomorphisms are equal. By Cor.~\ref{BoolHomSpace} this means there exists a 2-cell $(\alpha,\eta_0,\eta_1)$ between them, i.e., we have 
+ We can compose $f \co A \to E'$ with $\pi_1 \co E' \to A$ and obtain a morphism $\pi_1 \co f \co A \to A$, represented by the diagram
+  \[
+\xymatrix@C=1.5cm{
+1 \ar@/_1pc/[dr]_(.7){e'_0} \ar[r]^{a_0} \ar@/_1.5pc/[ddr]_{a_0}  & A  \ar[d]^f & 1 \ar[l]_{a_1} \ar@/^1pc/[dl]^(.7){e'_1} \ar@/^1.5pc/[ddl]^{a_1}  \\
+ & E' \ar[d]^{\pi_1} & \\
+ & A &  }
+ \]
+But the identity $1_A \co A \to A$ is also a morphism from $A$ to itself and hence, by the homotopy-initiality, the morphisms $\pi_1 \circ f \co A \to A$
+and $1_A \co A \to A$ have to be propositionally equal. By Lemma~\ref{BoolHomSpace} this means there exists a 2-cell $(\alpha,
+\bar{\alpha}_0,\bar{\alpha}_1)$ between them, i.e., we have 
 \begin{align*}
-& \alpha : \fst \comp u \sim \idfun{C} \\
-& \eta_0 : \alpha(c_0) = \fst(\idtodpair(\theta_0)) \ct \refl_{c_0} \\
-& \eta_1 : \alpha(c_1) = \fst(\idtodpair(\theta_1)) \ct \refl_{c_1}
+& \alpha : \pi_1 \comp f \sim 1_A \\
+& \bar{\alpha}_0 : \alpha(a_0) = \fst(\idtodpair(\theta_0)) \ct \refl_{a_0} \\
+& \bar{\alpha}_1 : \alpha(a_1) = \fst(\idtodpair(\theta_1)) \ct \refl_{a_1}
 \end{align*}
-We can thus define the desired fibered homomorphism as \[\Big(x \mapsto \trans_E(\alpha(x)) \; \snd(u(x)), \phi_0, \phi_1\Big) : \BoolFibHom \; (C,c_0,c_1) \; (E,e_0,e_1)\]
-where $\phi_0$ is the path
+We can thus derive the judgement
+\[
+x \co A \vdash \ind(x, e_0, e_1) \co E(x)
+\]
+by letting, for $x \co A$,
+\[
+\ind(x, e_0, e_1) \defeq  \trans_E(\alpha(x)) \; \pi_2(f(x)) \, .
+\]
+It remains to derive the propositional computation rules, \ie propositional identity proofs
+\[
+\phi_0 \co \Id( \ind(a_0, e_0, e_1) , e_0) \, , \quad 
+\phi_1 \co \Id( \ind(a_1, e_0, e_1), e_1) \, .
+\]
+The proof $\phi_0$ is given by
 \begin{center}
 \begin{tikzpicture}
 \node (N0) at (0,3) {$\trans_E\big(\alpha(c_0)\big) \; \snd(u(c_0))$};
