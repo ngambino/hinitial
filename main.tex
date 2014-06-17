@@ -667,8 +667,7 @@ In Section \ref{section:intW} below, these and related homotopy-theoretic insigh
 \label{subsection:bool}
 
 
-The type $\Bool$ can be formulated as an inductive type in the familiar way by means of formation, introduction, elimination, and computation rules,
-given in Table~\ref{tab:boolrules}.
+The type $\Bool$ is given by means of formation, introduction, elimination, and computation rules, given in Table~\ref{tab:boolrules}.
 \smallskip
 
 
@@ -677,15 +676,18 @@ given in Table~\ref{tab:boolrules}.
 \begin{minipage}{12cm}
 \medskip
 \begin{itemize}
-\item Formation rule.
+\item Formation rule. \smallskip
+
 \[
  \Bool : \type \, .
  \]  \medskip
-\item Introduction rules.
+\item Introduction rules. \smallskip
+
 \[
 0 : \Bool \, ,  \qquad  1 : \Bool \, .
 \]  
-\item Elimination rule.\smallskip
+\item Elimination rule.\medskip
+
 \[
 \begin{prooftree}
 x:\Bool \vdash E(x) : \type \qquad
@@ -696,6 +698,7 @@ x \co \Bool \vdash \boolind(x, e_0, e_1) : E(x)
 \end{prooftree}
 \] \bigskip
 \item Computation rules. \smallskip
+
 \begin{equation*}
 \begin{prooftree}
 x:\Bool \vdash E(x) : \type \qquad
@@ -794,29 +797,29 @@ are satisfied:
 \[
 \begin{prooftree}
 B : \type \qquad
-b_0 : C \qquad
-b_1 : C \qquad
+b_0 : B \qquad
+b_1 : B 
 \justifies
 x \co A \vdash \rec(x, b_0, b_1) : B
 \end{prooftree}
 \]
 \item  Propositional $\beta$-rules. \smallskip 
-\begin{equation*}
+\begin{mathpar}
 \begin{prooftree}
 B : \type \qquad
 b_0 : B \qquad
-b_1 : B \qquad
+b_1 : B 
 \justifies
-\beta_0 : \Id( \rec(a_0, b_0, b_1), b_0)  \, , \\
-\end{prooftree} \qquad
+\beta_0 : \Id( \rec(a_0, b_0, b_1), b_0)  
+\end{prooftree} \\
 \begin{prooftree}
 B : \type \qquad
 b_0 : B \qquad
-b_1 : B \qquad
+b_1 : B 
 \justifies
-\beta_1 : \Id( \rec(a_1, b_0, b_1), b_1)  \, , \\
+\beta_1 : \Id( \rec(a_1, b_0, b_1), b_1) 
 \end{prooftree}
- \end{equation*} 
+ \end{mathpar} 
 \item Propositional $\eta$-rule.\smallskip
 \[
 \begin{prooftree}
@@ -825,37 +828,71 @@ b_0 \co B \quad
 b_1 \co B \quad 
 x \co A \vdash f(x) \co B \\
 \justifies
-x \co A \vdash \eta_f(x) \co \Id \big( f(x), \rec(x, f(a_0), f(a_1) ) \big)
+x \co A \vdash \eta_f(x) \co \Id \big( \rec(x, f(a_0), f(a_1) ), f(x)  \big)
 \end{prooftree}
 \]
  \item $(\beta, \eta)$-compatibility.\smallskip
 \begin{equation*}
 \begin{prooftree}
 B \co \type \qquad 
-b_0 \co B \quad
-b_1 \co B \quad 
+b_0 \co B \qquad
+b_1 \co B \qquad 
 x \co A \vdash f(x) \co B
 \justifies
-p_f \co \Id \big(  \beta_0 \cdot \eta_f(a_0), \refl(f(a_0)) \big)
+p_{f,0} \co \Id \big(  \beta_0, \eta_f(a_0)   \big)
+\end{prooftree}
+ \end{equation*}  \medskip
+ \begin{equation*}
+\begin{prooftree}
+B \co \type \qquad 
+b_0 \co B \qquad
+b_1 \co B \qquad 
+x \co A \vdash f(x) \co B
+\justifies
+p_{f,1} \co \Id \big(  \beta_1, \eta_f(a_1)  \big)
 \end{prooftree}
  \end{equation*} 
+
+ 
 \end{itemize} 
 \end{definition}
 
 
 
 
-\begin{proposition} If a bipointed type is inductive then it is recursive.
+\begin{proposition} \label{thm:indrec}
+If a bipointed type is inductive then it is recursive.
 \end{proposition}
 
 
-\begin{proof} Let $A = (A, a_0, a_1)$ be a bipointed type. Clearly, the elimination rule implies the non-dependent elimination rule and the
-propositional computation rules imply the $\beta$-rules. It remains to show that the $\eta$-rules and the $(\beta,\eta)$-compatibility rule
-hold. [TO BE ADDED - WHAT FOLLOWS IS AN OLD PROOF] 
-\begin{enumerate}[(i)] 
-\item We prove the dependent uniqueness principle by using the induction principle with the type family $x \mapsto f(x) =_{E(x)} g(x)$; the cases when $x \defeq 0$ and $x \defeq 1$ are straightforward. This gives us pointwise propositional equality between $f$ and $g$. 
-\item We use the induction principle with the type family $x \mapsto f(x) =_{E(x)} g(x)$ and for the cases $x \defeq 0$, $x \defeq 1$ we supply the paths $\gamma_0 \ct \delta_0^{-1}$ and $\gamma_1 \ct \delta_1^{-1}$ respectively. This gives us a pointwise propositional equality between $f$ and $g$ as desired.
-\end{enumerate}
+\begin{proof} Let $A = (A, a_0, a_1)$ be a bipointed type. Clearly, the recursion rule is a special case of the elimination rule and
+the $\beta$-rule is a special case of the computation rule. So, we only need to prove the propositional $\eta$-rule and the 
+$(\eta,\beta)$-compatibility rule. The propositional~$\eta$-rule can be derived using the elimination rule. More precisely, 
+let us assume the premisses of the propositional~$\eta$-rule and, for $x \co A$, define
+\[
+ E(x) \defeq \Id_B \big(  \rec( x, f(a_0), f(a_1)), f(x) \big) \, .
+\]
+We now apply the elimination rule as follows:
+\[
+\begin{prooftree}
+x \co A \vdash E(x) \co \type \qquad 
+\beta_0 \co E(a_0) \qquad
+\beta_1 \co E(a_1)
+\justifies
+x \co A \vdash  \ind(x, \beta_0, \beta_1)  \co E(x) \, .
+\end{prooftree}
+\]
+Here, $\beta_0$ and $\beta_1$ are the terms given by the propositional computation rules, which have the 
+appropriate types since
+\[
+E(a_0) = \Id_B(  \rec(a_0, f(a_0), f(a_1)), f(a_0) ) \, , \quad E(a_1) = \Id_B(  \rec(a_0, f(a_0), f(a_1)), f(a_1) ) \, . 
+\]
+For $x \co A$, we can define the required term by letting
+\[
+ \eta_f(x) \defeq  \ind(x, \beta_0, \beta_1) \co \Id_B \big(  \rec( x, f(a_0), f(a_1)), f(x) \big)  \, .
+ \]
+ With this definition, 
+the required $(\beta,\eta)$-compatibility rules now hold immediately by the propositional computation rules. 
 \end{proof}
 
 
@@ -932,30 +969,30 @@ The best that one can do is to show that it is unique among all such maps up to 
 
 We introduce the notion of a morphism of bipointed types.
 
-\begin{definition} Let $A = (A, a_0, a_1)$ and $B = (B, b_0, b_1)$ be bipointed types. A \emph{morphism} from~$A$ to~$B$ consists of
-triple $(f, \bar{f}_0, \bar{f}_1)$, where  $f \co A \to B$ and $\bar{f}_0 \co \Id( f(a_0), b_0)$ and $\bar{f}_1 \co \Id(f(a_1), b_1)$.
+\begin{definition} For bipointed types $A = (A, a_0, a_1)$, $B = (B, b_0, b_1)$, a \emph{morphism} $f~\co~A~\to~B$ consists of
+a function $f \co A \to B$ equipped with propositional identity proofs $\bar{f}_0 \co \Id( f(a_0), b_0)$ and~$\bar{f}_1 \co \Id(f(a_1), b_1)$.
 \end{definition}
 
 We sometimes write simply $f \co A \to B$ to denote a morphism of bipointed types. Diagrammatically, we represent such a morphism
 as follows:
 \[
 \xymatrix{
-1 \ar[r]  \ar@{=}[d]  \ar[r]^{a_0}  \ar@{}[dr]|{\bar{f}_0} & A  \ar[d]^{f} & 1 \ar@{=}[d] \ar[l]_{a_1} \ar@{}[dl]|{\bar{f}_1} \\
-1 \ar[r] \ar[r]_{b_0}   & B  & 1\ar[l]^{b_1} }
+1 \ar[r]   \ar[r]^{a_0} \ar@/_1pc/[dr]_{b_0}  & A  \ar[d]^{f} & 1  \ar[l]_{a_1} \ar@/^1pc/[dl]^{b_1} \\
+  & B  &  }
  \]
 For bipointed types $A = (A, a_0, a_1)$ and $B = (B, b_0, b_1)$, we define the type of morphisms from $A$ to $B$ by letting
 \[
 \Hom[A,B] \defeq (\Sigma f \co A \to B) \big( \Id( f(a_0), b_0) \times \Id( f(a_1), b_1) \big) \, .
 \]
-In certain respects, algebras and algebra morphisms behave much like objects and morphisms in a category.
+Bipointed types and their morphisms behave much like objects and morphisms in a category.
 Given two morphisms of bipointed sets $(f, \bar{f}_0, \bar{f}_1) \co A \to B$ and $(g, \bar{g}_0, \bar{g}_1) \co B \to C$, we can define their composite 
  as the triple consisting of the composite $g \circ f \co A \to C$ and the identity proofs represented
-by the following pasting diagrams
+by the following pasting diagram
 \[
-\xymatrix{
-1 \ar[r]  \ar@{=}[d]  \ar[r]^{a_0} & A  \ar[d]^{f} & 1 \ar@{=}[d] \ar[l]_{a_1} \\
-1 \ar[r] \ar[r]^{b_0} \ar@{=}[d]  & B \ar[d]^g & 1 \ar@{=}[d] \ar[l]_{b_1} \\
-1 \ar[r]_{c_0}  & C & 1 \ar[l]^{c_1} }
+\xymatrix@C=1.5cm{
+1 \ar[r]   \ar[r]^{a_0}   \ar@/_1pc/[dr]^{b_0} \ar@/_1pc/[ddr]_{c_0}  & A  \ar[d]^{f} & 1 \ar[l]_{a_1}  \ar@/^1pc/[dl]_{b_1}  \ar@/^1pc/[ddl]^{c_1} \\
+  & B \ar[d]^g &   \\
+  & C &   }
 \]
 For any bipointed type $A$, there is also an identity morphism $(1_A, \refl(a_0), \refl(a_1)) \co A \to A$. 
 
@@ -969,27 +1006,36 @@ is contractible, \ie the following type is inhabilited
 \]  
 \end{definition}
 
+It is worth emphasizing that homotopy-initiality is a purely type-theoretic notion; despite having an obvious semantic interpretation, it is formulated in terms of inhabitation of specific, definable types. The uniqueness implicit in Definition~\ref{def:BoolInit} requires that
+any two morphisms $f = (f,\bar{f}_0,\bar{f}_1)$ and $g = (g,\bar{g}_0,\bar{g}_1)$ of bipointed types are propositionally equal as tuples.
+Note that in the presence of the UIP axiom this is equivalent to saying that their first components agree, i.e. that $f$ and $g$
+are propositionally equal.  In turn, in the presence of the identity reflection rule, this is equivalent to $f = g \co A \to B$.
 
-The uniqueness principles as in Definition~\ref{def:BoolRecUniq} and Definition~\ref{def:BoolIndUniq} require that
-any two homomorphisms $f = (f,\bar{f}_0,\bar{f}_1)$ and $g = (g,\bar{g}_0,\bar{g}_1)$ be equal as tuples.
-Note that in the presence of the UIP axiom this is equivalent to saying that their first components agree, i.e., $f = g$.
-In turn, in the presence of the identity reflection rule, this is equivalent to $f \equiv g$.
 
-
-\begin{definition}\ \label{def:BoolCell} For morphisms $f = (f, \bar{f})$ and $g =  (g, \bar{g}) : A \to B$, an \emph{$2$-cell} $\alpha \co f \to g$ consists of a homotopy $\alpha \co (\Pi x : A)  \Id( f(x), g(x))$
-equipped with paths
-\[
-\bar{\alpha}_0 \co \Id( \bar{g}_0 \cdot \alpha_0, \bar{f}_0)  \, , \quad 
-\bar{\alpha}_1 \co \Id( \bar{g}_1 \cdot \alpha_1, \bar{f}_1 ) \, .
-\]
+\begin{definition}\ \label{def:BoolCell} For morphisms $f = (f, \bar{f}_0, \bar{f}_1)$, $g =  (g, \bar{g}_0, \bar{g}_1) : A \to B$ of bipointed types, 
+a \emph{$2$-cell} $\alpha \co f \to g$ consists of a homotopy $\alpha \co (\Pi x : A)  \Id( f(x), g(x))$
+equipped with propositional identity proofs $\bar{\alpha}_0 \co \Id( \bar{g}_0 \cdot \alpha(a_0), \bar{f}_0)$ and $\bar{\alpha}_1 \co \Id( \bar{g}_1 \cdot 
+\alpha(a_1), \bar{f}_1 )$. 
 \end{definition}
 
-
-For parallel morphisms $f, g \co A \to B$, we can define type of algebra 2-cells from $f$ to $g$ by letting
+Diagrammatically, we represent a 2-cell as follows:
 \[
- \BoolCell \;  [ (f,\bar{f}), (g, \bar{g})]     \defeq   \sm{ \alpha \co f \sim g}   \big(  
- \bar{\alpha}_0 \co \bar{g}_0 \cdot \alpha_0 = \bar{f}_0 \big) \times 
-\big( \bar{\alpha}_1 \co \bar{g}_1 \cdot \alpha_1 = \bar{f}_1 \big)
+\xymatrix@C=1.5cm{
+f(a_0) \ar[r]^{\alpha(a_0)}  \ar@/_1pc/[dr]_{\bar{f}_0}  
+\ar@{}[dr]|{\qquad \Downarrow \; \bar{\alpha}_0}  & g(a_0) \ar[d]^{\bar{g}_0}  \\ 
+ & b_0 } \qquad
+ \xymatrix@C=1.5cm{
+f(a_1) \ar[r]^{\alpha(a_1)}  \ar@/_1pc/[dr]_{\bar{f}_1}  
+\ar@{}[dr]|{\qquad \Downarrow \; \bar{\alpha}_1}  & g(a_1) \ar[d]^{\bar{g}_1}  \\ 
+ & b_1 }
+ \] 
+For  morphisms $f, g \co A \to B$, we define type of algebra 2-cells from $f$ to $g$ by letting
+\[
+ \BoolCell  [ (f,\bar{f}), (g, \bar{g})]     \defeq   (\Sigma  \alpha \co f \sim g)  
+ \big(  
+ \Id (  \bar{g}_0 \cdot \alpha(a_0), \bar{f}_0 ) \times 
+ \Id ( \bar{g}_1 \cdot \alpha(a_1), \bar{f}_1) 
+ \big)
 \]
 
 
@@ -1024,25 +1070,45 @@ Let algebras $(C,c_0,c_1) : \BoolAlg_{\UU_i}$, $(E,e_0,e_1) : \BoolFibAlg_{\UU_j
 
 
 
-\begin{theorem}\label{lem:BoolMainInt} For a bipointed type $A$, the properties of being inductive, recursive and homotopy-initial are equivalent.
+\begin{theorem}\label{lem:BoolMainInt} For a bipointed type, the following properties are equivalent:
+\begin{enumerate}[(i)]
+\item being inductive, 
+\item being recursive,
+\item being homotopy-initial.
+\end{enumerate}
 \end{theorem}
 
-\begin{proof} This needs to be fixed. 
+\begin{proof} We proved (i) $\Rightarrow$ (ii) in Proposition~\ref{thm:indrec}. We now prove (ii) $\Rightarrow$ (iii). So, let $A$ be a bipointed type
+and assume that it is recursive. We need to show that it is homotopy-initial. So, let $B = (B, b_0, b_1)$ be a bipointed type. We begin to prove
+that the type of morphisms from $A$ to $B$ is contractible by showing that it is inhabited. This follows easily by the assumption that $A$
+is recursive. Indeed, the elimination rule allows us to define a function~$f \co A \to B$ by letting~$f \defeq (\lambda x \co A) \rec(x, b_0, b_1)$. We can
+equip this function with the structure of a morphism of bipointed types since the propositional $\beta$-rules give us propositional identity 
+proofs~$\beta_0 \co \Id(f (a_0), b_0)$ and~$\beta_1 \co \Id (f(a_1), b_1)$, as required. To complete the proof that $\Hom(A,B)$ is contractible,
+we show that any two morphisms $f, g \co A \to B$ are propositionally equal.  TO BE ADDED.
 
 
-\begin{itemize}
-\item  (INDUCTION IMPLIES INDUCTION UNIQUENESS; TO ADD: MORE DETAILS AND COHERENCE)
-Let  $C = (C,c_0,c_1)$ be an algebra. To prove the induction uniqueness principle, take any fibered algebra $(E,e_0,e_1)$ over $C$ and fibered homomorphisms 
-$(f,\bar{f}_0, \bar{f}_1), (g,\bar{g}_0,\bar{g}_1)$ from $C$ to $E$. By Lemma~\ref{BoolFibHomSpace}, to show that these homomorphisms are equal, it suffices to exhibit a fibered 2-cell between them. For this, we use the induction principle with the fibered algebra $\big(f \sim g, \gamma_0 \ct \delta_0^{-1}, \gamma_1 \ct \delta_1^{-1}\big)$ and we are done. []
-\item  (INDUCTION IMPLIES HOMOTOPY INITIALITY)
-If $C$ satisfies the induction principle, then it satisfies the induction uniqueness principle by Lemma~\ref{lem:BoolIndImpUniqInt}. These two
-principles imply the recursion and recursion uniqueness principles. The conclusion then follows by Proposition~\ref{thm:charhinit}.
-\item  (RECURSION IMPLIES INDUCTION)
-Let algebras $(C,c_0,c_1) : \BoolAlg_{\UU_i}$ and $(E,e_0,e_1) : \BoolFibAlg_{\UU_j} \; (C,c_0,c_1)$ be given. 
-We use the recursion principle with the algebra 
+
+
+We now conclude the proof by showing that (iii) $\Rightarrow$ (i).
+Let $A = (A, a_0, a_1)$ be a homotopy-initial pointed type. We need to derive the elimination rule and the propositional computation rules. Let us begin
+by considering the elimination rule. So, let us assume its premisses, which give us a type $E(x)$ for $x \co A$ together with elements $e_0 \co E(a_0)$
+and $e_1 \co E(a_1)$. Define the type 
 \[
-\big(\sm{x:C} E(x), (c_0,e_0), (c_1,e_1)\big) \, .
-\] We note that the carrier type belongs to $\UU_j$ as $i \leq j$. This gives us a homomorphism $(u,\theta_0,\theta_1)$, where $u : C \to \sm{x:C} E(x)$, $\theta_0 : u(c_0) = (c_0,e_0)$, and $\theta_1 : u(c_1) = (c_1,e_1)$. We can now form two homomorphisms 
+E' \defeq (\Sigma x \co A) E(x) 
+\]
+and observe that $E'$ can be equipped with the structure of a bipointed type by considering its elements $e'_0 \defeq \pair(a_0, e_0)$ and $e'_1 \defeq \pair(a_1, e_1)$. In this way,  the first projection $\pi_1 \co E' \to A$ is a morphism of pointed types. By the homotopy-initiality of $A$, we have a morphism of bipointed types
+\[
+(f, \bar{f}_0, \bar{f}_1) \co (A, a_0, a_1)  \to (E', e'_0, e'_1) 
+\]
+which we represent by the diagram
+\[
+\xymatrix{
+1 \ar@/_1pc/[dr]_{e'_0} \ar[r]^{a_0} & A  \ar[d]^f & 1 \ar[l]_{a_1} \ar@/^1pc/[dl]^{e'_1} \\
+ & E' & }
+ \]
+
+
+ This gives us a homomorphism $(u,\theta_0,\theta_1)$, where $u : C \to \sm{x:C} E(x)$, $\theta_0 : u(c_0) = (c_0,e_0)$, and $\theta_1 : u(c_1) = (c_1,e_1)$. We can now form two homomorphisms 
 \[\Big(\fst \comp u, \fst(\idtodpair(\theta_0)), \fst(\idtodpair(\theta_1))\Big), \Big(\idfun{C}, \refl_{c_0}, \refl_{c_1}\Big) : \BoolHom \; (C,c_0,c_1) \; (C,c_0,c_1)\]
 The recursion uniqueness principle tells us that these homomorphisms are equal. By Cor.~\ref{BoolHomSpace} this means there exists a 2-cell $(\alpha,\eta_0,\eta_1)$ between them, i.e., we have 
 \begin{align*}
@@ -1064,7 +1130,6 @@ where $\phi_0$ is the path
 \end{tikzpicture}
 \end{center}
 and $\phi_1$ is defined analogously.
-\end{itemize}
 \end{proof}
 
 
@@ -1073,11 +1138,11 @@ The bipointed type $\Bool$ is homotopy-initial.
 \end{corollary}
 
 
-Corollaries~\ref{lem:BoolCharInt} and \ref{lem:BoolInitInt} are the analogue in Homotopy Type Theory of the characterization of 
+Corollary~\ref{lem:BoolInitInt} is the analogue in Homotopy Type Theory of the characterization of 
 $\Bool$ as a strict coproduct $1+1$ in extensional type theory. It makes precise the rough idea that, 
-in intensional type theory, $\Bool$ is a kind of homotopy coproduct or weak $\omega$-coproduct 
-in the weak $\omega$-category $\mathcal{C}(\Hint)$ of types, terms, identity terms, higher identity terms, \ldots.  
-It is worth emphasizing that homotopy-initiality is a purely type-theoretic notion; despite having an obvious semantic interpretation, it is formulated in terms of inhabitation of specific, definable types. Indeed, Corollary~\ref{lem:BoolMainInt} and its proof have been completely formalized in the Coq proof assistant~\cite{AwodeyS:indtht}.
+in intensional type theory, $\Bool$ is a kind of homotopy coproduct or weak $\infty$-coproduct 
+in the $\infty$-category of types, functions, identity terms, higher identity terms, \ldots.  
+
 
 
 \subsection{Univalence for bipointed types} 
