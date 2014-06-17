@@ -898,69 +898,11 @@ the required $(\beta,\eta)$-compatibility rules now hold immediately by the prop
 
 
 
-\begin{remark}[Extensional type theory] How everything reduces in the case of extensional type theory. 
-
-\begin{table}[ht]
-\fbox{ 
-\begin{minipage}{12cm}
-\medskip
-\begin{itemize}
-\item Formation rule.
-\[
- \Bool : \type \, .
- \]
-\item Introduction rules.
-\[
-0 : \Bool \, ,  \qquad  1 : \Bool \, .
-\]
-\item Recursion rule.\smallskip
-\[
-\begin{prooftree}
-B : \type \qquad
-b_0 : B \qquad
-b_1 : B 
-\justifies
-x: \Bool \vdash \boolrec(x,b_0, b_1) : B
-\end{prooftree}
-\]
-\item $\beta$-rules. \smallskip 
-\begin{equation*}
-\begin{prooftree}
-B : \type \qquad
-b_0 : B \qquad
-b_1 : B \qquad
-\justifies
- \rec(x,b_0, b_1)  =  b_0 : B  \, ,
-\end{prooftree}
- \end{equation*}  \medskip
- \begin{equation*}
-\begin{prooftree}
-B : \type \qquad
-b_0 : B \qquad
-b_1 : B \qquad
-\justifies
- \rec(x,b_0, b_1)  = b_1 : B \, .
-\end{prooftree}
- \end{equation*} 
- 
-\item $\eta$-rule.\smallskip
-\[
-\begin{prooftree}
-x \co \Bool \vdash f(x) : B 
-\justifies
-x \co \Bool \vdash f(x) = \rec(x, f(0), f(1) ) : B
-\end{prooftree}
-\]
-\end{itemize}
-\end{minipage} \medskip }  \medskip
-\caption{Equivalent rules for $\Bool$ over $\Hext$.}
-\end{table}
-
+\begin{remark}[Extensional type theory] How the rules for a recursive type simplify in the extensional setting (no compatibility). How
+the implication from inductive to recursive can be easily proven in the extensional theory. Description of the difficulty in reversing that
+implication in the intensional setting. Idea: the best that one can do is to show that it is unique among all such maps up to a path, which itself is unique up to a higher path, which in turn is unique up to a yet higher path, etc. This sort of ``homotopy" $\omega$-universality, which apparently involves infinitely much data, can nonetheless be captured directly within the system of type theory (without resorting to coinduction) using ideas from higher category theory. 
 \end{remark}
 
-
-[TO BE MODIFIED: DISCUSSION OF THE ISSUES IN INTENSIONAL TYPE THEORY] 
-The best that one can do is to show that it is unique among all such maps up to a path, which itself is unique up to a higher path, which in turn is unique up to a yet higher path, etc. This sort of ``homotopy" $\omega$-universality, which apparently involves infinitely much data, can nonetheless be captured directly within the system of type theory (without resorting to coinduction) using ideas from higher category theory. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1014,25 +956,16 @@ is contractible, \ie the following type is inhabilited
 
 It is worth emphasizing that homotopy-initiality is a purely type-theoretic notion; despite having an obvious semantic interpretation, it is formulated in terms of inhabitation of specific, definable types. The uniqueness implicit in Definition~\ref{def:BoolInit} requires that
 any two morphisms $f = (f,\bar{f}_0,\bar{f}_1)$ and $g = (g,\bar{g}_0,\bar{g}_1)$ of bipointed types are propositionally equal as tuples.
-Note that in the presence of the UIP axiom this is equivalent to saying that their first components agree, i.e. that $f$ and $g$
-are propositionally equal.  In turn, in the presence of the identity reflection rule, this is equivalent to $f = g \co A \to B$.
-
-
-[THE FOLLOWING PARAGRAPH DOESN'T FIT -- SHOULD BE REMOVED OR REVISED]
-The uniqueness principles as in Definition~\ref{def:BoolRecUniq} and Definition~\ref{def:BoolIndUniq} require that
-any two homomorphisms $f = (f,\bar{f}_0,\bar{f}_1)$ and $g = (g,\bar{g}_0,\bar{g}_1)$ be equal as tuples.
-Note that in the presence of the UIP axiom this is equivalent to saying that their first components agree, i.e., $f = g$.
-In turn, in the presence of the identity reflection rule, this is equivalent to $f \equiv g$.
-[TO HERE]
-\bigskip
+ In order
+to prove our main result in this section, it is convenient to obtain an alternative, equivalent description of the identity
+type of two morphisms. We begin by introducing the notion of a 2-cell between morphisms of bipointed types. 
 
 
 
-
-\begin{definition}\ \label{def:BoolCell} For parallel morphisms $f, g \co A \to B$ of bipointed types, a \emph{$2$-cell} $\alpha \co f \to g$ consists of a homotopy of the underlying maps $\alpha \co  f = g$ together with homotopies relating the resulting paths between the points,
+\begin{definition}\ \label{def:BoolCell} For parallel morphisms $f, g \co A \to B$ of bipointed types, a \emph{$2$-cell} $\alpha \co f \to g$ consists of a homotopy of the underlying maps $\alpha \co  f = g$ together with higher paths relating the resulting paths between the points,
 \[
-\bar{\alpha}_0 \co \bar{g}_0 \cdot \alpha(a_0) = \bar{f}_0  \, , \quad 
-\bar{\alpha}_1 \co \bar{g}_1 \cdot \alpha(a_1) = \bar{f}_1  \, .
+\bar{\alpha}_0 \co  \bar{f}_0 = \alpha(a_0)  \cdot \bar{g}_0  \, , \quad 
+\bar{\alpha}_1 \co \bar{f}_1 =  \alpha(a_1) \cdot \bar{g}_1  \, .
 \]
 \end{definition}
 
@@ -1041,16 +974,14 @@ Diagrammatically, we represent a 2-cell as follows:
 \[
 \xymatrix@C=1.5cm{
 f(a_0) \ar[r]^{\alpha(a_0)}  \ar@/_1pc/[dr]_{\bar{f}_0}  
-\ar@{}[dr]|{\qquad \Downarrow \; \bar{\alpha}_0}  & g(a_0) \ar[d]^{\bar{g}_0}  \\ 
+\ar@{}[dr]|{\qquad \Rightarrow \; \bar{\alpha}_0}  & g(a_0) \ar[d]^{\bar{g}_0}  \\ 
  & b_0 } \qquad
  \xymatrix@C=1.5cm{
 f(a_1) \ar[r]^{\alpha(a_1)}  \ar@/_1pc/[dr]_{\bar{f}_1}  
-\ar@{}[dr]|{\qquad \Downarrow \; \bar{\alpha}_1}  & g(a_1) \ar[d]^{\bar{g}_1}  \\ 
+\ar@{}[dr]|{\qquad \Rightarrow \; \bar{\alpha}_1}  & g(a_1) \ar[d]^{\bar{g}_1}  \\ 
  & b_1 }
  \] 
-
-
-We define the \emph{type of algebra 2-cells from $f$ to $g$} by
+We define the type of algebra 2-cells from $f$ to $g$ by
 \[
  \BoolCell \;  [ (f,\bar{f}_0, \bar{f}_1), (g, \bar{g}_0, \bar{g}_1)]     \defeq   \Sigma (\alpha \co f = g)  \big(  
  \bar{g}_0 \cdot \alpha(a_0) = \bar{f}_0 \big) \times 
@@ -1060,42 +991,23 @@ We define the \emph{type of algebra 2-cells from $f$ to $g$} by
 
 \begin{lemma} \label{BoolHomSpace}
 \label{BoolHomSpace}
-For every parallel pair of morphisms $f, g \co A \to B$ of bipointed types, the function
+For every parallel pair of morphisms $f, g \co A \to B$ of bipointed types, there is an equivalence of types
 \[
-F \co \Id( (f, \bar{f}_0, \bar{f}_1), (g, \bar{g}_0, \bar{g}_1) ) \to \BoolCell[ (f, \bar{f}_0, \bar{f}_1), (g, \bar{g}_0, \bar{g}_1) ) ]
+\Id( (f, \bar{f}_0, \bar{f}_1), (g, \bar{g}_0, \bar{g}_1) ) \simeq \BoolCell[ (f, \bar{f}_0, \bar{f}_1), (g, \bar{g}_0, \bar{g}_1) ) ] \, .
 \]
-is an equivalence.
 \end{lemma}
-[WHAT IS THE FUNCTION F ??]
-
-[WHAT IS THE IDENTITY TYPE ON THE LEFT??]
-
-[WHAT IS THIS LEMMA USED FOR??]
-
-
-\begin{proof}   (TO BE MODIFIED: THIS WAS THE PROOF FOR THE FIBERED CASE)
-Let algebras $(C,c_0,c_1) : \BoolAlg_{\UU_i}$, $(E,e_0,e_1) : \BoolFibAlg_{\UU_j} \; (C,c_0,c_1)$ and homomorphisms $(f,\gamma_0,\gamma_1), (g,\delta_0,\delta_1) : \BoolFibHom \; (C,c_0,c_1) \; (E,e_0,e_1)$ be given. We have
-\begin{alignat*}{4}
-& (f,\gamma_0,\gamma_1) = (g,\delta_0,\delta_1) & \simeq \\
-& \sm{\alpha : f = g} \Big((\gamma_0,\gamma_1) = \trans^{-1}_{h \mapsto h(c_0) = d_0 \times h(c_1) = d_1}(\alpha) \; (\delta_0,\delta_1) \Big) & \simeq \\
-& \sm{\alpha : f = g} \Big((\gamma_0,\gamma_1) = \big(\happly(\alpha,c_0) \ct \delta_0, \happly(\alpha,c_1) \ct \delta_1\big) \Big) & \simeq \\
-& \sm{\alpha : f = g} \Big(\gamma_0 = \happly(\alpha,c_0) \ct \delta_0\Big) \times \Big( \gamma_1 = \happly(\alpha,c_1) \ct \delta_1 \Big) & \;\;\; \simeq \\
-& \sm{\alpha : f \sim g} \Big(\gamma_0 = \alpha(c_0) \ct \delta_0\Big) \times \Big(\gamma_1 = \alpha(c_1) \ct \delta_1 \Big) & \simeq \\
-& \sm{\alpha : f \sim g} \Big(\alpha(c_0) = \gamma_0 \ct \delta^{-1}_0\Big) \times \Big(\alpha(c_1) = \gamma_1 \ct \delta^{-1}_1 \Big) & \equiv \\
-& \BoolFibCell \; (f,\gamma_0,\gamma_1) \; (g,\delta_0,\delta_1)
-\end{alignat*}
-\end{proof}
 
 
 
 
 
 
-\begin{theorem}\label{lem:BoolMainInt} For a bipointed type, the following properties are equivalent:
+
+\begin{theorem}\label{lem:BoolMainInt} For a bipointed type $A$, the following conditions are equivalent:
 \begin{enumerate}[(i)]
-\item being inductive, 
-\item being recursive,
-\item being homotopy-initial.
+\item $A$ is inductive, 
+\item $A$ is recursive,
+\item $A$ is  homotopy-initial.
 \end{enumerate}
 \end{theorem}
 
@@ -1158,16 +1070,16 @@ It remains to derive the propositional computation rules, \ie propositional iden
 The proof $\phi_0$ is given by
 \begin{center}
 \begin{tikzpicture}
-\node (N0) at (0,3) {$\trans_E\big(\alpha(c_0)\big) \; \snd(u(c_0))$};
-\node (N1) at (0,1.5) {$\trans_E\big(\fst(\idtodpair(\theta_0)) \ct \refl_{c_0}\big) \; \snd(u(c_0))$};
-\node (N2) at (0,0) {$\trans_E\big(\fst(\idtodpair(\theta_0))\big) \; \snd(u(c_0))$};
-\node (N3) at (0,-1.5) {$e_0$};
-\draw[-] (N0) -- node[right]{\footnotesize via $\eta_0$} (N1);
+\node (N0) at (0,3) {$\trans_E\big(\alpha(a_0)\big) \; \snd(f(a_0))$};
+\node (N1) at (0,1.5) {$\trans_E\big(\fst(\idtodpair(\theta_0)) \ct \refl_{c_0}\big) \; \snd(f(a_0))$};
+\node (N2) at (0,0) {$\trans_E\big(\fst(\idtodpair(\theta_0))\big) \; \snd(f(a_0))$};
+\node (N3) at (0,-1.5) {$e_0.$};
+\draw[-] (N0) -- node[right]{\footnotesize via $\bar{\alpha}_0$} (N1);
 \draw[-] (N1) -- node[right]{\footnotesize} (N2);
 \draw[-] (N2) -- node[right]{\footnotesize $\snd(\idtodpair(\theta_0))$} (N3);
 \end{tikzpicture}
 \end{center}
-and $\phi_1$ is defined analogously.
+The proof $\phi_1$ is defined analogously.
 \end{proof}
 
 
@@ -1180,6 +1092,88 @@ Corollary~\ref{lem:BoolInitInt} is the analogue in Homotopy Type Theory of the c
 $\Bool$ as a strict coproduct $1+1$ in extensional type theory. It makes precise the rough idea that, 
 in intensional type theory, $\Bool$ is a kind of homotopy coproduct or weak $\infty$-coproduct 
 in the $\infty$-category of types, functions, identity terms, higher identity terms, \ldots.  
+
+\subsection{Fibered bipointed types}
+
+\begin{definition} \label{def:fibbipointed}
+Let $A = (A, a_0, a_1)$ be a bipointed type. A \emph{fibered bipointed type} over $A$ is a dependent type
+\[
+x : A \vdash E(x) \co \type
+\]
+equipped with distinguished elements $e_0 \co E(a_0)$ and $e_1 \co E(a_1)$.
+\end{definition}
+
+Note how the definition of a fibered bipointed type captures exactly the premisses of the elimination rule for a bipointed type. Given a 
+fibered bipointed type over $A$ as in Definition~\ref{def:fibbipointed}, we can define $E' \defeq (\Sigma x : A) E(x)$ and observe that
+we can equip $E'$ with the structure of a bipointed type by taking $e'_0 \defeq \pair(a_0, e_0)$ and $e'_1 \defeq \pair(a_1, e_1)$.
+In this way, the first projection $\pi_1 \co E' \to A$ becomes a morphism of bipointed types:
+\[
+\xymatrix{
+1 \ar@/_1pc/[dr]_{a_0} \ar[r]^-{e'_0} & E' \ar[d]^{\pi_1} & 1 \ar[l]_-{e'_1} \ar@/^1pc/[dl]^{a_1} \\ 
+ & A & }
+ \]
+
+
+
+\begin{definition} \label{def:fibsection} Let $E = (E, e_0, e_1)$ be a fibered bipointed type over $A = (A, a_0, a_1)$. A \emph{section}
+of $E$ is a family of elements
+\[
+ x : A \vdash s(x) \co E(x)
+\]
+equipped with paths $\bar{s}_0 \co \Id(s(a_0), e_0)$ and $\bar{s}_1 \co \Id(s(a_1), e_1)$. 
+\end{definition} 
+
+Given a section $s = (s, \bar{s}_0, \bar{s}_1)$ of a bipointed type $E$, we can define a morphism $s' \co A \to E'$ as follows:
+the underlying function is given by letting $s'(x) \defeq \pair(x, s(x))$, for $x : A$. For $k = 0, 1$, the required path $\bar{s}'_k \co s'(a_k) = e'_k$,
+is then given by
+\[
+s'(a_k) = \pair(a_k, s(a_k)) =  \pair(a_k, e_k) = e'_k \, .
+\]
+Observe how the morphism $s' \co A \to E'$ provides a right inverse for $\pi_1 \co E' \to A$ (\ie what is usually called a section in 
+category theory), since we have
+\[
+(\pi_1 \circ s)(x) = \pi_1 (\pair(x, sx)) = x 
+\]
+for every $x \co A$.
+
+
+\begin{definition} \label{def:2cellsection} Let $E = (E, e_0, e_1)$ be a fibered bipointed type over $A = (A, a_0, a_1)$. If $s = (s, \bar{s}_0, 
+\bar{s}_1)$ and $t = (t, \bar{t}_0, \bar{t}_1)$ are sections of $E$, a \emph{section $2$-cell} $\alpha \co s \rightarrow t$ is a
+homotopy~$\alpha \co s \sim t$ together with $\bar{\alpha}_0 \co s(a_0) = t(a_0)$ and $\bar{\alpha}_1 \co s(a_1) = t(a_1)$. 
+\end{definition} 
+
+
+We define the type of section 2-cells as follows:
+\[
+\mathsf{2}\text{-}\mathsf{Cell}[ (s, \bar{s}_0, \bar{s}_1), (t, \bar{t}_0, \bar{t}_1)] \defeq
+(\Sigma \alpha \co s \sim t) \big( s(a_0) = t(a_0) \big) \times \big( s(a_1) = t(a_1) \big) \, .
+\]
+
+
+\begin{proposition} Let $E = (E, e_0, e_1)$ be a fibered bipointed type over $A = (A, a_0, a_1)$. 
+For every pair of sections $s = (s, \bar{s}_0, \bar{s}_1)$ and $t = (t, \bar{t}_0, \bar{t}_1)$, 
+there is an equivalence of types
+\[
+\mathsf{2}\text{-}\mathsf{Cell}[ (s, \bar{s}_0, \bar{s}_1), (t, \bar{t}_0, \bar{t}_1)] 
+\simeq 
+\Id\big( (s, \bar{s}_0, \bar{s}_1), (t, \bar{t}_0, \bar{t}_1) \big) \, .
+\]
+\end{proposition}
+
+
+\begin{proof}  
+Let algebras $(C,c_0,c_1) : \BoolAlg_{\UU_i}$, $(E,e_0,e_1) : \BoolFibAlg_{\UU_j} \; (C,c_0,c_1)$ and homomorphisms $(f,\gamma_0,\gamma_1), (g,\delta_0,\delta_1) : \BoolFibHom \; (C,c_0,c_1) \; (E,e_0,e_1)$ be given. We have
+\begin{alignat*}{4}
+& (f,\gamma_0,\gamma_1) = (g,\delta_0,\delta_1) & \simeq \\
+& \sm{\alpha : f = g} \Big((\gamma_0,\gamma_1) = \trans^{-1}_{h \mapsto h(c_0) = d_0 \times h(c_1) = d_1}(\alpha) \; (\delta_0,\delta_1) \Big) & \simeq \\
+& \sm{\alpha : f = g} \Big((\gamma_0,\gamma_1) = \big(\happly(\alpha,c_0) \ct \delta_0, \happly(\alpha,c_1) \ct \delta_1\big) \Big) & \simeq \\
+& \sm{\alpha : f = g} \Big(\gamma_0 = \happly(\alpha,c_0) \ct \delta_0\Big) \times \Big( \gamma_1 = \happly(\alpha,c_1) \ct \delta_1 \Big) & \;\;\; \simeq \\
+& \sm{\alpha : f \sim g} \Big(\gamma_0 = \alpha(c_0) \ct \delta_0\Big) \times \Big(\gamma_1 = \alpha(c_1) \ct \delta_1 \Big) & \simeq \\
+& \sm{\alpha : f \sim g} \Big(\alpha(c_0) = \gamma_0 \ct \delta^{-1}_0\Big) \times \Big(\alpha(c_1) = \gamma_1 \ct \delta^{-1}_1 \Big) & \equiv \\
+& \BoolFibCell \; (f,\gamma_0,\gamma_1) \; (g,\delta_0,\delta_1)
+\end{alignat*}
+\end{proof}
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
