@@ -1033,10 +1033,10 @@ In turn, in the presence of the identity reflection rule, this is equivalent to 
 
 
 
-\begin{definition}\ \label{def:BoolCell} For parallel morphisms $f, g \co A \to B$ of bipointed types, a \emph{$2$-cell} $\alpha \co f \to g$ consists of a homotopy of the underlying maps $\alpha \co  f = g$ together with homotopies relating the resulting paths between the points,
+\begin{definition}\ \label{def:BoolCell} For parallel morphisms $f, g \co A \to B$ of bipointed types, a \emph{$2$-cell} $\alpha \co f \to g$ consists of a homotopy of the underlying maps $\alpha \co  f \sim g$ together with (higher) paths relating the resulting paths between the points,
 \[
-\bar{\alpha}_0 \co \bar{g}_0 \cdot \alpha(a_0) = \bar{f}_0  \, , \quad 
-\bar{\alpha}_1 \co \bar{g}_1 \cdot \alpha(a_1) = \bar{f}_1  \, .
+\bar{\alpha}_0 \co \bar{f}_0 = \bar{g}_0 \cdot \alpha(a_0)   \, , \quad 
+\bar{\alpha}_1 \co  \bar{f}_1 = \bar{g}_1 \cdot \alpha(a_1) \, .
 \]
 \end{definition}
 
@@ -1045,20 +1045,20 @@ Diagrammatically, we represent a 2-cell as follows:
 \[
 \xymatrix@C=1.5cm{
 f(a_0) \ar[r]^{\alpha(a_0)}  \ar@/_1pc/[dr]_{\bar{f}_0}  
-\ar@{}[dr]|{\qquad \Downarrow \; \bar{\alpha}_0}  & g(a_0) \ar[d]^{\bar{g}_0}  \\ 
+\ar@{}[dr]|{\qquad \Uparrow \; \bar{\alpha}_0}  & g(a_0) \ar[d]^{\bar{g}_0}  \\ 
  & b_0 } \qquad
  \xymatrix@C=1.5cm{
 f(a_1) \ar[r]^{\alpha(a_1)}  \ar@/_1pc/[dr]_{\bar{f}_1}  
-\ar@{}[dr]|{\qquad \Downarrow \; \bar{\alpha}_1}  & g(a_1) \ar[d]^{\bar{g}_1}  \\ 
+\ar@{}[dr]|{\qquad \Uparrow \; \bar{\alpha}_1}  & g(a_1) \ar[d]^{\bar{g}_1}  \\ 
  & b_1 }
  \] 
 
 
 We define the \emph{type of algebra 2-cells from $f$ to $g$} by
 \[
- \BoolCell \;  [ (f,\bar{f}_0, \bar{f}_1), (g, \bar{g}_0, \bar{g}_1)]     \defeq   \Sigma (\alpha \co f = g)  \big(  
- \bar{g}_0 \cdot \alpha(a_0) = \bar{f}_0 \big) \times 
-\big( \bar{g}_1 \cdot \alpha(a_1) = \bar{f}_1 \big)
+ \BoolCell \;  [ (f,\bar{f}_0, \bar{f}_1), (g, \bar{g}_0, \bar{g}_1)]     \defeq   \Sigma (\alpha \co f = g)  \big[\big(  
+  \bar{f}_0 = \bar{g}_0 \cdot \alpha(a_0)\big) \times 
+\big( \bar{f}_1=  \bar{g}_1 \cdot \alpha(a_1) \big)\big]
 \]
 
 
