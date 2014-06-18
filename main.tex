@@ -16,73 +16,108 @@
 
 
 % Commands
-
-\newcommand{\co}{\colon}
-\newcommand{\X}{\mathcal{X}}
-\newcommand{\Y}{\mathcal{Y}}
-\newcommand{\Z}{\mathcal{Z}}
-\newcommand{\fst}{\mathsf{fst}}
-\newcommand{\snd}{\mathsf{snd}}
-\newcommand{\comp}{\circ}
-\newcommand{\z}{\mathsf{z}}
-\newcommand{\suc}{\mathsf{suc}}
-\newcommand{\idfun}[1]{\mathsf{id}_{#1}}
+\newcommand{\ie}{\text{i.e.\ }}
+\newcommand{\eg}{\text{e.g.}}
+\newcommand{\resp}{\text{resp.\ }}
 \newcommand{\myemph}[1]{\textbf{#1}}
-\newcommand{\prd}[1]{\Pi_{#1}}
-\newcommand{\sm}[1]{\Sigma_{#1}}    
-\newcommand{\lam}[1]{\lambda_{#1}}    
-\newcommand{\defeq}{=_{\mathrm{def}}}
+% Definitional equality
+\newcommand{\deq}{\equiv}
+% Propositional equality
+\newcommand{\peq}{=}
+% Homotopy
+\newcommand{\ho}{\sim}
+% Definitions
+\newcommand{\defeq}{\deq_{\mathrm{def}}}
+% Colon
+\newcommand{\co}{\colon}
+% Composition and identiies
+\newcommand{\idfun}[1]{\mathsf{id}_{#1}}
+\newcommand{\comp}{\circ}
+% Names for type theories
+\newcommand{\Hint}{\mathcal{H}}
+\newcommand{\Hext}{\mathcal{H}_{\mathrm{ext}}}
+% Judgements
 \newcommand{\type}{\mathsf{type}}
 \newcommand{\judge}[3][]{#2\;\vdash_{#1}\;#3}
-\newcommand{\idrec}{\mathsf{idrec}}
-\newcommand{\nat}{\ensuremath{\mathbb{N}}} 
-\newcommand{\Id}{\mathsf{Id}}
-\newcommand{\id}[1]{\Id_{#1}}
-\newcommand{\refl}{\mathsf{refl}}
-\newcommand{\W}{\mathsf{W}}
-\newcommand{\wsup}{\mathsf{sup}}
-\newcommand{\wrec}{\mathsf{wrec}}
-\newcommand{\wind}{\mathsf{wind}}
-\newcommand{\wcomp}{\mathsf{wcomp}}
-\newcommand{\Bool}{\mathsf{Bool}}
-\newcommand{\true}{1}
-\newcommand{\false}{0}
+% Preliminaries
+\newcommand{\isntype}[1]{\mathsf{is}\text{-}\mathsf{#1}\text{-}\mathsf{type}}
+\newcommand{\iscontr}{\mathsf{is}\text{-}\mathsf{contr}}
+\newcommand{\isprop}{\mathsf{is}\text{-}\mathsf{prop}}
+\newcommand{\isequiv}{\mathsf{is}\text{-}\mathsf{equiv}}
+\newcommand{\hfiber}{\mathsf{hfiber}}
+\newcommand{\trans}{\mathsf{tr}}
+\newcommand{\ct}{%
+  \mathchoice{\mathbin{\raisebox{0.5ex}{$\displaystyle\centerdot$}}}%
+             {\mathbin{\raisebox{0.5ex}{$\centerdot$}}}%
+             {\mathbin{\raisebox{0.25ex}{$\scriptstyle\,\centerdot\,$}}}%
+             {\mathbin{\raisebox{0.1ex}{$\scriptscriptstyle\,\centerdot\,$}}}}
 \newcommand{\funext}{\leftidx{^\Pi}{\mathsf{Eq}}^{=}}       
 \newcommand{\happly}{\leftidx{^=}{\mathsf{Eq}}^{\Pi}}
 \newcommand{\idtoeq}{\leftidx{^=}{\mathsf{Eq}}^{\simeq}}
 \newcommand{\idtodpair}{\leftidx{^=}{\mathsf{Eq}}^{\Sigma}}
 \newcommand{\canzero}{\ast_0}
 \newcommand{\canone}{\ast_1}
-\newcommand{\one}{\mathsf{1}}
-\newcommand{\zero}{\mathsf{0}}
-\newcommand{\boolind}{\mathsf{ind}}
-\newcommand{\boolrec}{\mathsf{rec}}
-\newcommand{\boolindcompo}{\mathsf{2ind}\text{-}\mathsf{comp0}}
-\newcommand{\boolindcompi}{\mathsf{2ind}\text{-}\mathsf{comp1}}
-\newcommand{\boolinduniq}{\mathsf{2ind}\text{-}\mathsf{uniq}}
-\newcommand{\boolrecuniq}{\mathsf{2rec}\text{-}\mathsf{uniq}}
-\newcommand{\boolindcoho}{\mathsf{2ind}\text{-}\mathsf{coh0}}
-\newcommand{\boolindcohi}{\mathsf{2ind}\text{-}\mathsf{coh1}}
-
-\newcommand{\ind}{\mathsf{ind}}
-\newcommand{\rec}{\mathsf{rec}}
-\newcommand{\Hom}{\mathsf{Hom}}
-\newcommand{\Ho}{\mathsf{Ho}}
-
-
-\newcommand{\UU}{\mathsf{U}}
-\newcommand{\boolreccoho}{\mathsf{2rec}\text{-}\mathsf{coh0}}
-\newcommand{\boolreccohi}{\mathsf{2rec}\text{-}\mathsf{coh1}}
-\newcommand{\boolreccompo}{\mathsf{2rec}\text{-}\mathsf{comp0}}
-\newcommand{\boolreccompi}{\mathsf{2rec}\text{-}\mathsf{comp1}}
+% Pi-types and Sigma-types
+\newcommand{\prd}[1]{\Pi_{#1}}
+\newcommand{\sm}[1]{\Sigma_{#1}}    
+\newcommand{\lam}[1]{\lambda_{#1}}   
 \newcommand{\pair}{\mathsf{pair}}
-\newcommand{\Palg}{P\text{-}\mathsf{Alg}}
+\newcommand{\fst}{\mathsf{fst}}
+\newcommand{\snd}{\mathsf{snd}}
+\newcommand{\app}{\mathsf{ap}}
+\newcommand{\mysplit}{\mathsf{split}}
+% Empty type
+\newcommand{\abort}{\mathsf{0rec}}
+% List type
+\newcommand{\List}{\mathsf{List}}
+% Unit type
+\newcommand{\Unit}{\mathsf{Unit}}
+% Identity types
+\newcommand{\Id}{\mathsf{Id}}
+\newcommand{\id}[1]{\Id_{#1}}
+\newcommand{\refl}{\mathsf{refl}}
+\newcommand{\idrec}{\mathsf{idrec}}
+% Natural numbers
+\newcommand{\nat}{\ensuremath{\mathbb{N}}} 
+\newcommand{\suc}{\mathsf{suc}}
+% W-types
+\newcommand{\W}{\mathsf{W}}
+\newcommand{\wsup}{\mathsf{sup}}
+\newcommand{\wrec}{\mathsf{wrec}}
+\newcommand{\wind}{\mathsf{wind}}
+\newcommand{\wcomp}{\mathsf{wcomp}}
 \newcommand{\windcomp}{\mathsf{wind}\text{-}\mathsf{comp}}
 \newcommand{\wreccomp}{\mathsf{wrec}\text{-}\mathsf{comp}}
 \newcommand{\winduniq}{\mathsf{wind}\text{-}\mathsf{uniq}}
 \newcommand{\wrecuniq}{\mathsf{wrec}\text{-}\mathsf{uniq}}
 \newcommand{\windcoh}{\mathsf{wind}\text{-}\mathsf{coh}}
 \newcommand{\wreccoh}{\mathsf{wrec}\text{-}\mathsf{coh}}
+% Booleans
+\newcommand{\Bool}{\mathsf{Bool}}
+\newcommand{\true}{1}
+\newcommand{\false}{0}
+\newcommand{\one}{\mathsf{1}}
+\newcommand{\zero}{\mathsf{0}}
+\newcommand{\boolind}{\mathsf{ind}}
+\newcommand{\boolrec}{\mathsf{rec}}
+\newcommand{\boolcomp}{\mathsf{2comp}}
+\newcommand{\boolindcompo}{\mathsf{2ind}\text{-}\mathsf{comp0}}
+\newcommand{\boolindcompi}{\mathsf{2ind}\text{-}\mathsf{comp1}}
+\newcommand{\boolinduniq}{\mathsf{2ind}\text{-}\mathsf{uniq}}
+\newcommand{\boolrecuniq}{\mathsf{2rec}\text{-}\mathsf{uniq}}
+\newcommand{\boolindcoho}{\mathsf{2ind}\text{-}\mathsf{coh0}}
+\newcommand{\boolindcohi}{\mathsf{2ind}\text{-}\mathsf{coh1}}
+\newcommand{\boolreccoho}{\mathsf{2rec}\text{-}\mathsf{coh0}}
+\newcommand{\boolreccohi}{\mathsf{2rec}\text{-}\mathsf{coh1}}
+\newcommand{\boolreccompo}{\mathsf{2rec}\text{-}\mathsf{comp0}}
+\newcommand{\boolreccompi}{\mathsf{2rec}\text{-}\mathsf{comp1}}
+% Universes
+\newcommand{\UU}{\mathsf{U}}
+% Bipointed types
+\newcommand{\ind}{\mathsf{ind}}
+\newcommand{\rec}{\mathsf{rec}}
+\newcommand{\Hom}{\mathsf{Hom}}
+\newcommand{\Ho}{\mathsf{Ho}}
 \newcommand{\BoolAlg}{\mathsf{2}\text{-}\mathsf{Alg}}
 \newcommand{\BoolHom}{\mathsf{2}\text{-}\mathsf{Hom}}
 \newcommand{\BoolCell}{\mathsf{2}\text{-}\mathsf{Cell}}
@@ -95,6 +130,10 @@
 \newcommand{\BoolFibHom}{\mathsf{2}\text{-}\mathsf{Fib}\text{-}\mathsf{Hom}}
 \newcommand{\IsBoolInit}{\mathsf{is}\text{-}\mathsf{2}\text{-}\mathsf{init}}
 \newcommand{\IsBoolHInit}{\mathsf{is}\text{-}\mathsf{2}\text{-}\mathsf{hinit}}
+\newcommand{\BoolIdHom}{\mathsf{2}\text{-}\mathsf{Id}\text{-}\mathsf{Hom}}
+\newcommand{\BoolCompHom}{\mathsf{2}\text{-}\mathsf{Comp}\text{-}\mathsf{Hom}}
+\newcommand{\BoolAlgIso}{\mathsf{2}\text{-}\mathsf{Alg}\text{-}\mathsf{Iso}}
+% Successor types
 \newcommand{\NatAlg}{\nat\text{-}\mathsf{Alg}}
 \newcommand{\NatHom}{\nat\text{-}\mathsf{Hom}}
 \newcommand{\HasNatRec}{\mathsf{has}\text{-}\nat\text{-}\mathsf{rec}}
@@ -105,6 +144,8 @@
 \newcommand{\NatFibHom}{\nat\text{-}\mathsf{Fib}\text{-}\mathsf{Hom}}
 \newcommand{\IsNatInit}{\mathsf{is}\text{-}\nat\text{-}\mathsf{init}}
 \newcommand{\IsNatHInit}{\mathsf{is}\text{-}\nat\text{-}\mathsf{hinit}}
+% P-algebras
+\newcommand{\Palg}{P\text{-}\mathsf{Alg}}
 \newcommand{\WAlgToNatAlg}{\W\text{-}\mathsf{to}\text{-}\nat\text{-}\mathsf{Alg}}
 \newcommand{\WFibAlgToNatFibAlg}{\W\text{-}\mathsf{to}\text{-}\nat\text{-}\mathsf{Fib}\text{-}\mathsf{Alg}}
 \newcommand{\WCell}{\mathsf{W}\text{-}\mathsf{Cell}}
@@ -119,36 +160,19 @@
 \newcommand{\HasWIndUniq}{\mathsf{has}\text{-}\mathsf{W}\text{-}\mathsf{ind}\text{-}\mathsf{uniq}}
 \newcommand{\IsWInit}{\mathsf{is}\text{-}\mathsf{\W}\text{-}\mathsf{init}}
 \newcommand{\IsWHInit}{\mathsf{is}\text{-}\mathsf{\W}\text{-}\mathsf{hinit}}
-\newcommand{\List}{\mathsf{List}}
-\newcommand{\Unit}{\mathsf{Unit}}
-\newcommand{\app}{\mathsf{ap}}
-\newcommand{\abort}{\mathsf{0rec}}
-\newcommand{\mysplit}{\mathsf{split}}
-\newcommand{\isntype}[1]{\mathsf{is}\text{-}\mathsf{#1}\text{-}\mathsf{type}}
-\newcommand{\iscontr}{\mathsf{is}\text{-}\mathsf{contr}}
-\newcommand{\isprop}{\mathsf{is}\text{-}\mathsf{prop}}
-\newcommand{\isequiv}{\mathsf{is}\text{-}\mathsf{equiv}}
-\newcommand{\hfiber}{\mathsf{hfiber}}
-\newcommand{\trans}{\mathsf{tr}}
-\newcommand{\BoolIdHom}{\mathsf{2}\text{-}\mathsf{Id}\text{-}\mathsf{Hom}}
-\newcommand{\BoolCompHom}{\mathsf{2}\text{-}\mathsf{Comp}\text{-}\mathsf{Hom}}
-\newcommand{\BoolAlgIso}{\mathsf{2}\text{-}\mathsf{Alg}\text{-}\mathsf{Iso}}
 \newcommand{\WIdHom}{\mathsf{W}\text{-}\mathsf{Id}\text{-}\mathsf{Hom}}
 \newcommand{\WCompHom}{\mathsf{W}\text{-}\mathsf{Comp}\text{-}\mathsf{Hom}}
 \newcommand{\WAlgIso}{\mathsf{W}\text{-}\mathsf{Alg}\text{-}\mathsf{Iso}}
 \newcommand{\wrecs}{\mathsf{simp\textsf{-}wrec}}
-\newcommand{\Hint}{\mathcal{H}}
-\newcommand{\Hext}{\mathcal{H}_{\mathrm{ext}}}
-\newcommand{\boolcomp}{\mathsf{2comp}}
-\newcommand{\ct}{%
-  \mathchoice{\mathbin{\raisebox{0.5ex}{$\displaystyle\centerdot$}}}%
-             {\mathbin{\raisebox{0.5ex}{$\centerdot$}}}%
-             {\mathbin{\raisebox{0.25ex}{$\scriptstyle\,\centerdot\,$}}}%
-             {\mathbin{\raisebox{0.1ex}{$\scriptscriptstyle\,\centerdot\,$}}}}
+% Calligraphic letters
+\newcommand{\X}{\mathcal{X}}
+\newcommand{\Y}{\mathcal{Y}}
+\newcommand{\Z}{\mathcal{Z}}
+% Another symbol
+\newcommand{\z}{\mathsf{z}}
 
 
 % Table of contents
-
 \makeatletter
 \def\@tocline#1#2#3#4#5#6#7{\relax
 \ifnum #1>\c@tocdepth % then omit
@@ -211,9 +235,7 @@
 
 % Text abbreviations
 
-\newcommand{\ie}{\text{i.e.\ }}
-\newcommand{\eg}{\text{e.g.}}
-\newcommand{\resp}{\text{resp.\ }}
+
 
 
 % Theorems
@@ -320,35 +342,24 @@
 %\affil{Carnegie Mellon University}}
 
 \title{Homotopy-initial algebras in type theory}
+
 \author[S. Awodey]{STEVE AWODEY}
-
 \address{Carnegie Mellon University}
-\author[N. Gambino]{NICOLA GAMBINO}
 
+\author[N. Gambino]{NICOLA GAMBINO}
 \address{School of Mathematics, University of Leeds}
 
 \author[K. Sojakova]{KRISTINA SOJAKOVA}
 \address{Carnegie Mellon University}
 
-
-
-%
+\date{\today}
 
 % \category{F.4.1}{Mathematical Logic and Formal Languages}{Mathematical Logic}
-
-
-
 %\keywords{Homotopy type theory, homotopy-initial algebras, inductive types}
-
-
 %\category{F.4.1}{Mathematical Logic and Formal Languages}{Mathematical Logic}
-
 %\terms{Theory, Verification}
-
 %\keywords{Homotopy type theory, homotopy-initial algebras, inductive types}
-
 %\acmformat{Steve Awodey, Nicola Gambino, and Kristina Sojakova, 2014. Inductive Types in Homotopy Type Theory.}
-
 %\begin{bottomstuff}
 %Author's addresses: S. Awodey, Philosophy Department, Carnegie Mellon University;
 %N. Gambino, (Current address) School of Mathematics, University of Leeds; 
@@ -365,6 +376,7 @@ The present work investigates inductive types in this setting. Modified rules fo
 
 
 \maketitle
+
 
 
 \begin{small}
@@ -743,8 +755,8 @@ equivalences from $\Bool$ to any other type.
 \begin{definition} Let $A = (A, a_0, a_1)$ be a bipointed type. We say that $A$ is \emph{inductive} if it satisfies the following
 deduction rules:
 
-\begin{itemize}
-\item Elimination rule.\smallskip
+\begin{enumerate}[(i)] 
+\item Elimination rule, \smallskip
 \[
 \begin{prooftree}
 x: A \vdash E(x) : \type \qquad
@@ -754,7 +766,7 @@ e_1 : E(a_1) \qquad
 x \co A \vdash \ind(x, e_0, e_1) : E(x) 
 \end{prooftree}
 \]
-\item Propositional computation rules. \smallskip
+\item Propositional computation rules, \smallskip
 \begin{mathpar}
 \begin{prooftree}
 x:\Bool \vdash E(x) : \type \qquad
@@ -771,14 +783,14 @@ e_1 : E(a_1)
  \beta_1 \co  \Id \big(  \ind(a_1, e_0, e_1),  e_1\big)   \, , \\
 \end{prooftree}
  \end{mathpar} 
-\end{itemize}
+\end{enumerate}
 \end{definition} 
 
 Note how the property of being inductive can be transported along equivalences. More precisely, if $A$ be an inductive bipointed type, $B$ a type and $f \co A \to B$ an equivalence of types, then $B$ is inductive with respect to the induced bipointed structure. We begin to explore some consequences of the assumption that a bipointed type is inductive. 
 
 \begin{lemma} \label{thm:etaind}
 If $A$ is an inductive bipointed type, then it satisfies the following rules:
-\begin{itemize}
+\begin{enumerate}[(i)]
 \item Propositional $\eta$-rule: \smallskip
 \[
 \begin{prooftree}
@@ -811,7 +823,7 @@ x \co A \vdash f(x) \co B
 p_{f,1} \co \Id \big(  \beta_1, \eta_f(a_1)  \big)
 \end{prooftree}
  \end{equation*} 
-\end{itemize} 
+\end{enumerate} 
 \end{lemma}
 
 \begin{proof} Let $A = (A, a_0, a_1)$ be a bipointed type.  We begin by proving the propositional $\eta$-rule  using the elimination rule. More precisely, 
@@ -848,8 +860,8 @@ context the proof that induction implies recursion. In order to do this, it is c
 
 \begin{definition} Let $A = (A, a_0, a_1)$ be a bipointed type. We say that $A$ is \emph{recursive} if the following rules
 are satisfied:
-\begin{itemize}
-\item  Recursion rule. \smallskip
+\begin{enumerate}[(i)] 
+\item  Recursion rule, \smallskip
 \[
 \begin{prooftree}
 B : \type \qquad
@@ -859,7 +871,7 @@ b_1 : B
 x \co A \vdash \rec(x, b_0, b_1) : B
 \end{prooftree}
 \]
-\item  Propositional $\beta$-rules. \smallskip 
+\item  Propositional $\beta$-rules, \smallskip 
 \begin{mathpar}
 \begin{prooftree}
 B : \type \qquad
@@ -876,7 +888,7 @@ b_1 : B
 \beta_1 : \Id( \rec(a_1, b_0, b_1), b_1) 
 \end{prooftree}
  \end{mathpar} 
-\item Propositional $\eta$-rule.\smallskip
+\item Propositional $\eta$-rule, \smallskip
 \[
 \begin{prooftree}
 B \co \type \quad 
@@ -887,7 +899,7 @@ x \co A \vdash f(x) \co B \\
 x \co A \vdash \eta_f(x) \co \Id \big( \rec(x, f(a_0), f(a_1) ), f(x)  \big)
 \end{prooftree}
 \]
- \item Propositional $(\beta, \eta)$-compatibility rules.\smallskip
+ \item Propositional $(\beta, \eta)$-compatibility rules, \smallskip
 \begin{equation*}
 \begin{prooftree}
 B \co \type \qquad 
@@ -908,7 +920,7 @@ x \co A \vdash f(x) \co B
 p_{f,1} \co \Id \big(  \beta_1, \eta_f(a_1)  \big)
 \end{prooftree}
  \end{equation*} 
-\end{itemize} 
+\end{enumerate} 
 \end{definition}
 
 
@@ -949,7 +961,7 @@ consists of a function $f \co A \to B$ together with paths $\bar{f}_0 \co \Id( f
 \end{definition}
 
 We will often refer to a bipointed morphism as above by mentioning only its underlying morphism $f \co A \to B$, leaving implicit
-the rest of the data that is formally part of the structure. Diagrammatically, we represent a bipointed morphism as follows:
+the rest of the data. Diagrammatically, we represent a bipointed morphism as follows:
 \[
 \xymatrix{
 1 \ar[r]   \ar[r]^{a_0} \ar@/_1pc/[dr]_{b_0}  & A  \ar[d]^{f} & 1  \ar[l]_{a_1} \ar@/^1pc/[dl]^{b_1} \\
@@ -998,16 +1010,16 @@ type of two morphisms. For this, we begin by introducing the notion of a homotop
 
 
 
-\begin{definition}\ \label{def:BoolCell} For morphisms $f , g \co A \to B$ of bipointed types, a \emph{bipointed homotopy} 
+\begin{definition}\ \label{def:BoolCell} For bipointed morphisms $(f, \bar{f}_0, \bar{f}_1)) , (g, \bar{g}_0, \bar{g}_1) \co A \to B$ of bipointed types, a \emph{bipointed homotopy} 
 \[
-(\alpha, \bar{\alpha}_0, \bar{\alpha}_1) \co f \to g
+(\alpha, \bar{\alpha}_0, \bar{\alpha}_1) \co (f, \bar{f}_0, \bar{f}_1) \to  (g, \bar{g}_0, \bar{g}_1)
 \] 
 consists of a homotopy $\alpha \co  f \sim g$ together with paths
 $\bar{\alpha}_0 \co  \bar{f}_0 = \alpha(a_0)  \cdot \bar{g}_0$ and $\bar{\alpha}_1 \co \bar{f}_1 =  \alpha(a_1) \cdot \bar{g}_1$.
 \end{definition}
 
-
-Diagrammatically, we represent a bipointed homotopy as follows:
+As usual, we will often refer to a bipointed homotopy by mentioning only its underlying homotopy.
+Diagrammatically, we represent the paths involved in a bipointed homotopy as follows:
 \[
 \xymatrix@C=1.5cm{
 f(a_0) \ar[r]^{\alpha(a_0)}  \ar@/_1pc/[dr]_{\bar{f}_0}  
@@ -1018,7 +1030,7 @@ f(a_1) \ar[r]^{\alpha(a_1)}  \ar@/_1pc/[dr]_{\bar{f}_1}
 \ar@{}[dr]|{\qquad \Rightarrow \; \bar{\alpha}_1}  & g(a_1) \ar[d]^{\bar{g}_1}  \\ 
  & b_1 }
  \] 
-We define the type of bipointed homotopies from $f$ to $g$ as above by letting
+We define the type of bipointed homotopies as above by letting
 \[
  \Ho   [ (f,\bar{f}_0, \bar{f}_1), (g, \bar{g}_0, \bar{g}_1)]     \defeq   
  (\Sigma \alpha \co f \sim g)  \big( \big(  
@@ -1097,7 +1109,8 @@ E' \ar[d]^{\pi_1} \\
 A . \ar@/^1.2pc/[u]^{s'} }
 \]
 
-
+\begin{definition} We say that a bipointed type $A$ is \emph{homotopy-projective} if every fibered bipointed type over it has a bipointed section.
+\end{definition} 
 
 \begin{definition} \label{def:2cellsection} Let $E = (E, e_0, e_1)$ be a fibered bipointed type over $A = (A, a_0, a_1)$. If $s = (s, \bar{s}_0, 
 \bar{s}_1)$ and $t = (t, \bar{t}_0, \bar{t}_1)$ are bipointed sections of $E$, a \emph{bipointed homotopy} 
@@ -1139,6 +1152,7 @@ We can now state and prove the main result of this section.
 \item $A$ is inductive, 
 \item $A$ is recursive,
 \item $A$ is homotopy-initial.
+\item $A$ is homotopy-projective.
 \end{enumerate}
 \end{theorem}
 
@@ -1153,14 +1167,13 @@ we show that any two morphisms $f, g \co A \to B$ are propositionally equal.  TO
 
 
 
-We now conclude the proof by showing that (iii) $\Rightarrow$ (i).
-Let $A = (A, a_0, a_1)$ be a homotopy-initial pointed type. We need to derive the elimination rule and the propositional computation rules. Let us begin
-by considering the elimination rule. So, let us assume its premisses, which give us a type $E(x)$ for $x \co A$ together with elements $e_0 \co E(a_0)$
-and $e_1 \co E(a_1)$. Define the type 
+We now  show that (iii) $\Rightarrow$ (iv).
+Let $A = (A, a_0, a_1)$ be a homotopy-initial pointed type. We need to show that it is projective. So, let $E = (E, e_0, e_1)$ be a fibered 
+bipointed type over $A$. Let us define the type 
 \[
 E' \defeq (\Sigma x \co A) E(x) 
 \]
-and observe that $E'$ can be equipped with the structure of a bipointed type by considering its elements $e'_0 \defeq \pair(a_0, e_0)$ and $e'_1 \defeq \pair(a_1, e_1)$. In this way,  the first projection $\pi_1 \co E' \to A$ is a morphism of pointed types. By the homotopy-initiality of $A$, we have a morphism of bipointed types
+and recall that $E'$ can be equipped with the structure of a bipointed type by considering its elements $e'_0 \defeq \pair(a_0, e_0)$ and $e'_1 \defeq \pair(a_1, e_1)$. In this way,  the first projection $\pi_1 \co E' \to A$ is a morphism of pointed types. By the homotopy-initiality of $A$, we have a morphism of bipointed types
 \[
 (f, \bar{f}_0, \bar{f}_1) \co (A, a_0, a_1)  \to (E', e'_0, e'_1) 
 \]
@@ -1179,37 +1192,36 @@ which we represent by the diagram
  \]
 But the identity $1_A \co A \to A$ is also a morphism from $A$ to itself and hence, by the homotopy-initiality, the morphisms $\pi_1 \circ f \co A \to A$
 and $1_A \co A \to A$ have to be propositionally equal. By Lemma~\ref{BoolHomSpace}, this implies there exists a bipointed homotopy $(\alpha,
-\bar{\alpha}_0,\bar{\alpha}_1) \co \pi_1 \circ f \sim 1_A$ between them, i.e., we have 
-\begin{align*}
-& \alpha : \pi_1 \comp f \sim 1_A \\
-& \bar{\alpha}_0 : \alpha(a_0) = \fst(\idtodpair(\theta_0)) \ct \refl_{a_0} \\
-& \bar{\alpha}_1 : \alpha(a_1) = \fst(\idtodpair(\theta_1)) \ct \refl_{a_1}
+\bar{\alpha}_0,\bar{\alpha}_1) \co \pi_1 \circ f \sim 1_A$ between them, which gives us in particular a homotopy $\alpha \co \pi_1 \circ f \sim 1_A$. 
+We begin to define the required bipointed section by defining its underlying function $s \co (\Pi x \co A) E(x)$. For $x \co A$, we let
+\[
+s(x) \defeq \alpha(x)_{!} \big( \pi_2(f(x) \big) \, .
+\]
+It remains to complete the definition of the required bipointed section, it remains to obtain paths~$\bar{s}_0 \co s(a_0)  \peq e_0$ and~$\bar{s}_1 \co s(a_1) \peq e_1$. In order to do so, we need to unfold more
+explicitly what the paths $\bar{\alpha}_0$ and $\bar{\alpha}_1$ (which are part of the data of the bipointed homotopy) give us. Recall that
+\[
+\bar{f}_0 \co f(a_0) \peq e'_0 
+\]
+where $e'_0 \equiv \pair(a_0, e_0)$. Hence, there are paths 
+\[
+p_0 \co \pi_1 f (a_0) \peq a_0 \, , \quad q_0 \co (p_0)_{!}( \pi_1 f (a_0)) \peq e_0 \, .
+\]
+such that $\pair(p_0, q_0) \peq \idtodpair(\bar{f}_0)$. Here paths
+\[
+  \bar{\alpha}_0 : \alpha(a_0) = \pi_1(p_0) \ct \refl(a_0) \, , \quad
+\bar{\alpha}_1 : \alpha(a_1) = \pi_1(p_1) \ct \refl(a_1)
+\]
+ To construct $\bar{s}_0$, 
+\[
+\pi_1(\pair(p, q)) \ct \refl(a_0)  = p \ct \refl(a_0) = p 
+\]
+Hence, \begin{align*} 
+s(a_0) & \defeq  \alpha(a_0)_{!} \big( \pi_2 f(a_0)  \big)  \\ 
+ & \peq  \big( \pi_1( \pair(p_0, q_0))  \ct \refl(a_0)  \big)_{!} \big( \pi_2(f(a_0) ) \big)  \\
+ & \peq \big(  p_0   \big)_{!} \big( \pi_2(f(a_0) ) \big) \\
+ & \peq e_0
 \end{align*}
-We can thus derive the judgement
-\[
-x \co A \vdash \ind(x, e_0, e_1) \co E(x)
-\]
-by letting, for $x \co A$,
-\[
-\ind(x, e_0, e_1) \defeq  \trans_E(\alpha(x)) \; \pi_2(f(x)) \, .
-\]
-It remains to derive the propositional computation rules, \ie propositional identity proofs
-\[
-\phi_0 \co \Id( \ind(a_0, e_0, e_1) , e_0) \, , \quad 
-\phi_1 \co \Id( \ind(a_1, e_0, e_1), e_1) \, .
-\]
-The proof $\phi_0$ is given by
-\begin{center}
-\begin{tikzpicture}
-\node (N0) at (0,3) {$\trans_E\big(\alpha(a_0)\big) \; \snd(f(a_0))$};
-\node (N1) at (0,1.5) {$\trans_E\big(\fst(\idtodpair(\theta_0)) \ct \refl_{c_0}\big) \; \snd(f(a_0))$};
-\node (N2) at (0,0) {$\trans_E\big(\fst(\idtodpair(\theta_0))\big) \; \snd(f(a_0))$};
-\node (N3) at (0,-1.5) {$e_0.$};
-\draw[-] (N0) -- node[right]{\footnotesize via $\bar{\alpha}_0$} (N1);
-\draw[-] (N1) -- node[right]{\footnotesize} (N2);
-\draw[-] (N2) -- node[right]{\footnotesize $\snd(\idtodpair(\theta_0))$} (N3);
-\end{tikzpicture}
-\end{center}
+
 The proof $\phi_1$ is defined analogously.
 \end{proof}
 
