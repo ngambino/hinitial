@@ -7,12 +7,120 @@
  \usepackage[show]{ed}
 \usepackage{leftidx}
 \usepackage{tikz}
-
 \usepackage[all]{xy}
 \newcommand{\xycenter}[1]{\vcenter{\hbox{\xymatrix{#1}}}}
 \SelectTips{cm}{}
-
+% Proof trees
 \input{prooftree}
+
+% Numberings 
+\setcounter{tocdepth}{1}
+\numberwithin{equation}{section}
+
+% Table of contents
+\makeatletter
+\def\@tocline#1#2#3#4#5#6#7{\relax
+\ifnum #1>\c@tocdepth % then omit
+  \else 
+    \par \addpenalty\@secpenalty\addvspace{#2}% 
+\begingroup \hyphenpenalty\@M
+    \@ifempty{#4}{%
+      \@tempdima\csname r@tocindent\number#1\endcsname\relax
+ }{%
+   \@tempdima#4\relax
+ }%
+ \parindent\z@ \leftskip#3\relax \advance\leftskip\@tempdima\relax
+ \rightskip\@pnumwidth plus4em \parfillskip-\@pnumwidth
+ #5\leavevmode\hskip-\@tempdima #6\nobreak\relax
+ \ifnum#1<0\hfill\else\dotfill\fi\hbox to\@pnumwidth{\@tocpagenum{#7}}\par
+ \nobreak
+ \endgroup
+  \fi}
+\makeatother
+
+% Part
+\makeatletter
+\renewcommand{\part}{\@startsection
+  {part}% name
+  {0}% level
+  {0mm}% indent
+  {2\baselineskip}% beforeskip
+  {1\baselineskip}% afterskip
+  {\centering \Large\sc}}% style
+\makeatother
+ \renewcommand{\thepart}{\Roman{part}} 
+% Section 
+\makeatletter
+  \renewcommand{\section}{\@startsection
+  {section}% name
+   {1}% level
+  {0mm}% indent
+   {-\baselineskip}% beforeskip
+  {0.5\baselineskip}% afterskip
+   {\Large\bfseries}}% style
+ % Subsection  
+ \renewcommand{\subsection}{\@startsection
+  {subsection}% name
+  {2}% level
+  {0mm}% indent
+  {-\baselineskip}% beforeskip
+  {0.5\baselineskip}% afterskip
+  {\normalfont\normalsize\bf}}% styles
+\makeatother
+
+% Theorems
+
+\newtheoremstyle{mythm}% 
+{10pt}% Space above 
+{}% Space below 
+{\itshape}% Body font 
+{}% Indent amount 
+{\bfseries}%  Theorem head font 
+{.}% Punctuation after theorem head 
+{.5em}% Space after theorem head 
+{}% 
+
+\newtheoremstyle{mydef}% 
+{10pt}% Space above 
+{3pt}% Space below 
+{}% Body font 
+{}% Indent amount 
+{\bfseries}%  Theorem head font 
+{.}% Punctuation after theorem head 
+{.5em}% Space after theorem head 
+{}% 
+
+\newtheoremstyle{myrmk}% 
+{10pt}% Space above 
+{3pt}% Space below 
+{}% Body font 
+{}% Indent amount 
+{\bfseries}%  Theorem head font 
+{.}% Punctuation after theorem head 
+{.5em}% Space after theorem head 
+{}% 
+
+
+\theoremstyle{mythm}
+\newtheorem{theorem}{Theorem}[subsection]
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma} 
+\newtheorem{proposition}[theorem]{Proposition} 
+\newtheorem{corollary}[theorem]{Corollary}  
+\newtheorem{apptheorem}{Theorem}
+\newtheorem{atheorem}{Theorem}
+\renewcommand*{\theatheorem}{\Alph{atheorem}}
+\theoremstyle{mydef}
+\newtheorem{definition}[theorem]{Definition}	
+\newtheorem*{definition*}{Definition}	
+\theoremstyle{myrmk}
+\newtheorem{remark}[theorem]{Remark} 
+\newtheorem{remarks}[theorem]{Remarks} 
+\newtheorem*{remark*}{Remark} 
+\newtheorem{example}[theorem]{Example}
+\newtheorem{examples}[theorem]{Examples}
+\newtheorem*{example*}{Example}
+\newtheorem*{examples*}{Examples}
 
 
 % Commands
@@ -76,7 +184,7 @@
 \newcommand{\Id}{\mathsf{Id}}
 \newcommand{\id}[1]{\Id_{#1}}
 \newcommand{\refl}{\mathsf{refl}}
-\newcommand{\idrec}{\mathsf{idrec}}
+\newcommand{\idrec}{\mathsf{J}}
 % Natural numbers
 \newcommand{\nat}{\ensuremath{\mathbb{N}}} 
 \newcommand{\suc}{\mathsf{suc}}
@@ -172,186 +280,17 @@
 \newcommand{\z}{\mathsf{z}}
 
 
-% Table of contents
-\makeatletter
-\def\@tocline#1#2#3#4#5#6#7{\relax
-\ifnum #1>\c@tocdepth % then omit
-  \else 
-    \par \addpenalty\@secpenalty\addvspace{#2}% 
-\begingroup \hyphenpenalty\@M
-    \@ifempty{#4}{%
-      \@tempdima\csname r@tocindent\number#1\endcsname\relax
- }{%
-   \@tempdima#4\relax
- }%
- \parindent\z@ \leftskip#3\relax \advance\leftskip\@tempdima\relax
- \rightskip\@pnumwidth plus4em \parfillskip-\@pnumwidth
- #5\leavevmode\hskip-\@tempdima #6\nobreak\relax
- \ifnum#1<0\hfill\else\dotfill\fi\hbox to\@pnumwidth{\@tocpagenum{#7}}\par
- \nobreak
- \endgroup
-  \fi}
-\makeatother
-
-\setcounter{tocdepth}{1}
-
-% Part
-
-\makeatletter
-
-\renewcommand{\part}{\@startsection
-  {part}% name
-  {0}% level
-  {0mm}% indent
-  {2\baselineskip}% beforeskip
-  {1\baselineskip}% afterskip
-  {\centering \Large\sc}}% style
-
-\makeatother
-
- \renewcommand{\thepart}{\Roman{part}} 
-
-% Section 
-
-\makeatletter
-
-  \renewcommand{\section}{\@startsection
-  {section}% name
-   {1}% level
-  {0mm}% indent
-   {-\baselineskip}% beforeskip
-  {0.5\baselineskip}% afterskip
-   {\Large\bfseries}}% style
-
- \renewcommand{\subsection}{\@startsection
-  {subsection}% name
-  {2}% level
-  {0mm}% indent
-  {-\baselineskip}% beforeskip
-  {0.5\baselineskip}% afterskip
-  {\normalfont\normalsize\bf}}% styles
-
-\makeatother
-
-% Text abbreviations
-
-
-
-
-% Theorems
-
-%%% Definition of the theorem environments
-
-\numberwithin{equation}{section}
-
-\newtheoremstyle{mythm}% 
-{10pt}% Space above 
-{}% Space below 
-{\itshape}% Body font 
-{}% Indent amount 
-{\bfseries}%  Theorem head font 
-{.}% Punctuation after theorem head 
-{.5em}% Space after theorem head 
-{}% 
-
-\newtheoremstyle{mydef}% 
-{10pt}% Space above 
-{3pt}% Space below 
-{}% Body font 
-{}% Indent amount 
-{\bfseries}%  Theorem head font 
-{.}% Punctuation after theorem head 
-{.5em}% Space after theorem head 
-{}% 
-
-\newtheoremstyle{myrmk}% 
-{10pt}% Space above 
-{3pt}% Space below 
-{}% Body font 
-{}% Indent amount 
-{\bfseries}%  Theorem head font 
-{.}% Punctuation after theorem head 
-{.5em}% Space after theorem head 
-{}% 
-
-
-
-\theoremstyle{mythm}
-\newtheorem{theorem}{Theorem}[subsection]
-\newtheorem*{theorem*}{Theorem}
-\newtheorem{lemma}[theorem]{Lemma} 
-\newtheorem{proposition}[theorem]{Proposition} 
-\newtheorem{corollary}[theorem]{Corollary}  
-\newtheorem{apptheorem}{Theorem}
-
-\newtheorem{atheorem}{Theorem}
-\renewcommand*{\theatheorem}{\Alph{atheorem}}
-
-
-
-
-\theoremstyle{mydef}
-\newtheorem{definition}[theorem]{Definition}	
-\newtheorem*{definition*}{Definition}	
-
-\theoremstyle{myrmk}
-
-\newtheorem{remark}[theorem]{Remark} 
-\newtheorem*{remark*}{Remark} 
-\newtheorem{example}[theorem]{Example}
-\newtheorem{examples}[theorem]{Examples}
-\newtheorem*{example*}{Example}
-\newtheorem*{examples*}{Examples}
-
-
-
-% theorem styles
-%\newtheorem{theorem}{Theorem}[section]
-%\newtheorem*{theorem*}{Theorem}
-%\newtheorem{proposition}[theorem]{Proposition} 
-%\newtheorem{lemma}[theorem]{Lemma}
-%\newtheorem{corollary}[theorem]{Corollary} 
-%\theoremstyle{definition}
-%\newtheorem{definition}[theorem]{Definition}
-%\theoremstyle{remark}
-%\newtheorem{remark}[theorem]{Remark} 
-%\newtheorem*{remarks*}{Remarks}
-%\newtheorem{example}[theorem]{Example}
-
-
-%\acmVolume{V}
-%\acmNumber{N}
-%\acmArticle{A}
-%\acmYear{YYYY}
-%\acmMonth{0}
+% DOCUMENT 
 
 \begin{document}
 
-
-
-
-
-
-
-%\title{Inductive Types in Homotopy Type Theory}
-%\author{STEVE AWODEY
-%\affil{Carnegie Mellon University}
-%NICOLA GAMBINO
-%\affil{Institute for Advanced Study}
-%KRISTINA SOJAKOVA
-%\affil{Carnegie Mellon University}}
-
 \title{Homotopy-initial algebras in type theory}
-
 \author[S. Awodey]{STEVE AWODEY}
 \address{Carnegie Mellon University}
-
 \author[N. Gambino]{NICOLA GAMBINO}
 \address{School of Mathematics, University of Leeds}
-
 \author[K. Sojakova]{KRISTINA SOJAKOVA}
 \address{Carnegie Mellon University}
-
 \date{\today}
 
 % \category{F.4.1}{Mathematical Logic and Formal Languages}{Mathematical Logic}
@@ -410,9 +349,10 @@ in the context of Observational Type Theory \cite{AltenkirchT:obsen}.  Inductive
 \newpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{The dependent type theory $\Hint$}
+\section{Preliminaries}
 \label{section:prelim}
 
+\subsection{The system $\Hint$} 
 
 We work here with type theories that have the four standard forms of judgement
 \[
@@ -425,6 +365,133 @@ Such a judgement $J$ can be made also relative to a \emph{context}~$\Gamma$ of v
 rules we make use of standard conventions to simplify the exposition, such as omitting the mention
 of a context that is common to premisses and conclusions of the rule.
 The rules for identity types in intensional type theories are given in~\cite[Section~5.5]{NordstromB:marltt}. We recall them here in a slighly different, but equivalent, formulation.
+
+
+We will work over a dependent type theory $\Hint$ which has the following deduction rules on top of the standard structural rules:
+\begin{itemize}
+\item rules for $\Pi$-types as in Table~\ref{tab:pi}.
+\item rules for $\Sigma$-types as in Table~\ref{tab:sigma}.
+\item rules for identity types as in Table~\ref{tab:id}.
+\item the Function Extensionality axiom (FE), \emph{i.e.} the axiom asserting that
+for every $f, g : A \rightarrow B$, the type
+\[
+(\Pi x :  A)\id{B}( \app(f, x), \app(g, x)) \rightarrow \id{A \rightarrow B}(f,g) 
+\]
+is inhabited.
+\end{itemize}
+Here, we have used the notation $A \rightarrow B$ to indicate function types, defined via
+$\Pi$-types in the usual way. Similarly, we will write $A \times B$ to denote the binary product
+of two types as usually defined via $\Sigma$-types.
+As usual, we say that two elements  $a, b :A$ are \emph{propositionally equal} if 
+ the type $\Id(a,b)$ is inhabited.
+
+
+\begin{table}[ht]
+\fbox{ 
+\begin{minipage}{12cm}
+\medskip
+\begin{itemize}
+\item Formation rule
+\[
+\begin{prooftree}
+x \co A \vdash B(x) \co \type
+\justifies
+(\Pi x \co A) B(x) \co \type
+\end{prooftree}
+\]
+\item Introduction rule
+\[
+\begin{prooftree}
+x \co A \vdash b(x) \co B(x) 
+\justifies
+(\lambda x \co A)b(x) \co (\Pi x : A) B(x)
+\end{prooftree}
+\]
+\item Elimination rule
+\[
+\begin{prooftree}
+f \co (\Pi x : A) B(x) \quad
+a \co A 
+\justifies
+\app(f, a) \co B(a)
+\end{prooftree}
+\]
+\item $\beta$-rule
+\[
+\begin{prooftree}
+x \co A \vdash b(x) \co B(x) 
+\justifies
+\app( (\lambda x : A) b(x), a) \equiv b(a) \co B(a)
+\end{prooftree}
+\]
+\item $\eta$-rule
+\[
+\begin{prooftree}
+f \co (\Pi x :A) B(x) 
+\justifies
+f \equiv (\lambda x : A) \app(f, x) \co (\Pi x \co A) B(x)
+\end{prooftree}
+\]
+ \end{itemize} \medskip
+\end{minipage}}
+\medskip
+\caption{Rules for $\Pi$-types.}
+\label{tab:pi}
+\end{table}
+
+
+\begin{table}[ht]
+\fbox{ 
+\begin{minipage}{12cm}
+\medskip
+\begin{itemize}
+\item Formation rule
+\[
+\begin{prooftree}
+x \co A \vdash B(x) \co \type
+\justifies
+(\Sigma x \co A) B(x) \co \type
+\end{prooftree}
+\]
+\item Introduction rule
+\[
+\begin{prooftree}
+a \co A \qquad 
+b(a) \co B(a) 
+\justifies
+\pair(a,b) \co (\Sigma x : A) B(x)
+\end{prooftree}
+\]
+\item $\Sigma$-elimination rule.
+\[
+\begin{prooftree}
+\begin{array}{l} 
+u : (\Sigma x : A) B(x) \vdash E(u) :  \type \\
+ x :  A, y \co B(x) \vdash  e(x,y) :  E(\pair(x,y))  
+ \end{array}
+\justifies
+u :  (\Sigma x :A)B(x) \vdash  \mysplit(u,e) :  E(u)
+\end{prooftree}
+\]
+\item $\Sigma$-computation rule.
+\[
+\begin{prooftree}
+\begin{array}{l} 
+u : (\Sigma x : A) B(x) \vdash E(u) :  \type \\
+ x :  A, y \co B(x) \vdash  e(x,y) :  E(\pair(x,y))  
+ \end{array}
+ \justifies
+x :  A, y \co B(x) \vdash \mysplit(\pair(x,y),e) \equiv e(x,y) :  E(\pair(x,y)) \, .
+\end{prooftree}
+\]
+\end{itemize} \medskip
+\end{minipage}}
+\medskip
+\caption{Rules for $\Sigma$-types.}
+\label{tab:sigma}
+\end{table}
+
+
 
 
 \begin{table}[ht]
@@ -454,73 +521,38 @@ a :  A
 \[
 \begin{prooftree}
 \begin{array}{l} 
-x, y :  A, u :  \id{A}(x,y) \vdash C(x,y,u) :  \type \\
- x :  A \vdash  c(x) :  C(x,x,\refl(x))  
+x, y :  A, u :  \id{A}(x,y) \vdash E(x,y,u) :  \type \\
+ x :  A \vdash  e(x) :  E(x,x,\refl(x))  
  \end{array}
 \justifies
-x, y :  A, u :  \id{A}(x,y) \vdash  \idrec(x,y,u,c) :  C(x,y,u)
+x, y :  A, u :  \id{A}(x,y) \vdash  \idrec(x,y,u,e) :  E(x,y,u)
 \end{prooftree}
 \]
 \item $\Id$-computation rule.
 \[
 \begin{prooftree}
 \begin{array}{l} 
-x, y :  A, u :  \id{A}(x,y) \vdash C(x,y,u) :  \type \\
- x :  A \vdash  c(x) :  C(x,x,\refl(x)) 
+x, y :  A, u :  \id{A}(x,y) \vdash E(x,y,u) :  \type \\
+ x :  A \vdash  e(x) :  E(x,x,\refl(x)) 
  \end{array}
  \justifies
-x :  A \vdash \idrec(x,x,\refl(x), c) = c(x) :  C(x, x, \refl(x)) \, .
+x :  A \vdash \idrec(x,x,\refl(x), e) = e(x) :  E(x, x, \refl(x)) \, .
 \end{prooftree}
 \]
 \end{itemize} \medskip
 \end{minipage}}
 \medskip
+\caption{Rules for $\Id$-types.}
+\label{tab:id}
 \end{table}
 
-\medskip
-
-As usual, we say that two elements  $a, b :A$ are \emph{propositionally equal} if 
- the type $\Id(a,b)$ is inhabited.
-Most work on W-types to date (\emph{e.g.}~\cite{DybjerP:repids,MoerdijkI:weltc,AbbottM:concsp}) has been in the setting of extensional type theories,  
-in which the following rule, known as the \emph{identity reflection rule}, is also assumed:
-
-\begin{equation}
-\label{equ:collapse}
-\begin{prooftree}
- p :  \id{A}(a,b)
-  \justifies
-  a=b :  A
-\end{prooftree}
-\end{equation}
-
-This rule collapses propositional equality with definitional equality, thus making the overall system
-somewhat simpler to work with. However, it destroys the constructive character of the intensional system, since it makes type-checking undecidable~\cite{HofmannM:extcit}. For this reason, it is not assumed
-in the most recent formulations of Martin-L\"of type theories~\cite{NordstromB:marltt} or in automated proof assistants like Coq~\cite{BertotY:inttpp}.
 
 
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{The system $\Hint$} 
 
-\noindent We here take a different approach to inductive types in the intensional setting, namely, one motivated by the homotopical interpretation.  It involves working over a dependent type theory $\Hint$ which has the following deduction rules on top of the standard structural rules:
-\begin{itemize}
-\item rules for identity types as stated above;
-\item rules for $\Sigma$-types as in~\cite[Section~5.8]{NordstromB:marltt};
-\item rules for $\Pi$-types as in~\cite[Section~3.2]{GarnerR:strdpt}; 
-\item the Function Extensionality axiom (FE), \emph{i.e.} the axiom asserting that
-for every $f, g : A \rightarrow B$, the type
-\[
-(\Pi x :  A)\id{B}( \app(f, x), \app(g, x)) \rightarrow \id{A \rightarrow B}(f,g) 
-\]
-is inhabited.
-\end{itemize}
-Here, we have used the notation $A \rightarrow B$ to indicate function types, defined via
-$\Pi$-types in the usual way. Similarly, we will write $A \times B$ to denote the binary product
-of two types as usually defined via $\Sigma$-types.
-\smallskip
 
-\subsubsection*{Remarks}
+\begin{remarks} \hfill 
 \begin{enumerate}[(i)]
 \item The rules for $\Pi$-types of $\Hint$ are derivable from those
 in~\cite[Section~5.4]{NordstromB:marltt}. For simplicity, 
@@ -540,21 +572,11 @@ c  : (\Sigma x : A)B(x)
 \]
  where $\pi_1$ and $\pi_2$ are the projections. This  can be proved by $\Sigma$-elimination,
 without FE.
-
-\item The following form of the $\eta$-rule for $\Pi$-types is derivable:
-\[
-\begin{prooftree}
-f : (\Pi x : A)B(x)
-\justifies
-\eta_\Pi(f) : \Id(f , \,  \lambda x. \, f x)
-\end{prooftree}
-\]
-This is an immediate consequence of FE and clearly implies
-the corresponding $\eta$-rule for function types.
-\item $\Hint$ does \emph{not} include the $\eta$-rules as definitional equalities, either for $\Sigma$-types or for $\Pi$-types (as is done in~\cite{GoguenH:inddtw}).
+\item $\Hint$ does \emph{not} include the $\eta$-rules as definitional equalities for $\Sigma$-types as is done in~\cite{GoguenH:inddtw}.
 \item The type theory $\Hint$ will serve as the background theory for our study of 
 inductive types and W-types. For this reason, we need not assume it to have any primitive types.
 \end{enumerate}
+\end{remarks}
 
 
 \noindent
@@ -566,6 +588,27 @@ which is also valid in homotopy-theoretic models, but will not be needed here. N
 while the Function Extensionality axiom is valid also in set-theoretic models, the Univalence 
 axiom is not. Although $\Hint$ has a straightforward set-theoretical semantics, we stress that it 
 does not have any global extensionality rules, like the identity reflection rule, K, or UIP. This makes it also compatible with ``higher-dimensional" interpretations such as the groupoid model~\cite{HofmannM:gromtt}, in which the rules of $\Hint$ are also valid.
+
+\begin{remark} 
+Most work on W-types to date (\emph{e.g.}~\cite{DybjerP:repids,MoerdijkI:weltc,AbbottM:concsp}) has been in the setting of extensional type theories,  
+in which the following rule, known as the \emph{identity reflection rule}, is also assumed:
+
+\begin{equation}
+\label{equ:collapse}
+\begin{prooftree}
+ p :  \id{A}(a,b)
+  \justifies
+  a=b :  A
+\end{prooftree}
+\end{equation}
+
+This rule collapses propositional equality with definitional equality, thus making the overall system
+somewhat simpler to work with. However, it destroys the constructive character of the intensional system, since it makes type-checking undecidable~\cite{HofmannM:extcit}. For this reason, it is not assumed
+in the most recent formulations of Martin-L\"of type theories~\cite{NordstromB:marltt} or in automated proof assistants like Coq~\cite{BertotY:inttpp}.
+
+\end{remark}
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Homotopy-theoretic notions in type theory} 
@@ -632,7 +675,7 @@ We refer to this type as the \emph{homotopy fiber} of $f$ at $y$.
 %%%
 \begin{definition} \label{thm:weq} Let $f : A \rightarrow B$.
 %%
-\begin{itemize}
+\begin{enumerate}[(i)] 
 %
 \item We say that $f$ is a \emph{weak equivalence} if  the type
 \[
@@ -656,7 +699,7 @@ where the same notation for both function application and
 the action of a function on an identity proof (which is easily definable by $\Id$-elimination),
 and we write $\alpha_x$ instead of $\alpha(x)$ for better readability.
 %
-\end{itemize}
+\end{enumerate}
 %%
 \end{definition}
 %%%
@@ -769,14 +812,14 @@ x \co A \vdash \ind(x, e_0, e_1) : E(x)
 \item Propositional computation rules, \smallskip
 \begin{mathpar}
 \begin{prooftree}
-x:\Bool \vdash E(x) : \type \qquad
+x: A \vdash E(x) : \type \qquad
 e_0 : E(a_0) \qquad
 e_1 : E(a_1)
 \justifies
  \beta_0 \co  \Id \big(  \ind(a_0, e_0, e_1),  e_0 \big)   \, , \\
 \end{prooftree} \\
 \begin{prooftree}
-x:\Bool \vdash E(x) : \type \qquad
+x: A \vdash E(x) : \type \qquad
 e_0 : E(a_0) \qquad
 e_1 : E(a_1)
 \justifies
@@ -1192,37 +1235,39 @@ which we represent by the diagram
  \]
 But the identity $1_A \co A \to A$ is also a morphism from $A$ to itself and hence, by the homotopy-initiality, the morphisms $\pi_1 \circ f \co A \to A$
 and $1_A \co A \to A$ have to be propositionally equal. By Lemma~\ref{BoolHomSpace}, this implies there exists a bipointed homotopy $(\alpha,
-\bar{\alpha}_0,\bar{\alpha}_1) \co \pi_1 \circ f \sim 1_A$ between them, which gives us in particular a homotopy $\alpha \co \pi_1 \circ f \sim 1_A$. 
+\bar{\alpha}_0,\bar{\alpha}_1) \co \pi_1 \circ f \sim 1_A$ between them. This gives us a homotopy $\alpha \co \pi_1 \circ f \sim 1_A$ and paths
+\[
+\xymatrix@C=1.5cm{
+\pi_1 f (a_0) \ar[r]^{\alpha(a_0)} \ar@/_1pc/[dr]_{\overline{(\pi_1 f)}_0} \ar@{}[dr]|{\quad \bar{\alpha}_0}  & a_0 \ar[d]^{\refl(a_0)} \\
+ & a_0 } \qquad
+ \xymatrix@C=1.5cm{
+\pi_1 f (a_1) \ar[r]^{\alpha(a_0)} \ar@/_1pc/[dr]_{\overline{(\pi_1 f)}_1} \ar@{}[dr]|{\quad \bar{\alpha}_1}  & a_1 \ar[d]^{\refl(a_1)} \\
+ & a_1 }
+\]
 We begin to define the required bipointed section by defining its underlying function $s \co (\Pi x \co A) E(x)$. For $x \co A$, we let
-\[
+\begin{equation}
+\label{equ:defreqsection}
 s(x) \defeq \alpha(x)_{!} \big( \pi_2(f(x) \big) \, .
-\]
-It remains to complete the definition of the required bipointed section, it remains to obtain paths~$\bar{s}_0 \co s(a_0)  \peq e_0$ and~$\bar{s}_1 \co s(a_1) \peq e_1$. In order to do so, we need to unfold more
-explicitly what the paths $\bar{\alpha}_0$ and $\bar{\alpha}_1$ (which are part of the data of the bipointed homotopy) give us. Recall that
+\end{equation}
+It remains to complete the definition of the required bipointed section, it remains to obtain paths~$\bar{s}_0 \co s(a_0)  \peq e_0$ and~$\bar{s}_1 \co s(a_1) \peq e_1$. We consider only $\bar{s}_0$ since the construction of $\bar{s}_1$ is  analogous. First of all, recall that 
+$\bar{f}_0 \co f(a_0) \peq e'_0$, where $e'_0 \equiv \pair(a_0, e_0) \co (\Sigma x :A ) E(x)$. Hence, there are paths 
+\begin{equation}
+\label{equ:p0q0}
+p_0 \co \pi_1 f (a_0) \peq a_0 \, , \quad q_0 \co (p_0)_{!}( \pi_1 f (a_0)) \peq e_0 \, . 
+\end{equation}
+such that $\pair(p_0, q_0) \peq \mathsf{idtopair}(\bar{f}_0)$. Furthermore, by the definition of the composition of bipointed morphisms, we have
+$p_0 =  \overline{(\pi_1 f)}_0$ and so
+\begin{equation}
+\label{equ:p0alpha0}
+p_0 = \overline{(\pi_1 f)}_0 =  \alpha(a_0) \ct \refl(a_0)  = \alpha(a_0) \, ,
+\end{equation}
+where the second equation is given by $\bar{\alpha}_0$. Hence, $\bar{s}_0$ is the witness for the following chain of propositional equalities
 \[
-\bar{f}_0 \co f(a_0) \peq e'_0 
+s(a_0) \peq \alpha(a_0)_{!} \big( \pi_2 f(a_0)  \big)  
+              \peq  (  p_0   )_{!} \big( \pi_2(f(a_0) ) \big) 
+               \peq  e_0 \, ,
 \]
-where $e'_0 \equiv \pair(a_0, e_0)$. Hence, there are paths 
-\[
-p_0 \co \pi_1 f (a_0) \peq a_0 \, , \quad q_0 \co (p_0)_{!}( \pi_1 f (a_0)) \peq e_0 \, .
-\]
-such that $\pair(p_0, q_0) \peq \idtodpair(\bar{f}_0)$. Here paths
-\[
-  \bar{\alpha}_0 : \alpha(a_0) = \pi_1(p_0) \ct \refl(a_0) \, , \quad
-\bar{\alpha}_1 : \alpha(a_1) = \pi_1(p_1) \ct \refl(a_1)
-\]
- To construct $\bar{s}_0$, 
-\[
-\pi_1(\pair(p, q)) \ct \refl(a_0)  = p \ct \refl(a_0) = p 
-\]
-Hence, \begin{align*} 
-s(a_0) & \defeq  \alpha(a_0)_{!} \big( \pi_2 f(a_0)  \big)  \\ 
- & \peq  \big( \pi_1( \pair(p_0, q_0))  \ct \refl(a_0)  \big)_{!} \big( \pi_2(f(a_0) ) \big)  \\
- & \peq \big(  p_0   \big)_{!} \big( \pi_2(f(a_0) ) \big) \\
- & \peq e_0
-\end{align*}
-
-The proof $\phi_1$ is defined analogously.
+Here, the first equality is given by the definition of $s$ in~\eqref{equ:defreqsection}, the second is given by~\eqref{equ:p0alpha0}, and the third is given by the path $q_0$ in~\eqref{equ:p0q0}.
 \end{proof}
 
 
@@ -1231,8 +1276,8 @@ The bipointed type $\Bool$ is homotopy-initial.
 \end{corollary}
 
 
-Corollary~\ref{lem:BoolInitInt} is the analogue in Homotopy Type Theory of the characterization of 
-$\Bool$ as a strict coproduct $1+1$ in extensional type theory. It makes precise the rough idea that, 
+Corollary~\ref{lem:BoolInitInt} is the analogue in our setting of the characterization of 
+the type $\Bool$ as a strict coproduct $1+1$ in extensional type theory. It makes precise the rough idea that, 
 in intensional type theory, $\Bool$ is a kind of homotopy coproduct or weak $\infty$-coproduct 
 in the $\infty$-category of types, functions, identity terms, higher identity terms, \ldots.  
 
