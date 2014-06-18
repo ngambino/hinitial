@@ -327,9 +327,7 @@
 
 \address{School of Mathematics, University of Leeds}
 
-
 \author[K. Sojakova]{KRISTINA SOJAKOVA}
-
 \address{Carnegie Mellon University}
 
 
@@ -1252,9 +1250,6 @@ For $\X : \BoolAlg_{\UU_i}$, $\Y : \BoolAlg_{\UU_j}$ we define the type of \emph
 
 
 
-.
-
-
 \begin{lemma}\label{BoolAlgSpace}
 For $\X,\Y : \BoolAlg_{\UU_i}$, the path space $\X = \Y$ is equivalent to the space of isomorphisms between $\X$ and $\Y$:
 \[ \X = \Y \;\; \simeq \;\; \BoolAlgIso \; \X \; \Y \] 
@@ -1396,22 +1391,22 @@ t : B(a) \to \W
 \inferrule{
 %A : \type \\  x:A \vdash B(x) : \type \\ 
 % m : \W  \\  
-w : \W \vdash C(w) : \type \\ 
-x:A,\, u : B(x) \to \W,\, v : \big(\Pi{y:B(x)}\big) C(u(y)) \vdash c(x,u,v) :C(\wsup(x,u))}
-{ w : \W \vdash \ind(c, w) : C(w)}
+w : \W \vdash E(w) : \type \\ 
+x:A,\, u : B(x) \to \W,\, v : \big(\Pi{y:B(x)}\big) E(u(y)) \vdash e(x,u,v) :E(\wsup(x,u))}
+{ w : \W \vdash \ind(w,e) : E(w)}
 \end{mathpar}
 \item $\W$-computation rule.\smallskip
 \begin{mathpar}
 \inferrule{
-w : \W \vdash C(w) : \type \\ 
-x:A,\, u : B(x) \to \W,\, v : \big(\Pi{y:B(x)}\big) C(u(y)) \vdash c(x,u,v) :C(\wsup(x,u))}
+w : \W \vdash E(w) : \type \\ 
+x:A,\, u : B(x) \to \W,\, v : \big(\Pi{y:B(x)}\big) E(u(y)) \vdash e(x,u,v) :E(\wsup(x,u))}
 {x:A,\, u : B(x) \to \W \vdash \\
- \ind(c,\wsup(x,u)) \equiv c\big(x,u,\lambda{y}.\ind(c,u(y))\big) : C(\wsup(a,t))}
+ \ind(\wsup(x,u),e) \equiv e\big(x,u,\lambda{y}.\ind(u(y),e)\big) : E(\wsup(a,u))}
 \end{mathpar}
 \end{itemize}
 \medskip
 \end{minipage}} \medskip
-\caption{Deduction rules for W-types over $\Hint$.}
+\caption{Deduction rules for W-types.}
 \label{tab:boolrules}
 \end{table}
 
@@ -1420,6 +1415,69 @@ W-types can be seen informally as the free algebras for signatures
 with operations of possibly infinite arity, but no equations. Indeed, the premises 
 of the formation rule above can be thought of as specifying a signature that has the elements of~$A$ 
 as operations and in which the arity of $a : A$ is the cardinality of the type $B(a)$. Then, the introduction rule specifies the canonical way of forming an element of the free algebra, and the elimination rule can be seen as the propositions-as-types translation of the appropriate induction principle.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\subsection{W-types: intensional case}
+
+
+%Although it is more elaborate to state (and difficult to prove) owing to the presence of 
+%recursively generated data, our main result on  W-types is analogous to 
+%the foregoing example in the following respect: rather than being strict initial algebras, as in the 
+%extensional case, W-types with propositional computation rules are instead homotopy-initial algebras. This fact can again be stated 
+%entirely syntactically, as an equivalence between the definability of W-types with propositional computation rules (which we spell
+%out below) and the existence of a suitable family of homotopy-initial algebras.  Moreover, as in the simple case of the type $\Bool$ above, the proof is again entirely constructive.
+%
+
+%\begin{remark}\label{thm:wtypesinvariance}
+As was the case for the type $\Bool$ with respect to all bipointed types, the W-type is determined uniquely up to equivalence among similar structures by the rules stated above.  Moreover, the property of being a W-type is preserved by equivalences of types; indeed, given any type $C$ and an equivalence of types $C\simeq \W_{x:A} B(x)$, then $C$ can be shown to satisfy the  rules above, with definable terms playing the role of the primitive constants, except that the computation rule will hold only propositionally, instead of being definitional.
+
+
+The propositional computation rules for W-types are as follows:\smallskip
+\begin{itemize}
+\item Propositional $\W$-computation rule.\smallskip
+\begin{mathpar}
+\inferrule{A : \UU_i \\ x:A \vdash B(x) : \UU_i \\ a : A \\ t : B(a) \to \W \\ w : \W \vdash E(w) : \UU_j \\ x:A, p: B(x) \to \W, r : \prd{b:B(x)} E(p \;b) \vdash e(x,p,r) :E(\wsup(x,p))}
+{\windcomp_{\UU_i}(A,x.B,w.E,x.p.r.e,a,t):\wind(\wsup(a,t)) = e(a,t,\lam{b:B(a)} \wind(t\;b))}
+\end{mathpar}
+\item Simple propositional $\W$-computation rule.\smallskip
+\begin{mathpar}
+\inferrule{A : \UU_i \\ x:A \vdash B(x) : \UU_i \\ a : A \\ t : B(a) \to \W \\ C : \UU_j \\ x:A, r : B(x) \to C \vdash c(x,r) : C}
+{\wreccomp_{\UU_i}(A,x.B,C,x.r.c,a,t) : \wrec(\wsup(a,t)) = c(a,\lam{b:B(a)} \wrec(t \;b))}
+\end{mathpar}
+\end{itemize}\smallskip
+
+We again have uniqueness principles, in the propositional form:
+\begin{itemize}
+\item Propositional $\W$-uniqueness principle.\smallskip
+\begin{mathpar}
+\inferrule{A : \UU_i \\ x:A \vdash B(x) : \UU_i \\ m : \W \\ w:\W \vdash E(w) : \UU_j \\ x:A, p: B(x) \to \W, r : \prd{b:B(x)} E(p \;b) \vdash e(x,p,r) :E(\wsup(x,p)) \\ w:\W \vdash f(w) : E(w) \\ w:\W \vdash g(w) : E(w) \\ x:A, p: B(x) \to \W \vdash \gamma(x,p) : f(\wsup(x,p)) = e(x,p,\lam{b:B(x)} f(p \;b)) \\ x:A, p: B(x) \to \W \vdash \delta(x,p) : g(\wsup(x,p)) = e(x,p,\lam{b:B(x)} g(p \;b))}
+{\winduniq_{\UU_i}(A,x.B,w.E,x.p.r.e,w.f,x.p.\gamma,w.g,x.p.\delta,m) : f(m) = g(m)}
+\end{mathpar}
+\item Simple propositional $\W$-uniqueness principle.\smallskip
+\begin{mathpar}
+\inferrule{A : \UU_i \\ x:A \vdash B(x) : \UU_i \\ m : \W \\ C : \UU_j \\ x:A, r : B(x) \to C \vdash c(x,r) : C \\ w:\W\vdash f(w) : C \\ x:A, p: B(x) \to \W \vdash \gamma(x,p) : f(\wsup(x,p)) = c(x,\lam{b:B(x)} f(p \;b)) \\ w:\W\vdash g(x) : C \\ x:A, p: B(x) \to \W \vdash \delta(x,p) : g(\wsup(x,p)) = c(x,\lam{b:B(x)} g(p \;b))}
+{\wrecuniq_{\UU_i}(A,x.B,C,x.r.c,w.f,x.p.\gamma,w.g,x.p.\delta,m) : f(m) = g(m)}
+\end{mathpar}
+\end{itemize} \smallskip
+The witness terms will be shortened to $\winduniq(m), \wrecuniq(m)$ where appropriate. In showing the above laws, we proceed analogously to the extensional case: we use the induction principle with the type family $x \mapsto f(w) =_{E(w)} g(w)$. For this we need to show that for any $x,p$ we have $f(\wsup(x,p)) = g(\wsup(x,p))$ under the induction hypothesis $h : \prd{b:B(x)} f(p\;b) = g(p\;b)$. We can construct this path explicitly as 
+\[ \gamma(x,p) \ct \app_{e(x,p,-)}(\funext(h))\ct \delta(x,p)^{-1} \]
+The simple uniqueness rule again follows from the dependent one. Invoking the corresponding (propositional) computation rule, we  get the following coherence principles for W-types:
+\begin{itemize}
+\item Propositional $\W$-coherence principle.\smallskip
+\begin{mathpar}
+\inferrule{A : \UU_i \\ x:A \vdash B(x) : \UU_i \\ a : A \\ t : B(a) \to \W \\ w:\W \vdash E(w) : \UU_j \\ x:A, p: B(x) \to \W, r : \prd{b:B(x)} E(p \;b) \vdash e(x,p,r) :E(\wsup(x,p)) \\ w:\W \vdash f(w) : E(w) \\ w:\W \vdash g(w) : E(w) \\ x:A, p: B(x) \to \W \vdash \gamma(x,p) : f(\wsup(x,p)) = e(x,p,\lam{b:B(x)} f(p \;b)) \\ x:A, p: B(x) \to \W \vdash \delta(x,p) : g(\wsup(x,p)) = e(x,p,\lam{b:B(x)} g(p \;b))}
+{\windcoh_{\UU_i}(A,x.B,w.E,x.p.r.e,w.f,x.p.\gamma,w.g,x.p.\delta,a,t) : \\ \winduniq(\wsup(a,t)) = \gamma(a,t) \ct \app_{e(a,t,-)}(\funext(\lam{b:B(a)}\winduniq(t\;b)))\ct \delta(a,t)^{-1}}
+\end{mathpar}
+\item Simple propositional $\W$-coherence principle.\smallskip
+\begin{mathpar}
+\inferrule{A : \UU_i \\ x:A \vdash B(x) : \UU_i \\ a : A \\ t : B(a) \to \W \\ C : \UU_j \\ x:A, r : B(x) \to C \vdash c(x,r) : C \\ w:\W\vdash f(w) : C \\ x:A, p: B(x) \to \W \vdash \gamma(x,p) : f(\wsup(x,p)) = c(x,\lam{b:B(x)} f(p \;b)) \\ w:\W\vdash g(x) : C \\ x:A, p: B(x) \to \W \vdash \delta(x,p) : g(\wsup(x,p)) = c(x,\lam{b:B(x)} g(p \;b))}
+{\wreccoh_{\UU_i}(A,x.B,C,x.r.c,w.f,x.p.\gamma,w.g,x.p.\delta,a,t) : \\ \wrecuniq(\wsup(a,t)) = \gamma(a,t) \ct \app_{c(a,-)}(\funext(\lam{b:B(a)}\wrecuniq(t\;b)))\ct \delta(a,t)^{-1}}
+\end{mathpar}
+\end{itemize} \smallskip
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 As before, the above rules imply a non-dependent version of elimination and the corresponding computation rule, where we write $\wrec(m)$ instead of $\wrec^{A,x.B}_{\UU_j}\big(C,x.r.c,m\big)$ where appropriate. \smallskip
 \begin{itemize}
@@ -1445,10 +1503,16 @@ e(x,p,r) :E(\wsup(x,p)) \\ w:\W \vdash f(w) : E(w) \\ x:A, p: B(x) \to \W \vdash
 \begin{mathpar}
 \inferrule{A : \UU_i \\ x:A \vdash B(x) : \UU_i \\ m : \W \\ C : \UU_j \\ x:A, r : B(x) \to C \vdash c(x,r) : C \\ w:\W\vdash f(w) : C \\ x:A, p: B(x) \to \W \vdash f(\wsup(x,p)) \equiv c(x,\lam{b:B(x)} f(p \;b)) \\ w:\W\vdash g(x) : C \\ x:A, p: B(x) \to \W \vdash g(\wsup(x,p)) \equiv c(x,\lam{b:B(x)} g(p \;b))}{f(m) \equiv g(m) : C}
 \end{mathpar}
-\end{itemize} \smallskip
+\end{itemize}
+
+ \smallskip
 As before, we can prove the dependent uniqueness principle by using the induction principle with the type family $w \mapsto f(w) =_{E(w)} g(w)$. For this we need to show that for any $x,p$ we have $f(\wsup(x,p)) = g(\wsup(x,p))$ under the induction hypothesis $\prd{b:B(x)} f(p\;b) = g(p\;b)$. Using this hypothesis with function extensionality we get $\lam{b:B(x)} f(p\;b) = \lam{b:B(x)} g(p\;b)$. Together with the premises of the uniqueness rule this gives us $f(\wsup(a,t)) = g(\wsup(a,t))$ as desired. The induction principle thus gives us pointwise propositional equality between $f$ and $g$ and we appeal to the identity reflection rule to finish the proof. The simple uniqueness principle again follows from the dependent one.
 
-We can now formulate the notions of algebras, homomorphisms, etc. accordingly:
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Homotopy initial W-types}
+
+In order to determine the universal property of W-types, we next formulate the notions of algebras, homomorphisms, and homotopies, again in both simple and fibered forms.
 
 \begin{definition}\label{def:WAlg}
 For $A:\UU_i$, $B : A \to \UU_i$, define the type of \emph{$\W$-algebras} on a universe $\UU_j$ as
@@ -1497,157 +1561,7 @@ For $A:\UU_i$ and $B : A \to \UU_i$, an algebra $\X : \WAlg_{\UU_j}(A,B)$ is \em
 \[ \IsWInit_{\UU_k}(\X) \defeq \prd{(\Y:\WAlg_{\UU_k}(A,B))} \iscontr(\WHom \; \X \; \Y) \]  
 \end{definition}
 
-As before, the induction principle implies induction uniqueness:
-
-\begin{lemma}\label{lem:WIndImpUniq}
-In $\Hext$, for $A:\UU_i$, $B : A \to \UU_i$, if an algebra $\X : \WAlg_{\UU_j}(A,B)$ satisfies the induction principle on the universe $\UU_k$, it also satisfies the induction uniqueness principle on $\UU_k$. In other words, we have
-\[ \HasWInd_{\UU_k}(\X) \;\; \rightarrow \;\; \HasWIndUniq_{\UU_k}(\X) \]
-\end{lemma}
-\begin{proof}
-Let an algebra $(C,c) : \WAlg_{\UU_j}(A,B)$ be given. To prove the induction uniqueness principle, take any algebra $(E,e) : \WFibAlg_{\UU_k} \; (C,c)$ and homomorphisms $(f,\gamma), (g,\delta) : \WFibHom \; (C,c) \; (E,e)$. Because of UIP, showing $(f,\gamma) = (g,\delta)$ is equivalent to showing $f = g$. For the latter, we use the induction principle with the fibered algebra $\big(x \mapsto f(x) = g(x); a,t,s \mapsto \refl(f(c(a,t)) \big)$. This is indeed well-typed since $\gamma(a,t)$ gives us $f(c(a,t)) = e(a,t,\lam{b:B(a)} f(t\;b))$; $\delta(a,t)$ gives us $g(c(a,t)) = e(a,t,\lam{b:B(a)} g(t\;b))$; and $s$ together with function extensionality gives us
-$\lam{b:B(a)} f(t\;b) = \lam{b:B(a)} g(t\;b)$.
-
-The first component of the resulting homomorphism together with the function extensionality principle then give us $f = g$.
-\end{proof}
-
-%\begin{lemma}\label{lem:WRecUniqEqInit}
-%In $\Hext$, for $A:\UU_i$, $B : A \to \UU_i$, the following conditions on an algebra $\X : \WAlg_{\UU_j}(A,B)$ are equivalent:
-%\begin{enumerate}
-%\item $\X$ satisfies the recursion and recursion uniqueness principles on the universe $\UU_k$
-%\item $\X$ is initial on the universe $\UU_k$
-%\end{enumerate}
-%In other words, we have
-%\[ \HasWRec_{\UU_k}(\X) \times \HasWRecUniq_{\UU_k}(\X) \;\; \simeq \;\; \IsWInit_{\UU_k}(\X) \]
-%\end{lemma}
-%\begin{proof}
-%By Lem.~\ref{lem:ContrChar}.
-%\end{proof}
-
-\begin{corollary}\label{lem:WIndImpInit}
-In $\Hext$, for $A:\UU_i$, $B : A \to \UU_i$, if an algebra $\X : \WAlg_{\UU_j}(A,B)$ satisfies the induction principle on the universe $\UU_k$, it is initial on $\UU_k$. In other words, we have
-\[ \HasWInd_{\UU_k}(\X) \;\; \rightarrow \;\; \IsWInit_{\UU_k}(\X) \]
-\end{corollary}
-
-\begin{lemma}\label{lem:WRecUniqImpInd}
-In $\Hext$, for $A:\UU_i$, $B : A \to \UU_i$, if an algebra $\X : \WAlg_{\UU_j}(A,B)$ satisfies the recursion and recursion uniqueness principles on the universe $\UU_k$ and $k \geq j$, then it satisfies the induction principle on $\UU_k$. In other words, we have
-\[ \HasWRec_{\UU_k}(\X) \times \HasWRecUniq_{\UU_k}(\X) \;\; \rightarrow \; \; \HasWInd_{\UU_k}(\X) \]
-provided $k \geq j$.
-\end{lemma}
-\begin{proof}
-Let algebras $(C,c) : \WAlg_{\UU_j}(A,B)$ and $(E,e) : \WFibAlg_{\UU_k} \; (C,c)$ be given. 
-We use the recursion principle with the algebra $(\sm{x:C} E(x); a,s \mapsto d(a,s))$ where
-\[ d(a,s) \defeq \Big(c\big(a,\lam{b:B(a)} \fst(s\;b)\big), e\big(a, \lam{b:B(a)} \fst(s\;b), \lam{b:B(a)} \snd(s\;b)\big) \Big) \big) \]
-We note that the carrier type belongs to $\UU_k$ as $j \leq k$. This gives us a homomorphism $(u,\theta)$, where $u : C \to \sm{x:C} E(x)$ and $\theta : \prd{a}\prd{t} u(c(a,t)) = d(a,\lam{b:B(a)}u(t\;b))$. We can now form two homomorphisms 
-\[\big(\fst \comp u; a,t \mapsto \refl_{c(a,\lam{b:B(a)}u(t\;b))}\big), \big(\idfun{C}; a,t \mapsto \refl_{c(a,t)}\big) : \WHom \; (C,c) \; (C,c)\] The first one type-checks due to $\theta$. The recursion uniqueness principle tells us that these homomorphisms are equal. Thus, $\fst \comp u = \idfun{C}$ and in particular $\fst \comp u \equiv \idfun{C}$. 
-
-We can thus define the desired fibered homomorphism as \[\big(\snd \comp u; a,t \mapsto \refl(e(a,t,\lam{b:B(a)}\snd(u(t\;b))))\big) : \WFibHom \; (C,c) \; (E,e)\]
-which type-checks due to $\theta$ and the fact that $\fst \comp u \equiv \idfun{C}$.
-\end{proof}
-
-\begin{corollary}\label{lem:WMain}
-In $\Hext$, for $A:\UU_i$, $B : A \to \UU_i$, the following conditions on an algebra $\X : \WAlg_{\UU_j}(A,B)$ are equivalent:
-\begin{enumerate}
-\item $\X$ satisfies the induction principle on the universe $\UU_k$
-\item $\X$ satisfies the recursion and recursion uniqueness principles on the universe $\UU_k$
-\item $\X$ is initial on the universe $\UU_k$  
-\end{enumerate}
-for $k \geq j$. In other words, we have \[ \HasWInd_{\UU_k}(\X)  \;\; \simeq \;\; \HasWRec_{\UU_k}(\X) \times \HasWRecUniq_{\UU_k}(\X) \;\; \simeq \;\; \IsWInit_{\UU_k}(\X) \]
-provided $k \geq j$. Furthermore, all 3 conditions are mere propositions.
-\end{corollary}
-\begin{proof}
-Conditions (1) and (3) are mere propositions by Lem.~\ref{lem:IsContrIsProp} (for the latter), Lem.~\ref{lem:PropChar},~\ref{lem:BoolIndImpUniq} (for the former), and the fact that a family of mere propositions is itself a mere proposition.
-\end{proof}
-
-We can thus characterize $\W$-types using the universal property of initiality as follows.
-\begin{corollary}\label{lem:WInit}
-In $\Hext$ with $\W$-types, for any $A:\UU_i$, $B : A \to \UU_i$, the algebra \[\Big(\W^{\UU_i}_{x:A}B(x),\lam{a}\lam{t} \wsup_{\UU_i}^{A,x.B(x)}(a,t) \Big) : \WAlg_{\UU_i}(A,B)\] is initial on any universe $\UU_j$.
-\end{corollary}
-
-\begin{corollary}\label{lem:WChar}
-In $\Hext$ extended with an algebra $\X_{\UU_i}(A,B) : \WAlg_{\UU_i}(A,B)$ for any $\UU_i$, $A : \UU_i$, $B : A \to \UU_i$, which is initial on any universe $\UU_j$, Martin-L{\"o}f's $\W$-types are definable.
-\end{corollary}
-\begin{proof}
-For any $i$, the algebra $A:\UU_i,B:A\to \UU_i \vdash \X_{\UU_i}(A,B) : \WAlg_{\UU_i}(A,B)$ is such that for any $j$, there exists a term $A:\UU_i,B:A\to \UU_i \vdash h^i_j  : \IsWInit_{\UU_j}(\X_{\UU_i}(A,B))$. By Cor.~\ref{lem:BoolMain}, for any $j \geq i$ there is a term $A:\UU_i,B:A\to \UU_i \vdash r^i_j : \HasWInd_{\UU_j}(\X_{\UU_i}(A,B))$. Since universes are cumulative, this implies that such a term $r^i_j$ exists \emph{for any $j$}. This in turn implies that $\W$-types are definable.
-\end{proof}
-
-We conclude by the type-theoretic analogue of Lambek's lemma for $\W$-types, which asserts that the structure map of an initial algebra is an equivalence. In $\Hext$ any equivalence is also a type isomorphism, which then gives us the more familiar formulation of Lambek's lemma.
-
-\begin{lemma}\label{lem:ExtLambek}
-Over $\Hext$, for $A:\UU_i$, $B : A \to \UU_i$, if an algebra $(C,c) : \WAlg_{\UU_j}(A,B)$ is initial on $\UU_j$ and $j \geq i$, then the map from $\sm{x:A} B(x) \to C$ to $C$ given by $c$ is an equivalence.
-\end{lemma}
-\begin{proof}
-By abuse of notation we refer to both the curried and uncurried versions of the structure map by $c$. Since $(C,c)$ is initial on $\UU_j$, it satisfies the recursion principle on $\UU_j$. We use it with the algebra \[\Big(\sm{x:A} B(x) \to C; a,s \mapsto \big(a,\lam{b:B(a)} c(s\;b)\big)\Big)\]
-We note that the carrier type belongs to $\UU_j$ as $i \leq j$. This gives us a homomorphism $(u,\theta)$ where $u : C \to \big(\sm{x:A} B(x) \to C\big)$ and $\theta : \prd{a}\prd{t} u(c(a,t)) = \big(a,\lam{b:B(a)} c(u(t\;b))\big)$.  We can now form two homomorphisms
-\[\big(c \comp u; a,t \mapsto \refl_{c(a,\lam{b:B(a)}u(t\;b))}\big), \big(\idfun{C}; a,t \mapsto \refl_{c(a,t)}\big) : \WHom \; (C,c) \; (C,c)\] where the first one type-checks due to $\theta$. Since $(C,c)$ is initial on $\UU_j$, it satisfies the recursion uniqueness principle on $\UU_j$, thus the above homomorphisms are equal. Thus, we have $c \comp u = \idfun{C}$, hence $c \comp u \sim \idfun{C}$ and also $c \comp u \equiv \idfun{C}$. The latter together with $\theta$ implies that for any $a,t$, we have $u(c(a,t)) \equiv (a,t)$. Thus $u \comp c \sim \idfun{\sm{x:A} B(x) \to C}$.
-\end{proof}
-
-\begin{corollary}
-Over $\Hext$, given $A:\UU_i$, $B : A \to \UU_i$ and $a_1,a_2:A$, $t_1 : B(a_1) \to \W$, $t_2 : B(a_2) \to \W$ we have
-\[ \wsup(a_1,t_1) = \wsup(a_2,t_2) \;\;\; \simeq \;\;\; (a_1,t_1) = (a_2,t_2)\]
-\end{corollary}
-\begin{proof}
-By Lem.~\ref{lem:ExtLambek} and Cor.~\ref{lem:WInit}, the structure map $\wsup$ defines an equivalence between $\sm{x:A} B(x) \to \W$ and $\W$. The rest follows from Lem.~\ref{lem:apeq}\ednote{Which says that $a = b$ is equivalent to $f(a) = f(b)$ if $f$ is an equivalence}.
-\end{proof}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{W-types: intensional case}
-
-
-Although it is more elaborate to state (and difficult to prove) owing to the presence of 
-recursively generated data, our main result on  W-types is analogous to 
-the foregoing example in the following respect: rather than being strict initial algebras, as in the 
-extensional case, W-types with propositional computation rules are instead homotopy-initial algebras. This fact can again be stated 
-entirely syntactically, as an equivalence between the definability of W-types with propositional computation rules (which we spell
-out below) and the existence of a suitable family of homotopy-initial algebras.  Moreover, as in the simple case of the type $\Bool$ above, the proof is again entirely constructive.
-
-The propositional computation rules for W-types are as follows:\smallskip
-\begin{itemize}
-\item Propositional $\W$-computation rule.\smallskip
-\begin{mathpar}
-\inferrule{A : \UU_i \\ x:A \vdash B(x) : \UU_i \\ a : A \\ t : B(a) \to \W \\ w : \W \vdash E(w) : \UU_j \\ x:A, p: B(x) \to \W, r : \prd{b:B(x)} E(p \;b) \vdash e(x,p,r) :E(\wsup(x,p))}
-{\windcomp_{\UU_i}(A,x.B,w.E,x.p.r.e,a,t):\wind(\wsup(a,t)) = e(a,t,\lam{b:B(a)} \wind(t\;b))}
-\end{mathpar}
-\item Simple propositional $\W$-computation rule.\smallskip
-\begin{mathpar}
-\inferrule{A : \UU_i \\ x:A \vdash B(x) : \UU_i \\ a : A \\ t : B(a) \to \W \\ C : \UU_j \\ x:A, r : B(x) \to C \vdash c(x,r) : C}
-{\wreccomp_{\UU_i}(A,x.B,C,x.r.c,a,t) : \wrec(\wsup(a,t)) = c(a,\lam{b:B(a)} \wrec(t \;b))}
-\end{mathpar}
-\end{itemize}\smallskip
-
-\begin{remark}\label{thm:wtypesinvariance}
-One interesting aspect of this group of rules is that, unlike the standard rules for $\W$-types, they are invariant under equivalence, and propositional equality in particular. 
-If $A:\UU_i$ and $x:A \vdash B(x):\UU_i$ and we have a type $W : \UU_i$ such that $W \simeq \W^{\UU_i}_{x:A} B(x)$, then $W$ can be shown to satisfy the same rules as $\W^{\UU_i}_{x:A} B(x)$, in the sense that there are definable terms playing the role of the primitive constants that appear in the rules for $\W^{\UU_i}_{x:A} B(x)$.
-\end{remark}
-
-We again have uniqueness principles, in the propositional form:
-\begin{itemize}
-\item Propositional $\W$-uniqueness principle.\smallskip
-\begin{mathpar}
-\inferrule{A : \UU_i \\ x:A \vdash B(x) : \UU_i \\ m : \W \\ w:\W \vdash E(w) : \UU_j \\ x:A, p: B(x) \to \W, r : \prd{b:B(x)} E(p \;b) \vdash e(x,p,r) :E(\wsup(x,p)) \\ w:\W \vdash f(w) : E(w) \\ w:\W \vdash g(w) : E(w) \\ x:A, p: B(x) \to \W \vdash \gamma(x,p) : f(\wsup(x,p)) = e(x,p,\lam{b:B(x)} f(p \;b)) \\ x:A, p: B(x) \to \W \vdash \delta(x,p) : g(\wsup(x,p)) = e(x,p,\lam{b:B(x)} g(p \;b))}
-{\winduniq_{\UU_i}(A,x.B,w.E,x.p.r.e,w.f,x.p.\gamma,w.g,x.p.\delta,m) : f(m) = g(m)}
-\end{mathpar}
-\item Simple propositional $\W$-uniqueness principle.\smallskip
-\begin{mathpar}
-\inferrule{A : \UU_i \\ x:A \vdash B(x) : \UU_i \\ m : \W \\ C : \UU_j \\ x:A, r : B(x) \to C \vdash c(x,r) : C \\ w:\W\vdash f(w) : C \\ x:A, p: B(x) \to \W \vdash \gamma(x,p) : f(\wsup(x,p)) = c(x,\lam{b:B(x)} f(p \;b)) \\ w:\W\vdash g(x) : C \\ x:A, p: B(x) \to \W \vdash \delta(x,p) : g(\wsup(x,p)) = c(x,\lam{b:B(x)} g(p \;b))}
-{\wrecuniq_{\UU_i}(A,x.B,C,x.r.c,w.f,x.p.\gamma,w.g,x.p.\delta,m) : f(m) = g(m)}
-\end{mathpar}
-\end{itemize} \smallskip
-The witness terms will be shortened to $\winduniq(m), \wrecuniq(m)$ where appropriate. In showing the above laws, we proceed analogously to the extensional case: we use the induction principle with the type family $x \mapsto f(w) =_{E(w)} g(w)$. For this we need to show that for any $x,p$ we have $f(\wsup(x,p)) = g(\wsup(x,p))$ under the induction hypothesis $h : \prd{b:B(x)} f(p\;b) = g(p\;b)$. We can construct this path explicitly as 
-\[ \gamma(x,p) \ct \app_{e(x,p,-)}(\funext(h))\ct \delta(x,p)^{-1} \]
-The simple uniqueness rule again follows from the dependent one. Invoking the corresponding (propositional) computation rule, we  get the following coherence principles for W-types:
-\begin{itemize}
-\item Propositional $\W$-coherence principle.\smallskip
-\begin{mathpar}
-\inferrule{A : \UU_i \\ x:A \vdash B(x) : \UU_i \\ a : A \\ t : B(a) \to \W \\ w:\W \vdash E(w) : \UU_j \\ x:A, p: B(x) \to \W, r : \prd{b:B(x)} E(p \;b) \vdash e(x,p,r) :E(\wsup(x,p)) \\ w:\W \vdash f(w) : E(w) \\ w:\W \vdash g(w) : E(w) \\ x:A, p: B(x) \to \W \vdash \gamma(x,p) : f(\wsup(x,p)) = e(x,p,\lam{b:B(x)} f(p \;b)) \\ x:A, p: B(x) \to \W \vdash \delta(x,p) : g(\wsup(x,p)) = e(x,p,\lam{b:B(x)} g(p \;b))}
-{\windcoh_{\UU_i}(A,x.B,w.E,x.p.r.e,w.f,x.p.\gamma,w.g,x.p.\delta,a,t) : \\ \winduniq(\wsup(a,t)) = \gamma(a,t) \ct \app_{e(a,t,-)}(\funext(\lam{b:B(a)}\winduniq(t\;b)))\ct \delta(a,t)^{-1}}
-\end{mathpar}
-\item Simple propositional $\W$-coherence principle.\smallskip
-\begin{mathpar}
-\inferrule{A : \UU_i \\ x:A \vdash B(x) : \UU_i \\ a : A \\ t : B(a) \to \W \\ C : \UU_j \\ x:A, r : B(x) \to C \vdash c(x,r) : C \\ w:\W\vdash f(w) : C \\ x:A, p: B(x) \to \W \vdash \gamma(x,p) : f(\wsup(x,p)) = c(x,\lam{b:B(x)} f(p \;b)) \\ w:\W\vdash g(x) : C \\ x:A, p: B(x) \to \W \vdash \delta(x,p) : g(\wsup(x,p)) = c(x,\lam{b:B(x)} g(p \;b))}
-{\wreccoh_{\UU_i}(A,x.B,C,x.r.c,w.f,x.p.\gamma,w.g,x.p.\delta,a,t) : \\ \wrecuniq(\wsup(a,t)) = \gamma(a,t) \ct \app_{c(a,-)}(\funext(\lam{b:B(a)}\wrecuniq(t\;b)))\ct \delta(a,t)^{-1}}
-\end{mathpar}
-\end{itemize} \smallskip
-This motivates the following definitions:
+%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{definition}\label{def:WCell}
 For $A:\UU_i$, $B : A \to \UU_i$, $\X : \WAlg_{\UU_j}(A,B)$, $\Y : \WAlg_{\UU_k}(A,B)$ and homomorphisms $\mu, \nu : \WHom \; \X \; \Y$, define the type of \emph{2-cells} between $\mu$ and $\nu$ by
@@ -1934,6 +1848,147 @@ where the first equality follows by Cor.~\ref{lem:suppath}. Since $A$ is an $(n+
 \end{proof}
 
 We note that there is no restriction on the homotopy level of the fibers of $B$ since they only appear contravariantly. Furthermore, we note that the lemma is no longer true if $n+1$ is replaced by $n$: if $A \defeq \one$ and $B(x) \defeq \one$, then $\W^{\UU_0}_{x:A} B(x) \simeq \zero$, which is of course not contractible. 
+
+We can now formulate the notions of algebras, homomorphisms, etc. accordingly:
+
+\begin{definition}\label{def:WAlg}
+For $A:\UU_i$, $B : A \to \UU_i$, define the type of \emph{$\W$-algebras} on a universe $\UU_j$ as
+\[\WAlg_{\UU_j}(A,B) \; \defeq \sm{C : \UU_j} \prd{a:A} (B(a) \to C) \to C \]
+\end{definition}
+
+\begin{definition}\label{def:WFibAlg}
+For $A:\UU_i$, $B : A \to \UU_i$, define the type of \emph{fibered $\W$-algebras} on a universe $\UU_k$ over $\mathcal{X} : \WAlg_{\UU_j}(A,B)$ by
+\[\WFibAlg_{\UU_k}(A,B) \; (C,c) \defeq \sm{E : C \to \UU_k} \prd{a:A}\prd{t: B(a) \to C} \big(\prd{b:B(a)} E(t \;b) \big) \to E(c(a,t)) \]
+\end{definition}
+
+\begin{definition}\label{def:WHom}
+For $A:\UU_i$, $B : A \to \UU_i$, $\X : \WAlg_{\UU_j}(A,B)$, $\Y : \WAlg_{\UU_k}(A,B)$, define the type of \emph{$\W$-homomorphisms} from $\X$ to $\Y$ by
+\[ \WHom \; (C,c) \; (D,d) \defeq \sm{f:C\to D}\prd{a:A}\prd{t: B(a) \to C} f(c(a,t)) = d(a,\lam{b:B(a)} f(t\;b)) \]
+\end{definition}
+
+\begin{definition}\label{def:WFibHom}
+For $A:\UU_i$, $B : A \to \UU_i$, $\X : \WAlg_{\UU_j}(A,B)$, $\Y : \WFibAlg_{\UU_k}(A,B) \; \X$, define the type of \emph{fibered $\W$-homomorphisms} from $\X$ to $\Y$ by
+\[ \WFibHom \; (C,c) \; (E,e) \defeq \sm{(f:\prd{x:C}E(x))}\prd{a:A}\prd{t: B(a) \to C} f(c(a,t)) = e(a,t,\lam{b:B(a)} f(t\;b)) \]
+\end{definition}
+
+\begin{definition}\label{def:WRec}
+For $A:\UU_i$, $B : A \to \UU_i$, an algebra $\X : \WAlg_{\UU_j}(A,B)$ \emph{satisfies the recursion principle} on a universe $\UU_k$ if for any algebra $\Y : \WAlg_{\UU_k}(A,B)$ there exists
+a $\W$-homomorphism between $\X$ and $\Y$:
+\[ \HasWRec_{\UU_k}(\X) \defeq \prd{(\Y:\WAlg_{\UU_k}(A,B))} \WHom \; \X \; \Y \]
+\end{definition}
+
+\begin{definition}\label{def:WInd}
+For $A:\UU_i$, $B : A \to \UU_i$, an algebra $\X : \WAlg_{\UU_j}(A,B)$ \emph{satisfies the induction principle} on a universe $\UU_k$ if for any fibered algebra $\Y : \WFibAlg_{\UU_k}(A,B) \; \X$ there exists a fibered $\W$-homomorphism between $\X$ and $\Y$:
+\[ \HasWInd_{\UU_k}(\X) \defeq \prd{(\Y:\WFibAlg_{\UU_k}(A,B) \; \X)} \WFibHom \; \X \; \Y \]
+\end{definition}
+
+\begin{definition}\label{def:WRecUniq}
+For $A:\UU_i$, $B : A \to \UU_i$, an algebra $\X : \WAlg_{\UU_j}(A,B)$ \emph{satisfies the recursion uniqueness principle} on a universe $\UU_k$ if for any algebra $\Y : \WAlg_{\UU_k}(A,B)$
+any two $\W$-homomorphisms between $\X$ and $\Y$ are equal:
+\[ \HasWRecUniq_{\UU_k}(\X) \defeq \prd{(\Y:\WAlg_{\UU_k}(A,B))} \isprop(\WHom \; \X \; \Y) \]
+\end{definition}
+
+\begin{definition}\label{def:WIndUniq}
+For $A:\UU_i$ and $B : A \to \UU_i$, an algebra $\X : \WAlg_{\UU_j}(A,B)$ \emph{satisfies the induction uniqueness principle} on a universe $\UU_k$ if for any fibered algebra $\Y : \WFibAlg_{\UU_k}(A,B) \; \X$ any two fibered $\W$-homomorphisms between $\X$ and $\Y$ are equal:
+\[ \HasWIndUniq_{\UU_k}(\X) \defeq \prd{(\Y:\WFibAlg_{\UU_k}(A,B) \; \X)} \isprop(\WFibHom \; \X \; \Y) \]
+\end{definition}
+
+\begin{definition}\label{def:WInit}
+For $A:\UU_i$ and $B : A \to \UU_i$, an algebra $\X : \WAlg_{\UU_j}(A,B)$ is \emph{initial} on a universe $\UU_k$ if for any algebra $\Y : \WAlg_{\UU_k}(A,B)$ there exists a unique $\W$-homomorphism between $\X$ and $\Y$:
+\[ \IsWInit_{\UU_k}(\X) \defeq \prd{(\Y:\WAlg_{\UU_k}(A,B))} \iscontr(\WHom \; \X \; \Y) \]  
+\end{definition}
+
+As before, the induction principle implies induction uniqueness:
+
+\begin{lemma}\label{lem:WIndImpUniq}
+In $\Hext$, for $A:\UU_i$, $B : A \to \UU_i$, if an algebra $\X : \WAlg_{\UU_j}(A,B)$ satisfies the induction principle on the universe $\UU_k$, it also satisfies the induction uniqueness principle on $\UU_k$. In other words, we have
+\[ \HasWInd_{\UU_k}(\X) \;\; \rightarrow \;\; \HasWIndUniq_{\UU_k}(\X) \]
+\end{lemma}
+\begin{proof}
+Let an algebra $(C,c) : \WAlg_{\UU_j}(A,B)$ be given. To prove the induction uniqueness principle, take any algebra $(E,e) : \WFibAlg_{\UU_k} \; (C,c)$ and homomorphisms $(f,\gamma), (g,\delta) : \WFibHom \; (C,c) \; (E,e)$. Because of UIP, showing $(f,\gamma) = (g,\delta)$ is equivalent to showing $f = g$. For the latter, we use the induction principle with the fibered algebra $\big(x \mapsto f(x) = g(x); a,t,s \mapsto \refl(f(c(a,t)) \big)$. This is indeed well-typed since $\gamma(a,t)$ gives us $f(c(a,t)) = e(a,t,\lam{b:B(a)} f(t\;b))$; $\delta(a,t)$ gives us $g(c(a,t)) = e(a,t,\lam{b:B(a)} g(t\;b))$; and $s$ together with function extensionality gives us
+$\lam{b:B(a)} f(t\;b) = \lam{b:B(a)} g(t\;b)$.
+
+The first component of the resulting homomorphism together with the function extensionality principle then give us $f = g$.
+\end{proof}
+
+%\begin{lemma}\label{lem:WRecUniqEqInit}
+%In $\Hext$, for $A:\UU_i$, $B : A \to \UU_i$, the following conditions on an algebra $\X : \WAlg_{\UU_j}(A,B)$ are equivalent:
+%\begin{enumerate}
+%\item $\X$ satisfies the recursion and recursion uniqueness principles on the universe $\UU_k$
+%\item $\X$ is initial on the universe $\UU_k$
+%\end{enumerate}
+%In other words, we have
+%\[ \HasWRec_{\UU_k}(\X) \times \HasWRecUniq_{\UU_k}(\X) \;\; \simeq \;\; \IsWInit_{\UU_k}(\X) \]
+%\end{lemma}
+%\begin{proof}
+%By Lem.~\ref{lem:ContrChar}.
+%\end{proof}
+
+\begin{corollary}\label{lem:WIndImpInit}
+In $\Hext$, for $A:\UU_i$, $B : A \to \UU_i$, if an algebra $\X : \WAlg_{\UU_j}(A,B)$ satisfies the induction principle on the universe $\UU_k$, it is initial on $\UU_k$. In other words, we have
+\[ \HasWInd_{\UU_k}(\X) \;\; \rightarrow \;\; \IsWInit_{\UU_k}(\X) \]
+\end{corollary}
+
+\begin{lemma}\label{lem:WRecUniqImpInd}
+In $\Hext$, for $A:\UU_i$, $B : A \to \UU_i$, if an algebra $\X : \WAlg_{\UU_j}(A,B)$ satisfies the recursion and recursion uniqueness principles on the universe $\UU_k$ and $k \geq j$, then it satisfies the induction principle on $\UU_k$. In other words, we have
+\[ \HasWRec_{\UU_k}(\X) \times \HasWRecUniq_{\UU_k}(\X) \;\; \rightarrow \; \; \HasWInd_{\UU_k}(\X) \]
+provided $k \geq j$.
+\end{lemma}
+\begin{proof}
+Let algebras $(C,c) : \WAlg_{\UU_j}(A,B)$ and $(E,e) : \WFibAlg_{\UU_k} \; (C,c)$ be given. 
+We use the recursion principle with the algebra $(\sm{x:C} E(x); a,s \mapsto d(a,s))$ where
+\[ d(a,s) \defeq \Big(c\big(a,\lam{b:B(a)} \fst(s\;b)\big), e\big(a, \lam{b:B(a)} \fst(s\;b), \lam{b:B(a)} \snd(s\;b)\big) \Big) \big) \]
+We note that the carrier type belongs to $\UU_k$ as $j \leq k$. This gives us a homomorphism $(u,\theta)$, where $u : C \to \sm{x:C} E(x)$ and $\theta : \prd{a}\prd{t} u(c(a,t)) = d(a,\lam{b:B(a)}u(t\;b))$. We can now form two homomorphisms 
+\[\big(\fst \comp u; a,t \mapsto \refl_{c(a,\lam{b:B(a)}u(t\;b))}\big), \big(\idfun{C}; a,t \mapsto \refl_{c(a,t)}\big) : \WHom \; (C,c) \; (C,c)\] The first one type-checks due to $\theta$. The recursion uniqueness principle tells us that these homomorphisms are equal. Thus, $\fst \comp u = \idfun{C}$ and in particular $\fst \comp u \equiv \idfun{C}$. 
+
+We can thus define the desired fibered homomorphism as \[\big(\snd \comp u; a,t \mapsto \refl(e(a,t,\lam{b:B(a)}\snd(u(t\;b))))\big) : \WFibHom \; (C,c) \; (E,e)\]
+which type-checks due to $\theta$ and the fact that $\fst \comp u \equiv \idfun{C}$.
+\end{proof}
+
+\begin{corollary}\label{lem:WMain}
+In $\Hext$, for $A:\UU_i$, $B : A \to \UU_i$, the following conditions on an algebra $\X : \WAlg_{\UU_j}(A,B)$ are equivalent:
+\begin{enumerate}
+\item $\X$ satisfies the induction principle on the universe $\UU_k$
+\item $\X$ satisfies the recursion and recursion uniqueness principles on the universe $\UU_k$
+\item $\X$ is initial on the universe $\UU_k$  
+\end{enumerate}
+for $k \geq j$. In other words, we have \[ \HasWInd_{\UU_k}(\X)  \;\; \simeq \;\; \HasWRec_{\UU_k}(\X) \times \HasWRecUniq_{\UU_k}(\X) \;\; \simeq \;\; \IsWInit_{\UU_k}(\X) \]
+provided $k \geq j$. Furthermore, all 3 conditions are mere propositions.
+\end{corollary}
+\begin{proof}
+Conditions (1) and (3) are mere propositions by Lem.~\ref{lem:IsContrIsProp} (for the latter), Lem.~\ref{lem:PropChar},~\ref{lem:BoolIndImpUniq} (for the former), and the fact that a family of mere propositions is itself a mere proposition.
+\end{proof}
+
+We can thus characterize $\W$-types using the universal property of initiality as follows.
+\begin{corollary}\label{lem:WInit}
+In $\Hext$ with $\W$-types, for any $A:\UU_i$, $B : A \to \UU_i$, the algebra \[\Big(\W^{\UU_i}_{x:A}B(x),\lam{a}\lam{t} \wsup_{\UU_i}^{A,x.B(x)}(a,t) \Big) : \WAlg_{\UU_i}(A,B)\] is initial on any universe $\UU_j$.
+\end{corollary}
+
+\begin{corollary}\label{lem:WChar}
+In $\Hext$ extended with an algebra $\X_{\UU_i}(A,B) : \WAlg_{\UU_i}(A,B)$ for any $\UU_i$, $A : \UU_i$, $B : A \to \UU_i$, which is initial on any universe $\UU_j$, Martin-L{\"o}f's $\W$-types are definable.
+\end{corollary}
+\begin{proof}
+For any $i$, the algebra $A:\UU_i,B:A\to \UU_i \vdash \X_{\UU_i}(A,B) : \WAlg_{\UU_i}(A,B)$ is such that for any $j$, there exists a term $A:\UU_i,B:A\to \UU_i \vdash h^i_j  : \IsWInit_{\UU_j}(\X_{\UU_i}(A,B))$. By Cor.~\ref{lem:BoolMain}, for any $j \geq i$ there is a term $A:\UU_i,B:A\to \UU_i \vdash r^i_j : \HasWInd_{\UU_j}(\X_{\UU_i}(A,B))$. Since universes are cumulative, this implies that such a term $r^i_j$ exists \emph{for any $j$}. This in turn implies that $\W$-types are definable.
+\end{proof}
+
+We conclude by the type-theoretic analogue of Lambek's lemma for $\W$-types, which asserts that the structure map of an initial algebra is an equivalence. In $\Hext$ any equivalence is also a type isomorphism, which then gives us the more familiar formulation of Lambek's lemma.
+
+\begin{lemma}\label{lem:ExtLambek}
+Over $\Hext$, for $A:\UU_i$, $B : A \to \UU_i$, if an algebra $(C,c) : \WAlg_{\UU_j}(A,B)$ is initial on $\UU_j$ and $j \geq i$, then the map from $\sm{x:A} B(x) \to C$ to $C$ given by $c$ is an equivalence.
+\end{lemma}
+\begin{proof}
+By abuse of notation we refer to both the curried and uncurried versions of the structure map by $c$. Since $(C,c)$ is initial on $\UU_j$, it satisfies the recursion principle on $\UU_j$. We use it with the algebra \[\Big(\sm{x:A} B(x) \to C; a,s \mapsto \big(a,\lam{b:B(a)} c(s\;b)\big)\Big)\]
+We note that the carrier type belongs to $\UU_j$ as $i \leq j$. This gives us a homomorphism $(u,\theta)$ where $u : C \to \big(\sm{x:A} B(x) \to C\big)$ and $\theta : \prd{a}\prd{t} u(c(a,t)) = \big(a,\lam{b:B(a)} c(u(t\;b))\big)$.  We can now form two homomorphisms
+\[\big(c \comp u; a,t \mapsto \refl_{c(a,\lam{b:B(a)}u(t\;b))}\big), \big(\idfun{C}; a,t \mapsto \refl_{c(a,t)}\big) : \WHom \; (C,c) \; (C,c)\] where the first one type-checks due to $\theta$. Since $(C,c)$ is initial on $\UU_j$, it satisfies the recursion uniqueness principle on $\UU_j$, thus the above homomorphisms are equal. Thus, we have $c \comp u = \idfun{C}$, hence $c \comp u \sim \idfun{C}$ and also $c \comp u \equiv \idfun{C}$. The latter together with $\theta$ implies that for any $a,t$, we have $u(c(a,t)) \equiv (a,t)$. Thus $u \comp c \sim \idfun{\sm{x:A} B(x) \to C}$.
+\end{proof}
+
+\begin{corollary}
+Over $\Hext$, given $A:\UU_i$, $B : A \to \UU_i$ and $a_1,a_2:A$, $t_1 : B(a_1) \to \W$, $t_2 : B(a_2) \to \W$ we have
+\[ \wsup(a_1,t_1) = \wsup(a_2,t_2) \;\;\; \simeq \;\;\; (a_1,t_1) = (a_2,t_2)\]
+\end{corollary}
+\begin{proof}
+By Lem.~\ref{lem:ExtLambek} and Cor.~\ref{lem:WInit}, the structure map $\wsup$ defines an equivalence between $\sm{x:A} B(x) \to \W$ and $\W$. The rest follows from Lem.~\ref{lem:apeq}\ednote{Which says that $a = b$ is equivalent to $f(a) = f(b)$ if $f$ is an equivalence}.
+\end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Definability}
