@@ -1489,7 +1489,7 @@ x:A,\, u : B(x) \to \W,\, v : \big(\Pi{y:B(x)}\big) E(u(y)) \vdash e(x,u,v) :E(\
 W-types can be seen informally as the free algebras for signatures
 with operations of possibly infinite arity, but no equations. Indeed, the premises 
 of the formation rule above can be thought of as specifying a signature that has the elements of~$A$ 
-as operations and in which the arity of $a : A$ is the cardinality of the type $B(a)$. Then, the introduction rule specifies the canonical way of forming an element of the free algebra, and the elimination rule can be seen as the propositions-as-types translation of the appropriate induction principle.
+as (names of) operations and in which the arity of $a : A$ is the cardinality of the type $B(a)$. Then the introduction rule specifies the canonical way of forming an element of the free algebra, and the elimination rule can be seen as the propositions-as-types translation of the appropriate induction principle.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 %\subsection{W-types: intensional case}
@@ -1504,7 +1504,11 @@ as operations and in which the arity of $a : A$ is the cardinality of the type $
 %
 
 %\begin{remark}\label{thm:wtypesinvariance}
-As was the case for the type $\Bool$ with respect to all bipointed types, the W-type is determined uniquely up to equivalence among similar structures by the rules stated above.  Moreover, the property of being a W-type is preserved by equivalences of types; indeed, given any type $C$ and an equivalence of types $C\simeq \W_{x:A} B(x)$, then $C$ can be shown to satisfy the  rules above, with definable terms playing the role of the primitive constants, except that the computation rule will hold only propositionally, instead of being definitional.
+As was the case for the type $\Bool$, being a W-type is preserved by equivalences of types; indeed, given any type $A$ and an equivalence of types $\W_{x:A} B(x)\simeq A$, then $A$ can be shown to also satisfy the rules above (with definable terms playing the role of the primitive constants) except that the computation rule will hold only propositionally, instead of being definitional.
+
+To make this more precise, we introduce the following terminology.
+
+
 
 
 The propositional computation rules for W-types are as follows:\smallskip
