@@ -1312,54 +1312,72 @@ For $\X,\Y : \BoolAlg_{\UU_i}$, the path space $\X = \Y$ is equivalent to the sp
 \[ \X = \Y \;\; \simeq \;\; \BoolAlgIso \; \X \; \Y \] 
 \end{lemma}
 \begin{proof}
-Let algebras $(C,c_0,c_1), (D,d_0,d_1) : \BoolAlg_{\UU_i}$ be given. We have
-\begin{alignat*}{4}
-& \BoolAlgIso \; (C,c_0,c_1) \; (D,d_0,d_1) & \equiv \\
-& \sm{\rho : \big(\sm{f:C\to D} f(c_0) =d_0 \times f(c_1) = d_1\big)} \Big(\sm{\mu : \big(\sm{g:D\to C} g(d_0)=c_0 \times g(d_1)=c_1\big)} \mu \comp \rho = \one_{(C,c_0,c_1)} \Big)\; \times & \\
-& \;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\Big(\sm{\nu : \big(\sm{h:D\to C} h(d_0)=c_0 \times g(d_1)=c_1\big)} \rho \comp \nu = \one_{(D,d_0,d_1)}\Big) & \;\;\;\;\;\;\; \simeq \\
-& \sm{f : C\to D} \sm{\epsilon_0 : f(c_0)=d_0} \sm{\epsilon_1 : f(c_1) = d_1} \Big(\sm{g:D\to C} \sm{\gamma_0 : g(d_0)=c_0} \sm{\gamma_1 : g(d_1) = c_1} P_{f,\epsilon_0,\epsilon_1,g,\gamma_0,\gamma_1}\Big) \; \times & \\
-& \;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\; \Big(\sm{h:D\to C} \sm{\delta_0 : h(d_0)=c_0} \sm{\delta_1 : h(d_1) = c_1} Q_{f,\epsilon_0,\epsilon_1,h,\delta_0,\delta_1} \Big) &
-\end{alignat*}
+Let algebras $(C,c_0,c_1), (D,d_0,d_1) : \BoolAlg_{\UU_i}$ be given. Expanding the type of algebra isomorphisms between $(C,c_0,c_1)$ and $(D,d_0,d_1)$ yields the type
+\begin{align*}
+& \big(\Sigma \rho : \big(\Sigma f:C\to D\big) f(c_0) =d_0 \times f(c_1) = d_1\big) \\
+& \Big(\big( \Sigma \mu : \big(\Sigma g:D\to C\big) g(d_0)=c_0 \times g(d_1)=c_1\big) \mu \comp \rho = \one_{(C,c_0,c_1)}\Big) \; \times \\
+& \Big(\big(\Sigma \nu : \big(\Sigma h:D\to C \big) h(d_0)=c_0 \times g(d_1)=c_1\big) \rho \comp \nu = \one_{(D,d_0,d_1)}\Big)
+\end{align*}
+After uncurrying we get
+\begin{align*}
+& \big(\Sigma f:C\to D\big) \big(\Sigma \epsilon_0 : f(c_0) =d_0\big) \big(\Sigma \epsilon_1 : f(c_1) = d_1\big) \\
+& \Big(\big(\Sigma g:D\to C\big) \big(\Sigma \gamma_0 : g(d_0)=c_0 \big) \big(\Sigma \gamma_1 : g(d_1)=c_1\big) P_{f,\epsilon_0,\epsilon_1,g,\gamma_0,\gamma_1}\Big) \\ 
+& \Big(\big(\Sigma h:D\to C\big) \big(\Sigma \delta_0 : h(d_0)=c_0 \big) \big(\Sigma \delta_1 : h(d_1)=c_1\big) Q_{f,\epsilon_0,\epsilon_1,h,\delta_0,\delta_1}\Big)
+\end{align*}
 where
 \begin{align*}
-& P_{f,\epsilon_0,\epsilon_1,g,\gamma_0,\gamma_1} \defeq \Big(g \comp f, \app_g(\epsilon_0) \ct \gamma_0, \app_g(\epsilon_1) \ct \gamma_1\Big) = \Big(\idfun{C}, \refl_{c_0}, \refl_{c_1}\Big) \\
-& Q_{f,\epsilon_0,\epsilon_1,h,\delta_0,\delta_1} \defeq \Big(f \comp h, \app_f(\delta_0) \ct \epsilon_0, \app_f(\delta_1) \ct \epsilon_1\Big) = \Big(\idfun{D}, \refl_{d_0}, \refl_{d_1}\Big)
+& P_{f,\epsilon_0,\epsilon_1,g,\gamma_0,\gamma_1} \defeq \Big(g \comp f, g(\epsilon_0) \ct \gamma_0, g(\epsilon_1) \ct \gamma_1\Big) = \Big(\idfun{C}, \refl_{c_0}, \refl_{c_1}\Big) \\
+& Q_{f,\epsilon_0,\epsilon_1,h,\delta_0,\delta_1} \defeq \Big(f \comp h, f(\delta_0) \ct \epsilon_0, f(\delta_1) \ct \epsilon_1\Big) = \Big(\idfun{D}, \refl_{d_0}, \refl_{d_1}\Big)
 \end{align*}
-Now we have
-\begin{alignat*}{4}
-& P_{f,\epsilon_0,\epsilon_1,g,\gamma_0,\gamma_1} & \equiv \\
-& \Big(g \comp f, \app_g(\epsilon_0) \ct \gamma_0, \app_g(\epsilon_1) \ct \gamma_1\Big) = \Big(\idfun{C}, \refl_{c_0}, \refl_{c_1}\Big) & \simeq \\
-& \sm{\alpha : g \comp f = \idfun{C}} \Big(\app_g(\epsilon_0) \ct \gamma_0, \app_g(\epsilon_1) \ct \gamma_1\Big) = \trans^{-1}_{i \mapsto i(c_0) = c_0 \times i(c_1) = c_1}(\alpha) \; \Big(\refl_{c_0}, \refl_{c_1}\Big) & \;\;\; \simeq \\
-& \sm{\alpha : g \comp f = \idfun{C}} \Big(\app_g(\epsilon_0) \ct \gamma_0, \app_g(\epsilon_1) \ct \gamma_1\Big) = \Big(\happly(\alpha,c_0) \ct \refl_{c_0}, \happly(\alpha,c_1) \ct \refl_{c_1}\Big) & \;\;\; \simeq \\
-& \sm{\alpha : g \comp f = \idfun{C}} \Big(\app_g(\epsilon_0) \ct \gamma_0 = \happly(\alpha,c_0) \ct \refl_{c_0}\Big) \times \Big(\app_g(\epsilon_1) \ct \gamma_1 = \happly(\alpha,c_1) \ct \refl_{c_1}\Big) & \;\;\; \simeq \\
-& \sm{\alpha : g \comp f \sim \idfun{C}} \Big(\app_g(\epsilon_0) \ct \gamma_0 = \alpha(c_0) \ct \refl_{c_0}\Big) \times \Big(\app_g(\epsilon_1) \ct \gamma_1 = \alpha(c_1) \ct \refl_{c_1}\Big) & \;\;\; \simeq \\
-& \sm{\alpha : g \comp f \sim \idfun{C}} \Big(\alpha(c_0) = \app_g(\epsilon_0) \ct \gamma_0 \Big) \times \Big(\alpha(c_1) = \app_g(\epsilon_1) \ct \gamma_1\Big) &
-\end{alignat*}
-and analogously
-\begin{alignat*}{4}
-Q_{f,\epsilon_0,\epsilon_1,h,\delta_0,\delta_1} \simeq \sm{\beta : f \comp h \sim \idfun{D}} \Big(\beta(d_0) = \app_f(\delta_0) \ct \epsilon_0 \Big) \times \Big(\beta(d_1) = \app_f(\delta_1) \ct \epsilon_1\Big)
-\end{alignat*}
+Using the characterization of paths in dependent product spaces, the type $P_{f,\epsilon_0,\epsilon_1,g,\gamma_0,\gamma_1}$ can be equivalently expressed as
+\begin{align*}
+\big(\Sigma \alpha : g \comp f = \idfun{C}\big) \big(g(\epsilon_0) \ct \gamma_0, g(\epsilon_1) \ct \gamma_1\big) = \alpha^{!}\big(\refl_{c_0}, \refl_{c_1}\big)
+\end{align*}
+By path induction on $\alpha$, the transport $\alpha^{!}\big(\refl_{c_0}, \refl_{c_1}\big)$ is equal to the pair 
+\[\big(\happly(\alpha,c_0) \ct \refl_{c_0}, \happly(\alpha,c_1) \ct \refl_{c_1}\big)\]
+which is of course equal to $\big(\happly(\alpha,c_0), \happly(\alpha,c_1)\big)$.
+The type $P_{f,\epsilon_0,\epsilon_1,g,\gamma_0,\gamma_1}$ can thus be expressed as
+\begin{align*}
+\big(\Sigma \alpha : g \comp f = \idfun{C}\big) \big(g(\epsilon_0) \ct \gamma_0, g(\epsilon_1) \ct \gamma_1\big) = \big(\happly(\alpha,c_0), \happly(\alpha,c_1)\big)
+\end{align*}
+Since the function $\happly : (g \comp f = \idfun{C}) \to (g \comp f \sim \idfun{C})$ is an equivalence, this is the same as
+\begin{align*}
+\big(\Sigma \alpha : g \comp f \sim \idfun{C}\big) \big(g(\epsilon_0) \ct \gamma_0, g(\epsilon_1) \ct \gamma_1\big) = \big(\alpha(c_0), \alpha(c_1)\big)
+\end{align*}
+By characterization of paths in product spaces, this is the same as
+\begin{align*}
+\big(\Sigma \alpha : g \comp f \sim \idfun{C}\big) \big(g(\epsilon_0) \ct \gamma_0 = \alpha(c_0)\big) \times \big(g(\epsilon_1) \ct \gamma_1 = \alpha(c_1)\big)
+\end{align*}
+Analogously, the type $Q_{f,\epsilon_0,\epsilon_1,h,\delta_0,\delta_1}$ is equivalent to
+\begin{align*}
+\big(\Sigma \beta : f \comp h \sim \idfun{D}\big) \big(f(\delta_0) \ct \epsilon_0 = \beta(d_0)\big) \times \big(f(\delta_1) \ct \epsilon_1 = \beta(d_1)\big)
+\end{align*}
 Thus we can express $\BoolAlgIso \; (C,c_0,c_1) \; (D,d_0,d_1)$ equivalently as the type
 \begin{alignat*}{4}
-& \sm{f : C\to D} \sm{\epsilon_0 : f(c_0)=d_0} \sm{\epsilon_1 : f(c_1) = d_1} \sm{g:D\to C} \sm{\alpha : g \comp f \sim \idfun{C}} \sm{h:D \to C} \sm{\beta : f \comp h \sim \idfun{D}} & \\
-& \Big(\sm{\gamma_0 : g(d_0)=c_0} \alpha(c_0) = \app_g(\epsilon_0) \ct \gamma_0 \Big) \times \Big(\sm{\gamma_1 : g(d_1)=c_1} \alpha(c_1) = \app_g(\epsilon_1) \ct \gamma_1 \Big) \; \times & \\
-& \Big(\sm{\delta_0 : h(d_0)=c_0} \beta(d_0) = \app_f(\delta_0) \ct \epsilon_0\Big) \times \Big(\sm{\delta_1 : h(d_1)=c_1} \beta(d_1) = \app_f(\delta_1) \ct \epsilon_1\Big) &
+& \big(\Sigma f : C\to D \big) \big(\Sigma \epsilon_0 : f(c_0)=d_0 \big) \big(\Sigma \epsilon_1 : f(c_1) = d_1 \big) & \\ 
+& \big(\Sigma g:D\to C \big) \big(\Sigma \alpha : g \comp f \sim \idfun{C}\big) \big(\Sigma h:D \to C \big) \big(\Sigma \beta : f \comp h \sim \idfun{D}) & \\
+& \Big(\big(\Sigma \gamma_0 : g(d_0)=c_0\big) g(\epsilon_0) \ct \gamma_0 = \alpha(c_0) \Big) \times \Big(\big(\Sigma \gamma_1 : g(d_1)=c_1\big) g(\epsilon_1) \ct \gamma_1 = \alpha(c_1)\Big) \; \times & \\
+& \Big(\big(\Sigma \delta_0 : h(d_0)=c_0 \big) f(\delta_0) \ct \epsilon_0 = \beta(d_0) \Big) \times \Big(\big(\Sigma \delta_1 : h(d_1)=c_1 \big) f(\delta_1) \ct \epsilon_1 = \beta(d_1)\Big) &
 \end{alignat*}
 Now we have
-\[ \sm{\gamma_0 : g(d_0)=c_0} \Big(\alpha(c_0) = \app_g(\epsilon_0) \ct \gamma_0\Big) \;\;\; \simeq \;\;\; \sm{\gamma_0 : g(d_0)=c_0} \Big(\gamma_0 = \app_g(\epsilon_0)^{-1} \ct \alpha(c_0)\Big) \;\;\; \simeq \;\;\; \one\]
-by Lem.~\ref{lem_singl_contr}\ednote{Which says $\iscontr(\sm{x:A} x = y)$}. Similarly, $\sm{\gamma_1 : g(d_1)=c_1} \Big(\alpha(c_1) = \app_g(\epsilon_1) \ct \gamma_1\Big)$ is equivalent to $\one$. We also have
-\[ \sm{\delta_0 : h(d_0)=c_0} \Big(\beta(d_0) = \app_f(\delta_0) \ct \epsilon_0\Big) \;\;\; \simeq \;\;\; \sm{\delta_0 : h(d_0)=c_0} \Big(\app_f(\delta_0) = \beta(d_0) \ct \epsilon^{-1}_0\Big) \;\;\; \simeq \;\;\; \one \]
-by Lem.~\ref{lem_singl_equiv_contr}\ednote{Which says $\iscontr(\sm{x:A} f(x) =_B y)$ if $f : A \to B$ is an equivalence},~\ref{lem_ap_equiv}\ednote{Which says $\app_f : x =_A y \to f(x) =_B f(y)$ is equivalence if $f : A \to B$ is}, and the fact that $g,\alpha,h,\beta$ make $f$ into an equivalence. Similarly, $\sm{\delta_1 : h(d_1)=c_1} \Big(\beta(d_1) = \app_f(\delta_1) \ct \epsilon_1\Big)$ is equivalent to $\one$. Thus, we have
-\begin{alignat*}{4}
-& \BoolAlgIso \; (C,c_0,c_1) \; (D,d_0,d_1) & \simeq \\
-& \sm{f : C\to D} \sm{g:D\to C} \sm{\alpha : g \comp f \sim \idfun{C}} \sm{h:D \to C} \sm{\beta : f \comp h \sim \idfun{D}} \Big(f(c_0)=d_0\Big) \times \Big(f(c_1) = d_1\Big) & \;\;\; \simeq \\
-& \sm{f : C\to D} \isequiv(f) \times \Big(f(c_0)=d_0\Big) \times \Big(f(c_1) = d_1\Big) & \;\;\; \simeq \\
-& \sm{p : C \simeq D} \Big(\fst(p) \; c_0 =d_0\Big) \times \Big(\fst(p) \; c_1 = d_1\Big) & \;\;\; \simeq \\
-& \sm{p : C \simeq D} \Big(\fst(p) \; c_0, \fst(p) \; c_1\Big) = (d_0, d_1) & \;\;\; \simeq \\
-& \sm{p : C = D} \Big(\fst(\idtoeq(p)) \; c_0, \fst(\idtoeq(p)) \; c_1\Big) = (d_0, d_1) & \;\;\; \simeq \\
-& \sm{p : C = D} \Big(\trans_{X \mapsto X \times X}(p) \; (c_0,c_1) = (d_0,d_1)\Big) & \simeq \\ 
-& (C,c_0,c_1) = (D,d_0,d_1)
-\end{alignat*}
+\[ \big(\Sigma \gamma_0 : g(d_0)=c_0\big) g(\epsilon_0) \ct \gamma_0 = \alpha(c_0) \;\;\; \simeq \;\;\; \big(\Sigma \gamma_0 : g(d_0)=c_0\big) \gamma_0 = g(\epsilon_0)^{-1} \ct \alpha(c_0) \;\;\; \simeq \;\;\; \one\]
+where the first equivalence follows by rearranging and the second one by Lem.~\ref{lem_singl_contr}\ednote{Which says $\iscontr(\sm{x:A} x = y)$}. Similarly, $\big(\Sigma \gamma_1 : g(d_1)=c_1\big) g(\epsilon_1) \ct \gamma_1 = \alpha(c_1)$ is equivalent to $\one$. We also have
+\[ \big(\Sigma \delta_0 : h(d_0)=c_0\big) f(\delta_0) \ct \epsilon_0 = \beta(d_0) \;\;\; \simeq \;\;\; \big(\Sigma \delta_0 : h(d_0)=c_0\big) f(\delta_0) = \beta(d_0) \ct \epsilon^{-1}_0 \;\;\; \simeq \;\;\; \one \]
+by Lem.~\ref{lem_singl_equiv_contr}\ednote{Which says $\iscontr(\sm{x:A} f(x) =_B y)$ if $f : A \to B$ is an equivalence},~\ref{lem_ap_equiv}\ednote{Which says $\app_f : x =_A y \to f(x) =_B f(y)$ is equivalence if $f : A \to B$ is}, and the fact that $g,\alpha,h,\beta$ make $f$ into an equivalence. Similarly, the type $\big( \Sigma \delta_1 : h(d_1)=c_1\big) f(\delta_1) \ct \epsilon_1 = \beta(d_1)$ is equivalent to $\one$. Thus, the type of algebra isomorphisms can be expressed equivalently as
+\begin{align*}
+& \big(\Sigma f : C\to D\big) \big(\Sigma g:D\to C\big) \big(\Sigma \alpha : g \comp f \sim \idfun{C}\big) \big(\Sigma h:D \to C\big) \\ 
+& \big(\Sigma \beta : f \comp h \sim \idfun{D}\big) (f(c_0)=d_0) \times (f(c_1) = d_1)
+\end{align*}
+The arguments $f,g,\alpha,h,\beta$ can be packed together to form an equivalence:
+\[ \big(\Sigma p : C \simeq D\big) \big(\fst(p) \; c_0 =d_0\big) \times \big(\fst(p) \; c_1 = d_1\big) \]
+By characterization of paths in product spaces, this is equivalent to
+\[ \big(\Sigma p : C \simeq D\big) \big(\fst(p) \; c_0, \fst(p) \; c_1\big) = (d_0, d_1) \tag{$\star$} \]
+On the other hand, by characterization of paths in dependent product spaces, the path space $(C,c_0,c_1) = (D,d_0,d_1)$ can be expressed as the type
+$\big(\Sigma p : C = D\big) p_! \; (c_0,c_1) = (d_0,d_1)$. By path induction on $p$, the transport is propositionally equal to the pair
+\[\big(\fst(\idtoeq(p)) \; c_0, \fst(\idtoeq(p)) \; c_1\big)\]
+Thus the path space is equivalent to 
+\[ \big(\Sigma p : C = D\big) \big(\fst(\idtoeq(p)) \; c_0, \fst(\idtoeq(p)) \; c_1\big) = (d_0,d_1) \]
+Since the function $\idtoeq(p) : C = D \to C \simeq D$ is an equivalence, this gives us an equivalence with $\star$ as desired.
 \end{proof}
 
 
