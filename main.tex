@@ -1508,9 +1508,12 @@ As was the case for the type $\Bool$, being a W-type is preserved by equivalence
 
 To make this more precise, we introduce the following terminology.
 
+\begin{definition}
+Given $x:A \dashv B(x)\, \type$, we call $$P(A,B)(X) \df= (\Sigma x:A) (B(x)\to X)$$ the associated \emph{polynomial functor}.  We also write $P = P(A,B)$ for short.  A \emph{$P$-algebra} is a pair $(X, s_X: P(X) \to X)$.    
+\end{definition}
 
-
-
+Note that the $\W$-introduction rule makes the pair $(\W = (\W{x : A})B(x)$, \sup)$ into a $P$-algebra.
+ 
 The propositional computation rules for W-types are as follows:\smallskip
 \begin{itemize}
 \item Propositional $\W$-computation rule.\smallskip
