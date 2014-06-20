@@ -1486,8 +1486,8 @@ x:A,\, u : B(x) \to \W,\, v : \big(\Pi{y:B(x)}\big) E(u(y)) \vdash e(x,u,v) :E(\
 \end{table}
 
 
-W-types can be seen informally as the free algebras for signatures
-with operations of possibly infinite arity, but no equations. Indeed, the premises 
+A W-type can be seen informally as the free algebra for a signature
+with arbitrarily many operations of possibly infinite arity, but no equations. Indeed, the premises 
 of the formation rule above can be thought of as specifying a signature that has the elements of~$A$ 
 as (names of) operations and in which the arity of $a : A$ is the cardinality of the type $B(a)$. Then the introduction rule specifies the canonical way of forming an element of the free algebra, and the elimination rule can be seen as the propositions-as-types translation of the appropriate induction principle.
 
@@ -1509,24 +1509,44 @@ As was the case for the type $\Bool$, being a W-type is preserved by equivalence
 To make this more precise, we introduce the following terminology.
 
 \begin{definition}
-Given $x:A \dashv B(x)\, \type$, we call $$P(A,B)(X) \defeq (\Sigma x:A) (B(x)\to X)$$ the associated \emph{polynomial functor}.  We also write $P = P(A,B)$ for short.  A \emph{$P$-algebra} is a pair $(X, s_X: P(X) \to X)$.    
+Given $x:A \vdash B(x)\, \type$, we call $$P(A,B)(X) \defeq (\Sigma x:A) (B(x)\to X)$$ the associated \emph{polynomial functor}.  A \emph{$P(A,B)$-algebra} is a pair $(C, s_C: P(C) \to C)$.    
 \end{definition}
+%
+We shall often write simply $P$ in place of $P(A,B)$, and refer to a map $s_C : P(C)\to C$ as a $P$-algebra.  
+If $f : X\to Y$, then there is an associated map $P(f) : P(X)\to P(Y)$ defined in the obvious way by $P(f)(a, b) = (a,f\circ b)
+$.  Although this assignment is not strictly functorial, we can still make use of it. For example, given a $P$-algebra structure $s_C :P(C)\to C$ on $C$, an equivalence of types $f : C \to D$ makes $D$ into a $P$-algebra with structure map $s_D : f\circ s_C\circ P(f^{-1})$,
+  \[
+\xymatrix{
+P(C) \ar[d]_{s_C} \ar[r]_{P(f)} & \ar@/_1pc/[l]_{P(f^{-1})} P(D)  \ar[d]^{s_D}  \\
+ C  \ar[r]_{f} & D
+ }
+ \]
+ were $f^{-1} : D\to C$ is the quasi-inverse of $f : C\to D$.
 
-Note that the $\W$-introduction rule makes the pair $(\W = (\W{x : A})B(x), \sup)$ into a $P$-algebra.
+
  
-The propositional computation rules for W-types are as follows:\smallskip
+Next, note that the $\W$-introduction rule makes $\sup : P(\W)\to \W$ into a $P$-algebra.  Given an equivalence  $f : \W \to C$, the induced $P$-algebra structure $s_C:P(C)\to C$ just defined means that $C$ also satisfies the $\W$-introduction rule.  We shall see that the same holds for the other rules as well, but with the computation rule weakened as follows, where we have replaced  definitional by propositional equality.
+
 \begin{itemize}
 \item Propositional $\W$-computation rule.\smallskip
 \begin{mathpar}
-\inferrule{A : \UU_i \\ x:A \vdash B(x) : \UU_i \\ a : A \\ t : B(a) \to \W \\ w : \W \vdash E(w) : \UU_j \\ x:A, p: B(x) \to \W, r : \prd{b:B(x)} E(p \;b) \vdash e(x,p,r) :E(\wsup(x,p))}
-{\windcomp_{\UU_i}(A,x.B,w.E,x.p.r.e,a,t):\wind(\wsup(a,t)) = e(a,t,\lam{b:B(a)} \wind(t\;b))}
+\inferrule{
+w : \W \vdash E(w) : \type \\ 
+x:A,\, u : B(x) \to \W,\, v : \big(\Pi{y:B(x)}\big) E(u(y)) \vdash e(x,u,v) :E(\wsup(x,u))}
+{x:A,\, u : B(x) \to \W \vdash
+ \ind(\wsup(x,u),e) \peq e\big(x,u,\lambda{y}.\ind(u(y),e)\big) : E(\wsup(a,u))}
 \end{mathpar}
-\item Simple propositional $\W$-computation rule.\smallskip
+\end{itemize}
+
+
+
+Simple propositional $\W$-computation rule.\smallskip
 \begin{mathpar}
 \inferrule{A : \UU_i \\ x:A \vdash B(x) : \UU_i \\ a : A \\ t : B(a) \to \W \\ C : \UU_j \\ x:A, r : B(x) \to C \vdash c(x,r) : C}
 {\wreccomp_{\UU_i}(A,x.B,C,x.r.c,a,t) : \wrec(\wsup(a,t)) = c(a,\lam{b:B(a)} \wrec(t \;b))}
 \end{mathpar}
-\end{itemize}\smallskip
+
+
 
 We again have uniqueness principles, in the propositional form:
 \begin{itemize}
