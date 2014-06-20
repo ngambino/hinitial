@@ -271,7 +271,7 @@
 \newcommand{\WIdHom}{\mathsf{W}\text{-}\mathsf{Id}\text{-}\mathsf{Hom}}
 \newcommand{\WCompHom}{\mathsf{W}\text{-}\mathsf{Comp}\text{-}\mathsf{Hom}}
 \newcommand{\WAlgIso}{\mathsf{W}\text{-}\mathsf{Alg}\text{-}\mathsf{Iso}}
-\newcommand{\wrecs}{\mathsf{simp\textsf{-}wrec}}
+\newcommand{\wrecs}{\mathsf{rec}}
 % Calligraphic letters
 \newcommand{\X}{\mathcal{X}}
 \newcommand{\Y}{\mathcal{Y}}
@@ -1406,7 +1406,6 @@ We recall the rules for W-types from~\cite{MartinLofP:inttt}; to state them more
 %; and $\wsup(a,t)$ instead of $\wsup^{A,x.B}_{\UU_i}(a,t)$; 
 %and $\wind(m)$ instead of $\wind^{A,x.B}_{\UU_j}\big(w.E,a.t.s.e,m\big)$.
 
-
 \begin{table}[ht]
 \fbox{ 
 \begin{minipage}{12cm}
@@ -1487,9 +1486,74 @@ x:A,\, u : B(x) \to \W,\, v : \big(\Pi{y:B(x)}\big) E(u(y)) \vdash e(x,u,v) :E(\
 
 
 A W-type can be seen informally as the free algebra for a signature
-with arbitrarily many operations of possibly infinite arity, but no equations. Indeed, the premises 
-of the formation rule above can be thought of as specifying a signature that has the elements of~$A$ 
-as (names of) operations and in which the arity of $a : A$ is the cardinality of the type $B(a)$. Then the introduction rule specifies the canonical way of forming an element of the free algebra, and the elimination rule can be seen as the propositions-as-types translation of the appropriate induction principle.
+with arbitrarily many operations of possibly infinite arity, but no equations. Indeed, the premises of the formation rule above can be thought of as specifying a signature that has the elements of~$A$ as (names of) operations and in which the arity of $a : A$ is the cardinality of the type $B(a)$. Then the introduction rule specifies the canonical way of forming an element of the free algebra, and the elimination rule can be seen as the propositions-as-types translation of the appropriate induction principle.
+
+\subsubsection*{Review of the extensional case}
+We begin by briefly sketching the basic theory of W-types in the  setting of \emph{extensional} type theory (cf.~\cite{??}), as background for our development; the details for our case will be provided in what follows.  Let $\mathcal{C}$ be the category with types as objects and elements $f : A \rightarrow B$ as maps, where two maps are considered equal if and only if they are definitionally equal. The premisses of the introduction rule determine the \emph{polynomial endofunctor} $P : \mathcal{C}\rightarrow \mathcal{C}$
+defined by 
+\[
+    P(X) \defeq (\Sigma x : A ) (B(x) \rightarrow X) \, .
+\]
+A $P$-algebra is a pair consisting of a type $C$ and an arrow $s_C : PC \rightarrow C$, called the structure map of the algebra. A homomorphism of algebras $h : (C, s_C) \to (D, s_D)$ is an arrow $h : C\to D$ making the evident square commute, $h\circ s_C = s_D\circ P(h)$, using the obvious action of $P$ on $h$, vis.\ $P(h)(x,u) = (x, h\circ u)$.  The formation rule gives us an object $$\W \defeq (\W x : A) B(x)$$ and the introduction rule (in combination with the rules for $\Pi$-types
+and $\Sigma$-types) provides a structure map $s_\W : P\W \rightarrow \W$.
+The elimination rule  states that in order for the projection $\pi_1 \colon E \rightarrow \W$, where
+$E \defeq (\Sigma w {\, : \, } \W) E(w)$, to have a section $s$, as in the diagram
+\[
+\xymatrix{
+& E  \ar[d]^{\pi_1} \\
+\W \ar[ru]^{s} \ar[r]_{1_\W} & \W, 
+}
+\]
+it is sufficient for the type $E$ to have a $P$-algebra structure over $\W$, i.e.\ for $E$ to have an algebra structure with respect to which $\pi_1$ is a homomorphism. Finally, the computation rule states that the section $\ind$ given by the elimination rule is also a $P$-algebra homomorphism. 
+
+The elimination rule implies what we call the $\W$-recursion rule:
+\[
+\begin{prooftree}
+C : \type  \qquad
+ x : A, v : B(x) \rightarrow C \vdash c(x,v) : C
+ \justifies
+w : \W \vdash \wrecs(w,c) :  C
+\end{prooftree}
+\]
+This can be recognized as a recursion principle for maps from $\W$ into $P$-algebras, since
+the premisses of the rule describe exactly a type $C$ equipped with a structure map $s_C 
+: PC  \rightarrow C$. For this special case of the elimination rule, the corresponding computation rule states that the function
+\[
+\lambda w. \wrecs(w,c) : \W \rightarrow C \, ,
+\] 
+where $c(x,v) = s_C(\pair(x,v))$ for $x : A$ and $v : B(x) \rightarrow C$, is a $P$-algebra homomorphism.
+Moreover, this homomorphism can then be shown to be definitionally unique using the elimination rule, the principle of function extensionality and the reflection rule of the extensional system.  
+
+The converse implication also holds: one can derive the general $\W$-elimination rule from the simple elimination rule and the following $\eta$-rule
+%
+\begin{equation*}
+\begin{prooftree}
+\begin{array}{l}
+C : \type  \qquad w : \W \vdash f(w) : C \\ 
+x : A, v : B(x) \rightarrow C \vdash c(x,v) : C\\
+x:A \, , u:  B(x) \rightarrow \W  \vdash f\left(\wsup(x,u)) = c(x,\lambda y. fu(y)\right) : C
+  \end{array}
+ \justifies
+w : \W \vdash  f(w) =  \wrecs(w,c) :  C
+\end{prooftree}
+\end{equation*}
+%
+stating the uniqueness of the $\wrecs$ term among algebra maps. 
+Overall, we therefore have that, in the
+extensional setting, induction and recursion are interderivable.
+%\[
+%\begin{array}{ccc}
+%\text{\underline{\myemph{Induction}}} & \Leftrightarrow & \text{\underline{\myemph{Recursion}}}\\[1ex]
+%\text{$\W$-elimination} & & \text{Simple $\W$-elimination}\\
+%\text{$\W$-computation} &&  \text{Simple $\W$-computation + $\eta$-rule} 
+%\end{array}
+%\]
+
+Finally, observe that induction is equivalent to the statement that, when $\W$ is regarded as a $P$-algebra with the structure map $s_\W : P\W \rightarrow \W$, then every $P$-algebra over it has a homomorphic section, while recursion is equivalent to the statement that 
+$\W$ is the initial $P$-algebra. The remainder of this section will be devoted to generalizing these equivalences to the current setting of homotopy type theory.
+
+
+\bigskip
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 %\subsection{W-types: intensional case}
@@ -1504,7 +1568,7 @@ as (names of) operations and in which the arity of $a : A$ is the cardinality of
 %
 
 %\begin{remark}\label{thm:wtypesinvariance}
-As was the case for the type $\Bool$, being a W-type is preserved by equivalences of types; indeed, given any type $A$ and an equivalence of types $\W_{x:A} B(x)\simeq A$, then $A$ can be shown to also satisfy the rules above (with definable terms playing the role of the primitive constants) except that the computation rule will again hold only propositionally.
+We begin by observing that, as was the case for the type $\Bool$, the condition of being a W-type is preserved by equivalences of types, in a suitable sense; indeed, given any type $A$ and an equivalence of types $\W_{x:A} B(x)\simeq A$, then $A$ can be shown to also satisfy the rules above (with suitable definable terms playing the role of the primitive constants), except that the computation rule will again hold only propositionally.
 
 To make this more precise, we introduce the following terminology.
 
@@ -1546,7 +1610,7 @@ x:A,\, u : B(x) \to C,\, v : \big(\Pi{y:B(x)}\big) E(u(y)) \vdash e(x,u,v) :E(s_
 z : C \vdash E(z) : \type \\ 
 x:A,\, u : B(x) \to C,\, v : \big(\Pi{y:B(x)}\big) E(u(y)) \vdash e(x,u,v) :E(s_C(x,u))}
 {x:A,\, u : B(x) \to C \vdash
- \ind(s_C(x,u),e) \peq e\big(x,u,\lambda{y}.\ind(u(y),e)\big) : E(s_C(x,u))}
+\beta(x,u,e) : \ind(s_C(x,u),e) \peq e\big(x,u,\lambda{y}.\ind(u(y),e)\big)}
 \end{mathpar}
 \end{enumerate}
 \end{definition}
@@ -1556,34 +1620,35 @@ As in section \ref{section:simple}, our ultimate goal is to show that being indu
 \begin{lemma} \label{lem:Wetaind}
 If $s_C : P(C)\to C$  is an inductive $P$-algebra, then it satisfies the following further rules:
 
-[WE NEED TO DECIDE WHICH VERSION OF THESE RULES TO USE: THAT WITH TWO FUNCITONS, OR THAT WITH ONE FUNCTION AND IT'S ETA EXPANSION]
+[NEED TO CHECK THAT THESE NEW VERSIONS ARE CORRECT]
 
 \begin{enumerate}[(i)]
 
-\item Propositional $\W$-uniqueness principle.\smallskip
+%\item Propositional $\W$-uniqueness principle.\smallskip
+%\begin{mathpar}
+%\inferrule{
+%z:C \vdash E(z)\,\type \\ x:A, u: B(x) \to C, v : \prd{y:B(x)} E(u(y)) \vdash e(x,u,v) :E(s_C(x,u)) \\ \\ 
+%z: C \vdash f(z) : E(z) \\ z:C \vdash g(z) : E(z) \\
+%\\
+%x:A, u: B(x) \to C \vdash p(x,u) : f(s_C(x,u)) = e(x,u,\lambda{y}. f(u(y))) \\
+%x:A, u: B(x) \to C \vdash q(x,u) : g(s_C(x,u)) = e(x,u,\lambda{y}. g(u(y)))}
+%{z:C \vdash \eta(z, p, q) : f(z) = g(z)}\end{mathpar}
+
+
+\item Propositional $\eta$-rule (?)\smallskip
 \begin{mathpar}
 \inferrule{
-z:C \vdash E(z)\,\type \\ x:A, u: B(x) \to C, v : \prd{y:B(x)} E(u(y)) \vdash e(x,u,v) :E(s_C(x,u)) \\ \\ 
-z: C \vdash f(z) : E(z) \\ z:C \vdash g(z) : E(z) \\
-\\
-x:A, u: B(x) \to C \vdash p(x,u) : f(s_C(x,u)) = e(x,u,\lambda{y}. f(u(y))) \\
-x:A, u: B(x) \to C \vdash q(x,u) : g(s_C(x,u)) = e(x,u,\lambda{y}. g(u(y)))}
-{z:C \vdash \eta(z, p, q) : f(z) = g(z)}\end{mathpar}
-
-
-\item Propositional $\eta$-rule (?).\smallskip
-\begin{mathpar}
-\inferrule{
- z:C \vdash E(z)\,\type \\ x:A, u: B(x) \to C, v : \prd{y:B(x)} E(u(y)) \vdash e(x,u,v) :E(s_C(x,u)) \\ z:C \vdash f(z) : E(z) \\ x:A, u: B(x) \to C \vdash p(x,u) : f(s_C(x,u)) = e\big(x,u,\lambda{y}. f(u(y))\big)}
-{z:C \vdash \eta(z, f) : \ind(x,e) = f(z)}
+ z:C \vdash E(z)\,\type \\ \\ z:C \vdash f(z) : E(z) \\
+ x:A,\, u: B(x) \to C,\, v : (\Pi{y:B(x)}) E(u(y)) \vdash e(x,u,v) :E(s_C(x,u))  \\ x:A, u: B(x) \to C \vdash p(x,u) : f(s_C(x,u)) = e\big(x,u,\lambda{y}. f(u(y))\big)}
+{z:C \vdash \eta(z, e, f, p) :  f(z) = \ind(z,e)}
 \end{mathpar}
 
-\item Propositional $\W$-coherence principle.\smallskip
-\begin{mathpar}
-\inferrule{A : \UU_i \\ x:A \vdash B(x) : \UU_i \\ a : A \\ t : B(a) \to \W \\ w:\W \vdash E(w) : \UU_j \\ x:A, p: B(x) \to \W, r : \prd{b:B(x)} E(p \;b) \vdash e(x,p,r) :E(\wsup(x,p)) \\ w:\W \vdash f(w) : E(w) \\ w:\W \vdash g(w) : E(w) \\ x:A, p: B(x) \to \W \vdash \gamma(x,p) : f(\wsup(x,p)) = e(x,p,\lam{b:B(x)} f(p \;b)) \\ x:A, p: B(x) \to \W \vdash \delta(x,p) : g(\wsup(x,p)) = e(x,p,\lam{b:B(x)} g(p \;b))}
-{\windcoh_{\UU_i}(A,x.B,w.E,x.p.r.e,w.f,x.p.\gamma,w.g,x.p.\delta,a,t) : \\ \winduniq(\wsup(a,t)) = \gamma(a,t) \ct \app_{e(a,t,-)}(\funext(\lam{b:B(a)}\winduniq(t\;b)))\ct \delta(a,t)^{-1}}
-\end{mathpar}
-
+%\item Propositional $\W$-coherence principle.\smallskip
+%\begin{mathpar}
+%\inferrule{A : \UU_i \\ x:A \vdash B(x) : \UU_i \\ a : A \\ t : B(a) \to \W \\ w:\W \vdash E(w) : \UU_j \\ x:A, p: B(x) \to \W, r : \prd{b:B(x)} E(p \;b) \vdash e(x,p,r) :E(\wsup(x,p)) \\ w:\W \vdash f(w) : E(w) \\ w:\W \vdash g(w) : E(w) \\ x:A, p: B(x) \to \W \vdash \gamma(x,p) : f(\wsup(x,p)) = e(x,p,\lam{b:B(x)} f(p \;b)) \\ x:A, p: B(x) \to \W \vdash \delta(x,p) : g(\wsup(x,p)) = e(x,p,\lam{b:B(x)} g(p \;b))}
+%{\windcoh_{\UU_i}(A,x.B,w.E,x.p.r.e,w.f,x.p.\gamma,w.g,x.p.\delta,a,t) : \\ \winduniq(\wsup(a,t)) = \gamma(a,t) \ct \app_{e(a,t,-)}(\funext(\lam{b:B(a)}\winduniq(t\;b)))\ct \delta(a,t)^{-1}}
+%\end{mathpar}
+%
 \item Propositional $(\beta, \eta)$-compatibility rule (?)\smallskip
 \begin{mathpar}
 \inferrule{A : \UU_i \\ x:A \vdash B(x) : \UU_i \\ a : A \\ t : B(a) \to \W \\ w:\W \vdash E(w) : \UU_j \\ x:A, p: B(x) \to \W, r : \prd{b:B(x)} E(p \;b) \vdash e(x,p,r) :E(\wsup(x,p)) \\ w:\W \vdash f(w) : E(w) \\ w:\W \vdash g(w) : E(w) \\ x:A, p: B(x) \to \W \vdash \gamma(x,p) : f(\wsup(x,p)) = e(x,p,\lam{b:B(x)} f(p \;b)) \\ x:A, p: B(x) \to \W \vdash \delta(x,p) : g(\wsup(x,p)) = e(x,p,\lam{b:B(x)} g(p \;b))}
@@ -1600,9 +1665,11 @@ In showing the above laws, we use the induction principle with the type family $
 \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-In order to show that induction implies recursion for $P$-algebras, we make the following definition.
+We first want to show that induction implies recursion for $P$-algebras; thus we make the following definition.
 
 \begin{definition} Let $P = P(A,B)$ for $x:A \vdash B(x) \,\type$, and let $s_C : P(C)\to C$ be a $P$-algebra.  We say that $s_C : P(C)\to C$ is \emph{recursive} if it satisfies the following rules:
+
+[NEED TO CHECK THAT THESE RULES ARE CORRECT]
 \begin{enumerate}[(i)] 
 \item $\W$-recursion rule.\smallskip
 \begin{mathpar}
@@ -1610,32 +1677,30 @@ In order to show that induction implies recursion for $P$-algebras, we make the 
 %A : \type \\  x:A \vdash B(x) : \type \\ 
 % m : \W  \\  
 E : \type \\ 
-x:A,\, u : B(x) \to C,\, v : \big(\Pi{y:B(x)}\big) E \vdash e(x,u,v) :E }
-{ z : C \vdash \ind(z,e) : E}
+x:A,\, v : B(x) \to E \vdash e(x,v) :E }
+{ z : C \vdash \rec(z,e) : E}
 \end{mathpar}
 
-\item Simple propositional $\beta$-rule.\smallskip
+\item Simple propositional $\beta$-rule (?)\smallskip
 \begin{mathpar}
 \inferrule{
 E : \type \\ 
-x:A,\, u : B(x) \to C,\, v : \big(\Pi{y:B(x)}\big) E \vdash e(x,u,v) :E}
+x:A,\, v : B(x) \to E  \vdash e(x,v) :E}
 {x:A,\, u : B(x) \to C \vdash
- \ind(s_C(x,u),e) \peq e\big(x,u,\lambda{y}.\ind(u(y),e)\big) : E}
+ \beta(x,u,e) : \rec(s_C(x,u),e) \peq e\big(x,\lambda{y}.\rec(u(y),e)\big) }
 \end{mathpar}
 
-\item Simple propositional $\eta$-rule.\smallskip
+
+\item Simple propositional $\eta$-rule (?)\smallskip
 \begin{mathpar}
-\inferrule{A : \UU_i \\ x:A \vdash B(x) : \UU_i \\ a : A \\ t : B(a) \to \W \\ C : \UU_j \\ x:A, r : B(x) \to C \vdash c(x,r) : C}
-{\wreccomp_{\UU_i}(A,x.B,C,x.r.c,a,t) : \wrec(\wsup(a,t)) = c(a,\lam{b:B(a)} \wrec(t \;b))}
+\inferrule{
+E:\type \\ z:C \vdash f(z) : E \\ 
+x:A,\, v: B(x) \to E \vdash e(x,v) :E \\ 
+x:A, u: B(x) \to C \vdash p(x,u) : f(s_C(x,u)) = e\big(x,\lambda{y}. f(u(y))\big)}
+{z:C \vdash \eta(z, e, f, p) :  f(z) = \rec(z,e)}
 \end{mathpar}
 
-\item Simple propositional ($\W$)-computation rule.\smallskip
-\begin{mathpar}
-\inferrule{A : \UU_i \\ x:A \vdash B(x) : \UU_i \\ m : \W \\ C : \UU_j \\ x:A, r : B(x) \to C \vdash c(x,r) : C \\ w:\W\vdash f(w) : C \\ x:A, p: B(x) \to \W \vdash \gamma(x,p) : f(\wsup(x,p)) = c(x,\lam{b:B(x)} f(p \;b)) \\ w:\W\vdash g(x) : C \\ x:A, p: B(x) \to \W \vdash \delta(x,p) : g(\wsup(x,p)) = c(x,\lam{b:B(x)} g(p \;b))}
-{\wrecuniq_{\UU_i}(A,x.B,C,x.r.c,w.f,x.p.\gamma,w.g,x.p.\delta,m) : f(m) = g(m)}
-\end{mathpar}
-
-\item Simple propositional $\W$-coherence principle.\smallskip
+\item Simple propositional ($\beta,\eta$)-compatibility rule (?)\smallskip
 \begin{mathpar}
 \inferrule{A : \UU_i \\ x:A \vdash B(x) : \UU_i \\ a : A \\ t : B(a) \to \W \\ C : \UU_j \\ x:A, r : B(x) \to C \vdash c(x,r) : C \\ w:\W\vdash f(w) : C \\ x:A, p: B(x) \to \W \vdash \gamma(x,p) : f(\wsup(x,p)) = c(x,\lam{b:B(x)} f(p \;b)) \\ w:\W\vdash g(x) : C \\ x:A, p: B(x) \to \W \vdash \delta(x,p) : g(\wsup(x,p)) = c(x,\lam{b:B(x)} g(p \;b))}
 {\wreccoh_{\UU_i}(A,x.B,C,x.r.c,w.f,x.p.\gamma,w.g,x.p.\delta,a,t) : \\ \wrecuniq(\wsup(a,t)) = \gamma(a,t) \ct \app_{c(a,-)}(\funext(\lam{b:B(a)}\wrecuniq(t\;b)))\ct \delta(a,t)^{-1}}
@@ -1685,8 +1750,7 @@ propositional $(\beta, \eta)$-computatibility rules are special cases of the rul
 %\end{itemize}
 %
 
-\begin{remark}[Extensional type theory] Outline the basic results about $\W$-types and polynomial endofunctors: inductions and recursion are equivalent, $\W$ are characterized as initial algebras and projective objects.  They are fixed-points by Lambek's lemma.  And they can be used to define e.g.\ the natural numbers, etc.  Say that we will recover corresponding versions of all these results.
-\end{remark}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Homotopy initial W-types}
