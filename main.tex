@@ -1504,7 +1504,7 @@ as (names of) operations and in which the arity of $a : A$ is the cardinality of
 %
 
 %\begin{remark}\label{thm:wtypesinvariance}
-As was the case for the type $\Bool$, being a W-type is preserved by equivalences of types; indeed, given any type $A$ and an equivalence of types $\W_{x:A} B(x)\simeq A$, then $A$ can be shown to also satisfy the rules above (with definable terms playing the role of the primitive constants) except that the computation rule will hold only propositionally.
+As was the case for the type $\Bool$, being a W-type is preserved by equivalences of types; indeed, given any type $A$ and an equivalence of types $\W_{x:A} B(x)\simeq A$, then $A$ can be shown to also satisfy the rules above (with definable terms playing the role of the primitive constants) except that the computation rule will again hold only propositionally.
 
 To make this more precise, we introduce the following terminology.
 
@@ -1521,11 +1521,11 @@ P(C) \ar[d]_{s_C} \ar[r]_{P(f)} & \ar@/_1pc/[l]_{P(f^{-1})} P(D)  \ar[d]^{s_D}  
  C  \ar[r]_{f} & D
  }
  \]
- were $f^{-1} : D\to C$ is the quasi-inverse of $f : C\to D$.
+ where $f^{-1} : D\to C$ is the quasi-inverse of $f : C\to D$.
 
 
  
-Next, note that the $\W$-introduction rule makes $\sup : P(\W)\to \W$ into a $P$-algebra.  Given an equivalence  $f : \W \to C$, the induced $P$-algebra structure $s_C:P(C)\to C$ just defined means that $C$ also satisfies the $\W$-introduction rule.  We shall see that $C$ satisfies the other rules as well, but with a propositional computation rule, as in the following definition.
+Next, note that the $\W$-introduction rule makes $\sup : P(\W)\to \W$ into a $P$-algebra.  Given an equivalence  $f : \W \to C$, the induced $P$-algebra structure $s_C:P(C)\to C$ just defined then means that $C$ also satisfies the $\W$-introduction rule.  We shall see that $C$ satisfies the other rules as well, but with a propositional computation rule, as in the following definition.
 
 \begin{definition} Let $P = P(A,B)$ for $x:A \vdash B(x) \,\type$, and let $s_C : P(C)\to C$ be a $P$-algebra.
 We say that $s_C : P(C)\to C$ is \emph{inductive} if it satisfies the following rules:
@@ -1540,7 +1540,7 @@ x:A,\, u : B(x) \to C,\, v : \big(\Pi{y:B(x)}\big) E(u(y)) \vdash e(x,u,v) :E(s_
 { z : C \vdash \ind(z,e) : E(z)}
 \end{mathpar}
 
-\item Propositional $\W$-computation rule.\smallskip
+\item Propositional computation rule.\smallskip
 \begin{mathpar}
 \inferrule{
 z : C \vdash E(z) : \type \\ 
@@ -1551,16 +1551,31 @@ x:A,\, u : B(x) \to C,\, v : \big(\Pi{y:B(x)}\big) E(u(y)) \vdash e(x,u,v) :E(s_
 \end{enumerate}
 \end{definition}
 
-We begin to investigate the consequences of being inductive in this sense.
+As in section \ref{section:simple}, our ultimate goal is to show that being inductive is again equivalent to being recursive, and that these conditions are in turn equivalent to being homotopy projective and homotopy initial.  We begin by showing that being inductive in this sense implies a corresponding version of recursion.
 
-\begin{lemma} \label{thm:Wetaind}
+\begin{lemma} \label{lem:Wetaind}
 If $s_C : P(C)\to C$  is an inductive $P$-algebra, then it satisfies the following further rules:
+
+[WE NEED TO DECIDE WHICH VERSION OF THESE RULES TO USE: THAT WITH TWO FUNCITONS, OR THAT WITH ONE FUNCTION AND IT'S ETA EXPANSION]
+
 \begin{enumerate}[(i)]
 
 \item Propositional $\W$-uniqueness principle.\smallskip
 \begin{mathpar}
-\inferrule{A : \UU_i \\ x:A \vdash B(x) : \UU_i \\ m : \W \\ w:\W \vdash E(w) : \UU_j \\ x:A, p: B(x) \to \W, r : \prd{b:B(x)} E(p \;b) \vdash e(x,p,r) :E(\wsup(x,p)) \\ w:\W \vdash f(w) : E(w) \\ w:\W \vdash g(w) : E(w) \\ x:A, p: B(x) \to \W \vdash \gamma(x,p) : f(\wsup(x,p)) = e(x,p,\lam{b:B(x)} f(p \;b)) \\ x:A, p: B(x) \to \W \vdash \delta(x,p) : g(\wsup(x,p)) = e(x,p,\lam{b:B(x)} g(p \;b))}
-{\winduniq_{\UU_i}(A,x.B,w.E,x.p.r.e,w.f,x.p.\gamma,w.g,x.p.\delta,m) : f(m) = g(m)}
+\inferrule{
+z:C \vdash E(z)\,\type \\ x:A, u: B(x) \to C, v : \prd{y:B(x)} E(u(y)) \vdash e(x,u,v) :E(s_C(x,u)) \\ \\ 
+z: C \vdash f(z) : E(z) \\ z:C \vdash g(z) : E(z) \\
+\\
+x:A, u: B(x) \to C \vdash p(x,u) : f(s_C(x,u)) = e(x,u,\lambda{y}. f(u(y))) \\
+x:A, u: B(x) \to C \vdash q(x,u) : g(s_C(x,u)) = e(x,u,\lambda{y}. g(u(y)))}
+{z:C \vdash \eta(z, p, q) : f(z) = g(z)}\end{mathpar}
+
+
+\item Propositional $\eta$-rule (?).\smallskip
+\begin{mathpar}
+\inferrule{
+ z:C \vdash E(z)\,\type \\ x:A, u: B(x) \to C, v : \prd{y:B(x)} E(u(y)) \vdash e(x,u,v) :E(s_C(x,u)) \\ z:C \vdash f(z) : E(z) \\ x:A, u: B(x) \to C \vdash p(x,u) : f(s_C(x,u)) = e\big(x,u,\lambda{y}. f(u(y))\big)}
+{z:C \vdash \eta(z, f) : \ind(x,e) = f(z)}
 \end{mathpar}
 
 \item Propositional $\W$-coherence principle.\smallskip
@@ -1568,95 +1583,146 @@ If $s_C : P(C)\to C$  is an inductive $P$-algebra, then it satisfies the followi
 \inferrule{A : \UU_i \\ x:A \vdash B(x) : \UU_i \\ a : A \\ t : B(a) \to \W \\ w:\W \vdash E(w) : \UU_j \\ x:A, p: B(x) \to \W, r : \prd{b:B(x)} E(p \;b) \vdash e(x,p,r) :E(\wsup(x,p)) \\ w:\W \vdash f(w) : E(w) \\ w:\W \vdash g(w) : E(w) \\ x:A, p: B(x) \to \W \vdash \gamma(x,p) : f(\wsup(x,p)) = e(x,p,\lam{b:B(x)} f(p \;b)) \\ x:A, p: B(x) \to \W \vdash \delta(x,p) : g(\wsup(x,p)) = e(x,p,\lam{b:B(x)} g(p \;b))}
 {\windcoh_{\UU_i}(A,x.B,w.E,x.p.r.e,w.f,x.p.\gamma,w.g,x.p.\delta,a,t) : \\ \winduniq(\wsup(a,t)) = \gamma(a,t) \ct \app_{e(a,t,-)}(\funext(\lam{b:B(a)}\winduniq(t\;b)))\ct \delta(a,t)^{-1}}
 \end{mathpar}
+
+\item Propositional $(\beta, \eta)$-compatibility rule (?)\smallskip
+\begin{mathpar}
+\inferrule{A : \UU_i \\ x:A \vdash B(x) : \UU_i \\ a : A \\ t : B(a) \to \W \\ w:\W \vdash E(w) : \UU_j \\ x:A, p: B(x) \to \W, r : \prd{b:B(x)} E(p \;b) \vdash e(x,p,r) :E(\wsup(x,p)) \\ w:\W \vdash f(w) : E(w) \\ w:\W \vdash g(w) : E(w) \\ x:A, p: B(x) \to \W \vdash \gamma(x,p) : f(\wsup(x,p)) = e(x,p,\lam{b:B(x)} f(p \;b)) \\ x:A, p: B(x) \to \W \vdash \delta(x,p) : g(\wsup(x,p)) = e(x,p,\lam{b:B(x)} g(p \;b))}
+{\windcoh_{\UU_i}(A,x.B,w.E,x.p.r.e,w.f,x.p.\gamma,w.g,x.p.\delta,a,t) : \\ \winduniq(\wsup(a,t)) = \gamma(a,t) \ct \app_{e(a,t,-)}(\funext(\lam{b:B(a)}\winduniq(t\;b)))\ct \delta(a,t)^{-1}}
+\end{mathpar}
+
 \end{enumerate}
 \end{lemma}
+\begin{proof}
+In showing the above laws, we use the induction principle with the type family $x \mapsto f(z) =_{E(z)} g(z)$. For this we need to show that for any $x,u$ we have $f(s_C(x,u)) = g(s_C(x,u))$ under the induction hypothesis $h : \prd{y:B(x)} f(u(y)) = g((u(y))$. We can construct this path explicitly as 
+\[ p(x,u) \ct \app_{e(x,u,-)}(\funext(h))\ct q(x,u)^{-1} \]
 
-The witness terms will be shortened to $\winduniq(m), \wrecuniq(m)$ where appropriate. In showing the above laws, we proceed analogously to the extensional case: we use the induction principle with the type family $x \mapsto f(w) =_{E(w)} g(w)$. 
-
-For this we need to show that for any $x,p$ we have $f(\wsup(x,p)) = g(\wsup(x,p))$ under the induction hypothesis $h : \prd{b:B(x)} f(p\;b) = g(p\;b)$. We can construct this path explicitly as 
-\[ \gamma(x,p) \ct \app_{e(x,p,-)}(\funext(h))\ct \delta(x,p)^{-1} \]
-The simple uniqueness rule again follows from the dependent one. Invoking the corresponding (propositional) computation rule, we  get the following coherence principles for W-types:
-
-
+[NEED TO FINISH THIS PROOF]
+\end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+In order to show that induction implies recursion for $P$-algebras, we make the following definition.
 
-Simple propositional $\W$-computation rule.\smallskip
+\begin{definition} Let $P = P(A,B)$ for $x:A \vdash B(x) \,\type$, and let $s_C : P(C)\to C$ be a $P$-algebra.  We say that $s_C : P(C)\to C$ is \emph{recursive} if it satisfies the following rules:
+\begin{enumerate}[(i)] 
+\item $\W$-recursion rule.\smallskip
+\begin{mathpar}
+\inferrule{
+%A : \type \\  x:A \vdash B(x) : \type \\ 
+% m : \W  \\  
+E : \type \\ 
+x:A,\, u : B(x) \to C,\, v : \big(\Pi{y:B(x)}\big) E \vdash e(x,u,v) :E }
+{ z : C \vdash \ind(z,e) : E}
+\end{mathpar}
+
+\item Simple propositional $\beta$-rule.\smallskip
+\begin{mathpar}
+\inferrule{
+E : \type \\ 
+x:A,\, u : B(x) \to C,\, v : \big(\Pi{y:B(x)}\big) E \vdash e(x,u,v) :E}
+{x:A,\, u : B(x) \to C \vdash
+ \ind(s_C(x,u),e) \peq e\big(x,u,\lambda{y}.\ind(u(y),e)\big) : E}
+\end{mathpar}
+
+\item Simple propositional $\eta$-rule.\smallskip
 \begin{mathpar}
 \inferrule{A : \UU_i \\ x:A \vdash B(x) : \UU_i \\ a : A \\ t : B(a) \to \W \\ C : \UU_j \\ x:A, r : B(x) \to C \vdash c(x,r) : C}
 {\wreccomp_{\UU_i}(A,x.B,C,x.r.c,a,t) : \wrec(\wsup(a,t)) = c(a,\lam{b:B(a)} \wrec(t \;b))}
 \end{mathpar}
 
-Simple propositional $\W$-uniqueness principle.\smallskip
+\item Simple propositional ($\W$)-computation rule.\smallskip
 \begin{mathpar}
 \inferrule{A : \UU_i \\ x:A \vdash B(x) : \UU_i \\ m : \W \\ C : \UU_j \\ x:A, r : B(x) \to C \vdash c(x,r) : C \\ w:\W\vdash f(w) : C \\ x:A, p: B(x) \to \W \vdash \gamma(x,p) : f(\wsup(x,p)) = c(x,\lam{b:B(x)} f(p \;b)) \\ w:\W\vdash g(x) : C \\ x:A, p: B(x) \to \W \vdash \delta(x,p) : g(\wsup(x,p)) = c(x,\lam{b:B(x)} g(p \;b))}
 {\wrecuniq_{\UU_i}(A,x.B,C,x.r.c,w.f,x.p.\gamma,w.g,x.p.\delta,m) : f(m) = g(m)}
 \end{mathpar}
 
-Simple propositional $\W$-coherence principle.\smallskip
+\item Simple propositional $\W$-coherence principle.\smallskip
 \begin{mathpar}
 \inferrule{A : \UU_i \\ x:A \vdash B(x) : \UU_i \\ a : A \\ t : B(a) \to \W \\ C : \UU_j \\ x:A, r : B(x) \to C \vdash c(x,r) : C \\ w:\W\vdash f(w) : C \\ x:A, p: B(x) \to \W \vdash \gamma(x,p) : f(\wsup(x,p)) = c(x,\lam{b:B(x)} f(p \;b)) \\ w:\W\vdash g(x) : C \\ x:A, p: B(x) \to \W \vdash \delta(x,p) : g(\wsup(x,p)) = c(x,\lam{b:B(x)} g(p \;b))}
 {\wreccoh_{\UU_i}(A,x.B,C,x.r.c,w.f,x.p.\gamma,w.g,x.p.\delta,a,t) : \\ \wrecuniq(\wsup(a,t)) = \gamma(a,t) \ct \app_{c(a,-)}(\funext(\lam{b:B(a)}\wrecuniq(t\;b)))\ct \delta(a,t)^{-1}}
 \end{mathpar}
 
+\end{enumerate}
+\end{definition}
+
+
+\begin{proposition} \label{thm:Windrec}
+If a $P$-algebra is inductive then it is recursive.
+\end{proposition}
+
+
+\begin{proof} The recursion and propositional $\beta$-rules are special cases of the elimination and propositional computation rules that are part of the definition of an inductive $P$-algebra. The propositional $\eta$-rule and the
+propositional $(\beta, \eta)$-computatibility rules are special cases of the rules in Lemma~\ref{lem:Wetaind}. 
+\end{proof}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%
+%As before, the above rules imply a non-dependent version of elimination and the corresponding computation rule, where we write $\wrec(m)$ instead of $\wrec^{A,x.B}_{\UU_j}\big(C,x.r.c,m\big)$ where appropriate. \smallskip
+%\begin{itemize}
+%\item Simple $\W$-elimination rule.\smallskip
+%\begin{mathpar}
+%\inferrule{A : \UU_i \\ x:A \vdash B(x) : \UU_i \\ m : \W \\ C : \UU_j \\x:A, r : B(x) \to C \vdash c(x,r) : C}{\wrec^{A,x.B}_{\UU_j}\big(C,x.r.c,m\big) : C}
+%\end{mathpar}
+%\item Simple $\W$-computation rule.\smallskip
+%\begin{mathpar}
+%\inferrule{A : \UU_i \\ x:A \vdash B(x) : \UU_i \\ a : A \\ t : B(a) \to \W \\ C : \UU_j \\ x:A, r : B(x) \to C \vdash c(x,r) : C}
+%{\wrec(\wsup(a,t)) \equiv c(a,\lam{b:B(a)} \wrec(t \;b)) : C}
+%\end{mathpar}
+%\end{itemize} \smallskip
+%
+%The induction principle also implies the following uniqueness principles, which state that any two functions out of $\W$ which satisfy the same recurrence are pointwise equal:
+%\begin{itemize}
+%\item $\W$-uniqueness principle.\smallskip
+%\begin{mathpar}
+%\inferrule{A : \UU_i \\ x:A \vdash B(x) : \UU_i \\ m : \W \\ w:\W \vdash E(w) : \UU_j \\ x:A, p: B(x) \to \W, r : \prd{b:B(x)} E(p \;b) \vdash
+%e(x,p,r) :E(\wsup(x,p)) \\ w:\W \vdash f(w) : E(w) \\ x:A, p: B(x) \to \W \vdash f(\wsup(x,p)) \equiv e(x,p,\lam{b:B(x)} f(p \;b)) \\ w:\W \vdash g(w) : E(w) \\ x:A, p: B(x) \to \W \vdash g(\wsup(x,p)) \equiv e(x,p,\lam{b:B(x)} g(p \;b))}{f(m) \equiv g(m) : E(m)}
+%\end{mathpar}
+%\item Simple $\W$-uniqueness principle.\smallskip
+%\begin{mathpar}
+%\inferrule{A : \UU_i \\ x:A \vdash B(x) : \UU_i \\ m : \W \\ C : \UU_j \\ x:A, r : B(x) \to C \vdash c(x,r) : C \\ w:\W\vdash f(w) : C \\ x:A, p: B(x) \to \W \vdash f(\wsup(x,p)) \equiv c(x,\lam{b:B(x)} f(p \;b)) \\ w:\W\vdash g(x) : C \\ x:A, p: B(x) \to \W \vdash g(\wsup(x,p)) \equiv c(x,\lam{b:B(x)} g(p \;b))}{f(m) \equiv g(m) : C}
+%\end{mathpar}
+%\end{itemize}
+%
 
-As before, the above rules imply a non-dependent version of elimination and the corresponding computation rule, where we write $\wrec(m)$ instead of $\wrec^{A,x.B}_{\UU_j}\big(C,x.r.c,m\big)$ where appropriate. \smallskip
-\begin{itemize}
-\item Simple $\W$-elimination rule.\smallskip
-\begin{mathpar}
-\inferrule{A : \UU_i \\ x:A \vdash B(x) : \UU_i \\ m : \W \\ C : \UU_j \\x:A, r : B(x) \to C \vdash c(x,r) : C}{\wrec^{A,x.B}_{\UU_j}\big(C,x.r.c,m\big) : C}
-\end{mathpar}
-\item Simple $\W$-computation rule.\smallskip
-\begin{mathpar}
-\inferrule{A : \UU_i \\ x:A \vdash B(x) : \UU_i \\ a : A \\ t : B(a) \to \W \\ C : \UU_j \\ x:A, r : B(x) \to C \vdash c(x,r) : C}
-{\wrec(\wsup(a,t)) \equiv c(a,\lam{b:B(a)} \wrec(t \;b)) : C}
-\end{mathpar}
-\end{itemize} \smallskip
-
-The induction principle also implies the following uniqueness principles, which state that any two functions out of $\W$ which satisfy the same recurrence are pointwise equal:
-\begin{itemize}
-\item $\W$-uniqueness principle.\smallskip
-\begin{mathpar}
-\inferrule{A : \UU_i \\ x:A \vdash B(x) : \UU_i \\ m : \W \\ w:\W \vdash E(w) : \UU_j \\ x:A, p: B(x) \to \W, r : \prd{b:B(x)} E(p \;b) \vdash
-e(x,p,r) :E(\wsup(x,p)) \\ w:\W \vdash f(w) : E(w) \\ x:A, p: B(x) \to \W \vdash f(\wsup(x,p)) \equiv e(x,p,\lam{b:B(x)} f(p \;b)) \\ w:\W \vdash g(w) : E(w) \\ x:A, p: B(x) \to \W \vdash g(\wsup(x,p)) \equiv e(x,p,\lam{b:B(x)} g(p \;b))}{f(m) \equiv g(m) : E(m)}
-\end{mathpar}
-\item Simple $\W$-uniqueness principle.\smallskip
-\begin{mathpar}
-\inferrule{A : \UU_i \\ x:A \vdash B(x) : \UU_i \\ m : \W \\ C : \UU_j \\ x:A, r : B(x) \to C \vdash c(x,r) : C \\ w:\W\vdash f(w) : C \\ x:A, p: B(x) \to \W \vdash f(\wsup(x,p)) \equiv c(x,\lam{b:B(x)} f(p \;b)) \\ w:\W\vdash g(x) : C \\ x:A, p: B(x) \to \W \vdash g(\wsup(x,p)) \equiv c(x,\lam{b:B(x)} g(p \;b))}{f(m) \equiv g(m) : C}
-\end{mathpar}
-\end{itemize}
-
- \smallskip
-As before, we can prove the dependent uniqueness principle by using the induction principle with the type family $w \mapsto f(w) =_{E(w)} g(w)$. For this we need to show that for any $x,p$ we have $f(\wsup(x,p)) = g(\wsup(x,p))$ under the induction hypothesis $\prd{b:B(x)} f(p\;b) = g(p\;b)$. Using this hypothesis with function extensionality we get $\lam{b:B(x)} f(p\;b) = \lam{b:B(x)} g(p\;b)$. Together with the premises of the uniqueness rule this gives us $f(\wsup(a,t)) = g(\wsup(a,t))$ as desired. The induction principle thus gives us pointwise propositional equality between $f$ and $g$ and we appeal to the identity reflection rule to finish the proof. The simple uniqueness principle again follows from the dependent one.
-
+\begin{remark}[Extensional type theory] Outline the basic results about $\W$-types and polynomial endofunctors: inductions and recursion are equivalent, $\W$ are characterized as initial algebras and projective objects.  They are fixed-points by Lambek's lemma.  And they can be used to define e.g.\ the natural numbers, etc.  Say that we will recover corresponding versions of all these results.
+\end{remark}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Homotopy initial W-types}
 
-In order to determine the universal property of W-types, we next formulate the notions of algebras, homomorphisms, and homotopies, again in both simple and fibered forms.
+For the further investigation of W-types, and in particular to show that they are homotopy-initial algebras in a precise sense, we require the notions of a homomorphism and a homotopy thereof, again in both simple and fibered forms.
 
-\begin{definition}\label{def:WAlg}
-For $A:\UU_i$, $B : A \to \UU_i$, define the type of \emph{$\W$-algebras} on a universe $\UU_j$ as
-\[\WAlg_{\UU_j}(A,B) \; \defeq \sm{C : \UU_j} \prd{a:A} (B(a) \to C) \to C \]
-\end{definition}
-
-\begin{definition}\label{def:WFibAlg}
-For $A:\UU_i$, $B : A \to \UU_i$, define the type of \emph{fibered $\W$-algebras} on a universe $\UU_k$ over $\mathcal{X} : \WAlg_{\UU_j}(A,B)$ by
-\[\WFibAlg_{\UU_k}(A,B) \; (C,c) \defeq \sm{E : C \to \UU_k} \prd{a:A}\prd{t: B(a) \to C} \big(\prd{b:B(a)} E(t \;b) \big) \to E(c(a,t)) \]
-\end{definition}
+%\begin{definition}\label{def:WAlg}
+%For $A:\UU_i$, $B : A \to \UU_i$, define the type of \emph{$\W$-algebras} on a universe $\UU_j$ as
+%\[\WAlg_{\UU_j}(A,B) \; \defeq \sm{C : \UU_j} \prd{a:A} (B(a) \to C) \to C \]
+%\end{definition}
 
 \begin{definition}\label{def:WHom}
 For $A:\UU_i$, $B : A \to \UU_i$, $\X : \WAlg_{\UU_j}(A,B)$, $\Y : \WAlg_{\UU_k}(A,B)$, define the type of \emph{$\W$-homomorphisms} from $\X$ to $\Y$ by
 \[ \WHom \; (C,c) \; (D,d) \defeq \sm{f:C\to D}\prd{a:A}\prd{t: B(a) \to C} f(c(a,t)) = d(a,\lam{b:B(a)} f(t\;b)) \]
 \end{definition}
 
+
+\begin{definition}\label{def:WCell}
+For $A:\UU_i$, $B : A \to \UU_i$, $\X : \WAlg_{\UU_j}(A,B)$, $\Y : \WAlg_{\UU_k}(A,B)$ and homomorphisms $\mu, \nu : \WHom \; \X \; \Y$, define the type of \emph{2-cells} between $\mu$ and $\nu$ by
+\begin{align*} & \WCell \; (C,c) \; (D,d) \; (f,\gamma) \; (g,\delta) \defeq \\ & \;\;\; \;\;\;\WFibHom \; (C,c) \; \Big(f \sim g; x,p,r \mapsto \gamma(x,p) \ct \app_{d(x)}(\funext(r)) \ct \delta(x,p)^{-1}\Big)
+\end{align*}
+\end{definition}
+
+%%%%%%%%%%%
+
+\begin{definition}\label{def:WFibAlg}
+For $A:\UU_i$, $B : A \to \UU_i$, define the type of \emph{fibered $\W$-algebras} on a universe $\UU_k$ over $\mathcal{X} : \WAlg_{\UU_j}(A,B)$ by
+\[\WFibAlg_{\UU_k}(A,B) \; (C,c) \defeq \sm{E : C \to \UU_k} \prd{a:A}\prd{t: B(a) \to C} \big(\prd{b:B(a)} E(t \;b) \big) \to E(c(a,t)) \]
+\end{definition}
+
 \begin{definition}\label{def:WFibHom}
 For $A:\UU_i$, $B : A \to \UU_i$, $\X : \WAlg_{\UU_j}(A,B)$, $\Y : \WFibAlg_{\UU_k}(A,B) \; \X$, define the type of \emph{fibered $\W$-homomorphisms} from $\X$ to $\Y$ by
 \[ \WFibHom \; (C,c) \; (E,e) \defeq \sm{(f:\prd{x:C}E(x))}\prd{a:A}\prd{t: B(a) \to C} f(c(a,t)) = e(a,t,\lam{b:B(a)} f(t\;b)) \]
 \end{definition}
+
+
 
 \begin{definition}\label{def:WRec}
 For $A:\UU_i$, $B : A \to \UU_i$, an algebra $\X : \WAlg_{\UU_j}(A,B)$ \emph{satisfies the recursion principle} on a universe $\UU_k$ if for any algebra $\Y : \WAlg_{\UU_k}(A,B)$ there exists
@@ -1687,11 +1753,7 @@ For $A:\UU_i$ and $B : A \to \UU_i$, an algebra $\X : \WAlg_{\UU_j}(A,B)$ is \em
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{definition}\label{def:WCell}
-For $A:\UU_i$, $B : A \to \UU_i$, $\X : \WAlg_{\UU_j}(A,B)$, $\Y : \WAlg_{\UU_k}(A,B)$ and homomorphisms $\mu, \nu : \WHom \; \X \; \Y$, define the type of \emph{2-cells} between $\mu$ and $\nu$ by
-\begin{align*} & \WCell \; (C,c) \; (D,d) \; (f,\gamma) \; (g,\delta) \defeq \\ & \;\;\; \;\;\;\WFibHom \; (C,c) \; \Big(f \sim g; x,p,r \mapsto \gamma(x,p) \ct \app_{d(x)}(\funext(r)) \ct \delta(x,p)^{-1}\Big)
-\end{align*}
-\end{definition}
+
 
 \begin{definition}\label{def:WFibCell}
 For $A:\UU_i$, $B : A \to \UU_i$, $\X : \WAlg_{\UU_j}(A,B)$, $\Y : \WFibAlg_{\UU_k}(A,B) \; \X$ and fibered homomorphisms $\mu, \nu : \WFibHom \; \X \; \Y$, define the type of \emph{fibered 2-cells} between $\mu$ and $\nu$ by
