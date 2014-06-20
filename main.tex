@@ -1488,7 +1488,10 @@ x:A,\, u : B(x) \to \W,\, v : \big(\Pi{y:B(x)}\big) E(u(y)) \vdash e(x,u,v) :E(\
 A W-type can be seen informally as the free algebra for a signature
 with arbitrarily many operations of possibly infinite arity, but no equations. Indeed, the premises of the formation rule above can be thought of as specifying a signature that has the elements of~$A$ as (names of) operations and in which the arity of $a : A$ is the cardinality of the type $B(a)$. Then the introduction rule specifies the canonical way of forming an element of the free algebra, and the elimination rule can be seen as the propositions-as-types translation of the appropriate induction principle.
 
-\subsubsection*{Review of the extensional case}
+\bigskip
+%%%%%%%% Review of the extensional case %%%%%%%%%
+[REVIEW OF THE EXTENSIONAL CASE: COULD BE MOVED ELSEWHERE]
+
 We begin by briefly sketching the basic theory of W-types in the  setting of \emph{extensional} type theory (cf.~\cite{??}), as background for our development; the details for our case will be provided in what follows.  Let $\mathcal{C}$ be the category with types as objects and elements $f : A \rightarrow B$ as maps, where two maps are considered equal if and only if they are definitionally equal. The premisses of the introduction rule determine the \emph{polynomial endofunctor} $P : \mathcal{C}\rightarrow \mathcal{C}$
 defined by 
 \[
@@ -1552,6 +1555,8 @@ extensional setting, induction and recursion are interderivable.
 Finally, observe that induction is equivalent to the statement that, when $\W$ is regarded as a $P$-algebra with the structure map $s_\W : P\W \rightarrow \W$, then every $P$-algebra over it has a homomorphic section, while recursion is equivalent to the statement that 
 $\W$ is the initial $P$-algebra. The remainder of this section will be devoted to generalizing these equivalences to the current setting of homotopy type theory.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+[END OF EXTENSIONAL REVIEW]
 
 \bigskip
 
@@ -1568,8 +1573,9 @@ $\W$ is the initial $P$-algebra. The remainder of this section will be devoted t
 %
 
 %\begin{remark}\label{thm:wtypesinvariance}
-We begin by observing that, as was the case for the type $\Bool$, the condition of being a W-type is preserved by equivalences of types, in a suitable sense; indeed, given any type $A$ and an equivalence of types $\W_{x:A} B(x)\simeq A$, then $A$ can be shown to also satisfy the rules above (with suitable definable terms playing the role of the primitive constants), except that the computation rule will again hold only propositionally.
 
+Returning to the case of the intensional system $\Hint$, as was the case for the type $\Bool$, the condition of being a W-type is preserved by equivalences of types, in a suitable sense.  
+%Indeed, given any type $A$ and an equivalence of types $\W_{x:A} B(x)\simeq A$, then $A$ can be shown to also satisfy the rules above (with suitable definable terms playing the role of the primitive constants), except that the computation rule will again hold only propositionally.
 To make this more precise, we introduce the following terminology.
 
 \begin{definition}
@@ -1649,7 +1655,7 @@ If $s_C : P(C)\to C$  is an inductive $P$-algebra, then it satisfies the followi
 %{\windcoh_{\UU_i}(A,x.B,w.E,x.p.r.e,w.f,x.p.\gamma,w.g,x.p.\delta,a,t) : \\ \winduniq(\wsup(a,t)) = \gamma(a,t) \ct \app_{e(a,t,-)}(\funext(\lam{b:B(a)}\winduniq(t\;b)))\ct \delta(a,t)^{-1}}
 %\end{mathpar}
 %
-\item Propositional $(\beta, \eta)$-compatibility rule (?)\smallskip
+\item Propositional $(\beta, \eta)$-compatibility rule [FIX]\smallskip
 \begin{mathpar}
 \inferrule{A : \UU_i \\ x:A \vdash B(x) : \UU_i \\ a : A \\ t : B(a) \to \W \\ w:\W \vdash E(w) : \UU_j \\ x:A, p: B(x) \to \W, r : \prd{b:B(x)} E(p \;b) \vdash e(x,p,r) :E(\wsup(x,p)) \\ w:\W \vdash f(w) : E(w) \\ w:\W \vdash g(w) : E(w) \\ x:A, p: B(x) \to \W \vdash \gamma(x,p) : f(\wsup(x,p)) = e(x,p,\lam{b:B(x)} f(p \;b)) \\ x:A, p: B(x) \to \W \vdash \delta(x,p) : g(\wsup(x,p)) = e(x,p,\lam{b:B(x)} g(p \;b))}
 {\windcoh_{\UU_i}(A,x.B,w.E,x.p.r.e,w.f,x.p.\gamma,w.g,x.p.\delta,a,t) : \\ \winduniq(\wsup(a,t)) = \gamma(a,t) \ct \app_{e(a,t,-)}(\funext(\lam{b:B(a)}\winduniq(t\;b)))\ct \delta(a,t)^{-1}}
@@ -1700,7 +1706,7 @@ x:A, u: B(x) \to C \vdash p(x,u) : f(s_C(x,u)) = e\big(x,\lambda{y}. f(u(y))\big
 {z:C \vdash \eta(z, e, f, p) :  f(z) = \rec(z,e)}
 \end{mathpar}
 
-\item Simple propositional ($\beta,\eta$)-compatibility rule (?)\smallskip
+\item Simple propositional ($\beta,\eta$)-compatibility rule [FIX]\smallskip
 \begin{mathpar}
 \inferrule{A : \UU_i \\ x:A \vdash B(x) : \UU_i \\ a : A \\ t : B(a) \to \W \\ C : \UU_j \\ x:A, r : B(x) \to C \vdash c(x,r) : C \\ w:\W\vdash f(w) : C \\ x:A, p: B(x) \to \W \vdash \gamma(x,p) : f(\wsup(x,p)) = c(x,\lam{b:B(x)} f(p \;b)) \\ w:\W\vdash g(x) : C \\ x:A, p: B(x) \to \W \vdash \delta(x,p) : g(\wsup(x,p)) = c(x,\lam{b:B(x)} g(p \;b))}
 {\wreccoh_{\UU_i}(A,x.B,C,x.r.c,w.f,x.p.\gamma,w.g,x.p.\delta,a,t) : \\ \wrecuniq(\wsup(a,t)) = \gamma(a,t) \ct \app_{c(a,-)}(\funext(\lam{b:B(a)}\wrecuniq(t\;b)))\ct \delta(a,t)^{-1}}
