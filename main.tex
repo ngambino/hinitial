@@ -1773,98 +1773,198 @@ propositional $(\beta, \eta)$-computatibility rules are special cases of the rul
 
 \subsection{Homotopy initial W-types}
 
-For the further investigation of W-types we require the notions of algebra homomorphism and homotopies of homomorphisms, again in both simple and fibered forms.
+For the further investigation of W-types we require the notions of algebra homomorphism and homotopies of homomorphisms, again in both simple and fibered forms.  Throughout this section, fix $x:A\vdash B(x)$ and write $P(X)$ for the associated polynomial functor $(\Sigma x : A) (B(x) \rightarrow X)$.  Recall that a $P$-algebra is a type $C$ equipped a map
+$s_C :  PC \rightarrow C$. 
+
+\begin{definition}
+For $P$-algebras $(C,s_C)$ and $(D,s_D)$, a \emph{(weak) 
+homomorphism}  $$(f, s_f) : (C, s_C) \rightarrow (D, s_D)$$
+consists of a map $f : C \rightarrow D$ and an identity,
+\[
+s_f : \id{PC \rightarrow D}\big( f \circ s_C \, ,  s_{D} \circ Pf \big) \, .
+\]
+Such an algebra homomorphism can be represented suggestively in the form:
+\[
+\xymatrix{
+ PC \ar[d]_{s_C} \ar[r]^{Pf}  \ar@{}[dr]|{s_f} &  PD \ar[d]^{s_D}\\
+C \ar[r]_{f}   & D }
+\] 
+Accordingly, the type of algebra maps is defined by
+\[
+\Palg
+\big[ (C,s_C), (D, s_D)  \big]
+ \defeq  
+(\Sigma f:  C \rightarrow D) \, \Id(f\circ s_C, s_D\circ Pf) \, .
+\]
+\end{definition}
+\medskip
+
+Given two morphisms of $P$-algebras $(f, s_f) \co C \to D$ and $(g, s_g) \co D \to E$, as indicated in:
+\[
+\xymatrix{
+ PC \ar[d]_{s_C} \ar[r]^{Pf}  \ar@{}[dr]|{s_f} &  PD \ar[d]^{s_D}  \ar[r]^{Pg}  \ar@{}[dr]|{s_g} &  PE \ar[d]^{s_E} \\
+C \ar[r]_{f}   & D \ar[r]_{g}   & E }
+\]
+we can define their composite by ``pasting together the identities $s_f$ and $s_g$" as follows.
+The composite $$(g, s_g) \circ (f, s_f) \co (C,s_C) \to (E,s_E)$$ will have $g\circ f$ in the first component, but the second component must be an identity of the form
+\[
+g\circ f\circ s_C = s_E\circ P(gf)\, .
+\]
+To get this, let $p : Pg\circ Pf = P(gf)$ as expected, then we can compose identities between arrows of the form $PC \to E$, as indicated in
+
+[NEED TO MAKE p INVISIBLE]
+\[
+\xymatrix{
+ PC \ar[d]_{s_C} \ar[r]^{Pf}  \ar@{}[dr]|{s_f} \ar@{}@/^2pc/[rr]|{p} \ar@/^3pc/[rr]^{P(gf)} &  PD \ar[d]^{s_D}  \ar[r]^{Pg}  \ar@{}[dr]|{s_g} &  PE \ar[d]^{s_E} \\
+C \ar[r]_{f}   & D \ar[r]_{g}   & E }
+\]
+as follows:
+\[
+s_{gf} \defeq (g(s_f)\cdot g(Pf))\cdot s_E(p)
+\]
+This gives the required  element in $\Id(g\circ f\circ s_C ,\, s_E\circ P(gf))$.
+
+As in the case of bipointed types, we do not quite have a category since the composition operation is not strictly associative, but only so up to a system of higher and higher identities, as in an $\infty$-category. But it is again possible to define the notion of a homotopy-initial $P$-algebra:
+
+\begin{definition}\label{def:AlgInit}
+A $P$-algebra $(C, s_C)$ is  \emph{homotopy-initial}  if for any $P$-algebra $(D,s_D)$, the type $\Hom[(C, s_C),(D,s_D)]$ of morphisms from $(C, s_C)$ to $(D,s_D)$
+is contractible, \ie the following type is inhabilited
+\[
+ \iscontr(\Hom[(C, s_C),(D,s_D)]) \, .
+\]  
+\end{definition}
+
+We again stress that homotopy-initiality is a purely type-theoretic notion. In order to relate it to the rules for inductive and recursive types, we again require an alternative description of the identity type of two morphisms. For this, we require the notion of a homotopy between morphisms of $P$-algebras. 
+
+\begin{definition}
+For $P$-algebras $(C,s_C)$ and $(D,s_D)$ and morphisms $(f, s_f)$ and $(g, s_g)$ between them, a \emph{homotopy}  $$(h, s_h) : (f, s_f) \rightarrow (g, s_g)$$
+consists of an identity  $h : f = g$ together with a (higher) identity, 
+\[
+s_h: s_f \cdot s_D(Ph)\ =\ (h(s_C))\cdot s_g\, ,
+\]
+between elements in $\id{PC \rightarrow D}\big( f \circ s_C \, ,  s_{D} \circ Pf \big)$.  Here the identity $Ph : Pf = Pg$ is derived from $h : f = g$ in the obvious way, and the pre- and post-compositions of maps with identities, $h(s_C)$ and $s_D(Ph)$ respectively, are determined by identity elimination.
+
+Such a homotopy can be represented as filling the three-dimensional space between the two pasting diagrams:
+\[
+\xymatrix{
+PC \ar@/^1pc/[r]^{Pg}   \ar[d]_{s_C}   \ar@/_1pc/[r]_{Pf} \ar@{}[r]|{Ph}
+& PD \ar[d]^{s_D}  \\
+C  \ar@/_1pc/[r]_f  \ar@{}[r]^{s_f} & D }
+\qquad
+\xymatrix{
+PC \ar@/^1pc/[r]^{Pg}   \ar[d]_{s_C} \ar@{}[r]_(.52){s_g}  & PD \ar[d]^{s_D}  \\
+C \ar@/^1pc/[r]^g  \ar@/_1pc/[r]_f  \ar@{}[r]|{h} & D }
+\]
+
+Accordingly, the type of homotopies of algebra maps is defined by
+\[
+\Ho
+\big[ (f,s_f), (g, s_g)  \big]
+ \defeq  
+(\Sigma h:  f = g) \, \Id\big( s_f \cdot s_D(Ph),\, (h(s_C))\cdot s_g \big) \, .
+\]
+\end{definition}
 
 %\begin{definition}\label{def:WAlg}
 %For $A:\UU_i$, $B : A \to \UU_i$, define the type of \emph{$\W$-algebras} on a universe $\UU_j$ as
 %\[\WAlg_{\UU_j}(A,B) \; \defeq \sm{C : \UU_j} \prd{a:A} (B(a) \to C) \to C \]
 %\end{definition}
 
-\begin{definition}\label{def:WHom}
-For $A:\UU_i$, $B : A \to \UU_i$, $\X : \WAlg_{\UU_j}(A,B)$, $\Y : \WAlg_{\UU_k}(A,B)$, define the type of \emph{$\W$-homomorphisms} from $\X$ to $\Y$ by
-\[ \WHom \; (C,c) \; (D,d) \defeq \sm{f:C\to D}\prd{a:A}\prd{t: B(a) \to C} f(c(a,t)) = d(a,\lam{b:B(a)} f(t\;b)) \]
-\end{definition}
+%\begin{definition}\label{def:WHom}
+%For $A$, $B : A \to \UU_i$, $\X : \WAlg_{\UU_j}(A,B)$, $\Y : \WAlg_{\UU_k}(A,B)$, define the type of \emph{$\W$-homomorphisms} from $\X$ to $\Y$ by
+%\[ \WHom \; (C,c) \; (D,d) \defeq \sm{f:C\to D}\prd{a:A}\prd{t: B(a) \to C} f(c(a,t)) = d(a,\lam{b:B(a)} f(t\;b)) \]
+%\end{definition}
+%
+%
+%\begin{definition}\label{def:WCell}
+%For $A:\UU_i$, $B : A \to \UU_i$, $\X : \WAlg_{\UU_j}(A,B)$, $\Y : \WAlg_{\UU_k}(A,B)$ and homomorphisms $\mu, \nu : \WHom \; \X \; \Y$, define the type of \emph{2-cells} between $\mu$ and $\nu$ by
+%\begin{align*} & \WCell \; (C,c) \; (D,d) \; (f,\gamma) \; (g,\delta) \defeq \\ & \;\;\; \;\;\;\WFibHom \; (C,c) \; \Big(f \sim g; x,p,r \mapsto \gamma(x,p) \ct \app_{d(x)}(\funext(r)) \ct \delta(x,p)^{-1}\Big)
+%\end{align*}
+%\end{definition}
+%%
+%%%%%%%%%%%%
+%
+%\begin{definition}\label{def:WFibAlg}
+%For $A:\UU_i$, $B : A \to \UU_i$, define the type of \emph{fibered $\W$-algebras} on a universe $\UU_k$ over $\mathcal{X} : \WAlg_{\UU_j}(A,B)$ by
+%\[\WFibAlg_{\UU_k}(A,B) \; (C,c) \defeq \sm{E : C \to \UU_k} \prd{a:A}\prd{t: B(a) \to C} \big(\prd{b:B(a)} E(t \;b) \big) \to E(c(a,t)) \]
+%\end{definition}
+%
+%\begin{definition}\label{def:WFibHom}
+%For $A:\UU_i$, $B : A \to \UU_i$, $\X : \WAlg_{\UU_j}(A,B)$, $\Y : \WFibAlg_{\UU_k}(A,B) \; \X$, define the type of \emph{fibered $\W$-homomorphisms} from $\X$ to $\Y$ by
+%\[ \WFibHom \; (C,c) \; (E,e) \defeq \sm{(f:\prd{x:C}E(x))}\prd{a:A}\prd{t: B(a) \to C} f(c(a,t)) = e(a,t,\lam{b:B(a)} f(t\;b)) \]
+%\end{definition}
+%
+%
+%
+%\begin{definition}\label{def:WRec}
+%For $A:\UU_i$, $B : A \to \UU_i$, an algebra $\X : \WAlg_{\UU_j}(A,B)$ \emph{satisfies the recursion principle} on a universe $\UU_k$ if for any algebra $\Y : \WAlg_{\UU_k}(A,B)$ there exists
+%a $\W$-homomorphism between $\X$ and $\Y$:
+%\[ \HasWRec_{\UU_k}(\X) \defeq \prd{(\Y:\WAlg_{\UU_k}(A,B))} \WHom \; \X \; \Y \]
+%\end{definition}
+%
+%\begin{definition}\label{def:WInd}
+%For $A:\UU_i$, $B : A \to \UU_i$, an algebra $\X : \WAlg_{\UU_j}(A,B)$ \emph{satisfies the induction principle} on a universe $\UU_k$ if for any fibered algebra $\Y : \WFibAlg_{\UU_k}(A,B) \; \X$ there exists a fibered $\W$-homomorphism between $\X$ and $\Y$:
+%\[ \HasWInd_{\UU_k}(\X) \defeq \prd{(\Y:\WFibAlg_{\UU_k}(A,B) \; \X)} \WFibHom \; \X \; \Y \]
+%\end{definition}
+%
+%\begin{definition}\label{def:WRecUniq}
+%For $A:\UU_i$, $B : A \to \UU_i$, an algebra $\X : \WAlg_{\UU_j}(A,B)$ \emph{satisfies the recursion uniqueness principle} on a universe $\UU_k$ if for any algebra $\Y : \WAlg_{\UU_k}(A,B)$
+%any two $\W$-homomorphisms between $\X$ and $\Y$ are equal:
+%\[ \HasWRecUniq_{\UU_k}(\X) \defeq \prd{(\Y:\WAlg_{\UU_k}(A,B))} \isprop(\WHom \; \X \; \Y) \]
+%\end{definition}
+%
+%\begin{definition}\label{def:WIndUniq}
+%For $A:\UU_i$ and $B : A \to \UU_i$, an algebra $\X : \WAlg_{\UU_j}(A,B)$ \emph{satisfies the induction uniqueness principle} on a universe $\UU_k$ if for any fibered algebra $\Y : \WFibAlg_{\UU_k}(A,B) \; \X$ any two fibered $\W$-homomorphisms between $\X$ and $\Y$ are equal:
+%\[ \HasWIndUniq_{\UU_k}(\X) \defeq \prd{(\Y:\WFibAlg_{\UU_k}(A,B) \; \X)} \isprop(\WFibHom \; \X \; \Y) \]
+%\end{definition}
+%
+%\begin{definition}\label{def:WInit}
+%For $A:\UU_i$ and $B : A \to \UU_i$, an algebra $\X : \WAlg_{\UU_j}(A,B)$ is \emph{initial} on a universe $\UU_k$ if for any algebra $\Y : \WAlg_{\UU_k}(A,B)$ there exists a unique $\W$-homomorphism between $\X$ and $\Y$:
+%\[ \IsWInit_{\UU_k}(\X) \defeq \prd{(\Y:\WAlg_{\UU_k}(A,B))} \iscontr(\WHom \; \X \; \Y) \]  
+%\end{definition}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%
+%\begin{definition}\label{def:WFibCell}
+%For $A:\UU_i$, $B : A \to \UU_i$, $\X : \WAlg_{\UU_j}(A,B)$, $\Y : \WFibAlg_{\UU_k}(A,B) \; \X$ and fibered homomorphisms $\mu, \nu : \WFibHom \; \X \; \Y$, define the type of \emph{fibered 2-cells} between $\mu$ and $\nu$ by
+%\begin{align*} & \WFibCell \; (C,c) \; (E, e) \; (f,\gamma) \; (g,\delta) \defeq \\ & \;\;\; \;\;\;\WFibHom \; (C,c) \; \Big(f \sim g; x,p,r \mapsto \gamma(x,p) \ct \app_{e(x,p)}(\funext(r)) \ct \delta(x,p)^{-1}\Big)
+%\end{align*}
+%\end{definition}
+%For brevity, we will often leave out the first two arguments. As expected, we have:
+%\begin{definition}\label{def:WHInit}
+%Given $A:\UU_i$, $B : A \to \UU_i$, an algebra $\X : \WAlg_{\UU_j}(A,B)$ is called \emph{homotopy-initial} on a universe $\UU_k$ if for any algebra $\Y : \WAlg_{\UU_k}(A,B)$, the type of $\W$-homomorphisms between $\X$ and $\Y$ is contractible:
+%\[ \IsWHInit_{\UU_k}(\X) \defeq \prd{(\Y:\WAlg_{\UU_k}(A,B))} \iscontr(\WHom \; \X \; \Y) \]  
+%\end{definition}
+%
+%\begin{definition}
+%For $A:\UU_i$, $B : A \to \UU_i$, $\X : \WAlg_{\UU_j}(A,B)$ there is a designated \emph{identity} homomorphism from $\X$ to itself, defined by
+%\[ \WIdHom \; (C,c) \defeq (\idfun{C}; a,t \mapsto \refl_{c(a,t)}) \]
+%\end{definition}
+%As before, we denote this homomorphism by $\one_\X$.
+%
+%\begin{definition}
+%For $A:\UU_i$, $B : A \to \UU_i$, $\X : \WAlg_{\UU_j}(A,B)$, $\Y : \WAlg_{\UU_k}(A,B)$, $\Z : \WAlg_{\UU_l}(A,B)$ and homomorphisms $\mu : \WHom \; \X \; \Y$, $\nu : \WHom \; \Y \; \Z$, the \emph{composition} of $\mu$ and $\nu$ is a homomorphism from $\X$ to $\Z$ defined by
+%\begin{align*} & \WCompHom \; (C,c) \; (D,d) \; (E,e) \; (f,\gamma) \; (g,\delta) \defeq  \Big(g \comp f; a,t \mapsto \app_g(\gamma(a,t)) \ct \delta(a, f \comp t) \Big)
+%\end{align*}
+%\end{definition}
+%As before, we often leave out the first three arguments and denote the composition by $\nu \comp \mu$.
+%
+%\begin{definition}
+%For $A:\UU_i$, $B : A \to \UU_i$, $\X : \WAlg_{\UU_j}(A,B)$, $\Y : \WAlg_{\UU_k}(A,B)$ we define the type of \emph{isomorphisms} between $\X$ and $\Y$ as
+%\[\WAlgIso \; \X \; \Y \defeq \sm{(\rho : \WHom \; \X \; \Y)} \Big(\sm{(\mu : \WHom \; \Y \; \X)} \mu \comp \rho = \one_\X \Big) \times \Big(\sm{(\nu : \WHom \; \Y \; \X)} \rho \comp \nu = \one_\Y \Big) \] 
+%\end{definition}
 
 
-\begin{definition}\label{def:WCell}
-For $A:\UU_i$, $B : A \to \UU_i$, $\X : \WAlg_{\UU_j}(A,B)$, $\Y : \WAlg_{\UU_k}(A,B)$ and homomorphisms $\mu, \nu : \WHom \; \X \; \Y$, define the type of \emph{2-cells} between $\mu$ and $\nu$ by
-\begin{align*} & \WCell \; (C,c) \; (D,d) \; (f,\gamma) \; (g,\delta) \defeq \\ & \;\;\; \;\;\;\WFibHom \; (C,c) \; \Big(f \sim g; x,p,r \mapsto \gamma(x,p) \ct \app_{d(x)}(\funext(r)) \ct \delta(x,p)^{-1}\Big)
-\end{align*}
-\end{definition}
-
-%%%%%%%%%%%
-
-\begin{definition}\label{def:WFibAlg}
-For $A:\UU_i$, $B : A \to \UU_i$, define the type of \emph{fibered $\W$-algebras} on a universe $\UU_k$ over $\mathcal{X} : \WAlg_{\UU_j}(A,B)$ by
-\[\WFibAlg_{\UU_k}(A,B) \; (C,c) \defeq \sm{E : C \to \UU_k} \prd{a:A}\prd{t: B(a) \to C} \big(\prd{b:B(a)} E(t \;b) \big) \to E(c(a,t)) \]
-\end{definition}
-
-\begin{definition}\label{def:WFibHom}
-For $A:\UU_i$, $B : A \to \UU_i$, $\X : \WAlg_{\UU_j}(A,B)$, $\Y : \WFibAlg_{\UU_k}(A,B) \; \X$, define the type of \emph{fibered $\W$-homomorphisms} from $\X$ to $\Y$ by
-\[ \WFibHom \; (C,c) \; (E,e) \defeq \sm{(f:\prd{x:C}E(x))}\prd{a:A}\prd{t: B(a) \to C} f(c(a,t)) = e(a,t,\lam{b:B(a)} f(t\;b)) \]
-\end{definition}
+\begin{lemma}\label{IdEqHo}
+For $P$-algebras $(C,s_C)$ and $(D,s_D)$ and morphisms $(f, s_f)$ and $(g, s_g)$ between them, the type of identities $(f, s_f) = (g, s_g))$ is equivalent to the type of homotopies between them,
+\[
+\Id((f, s_f), (g, s_g)) \simeq \Ho((f, s_f), (g, s_g)).
+\]
+\end{lemma}
 
 
-
-\begin{definition}\label{def:WRec}
-For $A:\UU_i$, $B : A \to \UU_i$, an algebra $\X : \WAlg_{\UU_j}(A,B)$ \emph{satisfies the recursion principle} on a universe $\UU_k$ if for any algebra $\Y : \WAlg_{\UU_k}(A,B)$ there exists
-a $\W$-homomorphism between $\X$ and $\Y$:
-\[ \HasWRec_{\UU_k}(\X) \defeq \prd{(\Y:\WAlg_{\UU_k}(A,B))} \WHom \; \X \; \Y \]
-\end{definition}
-
-\begin{definition}\label{def:WInd}
-For $A:\UU_i$, $B : A \to \UU_i$, an algebra $\X : \WAlg_{\UU_j}(A,B)$ \emph{satisfies the induction principle} on a universe $\UU_k$ if for any fibered algebra $\Y : \WFibAlg_{\UU_k}(A,B) \; \X$ there exists a fibered $\W$-homomorphism between $\X$ and $\Y$:
-\[ \HasWInd_{\UU_k}(\X) \defeq \prd{(\Y:\WFibAlg_{\UU_k}(A,B) \; \X)} \WFibHom \; \X \; \Y \]
-\end{definition}
-
-\begin{definition}\label{def:WRecUniq}
-For $A:\UU_i$, $B : A \to \UU_i$, an algebra $\X : \WAlg_{\UU_j}(A,B)$ \emph{satisfies the recursion uniqueness principle} on a universe $\UU_k$ if for any algebra $\Y : \WAlg_{\UU_k}(A,B)$
-any two $\W$-homomorphisms between $\X$ and $\Y$ are equal:
-\[ \HasWRecUniq_{\UU_k}(\X) \defeq \prd{(\Y:\WAlg_{\UU_k}(A,B))} \isprop(\WHom \; \X \; \Y) \]
-\end{definition}
-
-\begin{definition}\label{def:WIndUniq}
-For $A:\UU_i$ and $B : A \to \UU_i$, an algebra $\X : \WAlg_{\UU_j}(A,B)$ \emph{satisfies the induction uniqueness principle} on a universe $\UU_k$ if for any fibered algebra $\Y : \WFibAlg_{\UU_k}(A,B) \; \X$ any two fibered $\W$-homomorphisms between $\X$ and $\Y$ are equal:
-\[ \HasWIndUniq_{\UU_k}(\X) \defeq \prd{(\Y:\WFibAlg_{\UU_k}(A,B) \; \X)} \isprop(\WFibHom \; \X \; \Y) \]
-\end{definition}
-
-\begin{definition}\label{def:WInit}
-For $A:\UU_i$ and $B : A \to \UU_i$, an algebra $\X : \WAlg_{\UU_j}(A,B)$ is \emph{initial} on a universe $\UU_k$ if for any algebra $\Y : \WAlg_{\UU_k}(A,B)$ there exists a unique $\W$-homomorphism between $\X$ and $\Y$:
-\[ \IsWInit_{\UU_k}(\X) \defeq \prd{(\Y:\WAlg_{\UU_k}(A,B))} \iscontr(\WHom \; \X \; \Y) \]  
-\end{definition}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
-\begin{definition}\label{def:WFibCell}
-For $A:\UU_i$, $B : A \to \UU_i$, $\X : \WAlg_{\UU_j}(A,B)$, $\Y : \WFibAlg_{\UU_k}(A,B) \; \X$ and fibered homomorphisms $\mu, \nu : \WFibHom \; \X \; \Y$, define the type of \emph{fibered 2-cells} between $\mu$ and $\nu$ by
-\begin{align*} & \WFibCell \; (C,c) \; (E, e) \; (f,\gamma) \; (g,\delta) \defeq \\ & \;\;\; \;\;\;\WFibHom \; (C,c) \; \Big(f \sim g; x,p,r \mapsto \gamma(x,p) \ct \app_{e(x,p)}(\funext(r)) \ct \delta(x,p)^{-1}\Big)
-\end{align*}
-\end{definition}
-For brevity, we will often leave out the first two arguments. As expected, we have:
-\begin{definition}\label{def:WHInit}
-Given $A:\UU_i$, $B : A \to \UU_i$, an algebra $\X : \WAlg_{\UU_j}(A,B)$ is called \emph{homotopy-initial} on a universe $\UU_k$ if for any algebra $\Y : \WAlg_{\UU_k}(A,B)$, the type of $\W$-homomorphisms between $\X$ and $\Y$ is contractible:
-\[ \IsWHInit_{\UU_k}(\X) \defeq \prd{(\Y:\WAlg_{\UU_k}(A,B))} \iscontr(\WHom \; \X \; \Y) \]  
-\end{definition}
-
-\begin{definition}
-For $A:\UU_i$, $B : A \to \UU_i$, $\X : \WAlg_{\UU_j}(A,B)$ there is a designated \emph{identity} homomorphism from $\X$ to itself, defined by
-\[ \WIdHom \; (C,c) \defeq (\idfun{C}; a,t \mapsto \refl_{c(a,t)}) \]
-\end{definition}
-As before, we denote this homomorphism by $\one_\X$.
-
-\begin{definition}
-For $A:\UU_i$, $B : A \to \UU_i$, $\X : \WAlg_{\UU_j}(A,B)$, $\Y : \WAlg_{\UU_k}(A,B)$, $\Z : \WAlg_{\UU_l}(A,B)$ and homomorphisms $\mu : \WHom \; \X \; \Y$, $\nu : \WHom \; \Y \; \Z$, the \emph{composition} of $\mu$ and $\nu$ is a homomorphism from $\X$ to $\Z$ defined by
-\begin{align*} & \WCompHom \; (C,c) \; (D,d) \; (E,e) \; (f,\gamma) \; (g,\delta) \defeq  \Big(g \comp f; a,t \mapsto \app_g(\gamma(a,t)) \ct \delta(a, f \comp t) \Big)
-\end{align*}
-\end{definition}
-As before, we often leave out the first three arguments and denote the composition by $\nu \comp \mu$.
-
-\begin{definition}
-For $A:\UU_i$, $B : A \to \UU_i$, $\X : \WAlg_{\UU_j}(A,B)$, $\Y : \WAlg_{\UU_k}(A,B)$ we define the type of \emph{isomorphisms} between $\X$ and $\Y$ as
-\[\WAlgIso \; \X \; \Y \defeq \sm{(\rho : \WHom \; \X \; \Y)} \Big(\sm{(\mu : \WHom \; \Y \; \X)} \mu \comp \rho = \one_\X \Big) \times \Big(\sm{(\nu : \WHom \; \Y \; \X)} \rho \comp \nu = \one_\Y \Big) \] 
-\end{definition}
 
 \begin{lemma}\label{WFibHomSpace}
 For $A:\UU_i$, $B : A \to \UU_i$, $\X : \WAlg_{\UU_j}(A,B)$, $\Y : \WFibAlg_{\UU_k}(A,B) \; \X$ and $\mu,\nu : \WFibHom \; \X \; \Y$, the path space $\mu = \nu$ is equivalent to the space of fibered 2-cells between $\mu$ and $\nu$:
