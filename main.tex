@@ -1625,9 +1625,6 @@ As in section \ref{section:simple}, our ultimate goal is to show that being indu
 
 \begin{lemma} \label{lem:Wetaind}
 If $s_C : P(C)\to C$  is an inductive $P$-algebra, then it satisfies the following further rules:
-
-[NEED TO CHECK THAT THESE NEW VERSIONS ARE CORRECT]
-
 \begin{enumerate}[(i)]
 
 %\item Propositional $\W$-uniqueness principle.\smallskip
@@ -1640,13 +1637,12 @@ If $s_C : P(C)\to C$  is an inductive $P$-algebra, then it satisfies the followi
 %x:A, u: B(x) \to C \vdash q(x,u) : g(s_C(x,u)) = e(x,u,\lambda{y}. g(u(y)))}
 %{z:C \vdash \eta(z, p, q) : f(z) = g(z)}\end{mathpar}
 
-
-\item Propositional $\eta$-rule (?)\smallskip
+\item Propositional $\eta$-rule\smallskip
 \begin{mathpar}
 \inferrule{
  z:C \vdash E(z)\,\type \\ \\ z:C \vdash f(z) : E(z) \\
  x:A,\, u: B(x) \to C,\, v : (\Pi{y:B(x)}) E(u(y)) \vdash e(x,u,v) :E(s_C(x,u))  \\ x:A, u: B(x) \to C \vdash p(x,u) : f(s_C(x,u)) = e\big(x,u,\lambda{y}. f(u(y))\big)}
-{z:C \vdash \eta(z, e, f, p) :  f(z) = \ind(z,e)}
+{z:C \vdash \eta(z) :  f(z) = \ind(z,e)}
 \end{mathpar}
 
 %\item Propositional $\W$-coherence principle.\smallskip
@@ -1655,7 +1651,7 @@ If $s_C : P(C)\to C$  is an inductive $P$-algebra, then it satisfies the followi
 %{\windcoh_{\UU_i}(A,x.B,w.E,x.p.r.e,w.f,x.p.\gamma,w.g,x.p.\delta,a,t) : \\ \winduniq(\wsup(a,t)) = \gamma(a,t) \ct \app_{e(a,t,-)}(\funext(\lam{b:B(a)}\winduniq(t\;b)))\ct \delta(a,t)^{-1}}
 %\end{mathpar}
 %
-\item Propositional $(\beta, \eta)$-compatibility rule [JUST GUESSING]\smallskip
+\item Propositional $(\beta, \eta)$-compatibility rule\smallskip
 \begin{mathpar}
 \inferrule{
 z:C \vdash E(z)   \\ z:C \vdash f(z) : E(z) \\ 
@@ -1669,22 +1665,21 @@ x:A, u: B(x) \to C \vdash p(x,u) : f(s_C(x,u)) = e(x,u,\lambda{y}.f(u(y)))
 p(x,u) \ct \app_{e(x,u,-)}(\funext(\lambda{y}.\eta(u(y))))
 }
 \end{mathpar}
-
 \end{enumerate}
 \end{lemma}
+The $(\beta,\eta)$-compatibility rule will be explained in \ref{betaeta} below.
+
 \begin{proof}
-In showing the above laws, we use the induction principle with the type family $x \mapsto f(z) =_{E(z)} g(z)$. For this we need to show that for any $x,u$ we have $f(s_C(x,u)) = g(s_C(x,u))$ under the induction hypothesis $h : \prd{y:B(x)} f(u(y)) = g((u(y))$. We can construct this path explicitly as 
+In showing the above laws, we use the induction principle with the type family $z \mapsto f(z) =_{E(z)} \ind(z,e)$. For this we need to show that for any $x,u$ we have $f(s_C(x,u)) = g(s_C(x,u))$ under the induction hypothesis $h : \prd{y:B(x)} f(u(y)) = g((u(y))$. We can construct this path explicitly as 
 \[ p(x,u) \ct \app_{e(x,u,-)}(\funext(h))\ct q(x,u)^{-1} \]
 
-[NEED TO FINISH THIS PROOF]
+[NEED TO FIX THIS PROOF]
 \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-We first want to show that induction implies recursion for $P$-algebras; thus we make the following definition.
+We can now show that induction implies recursion for $P$-algebras, in the sense of the following definition.
 
 \begin{definition} Let $P = P(A,B)$ for $x:A \vdash B(x) \,\type$, and let $s_C : P(C)\to C$ be a $P$-algebra.  We say that $s_C : P(C)\to C$ is \emph{recursive} if it satisfies the following rules:
-
-[NEED TO CHECK THAT THESE RULES ARE CORRECT]
 \begin{enumerate}[(i)] 
 \item $\W$-recursion rule.\smallskip
 \begin{mathpar}
@@ -1696,7 +1691,7 @@ x:A,\, v : B(x) \to E \vdash e(x,v) :E }
 { z : C \vdash \rec(z,e) : E}
 \end{mathpar}
 
-\item Simple propositional $\beta$-rule (?)\smallskip
+\item Simple propositional $\beta$-rule.\smallskip
 \begin{mathpar}
 \inferrule{
 E : \type \\ 
@@ -1705,16 +1700,16 @@ x:A,\, v : B(x) \to E  \vdash e(x,v) :E}
  \beta(x,u,e) : \rec(s_C(x,u),e) \peq e\big(x,\lambda{y}.\rec(u(y),e)\big) }
 \end{mathpar}
 
-\item Simple propositional $\eta$-rule (?)\smallskip
+\item Simple propositional $\eta$-rule.\smallskip
 \begin{mathpar}
 \inferrule{
 E:\type \\ z:C \vdash f(z) : E \\ 
 x:A,\, v: B(x) \to E \vdash e(x,v) :E \\ 
 x:A, u: B(x) \to C \vdash p(x,u) : f(s_C(x,u)) = e\big(x,\lambda{y}. f(u(y))\big)}
-{z:C \vdash \eta(z, e, f, p) :  f(z) = \rec(z,e)}
+{z:C \vdash \eta(z) :  f(z) = \rec(z,e)}
 \end{mathpar}
 
-\item Simle propositional $(\beta, \eta)$-compatibility rule [JUST GUESSING]\smallskip
+\item Simple propositional $(\beta, \eta)$-compatibility rule.\smallskip
 \begin{mathpar}
 \inferrule{
 E:\type   \\ z:C \vdash f(z) : E \\ 
@@ -1728,12 +1723,6 @@ x:A, u: B(x) \to C \vdash p(x,u) : f(s_C(x,u)) = e(x,\lambda{y}.f(u(y)))
 p(x,u) \ct \app_{e(x,-)}(\funext(\lambda{y}.\eta(u(y))))
 }
 \end{mathpar}
-
-%\item Simple propositional ($\beta,\eta$)-compatibility rule [FIX]\smallskip
-%\begin{mathpar}
-%\inferrule{A : \UU_i \\ x:A \vdash B(x) : \UU_i \\ a : A \\ t : B(a) \to \W \\ C : \UU_j \\ x:A, r : B(x) \to C \vdash c(x,r) : C \\ w:\W\vdash f(w) : C \\ x:A, p: B(x) \to \W \vdash \gamma(x,p) : f(\wsup(x,p)) = c(x,\lam{b:B(x)} f(p \;b)) \\ w:\W\vdash g(x) : C \\ x:A, p: B(x) \to \W \vdash \delta(x,p) : g(\wsup(x,p)) = c(x,\lam{b:B(x)} g(p \;b))}
-%{\wreccoh_{\UU_i}(A,x.B,C,x.r.c,w.f,x.p.\gamma,w.g,x.p.\delta,a,t) : \\ \wrecuniq(\wsup(a,t)) = \gamma(a,t) \ct \app_{c(a,-)}(\funext(\lam{b:B(a)}\wrecuniq(t\;b)))\ct \delta(a,t)^{-1}}
-%\end{mathpar}
 
 \end{enumerate}
 \end{definition}
@@ -1784,7 +1773,7 @@ propositional $(\beta, \eta)$-computatibility rules are special cases of the rul
 
 \subsection{Homotopy initial W-types}
 
-For the further investigation of W-types, and in particular to show that they are homotopy-initial algebras in a precise sense, we require the notions of a homomorphism and a homotopy thereof, again in both simple and fibered forms.
+For the further investigation of W-types we require the notions of algebra homomorphism and homotopies of homomorphisms, again in both simple and fibered forms.
 
 %\begin{definition}\label{def:WAlg}
 %For $A:\UU_i$, $B : A \to \UU_i$, define the type of \emph{$\W$-algebras} on a universe $\UU_j$ as
