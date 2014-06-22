@@ -1679,7 +1679,7 @@ In showing the above laws, we use the induction principle with the type family $
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 We can now show that induction implies recursion for $P$-algebras, in the sense of the following definition.
 
-\begin{definition} Let $P = P(A,B)$ for $x:A \vdash B(x) \,\type$, and let $s_C : P(C)\to C$ be a $P$-algebra.  We say that $s_C : P(C)\to C$ is \emph{recursive} if it satisfies the following rules:
+\begin{definition}\label{def:recursiveW} Let $P = P(A,B)$ for $x:A \vdash B(x) \,\type$, and let $s_C : P(C)\to C$ be a $P$-algebra.  We say that $s_C : P(C)\to C$ is \emph{recursive} if it satisfies the following rules:
 \begin{enumerate}[(i)] 
 \item $\W$-recursion rule.\smallskip
 \begin{mathpar}
@@ -1773,20 +1773,20 @@ propositional $(\beta, \eta)$-computatibility rules are special cases of the rul
 
 \subsection{Homotopy initial W-types}
 
-For the further investigation of W-types we require the notions of algebra homomorphism and homotopies of homomorphisms, again in both simple and fibered forms.  Throughout this section, fix $x:A\vdash B(x)$ and write $P(X)$ for the associated polynomial functor $(\Sigma x : A) (B(x) \rightarrow X)$.  Recall that a $P$-algebra is a type $C$ equipped a map
-$s_C :  PC \rightarrow C$. 
+For the further investigation of W-types we require the notions of an algebra homomorphism and a homotopy of homomorphisms, again in both simple and fibered forms.  Throughout this section, fix $x:A\vdash B(x)$ and write $P(X)$ for the associated polynomial functor $(\Sigma x : A) (B(x) \rightarrow X)$.  Recall that a $P$-algebra is a type $C$ equipped a map
+$s_C :  PC \rightarrow C$.  
 
 \begin{definition}
 For $P$-algebras $(C,s_C)$ and $(D,s_D)$, a \emph{(weak) 
-homomorphism}  $$(f, s_f) : (C, s_C) \rightarrow (D, s_D)$$
+homomorphism}  $$(f, \bar{f}) : (C, s_C) \rightarrow (D, s_D)$$
 consists of a map $f : C \rightarrow D$ and an identity,
 \[
-s_f : \id{PC \rightarrow D}\big( f \circ s_C \, ,  s_{D} \circ Pf \big) \, .
+\bar{f} : \id{PC \rightarrow D}\big( f \circ s_C \, ,  s_{D} \circ Pf \big) \, .
 \]
 Such an algebra homomorphism can be represented suggestively in the form:
 \[
 \xymatrix{
- PC \ar[d]_{s_C} \ar[r]^{Pf}  \ar@{}[dr]|{s_f} &  PD \ar[d]^{s_D}\\
+ PC \ar[d]_{s_C} \ar[r]^{Pf}  \ar@{}[dr]|{\bar{f}} &  PD \ar[d]^{s_D}\\
 C \ar[r]_{f}   & D }
 \] 
 Accordingly, the type of algebra maps is defined by
@@ -1799,14 +1799,15 @@ Accordingly, the type of algebra maps is defined by
 \end{definition}
 \medskip
 
-Given two morphisms of $P$-algebras $(f, s_f) \co C \to D$ and $(g, s_g) \co D \to E$, as indicated in:
+We will sometime refer to an algebra homomorphism $(f, \bar{f}) : (C, s_C) \rightarrow (D, s_D)$ simply by $f$, and to an algebra by its underlying type $C$.
+Given two morphisms of $P$-algebras $f \co C \to D$ and $g \co D \to E$, as indicated in:
 \[
 \xymatrix{
- PC \ar[d]_{s_C} \ar[r]^{Pf}  \ar@{}[dr]|{s_f} &  PD \ar[d]^{s_D}  \ar[r]^{Pg}  \ar@{}[dr]|{s_g} &  PE \ar[d]^{s_E} \\
+ PC \ar[d]_{s_C} \ar[r]^{Pf}  \ar@{}[dr]|{\bar{f}} &  PD \ar[d]^{s_D}  \ar[r]^{Pg}  \ar@{}[dr]|{\bar{g}} &  PE \ar[d]^{s_E} \\
 C \ar[r]_{f}   & D \ar[r]_{g}   & E }
 \]
-we can define their composite by ``pasting together the identities $s_f$ and $s_g$" as follows.
-The composite $$(g, s_g) \circ (f, s_f) \co (C,s_C) \to (E,s_E)$$ will have $g\circ f$ in the first component, but the second component must be an identity of the form
+we can define their composite by ``pasting together the identities $\bar{f}$ and $\bar{g}$" as follows.
+The composite $$(g, \bar{g}) \circ (f, \bar{f}) \co (C,s_C) \to (E,s_E)$$ will have $g\circ f$ in the first component, but the second component must be an identity of the form
 \[
 g\circ f\circ s_C = s_E\circ P(gf)\, .
 \]
@@ -1815,16 +1816,18 @@ To get this, let $p : Pg\circ Pf = P(gf)$ as expected, then we can compose ident
 [NEED TO MAKE p INVISIBLE]
 \[
 \xymatrix{
- PC \ar[d]_{s_C} \ar[r]^{Pf}  \ar@{}[dr]|{s_f} \ar@{}@/^2pc/[rr]|{p} \ar@/^3pc/[rr]^{P(gf)} &  PD \ar[d]^{s_D}  \ar[r]^{Pg}  \ar@{}[dr]|{s_g} &  PE \ar[d]^{s_E} \\
+ PC \ar[d]_{s_C} \ar[r]^{Pf}  \ar@{}[dr]|{\bar{f}} \ar@{}@/^2pc/[rr]|{p} \ar@/^3pc/[rr]^{P(gf)} &  PD \ar[d]^{s_D}  \ar[r]^{Pg}  \ar@{}[dr]|{\bar{g}} &  PE \ar[d]^{s_E} \\
 C \ar[r]_{f}   & D \ar[r]_{g}   & E }
 \]
 as follows:
 \[
-s_{gf} \defeq (g(s_f)\cdot g(Pf))\cdot s_E(p)
+\overline{gf} \defeq (g(\bar{f})\cdot g(Pf))\cdot s_E(p)
 \]
+Here the pre- and post-compositions of maps with identities, $s_E(p)$ and $g(\bar{f})$ respectively, are defined by identity elimination.
 This gives the required  element in $\Id(g\circ f\circ s_C ,\, s_E\circ P(gf))$.
 
-As in the case of bipointed types, we do not quite have a category since the composition operation is not strictly associative, but only so up to a system of higher and higher identities, as in an $\infty$-category. But it is again possible to define the notion of a homotopy-initial $P$-algebra:
+As in the case of bipointed types, we do not quite have a category since the composition operation is not strictly associative, but only so up to a system of higher and higher identities. 
+Nonetheless, it is again possible to explicitly define the notion of a homotopy-initial $P$-algebra:
 
 \begin{definition}\label{def:AlgInit}
 A $P$-algebra $(C, s_C)$ is  \emph{homotopy-initial}  if for any $P$-algebra $(D,s_D)$, the type $\Hom[(C, s_C),(D,s_D)]$ of morphisms from $(C, s_C)$ to $(D,s_D)$
@@ -1834,135 +1837,330 @@ is contractible, \ie the following type is inhabilited
 \]  
 \end{definition}
 
-We again stress that homotopy-initiality is a purely type-theoretic notion. In order to relate it to the rules for inductive and recursive types, we again require an alternative description of the identity type of two morphisms. For this, we require the notion of a homotopy between morphisms of $P$-algebras. 
+We again stress that homotopy-initiality is a purely type-theoretic notion. In order to relate it to the rules for inductive and recursive types, we again require an alternate description of the identity type of two morphisms. For this, we shall require the notion of a homotopy between morphisms of $P$-algebras. 
 
 \begin{definition}
-For $P$-algebras $(C,s_C)$ and $(D,s_D)$ and morphisms $(f, s_f)$ and $(g, s_g)$ between them, a \emph{homotopy}  $$(h, s_h) : (f, s_f) \rightarrow (g, s_g)$$
+For $P$-algebras $(C,s_C)$ and $(D,s_D)$ and morphisms $(f, \bar{f})$ and $(g, \bar{g})$ between them, a \emph{homotopy}  $$(h, \bar{h}) : (f, \bar{f}) \rightarrow (g, \bar{g})$$
 consists of an identity  $h : f = g$ together with a (higher) identity, 
 \[
-s_h: s_f \cdot s_D(Ph)\ =\ (h(s_C))\cdot s_g\, ,
+\bar{h} : \bar{f} \cdot s_D(Ph) = (h(s_C))\cdot \bar{g}\, ,
 \]
-between elements in $\id{PC \rightarrow D}\big( f \circ s_C \, ,  s_{D} \circ Pf \big)$.  Here the identity $Ph : Pf = Pg$ is derived from $h : f = g$ in the obvious way, and the pre- and post-compositions of maps with identities, $h(s_C)$ and $s_D(Ph)$ respectively, are determined by identity elimination.
+between elements in $\id{PC \rightarrow D}\big( f \circ s_C \, ,  s_{D} \circ Pf \big)$.  Here the identity $Ph : Pf = Pg$ is derived from $h : f = g$, and $h(s_C)$ and $s_D(Ph)$ are again pre- and post-compositions, respectively, of maps with identities.
 
 Such a homotopy can be represented as filling the three-dimensional space between the two pasting diagrams:
 \[
 \xymatrix{
 PC \ar@/^1pc/[r]^{Pg}   \ar[d]_{s_C}   \ar@/_1pc/[r]_{Pf} \ar@{}[r]|{Ph}
 & PD \ar[d]^{s_D}  \\
-C  \ar@/_1pc/[r]_f  \ar@{}[r]^{s_f} & D }
+C  \ar@/_1pc/[r]_f  \ar@{}[r]^{\bar{f}} & D }
 \qquad
 \xymatrix{
-PC \ar@/^1pc/[r]^{Pg}   \ar[d]_{s_C} \ar@{}[r]_(.52){s_g}  & PD \ar[d]^{s_D}  \\
+PC \ar@/^1pc/[r]^{Pg}   \ar[d]_{s_C} \ar@{}[r]_(.52){\bar{g}}  & PD \ar[d]^{s_D}  \\
 C \ar@/^1pc/[r]^g  \ar@/_1pc/[r]_f  \ar@{}[r]|{h} & D }
 \]
 
 Accordingly, the type of homotopies of algebra maps is defined by
 \[
 \Ho
-\big[ (f,s_f), (g, s_g)  \big]
+\big[ (f,\bar{f}), (g, \bar{g})  \big]
  \defeq  
-(\Sigma h:  f = g) \, \Id\big( s_f \cdot s_D(Ph),\, (h(s_C))\cdot s_g \big) \, .
+(\Sigma h:  f = g) \, \Id\big( \bar{f} \cdot s_D(Ph),\, (h(s_C))\cdot \bar{g} \big) \, .
 \]
 \end{definition}
 
-%\begin{definition}\label{def:WAlg}
-%For $A:\UU_i$, $B : A \to \UU_i$, define the type of \emph{$\W$-algebras} on a universe $\UU_j$ as
-%\[\WAlg_{\UU_j}(A,B) \; \defeq \sm{C : \UU_j} \prd{a:A} (B(a) \to C) \to C \]
-%\end{definition}
-
-%\begin{definition}\label{def:WHom}
-%For $A$, $B : A \to \UU_i$, $\X : \WAlg_{\UU_j}(A,B)$, $\Y : \WAlg_{\UU_k}(A,B)$, define the type of \emph{$\W$-homomorphisms} from $\X$ to $\Y$ by
-%\[ \WHom \; (C,c) \; (D,d) \defeq \sm{f:C\to D}\prd{a:A}\prd{t: B(a) \to C} f(c(a,t)) = d(a,\lam{b:B(a)} f(t\;b)) \]
-%\end{definition}
-%
-%
-%\begin{definition}\label{def:WCell}
-%For $A:\UU_i$, $B : A \to \UU_i$, $\X : \WAlg_{\UU_j}(A,B)$, $\Y : \WAlg_{\UU_k}(A,B)$ and homomorphisms $\mu, \nu : \WHom \; \X \; \Y$, define the type of \emph{2-cells} between $\mu$ and $\nu$ by
-%\begin{align*} & \WCell \; (C,c) \; (D,d) \; (f,\gamma) \; (g,\delta) \defeq \\ & \;\;\; \;\;\;\WFibHom \; (C,c) \; \Big(f \sim g; x,p,r \mapsto \gamma(x,p) \ct \app_{d(x)}(\funext(r)) \ct \delta(x,p)^{-1}\Big)
-%\end{align*}
-%\end{definition}
-%%
-%%%%%%%%%%%%
-%
-%\begin{definition}\label{def:WFibAlg}
-%For $A:\UU_i$, $B : A \to \UU_i$, define the type of \emph{fibered $\W$-algebras} on a universe $\UU_k$ over $\mathcal{X} : \WAlg_{\UU_j}(A,B)$ by
-%\[\WFibAlg_{\UU_k}(A,B) \; (C,c) \defeq \sm{E : C \to \UU_k} \prd{a:A}\prd{t: B(a) \to C} \big(\prd{b:B(a)} E(t \;b) \big) \to E(c(a,t)) \]
-%\end{definition}
-%
-%\begin{definition}\label{def:WFibHom}
-%For $A:\UU_i$, $B : A \to \UU_i$, $\X : \WAlg_{\UU_j}(A,B)$, $\Y : \WFibAlg_{\UU_k}(A,B) \; \X$, define the type of \emph{fibered $\W$-homomorphisms} from $\X$ to $\Y$ by
-%\[ \WFibHom \; (C,c) \; (E,e) \defeq \sm{(f:\prd{x:C}E(x))}\prd{a:A}\prd{t: B(a) \to C} f(c(a,t)) = e(a,t,\lam{b:B(a)} f(t\;b)) \]
-%\end{definition}
-%
-%
-%
-%\begin{definition}\label{def:WRec}
-%For $A:\UU_i$, $B : A \to \UU_i$, an algebra $\X : \WAlg_{\UU_j}(A,B)$ \emph{satisfies the recursion principle} on a universe $\UU_k$ if for any algebra $\Y : \WAlg_{\UU_k}(A,B)$ there exists
-%a $\W$-homomorphism between $\X$ and $\Y$:
-%\[ \HasWRec_{\UU_k}(\X) \defeq \prd{(\Y:\WAlg_{\UU_k}(A,B))} \WHom \; \X \; \Y \]
-%\end{definition}
-%
-%\begin{definition}\label{def:WInd}
-%For $A:\UU_i$, $B : A \to \UU_i$, an algebra $\X : \WAlg_{\UU_j}(A,B)$ \emph{satisfies the induction principle} on a universe $\UU_k$ if for any fibered algebra $\Y : \WFibAlg_{\UU_k}(A,B) \; \X$ there exists a fibered $\W$-homomorphism between $\X$ and $\Y$:
-%\[ \HasWInd_{\UU_k}(\X) \defeq \prd{(\Y:\WFibAlg_{\UU_k}(A,B) \; \X)} \WFibHom \; \X \; \Y \]
-%\end{definition}
-%
-%\begin{definition}\label{def:WRecUniq}
-%For $A:\UU_i$, $B : A \to \UU_i$, an algebra $\X : \WAlg_{\UU_j}(A,B)$ \emph{satisfies the recursion uniqueness principle} on a universe $\UU_k$ if for any algebra $\Y : \WAlg_{\UU_k}(A,B)$
-%any two $\W$-homomorphisms between $\X$ and $\Y$ are equal:
-%\[ \HasWRecUniq_{\UU_k}(\X) \defeq \prd{(\Y:\WAlg_{\UU_k}(A,B))} \isprop(\WHom \; \X \; \Y) \]
-%\end{definition}
-%
-%\begin{definition}\label{def:WIndUniq}
-%For $A:\UU_i$ and $B : A \to \UU_i$, an algebra $\X : \WAlg_{\UU_j}(A,B)$ \emph{satisfies the induction uniqueness principle} on a universe $\UU_k$ if for any fibered algebra $\Y : \WFibAlg_{\UU_k}(A,B) \; \X$ any two fibered $\W$-homomorphisms between $\X$ and $\Y$ are equal:
-%\[ \HasWIndUniq_{\UU_k}(\X) \defeq \prd{(\Y:\WFibAlg_{\UU_k}(A,B) \; \X)} \isprop(\WFibHom \; \X \; \Y) \]
-%\end{definition}
-%
-%\begin{definition}\label{def:WInit}
-%For $A:\UU_i$ and $B : A \to \UU_i$, an algebra $\X : \WAlg_{\UU_j}(A,B)$ is \emph{initial} on a universe $\UU_k$ if for any algebra $\Y : \WAlg_{\UU_k}(A,B)$ there exists a unique $\W$-homomorphism between $\X$ and $\Y$:
-%\[ \IsWInit_{\UU_k}(\X) \defeq \prd{(\Y:\WAlg_{\UU_k}(A,B))} \iscontr(\WHom \; \X \; \Y) \]  
-%\end{definition}
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%
-%
-%\begin{definition}\label{def:WFibCell}
-%For $A:\UU_i$, $B : A \to \UU_i$, $\X : \WAlg_{\UU_j}(A,B)$, $\Y : \WFibAlg_{\UU_k}(A,B) \; \X$ and fibered homomorphisms $\mu, \nu : \WFibHom \; \X \; \Y$, define the type of \emph{fibered 2-cells} between $\mu$ and $\nu$ by
-%\begin{align*} & \WFibCell \; (C,c) \; (E, e) \; (f,\gamma) \; (g,\delta) \defeq \\ & \;\;\; \;\;\;\WFibHom \; (C,c) \; \Big(f \sim g; x,p,r \mapsto \gamma(x,p) \ct \app_{e(x,p)}(\funext(r)) \ct \delta(x,p)^{-1}\Big)
-%\end{align*}
-%\end{definition}
-%For brevity, we will often leave out the first two arguments. As expected, we have:
-%\begin{definition}\label{def:WHInit}
-%Given $A:\UU_i$, $B : A \to \UU_i$, an algebra $\X : \WAlg_{\UU_j}(A,B)$ is called \emph{homotopy-initial} on a universe $\UU_k$ if for any algebra $\Y : \WAlg_{\UU_k}(A,B)$, the type of $\W$-homomorphisms between $\X$ and $\Y$ is contractible:
-%\[ \IsWHInit_{\UU_k}(\X) \defeq \prd{(\Y:\WAlg_{\UU_k}(A,B))} \iscontr(\WHom \; \X \; \Y) \]  
-%\end{definition}
-%
-%\begin{definition}
-%For $A:\UU_i$, $B : A \to \UU_i$, $\X : \WAlg_{\UU_j}(A,B)$ there is a designated \emph{identity} homomorphism from $\X$ to itself, defined by
-%\[ \WIdHom \; (C,c) \defeq (\idfun{C}; a,t \mapsto \refl_{c(a,t)}) \]
-%\end{definition}
-%As before, we denote this homomorphism by $\one_\X$.
-%
-%\begin{definition}
-%For $A:\UU_i$, $B : A \to \UU_i$, $\X : \WAlg_{\UU_j}(A,B)$, $\Y : \WAlg_{\UU_k}(A,B)$, $\Z : \WAlg_{\UU_l}(A,B)$ and homomorphisms $\mu : \WHom \; \X \; \Y$, $\nu : \WHom \; \Y \; \Z$, the \emph{composition} of $\mu$ and $\nu$ is a homomorphism from $\X$ to $\Z$ defined by
-%\begin{align*} & \WCompHom \; (C,c) \; (D,d) \; (E,e) \; (f,\gamma) \; (g,\delta) \defeq  \Big(g \comp f; a,t \mapsto \app_g(\gamma(a,t)) \ct \delta(a, f \comp t) \Big)
-%\end{align*}
-%\end{definition}
-%As before, we often leave out the first three arguments and denote the composition by $\nu \comp \mu$.
-%
-%\begin{definition}
-%For $A:\UU_i$, $B : A \to \UU_i$, $\X : \WAlg_{\UU_j}(A,B)$, $\Y : \WAlg_{\UU_k}(A,B)$ we define the type of \emph{isomorphisms} between $\X$ and $\Y$ as
-%\[\WAlgIso \; \X \; \Y \defeq \sm{(\rho : \WHom \; \X \; \Y)} \Big(\sm{(\mu : \WHom \; \Y \; \X)} \mu \comp \rho = \one_\X \Big) \times \Big(\sm{(\nu : \WHom \; \Y \; \X)} \rho \comp \nu = \one_\Y \Big) \] 
-%\end{definition}
-
-
 \begin{lemma}\label{IdEqHo}
-For $P$-algebras $(C,s_C)$ and $(D,s_D)$ and morphisms $(f, s_f)$ and $(g, s_g)$ between them, the type of identities $(f, s_f) = (g, s_g))$ is equivalent to the type of homotopies between them,
+For $P$-algebras $(C,s_C)$ and $(D,s_D)$ and morphisms $(f, \bar{f})$ and $(g, \bar{g})$ between them, the type of identities $(f, \bar{f}) = (g, \bar{g}))$ is equivalent to the type of homotopies between them,
 \[
-\Id((f, s_f), (g, s_g)) \simeq \Ho((f, s_f), (g, s_g)).
+\Id((f, \bar{f}), (g, \bar{g}) \simeq \Ho((f, \bar{f}), (g, \bar{g})).
 \]
 \end{lemma}
+
+\begin{proof}
+[FILL IN THE PROOF]
+\end{proof}
+
+\begin{remark}
+In terms of the concepts just defined, we can now analyze the recursion rules in definition \ref{def:recursiveW} as follows: the $\W$-recursion rule says that, given any type $E$ together with the map $e : PE\to E$ --- i.e.\ any $P$-algebra --- there is a map $\rec : C\to E$.  The simple propositional $\beta$-rule says that this map $\rec$ is a homomorphism.  The simple propositional $\eta$-rule says that if $f : C\to E$ is any homomorphism, then there is an identity $\eta : f = \rec$.  And the simple propositional $(\beta, \eta)$-compatibility rule says that this identity $\eta$ is in fact a homotopy.
+\end{remark}
+
+\begin{proposition}\label{prop:Wrec2hinit}
+A $P$-algebra is homotopy-initial if it is recursive in the sense of definition \ref{def:recursiveW}.
+\end{proposition}
+
+\begin{proof}
+The center of contraction is $\rec$, and any homomorphism is homotopic to $\rec$ by $\eta$ and $(\beta,\eta)$-compatibiliy.
+\end{proof}
+
+%%%%%%%%%%%% Fibered stuff %%%%%%%%%%%%%%%
+
+In order to extend our results from recursion to induction, we next require the fibered versions of the notions of a $P$-algebra, homomorphism, and homotopy.
+
+\begin{definition} \label{def:fibbipointed}
+Let $A = (A, a_0, a_1)$ be a bipointed type. A \emph{fibered bipointed type} over $A$ is a dependent type
+\[
+x : A \vdash E(x) \co \type
+\]
+equipped with distinguished elements $e_0 \co E(a_0)$ and $e_1 \co E(a_1)$.
+\end{definition}
+
+Note how the definition of a fibered bipointed type describes the data in the premiss of the elimination rule for an inductive bipointed type. Given a 
+fibered bipointed type over $A$ as in Definition~\ref{def:fibbipointed}, we can define $E' \defeq (\Sigma x : A) E(x)$ and observe that
+we can equip $E'$ with the structure of a bipointed type by taking $e'_0 \defeq \pair(a_0, e_0)$ and $e'_1 \defeq \pair(a_1, e_1)$.
+In this way, the first projection $\pi_1 \co E' \to A$ becomes a morphism of bipointed types:
+\[
+\xymatrix{
+1 \ar@/_1pc/[dr]_{a_0} \ar[r]^-{e'_0} & E' \ar[d]^{\pi_1} & 1 \ar[l]_-{e'_1} \ar@/^1pc/[dl]^{a_1} \\ 
+ & A & }
+ \]
+
+\begin{definition} \label{def:fibsection} Let $E = (E, e_0, e_1)$ be a fibered bipointed type over~$A = (A, a_0, a_1)$ . 
+A \emph{bipointed section} of $E$ is an element~$s \co (\Pi x \co A) E(x)$ equipped with paths $\bar{s}_0 \co \Id(s(a_0), e_0)$ and $\bar{s}_1 \co \Id(s(a_1), e_1)$. 
+\end{definition} 
+
+Given a section $s = (s, \bar{s}_0, \bar{s}_1)$ of a bipointed type $E$, we can define a morphism $s' \co A \to E'$, where $E'$ is the
+bipointed type defined by $E' \defeq (\Sigma x :A) E(x)$, as follows.
+The underlying function is given by letting $s'(x) \defeq \pair(x, s(x))$, for $x : A$. For $k = 0, 1$, the required path $\bar{s}'_k \co s'(a_k) = e'_k$,
+is then given by
+\[
+s'(a_k) = \pair(a_k, s(a_k)) =  \pair(a_k, e_k) = e'_k \, .
+\]
+Observe how the morphism $s' \co A \to E'$ provides a right inverse for $\pi_1 \co E' \to A$ (\ie what is usually called a section in 
+category theory), since we have
+\[
+(\pi_1 \circ s)(x) = \pi_1 (\pair(x, sx)) = x 
+\]
+for every $x \co A$. We represent this situation with the diagram
+\[
+\xymatrix{
+E' \ar[d]^{\pi_1} \\
+A . \ar@/^1.2pc/[u]^{s'} }
+\]
+
+\begin{definition} We say that a bipointed type $A$ is \emph{homotopy-projective} if every fibered bipointed type over it has a bipointed section.
+\end{definition} 
+
+\begin{definition} \label{def:2cellsection} Let $E = (E, e_0, e_1)$ be a fibered bipointed type over $A = (A, a_0, a_1)$. If $s = (s, \bar{s}_0, 
+\bar{s}_1)$ and $t = (t, \bar{t}_0, \bar{t}_1)$ are bipointed sections of $E$, a \emph{bipointed homotopy} 
+\[
+(\alpha, \bar{\alpha}_0, \bar{\alpha}_1) \co (s, \bar{s}_0, \bar{s}_1)  \rightarrow (t, \bar{t}_0, \bar{t}_1)
+\] 
+is a homotopy~$\alpha \co s \sim t$ together with paths $\bar{\alpha}_0 \co s(a_0) = t(a_0)$ and $\bar{\alpha}_1 \co s(a_1) = t(a_1)$. 
+\end{definition} 
+
+
+We define the type of bipointed homotopies of sections as follows:
+\[
+\Ho[ (s, \bar{s}_0, \bar{s}_1), (t, \bar{t}_0, \bar{t}_1)] \defeq
+(\Sigma \alpha \co s \sim t) \big( s(a_0) = t(a_0) \big) \times \big( s(a_1) = t(a_1) \big) \, .
+\]
+
+
+\begin{lemma} Let $E = (E, e_0, e_1)$ be a fibered bipointed type over $A = (A, a_0, a_1)$. 
+For every pair of sections $s = (s, \bar{s}_0, \bar{s}_1)$ and $t = (t, \bar{t}_0, \bar{t}_1)$, 
+there is an equivalence of types
+\[
+\Ho[ (s, \bar{s}_0, \bar{s}_1), (t, \bar{t}_0, \bar{t}_1)] 
+\simeq 
+\Id\big( (s, \bar{s}_0, \bar{s}_1), (t, \bar{t}_0, \bar{t}_1) \big) \, .
+\]
+\end{lemma}
+
+
+\begin{proof} The claim follows by an argument analogous to that of Lemma~\ref{BoolHomSpace}.
+\end{proof}
+
+\medskip
+
+We can now state and prove the main result of this section. 
+
+
+\begin{theorem}\label{lem:BoolMainInt} For a bipointed type $A = (A, a_0, a_1)$, the following are equivalent:
+\begin{enumerate}[(i)]
+\item $A$ is inductive, 
+\item $A$ is recursive,
+\item $A$ is homotopy-initial.
+\item $A$ is homotopy-projective.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof} We proved (i) $\Rightarrow$ (ii) in Proposition~\ref{thm:indrec}. We now prove (ii) $\Rightarrow$ (iii). So, let $A$ be a bipointed type
+and assume that it is recursive. We need to show that it is homotopy-initial. So, let $B = (B, b_0, b_1)$ be a bipointed type. We begin to prove
+that the type of morphisms from $A$ to $B$ is contractible by showing that it is inhabited. This follows easily by the assumption that $A$
+is recursive. Indeed, the elimination rule allows us to define a function~$f \co A \to B$ by letting~$f \defeq (\lambda x \co A) \rec(x, b_0, b_1)$. We can
+equip this function with the structure of a morphism of bipointed types since the propositional $\beta$-rules give us propositional identity 
+proofs~$\beta_0 \co \Id(f (a_0), b_0)$ and~$\beta_1 \co \Id (f(a_1), b_1)$, as required. To complete the proof that $\Hom(A,B)$ is contractible,
+we show that any two morphisms $f, g \co A \to B$ are propositionally equal.  TO BE ADDED.
+
+
+
+
+We now  show that (iii) $\Rightarrow$ (iv).
+Let $A = (A, a_0, a_1)$ be a homotopy-initial pointed type. We need to show that it is projective. So, let $E = (E, e_0, e_1)$ be a fibered 
+bipointed type over $A$. Let us define the type 
+\[
+E' \defeq (\Sigma x \co A) E(x) 
+\]
+and recall that $E'$ can be equipped with the structure of a bipointed type by considering its elements $e'_0 \defeq \pair(a_0, e_0)$ and $e'_1 \defeq \pair(a_1, e_1)$. In this way,  the first projection $\pi_1 \co E' \to A$ is a morphism of pointed types. By the homotopy-initiality of $A$, we have a morphism of bipointed types
+\[
+(f, \bar{f}_0, \bar{f}_1) \co (A, a_0, a_1)  \to (E', e'_0, e'_1) 
+\]
+which we represent by the diagram
+\[
+\xymatrix{
+1 \ar@/_1pc/[dr]_{e'_0} \ar[r]^{a_0} & A  \ar[d]^f & 1 \ar[l]_{a_1} \ar@/^1pc/[dl]^{e'_1} \\
+ & E' & }
+ \]
+ We can compose $f \co A \to E'$ with $\pi_1 \co E' \to A$ and obtain a morphism $\pi_1 \co f \co A \to A$, represented by the diagram
+  \[
+\xymatrix@C=1.5cm{
+1 \ar@/_1pc/[dr]_(.7){e'_0} \ar[r]^{a_0} \ar@/_1.5pc/[ddr]_{a_0}  & A  \ar[d]^f & 1 \ar[l]_{a_1} \ar@/^1pc/[dl]^(.7){e'_1} \ar@/^1.5pc/[ddl]^{a_1}  \\
+ & E' \ar[d]^{\pi_1} & \\
+ & A &  }
+ \]
+But the identity $1_A \co A \to A$ is also a morphism from $A$ to itself and hence, by the homotopy-initiality, the morphisms $\pi_1 \circ f \co A \to A$
+and $1_A \co A \to A$ have to be propositionally equal. By Lemma~\ref{BoolHomSpace}, this implies there exists a bipointed homotopy $(\alpha,
+\bar{\alpha}_0,\bar{\alpha}_1) \co \pi_1 \circ f \sim 1_A$ between them. This gives us a homotopy $\alpha \co \pi_1 \circ f \sim 1_A$ and paths
+\[
+\xymatrix@C=1.5cm{
+\pi_1 f (a_0) \ar[r]^{\alpha(a_0)} \ar@/_1pc/[dr]_{\overline{(\pi_1 f)}_0} \ar@{}[dr]|{\quad \bar{\alpha}_0}  & a_0 \ar[d]^{\refl(a_0)} \\
+ & a_0 } \qquad
+ \xymatrix@C=1.5cm{
+\pi_1 f (a_1) \ar[r]^{\alpha(a_0)} \ar@/_1pc/[dr]_{\overline{(\pi_1 f)}_1} \ar@{}[dr]|{\quad \bar{\alpha}_1}  & a_1 \ar[d]^{\refl(a_1)} \\
+ & a_1 }
+\]
+We begin to define the required bipointed section by defining its underlying function $s \co (\Pi x \co A) E(x)$. For $x \co A$, we let
+\begin{equation}
+\label{equ:defreqsection}
+s(x) \defeq \alpha(x)_{!} \big( \pi_2(f(x) \big) \, .
+\end{equation}
+It remains to complete the definition of the required bipointed section, it remains to obtain paths~$\bar{s}_0 \co s(a_0)  \peq e_0$ and~$\bar{s}_1 \co s(a_1) \peq e_1$. We consider only $\bar{s}_0$ since the construction of $\bar{s}_1$ is  analogous. First of all, recall that 
+$\bar{f}_0 \co f(a_0) \peq e'_0$, where $e'_0 \equiv \pair(a_0, e_0) \co (\Sigma x :A ) E(x)$. Hence, there are paths 
+\begin{equation}
+\label{equ:p0q0}
+p_0 \co \pi_1 f (a_0) \peq a_0 \, , \quad q_0 \co (p_0)_{!}( \pi_1 f (a_0)) \peq e_0 \, . 
+\end{equation}
+such that $\pair(p_0, q_0) \peq \mathsf{idtopair}(\bar{f}_0)$. Furthermore, by the definition of the composition of bipointed morphisms, we have
+$p_0 =  \overline{(\pi_1 f)}_0$ and so
+\begin{equation}
+\label{equ:p0alpha0}
+p_0 = \overline{(\pi_1 f)}_0 =  \alpha(a_0) \ct \refl(a_0)  = \alpha(a_0) \, ,
+\end{equation}
+where the second equation is given by $\bar{\alpha}_0$. Hence, $\bar{s}_0$ is the witness for the following chain of propositional equalities
+\[
+s(a_0) \peq \alpha(a_0)_{!} \big( \pi_2 f(a_0)  \big)  
+              \peq  (  p_0   )_{!} \big( \pi_2(f(a_0) ) \big) 
+               \peq  e_0 \, ,
+\]
+Here, the first equality is given by the definition of $s$ in~\eqref{equ:defreqsection}, the second is given by~\eqref{equ:p0alpha0}, and the third is given by the path $q_0$ in~\eqref{equ:p0q0}.
+\end{proof}
+
+
+\begin{corollary}\label{lem:BoolInitInt}
+The bipointed type $\Bool$ is homotopy-initial.
+\end{corollary}
+
+
+Corollary~\ref{lem:BoolInitInt} is the analogue in our setting of the characterization of 
+the type $\Bool$ as a strict coproduct $1+1$ in extensional type theory. It makes precise the rough idea that, 
+in intensional type theory, $\Bool$ is a kind of homotopy coproduct or weak $\infty$-coproduct 
+in the $\infty$-category of types, functions, identity terms, higher identity terms, \ldots.  
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Internalization and Univalence}
+
+\begin{definition}\label{def:WAlg}
+For $A:\UU_i$, $B : A \to \UU_i$, define the type of \emph{$\W$-algebras} on a universe $\UU_j$ as
+\[\WAlg_{\UU_j}(A,B) \; \defeq \sm{C : \UU_j} \prd{a:A} (B(a) \to C) \to C \]
+\end{definition}
+
+\begin{definition}\label{def:WHom}
+For $A$, $B : A \to \UU_i$, $\X : \WAlg_{\UU_j}(A,B)$, $\Y : \WAlg_{\UU_k}(A,B)$, define the type of \emph{$\W$-homomorphisms} from $\X$ to $\Y$ by
+\[ \WHom \; (C,c) \; (D,d) \defeq \sm{f:C\to D}\prd{a:A}\prd{t: B(a) \to C} f(c(a,t)) = d(a,\lam{b:B(a)} f(t\;b)) \]
+\end{definition}
+
+
+\begin{definition}\label{def:WCell}
+For $A:\UU_i$, $B : A \to \UU_i$, $\X : \WAlg_{\UU_j}(A,B)$, $\Y : \WAlg_{\UU_k}(A,B)$ and homomorphisms $\mu, \nu : \WHom \; \X \; \Y$, define the type of \emph{2-cells} between $\mu$ and $\nu$ by
+\begin{align*} & \WCell \; (C,c) \; (D,d) \; (f,\gamma) \; (g,\delta) \defeq \\ & \;\;\; \;\;\;\WFibHom \; (C,c) \; \Big(f \sim g; x,p,r \mapsto \gamma(x,p) \ct \app_{d(x)}(\funext(r)) \ct \delta(x,p)^{-1}\Big)
+\end{align*}
+\end{definition}
+%
+%%%%%%%%%%%
+
+\begin{definition}\label{def:WFibAlg}
+For $A:\UU_i$, $B : A \to \UU_i$, define the type of \emph{fibered $\W$-algebras} on a universe $\UU_k$ over $\mathcal{X} : \WAlg_{\UU_j}(A,B)$ by
+\[\WFibAlg_{\UU_k}(A,B) \; (C,c) \defeq \sm{E : C \to \UU_k} \prd{a:A}\prd{t: B(a) \to C} \big(\prd{b:B(a)} E(t \;b) \big) \to E(c(a,t)) \]
+\end{definition}
+
+\begin{definition}\label{def:WFibHom}
+For $A:\UU_i$, $B : A \to \UU_i$, $\X : \WAlg_{\UU_j}(A,B)$, $\Y : \WFibAlg_{\UU_k}(A,B) \; \X$, define the type of \emph{fibered $\W$-homomorphisms} from $\X$ to $\Y$ by
+\[ \WFibHom \; (C,c) \; (E,e) \defeq \sm{(f:\prd{x:C}E(x))}\prd{a:A}\prd{t: B(a) \to C} f(c(a,t)) = e(a,t,\lam{b:B(a)} f(t\;b)) \]
+\end{definition}
+
+
+
+\begin{definition}\label{def:WRec}
+For $A:\UU_i$, $B : A \to \UU_i$, an algebra $\X : \WAlg_{\UU_j}(A,B)$ \emph{satisfies the recursion principle} on a universe $\UU_k$ if for any algebra $\Y : \WAlg_{\UU_k}(A,B)$ there exists
+a $\W$-homomorphism between $\X$ and $\Y$:
+\[ \HasWRec_{\UU_k}(\X) \defeq \prd{(\Y:\WAlg_{\UU_k}(A,B))} \WHom \; \X \; \Y \]
+\end{definition}
+
+\begin{definition}\label{def:WInd}
+For $A:\UU_i$, $B : A \to \UU_i$, an algebra $\X : \WAlg_{\UU_j}(A,B)$ \emph{satisfies the induction principle} on a universe $\UU_k$ if for any fibered algebra $\Y : \WFibAlg_{\UU_k}(A,B) \; \X$ there exists a fibered $\W$-homomorphism between $\X$ and $\Y$:
+\[ \HasWInd_{\UU_k}(\X) \defeq \prd{(\Y:\WFibAlg_{\UU_k}(A,B) \; \X)} \WFibHom \; \X \; \Y \]
+\end{definition}
+
+\begin{definition}\label{def:WRecUniq}
+For $A:\UU_i$, $B : A \to \UU_i$, an algebra $\X : \WAlg_{\UU_j}(A,B)$ \emph{satisfies the recursion uniqueness principle} on a universe $\UU_k$ if for any algebra $\Y : \WAlg_{\UU_k}(A,B)$
+any two $\W$-homomorphisms between $\X$ and $\Y$ are equal:
+\[ \HasWRecUniq_{\UU_k}(\X) \defeq \prd{(\Y:\WAlg_{\UU_k}(A,B))} \isprop(\WHom \; \X \; \Y) \]
+\end{definition}
+
+\begin{definition}\label{def:WIndUniq}
+For $A:\UU_i$ and $B : A \to \UU_i$, an algebra $\X : \WAlg_{\UU_j}(A,B)$ \emph{satisfies the induction uniqueness principle} on a universe $\UU_k$ if for any fibered algebra $\Y : \WFibAlg_{\UU_k}(A,B) \; \X$ any two fibered $\W$-homomorphisms between $\X$ and $\Y$ are equal:
+\[ \HasWIndUniq_{\UU_k}(\X) \defeq \prd{(\Y:\WFibAlg_{\UU_k}(A,B) \; \X)} \isprop(\WFibHom \; \X \; \Y) \]
+\end{definition}
+
+\begin{definition}\label{def:WInit}
+For $A:\UU_i$ and $B : A \to \UU_i$, an algebra $\X : \WAlg_{\UU_j}(A,B)$ is \emph{initial} on a universe $\UU_k$ if for any algebra $\Y : \WAlg_{\UU_k}(A,B)$ there exists a unique $\W$-homomorphism between $\X$ and $\Y$:
+\[ \IsWInit_{\UU_k}(\X) \defeq \prd{(\Y:\WAlg_{\UU_k}(A,B))} \iscontr(\WHom \; \X \; \Y) \]  
+\end{definition}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\begin{definition}\label{def:WFibCell}
+For $A:\UU_i$, $B : A \to \UU_i$, $\X : \WAlg_{\UU_j}(A,B)$, $\Y : \WFibAlg_{\UU_k}(A,B) \; \X$ and fibered homomorphisms $\mu, \nu : \WFibHom \; \X \; \Y$, define the type of \emph{fibered 2-cells} between $\mu$ and $\nu$ by
+\begin{align*} & \WFibCell \; (C,c) \; (E, e) \; (f,\gamma) \; (g,\delta) \defeq \\ & \;\;\; \;\;\;\WFibHom \; (C,c) \; \Big(f \sim g; x,p,r \mapsto \gamma(x,p) \ct \app_{e(x,p)}(\funext(r)) \ct \delta(x,p)^{-1}\Big)
+\end{align*}
+\end{definition}
+For brevity, we will often leave out the first two arguments. As expected, we have:
+\begin{definition}\label{def:WHInit}
+Given $A:\UU_i$, $B : A \to \UU_i$, an algebra $\X : \WAlg_{\UU_j}(A,B)$ is called \emph{homotopy-initial} on a universe $\UU_k$ if for any algebra $\Y : \WAlg_{\UU_k}(A,B)$, the type of $\W$-homomorphisms between $\X$ and $\Y$ is contractible:
+\[ \IsWHInit_{\UU_k}(\X) \defeq \prd{(\Y:\WAlg_{\UU_k}(A,B))} \iscontr(\WHom \; \X \; \Y) \]  
+\end{definition}
+
+\begin{definition}
+For $A:\UU_i$, $B : A \to \UU_i$, $\X : \WAlg_{\UU_j}(A,B)$ there is a designated \emph{identity} homomorphism from $\X$ to itself, defined by
+\[ \WIdHom \; (C,c) \defeq (\idfun{C}; a,t \mapsto \refl_{c(a,t)}) \]
+\end{definition}
+As before, we denote this homomorphism by $\one_\X$.
+
+\begin{definition}
+For $A:\UU_i$, $B : A \to \UU_i$, $\X : \WAlg_{\UU_j}(A,B)$, $\Y : \WAlg_{\UU_k}(A,B)$, $\Z : \WAlg_{\UU_l}(A,B)$ and homomorphisms $\mu : \WHom \; \X \; \Y$, $\nu : \WHom \; \Y \; \Z$, the \emph{composition} of $\mu$ and $\nu$ is a homomorphism from $\X$ to $\Z$ defined by
+\begin{align*} & \WCompHom \; (C,c) \; (D,d) \; (E,e) \; (f,\gamma) \; (g,\delta) \defeq  \Big(g \comp f; a,t \mapsto \app_g(\gamma(a,t)) \ct \delta(a, f \comp t) \Big)
+\end{align*}
+\end{definition}
+As before, we often leave out the first three arguments and denote the composition by $\nu \comp \mu$.
+
+\begin{definition}
+For $A:\UU_i$, $B : A \to \UU_i$, $\X : \WAlg_{\UU_j}(A,B)$, $\Y : \WAlg_{\UU_k}(A,B)$ we define the type of \emph{isomorphisms} between $\X$ and $\Y$ as
+\[\WAlgIso \; \X \; \Y \defeq \sm{(\rho : \WHom \; \X \; \Y)} \Big(\sm{(\mu : \WHom \; \Y \; \X)} \mu \comp \rho = \one_\X \Big) \times \Big(\sm{(\nu : \WHom \; \Y \; \X)} \rho \comp \nu = \one_\Y \Big) \] 
+\end{definition}
+
 
 
 
