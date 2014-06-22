@@ -1668,7 +1668,7 @@ p(x,u) \ct \app_{e(x,u,-)}(\funext(\lambda{y}.\eta(u(y))))
 \end{mathpar}
 \end{enumerate}
 \end{lemma}
-The $(\beta,\eta)$-compatibility rule will be explained in \ref{betaeta} below.
+The $(\beta,\eta)$-compatibility rule will be explained in Remark \ref{rem:explainrules} below.
 
 \begin{proof}
 In showing the above laws, we use the induction principle with the type family $z \mapsto f(z) =_{E(z)} \ind(z,e)$. For this we need to show that for any $x,u$ we have $f(s_C(x,u)) = g(s_C(x,u))$ under the induction hypothesis $h : \prd{y:B(x)} f(u(y)) = g((u(y))$. We can construct this path explicitly as 
@@ -1774,7 +1774,7 @@ propositional $(\beta, \eta)$-computatibility rules are special cases of the rul
 
 \subsection{Homotopy initial W-types}
 
-For the further investigation of W-types we require the notions of an algebra homomorphism and a homotopy of homomorphisms, again in both simple and fibered forms.  Throughout this section, fix $x:A\vdash B(x)$ and write $P(X)$ for the associated polynomial functor $(\Sigma x : A) (B(x) \rightarrow X)$.  Recall that a $P$-algebra is a type $C$ equipped a map
+For the further investigation of W-types we require the notions of an algebra homomorphism and a homotopy of homomorphisms, again in both simple and fibered forms.  Throughout this section, fix $x:A\vdash B(x)$ and write $P(X)$ for the associated polynomial functor $(\Sigma x : A) (B(x) \rightarrow X)$.  Recall that a $P$-algebra is a type $C$ equipped with a map
 $s_C :  PC \rightarrow C$.  
 
 \begin{definition}
@@ -1844,7 +1844,7 @@ We again stress that homotopy-initiality is a purely type-theoretic notion. In o
 For $P$-algebras $(C,s_C)$ and $(D,s_D)$ and morphisms $(f, \bar{f})$ and $(g, \bar{g})$ between them, a \emph{homotopy}  $$(h, \bar{h}) : (f, \bar{f}) \rightarrow (g, \bar{g})$$
 consists of an identity  $h : f = g$ together with a (higher) identity, 
 \[
-\bar{h} : \bar{f} \cdot s_D(Ph) = (h(s_C))\cdot \bar{g}\, ,
+\bar{h} : \bar{f} \cdot s_D(Ph) = h(s_C)\cdot \bar{g}\, ,
 \]
 between elements in $\id{PC \rightarrow D}\big( f \circ s_C \, ,  s_{D} \circ Pf \big)$.  Here the identity $Ph : Pf = Pg$ is derived from $h : f = g$, and $h(s_C)$ and $s_D(Ph)$ are again pre- and post-compositions, respectively, of maps with identities.
 
@@ -1877,10 +1877,11 @@ For $P$-algebras $(C,s_C)$ and $(D,s_D)$ and morphisms $(f, \bar{f})$ and $(g, \
 \end{lemma}
 
 \begin{proof}
-[FILL IN THE PROOF]
+
+[FILL THIS IN]
 \end{proof}
 
-\begin{remark}
+\begin{remark}\label{rem:explainrules}
 In terms of the concepts just defined, we can now analyze the recursion rules in definition \ref{def:recursiveW} as follows: the $\W$-recursion rule says that, given any type $E$ together with the map $e : PE\to E$ --- i.e.\ any $P$-algebra --- there is a map $\rec : C\to E$.  The simple propositional $\beta$-rule says that this map $\rec$ is a homomorphism.  The simple propositional $\eta$-rule says that if $f : C\to E$ is any homomorphism, then there is an identity $\eta : f = \rec$.  And the simple propositional $(\beta, \eta)$-compatibility rule says that this identity $\eta$ is in fact a homotopy.
 \end{remark}
 
@@ -1890,6 +1891,16 @@ A $P$-algebra is homotopy-initial if it is recursive in the sense of definition 
 
 \begin{proof}
 The center of contraction is $\rec$, and any homomorphism is homotopic to $\rec$ by $\eta$ and $(\beta,\eta)$-compatibiliy.
+
+[FILL IN THE PROOF: MODIFYING THIS ONE]
+
+So, let $A$ be a bipointed type
+and assume that it is recursive. We need to show that it is homotopy-initial. So, let $B = (B, b_0, b_1)$ be a bipointed type. We begin to prove
+that the type of morphisms from $A$ to $B$ is contractible by showing that it is inhabited. This follows easily by the assumption that $A$
+is recursive. Indeed, the elimination rule allows us to define a function~$f \co A \to B$ by letting~$f \defeq (\lambda x \co A) \rec(x, b_0, b_1)$. We can
+equip this function with the structure of a morphism of bipointed types since the propositional $\beta$-rules give us propositional identity 
+proofs~$\beta_0 \co \Id(f (a_0), b_0)$ and~$\beta_1 \co \Id (f(a_1), b_1)$, as required. To complete the proof that $\Hom(A,B)$ is contractible,
+we show that any two morphisms $f, g \co A \to B$ are propositionally equal.  TO BE ADDED.
 \end{proof}
 
 %%%%%%%%%%%% Fibered stuff %%%%%%%%%%%%%%%
@@ -1963,34 +1974,36 @@ A . \ar@/^1.2pc/[u]^{s'} }
 \begin{definition} We say that a $P$-algebra $C$ is \emph{homotopy-projective} if every fibered algebra over it has a homomorphic section.
 \end{definition} 
 
-\begin{definition} \label{def:W2cellsection} Let $E = (E, e)$ be a fibered algebra over $C = (A, s_C)$, and let $i = (i, \bar{i})$ and $j = (j, \bar{j})$ be two sections of $E$.  An \emph{algebra homotopy} 
+\begin{definition} \label{def:W2cellsection} Let $E = (E, e)$ be a fibered algebra over $C = (A, s_C)$, and let $f = (f, \bar{f})$ and $g = (g, \bar{g})$ be two sections of $E$.  An \emph{algebra homotopy} 
 \[
-(k, \bar{k}) \co (i, \bar{i})  \rightarrow (j, \bar{j})
+(h, \bar{h}) \co (f, \bar{f})  \rightarrow (g, \bar{g})
 \] 
-is a homotopy~$k\co i \sim j$ together with a family of paths 
+is a homotopy~$h\co f \sim g$ together with a family of (higher) paths 
 \[
-x : A, u : B(x) \to C \vdash \gamma(x,u) : k(s_C(x,u))\ct \bar{i}(x,u) = 
-\bar{j}(x,u) \ct e\big(x,u,(\funext(\lambda{y}.k(u(y))))\big)\]
+x : A, u : B(x) \to C \vdash \bar{h}(x,u) : 
+\bar{f}(x,u)  \ct e\big(x,u,(\funext(\lambda{y}.h(u(y))))\big) = 
+h(s_C(x,u)) \ct \bar{g}(x,u).
+\]
 \end{definition} 
 
 Accordingly, we define the type of homotopies of sections as follows:
 %\begin{equation}
 \begin{multline*}
-\Ho\mathsf{Sec}[ (i, \bar{i}) ,\, (j, \bar{j}) ]\ \defeq\ 
-(\Sigma k \co i \sim j) (\Pi x : A)(\Pi u : B(x) \to C)\\
-\Id\big[ k(s_C(x,u))\ct \bar{i}(x,u) ,\
-\bar{j}(x,u) \ct e\big(x,u,(\funext(\lambda{y}.k(u(y))))\big) \big]\, .
+\Ho\mathsf{Sec}[ (f, \bar{f}) ,\, (g, \bar{g}) ]\ \defeq\ 
+(\Sigma h \co f \sim g) (\Pi x : A)(\Pi u : B(x) \to C)\\
+\Id\big[ \bar{f}(x,u)  \ct e\big(x,u,(\funext(\lambda{y}.h(u(y))))\big),\ 
+h(s_C(x,u)) \ct \bar{g}(x,u) \big]\, .
 \end{multline*}
 %\end{equation}
 
 
 \begin{lemma} Let $E = (E, e)$ be a fibered algebra over $C = (C, s_C)$. 
-For every pair of sections $(i, \bar{i})$ and $(j, \bar{j})$, 
+For every pair of sections $(f, \bar{f})$ and $(g, \bar{g})$, 
 there is an equivalence of types
 \[
-\Ho\mathsf{Sec}[ (i, \bar{i}) ,\, (j, \bar{j}) ]\
+\Ho\mathsf{Sec}[ (f, \bar{f}) ,\, (g, \bar{g}) ]\
 \simeq 
-\Id\big[ (i, \bar{i}) ,\, (j, \bar{j}) \big] \, .
+\Id[ (f, \bar{f}) ,\, (g, \bar{g}) ] \, .
 \]
 \end{lemma}
 
@@ -2011,16 +2024,14 @@ We can now state and prove our main result.
 \end{theorem}
 
 \begin{proof} 
-We proved (i) $\Rightarrow$ (ii) in Proposition~\ref{thm:indrec}. We now prove (ii) $\Rightarrow$ (iii). So, let $A$ be a bipointed type
-and assume that it is recursive. We need to show that it is homotopy-initial. So, let $B = (B, b_0, b_1)$ be a bipointed type. We begin to prove
-that the type of morphisms from $A$ to $B$ is contractible by showing that it is inhabited. This follows easily by the assumption that $A$
-is recursive. Indeed, the elimination rule allows us to define a function~$f \co A \to B$ by letting~$f \defeq (\lambda x \co A) \rec(x, b_0, b_1)$. We can
-equip this function with the structure of a morphism of bipointed types since the propositional $\beta$-rules give us propositional identity 
-proofs~$\beta_0 \co \Id(f (a_0), b_0)$ and~$\beta_1 \co \Id (f(a_1), b_1)$, as required. To complete the proof that $\Hom(A,B)$ is contractible,
-we show that any two morphisms $f, g \co A \to B$ are propositionally equal.  TO BE ADDED.
-
+We proved (i) $\Rightarrow$ (ii) in Proposition~\ref{thm:Windrec}, and  (ii) $\Rightarrow$ (iii) in Lemma \ref{prop:Wrec2hinit}. 
 
 We now  show that (iii) $\Rightarrow$ (iv).
+
+[USE LEMMAS \ref{lem:fibalg} and \ref{lem:fibalghom}.]
+
+[REWORK THE FOLLOWING]
+
 Let $A = (A, a_0, a_1)$ be a homotopy-initial pointed type. We need to show that it is projective. So, let $E = (E, e_0, e_1)$ be a fibered 
 bipointed type over $A$. Let us define the type 
 \[
@@ -2078,11 +2089,13 @@ s(a_0) \peq \alpha(a_0)_{!} \big( \pi_2 f(a_0)  \big)
                \peq  e_0 \, ,
 \]
 Here, the first equality is given by the definition of $s$ in~\eqref{equ:defreqsection}, the second is given by~\eqref{equ:p0alpha0}, and the third is given by the path $q_0$ in~\eqref{equ:p0q0}.
+
+The implication (iv) $\Rightarrow$ (i) is almost immediate, and is left to the reader.
 \end{proof}
 
 
 \begin{corollary}\label{lem:WInitInt}
-The bipointed type $\W = (\W x:A)B(x)$ is homotopy-initial.
+The $P$-algebra $\W = (\W x:A)B(x)$ is homotopy-initial.
 \end{corollary}
 
 
