@@ -1597,7 +1597,8 @@ P(C) \ar[d]_{s_C} \ar[r]_{P(f)} & \ar@/_1pc/[l]_{P(f^{-1})} P(D)  \ar[d]^{s_D}  
  
 Next, note that the $\W$-introduction rule makes $\sup : P(\W)\to \W$ into a $P$-algebra.  Given an equivalence  $f : \W \to C$, the induced $P$-algebra structure $s_C:P(C)\to C$ just defined then means that $C$ also satisfies the $\W$-introduction rule.  We shall see that $C$ satisfies the other rules as well, but with a propositional computation rule, as in the following definition.
 
-\begin{definition} Let $P = P(A,B)$ for $x:A \vdash B(x) \,\type$, and let $s_C : P(C)\to C$ be a $P$-algebra.
+\begin{definition}\label{def:Wind}
+ Let $P = P(A,B)$ for $x:A \vdash B(x) \,\type$, and let $s_C : P(C)\to C$ be a $P$-algebra.
 We say that $s_C : P(C)\to C$ is \emph{inductive} if it satisfies the following rules:
 \begin{enumerate}[(i)] 
 \item $\W$-elimination rule.\smallskip
@@ -1895,30 +1896,52 @@ The center of contraction is $\rec$, and any homomorphism is homotopic to $\rec$
 
 In order to extend our results from recursion to induction, we next require the fibered versions of the notions of a $P$-algebra, homomorphism, and homotopy.
 
-\begin{definition} \label{def:fibbipointed}
-Let $A = (A, a_0, a_1)$ be a bipointed type. A \emph{fibered bipointed type} over $A$ is a dependent type
+\begin{definition} \label{def:fibalg}
+Let $(C, s_C)$ be a $P$-algebra. A \emph{fibered $P$-algebra} over $C$ is a dependent type
 \[
-x : A \vdash E(x) \co \type
+x : C \vdash E(x) \co \type
 \]
-equipped with distinguished elements $e_0 \co E(a_0)$ and $e_1 \co E(a_1)$.
+equipped with a family of elements of the form
+\[
+x:A,\, u : B(x) \to C,\, v : \big(\Pi{y:B(x)}\big) E(u(y)) \vdash e(x,u,v) :E(s_C(x,u)).
+\]
 \end{definition}
 
-Note how the definition of a fibered bipointed type describes the data in the premiss of the elimination rule for an inductive bipointed type. Given a 
-fibered bipointed type over $A$ as in Definition~\ref{def:fibbipointed}, we can define $E' \defeq (\Sigma x : A) E(x)$ and observe that
-we can equip $E'$ with the structure of a bipointed type by taking $e'_0 \defeq \pair(a_0, e_0)$ and $e'_1 \defeq \pair(a_1, e_1)$.
-In this way, the first projection $\pi_1 \co E' \to A$ becomes a morphism of bipointed types:
+Note that the definition of a fibered algebra describes exactly the data in the premiss of the elimination rule for an inductive $P$-algebra in the sense of definition \ref{def:Wind}. 
+
+\begin{lemma}\label{lem:fibalg}
+Given a fibered $P$-algebra $(E, e)$ over $C$, the type $E' = (\Sigma z : C) E(z)$ can be equipped with the structure of a $P$-algebra $(E', s_{E'})$ in such a way that $\pi_1 : E'\to C$ is a homomorphism of algebras,
 \[
 \xymatrix{
-1 \ar@/_1pc/[dr]_{a_0} \ar[r]^-{e'_0} & E' \ar[d]^{\pi_1} & 1 \ar[l]_-{e'_1} \ar@/^1pc/[dl]^{a_1} \\ 
- & A & }
+P(E') \ar[d]_{P\pi_1} \ar[r]^-{s_{E'}} \ar@{}[rd]|{p} & E' \ar[d]^{\pi_1} \\ 
+P(C) \ar[r]_-{s_C} & C.}
  \]
+\end{lemma}
 
-\begin{definition} \label{def:fibsection} Let $E = (E, e_0, e_1)$ be a fibered bipointed type over~$A = (A, a_0, a_1)$ . 
-A \emph{bipointed section} of $E$ is an element~$s \co (\Pi x \co A) E(x)$ equipped with paths $\bar{s}_0 \co \Id(s(a_0), e_0)$ and $\bar{s}_1 \co \Id(s(a_1), e_1)$. 
+\begin{proof}
+Use AC to rearrange the $\Sigma$ and $\Pi$.
+[FILL IN]
+\end{proof}
+
+\begin{definition} \label{def:fibalgsection} Let $E = (E, e)$ be a fibered $P$-algebra over the algebra $C$.  A \emph{(homomorphic) section} of $E$ is an element $i \co (\Pi z \co C) E(z)$ equipped with a family of paths $$ x:A,\, u : B(x) \to C \vdash \bar{i}(x, u) : i(s_C(x,u)) \peq e\big(x,u,\lambda{y}.i(u(y))\big).$$
 \end{definition} 
 
-Given a section $s = (s, \bar{s}_0, \bar{s}_1)$ of a bipointed type $E$, we can define a morphism $s' \co A \to E'$, where $E'$ is the
-bipointed type defined by $E' \defeq (\Sigma x :A) E(x)$, as follows.
+Note that the definition of a section describes exactly the data in the conclusion of the elimination rule and the propositional computation rule for an inductive $P$-algebra in the sense of definition \ref{def:Wind}. 
+
+\begin{lemma}\label{lem:fibalghom}
+Given a fibered $P$-algebra $(E, e)$ over $C$ and an algebra section $(i, \bar{i})$, there is a corresponding algebra homomorphism $i : C\to E'$, where the type $E' = (\Sigma z : C) E(z)$ is equipped with the $P$-algebra structure $s_{E'} :P(E')\to E'$ from lemma \ref{lem:fibalg}.
+\[
+\xymatrix{
+P(E') \ar[d]^{P(\pi_1)} \ar[r]^-{s_{E'}} %\ar@{}[rd]^{p}
+	 & E' \ar[d]_{\pi_1} \\ 
+P(C)  \ar@/^1.2pc/[u]^{Pi} \ar[r]_-{s_C} & C  \ar@/_1.2pc/[u]_{i}.}
+ \]
+\end{lemma}
+
+\begin{proof}
+[REWORK THIS DISCUSSION]
+Given a section $i = (i, \bar{i})$ of a fibered algebra $E$ over $C$, we can define an algebra morphism $i' \co C \to E'$, where as before $E'$ is the algebra defined by $E' \defeq (\Sigma x :A) E(x)$, as follows.
+
 The underlying function is given by letting $s'(x) \defeq \pair(x, s(x))$, for $x : A$. For $k = 0, 1$, the required path $\bar{s}'_k \co s'(a_k) = e'_k$,
 is then given by
 \[
@@ -1935,63 +1958,66 @@ for every $x \co A$. We represent this situation with the diagram
 E' \ar[d]^{\pi_1} \\
 A . \ar@/^1.2pc/[u]^{s'} }
 \]
+\end{proof}
 
-\begin{definition} We say that a bipointed type $A$ is \emph{homotopy-projective} if every fibered bipointed type over it has a bipointed section.
+\begin{definition} We say that a $P$-algebra $C$ is \emph{homotopy-projective} if every fibered algebra over it has a homomorphic section.
 \end{definition} 
 
-\begin{definition} \label{def:2cellsection} Let $E = (E, e_0, e_1)$ be a fibered bipointed type over $A = (A, a_0, a_1)$. If $s = (s, \bar{s}_0, 
-\bar{s}_1)$ and $t = (t, \bar{t}_0, \bar{t}_1)$ are bipointed sections of $E$, a \emph{bipointed homotopy} 
+\begin{definition} \label{def:W2cellsection} Let $E = (E, e)$ be a fibered algebra over $C = (A, s_C)$, and let $i = (i, \bar{i})$ and $j = (j, \bar{j})$ be two sections of $E$.  An \emph{algebra homotopy} 
 \[
-(\alpha, \bar{\alpha}_0, \bar{\alpha}_1) \co (s, \bar{s}_0, \bar{s}_1)  \rightarrow (t, \bar{t}_0, \bar{t}_1)
+(k, \bar{k}) \co (i, \bar{i})  \rightarrow (j, \bar{j})
 \] 
-is a homotopy~$\alpha \co s \sim t$ together with paths $\bar{\alpha}_0 \co s(a_0) = t(a_0)$ and $\bar{\alpha}_1 \co s(a_1) = t(a_1)$. 
+is a homotopy~$k\co i \sim j$ together with a family of paths 
+\[
+x : A, u : B(x) \to C \vdash \gamma(x,u) : k(s_C(x,u))\ct \bar{i}(x,u) = 
+\bar{j}(x,u) \ct e\big(x,u,(\funext(\lambda{y}.k(u(y))))\big)\]
 \end{definition} 
 
+Accordingly, we define the type of homotopies of sections as follows:
+%\begin{equation}
+\begin{multline*}
+\Ho\mathsf{Sec}[ (i, \bar{i}) ,\, (j, \bar{j}) ]\ \defeq\ 
+(\Sigma k \co i \sim j) (\Pi x : A)(\Pi u : B(x) \to C)\\
+\Id\big[ k(s_C(x,u))\ct \bar{i}(x,u) ,\
+\bar{j}(x,u) \ct e\big(x,u,(\funext(\lambda{y}.k(u(y))))\big) \big]\, .
+\end{multline*}
+%\end{equation}
 
-We define the type of bipointed homotopies of sections as follows:
-\[
-\Ho[ (s, \bar{s}_0, \bar{s}_1), (t, \bar{t}_0, \bar{t}_1)] \defeq
-(\Sigma \alpha \co s \sim t) \big( s(a_0) = t(a_0) \big) \times \big( s(a_1) = t(a_1) \big) \, .
-\]
 
-
-\begin{lemma} Let $E = (E, e_0, e_1)$ be a fibered bipointed type over $A = (A, a_0, a_1)$. 
-For every pair of sections $s = (s, \bar{s}_0, \bar{s}_1)$ and $t = (t, \bar{t}_0, \bar{t}_1)$, 
+\begin{lemma} Let $E = (E, e)$ be a fibered algebra over $C = (C, s_C)$. 
+For every pair of sections $(i, \bar{i})$ and $(j, \bar{j})$, 
 there is an equivalence of types
 \[
-\Ho[ (s, \bar{s}_0, \bar{s}_1), (t, \bar{t}_0, \bar{t}_1)] 
+\Ho\mathsf{Sec}[ (i, \bar{i}) ,\, (j, \bar{j}) ]\
 \simeq 
-\Id\big( (s, \bar{s}_0, \bar{s}_1), (t, \bar{t}_0, \bar{t}_1) \big) \, .
+\Id\big[ (i, \bar{i}) ,\, (j, \bar{j}) \big] \, .
 \]
 \end{lemma}
 
-
-\begin{proof} The claim follows by an argument analogous to that of Lemma~\ref{BoolHomSpace}.
+\begin{proof} This follows by an argument analogous to that of Lemma~\ref{IdEqHo}.
 \end{proof}
 
 \medskip
 
-We can now state and prove the main result of this section. 
+We can now state and prove our main result. 
 
-
-\begin{theorem}\label{lem:BoolMainInt} For a bipointed type $A = (A, a_0, a_1)$, the following are equivalent:
+\begin{theorem}\label{thm:Wmain} For a $P$-algeba $C = (C, s_C)$, the following are equivalent:
 \begin{enumerate}[(i)]
-\item $A$ is inductive, 
-\item $A$ is recursive,
-\item $A$ is homotopy-initial.
-\item $A$ is homotopy-projective.
+\item $C$ is inductive, 
+\item $C$ is recursive,
+\item $C$ is homotopy-initial.
+\item $C$ is homotopy-projective.
 \end{enumerate}
 \end{theorem}
 
-\begin{proof} We proved (i) $\Rightarrow$ (ii) in Proposition~\ref{thm:indrec}. We now prove (ii) $\Rightarrow$ (iii). So, let $A$ be a bipointed type
+\begin{proof} 
+We proved (i) $\Rightarrow$ (ii) in Proposition~\ref{thm:indrec}. We now prove (ii) $\Rightarrow$ (iii). So, let $A$ be a bipointed type
 and assume that it is recursive. We need to show that it is homotopy-initial. So, let $B = (B, b_0, b_1)$ be a bipointed type. We begin to prove
 that the type of morphisms from $A$ to $B$ is contractible by showing that it is inhabited. This follows easily by the assumption that $A$
 is recursive. Indeed, the elimination rule allows us to define a function~$f \co A \to B$ by letting~$f \defeq (\lambda x \co A) \rec(x, b_0, b_1)$. We can
 equip this function with the structure of a morphism of bipointed types since the propositional $\beta$-rules give us propositional identity 
 proofs~$\beta_0 \co \Id(f (a_0), b_0)$ and~$\beta_1 \co \Id (f(a_1), b_1)$, as required. To complete the proof that $\Hom(A,B)$ is contractible,
 we show that any two morphisms $f, g \co A \to B$ are propositionally equal.  TO BE ADDED.
-
-
 
 
 We now  show that (iii) $\Rightarrow$ (iv).
@@ -2055,16 +2081,14 @@ Here, the first equality is given by the definition of $s$ in~\eqref{equ:defreqs
 \end{proof}
 
 
-\begin{corollary}\label{lem:BoolInitInt}
-The bipointed type $\Bool$ is homotopy-initial.
+\begin{corollary}\label{lem:WInitInt}
+The bipointed type $\W = (\W x:A)B(x)$ is homotopy-initial.
 \end{corollary}
 
 
-Corollary~\ref{lem:BoolInitInt} is the analogue in our setting of the characterization of 
-the type $\Bool$ as a strict coproduct $1+1$ in extensional type theory. It makes precise the rough idea that, 
-in intensional type theory, $\Bool$ is a kind of homotopy coproduct or weak $\infty$-coproduct 
-in the $\infty$-category of types, functions, identity terms, higher identity terms, \ldots.  
-
+Corollary~\ref{lem:WInitInt} is the analogue in our setting of the characterization of 
+the type $\W$ as a strict initial algebra in extensional type theory. It makes precise the informal idea that, in intensional type theory, $\W$ is a kind of homotopy or weak $\infty$-initial
+algebra in the $\infty$-category of types, functions, identity terms, higher identity terms, \ldots.  
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
