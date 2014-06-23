@@ -1877,8 +1877,7 @@ For $P$-algebras $(C,s_C)$ and $(D,s_D)$ and morphisms $(f, \bar{f})$ and $(g, \
 \end{lemma}
 
 \begin{proof}
-
-[FILL THIS IN]
+This follows from a more general case to be proved in \ref{lem:fibhomeqid} below.
 \end{proof}
 
 \begin{remark}\label{rem:explainrules}
@@ -1984,7 +1983,6 @@ x : A, u : B(x) \to C \vdash \bar{h}(x,u) :
 \bar{f}(x,u)  \ct e\big(x,u,(\funext(\lambda{y}.h(u(y))))\big) = 
 h(s_C(x,u)) \ct \bar{g}(x,u).
 \]
-\end{definition} 
 
 Accordingly, we define the type of homotopies of sections as follows:
 %\begin{equation}
@@ -1995,9 +1993,20 @@ Accordingly, we define the type of homotopies of sections as follows:
 h(s_C(x,u)) \ct \bar{g}(x,u) \big]\, .
 \end{multline*}
 %\end{equation}
+\end{definition} 
+
+\begin{lemma}\label{lem:fibalghom}
+Given a fibered $P$-algebra $(E, e)$ over $C$, two algebra sections $(f, \bar{f})$ and $(g, \bar{g})$, and there is a corresponding algebra homomorphism $i : C\to E'$, where the type $E' = (\Sigma z : C) E(z)$ is equipped with the $P$-algebra structure $s_{E'} :P(E')\to E'$ from lemma \ref{lem:fibalg}.
+\[
+\xymatrix{
+P(E') \ar[d]^{P(\pi_1)} \ar[r]^-{s_{E'}} %\ar@{}[rd]^{p}
+	 & E' \ar[d]_{\pi_1} \\ 
+P(C)  \ar@/^1.2pc/[u]^{Pi} \ar[r]_-{s_C} & C  \ar@/_1.2pc/[u]_{i}.}
+ \]
+\end{lemma}
 
 
-\begin{lemma} Let $E = (E, e)$ be a fibered algebra over $C = (C, s_C)$. 
+\begin{lemma}\label{lem:fibhomeqid} Let $E = (E, e)$ be a fibered algebra over $C = (C, s_C)$. 
 For every pair of sections $(f, \bar{f})$ and $(g, \bar{g})$, 
 there is an equivalence of types
 \[
@@ -2007,7 +2016,8 @@ there is an equivalence of types
 \]
 \end{lemma}
 
-\begin{proof} This follows by an argument analogous to that of Lemma~\ref{IdEqHo}.
+\begin{proof} 
+
 \end{proof}
 
 \medskip
