@@ -1838,7 +1838,24 @@ is contractible, \ie the following type is inhabilited
 \]  
 \end{definition}
 
-We again stress that homotopy-initiality is a purely type-theoretic notion. In order to relate it to the rules for inductive and recursive types, we again require an alternate description of the identity type of two morphisms. For this, we shall require the notion of a homotopy between morphisms of $P$-algebras. 
+We again stress that homotopy-initiality is a purely type-theoretic notion. We have the following analogue of Lambek's lemma for $\W$-types.
+
+
+\begin{lemma}\label{lem:IntLambek}
+If a $P$-algebra $(C,c)$ is homotopy-initial, then the structure map $c \co P(C) \to C$ is an equivalence.
+\end{lemma}
+
+
+\begin{proof}
+By abuse of notation we refer to both the curried and uncurried versions of the structure map by $c$. Since $(C,c)$ is homotopy-initial on $\UU_j$, it satisfies the recursion principle on $\UU_j$. We use it with the algebra \[\Big(\sm{x:A} B(x) \to C; a,s \mapsto \big(a,\lam{b:B(a)} c(s\;b)\big)\Big)\]
+We note that the carrier type belongs to $\UU_j$ as $i \leq j$. This gives us a homomorphism $(u,\theta)$ where $u : C \to \big(\sm{x:A} B(x) \to C\big)$ and $\theta : \prd{a}\prd{t} u(c(a,t)) = \big(a,\lam{b:B(a)} c(u(t\;b))\big)$.  We can now form two homomorphisms
+\[\big(c \comp u; a,t \mapsto \app_c(\theta(a,t))\big), \big(\idfun{C}; a,t \mapsto \refl_{c(a,t)}\big) : \WHom \; (C,c) \; (C,c)\]
+Since $(C,c)$ is initial on $\UU_j$, it satisfies the recursion uniqueness principle on $\UU_j$, thus the above homomorphisms are equal. Thus, we have $c \comp u = \idfun{C}$ and in particular there is a homotopy $\epsilon : c \comp u \sim \idfun{C}$. For any $a,t$, the path $\theta(a,t) \ct \app_{(a,-)}(\funext(\lam{b:B(a)} \epsilon(t\;b)))$ gives us $u(c(a,t)) = (a,t)$. Thus we have a homotopy $\eta : u \comp c \sim \idfun{\sm{x:A} B(x) \to C}$.
+\end{proof}
+
+
+
+In order to relate it to the rules for inductive and recursive types, we again require an alternate description of the identity type of two morphisms. For this, we shall require the notion of a homotopy between morphisms of $P$-algebras. 
 
 [THE FOLLOWING NEEDS TO BE FIXED -- WHERE TO USE HOMOTOPIES AND WHERE TO USE IDENTITY PROOFS]
 \begin{definition}
@@ -2263,28 +2280,6 @@ if $C, D : \Palg$ are homotopy-initial then they are propositionally equal:
 By Lemma~\ref{WAlgSpace} it suffices to construct an isomorphism between $C$ and $D$. Since $C$ and $D$ are both homotopy-initial, there exist homomorphisms $f :  C \to D$ and $g : D \to C$. Again by homotopy initiality, we have $g \comp f = 1_C$ and $f \comp g = 1_D$, which gives us the desired isomorphism.
 \end{proof}
 
-
-
-
-\begin{corollary}\label{lem:WInitInt}
-The $W$-type $(W x \co A) B(x)$ is a homotopy-initial $P$-algebra.
-\end{corollary}
-
-
-We have the following analogue of Lambek's lemma for $\W$-types.
-
-
-\begin{lemma}\label{lem:IntLambek}
-If a $P$-algebra $(C,c)$ is homotopy-initial, then the structure map $c \co P(C) \to C$ is an equivalence.
-\end{lemma}
-
-
-\begin{proof}
-By abuse of notation we refer to both the curried and uncurried versions of the structure map by $c$. Since $(C,c)$ is homotopy-initial on $\UU_j$, it satisfies the recursion principle on $\UU_j$. We use it with the algebra \[\Big(\sm{x:A} B(x) \to C; a,s \mapsto \big(a,\lam{b:B(a)} c(s\;b)\big)\Big)\]
-We note that the carrier type belongs to $\UU_j$ as $i \leq j$. This gives us a homomorphism $(u,\theta)$ where $u : C \to \big(\sm{x:A} B(x) \to C\big)$ and $\theta : \prd{a}\prd{t} u(c(a,t)) = \big(a,\lam{b:B(a)} c(u(t\;b))\big)$.  We can now form two homomorphisms
-\[\big(c \comp u; a,t \mapsto \app_c(\theta(a,t))\big), \big(\idfun{C}; a,t \mapsto \refl_{c(a,t)}\big) : \WHom \; (C,c) \; (C,c)\]
-Since $(C,c)$ is initial on $\UU_j$, it satisfies the recursion uniqueness principle on $\UU_j$, thus the above homomorphisms are equal. Thus, we have $c \comp u = \idfun{C}$ and in particular there is a homotopy $\epsilon : c \comp u \sim \idfun{C}$. For any $a,t$, the path $\theta(a,t) \ct \app_{(a,-)}(\funext(\lam{b:B(a)} \epsilon(t\;b)))$ gives us $u(c(a,t)) = (a,t)$. Thus we have a homotopy $\eta : u \comp c \sim \idfun{\sm{x:A} B(x) \to C}$.
-\end{proof}
 
 \begin{corollary}\label{lem:suppath}
 For all $a_1,a_2:A$, $t_1 : B(a_1) \to \W$, $t_2 : B(a_2) \to \W$ we have
