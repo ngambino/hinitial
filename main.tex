@@ -1877,8 +1877,7 @@ For $P$-algebras $(C,s_C)$ and $(D,s_D)$ and morphisms $(f, \bar{f})$ and $(g, \
 \end{lemma}
 
 \begin{proof}
-
-[FILL THIS IN]
+This follows from a more general case to be proved in \ref{lem:fibhomeqid} below.
 \end{proof}
 
 \begin{remark}\label{rem:explainrules}
@@ -1984,7 +1983,6 @@ x : A, u : B(x) \to C \vdash \bar{h}(x,u) :
 \bar{f}(x,u)  \ct e\big(x,u,(\funext(\lambda{y}.h(u(y))))\big) = 
 h(s_C(x,u)) \ct \bar{g}(x,u).
 \]
-\end{definition} 
 
 Accordingly, we define the type of homotopies of sections as follows:
 %\begin{equation}
@@ -1995,9 +1993,20 @@ Accordingly, we define the type of homotopies of sections as follows:
 h(s_C(x,u)) \ct \bar{g}(x,u) \big]\, .
 \end{multline*}
 %\end{equation}
+\end{definition} 
+
+\begin{lemma}\label{lem:fibalghom}
+Given a fibered $P$-algebra $(E, e)$ over $C$, two algebra sections $(f, \bar{f})$ and $(g, \bar{g})$, and there is a corresponding algebra homomorphism $i : C\to E'$, where the type $E' = (\Sigma z : C) E(z)$ is equipped with the $P$-algebra structure $s_{E'} :P(E')\to E'$ from lemma \ref{lem:fibalg}.
+\[
+\xymatrix{
+P(E') \ar[d]^{P(\pi_1)} \ar[r]^-{s_{E'}} %\ar@{}[rd]^{p}
+	 & E' \ar[d]_{\pi_1} \\ 
+P(C)  \ar@/^1.2pc/[u]^{Pi} \ar[r]_-{s_C} & C  \ar@/_1.2pc/[u]_{i}.}
+ \]
+\end{lemma}
 
 
-\begin{lemma} Let $E = (E, e)$ be a fibered algebra over $C = (C, s_C)$. 
+\begin{lemma}\label{lem:fibhomeqid} Let $E = (E, e)$ be a fibered algebra over $C = (C, s_C)$. 
 For every pair of sections $(f, \bar{f})$ and $(g, \bar{g})$, 
 there is an equivalence of types
 \[
@@ -2007,6 +2016,13 @@ there is an equivalence of types
 \]
 \end{lemma}
 
+<<<<<<< HEAD
+\begin{proof} This follows by an argument analogous to that of Lemma~\ref{IdEqHo}.
+=======
+<<<<<<< HEAD
+\begin{proof} 
+
+=======
 \begin{proof}
 Let algebras $(C,c) : \WAlg_{\UU_j}(A,B)$, $(E,e) : \WFibAlg_{\UU_k}(A,B) \; (C,c)$ and homomorphisms $(f,\gamma), (g,\delta) : \WFibHom \; (C,c) \; (E,e)$ be given. We have
 \begin{alignat*}{4}
@@ -2018,6 +2034,8 @@ Let algebras $(C,c) : \WAlg_{\UU_j}(A,B)$, $(E,e) : \WFibAlg_{\UU_k}(A,B) \; (C,
 & \sm{\alpha : f \sim g} \prd{a}\prd{t}\Big(\alpha(c(a,t)) = \gamma(a,t) \ct \app_{e(a,t)}(\funext (\lam{b}\; \alpha(t \; b))) \ct \delta(a,t)^{-1} \Big) & \equiv \\ 
 & \WFibCell \; (f,\gamma) \; (g,\delta)
 \end{alignat*}
+>>>>>>> FETCH_HEAD
+>>>>>>> FETCH_HEAD
 \end{proof}
 
 \medskip
@@ -2117,14 +2135,126 @@ algebra in the $\infty$-category of types, functions, identity terms, higher ide
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Internalization and Univalence}
 
+\begin{definition}\label{def:WAlg}
 For $A:\UU_i$, $B : A \to \UU_i$, define the type of \emph{$\W$-algebras} on a universe $\UU_j$ as
 \[\WAlg_{\UU_j}(A,B) \; \defeq \sm{C : \UU_j} \prd{a:A} (B(a) \to C) \to C \]
+\end{definition}
+
+\begin{definition}\label{def:WHom}
+For $A$, $B : A \to \UU_i$, $\X : \WAlg_{\UU_j}(A,B)$, $\Y : \WAlg_{\UU_k}(A,B)$, define the type of \emph{$\W$-homomorphisms} from $\X$ to $\Y$ by
+\[ \WHom \; (C,c) \; (D,d) \defeq \sm{f:C\to D}\prd{a:A}\prd{t: B(a) \to C} f(c(a,t)) = d(a,\lam{b:B(a)} f(t\;b)) \]
+\end{definition}
 
 
-\begin{theorem}[Univalence] \label{WAlgSpace}
+\begin{definition}\label{def:WCell}
+For $A:\UU_i$, $B : A \to \UU_i$, $\X : \WAlg_{\UU_j}(A,B)$, $\Y : \WAlg_{\UU_k}(A,B)$ and homomorphisms $\mu, \nu : \WHom \; \X \; \Y$, define the type of \emph{2-cells} between $\mu$ and $\nu$ by
+\begin{align*} & \WCell \; (C,c) \; (D,d) \; (f,\gamma) \; (g,\delta) \defeq \\ & \;\;\; \;\;\;\WFibHom \; (C,c) \; \Big(f \sim g; x,p,r \mapsto \gamma(x,p) \ct \app_{d(x)}(\funext(r)) \ct \delta(x,p)^{-1}\Big)
+\end{align*}
+\end{definition}
+%
+%%%%%%%%%%%
+
+\begin{definition}\label{def:WFibAlg}
+For $A:\UU_i$, $B : A \to \UU_i$, define the type of \emph{fibered $\W$-algebras} on a universe $\UU_k$ over $\mathcal{X} : \WAlg_{\UU_j}(A,B)$ by
+\[\WFibAlg_{\UU_k}(A,B) \; (C,c) \defeq \sm{E : C \to \UU_k} \prd{a:A}\prd{t: B(a) \to C} \big(\prd{b:B(a)} E(t \;b) \big) \to E(c(a,t)) \]
+\end{definition}
+
+\begin{definition}\label{def:WFibHom}
+For $A:\UU_i$, $B : A \to \UU_i$, $\X : \WAlg_{\UU_j}(A,B)$, $\Y : \WFibAlg_{\UU_k}(A,B) \; \X$, define the type of \emph{fibered $\W$-homomorphisms} from $\X$ to $\Y$ by
+\[ \WFibHom \; (C,c) \; (E,e) \defeq \sm{(f:\prd{x:C}E(x))}\prd{a:A}\prd{t: B(a) \to C} f(c(a,t)) = e(a,t,\lam{b:B(a)} f(t\;b)) \]
+\end{definition}
+
+
+
+\begin{definition}\label{def:WRec}
+For $A:\UU_i$, $B : A \to \UU_i$, an algebra $\X : \WAlg_{\UU_j}(A,B)$ \emph{satisfies the recursion principle} on a universe $\UU_k$ if for any algebra $\Y : \WAlg_{\UU_k}(A,B)$ there exists
+a $\W$-homomorphism between $\X$ and $\Y$:
+\[ \HasWRec_{\UU_k}(\X) \defeq \prd{(\Y:\WAlg_{\UU_k}(A,B))} \WHom \; \X \; \Y \]
+\end{definition}
+
+\begin{definition}\label{def:WInd}
+For $A:\UU_i$, $B : A \to \UU_i$, an algebra $\X : \WAlg_{\UU_j}(A,B)$ \emph{satisfies the induction principle} on a universe $\UU_k$ if for any fibered algebra $\Y : \WFibAlg_{\UU_k}(A,B) \; \X$ there exists a fibered $\W$-homomorphism between $\X$ and $\Y$:
+\[ \HasWInd_{\UU_k}(\X) \defeq \prd{(\Y:\WFibAlg_{\UU_k}(A,B) \; \X)} \WFibHom \; \X \; \Y \]
+\end{definition}
+
+\begin{definition}\label{def:WRecUniq}
+For $A:\UU_i$, $B : A \to \UU_i$, an algebra $\X : \WAlg_{\UU_j}(A,B)$ \emph{satisfies the recursion uniqueness principle} on a universe $\UU_k$ if for any algebra $\Y : \WAlg_{\UU_k}(A,B)$
+any two $\W$-homomorphisms between $\X$ and $\Y$ are equal:
+\[ \HasWRecUniq_{\UU_k}(\X) \defeq \prd{(\Y:\WAlg_{\UU_k}(A,B))} \isprop(\WHom \; \X \; \Y) \]
+\end{definition}
+
+\begin{definition}\label{def:WIndUniq}
+For $A:\UU_i$ and $B : A \to \UU_i$, an algebra $\X : \WAlg_{\UU_j}(A,B)$ \emph{satisfies the induction uniqueness principle} on a universe $\UU_k$ if for any fibered algebra $\Y : \WFibAlg_{\UU_k}(A,B) \; \X$ any two fibered $\W$-homomorphisms between $\X$ and $\Y$ are equal:
+\[ \HasWIndUniq_{\UU_k}(\X) \defeq \prd{(\Y:\WFibAlg_{\UU_k}(A,B) \; \X)} \isprop(\WFibHom \; \X \; \Y) \]
+\end{definition}
+
+\begin{definition}\label{def:WInit}
+For $A:\UU_i$ and $B : A \to \UU_i$, an algebra $\X : \WAlg_{\UU_j}(A,B)$ is \emph{initial} on a universe $\UU_k$ if for any algebra $\Y : \WAlg_{\UU_k}(A,B)$ there exists a unique $\W$-homomorphism between $\X$ and $\Y$:
+\[ \IsWInit_{\UU_k}(\X) \defeq \prd{(\Y:\WAlg_{\UU_k}(A,B))} \iscontr(\WHom \; \X \; \Y) \]  
+\end{definition}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\begin{definition}\label{def:WFibCell}
+For $A:\UU_i$, $B : A \to \UU_i$, $\X : \WAlg_{\UU_j}(A,B)$, $\Y : \WFibAlg_{\UU_k}(A,B) \; \X$ and fibered homomorphisms $\mu, \nu : \WFibHom \; \X \; \Y$, define the type of \emph{fibered 2-cells} between $\mu$ and $\nu$ by
+\begin{align*} & \WFibCell \; (C,c) \; (E, e) \; (f,\gamma) \; (g,\delta) \defeq \\ & \;\;\; \;\;\;\WFibHom \; (C,c) \; \Big(f \sim g; x,p,r \mapsto \gamma(x,p) \ct \app_{e(x,p)}(\funext(r)) \ct \delta(x,p)^{-1}\Big)
+\end{align*}
+\end{definition}
+For brevity, we will often leave out the first two arguments. As expected, we have:
+\begin{definition}\label{def:WHInit}
+Given $A:\UU_i$, $B : A \to \UU_i$, an algebra $\X : \WAlg_{\UU_j}(A,B)$ is called \emph{homotopy-initial} on a universe $\UU_k$ if for any algebra $\Y : \WAlg_{\UU_k}(A,B)$, the type of $\W$-homomorphisms between $\X$ and $\Y$ is contractible:
+\[ \IsWHInit_{\UU_k}(\X) \defeq \prd{(\Y:\WAlg_{\UU_k}(A,B))} \iscontr(\WHom \; \X \; \Y) \]  
+\end{definition}
+
+\begin{definition}
+For $A:\UU_i$, $B : A \to \UU_i$, $\X : \WAlg_{\UU_j}(A,B)$ there is a designated \emph{identity} homomorphism from $\X$ to itself, defined by
+\[ \WIdHom \; (C,c) \defeq (\idfun{C}; a,t \mapsto \refl_{c(a,t)}) \]
+\end{definition}
+As before, we denote this homomorphism by $\one_\X$.
+
+\begin{definition}
+For $A:\UU_i$, $B : A \to \UU_i$, $\X : \WAlg_{\UU_j}(A,B)$, $\Y : \WAlg_{\UU_k}(A,B)$, $\Z : \WAlg_{\UU_l}(A,B)$ and homomorphisms $\mu : \WHom \; \X \; \Y$, $\nu : \WHom \; \Y \; \Z$, the \emph{composition} of $\mu$ and $\nu$ is a homomorphism from $\X$ to $\Z$ defined by
+\begin{align*} & \WCompHom \; (C,c) \; (D,d) \; (E,e) \; (f,\gamma) \; (g,\delta) \defeq  \Big(g \comp f; a,t \mapsto \app_g(\gamma(a,t)) \ct \delta(a, f \comp t) \Big)
+\end{align*}
+\end{definition}
+As before, we often leave out the first three arguments and denote the composition by $\nu \comp \mu$.
+
+\begin{definition}
+For $A:\UU_i$, $B : A \to \UU_i$, $\X : \WAlg_{\UU_j}(A,B)$, $\Y : \WAlg_{\UU_k}(A,B)$ we define the type of \emph{isomorphisms} between $\X$ and $\Y$ as
+\[\WAlgIso \; \X \; \Y \defeq \sm{(\rho : \WHom \; \X \; \Y)} \Big(\sm{(\mu : \WHom \; \Y \; \X)} \mu \comp \rho = \one_\X \Big) \times \Big(\sm{(\nu : \WHom \; \Y \; \X)} \rho \comp \nu = \one_\Y \Big) \] 
+\end{definition}
+
+
+
+
+\begin{lemma}\label{WFibHomSpace}
+For $A:\UU_i$, $B : A \to \UU_i$, $\X : \WAlg_{\UU_j}(A,B)$, $\Y : \WFibAlg_{\UU_k}(A,B) \; \X$ and $\mu,\nu : \WFibHom \; \X \; \Y$, the path space $\mu = \nu$ is equivalent to the space of fibered 2-cells between $\mu$ and $\nu$:
+\[ \mu = \nu \;\; \simeq \;\; \WFibCell \; \mu \; \nu \] 
+\end{lemma}
+\begin{proof}
+Let algebras $(C,c) : \WAlg_{\UU_j}(A,B)$, $(E,e) : \WFibAlg_{\UU_k}(A,B) \; (C,c)$ and homomorphisms $(f,\gamma), (g,\delta) : \WFibHom \; (C,c) \; (E,e)$ be given. We have
+\begin{alignat*}{4}
+& (f,\gamma) = (g,\delta) & \simeq \\
+& \sm{\alpha : f = g} \Big(\delta = \trans_{\big(h \mapsto \prd{a}\prd{t} h(c(a,t)) = e(a,t,\lam{b} h(t\;b))\big)}(\alpha) \; \gamma\Big) & \simeq \\
+& \sm{\alpha : f = g} \Big(\delta = \lam{a} \lam{t} \happly(\alpha,c(a,t))^{-1} \ct \gamma(a,t) \ct \app_{e(a,t)}(\funext (\lam{b}\happly(\alpha,t \; b))) \Big) & \;\;\; \simeq \\
+& \sm{\alpha : f \sim g} \Big(\delta = \lam{a} \lam{t} \; \alpha(c(a,t))^{-1} \ct \gamma(a,t) \ct \app_{e(a,t)}(\funext (\lam{b}\; \alpha(t \; b))) \Big) & \simeq \\
+& \sm{\alpha : f \sim g} \prd{a}\prd{t}\Big(\delta(a,t) = \alpha(c(a,t))^{-1} \ct \gamma(a,t) \ct \app_{e(a,t)}(\funext (\lam{b}\; \alpha(t \; b))) \Big) & \simeq \\ 
+& \sm{\alpha : f \sim g} \prd{a}\prd{t}\Big(\alpha(c(a,t)) = \gamma(a,t) \ct \app_{e(a,t)}(\funext (\lam{b}\; \alpha(t \; b))) \ct \delta(a,t)^{-1} \Big) & \equiv \\ 
+& \WFibCell \; (f,\gamma) \; (g,\delta)
+\end{alignat*}
+\end{proof}
+
+\begin{corollary}\label{WHomSpace}
+For $A:\UU_i$, $B : A \to \UU_i$, $\X : \WAlg_{\UU_j}(A,B)$, $\Y : \WAlg_{\UU_k}(A,B)$ and $\mu,\nu : \WHom \; \X \; \Y$, the path space $\mu = \nu$ is equivalent to the space of 2-cells between $\mu$ and $\nu$:
+\[ \mu = \nu \;\; \simeq \;\; \WCell \; \mu \; \nu \] 
+\end{corollary}
+
+\begin{lemma}\label{WAlgSpace}
 Given $A:\UU_i$, $B : A \to \UU_i$ and $\X,\Y : \WAlg_{\UU_j}(A,B)$, the path space $\X = \Y$ is equivalent to the space of isomorphisms between $\X$ and $\Y$:
 \[ \X = \Y \;\; \simeq \;\; \WAlgIso \; \X \; \Y \] 
-\end{theorem}
+\end{lemma}
 \begin{proof}
 Let algebras $(C,c), (D,d) : \WAlg_{\UU_j}(A,B)$ be given. We have
 \begin{alignat*}{4}
@@ -2205,6 +2335,74 @@ by Lem.~\ref{lem_singl_contr}. Thus, we have
 \end{alignat*}
 \end{proof}
 
+As desired, the analogues of the lemmas from section \ref{subsection:wtypes} still hold in the setting of homotopy type theory:
+
+\begin{lemma}\label{lem:WIndImpUniqInt}
+In $\Hint$, for $A:\UU_i$, $B : A \to \UU_i$, if an algebra $\X : \WAlg_{\UU_j}(A,B)$ satisfies the induction principle on the universe $\UU_k$, it also satisfies the induction uniqueness principle on $\UU_k$. In other words, we have
+\[ \HasWInd_{\UU_k}(\X) \;\; \rightarrow \;\; \HasWIndUniq_{\UU_k}(\X) \]
+\end{lemma}
+\begin{proof}
+Let an algebra $(C,c) : \WAlg_{\UU_j}(A,B)$ be given. To prove the induction uniqueness principle, take any algebra $(E,e) : \WFibAlg_{\UU_k}(A,B) \; (C,c)$ and homomorphisms $(f,\gamma), (g,\delta) : \WFibHom \; (C,c) \; (E,e)$. By Lem.~\ref{WFibHomSpace}, to show $(f,\gamma) = (g,\delta)$ it suffices to exhibit a fibered 2-cell between $(f,\gamma)$ and $(g,\delta)$. For this we use the induction principle with the fibered algebra $\Big(f \sim g; x,p,r \mapsto \gamma(x,p) \ct \app_{e(x,p)}(\funext(r)) \ct \delta(x,p)^{-1}\Big)$ and we are done.
+\end{proof}
+
+%\begin{lemma}\label{lem:WRecUniqEqInitInt}
+%In $\Hint$, for $A:\UU_i$, $B : A \to \UU_i$ the following conditions on an algebra $\X : \WAlg_{\UU_j}(A,B)$ are equivalent:
+%\begin{enumerate}
+%\item $\X$ satisfies the recursion and recursion uniqueness principles on the universe $\UU_k$
+%\item $\X$ is homotopy-initial on the universe $\UU_k$
+%\end{enumerate}
+%In other words, we have
+%\[ \HasWRec_{\UU_k}(\X) \times \HasWRecUniq_{\UU_k}(\X) \;\; \simeq \;\; \IsWHInit_{\UU_k}(\X) \]
+%\end{lemma}
+%\begin{proof}
+%By Lem.~\ref{lem:ContrChar}.
+%\end{proof}
+
+\begin{corollary}\label{lem:WIndImpHInitInt}
+In $\Hint$, for $A:\UU_i$, $B : A \to \UU_i$, if an algebra $\X : \WAlg_{\UU_j}(A,B)$ satisfies the induction principle on the universe $\UU_k$, it is homotopy-initial on $\UU_k$. In other words, we have
+\[ \HasWInd_{\UU_k}(\X) \;\; \rightarrow \;\; \IsWHInit_{\UU_k}(\X) \]
+\end{corollary}
+
+\begin{lemma}\label{lem:WRecUniqImpIndInt}
+In $\Hint$, for $A:\UU_i$, $B : A \to \UU_i$, if an algebra $\X : \WAlg_{\UU_j}(A,B)$ satisfies the recursion and recursion uniqueness principles on the universe $\UU_k$ and $k \geq j$, then it satisfies the induction principle on $\UU_k$. In other words, we have
+\[ \HasWRec_{\UU_k}(\X) \times \HasWRecUniq_{\UU_k}(\X) \;\; \rightarrow \; \; \HasWInd_{\UU_k}(\X) \]
+provided $k \geq j$.
+\end{lemma}
+\begin{proof}
+Let algebras $(C,c) : \WAlg_{\UU_j}(A,B)$ and $(E,e) : \WFibAlg_{\UU_k} \; (C,c)$ be given. We use the recursion principle with the algebra $(\sm{x:C} E(x); a,s \mapsto d(a,s))$ where
+\[ d(a,s) \defeq \Big(c\big(a,\lam{b:B(a)} \fst(s\;b)\big), e\big(a, \lam{b:B(a)} \fst(s\;b), \lam{b:B(a)} \snd(s\;b)\big) \Big) \]
+We note that the carrier type belongs to $\UU_k$ as $j \leq k$. This gives us a homomorphism $(u,\theta)$, where $u : C \to \sm{x:C} E(x)$ and $\theta : \prd{a:A}\prd{t:B(a)\to C} u(c(a,t)) = d(a,\lam{b:B(a)}u(t\;b))$. We can now form two homomorphisms 
+\[\Big(\fst \comp u; a,t \mapsto \fst(\idtodpair(\theta(a,t)))\Big), \Big(\idfun{C}; a,t \mapsto \refl_{c(a,t)}\Big) : \WHom \; (C,c) \; (C,c)\]
+The recursion uniqueness principle tells us that these homomorphisms are equal. By Cor.~\ref{WHomSpace} this means there exists a 2-cell $(\alpha,\eta)$ between them, i.e., we have 
+\begin{align*}
+& \alpha : \fst \comp u \sim \idfun{C} \\
+& \eta : \prd{a:A}\prd{t:B(a)\to C} \Big(\alpha(c(a,t)) = \fst(\idtodpair(\theta(a,t))) \ct \app_{c(a)}\big(\funext(\lam{b:B(a)} \alpha(t\;b))\big) \ct \refl_{c(a,t)}\Big)
+\end{align*}
+Now it is easy to see that for any $a : A$, path $p : t_1 =_{B(a) \to C} t_2$, and $s : \prd{b:B(a)} E(t_1 \; b)$, we have a higher path
+\[ \epsilon(a,p,s) : \trans_E\big(\app_{c(a)}(p)\big) \; e(a,t_1,s) = e\Big(a,t_2,\big(\lam{b:B(a)} \trans_E(\happly(p,b)) \; (s \; b)\big)\Big) \] 
+To show this, we simply use path induction on $p$.
+
+We can thus define the desired fibered homomorphism as \[\Big(x \mapsto \trans_E(\alpha(x)) \; \snd(u(x)); a,t \mapsto \phi(a,t) \Big) : \WFibHom \; (C,c) \; (E,e)\]
+where $\phi(a,t)$ is the path
+\begin{center}
+\begin{tikzpicture}
+\node (N0) at (0,12) {$\trans_E\big(\alpha(c(a,t))\big) \; \snd(u(c(a,t)))$};
+\node (N1) at (0,10.5) {$\trans_E\Big(\fst(\idtodpair(\theta(a,t))) \ct \app_{c(a)}\big(\funext(\lam{b}\; \alpha(t\;b))\big) \ct \refl_{c(a,t)}\Big) \; \snd(u(c(a,t)))$};
+\node (N2) at (0,9) {$\trans_E\Big(\fst(\idtodpair(\theta(a,t))) \ct \app_{c(a)}\big(\funext(\lam{b} \;\alpha(t\;b))\big)\Big) \; \snd(u(c(a,t)))$};
+\node (N3) at (0,7.5) {$\trans_E\Big(\app_{c(a)}\big(\funext(\lam{b} \; \alpha(t\;b))\big)\Big) \; \Big(\trans_E\big(\fst(\idtodpair(\theta(a,t)))\big) \; \snd(u(c(a,t)))\Big)$};
+\node (N4) at (0,6) {$\trans_E\Big(\app_{c(a)}\big(\funext(\lam{b}\; \alpha(t\;b))\big)\Big) \; e\big(a, \lam{b} \;\fst(u(t\;b)), \lam{b}\; \snd(u(t\;b))\big) $};
+\node (N5) at (0,4.5) {$e\Big(a,t,\lam{b} \trans_E\Big(\happly(\funext(\lam{b}\; \alpha(t\;b)),b)\Big) \; \snd(u(t\;b))\Big)$};
+\node (N6) at (0,3) {$e\Big(a,t,\lam{b} \; \trans_E(\alpha(t\;b)) \; \snd(u(t\;b))\Big)$};
+
+\draw[-] (N0) -- node[right]{\footnotesize via $\eta(a,t)$} (N1);
+\draw[-] (N1) -- node[right]{\footnotesize} (N2);
+\draw[-] (N2) -- node[right]{\footnotesize} (N3);
+\draw[-] (N3) -- node[right]{\footnotesize via $\snd(\idtodpair(\theta(a,t)))$} (N4);
+\draw[-] (N4) -- node[right]{\footnotesize $\epsilon\Big(a,\funext(\lam{b} \; \alpha(t\;b)), \lam{b} \; \snd(u(t\;b))\Big)$} (N5);
+\draw[-] (N5) -- node[right]{\footnotesize} (N6);
+\end{tikzpicture}
+\end{center}
+\end{proof}
 
 \begin{corollary}\label{lem:WMainInt}
 In $\Hint$, for $A:\UU_i$, $B : A \to \UU_i$, the following conditions on an algebra $\X : \WAlg_{\UU_j}(A,B)$ are equivalent:
@@ -2216,8 +2414,6 @@ In $\Hint$, for $A:\UU_i$, $B : A \to \UU_i$, the following conditions on an alg
 for $k \geq j$. In other words, we have \[ \HasWInd_{\UU_k}(\X)  \;\; \simeq \;\; \HasWRec_{\UU_k}(\X) \times \HasWRecUniq_{\UU_k}(\X) \;\; \simeq \;\; \IsWHInit_{\UU_k}(\X) \]
 provided $j \geq i$. Furthermore, all 3 conditions are mere propositions.
 \end{corollary}
-
-
 \begin{proof}
 Conditions (1) and (3) are mere propositions by Lem.~\ref{lem:IsContrIsProp} (for the latter), Lem.~\ref{lem:PropChar},~\ref{lem:WIndImpUniqInt} (for the former), and the fact that a family of mere propositions is itself a mere proposition.
 \end{proof}
