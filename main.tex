@@ -14,7 +14,7 @@
 \input{prooftree}
 
 % Numberings 
-\setcounter{tocdepth}{1}
+\setcounter{tocdepth}{2}
 \numberwithin{equation}{section}
 
 % Table of contents
@@ -127,7 +127,7 @@
 \newcommand{\ie}{\text{i.e.\ }}
 \newcommand{\eg}{\text{e.g.}}
 \newcommand{\resp}{\text{resp.\ }}
-\newcommand{\myemph}[1]{\textbf{#1}}
+\newcommand{\myemph}[1]{\textit{#1}}
 % Definitional equality
 \newcommand{\deq}{\equiv}
 % Propositional equality
@@ -1281,6 +1281,10 @@ the type $\Bool$ as a strict coproduct $1+1$ in extensional type theory. It make
 in intensional type theory, $\Bool$ is a kind of homotopy coproduct or weak $\infty$-coproduct 
 in the $\infty$-category of types, functions, identity terms, higher identity terms, \ldots.  
 
+\begin{corollary} If $A$ is a homotopy-initial and $B$ is equivalent to $A$ as a type, then $B$ is homotopy-initial.
+In particular, any type equivalent to $\Bool$ is homotopy-initial.
+\end{corollary} 
+
 
 \subsection{Universes and internalization}
 
@@ -1297,20 +1301,34 @@ TO BE ADDED
 
 
 
-\begin{definition}
-For $\X : \BoolAlg_{\UU_i}$, $\Y : \BoolAlg_{\UU_j}$ we define the type of \emph{isomorphisms} between $\X$ and $\Y$ as
-\[\BoolAlgIso \; \X \; \Y \defeq \sm{(\rho : \BoolHom \; \X \; \Y)} \Big( \sm{(\mu : \BoolHom \; \Y \; \X)} \mu \comp \rho = \one_\X \Big) \times \Big( \sm{(\nu : \BoolHom \; \Y \; \X)} \rho \comp \nu = \one_\Y \Big) \] 
+
+\begin{definition} Let $A$, $B$ be bipointed types. We say that a bipointed morphism $f \co A \to B$ is a \myemph{bipointed equivalence}
+if there exist bipointed morphisms $g \co B \to A$ and $h \co B \to A$ providing a left and a right bipointed inverse for $f$, \ie 
+\[ 
+g \circ f = 1_A \, , \quad f \circ h = 1_B \, .
+\]
 \end{definition}
 
 
+Accordingly, for a bipointed morphism $f \co A \to B$, we define the type of proofs that $f$ is a bipointed equivalence by letting
+\[
+\mathsf{isbipequiv}(f) \defeq  \big( ( \Sigma g : \Hom[B,A] ) \; g \circ f = 1_A \big) \times 
+   \big(  (\Sigma h : \Hom[A, B])  \; f \circ h = 1_B \big) \, .
+\]
+We then define the type of \emph{bipointed equivalences} between $A$ and $B$ as
+\[
+\mathsf{BipEquiv}[A, B] 
+\defeq    (\Sigma f : \Hom[A,B]) \mathsf{isbipequiv}(f)  \, . 
+\] 
 
 
+\begin{lemma}\label{BoolAlgSpace} A bipointed morphism $(f, \bar{f}_0, \bar{f}_1) \co A \to B$ is a bipointed equivalence if and only
+if its underlying function $f \co A \to B$ is an equivalence. Furthermore, there is an equivalence of types
+\[
+\mathsf{isbipequiv}(f, \bar{f}_0, \bar{f}_1)  \simeq \mathsf{isequiv}(f) \, . 
+\]
+\end{lemma}  
 
-
-\begin{lemma}\label{BoolAlgSpace}
-For $\X,\Y : \BoolAlg_{\UU_i}$, the path space $\X = \Y$ is equivalent to the space of isomorphisms between $\X$ and $\Y$:
-\[ \X = \Y \;\; \simeq \;\; \BoolAlgIso \; \X \; \Y \] 
-\end{lemma}
 \begin{proof}
 Let algebras $(C,c_0,c_1), (D,d_0,d_1) : \BoolAlg_{\UU_i}$ be given. Expanding the type of algebra isomorphisms between $(C,c_0,c_1)$ and $(D,d_0,d_1)$ yields the type
 \begin{align*}
@@ -1368,6 +1386,15 @@ by Lem.~\ref{lem_singl_equiv_contr}\ednote{Which says $\iscontr(\sm{x:A} f(x) =_
 & \big(\Sigma f : C\to D\big) \big(\Sigma g:D\to C\big) \big(\Sigma \alpha : g \comp f \sim \idfun{C}\big) \big(\Sigma h:D \to C\big) \\ 
 & \big(\Sigma \beta : f \comp h \sim \idfun{D}\big) (f(c_0)=d_0) \times (f(c_1) = d_1)
 \end{align*}
+\end{proof}
+
+\begin{theorem} For bipointed types $A, B$ in $\UU$, the path space $A = B$ is equivalent to the type of bipointed equivalences between $A$ and $B$, \ie 
+\[ 
+A = B \simeq  \mathsf{BipEquiv}(A,B) \, .
+\] 
+\end{theorem} 
+
+\begin{proof}
 The arguments $f,g,\alpha,h,\beta$ can be packed together to form an equivalence:
 \[ \big(\Sigma p : C \simeq D\big) \big(\fst(p) \; c_0 =d_0\big) \times \big(\fst(p) \; c_1 = d_1\big) \]
 By characterization of paths in product spaces, this is equivalent to
@@ -1378,14 +1405,15 @@ $\big(\Sigma p : C = D\big) p_! \; (c_0,c_1) = (d_0,d_1)$. By path induction on 
 Thus the path space is equivalent to 
 \[ \big(\Sigma p : C = D\big) \big(\fst(\idtoeq(p)) \; c_0, \fst(\idtoeq(p)) \; c_1\big) = (d_0,d_1) \]
 Since the function $\idtoeq(p) : C = D \to C \simeq D$ is an equivalence, this gives us an equivalence with $\star$ as desired.
-\end{proof}
-
+\end{proof} 
 
 Assuming the Univalence Axiom, homotopy-initial algebras are unique, rather than unique up to a contractible type of equivalences.
 
-\begin{corollary}[$\Hint + \mathrm{UA}$] \label{BoolHInitIso}
-Any two algebras $\X,\Y : \BoolAlg_{\UU_i}$ which are homotopy-initial on $\UU_i$ are equal:
-\[ \IsBoolHInit_{\UU_i}(\X) \to \IsBoolHInit_{\UU_i}(\Y) \to \X = \Y\] 
+\begin{corollary}  \label{BoolHInitIso}
+Any two homotopy-initial bipointed types $A \, , B$ in $\UU$ are propositionally equal, \ie 
+\[ 
+\mathsf{ishinitial}(A) \times \mathsf{ishinitial}(B) \to A = B \, .
+\] 
 \end{corollary}
 \begin{proof}
 By Lem.~\ref{BoolAlgSpace} it suffices to construct an isomorphism between $\X$ and $\Y$. Since $\X$ and $\Y$ are both homotopy-initial on $\UU_i$, there exist homomorphisms $\mu : \BoolHom \; \X \; \Y$ and $\nu : \BoolHom \; \Y \; \X$. Again by homotopy-initiality, we have $\nu \comp \mu = \one_\X$ and $\mu \comp \nu = \one_\Y$, which gives us the desired isomorphism.
@@ -2140,7 +2168,7 @@ The implication (iv) $\Rightarrow$ (i) is almost immediate, and is left to the r
 
 
 \begin{corollary}\label{lem:WInitInt}
-The $P$-algebra $\W = (\W x:A)B(x)$ is homotopy-initial.
+The $W$-type $(W x : A) B(x)$ is a homotopy-initial $P$-algebra.
 \end{corollary}
 
 
@@ -2148,9 +2176,43 @@ Corollary~\ref{lem:WInitInt} is the analogue in our setting of the characterizat
 the type $\W$ as a strict initial algebra in extensional type theory. It makes precise the informal idea that, in intensional type theory, $\W$ is a kind of homotopy or weak $\infty$-initial
 algebra in the $\infty$-category of types, functions, identity terms, higher identity terms, \ldots.  
 
+\begin{lemma}\label{lem:suppath}
+For all $a_1,a_2:A$, $t_1 : B(a_1) \to \W$, $t_2 : B(a_2) \to \W$ we have
+\[ 
+\wsup(a_1,t_1) = \wsup(a_2,t_2)  \simeq  (a_1,t_1) = (a_2,t_2)
+\]
+\end{lemma}
+
+\begin{proof}
+By Lemma~\ref{lem:IntLambek} and Corollary~\ref{lem:WInitInt}, the structure map $\wsup$ defines an equivalence between $\sm{x:A} B(x) \to \W$ and $\W$. The rest follows from Lem.~\ref{lem:apeq}.
+\end{proof}
+
+Finally, $\W$-types with propositional computation rules still preserve homotopy levels, in the following sense.
+
+\begin{theorem}
+If $A$ is an $(n+1)$-type, then so is $(\W x:A)B(x)$.
+\end{theorem}
+
+
+\begin{proof}
+We need to show that for any $w, w' : \W$ we have $\isntype{n}(w = w')$. By induction on $w$, it suffices to show that for any $a,t$ we have $(Pi w:\W) \isntype{n}(\wsup(a,t) = w)$ under the induction hypothesis $h : (\Pi b:B(a)) (\Pi w:\W) \isntype{n}(t(b) = w)$.  By another induction, this time on $w'$, it suffices to show that for any $a',t'$ we have
+$\isntype{n}\big(\wsup(a,t) = \wsup(a',t')\big)$ under the hypothesis $(\Pi b:B(a')) \isntype{n}\big(\wsup(a,t) = t'(b)\big)$, which however is not necessary. Now we have
+\begin{align*} 
+\wsup(a,t) = \wsup(a',t') 
+& \simeq (a,t) = (a',t') \\
+& \simeq (\Sigma p : a = a') \big(t = \trans_{x \mapsto B(x) \to \W}(p) \; t'\big) \\
+& \simeq  (\Sigma p : a = a')  \big(t = \lam{b:B(a)} t'(\trans_B(p) \; b)\big) \\
+& \simeq (\Sigma p : a = a') (\Pi b:B(a)) \big(t(b) = t'(\trans_B(p) \; b)\big) \, , 
+\end{align*}
+where the first equality follows by Corollary.~\ref{lem:suppath}. Since $A$ is an $(n+1)$-type by assumption, we have $\isntype{n}(a=a')$. For any $p,b$ we have $\isntype{n}\big(t(b) = t'(\trans_B(p) \; b)\big)$ by the hypothesis~$h\big(b,t'(\trans_B(p) \; b)\big)$. Since a family of $n$-types is an $n$-type and a dependent sum of a family of $n$-types over an $n$-type is again an $n$-type, the last type in the above chain of equalities is an $n$-type. 
+\end{proof}
+
+We note that there is no restriction on the homotopy level of the fibers of $B$ since they only appear contravariantly. Furthermore, we note that the lemma is no longer true if $n+1$ is replaced by $n$: if $A \defeq \one$ and $B(x) \defeq \one$, then $\W^{\UU_0}_{x:A} B(x) \simeq \zero$, which is of course not contractible. 
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Internalization and Univalence}
+\subsection{Universes and internalization}
 
 % \newcommand{\Palg}{P\text{-}\mathrm{alg}}
 
@@ -2158,6 +2220,29 @@ For $A:\UU$, $B : A \to \UU$, define the type of \emph{$P$-algebras} in $\UU$ as
 \[
 \Palg(A,B)  \defeq (\Sigma C : \UU) (\Pi x :A) (B(x) \to C) \to C 
 \]
+
+
+
+\begin{theorem}\label{lem:WMainInt}
+For $A : \UU$, $B : A \to \UU$, the following types are equivalent: 
+\[ 
+\mathsf{isinductive}(C) \simeq 
+\mathsf{isrecursive}(C)   \simeq
+\mathsf{ishinitial}(C) \simeq
+\mathsf{ishproj}(C) \, .
+\]
+Furthermore, all four types are mere propositions.
+\end{theorem}
+
+
+\begin{proof} TO BE REWRITTEN.
+\end{proof}
+
+
+
+
+\subsection{Univalence for $P$-algebras}
+
 
 
 
@@ -2249,22 +2334,6 @@ by Lem.~\ref{lem_singl_contr}. Thus, we have
 \end{proof}
 
 
-
-\begin{theorem}\label{lem:WMainInt}
-For $A : \UU$, $B : A \to \UU$, the following types are equivalent: 
-\[ 
-\mathsf{isinductive}(C) \simeq 
-\mathsf{isrecursive}(C)   \simeq
-\mathsf{ishinitial}(C) \simeq
-\mathsf{ishproj}(C) \, .
-\]
-Furthermore, all four types are mere propositions.
-\end{theorem}
-
-
-\begin{proof} TO BE REWRITTEN.
-\end{proof}
-
 As in the case of the type $\Bool$, we have the following corollary.
 
 
@@ -2279,40 +2348,6 @@ if $C, D : \Palg$ are homotopy-initial then they are propositionally equal:
 \begin{proof}
 By Lemma~\ref{WAlgSpace} it suffices to construct an isomorphism between $C$ and $D$. Since $C$ and $D$ are both homotopy-initial, there exist homomorphisms $f :  C \to D$ and $g : D \to C$. Again by homotopy initiality, we have $g \comp f = 1_C$ and $f \comp g = 1_D$, which gives us the desired isomorphism.
 \end{proof}
-
-
-\begin{corollary}\label{lem:suppath}
-For all $a_1,a_2:A$, $t_1 : B(a_1) \to \W$, $t_2 : B(a_2) \to \W$ we have
-\[ 
-\wsup(a_1,t_1) = \wsup(a_2,t_2)  \simeq  (a_1,t_1) = (a_2,t_2)
-\]
-\end{corollary}
-
-\begin{proof}
-By Lemma~\ref{lem:IntLambek} and Corollary~\ref{lem:WInitInt}, the structure map $\wsup$ defines an equivalence between $\sm{x:A} B(x) \to \W$ and $\W$. The rest follows from Lem.~\ref{lem:apeq}.
-\end{proof}
-
-Finally, $\W$-types with propositional computation rules still preserve homotopy levels, in the following sense.
-
-\begin{lemma}
-If $A$ is an $(n+1)$-type, then so is $(\W x:A)B(x)$.
-\end{lemma}
-
-
-\begin{proof}
-We need to show that for any $w, w' : \W$ we have $\isntype{n}(w = w')$. By induction on $w$, it suffices to show that for any $a,t$ we have $(Pi w:\W) \isntype{n}(\wsup(a,t) = w)$ under the induction hypothesis $h : (\Pi b:B(a)) (\Pi w:\W) \isntype{n}(t(b) = w)$.  By another induction, this time on $w'$, it suffices to show that for any $a',t'$ we have
-$\isntype{n}\big(\wsup(a,t) = \wsup(a',t')\big)$ under the hypothesis $(\Pi b:B(a')) \isntype{n}\big(\wsup(a,t) = t'(b)\big)$, which however is not necessary. Now we have
-\begin{align*} 
-\wsup(a,t) = \wsup(a',t') 
-& \simeq (a,t) = (a',t') \\
-& \simeq (\Sigma p : a = a') \big(t = \trans_{x \mapsto B(x) \to \W}(p) \; t'\big) \\
-& \simeq  (\Sigma p : a = a')  \big(t = \lam{b:B(a)} t'(\trans_B(p) \; b)\big) \\
-& \simeq (\Sigma p : a = a') (\Pi b:B(a)) \big(t(b) = t'(\trans_B(p) \; b)\big) \, , 
-\end{align*}
-where the first equality follows by Corollary.~\ref{lem:suppath}. Since $A$ is an $(n+1)$-type by assumption, we have $\isntype{n}(a=a')$. For any $p,b$ we have $\isntype{n}\big(t(b) = t'(\trans_B(p) \; b)\big)$ by the hypothesis~$h\big(b,t'(\trans_B(p) \; b)\big)$. Since a family of $n$-types is an $n$-type and a dependent sum of a family of $n$-types over an $n$-type is again an $n$-type, the last type in the above chain of equalities is an $n$-type. 
-\end{proof}
-
-We note that there is no restriction on the homotopy level of the fibers of $B$ since they only appear contravariantly. Furthermore, we note that the lemma is no longer true if $n+1$ is replaced by $n$: if $A \defeq \one$ and $B(x) \defeq \one$, then $\W^{\UU_0}_{x:A} B(x) \simeq \zero$, which is of course not contractible. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Definability}
