@@ -1840,13 +1840,14 @@ is contractible, \ie the following type is inhabilited
 
 We again stress that homotopy-initiality is a purely type-theoretic notion. In order to relate it to the rules for inductive and recursive types, we again require an alternate description of the identity type of two morphisms. For this, we shall require the notion of a homotopy between morphisms of $P$-algebras. 
 
+[THE FOLLOWING NEEDS TO BE FIXED -- WHERE TO USE HOMOTOPIES AND WHERE TO USE IDENTITY PROOFS]
 \begin{definition}
-For $P$-algebras $(C,s_C)$ and $(D,s_D)$ and morphisms $(f, \bar{f})$ and $(g, \bar{g})$ between them, a \emph{homotopy}  $$(h, \bar{h}) : (f, \bar{f}) \rightarrow (g, \bar{g})$$
-consists of an identity  $h : f = g$ together with a (higher) identity, 
+For $P$-algebras $(C,s_C)$ and $(D,s_D)$ and morphisms $(f, \bar{f})$ and $(g, \bar{g})$ between them, a \emph{homotopy}  $$(h, \bar{h}) : (f, \bar{f}) \sim (g, \bar{g})$$
+consists of a homotopy $h : f \sim g$ together with a (higher) identity, 
 \[
 \bar{h} : \bar{f} \cdot s_D(Ph) = h(s_C)\cdot \bar{g}\, ,
 \]
-between elements in $\id{PC \rightarrow D}\big( f \circ s_C \, ,  s_{D} \circ Pf \big)$.  Here the identity $Ph : Pf = Pg$ is derived from $h : f = g$, and $h(s_C)$ and $s_D(Ph)$ are again pre- and post-compositions, respectively, of maps with identities.
+between elements in $\id{PC \rightarrow D}\big( f \circ s_C \, ,  s_{D} \circ Pf \big)$.  Here the identity $Ph : Pf = Pg$ is derived from $h : f \sim g$, and $h(s_C)$ and $s_D(Ph)$ are again pre- and post-compositions, respectively, of maps with homotopies.
 
 Such a homotopy can be represented as filling the three-dimensional space between the two pasting diagrams:
 \[
@@ -1865,14 +1866,14 @@ Accordingly, the type of homotopies of algebra maps is defined by
 \Ho
 \big[ (f,\bar{f}), (g, \bar{g})  \big]
  \defeq  
-(\Sigma h:  f = g) \, \Id\big( \bar{f} \cdot s_D(Ph),\, (h(s_C))\cdot \bar{g} \big) \, .
+(\Sigma h:  f \sim g) \, \Id\big( \bar{f} \cdot s_D(Ph),\, (h(s_C))\cdot \bar{g} \big) \, .
 \]
 \end{definition}
 
 \begin{lemma}\label{IdEqHo}
-For $P$-algebras $(C,s_C)$ and $(D,s_D)$ and morphisms $(f, \bar{f})$ and $(g, \bar{g})$ between them, the type of identities $(f, \bar{f}) = (g, \bar{g}))$ is equivalent to the type of homotopies between them,
+For $P$-algebras $(C,s_C)$ and $(D,s_D)$ and morphisms $(f, \bar{f})$ and $(g, \bar{g})$ between them, the type of identity proofs $p : (f, \bar{f}) = (g, \bar{g})$ is equivalent to the type of homotopies $(h, \bar{h}) : (f, \bar{f}) \sim (g, \bar{g})$,
 \[
-\Id((f, \bar{f}), (g, \bar{g}) \simeq \Ho((f, \bar{f}), (g, \bar{g})).
+\Id\big((f, \bar{f}), (g, \bar{g})\big) \simeq \Ho\big((f, \bar{f}), (g, \bar{g})\big).
 \]
 \end{lemma}
 
@@ -1970,10 +1971,14 @@ A . \ar@/^1.2pc/[u]^{s'} }
 \]
 \end{proof}
 
+We can now give an algebraic formulation of being an inductive type.
+
 \begin{definition} We say that a $P$-algebra $C$ is \emph{homotopy-projective} if every fibered algebra over it has a homomorphic section.
 \end{definition} 
 
-\begin{definition} \label{def:W2cellsection} Let $E = (E, e)$ be a fibered algebra over $C = (A, s_C)$, and let $f = (f, \bar{f})$ and $g = (g, \bar{g})$ be two sections of $E$.  An \emph{algebra homotopy} 
+In order to relate this condition to induction, we require an analysis of the identities of sections in terms of their homotopies.
+
+\begin{definition} \label{def:W2cellsection} Let $E = (E, e)$ be a fibered algebra over $C = (C, s_C)$, and let $f = (f, \bar{f})$ and $g = (g, \bar{g})$ be two sections of $E$.  An \emph{algebra homotopy} 
 \[
 (h, \bar{h}) \co (f, \bar{f})  \rightarrow (g, \bar{g})
 \] 
@@ -1995,14 +2000,15 @@ h(s_C(x,u)) \ct \bar{g}(x,u) \big]\, .
 %\end{equation}
 \end{definition} 
 
+Observe that the notion of a homotopy of sections corresponds to the $(\beta, \eta)$-compatibility condition of lemma \ref{lem:Wetaind}.  The choice of terminology is justified by the following.
 
 \begin{lemma}\label{lem:fibalghom}
-Given a fibered $P$-algebra $(E, e)$ over $C$, two algebra sections $(f, \bar{f})$ and $(g, \bar{g})$, and there is a corresponding algebra homomorphism $i : C\to E'$, where the type $E' = (\Sigma z : C) E(z)$ is equipped with the $P$-algebra structure $s_{E'} :P(E')\to E'$ from lemma \ref{lem:fibalg}.
+Given a fibered $P$-algebra $(E, e)$ over $C$, two algebra sections $(f, \bar{f})$ and $(g, \bar{g})$, and a homotopy $(h, \bar{h}) : (f, \bar{f}) \sim (g, \bar{g})$, there is an algebra  homotopy between the corresponding homomorphisms $f, g : C\to E'$ as defined in lemma \ref{lem:fibalghom}, where as before $E' = (\Sigma z : C) E(z)$ is equipped with the $P$-algebra structure $s_{E'} :P(E')\to E'$ from lemma \ref{lem:fibalg}.
 \[
 \xymatrix{
-P(E') \ar[d]^{P(\pi_1)} \ar[r]^-{s_{E'}} %\ar@{}[rd]^{p}
-	 & E' \ar[d]_{\pi_1} \\ 
-P(C)  \ar@/^1.2pc/[u]^{Pi} \ar[r]_-{s_C} & C  \ar@/_1.2pc/[u]_{i}.}
+ E' \ar@{}[d]|{h} \\ 
+C \ar@/^1.2pc/[u]^{f}  \ar@/_1.2pc/[u]_{g}
+}
  \]
 \end{lemma}
 
