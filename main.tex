@@ -149,11 +149,14 @@
 \newcommand{\judge}[3][]{#2\;\vdash_{#1}\;#3}
 % Preliminaries
 \newcommand{\isntype}[1]{\mathsf{is}\text{-}\mathsf{#1}\text{-}\mathsf{type}}
-\newcommand{\iscontr}{\mathsf{is}\text{-}\mathsf{contr}}
-\newcommand{\isprop}{\mathsf{is}\text{-}\mathsf{prop}}
-\newcommand{\isequiv}{\mathsf{is}\text{-}\mathsf{equiv}}
+\newcommand{\iscontr}{\mathsf{iscontr}}
+\newcommand{\isprop}{\mathsf{isprop}}
+\newcommand{\isequiv}{\mathsf{isequiv}}
 \newcommand{\hfiber}{\mathsf{hfiber}}
 \newcommand{\trans}{\mathsf{tr}}
+\newcommand{\ext}{\mathsf{ext}}
+\renewcommand{\int}{\mathsf{int}}
+
 \newcommand{\ct}{%
   \mathchoice{\mathbin{\raisebox{0.5ex}{$\displaystyle\centerdot$}}}%
              {\mathbin{\raisebox{0.5ex}{$\centerdot$}}}%
@@ -241,6 +244,8 @@
 \newcommand{\BoolIdHom}{\mathsf{2}\text{-}\mathsf{Id}\text{-}\mathsf{Hom}}
 \newcommand{\BoolCompHom}{\mathsf{2}\text{-}\mathsf{Comp}\text{-}\mathsf{Hom}}
 \newcommand{\BoolAlgIso}{\mathsf{2}\text{-}\mathsf{Alg}\text{-}\mathsf{Iso}}
+
+
 % Successor types
 \newcommand{\NatAlg}{\nat\text{-}\mathsf{Alg}}
 \newcommand{\NatHom}{\nat\text{-}\mathsf{Hom}}
@@ -589,10 +594,9 @@ while the Function Extensionality axiom is valid also in set-theoretic models, t
 axiom is not. Although $\Hint$ has a straightforward set-theoretical semantics, we stress that it 
 does not have any global extensionality rules, like the identity reflection rule, K, or UIP. This makes it also compatible with ``higher-dimensional" interpretations such as the groupoid model~\cite{HofmannM:gromtt}, in which the rules of $\Hint$ are also valid.
 
-\begin{remark} 
+\begin{remark}[Extensional type theories] 
 Most work on W-types to date (\emph{e.g.}~\cite{DybjerP:repids,MoerdijkI:weltc,AbbottM:concsp}) has been in the setting of extensional type theories,  
 in which the following rule, known as the \emph{identity reflection rule}, is also assumed:
-
 \begin{equation}
 \label{equ:collapse}
 \begin{prooftree}
@@ -601,7 +605,6 @@ in which the following rule, known as the \emph{identity reflection rule}, is al
   a=b :  A
 \end{prooftree}
 \end{equation}
-
 This rule collapses propositional equality with definitional equality, thus making the overall system
 somewhat simpler to work with. However, it destroys the constructive character of the intensional system, since it makes type-checking undecidable~\cite{HofmannM:extcit}. For this reason, it is not assumed
 in the most recent formulations of Martin-L\"of type theories~\cite{NordstromB:marltt} or in automated proof assistants like Coq~\cite{BertotY:inttpp}.
@@ -658,54 +661,47 @@ is inhabited.
 The type $\iscontr(A)$ can be seen as the propositions-as-types translation
 of the formula stating that $A$ has a unique element. However, its homotopical interpretation 
 is as a space that is inhabited if and only if the space interpreting $A$ is contractible in the usual
-topological sense. The notion of contractibility can be used to articulate the world of types into different homotopical dimensions, or \emph{h-levels} \cite{VoevodskyV:unifc}. This classification has proven to be quite useful in understanding intensional type theory.  
+topological sense. The notion of contractibility can be used to articulate the world of types  into \emph{h-levels} according to their
+homotopical complexity~\cite{VoevodskyV:unifc}. This classification has proven to be quite useful in understanding intensional type theory.  
 For example, it permits the definition of new notions of \emph{proposition} and \emph{set} which provide a useful alternative to the standard approach to formalization of mathematics in type theory~\cite{VoevodskyV:unifc}.
 
 \begin{remark} \label{thm:idcontrcontr}
 If $A$ is a contractible type, then for every $a, b : A$, the type $\id{A}(a,b)$ is again contractible. This can be proved  by $\Id$-elimination~\cite{AwodeyS:indtht}. 
 \end{remark}
 
-Let us also recall from~\cite{VoevodskyV:unifc} the notions of weak equivalence and homotopy equivalence. To do this, we need to fix some notation. For $f : A \rightarrow B$
-and $y : B$, define the type
+Let us also recall from~\cite{VoevodskyV:unifc} the notions of weak equivalence and homotopy equivalence. To do this, we need to fix some notation. For $f : A \rightarrow B$ and $y : B$, define the he \emph{homotopy fiber} of $f$ at $y$ as the type
 \[
  \hfiber(f,y) \defeq (\Sigma x : A) \id{B}(f x, y) \, .
 \]
-We refer to this type as the \emph{homotopy fiber} of $f$ at $y$. 
 
 %%%
-\begin{definition} \label{thm:weq} Let $f : A \rightarrow B$.
-%%
-\begin{enumerate}[(i)] 
-%
-\item We say that $f$ is a \emph{weak equivalence} if  the type
+\begin{definition} \label{thm:weq}  We say that $f : A \rightarrow B$ is a weak equivalence if it has both a left inverse and a right inverse, \ie
+$\ell \co B \to A$ and $r \co B \to A$ such that 
+\[
+ \ell \circ f = 1_A \, ,  \quad  f \circ r = 1_B  \, .
+ \]
+ \end{definition}
+ 
+ Accordingly, for $f : A \rightarrow B$, we define the type of proofs that $f$ is an equivalence by letting
+ \[ 
+ \isequiv(f) \defeq (\Sigma \ell \co B \to A) \Id( \ell \circ f, 1_A) \times (\Sigma r \co B \to A) \Id( r \circ f , 1_B) \, .
+ \]
+Recall that a function $f$ is an equivalence if an only if every fiber is contractible, \ie the type
 \[
 \mathsf{isweq(f)} \defeq (\Pi y : B) \,  \iscontr(\hfiber(f,y)) 
 \]
-is inhabited. 
-%
-\item We say that $f$ is a \emph{homotopy equivalence} if there exist a function 
+is inhabited. Furthermore we say that $f$ is a \emph{homotopy equivalence} if there exist a function 
 $g : B\rightarrow A$ and elements
 \begin{align*}
 \eta &: (\Pi x : A) \Id( g  f  x , x) \,  ,\\
-\varepsilon &: (\Pi y:B) \Id( f   g  y, y) \, .
+\varepsilon &: (\Pi y:B) \Id( f   g  y, y) \, . \\
+p & : (\Pi x : A) \Id ( \varepsilon_{f x} \, , f \, \eta_x )  \, , \\
 \end{align*}
-It is an \emph{adjoint homotopy equivalence} if there are also
-terms
-\begin{align*}
-p &: (\Pi x : A) \Id ( \varepsilon_{f x} \, , f \, \eta_x )  \, , \\
-q &: (\Pi y : B) \Id ( \eta_{g y} \, , g \, \varepsilon_y) \, ,
-\end{align*}
+Note that we could have replace the requirement of the existence of $p$ with that of $q \co (\Pi y : B) \Id ( \eta_{g y} \, , g \, \varepsilon_y)$
 where the same notation for both function application and
 the action of a function on an identity proof (which is easily definable by $\Id$-elimination),
 and we write $\alpha_x$ instead of $\alpha(x)$ for better readability.
-%
-\end{enumerate}
-%%
-\end{definition}
-%%%
-
-The type $\mathsf{isweq(f)}$ can be seen as the propositions-as-types translation of the formula asserting that $f$ is bijective, while homotopy equivalence is evidently a form of isomorphism. Thus it is a pleasant fact that a function is a weak equivalence if and only if it is a homotopy equivalence~\cite{VoevodskyV:unifc}. 
-We also note that all type-theoretic constructions are homotopy invariant, in the sense that they respect this relation of equivalence, a fact which is exploited by the Univalence axiom~\cite{VoevodskyV:notts}.
+We also note that all type-theoretic constructions are homotopy invariant, in the sense that they respect this relation of equivalence, a fact which is exploited by the Univalence Axiom~\cite{VoevodskyV:notts}.
 
 
 \medskip
@@ -1330,65 +1326,93 @@ if its underlying function $f \co A \to B$ is an equivalence. Furthermore, there
 \end{lemma}  
 
 \begin{proof}
-Let algebras $(C,c_0,c_1), (D,d_0,d_1) : \BoolAlg_{\UU_i}$ be given. Expanding the type of algebra isomorphisms between $(C,c_0,c_1)$ and $(D,d_0,d_1)$ yields the type
-\begin{align*}
-& \big(\Sigma \rho : \big(\Sigma f:C\to D\big) f(c_0) =d_0 \times f(c_1) = d_1\big) \\
-& \Big(\big( \Sigma \mu : \big(\Sigma g:D\to C\big) g(d_0)=c_0 \times g(d_1)=c_1\big) \mu \comp \rho = \one_{(C,c_0,c_1)}\Big) \; \times \\
-& \Big(\big(\Sigma \nu : \big(\Sigma h:D\to C \big) h(d_0)=c_0 \times g(d_1)=c_1\big) \rho \comp \nu = \one_{(D,d_0,d_1)}\Big)
-\end{align*}
-After uncurrying we get
-\begin{align*}
-& \big(\Sigma f:C\to D\big) \big(\Sigma \epsilon_0 : f(c_0) =d_0\big) \big(\Sigma \epsilon_1 : f(c_1) = d_1\big) \\
-& \Big(\big(\Sigma g:D\to C\big) \big(\Sigma \gamma_0 : g(d_0)=c_0 \big) \big(\Sigma \gamma_1 : g(d_1)=c_1\big) P_{f,\epsilon_0,\epsilon_1,g,\gamma_0,\gamma_1}\Big) \\ 
-& \Big(\big(\Sigma h:D\to C\big) \big(\Sigma \delta_0 : h(d_0)=c_0 \big) \big(\Sigma \delta_1 : h(d_1)=c_1\big) Q_{f,\epsilon_0,\epsilon_1,h,\delta_0,\delta_1}\Big)
-\end{align*}
+Let $A = (A,a_0,a_1), (B,b_0,b_1)$ be bipointed types and $(f, \bar{f}_0, \bar{f}_1) \co A \to B$ be a bipointed morphism. Expanding the type of 
+proofs that $f$ is a bipointed equivalence yields the type
+\begin{multline*}
+ \big(\Sigma \ell \co B \to  A \big) \big(\Sigma \bar{\ell}_0 : \ell(b_0)=a_0 \big) \big(\Sigma \bar{\ell}_1 : \ell(b_1)=a_1\big) P(f,\ell) \times \\ 
+ \big(\Sigma r \co B \to A \big) \big(\Sigma \bar{r}_0 : r(b_0)=a_0 \big) \big(\Sigma \bar{r}_1 : r(b_1)=a_1\big) Q(f, r)  \, , 
+\end{multline*}
 where
 \begin{align*}
-& P_{f,\epsilon_0,\epsilon_1,g,\gamma_0,\gamma_1} \defeq \Big(g \comp f, g(\epsilon_0) \ct \gamma_0, g(\epsilon_1) \ct \gamma_1\Big) = \Big(\idfun{C}, \refl_{c_0}, \refl_{c_1}\Big) \\
-& Q_{f,\epsilon_0,\epsilon_1,h,\delta_0,\delta_1} \defeq \Big(f \comp h, f(\delta_0) \ct \epsilon_0, f(\delta_1) \ct \epsilon_1\Big) = \Big(\idfun{D}, \refl_{d_0}, \refl_{d_1}\Big)
+P(f,\ell) & \defeq \Id \Big( \big( \ell \comp f, \ell(\bar{f}_0) \ct \bar{\ell}_0, \ell(\bar{f}_1) \ct \bar{\ell}_1\big), \big( 1_A, \refl(a_0), \refl(a_1) \big) \Big)  \, , \\
+Q(f,r)    & \defeq \Id \Big( \big( f \comp h,   f(\bar{r}_0) \ct \bar{f}_0, f(\bar{r}_1) \ct \bar{f}_1  \big) \, , \big( 1_A, \refl(a_0), \refl(a_1) \big) \Big) \, .
 \end{align*}
-Using the characterization of paths in dependent product spaces, the type $P_{f,\epsilon_0,\epsilon_1,g,\gamma_0,\gamma_1}$ can be equivalently expressed as
+Using the characterization of paths in $\Sigma$-types, the type $P(f,\ell)$ can be equivalently expressed as
+\[
+\big(\Sigma p : \ell \comp f = 1_A \big)  \Id \Big(  \big( g(\bar{f}_0) \ct \bar{g}_0, g(\bar{f}_1) \ct \bar{g}_1\big), \big( p_{!}\big(\refl(a_0), \refl(a_1) \big) \Big) \, .
+\]
+By path induction on $p$, the transport $p_{!}\big(\refl(a_0), \refl(a_1) \big)$ is equal to the pair 
+\[
+\big(  \ext(p)_{a_0} \ct \refl(a_0) \, , \;  \ext(p)_{a_1} \ct \refl(a_1) \big) \, ,
+\]
+which is propositionally equal to $\big(\ext(p)_{a_0}, \ext(p)_{a_1} \big)$. The type $P(f,\ell)$ can thus be expressed as
+\[
+\big(\Sigma p : \ell \comp f = 1_A \big) \big(\ell (\bar{f}_0) \ct \bar{\ell}_0, \ell(\bar{f}_1) \ct \bar{\ell}_1\big)
+ = 
+\big(\ext(p)_{a_0}, \ext(p){a_1} \big) \, .
+\]
+Since the function $\ext : \Id(\ell \comp f, 1_A) \to \mathsf{Ho}(g \comp f,  1_A)$ is an equivalence, this is the same as
 \begin{align*}
-\big(\Sigma \alpha : g \comp f = \idfun{C}\big) \big(g(\epsilon_0) \ct \gamma_0, g(\epsilon_1) \ct \gamma_1\big) = \alpha^{!}\big(\refl_{c_0}, \refl_{c_1}\big)
-\end{align*}
-By path induction on $\alpha$, the transport $\alpha^{!}\big(\refl_{c_0}, \refl_{c_1}\big)$ is equal to the pair 
-\[\big(\happly(\alpha,c_0) \ct \refl_{c_0}, \happly(\alpha,c_1) \ct \refl_{c_1}\big)\]
-which is of course equal to $\big(\happly(\alpha,c_0), \happly(\alpha,c_1)\big)$.
-The type $P_{f,\epsilon_0,\epsilon_1,g,\gamma_0,\gamma_1}$ can thus be expressed as
-\begin{align*}
-\big(\Sigma \alpha : g \comp f = \idfun{C}\big) \big(g(\epsilon_0) \ct \gamma_0, g(\epsilon_1) \ct \gamma_1\big) = \big(\happly(\alpha,c_0), \happly(\alpha,c_1)\big)
-\end{align*}
-Since the function $\happly : (g \comp f = \idfun{C}) \to (g \comp f \sim \idfun{C})$ is an equivalence, this is the same as
-\begin{align*}
-\big(\Sigma \alpha : g \comp f \sim \idfun{C}\big) \big(g(\epsilon_0) \ct \gamma_0, g(\epsilon_1) \ct \gamma_1\big) = \big(\alpha(c_0), \alpha(c_1)\big)
+\big(\Sigma \alpha : \ell \comp f \sim 1_A \big) 
+\Id 
+\Big( 
+\pair \big( \ell(\bar{f}_0) \ct \bar{\ell}_0, \ell(\bar{f}_1) \ct \bar{\ell}_1\big) \, , \; 
+\pair \big(  \alpha(a_0), \alpha(a_1)  \big) \, .
+\Big) \, .
 \end{align*}
 By characterization of paths in product spaces, this is the same as
-\begin{align*}
-\big(\Sigma \alpha : g \comp f \sim \idfun{C}\big) \big(g(\epsilon_0) \ct \gamma_0 = \alpha(c_0)\big) \times \big(g(\epsilon_1) \ct \gamma_1 = \alpha(c_1)\big)
-\end{align*}
+\[
+\big(\Sigma \alpha : \ell \comp f \sim 1_A \big) 
+\Big(
+\Id  \big( \ell (\bar{f}_0) \ct \bar{\ell}_0 \, ,  \alpha(a_0) \big) 
+\times 
+\Id \big( \ell(\bar{f}_1) \ct \bar{\ell}_1 \, ,  \alpha(a_1) \big)
+\Big) \, .
+\]
 Analogously, the type $Q_{f,\epsilon_0,\epsilon_1,h,\delta_0,\delta_1}$ is equivalent to
-\begin{align*}
-\big(\Sigma \beta : f \comp h \sim \idfun{D}\big) \big(f(\delta_0) \ct \epsilon_0 = \beta(d_0)\big) \times \big(f(\delta_1) \ct \epsilon_1 = \beta(d_1)\big)
-\end{align*}
-Thus we can express $\BoolAlgIso \; (C,c_0,c_1) \; (D,d_0,d_1)$ equivalently as the type
-\begin{alignat*}{4}
-& \big(\Sigma f : C\to D \big) \big(\Sigma \epsilon_0 : f(c_0)=d_0 \big) \big(\Sigma \epsilon_1 : f(c_1) = d_1 \big) & \\ 
-& \big(\Sigma g:D\to C \big) \big(\Sigma \alpha : g \comp f \sim \idfun{C}\big) \big(\Sigma h:D \to C \big) \big(\Sigma \beta : f \comp h \sim \idfun{D}) & \\
-& \Big(\big(\Sigma \gamma_0 : g(d_0)=c_0\big) g(\epsilon_0) \ct \gamma_0 = \alpha(c_0) \Big) \times \Big(\big(\Sigma \gamma_1 : g(d_1)=c_1\big) g(\epsilon_1) \ct \gamma_1 = \alpha(c_1)\Big) \; \times & \\
-& \Big(\big(\Sigma \delta_0 : h(d_0)=c_0 \big) f(\delta_0) \ct \epsilon_0 = \beta(d_0) \Big) \times \Big(\big(\Sigma \delta_1 : h(d_1)=c_1 \big) f(\delta_1) \ct \epsilon_1 = \beta(d_1)\Big) &
-\end{alignat*}
-Now we have
-\[ \big(\Sigma \gamma_0 : g(d_0)=c_0\big) g(\epsilon_0) \ct \gamma_0 = \alpha(c_0) \;\;\; \simeq \;\;\; \big(\Sigma \gamma_0 : g(d_0)=c_0\big) \gamma_0 = g(\epsilon_0)^{-1} \ct \alpha(c_0) \;\;\; \simeq \;\;\; \one\]
-where the first equivalence follows by rearranging and the second one by Lem.~\ref{lem_singl_contr}\ednote{Which says $\iscontr(\sm{x:A} x = y)$}. Similarly, $\big(\Sigma \gamma_1 : g(d_1)=c_1\big) g(\epsilon_1) \ct \gamma_1 = \alpha(c_1)$ is equivalent to $\one$. We also have
-\[ \big(\Sigma \delta_0 : h(d_0)=c_0\big) f(\delta_0) \ct \epsilon_0 = \beta(d_0) \;\;\; \simeq \;\;\; \big(\Sigma \delta_0 : h(d_0)=c_0\big) f(\delta_0) = \beta(d_0) \ct \epsilon^{-1}_0 \;\;\; \simeq \;\;\; \one \]
-by Lem.~\ref{lem_singl_equiv_contr}\ednote{Which says $\iscontr(\sm{x:A} f(x) =_B y)$ if $f : A \to B$ is an equivalence},~\ref{lem_ap_equiv}\ednote{Which says $\app_f : x =_A y \to f(x) =_B f(y)$ is equivalence if $f : A \to B$ is}, and the fact that $g,\alpha,h,\beta$ make $f$ into an equivalence. Similarly, the type $\big( \Sigma \delta_1 : h(d_1)=c_1\big) f(\delta_1) \ct \epsilon_1 = \beta(d_1)$ is equivalent to $\one$. Thus, the type of algebra isomorphisms can be expressed equivalently as
-\begin{align*}
-& \big(\Sigma f : C\to D\big) \big(\Sigma g:D\to C\big) \big(\Sigma \alpha : g \comp f \sim \idfun{C}\big) \big(\Sigma h:D \to C\big) \\ 
-& \big(\Sigma \beta : f \comp h \sim \idfun{D}\big) (f(c_0)=d_0) \times (f(c_1) = d_1)
-\end{align*}
+\[
+\big(\Sigma \beta : f \comp r \sim 1_B \big) 
+\Big(
+\Id  \big( f (\bar{r}_0) \ct \bar{f}_0 \, ,  \beta(b_0) \big) 
+\times 
+\Id \big( f(\bar{r}_1) \ct \bar{f}_1 \, ,  \beta(b_1) \big)
+\Big) \, .
+\]
+Therefore, we can express $\isequiv(f, \bar{f}_0, \bar{f}_1)$ as the type
+\begin{multline*}
+ \big(\Sigma \ell \co B \to  A \big) \big(\Sigma \alpha : \ell \comp f \sim 1_A \big) 
+  \big(\Sigma r \co B \to A \big) \big(\Sigma \beta : f \comp r \sim 1_B \big)  \\
+ \big(\Sigma \bar{\ell}_0 : \ell(b_0)=a_0 \big) \big(\Sigma \bar{\ell}_1 : \ell(b_1)=a_1\big) \big(\Sigma \bar{r}_0 : r(b_0)=a_0 \big) \big(\Sigma \bar{r}_1 : r(b_1)=a_1\big)  \\
+  \Big(
+\Id  \big( \ell (\bar{f}_0) \ct \bar{\ell}_0 \, ,  \alpha(a_0) \big) 
+\times 
+\Id \big( \ell(\bar{f}_1) \ct \bar{\ell}_1 \, ,  \alpha(a_1) \big)
+  \times 
+\Id  \big( f (\bar{r}_0) \ct \bar{f}_0 \, ,  \beta(b_0) \big) 
+\times 
+\Id \big( f(\bar{r}_1) \ct \bar{f}_1 \, ,  \beta(b_1) \big)
+\Big) \, .
+\end{multline*}
+Now, we have
+\begin{align*} 
+\big(  \Sigma \bar{\ell}_0 : \ell(b_0) = a_0 \big) \Id \big(  \ell(\bar{f}_0) \ct \bar{\ell}_0 \, ,  \alpha(a_0) \big)
+   & \simeq  \big(\Sigma \bar{\ell}_0 : \ell(b_0) = a_0 \big) \Id \big( \bar{\ell}_0 \, ,  \ell(\bar{f}_0)^{-1} \ct \alpha(a_0)  \big)
+                            \\
+   & \simeq  \one
+\end{align*} 
+By applying repeatedly a similar reasoning, we have 
+\begin{align*} 
+\mathsf{isbipequiv}(f,\bar{f}_0, \bar{f}_1) 
+  & \simeq   \big(\Sigma \ell \co B \to A \big) \big(\Sigma \alpha : \ell \comp f \sim 1_A \big) \big(\Sigma r  \co B \to A \big) 
+ \big(\Sigma \beta \co f \comp r \sim 1_B \big) \, 1  \, , \\
+ & \simeq \big(\Sigma \ell \co B \to A \big)  \big( \ell \comp f \sim 1_A \big) \times 
+ \big(\Sigma r  \co B \to A \big) \big( f \comp r \sim 1_B \big) \\
+ & \simeq \isequiv(f) \, ,
+\end{align*} 
+as required.
 \end{proof}
 
-\begin{theorem} For bipointed types $A, B$ in $\UU$, the path space $A = B$ is equivalent to the type of bipointed equivalences between $A$ and $B$, \ie 
+\begin{theorem}[Univalence for bipointed types] For bipointed types $A, B$ in $\UU$, the path space~$A = B$ is equivalent to the type of bipointed equivalences between $A$ and $B$, \ie 
 \[ 
 A = B \simeq  \mathsf{BipEquiv}(A,B) \, .
 \] 
@@ -1398,13 +1422,16 @@ A = B \simeq  \mathsf{BipEquiv}(A,B) \, .
 The arguments $f,g,\alpha,h,\beta$ can be packed together to form an equivalence:
 \[ \big(\Sigma p : C \simeq D\big) \big(\fst(p) \; c_0 =d_0\big) \times \big(\fst(p) \; c_1 = d_1\big) \]
 By characterization of paths in product spaces, this is equivalent to
-\[ \big(\Sigma p : C \simeq D\big) \big(\fst(p) \; c_0, \fst(p) \; c_1\big) = (d_0, d_1) \tag{$\star$} \]
+\begin{equation}
+\label{equ:kstar}
+ \big(\Sigma p : C \simeq D\big) \big(\fst(p) \; c_0, \fst(p) \; c_1\big) = (d_0, d_1) 
+ \end{equation}
 On the other hand, by characterization of paths in dependent product spaces, the path space $(C,c_0,c_1) = (D,d_0,d_1)$ can be expressed as the type
 $\big(\Sigma p : C = D\big) p_! \; (c_0,c_1) = (d_0,d_1)$. By path induction on $p$, the transport is propositionally equal to the pair
 \[\big(\fst(\idtoeq(p)) \; c_0, \fst(\idtoeq(p)) \; c_1\big)\]
 Thus the path space is equivalent to 
 \[ \big(\Sigma p : C = D\big) \big(\fst(\idtoeq(p)) \; c_0, \fst(\idtoeq(p)) \; c_1\big) = (d_0,d_1) \]
-Since the function $\idtoeq(p) : C = D \to C \simeq D$ is an equivalence, this gives us an equivalence with $\star$ as desired.
+Since the function $\idtoeq(p) : C = D \to C \simeq D$ is an equivalence, this gives us an equivalence with~\eqref{equ:kstar} as desired.
 \end{proof} 
 
 Assuming the Univalence Axiom, homotopy-initial algebras are unique, rather than unique up to a contractible type of equivalences.
