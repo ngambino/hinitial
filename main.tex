@@ -1281,13 +1281,15 @@ there are paths
 p \co \Id \big( \pi_1 f (a_0) \, , a_0 \big) \, , \quad q \co \Id \big( p_{!}( \pi_2 f (a_0)) \, , e_0 \big)  \, .
 \end{equation}
 Furthermore, by the definition of composition of bipointed morphisms, we have
-\begin{equation}
+\begin{align*} 
 \label{equ:pp1f0}
-p = \overline{(\pi_1 f)}_0 \, .\qquad  \text{(WHY?)}
-\end{equation}
+\overline{(\pi_1 f)}_0  & = \pi_1(\bar{f}_0) \ct (\overline{\pi_1})_0 \\
+& = \pi_1(\bar{f}_0) \ct \refl(a_0) \\
+& = p 
+\end{align*}
 Therefore, we have the following chain of propositional equalities:
 \begin{alignat*}{4}
-p & =  \overline{(\pi_1 f)}_0 & &  \qquad (\text{by}~\eqref{equ:pp1f0})  \\
+p & =  \overline{(\pi_1 f)}_0 & &  \qquad (\text{as just proved})  \\
   & =  \alpha(a_0) \ct \refl(a_0) & &  \qquad (\text{by the identity proof } \bar{\alpha}_0 ) \\ 
   & =  \alpha(a_0) \, .
 \end{alignat*} 
