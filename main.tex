@@ -1281,12 +1281,12 @@ there are paths
 p \co \Id \big( \pi_1 f (a_0) \, , a_0 \big) \, , \quad q \co \Id \big( p_{!}( \pi_2 f (a_0)) \, , e_0 \big)  \, .
 \end{equation}
 Furthermore, by the definition of composition of bipointed morphisms, we have
-\begin{align*} 
-\label{equ:pp1f0}
-\overline{(\pi_1 f)}_0  & = \pi_1(\bar{f}_0) \ct (\overline{\pi_1})_0 \\
-& = \pi_1(\bar{f}_0) \ct \refl(a_0) \\
-& = p 
-\end{align*}
+\begin{alignat*}{4}  
+\overline{(\pi_1 f)}_0  & = \pi_1(\bar{f}_0) \ct (\overline{\pi_1})_0 & & \qquad (\text{by definition of } \pi_1 f)   \\
+& = \pi_1(\bar{f}_0) \ct \refl(a_0) & & \qquad (\text{by definition of } \pi_1)  \\
+ & = \pi_1(\bar{f}_0) & & \qquad \\
+ & = p  & & \qquad (\text{by definition of } \ext) \,  .
+\end{alignat*}
 Therefore, we have the following chain of propositional equalities:
 \begin{alignat*}{4}
 p & =  \overline{(\pi_1 f)}_0 & &  \qquad (\text{as just proved})  \\
@@ -1335,17 +1335,18 @@ TO BE ADDED
 
 
 \begin{definition} Let $A$, $B$ be bipointed types. We say that a bipointed morphism $f \co A \to B$ is a \myemph{bipointed equivalence}
-if there exist bipointed morphisms $g \co B \to A$ and $h \co B \to A$ providing a left and a right bipointed inverse for $f$, \ie 
+if there exist bipointed morphisms $\ell \co B \to A$ and $r \co B \to A$ providing a left and a right bipointed inverse for $f$, \ie 
 \[ 
-g \circ f = 1_A \, , \quad f \circ h = 1_B \, .
+\ell \circ f = 1_A \, , \quad f \circ r = 1_B \, ,
 \]
+where the propositional equalities are understood as equalties of bipointed morphisms.
 \end{definition}
 
 
 Accordingly, for a bipointed morphism $f \co A \to B$, we define the type of proofs that $f$ is a bipointed equivalence by letting
 \[
-\mathsf{isbipequiv}(f) \defeq  \big( ( \Sigma g : \mathsf{BipHom}(B,A) ) \; g \circ f = 1_A \big) \times 
-   \big(  (\Sigma h : \mathsf{BipHom}(A, B))  \; f \circ h = 1_B \big) \, .
+\mathsf{isbipequiv}(f) \defeq   ( \Sigma \ell : \mathsf{BipHom}(B,A) ( \ell \circ f = 1_A ) \times 
+    (\Sigma r : \mathsf{BipHom}(A, B))(  f \circ r = 1_B ) \, .
 \]
 We then define the type of \emph{bipointed equivalences} between $A$ and $B$ as
 \[
