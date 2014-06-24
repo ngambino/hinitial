@@ -128,6 +128,7 @@
 \newcommand{\eg}{\text{e.g.}}
 \newcommand{\resp}{\text{resp.\ }}
 \newcommand{\myemph}[1]{\textit{#1}}
+\newcommand{\by}[1]{\quad&&\text{by {$#1$}}}
 % Definitional equality
 \newcommand{\deq}{\equiv}
 % Propositional equality
@@ -1766,8 +1767,20 @@ p(x,u) \ct \app_{e(x,u,-)}(\funext(\lambda{y}.\eta(u(y))))
 The $(\beta,\eta)$-compatibility rule will be explained in Remark \ref{rem:explainrules} below.
 
 \begin{proof}
-In showing the above laws, we use the induction principle with the type family $z \mapsto f(z) =_{E(z)} \ind(z,e)$. For this we need to show that for any $x,u$ we have $f(s_C(x,u)) = g(s_C(x,u))$ under the induction hypothesis $h : \prd{y:B(x)} f(u(y)) = g((u(y))$. We can construct this path explicitly as 
-\[ p(x,u) \ct \app_{e(x,u,-)}(\funext(h))\ct q(x,u)^{-1} \]
+We use the $\W$-elimination rule with the type family $z \mapsto f(z) =_{E(z)} \ind(z,e)$. For this we need to show that for any $x,u$ we have $f(s_C(x,u)) = \ind(s_C(x,u),e)$ under the induction hypothesis $h : \prd{y:B(x)} f(u(y)) = \ind((u(y),e)$. We can construct this path explicitly as follows:
+\begin{align*}
+f(s_C(x,u)) &= e\big(x,u,\lambda y.f(u(y))\big) \by{p(x,u)}\\
+	&= e\big(x,u,\lambda y.\ind(u(y),e))\big) \by{e(x,u,\int(h))}\\
+	&= \ind(s_C(x,u),e) \by{\beta(x,u)^{-1}}.
+\end{align*}
+Call the resulting element $\eta(z) \defeq \ind(z,q)$, for $q(x,u,h) \defeq p(x,u)\cdot e(x,u,\int(h))\cdot\beta(x,u)^{-1}$.
+The propositional computation rule then gives:
+\begin{align*}
+\beta'(x,u,q) :  \eta(s_C(x,u)) &\peq q\big(x,u,\lambda{y}.\eta(u(y))\big)\\
+	&\deq p(x,u)\cdot e(x,u,\int(\lambda y.f(u(y))))\cdot\beta(x,u)^{-1}\\
+	[*****]\\
+	&= p(x,u) \ct \app_{e(x,u,-)}(\funext(\lambda{y}.\eta(u(y))))
+\end{align*}
 
 [NEED TO FIX THIS PROOF]
 \end{proof}
