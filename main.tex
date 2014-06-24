@@ -1584,11 +1584,9 @@ x:A,\, u : B(x) \to \W,\, v : \big(\Pi{y:B(x)}\big) E(u(y)) \vdash e(x,u,v) :E(\
 A W-type can be seen informally as the free algebra for a signature
 with arbitrarily many operations of possibly infinite arity, but no equations. Indeed, the premises of the formation rule above can be thought of as specifying a signature that has the elements of~$A$ as (names of) operations and in which the arity of $a : A$ is the cardinality of the type $B(a)$. Then the introduction rule specifies the canonical way of forming an element of the free algebra, and the elimination rule can be seen as the propositions-as-types translation of the appropriate induction principle.
 
-\bigskip
 %%%%%%%% Review of the extensional case %%%%%%%%%
-[REVIEW OF THE EXTENSIONAL CASE: COULD BE MOVED ELSEWHERE]
 
-We begin by briefly sketching the basic theory of W-types in the  setting of \emph{extensional} type theory (cf.~\cite{??}), as background for our development; the details for our case will be provided in what follows.  Let $\mathcal{C}$ be the category with types as objects and elements $f : A \rightarrow B$ as maps, where two maps are considered equal if and only if they are definitionally equal. The premisses of the introduction rule determine the \emph{polynomial endofunctor} $P : \mathcal{C}\rightarrow \mathcal{C}$
+We begin by briefly sketching the basic theory of W-types in the  setting of \emph{extensional} type theory (cf.~\cite{??}), as background for our development; the corresponding details of the intensional case will be provided in what follows.  Let $\mathcal{C}$ be the category with types as objects and elements $f : A \rightarrow B$ as maps, where two maps are considered equal if and only if they are definitionally equal. The premisses of the introduction rule determine the \emph{polynomial endofunctor} $P : \mathcal{C}\rightarrow \mathcal{C}$
 defined by 
 \[
     P(X) \defeq (\Sigma x : A ) (B(x) \rightarrow X) \, .
@@ -1652,7 +1650,7 @@ Finally, observe that induction is equivalent to the statement that, when $\W$ i
 $\W$ is the initial $P$-algebra. The remainder of this section will be devoted to generalizing these equivalences to the current setting of homotopy type theory.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-[END OF EXTENSIONAL REVIEW]
+
 
 \bigskip
 
