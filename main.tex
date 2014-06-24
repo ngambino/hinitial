@@ -1085,18 +1085,17 @@ f(a_1) \ar[r]^{\alpha(a_1)}  \ar@/_1pc/[dr]_{\bar{f}_1}
  \] 
 We define the type of bipointed homotopies as above by letting
 \[
- \Ho   \big( (f,\bar{f}_0, \bar{f}_1), (g, \bar{g}_0, \bar{g}_1) \big)   \defeq   
+ \mathsf{BipHot}  \big( (f,\bar{f}_0, \bar{f}_1), (g, \bar{g}_0, \bar{g}_1) \big)   \defeq   
  (\Sigma \alpha \co f \sim g)  \big( 
   \Id\big( \bar{f}_0 ,  \alpha(a_0)  \ct \bar{g}_0 \big) \times 
   \Id \big( \bar{f}_1,  \alpha(a_1) \ct  \bar{g}_1 \big) \big) \, .
 \]
 
 
-\begin{lemma} \label{BoolHomSpace}
-\label{BoolHomSpace}
+\begin{lemma} \label{BoolHomSpace} 
 For every parallel pair of morphisms $(f, \bar{f}_0, \bar{f}_1), (g, \bar{g}_0, \bar{g}_1) \co A \to B$ of bipointed types, there is an equivalence of types
 \[
-\Id( (f, \bar{f}_0, \bar{f}_1), (g, \bar{g}_0, \bar{g}_1) ) \simeq \Ho[ (f, \bar{f}_0, \bar{f}_1), (g, \bar{g}_0, \bar{g}_1) ) ] \, .
+\Id( (f, \bar{f}_0, \bar{f}_1), (g, \bar{g}_0, \bar{g}_1) ) \simeq \mathsf{BipHot}[ (f, \bar{f}_0, \bar{f}_1), (g, \bar{g}_0, \bar{g}_1) ) ] \, .
 \]
 \end{lemma}
 
@@ -1104,12 +1103,12 @@ For every parallel pair of morphisms $(f, \bar{f}_0, \bar{f}_1), (g, \bar{g}_0, 
 morphisms from $A$ to $B$. To simplify notation, for a path $p \co f = g$, we write $\alpha_p \co f \sim g$
 for the corresponding homotopy. We then have
 \begin{align*}
- (f,\bar{f}_0,\bar{f}_1) = (g,\bar{g}_0,\bar{g}_1)  
+ \Id \big( (f,\bar{f}_0,\bar{f}_1) , (g,\bar{g}_0,\bar{g}_1)  \big)
 &  \simeq (\Sigma p : f = g) \big((\bar{f}_0,\bar{f}_1) = p^{\ast} (\bar{g}_0,\bar{g}_1) \big) \\
 &  \simeq (\Sigma p : f = g) \big((\bar{f}_0,\bar{f}_1) = \big(\alpha_p(a_0) \ct \bar{g}_0 \, ,  \alpha_p(a_1) \ct \bar{g}_1\big) \big)  \\
 &  \simeq (\Sigma p : f = g) \big(\bar{f}_0 = \alpha_p(a_0) \ct \bar{g}_0\big) \times \big( \bar{f}_1 = \alpha_p(a_1) \ct \bar{g}_1 \big) \\
 &  \simeq (\Sigma \alpha : f \sim g) \big(\bar{f}_0 = \alpha(a_0) \ct \bar{g}_0\big) \times \big(\bar{f}_1 = \alpha(a_1) \ct \bar{g}_1 \big)  \\
-& \deq  \Ho \big( (f,\bar{f}_0,\bar{f}_1) \; (g,\bar{g}_0,\bar{g}_1) \big)
+& \deq  \mathsf{BipHot} \big( (f,\bar{f}_0,\bar{f}_1) \; (g,\bar{g}_0,\bar{g}_1) \big)
 \end{align*} 
 as required.
 \end{proof}
@@ -1186,7 +1185,7 @@ is a homotopy~$\alpha \co f \sim g$ together with paths $\bar{\alpha}_0 \co \Id(
 
 We define the type of bipointed homotopies of sections as follows:
 \[
-\mathsf{BipHty} \big( (f, \bar{f}_0, \bar{f}_1), (g, \bar{g}_0, \bar{g}_1) \big) \defeq
+\mathsf{BipHot} \big( (f, \bar{f}_0, \bar{f}_1), (g, \bar{g}_0, \bar{g}_1) \big) \defeq
 (\Sigma \alpha \co f \sim g) \Id ( f(a_0), g(a_0) ) \times \Id ( f(a_1) , g(a_1) ) \, .
 \]
 
@@ -1195,7 +1194,7 @@ We define the type of bipointed homotopies of sections as follows:
 For every pair of bipointed sections $f = (f, \bar{f}_0, \bar{f}_1)$ and $g = (g, \bar{g}_0, \bar{g}_1)$, 
 there is an equivalence of types
 \[
-\Ho[ (f, \bar{f}_0, \bar{f}_1), (g, \bar{g}_0, \bar{g}_1)] 
+\mathsf{BipHot} \big( (f, \bar{f}_0, \bar{f}_1), (g, \bar{g}_0, \bar{g}_1) \big)
 \simeq 
 \Id\big( (f, \bar{f}_0, \bar{f}_1), (g, \bar{g}_0, \bar{g}_1) \big) \, .
 \]
@@ -1214,7 +1213,7 @@ We can now state and prove the main result of this section.
 \begin{enumerate}[(i)]
 \item $A$ is inductive, 
 \item $A$ is recursive,
-\item $A$ is homotopy-initial.
+\item $A$ is homotopy-initial,
 \item $A$ is homotopy-projective.
 \end{enumerate}
 \end{theorem}
@@ -1264,33 +1263,40 @@ and $1_A \co A \to A$ have to be propositionally equal. By Lemma~\ref{BoolHomSpa
 \pi_1 f (a_1) \ar[r]^{\alpha(a_0)} \ar@/_1pc/[dr]_{\overline{(\pi_1 f)}_1} \ar@{}[dr]|{\quad \bar{\alpha}_1}  & a_1 \ar[d]^{\refl(a_1)} \\
  & a_1 }
 \]
-We begin to define the required bipointed section by defining its underlying function $s \co (\Pi x \co A) E(x)$. For $x \co A$, we let
+We begin to define the required bipointed section by defining the section $g \co (\Pi x \co A) E(x)$. For~$x \co A$, we let
 \begin{equation}
 \label{equ:defreqsection}
-s(x) \defeq \alpha(x)_{!} \big( \pi_2(f(x) \big) \, .
+g(x) \defeq \alpha(x)_{!} \big( \pi_2 f (x) \big) \, .
 \end{equation}
-It remains to complete the definition of the required bipointed section, it remains to obtain paths~$\bar{s}_0 \co s(a_0)  \peq e_0$ and~$\bar{s}_1 \co s(a_1) \peq e_1$. We consider only $\bar{s}_0$ since the construction of $\bar{s}_1$ is  analogous. First of all, recall that 
-$\bar{f}_0 \co f(a_0) \peq e'_0$, where $e'_0 \equiv \pair(a_0, e_0) \co (\Sigma x :A ) E(x)$. Hence, there are paths 
+It remains to complete the definition of the required bipointed section, it remains to obtain paths~$\bar{g}_0 \co \Id( g(a_0), e_0)$ 
+and~$\bar{g}_1 \co \Id( g(a_1), e_1)$. We consider only $\bar{g}_0$ since the construction of $\bar{g}_1$ is  analogous. First of all, recall that 
+$\bar{f}_0 \co \Id \big( f(a_0),  e'_0\big)$, where $e'_0 \equiv \pair(a_0, e_0) \co (\Sigma x :A ) E(x)$. Since we have an equivalence
+\[
+\ext \co \Id_{(\Sigma x : A) E(x)}( f(a_0), e'_0) \to \big( \Sigma p \co \Id_A( \pi_2 f(a_0), a_0) \big) \, \Id_{E(a_0)} \big( p_{!}( \pi_1 f(a_0)) , e_0 \big) \, .
+\]
+there are paths 
 \begin{equation}
 \label{equ:p0q0}
-p_0 \co \pi_1 f (a_0) \peq a_0 \, , \quad q_0 \co (p_0)_{!}( \pi_1 f (a_0)) \peq e_0 \, . 
+p \co \Id \big( \pi_1 f (a_0) \, , a_0 \big) \, , \quad q \co \Id \big( p_{!}( \pi_2 f (a_0)) \, , e_0 \big)  \, .
 \end{equation}
-such that $\pair(p_0, q_0) \peq \int(\bar{f}_0)$. Furthermore, by the definition of the composition of bipointed morphisms, we have
-\[
-p_0 =  \overline{(\pi_1 f)}_0
-\]
-and so
+Furthermore, by the definition of composition of bipointed morphisms, we have
 \begin{equation}
-\label{equ:p0alpha0}
-p_0 = \overline{(\pi_1 f)}_0 =  \alpha(a_0) \ct \refl(a_0)  = \alpha(a_0) \, ,
+\label{equ:pp1f0}
+p = \overline{(\pi_1 f)}_0 \, .\qquad  \text{(WHY?)}
 \end{equation}
-where the second equation is given by $\bar{\alpha}_0$. Hence, $\bar{s}_0$ is the witness for the following chain of propositional equalities
-\[
-s(a_0) \peq \alpha(a_0)_{!} \big( \pi_2 f(a_0)  \big)  
-              \peq  (  p_0   )_{!} \big( \pi_2(f(a_0) ) \big) 
-               \peq  e_0 \, ,
-\]
-Here, the first equality is given by the definition of $s$ in~\eqref{equ:defreqsection}, the second is given by~\eqref{equ:p0alpha0}, and the third is given by the path $q_0$ in~\eqref{equ:p0q0}.
+Therefore, we have the following chain of propositional equalities:
+\begin{alignat*}{4}
+p & =  \overline{(\pi_1 f)}_0 & &  \qquad (\text{by}~\eqref{equ:pp1f0})  \\
+  & =  \alpha(a_0) \ct \refl(a_0) & &  \qquad (\text{by the identity proof } \bar{\alpha}_0 ) \\ 
+  & =  \alpha(a_0) \, .
+\end{alignat*} 
+Hence,  the required identity proof $\bar{g}_0 \co \Id( g(a_0), e_0)$ can be defined as the witness for the following chain of propositional equalities
+\begin{alignat*}{4}
+g(a_0) & \deq \alpha(a_0)_{!} \big( \pi_2 f(a_0)  \big) & & \qquad (\text{by definition of } g) \\
+ &              \peq   p_{!} \big( \pi_2 f(a_0)  \big) & & \qquad (\text{since } p = \alpha(a_0)) \\
+   &            \peq  e_0  & &  \qquad (\text{by the identity proof } q \text{ in } \eqref{equ:p0q0}) \, .
+   \end{alignat*} 
+   This concludes the proof.
 \end{proof}
 
 
@@ -1335,13 +1341,13 @@ g \circ f = 1_A \, , \quad f \circ h = 1_B \, .
 
 Accordingly, for a bipointed morphism $f \co A \to B$, we define the type of proofs that $f$ is a bipointed equivalence by letting
 \[
-\mathsf{isbipequiv}(f) \defeq  \big( ( \Sigma g : \Hom[B,A] ) \; g \circ f = 1_A \big) \times 
-   \big(  (\Sigma h : \Hom[A, B])  \; f \circ h = 1_B \big) \, .
+\mathsf{isbipequiv}(f) \defeq  \big( ( \Sigma g : \mathsf{BipHom}(B,A) ) \; g \circ f = 1_A \big) \times 
+   \big(  (\Sigma h : \mathsf{BipHom}(A, B))  \; f \circ h = 1_B \big) \, .
 \]
 We then define the type of \emph{bipointed equivalences} between $A$ and $B$ as
 \[
-\mathsf{BipEquiv}[A, B] 
-\defeq    (\Sigma f : \Hom[A,B]) \mathsf{isbipequiv}(f)  \, . 
+\mathsf{BipEquiv}(A, B)
+\defeq    (\Sigma f : \mathsf{BipHom}(A,B)) \, \mathsf{isbipequiv}(f)  \, . 
 \] 
 
 
@@ -1439,7 +1445,8 @@ By applying repeatedly a similar reasoning, we have
 as required.
 \end{proof}
 
-\begin{theorem}[Univalence for bipointed types] For bipointed types $(A, a_0, a_1), (B, b_0, b_1)$ in $\UU$, the path space between them is equivalent to the type of bipointed equivalences between them, \ie 
+\begin{theorem}[Univalence for bipointed types] \label{thm:bipunivalence}
+ For bipointed types $(A, a_0, a_1), (B, b_0, b_1)$ in~$\UU$, the path space between them is equivalent to the type of bipointed equivalences between them, \ie 
 \[ 
 \Id \big( (A, a_0, a_1) , (B, b_0, b_1)\big) \simeq  \mathsf{BipEquiv}(A,B) \, .
 \] 
@@ -1475,17 +1482,11 @@ Since the function $\ext \co \Id(A,B) \to (A \simeq B)$ is an equivalence, there
 and~\eqref{equ:kstarstar}, as desired.
 \end{proof} 
 
-Assuming the Univalence Axiom, homotopy-initial algebras are unique, rather than just unique up to a contractible type of equivalences.
-
-\begin{corollary}  \label{BoolHInitIso}
-Any two homotopy-initial bipointed types $A \, , B$ in $\UU$ are propositionally equal, \ie 
+By Theorem~\ref{thm:bipunivalence}, the Univalence Axiom implies that homotopy-initial algebras are unique, rather than just unique up to a contractible type of equivalences, in the sense that for any two homotopy-initial bipointed types $A \, , B$ in $\UU$ the type
 \[ 
-\mathsf{ishinitial}(A) \times \mathsf{ishinitial}(B) \to A = B \, .
+\mathsf{ishinitial}(A) \times \mathsf{ishinitial}(B) \to \Id(A,B) \, .
 \] 
-\end{corollary}
-\begin{proof}
-By Lem.~\ref{BoolAlgSpace} it suffices to construct an isomorphism between $\X$ and $\Y$. Since $\X$ and $\Y$ are both homotopy-initial on $\UU_i$, there exist homomorphisms $\mu : \BoolHom \; \X \; \Y$ and $\nu : \BoolHom \; \Y \; \X$. Again by homotopy-initiality, we have $\nu \comp \mu = \one_\X$ and $\mu \comp \nu = \one_\Y$, which gives us the desired isomorphism.
-\end{proof}
+is inhabited. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2204,10 +2205,10 @@ and $1_A \co A \to A$ have to be propositionally equal. By Lemma~\ref{BoolHomSpa
 \pi_1 f (a_1) \ar[r]^{\alpha(a_0)} \ar@/_1pc/[dr]_{\overline{(\pi_1 f)}_1} \ar@{}[dr]|{\quad \bar{\alpha}_1}  & a_1 \ar[d]^{\refl(a_1)} \\
  & a_1 }
 \]
-We begin to define the required bipointed section by defining its underlying function $s \co (\Pi x \co A) E(x)$. For $x \co A$, we let
+We begin to define the required bipointed section by defining  $s \co (\Pi x \co A) E(x)$. For $x \co A$, we let
 \begin{equation}
 \label{equ:defreqsection}
-s(x) \defeq \alpha(x)_{!} \big( \pi_2(f(x) \big) \, .
+s(x) \defeq \alpha(x)_{!} \big( \pi_2(f(x) \big) \, . 
 \end{equation}
 It remains to complete the definition of the required bipointed section, it remains to obtain paths~$\bar{s}_0 \co s(a_0)  \peq e_0$ and~$\bar{s}_1 \co s(a_1) \peq e_1$. We consider only $\bar{s}_0$ since the construction of $\bar{s}_1$ is  analogous. First of all, recall that 
 $\bar{f}_0 \co f(a_0) \peq e'_0$, where $e'_0 \equiv \pair(a_0, e_0) \co (\Sigma x :A ) E(x)$. Hence, there are paths 
