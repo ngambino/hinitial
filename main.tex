@@ -277,7 +277,7 @@
 \newcommand{\IsWHInit}{\mathsf{is}\text{-}\mathsf{\W}\text{-}\mathsf{hinit}}
 \newcommand{\WIdHom}{\mathsf{W}\text{-}\mathsf{Id}\text{-}\mathsf{Hom}}
 \newcommand{\WCompHom}{\mathsf{W}\text{-}\mathsf{Comp}\text{-}\mathsf{Hom}}
-\newcommand{\WAlgIso}{\mathsf{W}\text{-}\mathsf{Alg}\text{-}\mathsf{Iso}}
+\newcommand{\WAlgIso}{\mathsf{W}\text{-}\mathsf{Alg}\text{-}\mathsf{Eq}}
 \newcommand{\wrecs}{\mathsf{rec}}
 % Calligraphic letters
 \newcommand{\X}{\mathcal{X}}
@@ -1345,7 +1345,7 @@ where the propositional equalities are understood as equalties of bipointed morp
 
 Accordingly, for a bipointed morphism $f \co A \to B$, we define the type of proofs that $f$ is a bipointed equivalence by letting
 \[
-\mathsf{isbipequiv}(f) \defeq   ( \Sigma \ell : \mathsf{BipHom}(B,A) ( \ell \circ f = 1_A ) \times 
+\mathsf{isbipequiv}(f) \defeq   ( \Sigma \ell : \mathsf{BipHom}(B,A) ( \ell \circ f = 1_A )) \times 
     (\Sigma r : \mathsf{BipHom}(A, B))(  f \circ r = 1_B ) \, .
 \]
 We then define the type of \emph{bipointed equivalences} between $A$ and $B$ as
@@ -1376,7 +1376,7 @@ Q(f,r)    & \defeq \Id \Big( \big( f \comp h,   f(\bar{r}_0) \ct \bar{f}_0, f(\b
 \end{align*}
 Using the characterization of paths in $\Sigma$-types, the type $P(f,\ell)$ can be equivalently expressed as
 \[
-\big(\Sigma p : \ell \comp f = 1_A \big)  \Id \Big(  \big( g(\bar{f}_0) \ct \bar{g}_0, g(\bar{f}_1) \ct \bar{g}_1\big), \big( p_{!}\big(\refl(a_0), \refl(a_1) \big) \Big) \, .
+\big(\Sigma p : \ell \comp f = 1_A \big)  \Id \Big(  \big( g(\bar{f}_0) \ct \bar{g}_0, g(\bar{f}_1) \ct \bar{g}_1\big), \big( p_{!}\big(\refl(a_0), \refl(a_1) \big) \big) \Big) \, .
 \]
 By path induction on $p$, the transport $p_{!}\big(\refl(a_0), \refl(a_1) \big)$ is equal to the pair 
 \[
@@ -2226,7 +2226,7 @@ and $1_A \co A \to A$ have to be propositionally equal. By Lemma~\ref{BoolHomSpa
 We begin to define the required bipointed section by defining  $s \co (\Pi x \co A) E(x)$. For $x \co A$, we let
 \begin{equation}
 \label{equ:defreqsection}
-s(x) \defeq \alpha(x)_{!} \big( \pi_2(f(x) \big) \, . 
+s(x) \defeq \alpha(x)_{!} \big( \pi_2(f(x)) \big) \, . 
 \end{equation}
 It remains to complete the definition of the required bipointed section, it remains to obtain paths~$\bar{s}_0 \co s(a_0)  \peq e_0$ and~$\bar{s}_1 \co s(a_1) \peq e_1$. We consider only $\bar{s}_0$ since the construction of $\bar{s}_1$ is  analogous. First of all, recall that 
 $\bar{f}_0 \co f(a_0) \peq e'_0$, where $e'_0 \equiv \pair(a_0, e_0) \co (\Sigma x :A ) E(x)$. Hence, there are paths 
@@ -2325,97 +2325,98 @@ Furthermore, all four types are mere propositions.
 
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Univalence for $P$-algebras}
 
-
-
-
 \begin{theorem}[Univalence for $P$-algebras] \label{WAlgSpace}
-Given $A:\UU$, $B : A \to \UU$ and $C,D  : \WAlg(A,B)$, the path space $C = D$ is equivalent to the space of isomorphisms between $C$ and $D$:
-\[ 
-C = D  \simeq  
-\WAlgIso[C \, , D]
-\] 
+Given $A:\UU$, $B : A \to \UU$ and $C,D  : \WAlg(A,B)$, the path space $C = D$ is equivalent to the space of equivalences between $C$ and $D$:
+\[ C = D  \simeq  \WAlgIso[C \, , D] \] 
 \end{theorem}
 \begin{proof}
-Let algebras $(C,c), (D,d) : \WAlg_{\UU_j}(A,B)$ be given. We have
-\begin{alignat*}{4}
-& \WAlgIso \; (C,c) \; (D,d) & \equiv \\
-& \sm{\rho : \big(\sm{f:C\to D} \prd{a}\prd{t} f(c(a,t)) = d(a,f \comp t) \big)} \Big(\sm{\mu : \big(\sm{g:D\to C} \prd{a}\prd{s} g(d(a,s)) = c(a,g \comp s)\big)} \mu \comp \rho = \one_{(C,c)} \Big)\; \times & \\
-& \;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\Big(\sm{\nu : \big(\sm{h:D\to C} \prd{a}\prd{s} h(d(a,s))=c(a,h\comp s)\big)} \rho \comp \nu = \one_{(D,d)}\Big) & \;\;\;\;\;\;\; \simeq \\
-& \sm{f : C\to D} \sm{\epsilon : (\prd{a}\prd{t} f(c(a,t)) = d(a,f \comp t))} \Big(\sm{g:D\to C} \sm{\gamma : (\prd{a}\prd{s} g(d(a,s)) = c(a,g \comp s))} P_{f,\epsilon,g,\gamma}\Big) \; \times & \\
-& \;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\; \Big(\sm{h:D\to C} \sm{\delta : (\prd{a}\prd{s} h(d(a,s))=c(a,h\comp s))} Q_{f,\epsilon,h,\delta} \Big) &
-\end{alignat*}
+Let algebras $(C,c), (D,d) : \WAlg(A,B)$ be given. Expanding the type of equivalences between $A$ and $B$ yields
+\begin{align*}
+& \big(\Sigma \rho : \big(\Sigma f:C\to D\big) (\Pi a)(\Pi t) f(c(a,t)) = d(a,f \comp t)\big) \\ 
+& \Big(\big(\Sigma \mu : \big(\Sigma g:D\to C \big) (\Pi a)(\Pi s) g(d(a,s)) = c(a,g \comp s)\big) \mu \comp \rho = \one_{(C,c)} \Big) \; \times \\
+& \Big(\big(\Sigma \nu : \big(\Sigma h:D\to C \big) (\Pi a)(\Pi s) h(d(a,s)) = c(a,h\comp s) \big) \rho \comp \nu = \one_{(D,d)} \Big)
+\end{align*}
+After uncurrying we get the type
+\begin{align*}
+& \big(\Sigma f:C\to D\big) \big(\Sigma \epsilon : (\Pi a)(\Pi t) f(c(a,t)) = d(a,f \comp t)\big) \\ 
+& \Big(\big(\Sigma g:D\to C \big) \big(\Sigma \gamma : (\Pi a)(\Pi s) g(d(a,s)) = c(a,g \comp s)\big) P_{f,\epsilon,g,\gamma} \Big) \; \times \\
+& \Big(\big(\Sigma h:D\to C \big) \big(\Sigma \delta : (\Pi a)(\Pi s) h(d(a,s)) = c(a,h\comp s) \big) Q_{f,\epsilon,h,\delta} \Big)
+\end{align*}
 where
 \begin{align*}
-& P_{f,\epsilon,g,\gamma} \defeq \Big(g \comp f; a,t \mapsto \app_g(\epsilon(a,t)) \ct \gamma(a, f \comp t)\Big) = \Big(\idfun{C}; a,t \mapsto \refl_{c(a,t)}\Big) \\
-& Q_{f,\epsilon,h,\delta} \defeq \Big(f \comp h; a,s \mapsto \app_f(\delta(a,s)) \ct \epsilon(a, h \comp t)\Big) = \Big(\idfun{D}; a,s \mapsto \refl_{d(a,s)}\Big)
+& P_{f,\epsilon,g,\gamma} \defeq \Big(g \comp f; a,t \mapsto g(\epsilon(a,t)) \ct \gamma(a, f \comp t)\Big) = \Big(\idfun{C}; a,t \mapsto \refl_{c(a,t)}\Big) \\
+& Q_{f,\epsilon,h,\delta} \defeq \Big(f \comp h; a,s \mapsto f(\delta(a,s)) \ct \epsilon(a, h \comp t)\Big) = \Big(\idfun{D}; a,s \mapsto \refl_{d(a,s)}\Big)
 \end{align*}
-Now we have
+Using characterization of paths in dependent products, the type $P_{f,\epsilon,g,\gamma}$ can be equivalently expressed as
+\begin{align*}
+\big(\Sigma \alpha : g \comp f = \idfun{C} \big) \Big((\lambda a) (\lambda t) g(\epsilon(a,t)) \ct \gamma(a, f \comp t)\Big) = \alpha^{!} \Big((\lambda a) (\lambda t) \refl_{c(a,t)}\Big) 
+\end{align*}
+Using path induction on $\alpha$, this type is easily seen to be equivalent to
+\begin{align*}
+& \big(\Sigma \alpha : g \comp f = \idfun{C} \big) (\Pi a) (\Pi t) \happly(\alpha,c(a,t)) =  \\ & \;\;\; g(\epsilon(a,t)) \ct \gamma(a, f \comp t) \ct c(a)(\funext(\lam{b} \; \happly(\alpha,t\;b))) \ct \refl_{c(a,t)}^{-1}
+\end{align*}
+where the identity path can be dropped to obtain
+\begin{align*}
+\big(\Sigma \alpha : g \comp f = \idfun{C} \big) (\Pi a) (\Pi t) \happly(\alpha,c(a,t)) = g(\epsilon(a,t)) \ct \gamma(a, f \comp t) \ct c(a)(\funext(\lam{b} \; \happly(\alpha,t\;b)))
+\end{align*}
+Finally, since the function $\happly : (g \comp f = \idfun{C}) \to (g \comp f \sim \idfun{C})$ is an equivalence, this is equivalent to
+\begin{align*}
+& \big(\Sigma \alpha : g \comp f \sim \idfun{C} \big) (\Pi a) (\Pi t) \alpha(c(a,t)) = g(\epsilon(a,t)) \ct \gamma(a, f \comp t) \ct c(a)(\funext(\lam{b} \; \alpha(t\;b)))
+\end{align*}
+Analogously, the type $Q_{f,\epsilon,h,\delta}$ is equivalent to
 \begin{alignat*}{4}
-& P_{f,\epsilon,g,\gamma} & \equiv \\
-& \Big(g \comp f; a,t \mapsto \app_g(\epsilon(a,t)) \ct \gamma(a, f \comp t)\Big) = \Big(\idfun{C}; a,t \mapsto \refl_{c(a,t)}\Big) & \simeq \\
-& \sm{\alpha : g \comp f = \idfun{C}} \Big(\lam{a}\lam{t} \app_g(\epsilon(a,t)) \ct \gamma(a, f \comp t)\Big) = \trans^{-1}_{\big(i \mapsto \prd{a}\prd{t} i(c(a,t)) = c(a,i \comp t)\big)}(\alpha) \; \Big(\lam{a}\lam{t} \refl_{c(a,t)}\Big) & \;\;\; \simeq \\
-& \sm{\alpha : g \comp f = \idfun{C}} \Big(\lam{a}\lam{t} \app_g(\epsilon(a,t)) \ct \gamma(a, f \comp t)\Big) = \lam{a}\lam{t} & \\ & \;\;\;\;\;\;\; \happly(\alpha, c(a,t)) \ct \refl_{c(a,t)} \ct \Big(\app_{c(a)}(\funext(\lam{b} \happly(\alpha, t\;b)))\Big)^{-1} & \;\;\; \simeq \\
-& \sm{\alpha : g \comp f = \idfun{C}} \prd{a}\prd{t} \Big(\app_g(\epsilon(a,t)) \ct \gamma(a, f \comp t)\Big) = & \\
-& \;\;\;\;\;\;\; \happly(\alpha, c(a,t)) \ct \refl_{c(a,t)} \ct \Big(\app_{c(a)}(\funext(\lam{b} \happly(\alpha, t\;b)))\Big)^{-1} & \;\;\; \simeq \\
-& \sm{\alpha : g \comp f \sim \idfun{C}} \prd{a}\prd{t} \Big(\app_g(\epsilon(a,t)) \ct \gamma(a, f \comp t)\Big) = & \\
-& \;\;\;\;\;\;\; \alpha(c(a,t)) \ct \refl_{c(a,t)} \ct \Big(\app_{c(a)}(\funext(\lam{b} \; \alpha(t\;b)))\Big)^{-1} & \;\;\; \simeq \\
-& \sm{\alpha : g \comp f \sim \idfun{C}} \prd{a}\prd{t} \Big(\alpha(c(a,t)) = \app_g(\epsilon(a,t)) \ct \gamma(a, f \comp t) \ct \app_{c(a)}(\funext(\lam{b} \; \alpha(t\;b)))\Big) &
-\end{alignat*}
-and analogously
-\begin{alignat*}{4}
-Q_{f,\epsilon,h,\delta} \simeq \sm{\beta : f \comp h \sim \idfun{D}} \prd{a}\prd{s} \Big(\beta(d(a,s)) = \app_f(\delta(a,s)) \ct \epsilon(a, h \comp s) \ct \app_{d(a)}(\funext(\lam{b} \; \beta(s\;b)))\Big) &
+\big(\Sigma \beta : f \comp h \sim \idfun{D} \big) (\Pi a) (\Pi s) \beta(d(a,s)) = f(\delta(a,s)) \ct \epsilon(a, h \comp s) \ct d(a)(\funext(\lam{b} \; \beta(s\;b)))
 \end{alignat*}
 Thus we can express $\WAlgIso \; (C,c) \; (D,d)$ equivalently as the type
 \begin{alignat*}{4}
-& \sm{f : C\to D} \sm{\epsilon : (\prd{a}\prd{t} f(c(a,t)) = d(a,f \comp t))} \sm{g:D\to C} \sm{\alpha : g \comp f \sim \idfun{C}} \sm{h:D \to C} \sm{\beta : f \comp h \sim \idfun{D}} R_{f,\epsilon,g,\alpha} \times S_{f,\epsilon,h,\beta}
+& \big(\Sigma f : C\to D) \big(\Sigma \epsilon : (\Pi a) (\Pi t) f(c(a,t)) = d(a,f \comp t)\big) \\ & \;\;\;\; \big(\Sigma g:D\to C\big) \big(\alpha : g \comp f \sim \idfun{C}\big) \big(\Sigma h:D \to C\big) \big(\Sigma \beta : f \comp h \sim \idfun{D}\big) R_{f,\epsilon,g,\alpha} \times S_{f,\epsilon,h,\beta}
 \end{alignat*}
 where
 \begin{alignat*}{4}
-& R_{f,\epsilon,g,\alpha} \defeq \sm{\gamma : (\prd{a}\prd{s} g(d(a,s)) = c(a,g \comp s))} \prd{a}\prd{t} \\ & \;\;\;\;\;\;\;\;\;\;\;\; \alpha(c(a,t)) = \app_g(\epsilon(a,t)) \ct \gamma(a, f \comp t) \ct \app_{c(a)}(\funext(\lam{b} \; \alpha(t\;b))) \\
-& S_{f,\epsilon,h,\beta} \defeq \sm{\delta : (\prd{a}\prd{s} h(d(a,s)) = c(a,h \comp s))} \prd{a}\prd{s} \\ & \;\;\;\;\;\;\;\;\;\;\;\; \beta(d(a,s)) = \app_f(\delta(a,s)) \ct \epsilon(a, h \comp s) \ct \app_{d(a)}(\funext(\lam{b} \; \beta(s\;b)))
+& R_{f,\epsilon,g,\alpha} \defeq \big(\Sigma \gamma : (\Pi a) (\Pi s) g(d(a,s)) = c(a,g \comp s)\big) (\Pi a) (\Pi t) \\ & \;\;\;\;\;\;\;\;\;\;\;\; \alpha(c(a,t)) = g(\epsilon(a,t)) \ct \gamma(a, f \comp t) \ct c(a)(\funext(\lam{b} \; \alpha(t\;b))) \\
+& S_{f,\epsilon,h,\beta} \defeq \big(\Sigma \delta : (\Pi a) (\Pi s) h(d(a,s)) = c(a,h \comp s)\big) (\Pi a) (\Pi s) \\ & \;\;\;\;\;\;\;\;\;\;\;\; \beta(d(a,s)) = f(\delta(a,s)) \ct \epsilon(a, h \comp s) \ct d(a)(\funext(\lam{b} \; \beta(s\;b)))
 \end{alignat*}
-Now we have
-\begin{alignat*}{4}
-& S_{f,\epsilon,h,\beta} & \equiv \\
-& \sm{\delta : (\prd{a}\prd{s} h(d(a,s)) = c(a,h \comp s))} \prd{a}\prd{s} & \\
-& \;\;\;\;\;\;\;\;\;\; \beta(d(a,s)) = \app_f(\delta(a,s)) \ct \epsilon(a, h \comp s) \ct \app_{d(a)}(\funext(\lam{b} \; \beta(s\;b))) & \;\;\; \simeq \\
-& \prd{a}\prd{s}\sm{\delta : h(d(a,s)) = c(a,h \comp s)}  & \\
-& \;\;\;\;\;\;\;\;\;\; \beta(d(a,s)) = \app_f(\delta) \ct \epsilon(a, h \comp s) \ct \app_{d(a)}(\funext(\lam{b} \; \beta(s\;b))) & \;\;\; \simeq \\
-& \prd{a}\prd{s}\sm{\delta : h(d(a,s)) = c(a,h \comp s)}  & \\
-& \;\;\;\;\;\;\;\;\;\; \app_f(\delta) = \beta(d(a,s)) \ct \Big(\app_{d(a)}(\funext(\lam{b} \; \beta(s\;b)))\Big)^{-1} \ct \epsilon(a, h \comp s)^{-1} & \;\;\; \simeq \\
-& \prd{a}\prd{s}\one & \;\;\; \simeq \\
-& \one
-\end{alignat*}
-by Lem.~\ref{lem_singl_equiv_contr},~\ref{lem_ap_equiv}, and the fact that $g,\alpha,h,\beta$ make $f$ into an equivalence. This last fact also implies that the mapping $t \mapsto f \comp t$ is an equivalence between $B(a) \to C$ and $B(a) \to D$ by Lem.~\ref{lem_equiv_comp}\ednote{Which says that if $f:B \to C$ is an equivalence, then so is the mapping $h \mapsto f \comp h$ between $A \to B$ and $A \to C$}. Thus the mapping $\gamma \mapsto \lam{a}\lam{t} \gamma(a,f \comp t)$ is an equivalence between the types $\prd{a:A}\prd{s:B(a)\to D} g(d(a,s)) = c(a,g \comp s)$ and $\prd{a:A}\prd{t:B(a)\to C} g(d(a,f \comp t)) = c(a,g \comp f \comp t)$. Thus:
-\begin{alignat*}{4}
-& R_{f,\epsilon,g,\alpha} & \equiv \\
-& \sm{\gamma : \big(\prd{a}\prd{s} g(d(a,s)) = c(a,g \comp s)\big)} \prd{a}\prd{t} & \\ 
-& \;\;\;\;\;\;\;\;\;\; \alpha(c(a,t)) = \app_g(\epsilon(a,t)) \ct \gamma(a, f \comp t) \ct \app_{c(a)}(\funext(\lam{b} \; \alpha(t\;b))) & \;\;\; \simeq \\
-& \sm{\gamma : \big(\prd{a}\prd{t} g(d(a,f \comp t)) = c(a,g \comp f \comp t)\big)} \prd{a}\prd{t} & \\ 
-& \;\;\;\;\;\;\;\;\;\; \alpha(c(a,t)) = \app_g(\epsilon(a,t)) \ct \gamma(a,t) \ct \app_{c(a)}(\funext(\lam{b} \; \alpha(t\;b))) & \;\;\; \simeq \\
-& \prd{a}\prd{t} \sm{\gamma : g(d(a,f \comp t)) = c(a,g \comp f \comp t)} & \\ 
-& \;\;\;\;\;\;\;\;\;\; \alpha(c(a,t)) = \app_g(\epsilon(a,t)) \ct \gamma \ct \app_{c(a)}(\funext(\lam{b} \; \alpha(t\;b))) & \;\;\; \simeq \\
-& \prd{a}\prd{t} \sm{\gamma : g(d(a,f \comp t)) = c(a,g \comp f \comp t)} & \\ 
-& \;\;\;\;\;\;\;\;\;\; \gamma = \Big(\app_g(\epsilon(a,t))\Big)^{-1} \ct \alpha(c(a,t)) \ct \Big(\app_{c(a)}(\funext(\lam{b} \; \alpha(t\;b)))\Big)^{-1} & \;\;\; \simeq \\
-& \prd{a}\prd{t}\one & \;\;\; \simeq \\
-& \one
-\end{alignat*}
-by Lem.~\ref{lem_singl_contr}. Thus, we have
-\begin{alignat*}{4}
-& \WAlgIso \; (C,c) \; (D,d) & \simeq \\
-& \sm{f : C\to D} \sm{g:D\to C} \sm{\alpha : g \comp f \sim \idfun{C}} \sm{h:D \to C} \sm{\beta : f \comp h \sim \idfun{D}} \prd{a}\prd{t} f(c(a,t)) = d(a,f \comp t) & \;\;\; \simeq \\
-& \sm{f : C\to D} \isequiv(f) \times \prd{a}\prd{t} f(c(a,t)) = d(a,f \comp t) & \;\;\; \simeq \\
-& \sm{p : C \simeq D} \prd{a}\prd{t} \big(\fst(p) \; c(a,t)\big) = d(a, \fst(p) \comp t) & \;\;\; \simeq \\
-& \sm{p : C = D} \prd{a}\prd{t} \Big(\fst(\idtoeq(p)) \; c(a,t)\Big) = d\Big(a, \fst(\idtoeq(p)) \comp t\Big) & \;\;\; \equiv \\
-& \sm{p : C = D} \prd{a} \prd{t} \Big(\trans_{X \mapsto X}(p) \; c(a,t) = d\Big(a,\fst(\idtoeq(p)) \comp t\Big)\Big) & \simeq \\
-& \sm{p : C = D} \prd{a} \prd{t} \Big(c(a,t) = \trans^{-1}_{X \mapsto X}(p) \; d\Big(a,\fst(\idtoeq(p)) \comp t\Big)\Big) & \simeq \\
-& \sm{p : C = D} \Big(c = \lam{a}\lam{t}\trans^{-1}_{X \mapsto X}(p) \; d\Big(a,\fst(\idtoeq(p)) \comp t\Big)\Big) & \simeq \\ 
-& \sm{p : C = D} \Big(c = \trans^{-1}_{\big(X \mapsto \prd{a:A} (B(a) \to X) \to X\big)}(p) \; d\Big) & \simeq \\ 
-& (C,c) = (D,d)
-\end{alignat*}
+The type $S_{f,\epsilon,h,\beta}$ can be expressed equivalently as
+\begin{align*}
+& (\Pi a) (\Pi s) \big(\Sigma \delta : h(d(a,s)) = c(a,h \comp s)\big) \beta(d(a,s)) = f(\delta) \ct \epsilon(a, h \comp s) \ct d(a)(\funext(\lam{b} \; \beta(s\;b)))
+\end{align*}
+using the global choice principle. After rearranging, the body of the above type can be expressed as
+\[ f(\delta) = \beta(d(a,s)) \ct \Big(d(a)(\funext(\lam{b} \; \beta(s\;b)))\Big)^{-1} \ct \epsilon(a, h \comp s)^{-1} \]
+The type 
+\[  \big(\Sigma \delta : h(d(a,s)) = c(a,h \comp s)\big) f(\delta) = \beta(d(a,s)) \ct \Big(d(a)(\funext(\lam{b} \; \beta(s\;b)))\Big)^{-1} \ct \epsilon(a, h \comp s)^{-1} \]
+is equivalent to $\one$, by Lem.~\ref{lem_singl_equiv_contr},~\ref{lem_ap_equiv}, and the fact that $g,\alpha,h,\beta$ make $f$ into an equivalence. Thus, the type $S_{f,\epsilon,h,\beta}$ is equivalent to $\one$.
+
+Since $f$ is an equivalence, as observed above, the mapping $t \mapsto f \comp t$ is an equivalence between $B(a) \to C$ and $B(a) \to D$ by Lem.~\ref{lem_equiv_comp}\ednote{Which says that if $f:B \to C$ is an equivalence, then so is the mapping $h \mapsto f \comp h$ between $A \to B$ and $A \to C$}. Thus the mapping $\gamma \mapsto (\lambda a) (\lambda t) \gamma(a,f \comp t)$ is an equivalence between the types $(\Pi a:A) (\Pi s:B(a)\to D) g(d(a,s)) = c(a,g \comp s)$ and $(\Pi a:A) (\Pi t:B(a)\to C) g(d(a,f \comp t)) = c(a,g \comp f \comp t)$. Thus, the type type $R_{f,\epsilon,g,\alpha}$ can be expressed equivalently as
+\begin{align*}
+& \big(\Sigma \gamma : (\Pi a) (\Pi t) g(d(a,f \comp t)) = c(a,g \comp f \comp t)\big) (\Pi a) (\Pi t) \\
+& \;\;\;\;\;\;\;\;\;\; \alpha(c(a,t)) = g(\epsilon(a,t)) \ct \gamma(a,t) \ct c(a)(\funext(\lam{b} \; \alpha(t\;b)))
+\end{align*}
+Using the global choice principle, this is equivalent to
+\begin{align*}
+& (\Pi a) (\Pi t) \big(\Sigma \gamma :  g(d(a,f \comp t)) = c(a,g \comp f \comp t)\big) \\
+& \;\;\;\;\;\;\;\;\;\; \alpha(c(a,t)) = g(\epsilon(a,t)) \ct \gamma \ct c(a)(\funext(\lam{b} \; \alpha(t\;b)))
+\end{align*}
+After rearranging, the body of the above type can be expressed as
+\[ \gamma = \Big(g(\epsilon(a,t))\Big)^{-1} \ct \alpha(c(a,t)) \ct \Big(c(a)(\funext(\lam{b} \; \alpha(t\;b)))\Big)^{-1} \]
+The type
+\[ \big(\Sigma \gamma :  g(d(a,f \comp t)) = c(a,g \comp f \comp t)\big) \gamma = \Big(g(\epsilon(a,t))\Big)^{-1} \ct \alpha(c(a,t)) \ct \Big(c(a)(\funext(\lam{b} \; \alpha(t\;b)))\Big)^{-1} \]
+is equivalent to $\one$ by Lem.~\ref{lem_singl_contr}. Thus, the type $R_{f,\epsilon,g,\alpha}$ is equivalent to $\one$.
+
+Thus, the type $\WAlgIso \; (C,c) \; (D,d)$ is equivalent to
+\begin{align*}
+& \big(\Sigma f : C\to D \big) \big(\Sigma g:D\to C\big) \big( \Sigma \alpha : g \comp f \sim \idfun{C}\big) \big(\Sigma h:D \to C\big) \\ & \;\;\; \big(\Sigma \beta : f \comp h \sim \idfun{D}\big) (\Pi a) (\Pi t) f(c(a,t)) = d(a,f \comp t)
+\end{align*}
+The components $f,g,\alpha,h,\beta$ can be packed together to form an equivalence:
+\[ \big(\Sigma p : C \simeq D\big) (\Pi a) (\Pi t) \big(\fst(p) \; c(a,t)\big) = d(a, \fst(p) \comp t) \tag{$\star$} \]
+On the other hand, the path space $(C,c) = (D,d)$ can be expressed equivalently as
+\[  \big(\Sigma p : C = D\big) c = p^{!}(d) \]
+using the characterization of path spaces in dependent products. Using path induction on $p$, this is equivalent to the type
+\[  \big(\Sigma p : C = D\big) (\Pi a) (\Pi t) \Big(\fst(\idtoeq(p)) \; c(a,t)\Big) = d\Big(a, \fst(\idtoeq(p)) \comp t\Big) \]
+Since the function $\idtoeq : C = D \to C \simeq D$ is an equivalence, this gives us the equivalence with $\star$.
 \end{proof}
 
 
