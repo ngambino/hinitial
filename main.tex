@@ -1760,9 +1760,9 @@ x:A,\, u: B(x) \to C,\, v : (\Pi{y:B(x)}) E(u(y)) \vdash e(x,u,v) :E(s_C(x,u)) \
 x:A, u: B(x) \to C \vdash p(x,u) : f(s_C(x,u)) = e(x,u,\lambda{y}.f(u(y)))
 }
 %x:A, p: B(x) \to C \vdash \delta(x,p) : g(\wsup(x,p)) = e(x,p,\lam{b:B(x)} g(p \;b))}
-{x : A, u : B(x) \to C \vdash \\
+{x : A, u : B(x) \to C \vdash
 \gamma(x,u) : \eta(\wsup(x,u))\ct \beta(x,u) = 
-p(x,u) \ct \app_{e(x,u,-)}(\funext(\lambda{y}.\eta(u(y))))
+p(x,u)\cdot e(x,u,\int(\eta\circ u))
 }
 \end{mathpar}
 \end{enumerate}
@@ -1770,22 +1770,24 @@ p(x,u) \ct \app_{e(x,u,-)}(\funext(\lambda{y}.\eta(u(y))))
 The $(\beta,\eta)$-compatibility rule will be explained in Remark \ref{rem:explainrules} below.
 
 \begin{proof}
-We use the $\W$-elimination rule with the type family $z \mapsto f(z) =_{E(z)} \ind(z,e)$. For this we need to show that for any $x,u$ we have $f(s_C(x,u)) = \ind(s_C(x,u),e)$ under the induction hypothesis $h : \prd{y:B(x)} f(u(y)) = \ind((u(y),e)$. We can construct this path explicitly as follows:
+We use the $\W$-elimination rule with the type family $z \mapsto f(z) =_{E(z)} \ind(z,e)$. Thus we need to show that for any $x,u$ we have a proof $f(s_C(x,u)) = \ind(s_C(x,u),e)$, under the induction hypothesis $h : \prd{y:B(x)} f(u(y)) = \ind((u(y),e)$. We can construct this path explicitly as follows:
 \begin{align*}
 f(s_C(x,u)) &= e\big(x,u,\lambda y.f(u(y))\big) \by{p(x,u)}\\
 	&= e\big(x,u,\lambda y.\ind(u(y),e))\big) \by{e(x,u,\int(h))}\\
 	&= \ind(s_C(x,u),e) \by{\beta(x,u)^{-1}}.
 \end{align*}
 Call the resulting element $\eta(z) \defeq \ind(z,q)$, for $q(x,u,h) \defeq p(x,u)\cdot e(x,u,\int(h))\cdot\beta(x,u)^{-1}$.
-The propositional computation rule then gives:
+The propositional computation rule for this case then provides:
 \begin{align*}
 \beta'(x,u,q) :  \eta(s_C(x,u)) &\peq q\big(x,u,\lambda{y}.\eta(u(y))\big)\\
-	&\deq p(x,u)\cdot e(x,u,\int(\lambda y.f(u(y))))\cdot\beta(x,u)^{-1}\\
-	[*****]\\
-	&= p(x,u) \ct \app_{e(x,u,-)}(\funext(\lambda{y}.\eta(u(y))))
+	&\deq p(x,u)\cdot e(x,u,\int(\lambda y.\eta(u(y))))\cdot\beta(x,u)^{-1}.
 \end{align*}
-
-[NEED TO FIX THIS PROOF]
+Whence we get
+\[
+\gamma (x,u) :  \eta(s_C(x,u)) \cdot \beta(x,u)\,\peq\,
+ 	p(x,u)\cdot e(x,u,\int(\eta\circ u))\, ,
+	\]
+as required.
 \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1830,9 +1832,9 @@ x:A,\, v: B(x) \to C \vdash e(x,v) :E \\
 x:A, u: B(x) \to C \vdash p(x,u) : f(s_C(x,u)) = e(x,\lambda{y}.f(u(y)))
 }
 %x:A, p: B(x) \to C \vdash \delta(x,p) : g(\wsup(x,p)) = e(x,p,\lam{b:B(x)} g(p \;b))}
-{x : A, u : B(x) \to C \vdash \\
+{x : A, u : B(x) \to C \vdash 
 \gamma(x,u) : \eta(\wsup(x,u))\ct \beta(x,u) = 
-p(x,u) \ct \app_{e(x,-)}(\funext(\lambda{y}.\eta(u(y))))
+p(x,u) \ct e(x,\int(\eta\circ u))
 }
 \end{mathpar}
 
