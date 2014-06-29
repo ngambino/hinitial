@@ -1640,9 +1640,7 @@ w : \W \vdash  f(w) =  \wrecs(w,c) :  C
 \end{prooftree}
 \end{equation*}
 %
-stating the uniqueness of the $\wrecs$ term among algebra maps. 
-Overall, we therefore have that, in the
-extensional setting, induction and recursion are interderivable.
+stating the uniqueness of the $\wrecs$ term among algebra maps. Since, conversely, the $\eta$-rule can be derived from the the general $\W$-elimination rule, we therefore have that induction and recursion are interderivable in the extensional setting.
 %\[
 %\begin{array}{ccc}
 %\text{\underline{\myemph{Induction}}} & \Leftrightarrow & \text{\underline{\myemph{Recursion}}}\\[1ex]
@@ -1652,7 +1650,7 @@ extensional setting, induction and recursion are interderivable.
 %\]
 
 Finally, observe that induction is equivalent to the statement that, when $\W$ is regarded as a $P$-algebra with the structure map $s_\W : P\W \rightarrow \W$, then every $P$-algebra over it has a homomorphic section, while recursion is equivalent to the statement that 
-$\W$ is the initial $P$-algebra. The remainder of this section will be devoted to generalizing these equivalences to the current setting of homotopy type theory.
+$\W$ is the initial $P$-algebra. The remainder of this section will be devoted to generalizing these equivalences to the setting of homotopy type theory.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1673,7 +1671,7 @@ $\W$ is the initial $P$-algebra. The remainder of this section will be devoted t
 
 %\begin{remark}\label{thm:wtypesinvariance}
 
-Returning to the case of the intensional system $\Hint$, we now fill in the corresponding details of the foregoing sketch.
+Returning to the case of the intensional system $\Hint$, we now begin to fill in the corresponding details of the foregoing sketch.
 %as was the case for the type $\Bool$, the condition of being a W-type is preserved by equivalences of types, in a suitable sense.  
 %Indeed, given any type $A$ and an equivalence of types $\W_{x:A} B(x)\simeq A$, then $A$ can be shown to also satisfy the rules above (with suitable definable terms playing the role of the primitive constants), except that the computation rule will again hold only propositionally.
 
@@ -1697,8 +1695,8 @@ P(C) \ar[d]_{s_C} \ar[r]_{P(f)} & \ar@/_1pc/[l]_{P(f^{-1})} P(D)  \ar[d]^{s_D}  
 Next, note that the $\W$-introduction rule makes $\sup : P(\W)\to \W$ into a $P$-algebra.  Given an equivalence  $f : \W \to C$, the induced $P$-algebra structure $s_C:P(C)\to C$ just defined then means that $C$ also satisfies the $\W$-introduction rule.  We shall see that $C$ satisfies the other rules as well, but with a propositional computation rule, as in the following definition.
 
 \begin{definition}\label{def:Wind}
- Let $P = P(A,B)$ for $x:A \vdash B(x) \,\type$, and let $s_C : P(C)\to C$ be a $P$-algebra.
-We say that $s_C : P(C)\to C$ is \emph{inductive} if it satisfies the following rules:
+Let $x:A \vdash B(x) \,\type$ be given and let $C$ be a type equipped with a family of elements $x:A, u : B(x)\to C \vdash s_C(x,u): C$.
+We say that the corresponding $P$-algebra $s_C : P(C)\to C$ is \emph{inductive} if it satisfies the following rules:
 \begin{enumerate}[(i)] 
 \item $\W$-elimination rule.\smallskip
 \begin{mathpar}
@@ -1770,7 +1768,7 @@ p(x,u)\cdot e(x,u,\int(\eta\circ u))
 The $(\beta,\eta)$-compatibility rule will be explained in Remark \ref{rem:explainrules} below.
 
 \begin{proof}
-We use the $\W$-elimination rule with the type family $z \mapsto f(z) =_{E(z)} \ind(z,e)$. Thus we need to show that for any $x,u$ we have a proof $f(s_C(x,u)) = \ind(s_C(x,u),e)$, under the induction hypothesis $h : \prd{y:B(x)} f(u(y)) = \ind((u(y),e)$. We can construct this path explicitly as follows:
+We use the $\W$-elimination rule with the type family $z \mapsto f(z) =_{E(z)} \ind(z,e)$. Thus we need to show that for any $x,u$ we have a proof of $f(s_C(x,u)) = \ind(s_C(x,u),e)$, under the induction hypothesis $h : \prd{y:B(x)} f(u(y)) = \ind((u(y),e)$. We can construct this path explicitly as follows:
 \begin{align*}
 f(s_C(x,u)) &= e\big(x,u,\lambda y.f(u(y))\big) \by{p(x,u)}\\
 	&= e\big(x,u,\lambda y.\ind(u(y),e))\big) \by{e(x,u,\int(h))}\\
@@ -1793,7 +1791,8 @@ as required.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 We can now show that induction implies recursion for $P$-algebras, in the sense of the following definition.
 
-\begin{definition}\label{def:recursiveW} Let $P = P(A,B)$ for $x:A \vdash B(x) \,\type$, and let $s_C : P(C)\to C$ be a $P$-algebra.  We say that $s_C : P(C)\to C$ is \emph{recursive} if it satisfies the following rules:
+\begin{definition}\label{def:recursiveW} Let $x:A \vdash B(x) \,\type$ be given and let $C$ be a type equipped with a family of elements $x:A, u : B(x)\to C \vdash s_C(x,u): C$.
+We say that the corresponding $P$-algebra $s_C : P(C)\to C$ is \emph{recursive} if it satisfies the following rules:
 \begin{enumerate}[(i)] 
 \item $\W$-recursion rule.\smallskip
 \begin{mathpar}
