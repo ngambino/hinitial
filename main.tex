@@ -157,6 +157,7 @@
 \newcommand{\trans}{\mathsf{tr}}
 \newcommand{\ext}{\mathsf{ext}}
 \renewcommand{\int}{\mathsf{int}}
+\newcommand{\U}{\mathcal{U}}
 
 \newcommand{\ct}{\cdot}
 % {%
@@ -231,7 +232,7 @@
 \newcommand{\rec}{\mathsf{rec}}
 \newcommand{\Hom}{\mathsf{Hom}}
 \newcommand{\Ho}{\mathsf{Ho}}
-\newcommand{\BoolAlg}{\mathsf{2}\text{-}\mathsf{Alg}}
+\newcommand{\BoolAlg}{\mathsf{BipType}}
 \newcommand{\BoolHom}{\mathsf{2}\text{-}\mathsf{Hom}}
 \newcommand{\BoolCell}{\mathsf{2}\text{-}\mathsf{Cell}}
 \newcommand{\BoolFibCell}{\mathsf{2}\text{-}\mathsf{Fib}\text{-}\mathsf{Cell}}
@@ -239,7 +240,7 @@
 \newcommand{\HasBoolInd}{\mathsf{has}\text{-}\mathsf{2}\text{-}\mathsf{ind}}
 \newcommand{\HasBoolRecUniq}{\mathsf{has}\text{-}\mathsf{2}\text{-}\mathsf{rec}\text{-}\mathsf{uniq}}
 \newcommand{\HasBoolIndUniq}{\mathsf{has}\text{-}\mathsf{2}\text{-}\mathsf{ind}\text{-}\mathsf{uniq}}
-\newcommand{\BoolFibAlg}{\mathsf{2}\text{-}\mathsf{Fib}\text{-}\mathsf{Alg}}
+\newcommand{\BoolFibAlg}{\mathsf{FibBipType}}
 \newcommand{\BoolFibHom}{\mathsf{2}\text{-}\mathsf{Fib}\text{-}\mathsf{Hom}}
 \newcommand{\IsBoolInit}{\mathsf{is}\text{-}\mathsf{2}\text{-}\mathsf{init}}
 \newcommand{\IsBoolHInit}{\mathsf{is}\text{-}\mathsf{2}\text{-}\mathsf{hinit}}
@@ -1317,16 +1318,38 @@ in the $\infty$-category of types, functions, identity terms, higher identity te
 In particular, any type equivalent to $\Bool$ is homotopy-initial.
 \end{corollary} 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Universes and internalization}
 
 \vspace{3cm}
 
-TO BE ADDED
+If we work in a type theory with a hierarchy of universes $\U_0 : \U_1 : \ldots$, such as Martin-L{\"o}f's dependent type theory, the notion of a (fibered) bipointed type can be \emph{internalized} in a straightforward way. Since we are mainly concerned with small types, we will denote the universe $\U_0$ by $\U$ for brevity.
 
+\begin{definition}\label{def:BoolAlg}
+Define the type of \emph{bipointed types} as 
+\[\BoolAlg \defeq \sm{C : \U} C \times C \]
+\end{definition}
+
+\begin{definition}\label{def:BoolFibAlg}
+Define the type of \emph{fibered bipointed types} over a bipointed type $\X : \BoolAlg$ by
+\[\BoolFibAlg \; (C,c_0,c_1) \defeq \sm{E : C \to \U} E(c_0) \times E(c_1) \]
+\end{definition}
+
+\noindent We note that the types $\BoolAlg$ and $\BoolFibAlg\; \X$ themselves lives in a higher universe. The type of bipointed morphisms 
+
+\begin{definition}\label{def:BoolHom}
+For bipointed types $\X : \BoolAlg_{\UU_i}$ and $\Y : \BoolAlg_{\UU_j}$, define the type of \emph{$\Bool$-homomorphisms} from $\X$ to $\Y$ by \[\BoolHom \; (C,c_0,c_1) \; (D,d_0,d_1) \defeq \sm{f:C \to D} (f(c_0) = d_0) \times (f(c_1) = d_1) \]
+\end{definition}
+
+\begin{definition}\label{def:BoolFibHom}
+Given algebras $\X : \BoolAlg_{\UU_i}$ and $\Y : \BoolFibAlg_{\UU_j} \; \X$, define the type of \emph{fibered $\Bool$-homomorphisms} from $\X$ to $\Y$ by
+\[\BoolFibHom \; (C,c_0,c_1) \; (E,e_0,e_1) \defeq \sm{(f:\prd{x:C} E(x))} (f(c_0) = e_0) \times (f(c_1) = e_1) \]
+\end{definition}
 \vspace{3cm}
 
 
+HERE
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Univalence for bipointed types} 
