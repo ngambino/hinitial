@@ -1392,19 +1392,12 @@ Now fix a bipointed type $(A,a_0,a_1) : \BoolAlg$. The logical equivalence betwe
 %%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Univalence for bipointed types} 
 
-
-
-
-\begin{definition} Let $A$, $B$ be bipointed types. We say that a bipointed morphism $f \co A \to B$ is a \myemph{bipointed equivalence}
-if there exist bipointed morphisms $\ell \co B \to A$ and $r \co B \to A$ providing a left and a right bipointed inverse for $f$, \ie 
+\begin{definition} Let $A, B : \BoolAlg$ be bipointed types. We say that a bipointed morphism $f \co \BoolHom(A,B)$ is a \myemph{bipointed equivalence}
+if there exist bipointed morphisms $\ell \co \BoolHom(B,A)$ and $r \co \BoolHom(B,A)$ providing a left and a right bipointed inverse for $f$, \ie 
 \[ 
 \ell \circ f = 1_A \, , \quad f \circ r = 1_B \, ,
 \]
-where the propositional equalities are understood as equalties of bipointed morphisms.
-\end{definition}
-
-
-Accordingly, for a bipointed morphism $f \co A \to B$, we define the type of proofs that $f$ is a bipointed equivalence by letting
+where the propositional equalities are understood as equalities of bipointed morphisms. In other words, we define the type of proofs that $f$ is a bipointed equivalence as
 \[
 \mathsf{isbipequiv}(f) \defeq   ( \Sigma \ell : \mathsf{BipHom}(B,A) ( \ell \circ f = 1_A )) \times 
     (\Sigma r : \mathsf{BipHom}(A, B))(  f \circ r = 1_B ) \, .
@@ -1414,9 +1407,11 @@ We then define the type of \emph{bipointed equivalences} between $A$ and $B$ as
 \mathsf{BipEquiv}(A, B)
 \defeq    (\Sigma f : \mathsf{BipHom}(A,B)) \, \mathsf{isbipequiv}(f)  \, . 
 \] 
+\end{definition}
 
+Clearly, the identity morphism on a bipointed type is a bipointed equivalence, with the left and right inverses being the indentity morphism itself.
 
-\begin{lemma}\label{BoolAlgSpace} A bipointed morphism $(f, \bar{f}_0, \bar{f}_1) \co A \to B$ is a bipointed equivalence if and only
+\begin{lemma}\label{BoolAlgSpace} A bipointed morphism $(f, \bar{f}_0, \bar{f}_1) \co \BoolHom(A,B)$ is a bipointed equivalence if and only
 if its underlying function $f \co A \to B$ is an equivalence. Furthermore, there is an equivalence of types
 \[
 \mathsf{isbipequiv}(f, \bar{f}_0, \bar{f}_1)  \simeq \mathsf{isequiv}(f) \, . 
@@ -1424,11 +1419,11 @@ if its underlying function $f \co A \to B$ is an equivalence. Furthermore, there
 \end{lemma}  
 
 \begin{proof}
-Let $A = (A,a_0,a_1), (B,b_0,b_1)$ be bipointed types and $(f, \bar{f}_0, \bar{f}_1) \co A \to B$ be a bipointed morphism. Expanding the type of 
+Let $(A,a_0,a_1), (B,b_0,b_1)$ be bipointed types and $(f, \bar{f}_0, \bar{f}_1) \co A \to B$ be a bipointed morphism. Expanding the type of 
 proofs that $f$ is a bipointed equivalence yields the type
 \begin{multline*}
- \big(\Sigma \ell \co B \to  A \big) \big(\Sigma \bar{\ell}_0 : \ell(b_0)=a_0 \big) \big(\Sigma \bar{\ell}_1 : \ell(b_1)=a_1\big) P(f,\ell) \times \\ 
- \big(\Sigma r \co B \to A \big) \big(\Sigma \bar{r}_0 : r(b_0)=a_0 \big) \big(\Sigma \bar{r}_1 : r(b_1)=a_1\big) Q(f, r)  \, , 
+ \Big(\big(\Sigma \ell \co B \to  A \big) \big(\Sigma \bar{\ell}_0 : \ell(b_0)=a_0 \big) \big(\Sigma \bar{\ell}_1 : \ell(b_1)=a_1\big) P(f,\ell)\Big) \; \times \\ 
+ \Big(\big(\Sigma r \co B \to A \big) \big(\Sigma \bar{r}_0 : r(b_0)=a_0 \big) \big(\Sigma \bar{r}_1 : r(b_1)=a_1\big) Q(f, r)  \Big)\, , 
 \end{multline*}
 where
 \begin{align*}
@@ -1437,28 +1432,28 @@ Q(f,r)    & \defeq \Id \Big( \big( f \comp h,   f(\bar{r}_0) \ct \bar{f}_0, f(\b
 \end{align*}
 Using the characterization of paths in $\Sigma$-types, the type $P(f,\ell)$ can be equivalently expressed as
 \[
-\big(\Sigma p : \ell \comp f = 1_A \big)  \Id \Big(  \big( g(\bar{f}_0) \ct \bar{g}_0, g(\bar{f}_1) \ct \bar{g}_1\big), \big( p_{!}\big(\refl(a_0), \refl(a_1) \big) \big) \Big) \, .
+\big(\Sigma p : \ell \comp f = 1_A \big)  \Id \Big(  \big( \ell (\bar{f}_0) \ct \bar{\ell }_0, \ell (\bar{f}_1) \ct \bar{\ell }_1\big), \big( p_{!}\big(\refl(a_0), \refl(a_1) \big) \big) \Big) \, .
 \]
 By path induction on $p$, the transport $p_{!}\big(\refl(a_0), \refl(a_1) \big)$ is equal to the pair 
 \[
 \big(  \ext(p)_{a_0} \ct \refl(a_0) \, , \;  \ext(p)_{a_1} \ct \refl(a_1) \big) \, ,
 \]
-which is propositionally equal to $\big(\ext(p)_{a_0}, \ext(p)_{a_1} \big)$. The type $P(f,\ell)$ can thus be expressed as
+where $\ext : \Id(\ell \comp f, 1_A) \to \mathsf{Ho}(\ell \comp f,  1_A)$ is the canonical equivalence. This is of course propositionally equal to $\big(\ext(p)_{a_0}, \ext(p)_{a_1} \big)$. The type $P(f,\ell)$ can thus be expressed as
 \[
 \big(\Sigma p : \ell \comp f = 1_A \big) \big(\ell (\bar{f}_0) \ct \bar{\ell}_0, \ell(\bar{f}_1) \ct \bar{\ell}_1\big)
  = 
-\big(\ext(p)_{a_0}, \ext(p){a_1} \big) \, .
+\big(\ext(p)_{a_0}, \ext(p)_{a_1} \big) \, .
 \]
-Since the function $\ext : \Id(\ell \comp f, 1_A) \to \mathsf{Ho}(g \comp f,  1_A)$ is an equivalence, this is the same as
+Since the function $\ext$ is an equivalence, this is equivalent to
 \begin{align*}
 \big(\Sigma \alpha : \ell \comp f \sim 1_A \big) 
 \Id 
 \Big( 
 \pair \big( \ell(\bar{f}_0) \ct \bar{\ell}_0, \ell(\bar{f}_1) \ct \bar{\ell}_1\big) \, , \; 
-\pair \big(  \alpha(a_0), \alpha(a_1)  \big) \, .
+\pair \big(  \alpha(a_0), \alpha(a_1)  \big) \,
 \Big) \, .
 \end{align*}
-By characterization of paths in product spaces, this is the same as
+By characterization of paths in product spaces, this is equivalent to
 \[
 \big(\Sigma \alpha : \ell \comp f \sim 1_A \big) 
 \Big(
@@ -1467,7 +1462,7 @@ By characterization of paths in product spaces, this is the same as
 \Id \big( \ell(\bar{f}_1) \ct \bar{\ell}_1 \, ,  \alpha(a_1) \big)
 \Big) \, .
 \]
-Analogously, the type $Q_{f,\epsilon_0,\epsilon_1,h,\delta_0,\delta_1}$ is equivalent to
+Analogously, the type $Q(f,r)$ is equivalent to
 \[
 \big(\Sigma \beta : f \comp r \sim 1_B \big) 
 \Big(
@@ -1491,14 +1486,9 @@ Therefore, we can express $\isequiv(f, \bar{f}_0, \bar{f}_1)$ as the type
 \Id \big( f(\bar{r}_1) \ct \bar{f}_1 \, ,  \beta(b_1) \big)
 \Big) \, .
 \end{multline*}
-Now, we have
-\begin{align*} 
-\big(  \Sigma \bar{\ell}_0 : \ell(b_0) = a_0 \big) \Id \big(  \ell(\bar{f}_0) \ct \bar{\ell}_0 \, ,  \alpha(a_0) \big)
-   & \simeq  \big(\Sigma \bar{\ell}_0 : \ell(b_0) = a_0 \big) \Id \big( \bar{\ell}_0 \, ,  \ell(\bar{f}_0)^{-1} \ct \alpha(a_0)  \big)
-                            \\
-   & \simeq  \one
-\end{align*} 
-By applying repeatedly a similar reasoning, we have 
+Now we observe that for any equivalence $g : X \to Y$, and paths $q : \Id(y,g(x_1))$, $s : \Id(y,g(x_2))$, the type $\big(\Sigma p : \Id_X(x_1,x_2)\big) \Id(q \ct g(p),s)$ is contractible. Similarly, for any equivalence $g : X \to Y$, and paths $q : \Id(g(x_2),y)$, $s : \Id(g(x_1),y)$, the type $\big(\Sigma p : \Id_X(x_1,x_2)\big) \Id(g(p) \ct q,s)$ is contractible.
+
+Since the identity function is an equivalence and since $\ell, \alpha, r, \beta$ make $f$ into an equivalence, we have
 \begin{align*} 
 \mathsf{isbipequiv}(f,\bar{f}_0, \bar{f}_1) 
   & \simeq   \big(\Sigma \ell \co B \to A \big) \big(\Sigma \alpha : \ell \comp f \sim 1_A \big) \big(\Sigma r  \co B \to A \big) 
@@ -1511,48 +1501,38 @@ as required.
 \end{proof}
 
 \begin{theorem}[Univalence for bipointed types] \label{thm:bipunivalence}
- For bipointed types $(A, a_0, a_1), (B, b_0, b_1)$ in~$\UU$, the path space between them is equivalent to the type of bipointed equivalences between them, \ie 
+ For bipointed types $A, B : \BoolAlg$, the canonical function
 \[ 
-\Id \big( (A, a_0, a_1) , (B, b_0, b_1)\big) \simeq  \mathsf{BipEquiv}(A,B) \, .
+\ext : \Id \big(A,B\big) \to  \mathsf{BipEquiv}(A,B) \, .
 \] 
+defined by path induction and mapping the reflexivity path to the identity bipointed morphism is an equivalence.
 \end{theorem} 
 
-\begin{proof} By Lemma~\ref{BoolAlgSpace} we have
-\[
- \mathsf{BipEquiv}(A,B) \simeq (\Sigma f \co A \to B) \big( \isequiv(f) \times  \Id (f(a_0),  b_0 ) \times \Id ( f(a_1) , b_1) \big) \, . 
-\]
-If we write $f_e \co A \to B$ for the function underlying an equivalence $e \co (\Sigma f \co A \to B) \isequiv(f)$, the type above can be 
-rewritten equivalently as 
-\[ 
-\big(\Sigma e : A \simeq B \big) \,  \Id \big(f_e(a_0),  b_0\big) \times \Id \big( f_e(a_1) , b_1\big) \, .
-\]
+\begin{proof} 
+Let $ (A,a_0,a_1), (B,b_0,b_1)$ be bipointed types. By the characterization of paths in $\Sigma$-types, the path space $(A,a_0,a_1) = (B,b_0,b_1)$ can be expressed as the type
+\[(\Sigma p : A = B) \big( p_{!} (\pair(a_0,a_1)) = \pair(b_0,b_1) \big)\]
+By path induction on $p$, the transport $p_{!} \big( \pair(a_0, a_1) \big)$ is equal to the pair 
+\[\pair \big( \fst(\ext_1(p))_{a_0} \, , \fst(\ext_1(p))_{a_1} \big)\]
+where $\ext_1 \co \Id(A,B) \to (A \simeq B)$ is the canonical equivalence. The above type is thus equivalent to
+\[(\Sigma p : A = B) \big(\pair \big( \fst(\ext_1(p))_{a_0} \, , \fst(\ext_1(p))_{a_1} \big) = \pair(b_0,b_1) \big)\]
+Since the function $\ext_1$ is an equivalence, this is equivalent to
+\[(\Sigma e : A \simeq B) \big(\pair \big( \fst(e)_{a_0} \, , \fst(e)_{a_1} \big) = \pair(b_0,b_1) \big)\]
 By the characterization of paths in product types, this is equivalent to
-\begin{equation}
-\label{equ:kstar}
- \big(\Sigma e : A \simeq B \big) \Id \big(   \pair( f_e ( a_0 ) , f_e ( a_1 )  )   ,  \pair(b_0, b_1)  \big)
- \end{equation}
-On the other hand, by characterization of paths in $\Sigma$-types, the path space $(A,a_0,a_1) = (B,b_0,b_1)$ can be expressed as the type
-$(\Sigma p : A = B) \big( p_{!} (\pair(a_0,a_1)) = \pair(b_0,b_1) \big)$. For $p \co \Id(A,B)$, let us write $f_p \co A \to B$ for the (underlying function of the) 
-equivalence associated to $p$ by the function~$\ext \co \Id(A,B) \to (A \simeq B)$. By $\Id$-elimination, we have
-\[
-p_{!} \big( \pair(a_0, a_1) \big) =  \pair \big(  f_p ( a_0) \, , f_p ( a_1) \big)  \, .
+\[ 
+\big(\Sigma e : A \simeq B \big) \,  \Id \big(\fst(e)_{a_0},  b_0\big) \times \Id \big( \fst(e)_{a_1} , b_1\big) \, .
 \]
-Thus, the path space $(A, a_0, a_1) = (B, b_0, b_1)$ is equivalent to 
-\begin{equation}
-\label{equ:kstarstar}
-\big(\Sigma p : A = B \big) 
-\Id \big( \pair( f_p ( a_0) , f_p (a_1) )  \, ,  \pair(b_0,b_1) \big)
-\end{equation}
-Since the function $\ext \co \Id(A,B) \to (A \simeq B)$ is an equivalence, there is also an  equivalence between~\eqref{equ:kstar}
-and~\eqref{equ:kstarstar}, as desired.
+After some rearranging we get
+\[
+ \big(\Sigma f \co \BoolHom \; (A,a_0,a_1) \; (B,b_0,b_1)\big) \; \isequiv(\fst(f))
+\]
+whicb by Lem.~\ref{BoolAlgSpace} is equivalent to $\mathsf{BipEquiv}\; (A,a_0,a_1) \; (B,b_0,b_1)$ as desired.
 \end{proof} 
 
-By Theorem~\ref{thm:bipunivalence}, the Univalence Axiom implies that homotopy-initial algebras are unique, rather than just unique up to a contractible type of equivalences, in the sense that for any two homotopy-initial bipointed types $A \, , B$ in $\UU$ the type
+It is not hard to see that Theorem~\ref{thm:bipunivalence} implies that the path space between any two homotopy-initial bipointed types is contractible, i.e., the type
 \[ 
-\mathsf{ishinitial}(A) \times \mathsf{ishinitial}(B) \to \Id(A,B) \, .
+\mathsf{ishinitial}(A) \times \mathsf{ishinitial}(B) \to \iscontr(\Id(A,B)) \, .
 \] 
-is inhabited. 
-
+is inhabited. As a further consequence we get that homotopy-initial bipointed types are unique, rather than just unique up to a contractible type of equivalences.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
