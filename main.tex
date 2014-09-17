@@ -264,18 +264,18 @@
 \newcommand{\Palg}{P\text{-}\mathsf{Alg}}
 \newcommand{\WAlgToNatAlg}{\W\text{-}\mathsf{to}\text{-}\nat\text{-}\mathsf{Alg}}
 \newcommand{\WFibAlgToNatFibAlg}{\W\text{-}\mathsf{to}\text{-}\nat\text{-}\mathsf{Fib}\text{-}\mathsf{Alg}}
-\newcommand{\WCell}{\mathsf{W}\text{-}\mathsf{Cell}}
-\newcommand{\WFibCell}{\mathsf{W}\text{-}\mathsf{Fib}\text{-}\mathsf{Cell}}
-\newcommand{\WAlg}{\mathsf{W}\text{-}\mathsf{Alg}}
-\newcommand{\WFibAlg}{\mathsf{W}\text{-}\mathsf{Fib}\text{-}\mathsf{Alg}}
-\newcommand{\WHom}{\mathsf{W}\text{-}\mathsf{Hom}}
-\newcommand{\WFibHom}{\mathsf{W}\text{-}\mathsf{Fib}\text{-}\mathsf{Hom}}
+\newcommand{\WCell}{\mathsf{PHot}}
+\newcommand{\WFibCell}{\mathsf{PFibHot}}
+\newcommand{\WAlg}{\mathsf{PAlg}}
+\newcommand{\WFibAlg}{\mathsf{PFibAlg}}
+\newcommand{\WHom}{\mathsf{PHom}}
+\newcommand{\WFibHom}{\mathsf{PFibHom}}
 \newcommand{\HasWRec}{\mathsf{has}\text{-}\mathsf{W}\text{-}\mathsf{rec}}
 \newcommand{\HasWInd}{\mathsf{has}\text{-}\mathsf{W}\text{-}\mathsf{ind}}
 \newcommand{\HasWRecUniq}{\mathsf{has}\text{-}\mathsf{W}\text{-}\mathsf{rec}\text{-}\mathsf{uniq}}
 \newcommand{\HasWIndUniq}{\mathsf{has}\text{-}\mathsf{W}\text{-}\mathsf{ind}\text{-}\mathsf{uniq}}
-\newcommand{\IsWInit}{\mathsf{is}\text{-}\mathsf{\W}\text{-}\mathsf{init}}
-\newcommand{\IsWHInit}{\mathsf{is}\text{-}\mathsf{\W}\text{-}\mathsf{hinit}}
+\newcommand{\IsWHInit}{\mathsf{isPHomInit}}
+\newcommand{\IsWHProj}{\mathsf{isPHomProj}}
 \newcommand{\WIdHom}{\mathsf{W}\text{-}\mathsf{Id}\text{-}\mathsf{Hom}}
 \newcommand{\WCompHom}{\mathsf{W}\text{-}\mathsf{Comp}\text{-}\mathsf{Hom}}
 \newcommand{\WAlgIso}{\mathsf{W}\text{-}\mathsf{Alg}\text{-}\mathsf{Eq}}
@@ -1322,8 +1322,6 @@ In particular, any type equivalent to $\Bool$ is homotopy-initial.
 
 \subsection{Universes and internalization}
 
-\vspace{3cm}
-
 If we work in a type theory with a hierarchy of universes $\U_0 : \U_1 : \ldots$, such as Martin-L{\"o}f's dependent type theory, the notion of a (fibered) bipointed type can be \emph{internalized} in a straightforward way. Since we are mainly concerned with small types, we will denote the universe $\U_0$ by $\U$ for brevity.
 
 \begin{definition}\label{def:BoolAlg}
@@ -1351,14 +1349,14 @@ For a bipointed type $\X : \BoolAlg$ and a fibered bipointed type $\Y : \BoolFib
 \begin{definition}\label{def:BoolCell}
 For bipointed morphisms $\mu,\nu : \BoolHom \; \X \; \Y$, define the type of \emph{bipointed homotopies} between $\mu$ and $\nu$ by
 \begin{align*}
-& \BoolCell \; (A,a_0,a_1) \; (B, b_0 \; b_1) \; (f,\bar{f}_0,\bar{f}_1) \; (g,\bar{g}_0,\bar{g}_1) \defeq \\ & \;\;\; \;\;\;\BoolFibHom \; (A,a_0,a_1) \; (f \sim g, \bar{f}_0 \ct (\bar{g}_0)^{-1}, \bar{f}_1 \ct (\bar{g}_1)^{-1})
+& \BoolCell \; (A,a_0,a_1) \; (B, b_0 \; b_1) \; (f,\bar{f}_0,\bar{f}_1) \; (g,\bar{g}_0,\bar{g}_1) \defeq \\ & \;\;\; \;\;\;\BoolFibHom \; (A,a_0,a_1) \; ((\lambda x:A) f(x) = g(x), \bar{f}_0 \ct (\bar{g}_0)^{-1}, \bar{f}_1 \ct (\bar{g}_1)^{-1})
 \end{align*}
 \end{definition}
 
 \begin{definition}\label{def:BoolFibCell}
 For bipointed sections $\mu,\nu : \BoolHom \; \X \; \Y$, define the type of \emph{bipointed homotopies of sections} between $\mu$ and $\nu$ by
 \begin{align*}
-& \BoolFibCell \; (A,a_0,a_1) \; (E, e_0 \; e_1) \; (f,\bar{f}_0,\bar{f}_1) \; (g,\bar{g}_0,\bar{g}_1) \defeq \\ & \;\;\; \;\;\;\BoolFibHom \; (A,a_0,a_1) \; (f \sim g, \bar{f}_0 \ct (\bar{g}_0)^{-1}, \bar{f}_1 \ct (\bar{g}_1)^{-1})
+& \BoolFibCell \; (A,a_0,a_1) \; (E, e_0 \; e_1) \; (f,\bar{f}_0,\bar{f}_1) \; (g,\bar{g}_0,\bar{g}_1) \defeq \\ & \;\;\; \;\;\;\BoolFibHom \; (A,a_0,a_1) \; ((\lambda x:A) f(x) = g(x), \bar{f}_0 \ct (\bar{g}_0)^{-1}, \bar{f}_1 \ct (\bar{g}_1)^{-1})
 \end{align*}
 \end{definition}
 For brevity, we will often leave out the first two arguments to $\BoolCell$ and $\BoolFibCell$. Finally, we internalize the properties of being homotopy-initial and homotopy-projective as follows:
@@ -1387,7 +1385,6 @@ To show that $\IsBoolHProj \; \X$ is a mere proposition, we note that to prove t
 
 Now fix a bipointed type $(A,a_0,a_1) : \BoolAlg$. The logical equivalence between the types $\IsBoolHProj \; (A,a_0,a_1)$ and $\IsBoolHInit \; (A,a_0,a_1)$ is established in the same way as in the proof of Thm~\ref{lem:BoolMainInt}. 
 \end{proof}
-\vspace{3cm}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Univalence for bipointed types} 
@@ -2334,36 +2331,74 @@ where the first equality follows by Corollary.~\ref{lem:suppath}. Since $A$ is a
 
 We note that there is no restriction on the homotopy level of the fibers of $B$ since they only appear contravariantly. Furthermore, we note that the lemma is no longer true if $n+1$ is replaced by $n$: if $A \defeq \one$ and $B(x) \defeq \one$, then $\W^{\UU_0}_{x:A} B(x) \simeq \zero$, which is of course not contractible. 
 
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Universes and internalization}
 
-% \newcommand{\Palg}{P\text{-}\mathrm{alg}}
+Here we again assume a type theory with a hierarchy of universes $\U_0 : \U_1 : \ldots$, such as Martin-L{\"o}f's dependent type theory, denoting the universe $\U_0$ of small types by $\U$. We can internalize the notion of a (fibered) $P$-algebra as follows.
 
-For $A:\UU$, $B : A \to \UU$, define the type of \emph{$P$-algebras} in $\UU$ as
-\[
-\Palg(A,B)  \defeq (\Sigma C : \UU) (\Pi x :A) (B(x) \to C) \to C 
-\]
+\begin{definition}\label{def:WAlg}
+For $A:\U$, $B : A \to \U$, define the type of \emph{$P$-algebras} as
+\[\WAlg(A,B) \; \defeq \sm{C : \U} (\Pi x:A) (B(x) \to C) \to C \]
+\end{definition}
 
+\begin{definition}\label{def:WFibAlg}
+Define the type of \emph{fibered $P$-algebras} over a $P$-algebra $\X : \WAlg(A,B)$ by
+\[\WFibAlg \; (C,c) \defeq \sm{E : C \to \U} (\Pi x:A) (\Pi t: B(x) \to C) \big((\Pi b:B(x)) E(t \;b) \big) \to E(c(a,t)) \]
+\end{definition}
 
+\noindent The types of $P$-morphisms, $P$-sections, and $P$-homotopies are now defined as before:
 
-\begin{theorem}\label{lem:WMainInt}
-For $A : \UU$, $B : A \to \UU$, the following types are equivalent: 
-\[ 
-\mathsf{isinductive}(C) \simeq 
-\mathsf{isrecursive}(C)   \simeq
-\mathsf{ishinitial}(C) \simeq
-\mathsf{ishproj}(C) \, .
-\]
-Furthermore, all four types are mere propositions.
+\begin{definition}\label{def:WHom}
+For $P$-algebras $\X,\Y : \WAlg(A,B)$, define the type of \emph{$P$-morphisms} from $\X$ to $\Y$ by
+\[ \WHom \; (C,c) \; (D,d) \defeq \sm{f:C\to D} (\Pi x:A) (\Pi t: B(x) \to C) f(c(a,t)) = d(a,f \circ t) \]
+\end{definition}
+
+\begin{definition}\label{def:WFibHom}
+For a $P$-algebra $\X : \WAlg(A,B)$ and a fibered $P$-algebra $\Y : \WFibAlg \; \X$ over $\X$, define the type of \emph{$P$-sections} of $\Y$ by
+\[ \WFibHom \; (C,c) \; (E,e) \defeq \sm{f:(\Pi x:C)E(x)}(\Pi x:A) (\Pi t: B(x) \to C) f(c(a,t)) = e(a,t,f \circ t) \]
+\end{definition}
+
+\begin{definition}\label{def:WCell}
+For $P$-morphisms $\mu, \nu : \WHom \; \X \; \Y$, define the type of \emph{$P$-homotopies} between $\mu$ and $\nu$ by
+\begin{align*} 
+& \WCell \; (C,c) \; (D,d) \; (f,\bar{f}) \; (g,\bar{g}) \defeq \\ & \;\;\; \;\;\;\WFibHom \; (C,c) \; \Big((\lambda x:C) f(x) = g(x), (\lambda x) (\lambda t) (\lambda r) \bar{f}(x,t) \ct d(x)(\funext(r)) \ct \bar{g}(x,t)^{-1}\Big)
+\end{align*}
+\end{definition}
+
+\begin{definition}\label{def:WFibCell}
+For $P$-sections $\mu, \nu : \WFibHom \; \X \; \Y$, define the type of \emph{$P$-homotopies of sections} between $\mu$ and $\nu$ by
+\begin{align*}
+& \WFibCell \; (C,c) \; (E, e) \; (f,\bar{f}) \; (g,\bar{g}) \defeq \\ & \;\;\; \;\;\;\WFibHom \; (C,c) \; \Big((\lambda x:C) f(x) = g(x), (\lambda x) (\lambda t) (\lambda r) \bar{f}(x,t) \ct e(x,t)(\funext(r)) \ct \bar{g}(x,t)^{-1}\Big)
+\end{align*}
+\end{definition}
+
+For brevity, we will often leave out all but the last two arguments to $\WCell$ and $\WFibCell$. Finally, we internalize the properties of being homotopy-initial and homotopy-projective as follows:
+
+\begin{definition}\label{def:WHInit}
+A $P$-algebra $\X : \WAlg(A,B)$ is said to be \emph{homotopy-initial} if for any $P$-algebra $\Y : \WAlg(A,B)$, the type of $P$-morphisms from $\X$ to $\Y$ is contractible:
+\[ \IsWHInit \; \X \defeq (\Pi \Y:\WAlg(A,B)) \; \iscontr(\WHom \; \X \; \Y) \]  
+\end{definition}
+
+\begin{definition}\label{def:WHProj}
+A $P$-algebra $\X : \WAlg(A,B)$ is said to be \emph{homotopy-projective} if for any fibered $P$-algebra $\Y : \WAlg \; \X$ over $\X$, there exists a $P$-section of $\Y$:
+\[ \IsWHProj \; \X \defeq (\Pi \Y:\WAlg \; \X) \; \WFibHom \; \X \; \Y \]  
+\end{definition}
+
+Our main result can now be expressed internally as follows.
+
+\begin{theorem}\label{lem:WMainInternal}
+For $A:\U$, $B : A \to \U$, and a $P$-algebra $\X : \WAlg(A,B)$, we have
+\[ \IsWHProj \; \X \;\;\; \leftrightarrow \;\;\; \IsWHInit \; \X \]
+Moreover, both types are mere propositions; hence in particular we have
+\[ \IsWHProj \; \X \;\;\; \simeq \;\;\; \IsWHInit \; \X \]
 \end{theorem}
+\begin{proof}
+The type $\IsWHInit \; \X$ is a mere proposition since $\iscontr(X)$ is a mere proposition for any type $X$ and a family of mere propositions is again a mere proposition.
 
+To show that $\IsWHProj \; \X$ is a mere proposition, we note that to prove that a type $X$ is a mere proposition, it suffices to do so under the assumption that $X$ is inhabited. Assume therefore that $\IsWHProj \; \X$ is inhabited. Since a family of mere propositions is again a mere proposition, it suffices to show that $\WFibHom \; \X \; \Y$ is a mere proposition for any $\Y$. Fix sections $\mu, \nu : \WFibHom \; \X \; \Y$. To show $\mu = \nu$, it suffices to exhibit a $P$-homotopy between $\mu$ and $\nu$. But since a $P$-homotopy is nothing more than a section of an appropriate fibered $P$-algebra, we can obtain it by using the fact that $\IsWHProj \; \X$ is inhabited.
 
-\begin{proof} TO BE REWRITTEN.
+Fix a $P$-algebra $(C,c) : \WAlg(A,B)$. The logical equivalence between the types $\IsWHProj \; (C,c)$ and $\IsWHInit \; (C,c)$ is established in the same way as in the proof of Thm~\ref{lem:WMainInt}. 
 \end{proof}
-
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
