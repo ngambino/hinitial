@@ -1379,9 +1379,9 @@ Moreover, both types are mere propositions; hence in particular we have
 \[ \IsBoolHProj \; \X \;\;\; \simeq \;\;\; \IsBoolHInit \; \X \]
 \end{theorem}
 \begin{proof}
-The type $\IsBoolHInit \; \X$ is a mere proposition since $\iscontr(X)$ is a mere proposition for any type $X$ and a family of mere propositions is again a mere proposition.
+The type $\IsBoolHInit \; \X$ is a mere proposition since $\iscontr(X)$ is a mere proposition for any type $X$ and the dependent product of family of mere propositions is again a mere proposition.
 
-To show that $\IsBoolHProj \; \X$ is a mere proposition, we note that to prove that a type $X$ is a mere proposition, it suffices to do so under the assumption that $X$ is inhabited. Assume therefore that $\IsBoolHProj \; \X$ is inhabited. Since a family of mere propositions is again a mere proposition, it suffices to show that $\BoolFibHom \; \X \; \Y$ is a mere proposition for any $\Y$. Fix sections $\mu, \nu : \BoolFibHom \; \X \; \Y$. To show $\mu = \nu$, it suffices to exhibit a bipointed homotopy between $\mu$ and $\nu$. But since a bipointed homotopy is nothing more than a section of an appropriate fibered bipointed type, we can obtain it by using the fact that $\IsBoolHProj \; \X$ is inhabited.
+To show that $\IsBoolHProj \; \X$ is a mere proposition, we note that to prove that a type $X$ is a mere proposition, it suffices to do so under the assumption that $X$ is inhabited. Assume therefore that $\IsBoolHProj \; \X$ is inhabited. Since the dependent product of a family of mere propositions is again a mere proposition, it suffices to show that $\BoolFibHom \; \X \; \Y$ is a mere proposition for any $\Y$. Fix sections $\mu, \nu : \BoolFibHom \; \X \; \Y$. To show $\mu = \nu$, it suffices to exhibit a bipointed homotopy between $\mu$ and $\nu$. But since a bipointed homotopy is nothing more than a section of an appropriate fibered bipointed type, we can obtain it by using the fact that $\IsBoolHProj \; \X$ is inhabited.
 
 Now fix a bipointed type $(A,a_0,a_1) : \BoolAlg$. The logical equivalence between the types $\IsBoolHProj \; (A,a_0,a_1)$ and $\IsBoolHInit \; (A,a_0,a_1)$ is established in the same way as in the proof of Thm~\ref{lem:BoolMainInt}. 
 \end{proof}
@@ -1425,13 +1425,13 @@ proofs that $f$ is a bipointed equivalence yields the type
 where
 \begin{align*}
 P(f,\ell) & \defeq \Id \Big( \big( \ell \comp f, \ell(\bar{f}_0) \ct \bar{\ell}_0, \ell(\bar{f}_1) \ct \bar{\ell}_1\big), \big( 1_A, \refl(a_0), \refl(a_1) \big) \Big)  \, , \\
-Q(f,r)    & \defeq \Id \Big( \big( f \comp h,   f(\bar{r}_0) \ct \bar{f}_0, f(\bar{r}_1) \ct \bar{f}_1  \big) \, , \big( 1_A, \refl(a_0), \refl(a_1) \big) \Big) \, .
+Q(f,r)    & \defeq \Id \Big( \big( f \comp h,   f(\bar{r}_0) \ct \bar{f}_0, f(\bar{r}_1) \ct \bar{f}_1  \big) \, , \big( 1_B, \refl(b_0), \refl(b_1) \big) \Big) \, .
 \end{align*}
 Using the characterization of paths in $\Sigma$-types, the type $P(f,\ell)$ can be equivalently expressed as
 \[
-\big(\Sigma p : \ell \comp f = 1_A \big)  \Id \Big(  \big( \ell (\bar{f}_0) \ct \bar{\ell }_0, \ell (\bar{f}_1) \ct \bar{\ell }_1\big), \big( p_{!}\big(\refl(a_0), \refl(a_1) \big) \big) \Big) \, .
+\big(\Sigma p : \ell \comp f = 1_A \big)  \Id \Big(  \big( \ell (\bar{f}_0) \ct \bar{\ell }_0, \ell (\bar{f}_1) \ct \bar{\ell }_1\big), \big( p^{!}\big(\refl(a_0), \refl(a_1) \big) \big) \Big) \, .
 \]
-By path induction on $p$, the transport $p_{!}\big(\refl(a_0), \refl(a_1) \big)$ is equal to the pair 
+By path induction on $p$, the transport $p^{!}\big(\refl(a_0), \refl(a_1) \big)$ is equal to the pair 
 \[
 \big(  \ext(p)_{a_0} \ct \refl(a_0) \, , \;  \ext(p)_{a_1} \ct \refl(a_1) \big) \, ,
 \]
@@ -1497,6 +1497,8 @@ Since the identity function is an equivalence and since $\ell, \alpha, r, \beta$
 as required.
 \end{proof}
 
+In particular, we note that for any bipointed morphism $\mu$ the type $\mathsf{isbipequiv}(\mu)$ is a mere proposition.
+
 \begin{theorem}[Univalence for bipointed types] \label{thm:bipunivalence}
  For bipointed types $A, B : \BoolAlg$, the canonical function
 \[ 
@@ -1525,11 +1527,19 @@ After some rearranging we get
 whicb by Lem.~\ref{BoolAlgSpace} is equivalent to $\mathsf{BipEquiv}\; (A,a_0,a_1) \; (B,b_0,b_1)$ as desired. Finally, it is not hard to see that the composition of the above equivalences yields the canonical function $\ext$ (up to a homotopy).
 \end{proof} 
 
-We note that Theorem~\ref{thm:bipunivalence} implies that the path space between any two homotopy-initial bipointed types is contractible, i.e., the type
+\begin{corollary}\label{BoolHInitIso}
+The path space between any two homotopy-initial bipointed types is contractible, i.e., 
 \[ 
 \mathsf{ishinitial}(A) \times \mathsf{ishinitial}(B) \to \iscontr(\Id(A,B)) \, .
 \] 
-is inhabited. As a further consequence we get that homotopy-initial bipointed types are unique, rather than just unique up to a contractible type of equivalences.
+In particular, homotopy-initial bipointed types are unique.
+\end{corollary}
+
+\begin{proof}
+By Theorem~\ref{thm:bipunivalence} it suffices to prove $\iscontr(\mathsf{BipEquiv}(A,B))$. The type $\BoolHom \; A \; B$ is contractible by homotopy-initiality of $A$. Since the dependent sum of a family of mere propositions over a mere proposition is again a mere proposition, it suffices to prove $\iscontr(\mathsf{isbipequiv}(f))$ for any bipointed morphism $f$. This type is a mere proposition, as remarked earlier; thus it suffices to show it is inhabited.
+
+Since $B$ is homotopy-initial, there exists a bipointed morphism $g : B \to A$. Again by homotopy-initiality of $A$ and $B$, we have $g \comp f = 1_A$ and $f \comp g = 1_A$, which gives us the desired bipointed equivalence between $A$ and $B$.
+\end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2404,32 +2414,68 @@ Fix a $P$-algebra $(C,c) : \WAlg(A,B)$. The logical equivalence between the type
 
 \subsection{Univalence for $P$-algebras}
 
+\begin{definition} Let $C,D : \WAlg(A,B)$ be $P$-algebras. We say that a $P$-morphism $f \co \WHom(C,D)$ is a \myemph{$P$-equivalence}
+if there exist $P$-morphisms $\ell,r \co \WHom(D,C)$ providing a left and a right $P$-inverse for $f$, \ie 
+\[ 
+\ell \circ f = 1_C \, , \quad f \circ r = 1_D \, ,
+\]
+where the propositional equalities are understood as equalities of $P$-morphisms. In other words, we define the type of proofs that $f$ is a $P$-equivalence as
+\[
+\mathsf{isPequiv}(f) \defeq   ( \Sigma \ell : \WHom(C,D) ( \ell \circ f = 1_C )) \times 
+    (\Sigma r : \WHom(C, D))(  f \circ r = 1_D ) \, .
+\]
+We then define the type of \emph{$P$-equivalences} between $C$ and $D$ as
+\[
+\mathsf{PEquiv}(C, D)
+\defeq    (\Sigma f : \WHom(C,D)) \, \mathsf{isPequiv}(f)  \, . 
+\] 
+\end{definition}
+
+Clearly, the identity morphism on a $P$-algebra is a $P$-equivalence, with the left and right inverses being the identity morphism itself.
+
+\begin{lemma}\label{PAlgSpace} A $P$-morphism $(f, \bar{f}) \co \WHom(C,D)$ is a $P$-equivalence if and only
+if its underlying function $f \co C \to D$ is an equivalence. Furthermore, there is an equivalence of types
+\[
+\mathsf{isPequiv}(f, \bar{f})  \simeq \mathsf{isequiv}(f) \, . 
+\]
+\end{lemma}  
+\begin{proof}
+Let $(C,c), (D,d)$ be $P$-algebras and $(f, \bar{f})$ be a $P$-morphism between them. Expanding the type of proofs that $f$ is a $P$-equivalence yields the type
+\begin{multline*}
+ \Big(\big(\Sigma \ell \co D \to  C \big) \big(\Sigma \bar{\ell} : (\Pi a) (\Pi s) \ell(d(a,s))=c(a,\ell \circ s)\big)
+P(f,\ell)\Big) \; \times \\ 
+ \Big(\big(\Sigma r \co D \to C \big) \big(\Sigma \bar{r} : (\Pi a) (\Pi s) r(d(a,s))=c(a,r \circ s) \big) Q(f, r)  \Big)\, , 
+\end{multline*}
+where
+\begin{align*}
+P(f,\ell) & \defeq \Id \Big( \big( \ell \comp f, (\lambda a)(\lambda t) \ell(\bar{f}(a,t)) \ct \bar{g}(a, f \comp t)\big), \big( 1_C, (\lambda a)(\lambda t) \refl(c(a,t))\big) \Big)  \, , \\
+Q(f,r)    & \defeq \Id \Big( \big( f \comp r, (\lambda a)(\lambda s) f(\bar{r}(a,s)) \ct \bar{f}(a, r \comp s)\big) \, , \big( 1_D, (\lambda a)(\lambda s) \refl(d(a,s)) \big) \Big) \, .
+\end{align*}
+\end{proof}
+Using the characterization of paths in $\Sigma$-types, the type $P{f,\ell}$ can be equivalently expressed as
+\begin{align*}
+\big(\Sigma p : \ell \comp f = \idfun{C} \big) \Big((\lambda a) (\lambda t) \ell(\bar{f}(a,t)) \ct \bar{g}(a, f \comp t)\Big) = p^{!} \Big((\lambda a) (\lambda t) \refl(c(a,t))\Big) 
+\end{align*}
+By path induction on $p$, the transport $p^{!} \Big((\lambda a) (\lambda t) \refl(c(a,t))$ is equal to the function
+\[ (\lambda a) (\lambda t) \]
+
+
+HERE
+
+
+
+
+
 \begin{theorem}[Univalence for $P$-algebras] \label{WAlgSpace}
 Given $A:\UU$, $B : A \to \UU$ and $C,D  : \WAlg(A,B)$, the path space $C = D$ is equivalent to the space of equivalences between $C$ and $D$:
 \[ C = D  \simeq  \WAlgIso[C \, , D] \] 
 \end{theorem}
 \begin{proof}
-Let algebras $(C,c), (D,d) : \WAlg(A,B)$ be given. Expanding the type of equivalences between $A$ and $B$ yields
-\begin{align*}
-& \big(\Sigma \rho : \big(\Sigma f:C\to D\big) (\Pi a)(\Pi t) f(c(a,t)) = d(a,f \comp t)\big) \\ 
-& \Big(\big(\Sigma \mu : \big(\Sigma g:D\to C \big) (\Pi a)(\Pi s) g(d(a,s)) = c(a,g \comp s)\big) \mu \comp \rho = \one_{(C,c)} \Big) \; \times \\
-& \Big(\big(\Sigma \nu : \big(\Sigma h:D\to C \big) (\Pi a)(\Pi s) h(d(a,s)) = c(a,h\comp s) \big) \rho \comp \nu = \one_{(D,d)} \Big)
-\end{align*}
-After uncurrying we get the type
-\begin{align*}
-& \big(\Sigma f:C\to D\big) \big(\Sigma \epsilon : (\Pi a)(\Pi t) f(c(a,t)) = d(a,f \comp t)\big) \\ 
-& \Big(\big(\Sigma g:D\to C \big) \big(\Sigma \gamma : (\Pi a)(\Pi s) g(d(a,s)) = c(a,g \comp s)\big) P_{f,\epsilon,g,\gamma} \Big) \; \times \\
-& \Big(\big(\Sigma h:D\to C \big) \big(\Sigma \delta : (\Pi a)(\Pi s) h(d(a,s)) = c(a,h\comp s) \big) Q_{f,\epsilon,h,\delta} \Big)
-\end{align*}
-where
-\begin{align*}
-& P_{f,\epsilon,g,\gamma} \defeq \Big(g \comp f; a,t \mapsto g(\epsilon(a,t)) \ct \gamma(a, f \comp t)\Big) = \Big(\idfun{C}; a,t \mapsto \refl_{c(a,t)}\Big) \\
-& Q_{f,\epsilon,h,\delta} \defeq \Big(f \comp h; a,s \mapsto f(\delta(a,s)) \ct \epsilon(a, h \comp t)\Big) = \Big(\idfun{D}; a,s \mapsto \refl_{d(a,s)}\Big)
-\end{align*}
-Using characterization of paths in dependent products, the type $P_{f,\epsilon,g,\gamma}$ can be equivalently expressed as
-\begin{align*}
-\big(\Sigma \alpha : g \comp f = \idfun{C} \big) \Big((\lambda a) (\lambda t) g(\epsilon(a,t)) \ct \gamma(a, f \comp t)\Big) = \alpha^{!} \Big((\lambda a) (\lambda t) \refl_{c(a,t)}\Big) 
-\end{align*}
+
+
+Using characterization of paths in dependent products, the type $P(f,\epsilon,g,\gamma)$ can be equivalently expressed as
+
+
 Using path induction on $\alpha$, this type is easily seen to be equivalent to
 \begin{align*}
 & \big(\Sigma \alpha : g \comp f = \idfun{C} \big) (\Pi a) (\Pi t) \happly(\alpha,c(a,t)) =  \\ & \;\;\; g(\epsilon(a,t)) \ct \gamma(a, f \comp t) \ct c(a)(\funext(\lam{b} \; \happly(\alpha,t\;b))) \ct \refl_{c(a,t)}^{-1}
