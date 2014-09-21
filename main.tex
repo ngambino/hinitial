@@ -1416,18 +1416,18 @@ if its underlying function $f \co A \to B$ is an equivalence. Furthermore, there
 \end{lemma}  
 
 \begin{proof}
-Let $(A,a_0,a_1), (B,b_0,b_1)$ be bipointed types and $(f, \bar{f}_0, \bar{f}_1) \co A \to B$ be a bipointed morphism. Expanding the type of 
+Let $(A,a_0,a_1), (B,b_0,b_1)$ be bipointed types and $(f, \bar{f}_0, \bar{f}_1) \co A \to B$ be a bipointed morphism between them. Expanding the type of 
 proofs that $f$ is a bipointed equivalence yields the type
 \begin{multline*}
- \Big(\big(\Sigma \ell \co B \to  A \big) \big(\Sigma \bar{\ell}_0 : \ell(b_0)=a_0 \big) \big(\Sigma \bar{\ell}_1 : \ell(b_1)=a_1\big) P(f,\ell)\Big) \; \times \\ 
- \Big(\big(\Sigma r \co B \to A \big) \big(\Sigma \bar{r}_0 : r(b_0)=a_0 \big) \big(\Sigma \bar{r}_1 : r(b_1)=a_1\big) Q(f, r)  \Big)\, , 
+ \Big(\big(\Sigma \ell \co B \to  A \big) \big(\Sigma \bar{\ell}_0 : \ell(b_0)=a_0 \big) \big(\Sigma \bar{\ell}_1 : \ell(b_1)=a_1\big) P(\ell,\bar{\ell}_0,\bar{\ell}_1)\Big) \; \times \\ 
+ \Big(\big(\Sigma r \co B \to A \big) \big(\Sigma \bar{r}_0 : r(b_0)=a_0 \big) \big(\Sigma \bar{r}_1 : r(b_1)=a_1\big) Q(r,\bar{r}_0,\bar{r}_1)   \Big)\, , 
 \end{multline*}
 where
 \begin{align*}
-P(f,\ell) & \defeq \Id \Big( \big( \ell \comp f, \ell(\bar{f}_0) \ct \bar{\ell}_0, \ell(\bar{f}_1) \ct \bar{\ell}_1\big), \big( 1_A, \refl(a_0), \refl(a_1) \big) \Big)  \, , \\
-Q(f,r)    & \defeq \Id \Big( \big( f \comp h,   f(\bar{r}_0) \ct \bar{f}_0, f(\bar{r}_1) \ct \bar{f}_1  \big) \, , \big( 1_B, \refl(b_0), \refl(b_1) \big) \Big) \, .
+P(\ell,\bar{\ell}_0,\bar{\ell}_1) & \defeq \Id \Big( \big( \ell \comp f, \ell(\bar{f}_0) \ct \bar{\ell}_0, \ell(\bar{f}_1) \ct \bar{\ell}_1\big), \big( 1_A, \refl(a_0), \refl(a_1) \big) \Big)  \, , \\
+Q(r,\bar{r}_0,\bar{r}_1) & \defeq \Id \Big( \big( f \comp h,   f(\bar{r}_0) \ct \bar{f}_0, f(\bar{r}_1) \ct \bar{f}_1  \big) \, , \big( 1_B, \refl(b_0), \refl(b_1) \big) \Big) \, .
 \end{align*}
-Using the characterization of paths in $\Sigma$-types, the type $P(f,\ell)$ can be equivalently expressed as
+Using the characterization of paths in $\Sigma$-types, the type $P(\ell,\bar{\ell}_0,\bar{\ell}_1)$ can be equivalently expressed as
 \[
 \big(\Sigma p : \ell \comp f = 1_A \big)  \Id \Big(  \big( \ell (\bar{f}_0) \ct \bar{\ell }_0, \ell (\bar{f}_1) \ct \bar{\ell }_1\big), \big( p^{!}\big(\refl(a_0), \refl(a_1) \big) \big) \Big) \, .
 \]
@@ -1435,61 +1435,50 @@ By path induction on $p$, the transport $p^{!}\big(\refl(a_0), \refl(a_1) \big)$
 \[
 \big(  \ext(p)_{a_0} \ct \refl(a_0) \, , \;  \ext(p)_{a_1} \ct \refl(a_1) \big) \, ,
 \]
-where $\ext : \Id(\ell \comp f, 1_A) \to \mathsf{Ho}(\ell \comp f,  1_A)$ is the canonical equivalence. This is of course propositionally equal to $\big(\ext(p)_{a_0}, \ext(p)_{a_1} \big)$. The type $P(f,\ell)$ can thus be expressed as
+where $\ext : \Id(\ell \comp f, 1_A) \to \mathsf{Ho}(\ell \comp f,  1_A)$ is the canonical equivalence. This is of course propositionally equal to $\big(\ext(p)_{a_0}, \ext(p)_{a_1} \big)$. Using the characterization of paths in product spaces, the type $P(\ell,\bar{\ell}_0,\bar{\ell}_1)$ can thus be expressed as
 \[
-\big(\Sigma p : \ell \comp f = 1_A \big) \big(\ell (\bar{f}_0) \ct \bar{\ell}_0, \ell(\bar{f}_1) \ct \bar{\ell}_1\big)
- = 
-\big(\ext(p)_{a_0}, \ext(p)_{a_1} \big) \, .
+\big(\Sigma p : \ell \comp f = 1_A \big) \Big(
+\Id  \big( \ell (\bar{f}_0) \ct \bar{\ell}_0 \, ,  \ext(p)_{a_0} \big) 
+\times 
+\Id \big( \ell(\bar{f}_1) \ct \bar{\ell}_1 \, ,  \ext(p)_{a_1} \big)
+\Big)
 \]
 Since the function $\ext$ is an equivalence, this is equivalent to
 \begin{align*}
-\big(\Sigma \alpha : \ell \comp f \sim 1_A \big) 
-\Id 
-\Big( 
-\pair \big( \ell(\bar{f}_0) \ct \bar{\ell}_0, \ell(\bar{f}_1) \ct \bar{\ell}_1\big) \, , \; 
-\pair \big(  \alpha(a_0), \alpha(a_1)  \big) \,
-\Big) \, .
-\end{align*}
-By characterization of paths in product spaces, this is equivalent to
-\[
-\big(\Sigma \alpha : \ell \comp f \sim 1_A \big) 
-\Big(
+\big(\Sigma \alpha : \ell \comp f \sim 1_A \big) \Big(
 \Id  \big( \ell (\bar{f}_0) \ct \bar{\ell}_0 \, ,  \alpha(a_0) \big) 
 \times 
 \Id \big( \ell(\bar{f}_1) \ct \bar{\ell}_1 \, ,  \alpha(a_1) \big)
-\Big) \, .
-\]
-Analogously, the type $Q(f,r)$ is equivalent to
+\Big)
+\end{align*}
+Analogously, the type $Q(r,\bar{r}_0,\bar{r}_1)$ is equivalent to
 \[
 \big(\Sigma \beta : f \comp r \sim 1_B \big) 
 \Big(
 \Id  \big( f (\bar{r}_0) \ct \bar{f}_0 \, ,  \beta(b_0) \big) 
 \times 
 \Id \big( f(\bar{r}_1) \ct \bar{f}_1 \, ,  \beta(b_1) \big)
-\Big) \, .
+\Big)
 \]
-Therefore, we can express $\isequiv(f, \bar{f}_0, \bar{f}_1)$ as the type
+Therefore, we can express $\mathsf{isbipequiv}(f, \bar{f}_0, \bar{f}_1)$ as the type
 \begin{multline*}
- \big(\Sigma \ell \co B \to  A \big) \big(\Sigma \alpha : \ell \comp f \sim 1_A \big) 
-  \big(\Sigma r \co B \to A \big) \big(\Sigma \beta : f \comp r \sim 1_B \big)  \\
- \big(\Sigma \bar{\ell}_0 : \ell(b_0)=a_0 \big) \big(\Sigma \bar{\ell}_1 : \ell(b_1)=a_1\big) \big(\Sigma \bar{r}_0 : r(b_0)=a_0 \big) \big(\Sigma \bar{r}_1 : r(b_1)=a_1\big)  \\
-  \Big(
-\Id  \big( \ell (\bar{f}_0) \ct \bar{\ell}_0 \, ,  \alpha(a_0) \big) 
-\times 
-\Id \big( \ell(\bar{f}_1) \ct \bar{\ell}_1 \, ,  \alpha(a_1) \big)
-  \times 
-\Id  \big( f (\bar{r}_0) \ct \bar{f}_0 \, ,  \beta(b_0) \big) 
-\times 
-\Id \big( f(\bar{r}_1) \ct \bar{f}_1 \, ,  \beta(b_1) \big)
-\Big) \, .
+ \big(\Sigma \ell \co B \to  A \big) \big(\Sigma \alpha : \ell \comp f \sim 1_A \big)
+  \big(\Sigma r \co B \to A \big) \big(\Sigma \beta : f \comp r \sim 1_B \big) \\
+	R_0(\ell,\alpha) \times R_1(\ell,\alpha) \times S_0(r,\beta) \times S_1(r,\beta)
 \end{multline*}
-Now we observe that for any equivalence $g : X \to Y$, and paths $q : \Id(y,g(x_1))$, $s : \Id(y,g(x_2))$, the type $\big(\Sigma p : \Id_X(x_1,x_2)\big) \Id(q \ct g(p),s)$ is contractible. Similarly, for any equivalence $g : X \to Y$, and paths $q : \Id(g(x_2),y)$, $s : \Id(g(x_1),y)$, the type $\big(\Sigma p : \Id_X(x_1,x_2)\big) \Id(g(p) \ct q,s)$ is contractible.
+where for $k \in \{0,1\}$,
+\begin{align*}
+& R_k(\ell,\alpha) \defeq \big(\Sigma \bar{\ell}_k : \ell(b_k)=a_k \big) \Id \big( \ell (\bar{f}_k) \ct \bar{\ell}_k \, ,  \alpha(a_k) \big) \\
+& S_k(r,\beta) \defeq \big(\Sigma \bar{r}_k : r(b_k)=a_k \big) \Id \big( f (\bar{r}_k) \ct \bar{f}_k \, ,  \beta(b_k) \big) \\
+\end{align*}
+	
+Now we observe that for paths $q : \Id(y,x_1)$, $s : \Id(y,x_2)$, the type $\big(\Sigma p : \Id_X(x_1,x_2)\big) \Id(q \ct p,s)$ is contractible. Thus we have $R_k(\ell,\alpha) \simeq \one$.
 
-Since the identity function is an equivalence and since $\ell, \alpha, r, \beta$ make $f$ into an equivalence, we have
+Furthermore, for any equivalence $g : X \to Y$, and paths $q : \Id(g(x_2),y)$, $s : \Id(g(x_1),y)$, the type $\big(\Sigma p : \Id_X(x_1,x_2)\big) \Id(g(p) \ct q,s)$ is contractible. Since $\ell, \alpha, r, \beta$ make $f$ into an equivalence, we have $S_k(\ell,\alpha) \simeq \one$. Thus,
 \begin{align*} 
 \mathsf{isbipequiv}(f,\bar{f}_0, \bar{f}_1) 
   & \simeq   \big(\Sigma \ell \co B \to A \big) \big(\Sigma \alpha : \ell \comp f \sim 1_A \big) \big(\Sigma r  \co B \to A \big) 
- \big(\Sigma \beta \co f \comp r \sim 1_B \big) \, 1  \, , \\
+ \big(\Sigma \beta \co f \comp r \sim 1_B \big) \, 1 \\
  & \simeq \big(\Sigma \ell \co B \to A \big)  \big( \ell \comp f \sim 1_A \big) \times 
  \big(\Sigma r  \co B \to A \big) \big( f \comp r \sim 1_B \big) \\
  & \simeq \isequiv(f) \, ,
@@ -1509,18 +1498,12 @@ defined by path induction and mapping the reflexivity path to the identity bipoi
 
 \begin{proof} 
 Let $ (A,a_0,a_1), (B,b_0,b_1)$ be bipointed types. By the characterization of paths in $\Sigma$-types, the path space $(A,a_0,a_1) = (B,b_0,b_1)$ can be expressed as the type
-\[(\Sigma p : A = B) \big( p_{!} (\pair(a_0,a_1)) = \pair(b_0,b_1) \big)\]
-By path induction on $p$, the transport $p_{!} \big( \pair(a_0, a_1) \big)$ is equal to the pair 
-\[\pair \big( \fst(\ext_1(p))_{a_0} \, , \fst(\ext_1(p))_{a_1} \big)\]
-where $\ext_1 \co \Id(A,B) \to (A \simeq B)$ is the canonical equivalence. The above type is thus equivalent to
-\[(\Sigma p : A = B) \big(\pair \big( \fst(\ext_1(p))_{a_0} \, , \fst(\ext_1(p))_{a_1} \big) = \pair(b_0,b_1) \big)\]
-Since the function $\ext_1$ is an equivalence, this is equivalent to
-\[(\Sigma e : A \simeq B) \big(\pair \big( \fst(e)_{a_0} \, , \fst(e)_{a_1} \big) = \pair(b_0,b_1) \big)\]
-By the characterization of paths in product types, this is equivalent to
-\[ 
-\big(\Sigma e : A \simeq B \big) \,  \Id \big(\fst(e)_{a_0},  b_0\big) \times \Id \big( \fst(e)_{a_1} , b_1\big) \, .
-\]
-After some rearranging we get
+\[(\Sigma p : A = B) \big((\pair(a_0,a_1)) = p^{!}(\pair(b_0,b_1) \big)\]
+By path induction on $p$ and the characterization of paths in product types, this type is equivalent to
+\[ \big(\Sigma p : A = B \big) \, \Id \big(\fst(\ext_1(p))_{a_0},  b_0\big) \times \Id \big( \fst(\ext_1(p))_{a_1} , b_1\big) \]
+where $\ext_1 \co \Id(A,B) \to (A \simeq B)$ is the canonical equivalence. Since it is an equivalence, the above type is equivalent to
+\[ \big(\Sigma e : A \simeq B \big) \, \Id \big(\fst(e)_{a_0},  b_0\big) \times \Id \big( \fst(e)_{a_1} , b_1\big) \]
+After rearranging we get
 \[
  \big(\Sigma f \co \BoolHom \; (A,a_0,a_1) \; (B,b_0,b_1)\big) \; \isequiv(\fst(f))
 \]
@@ -1528,7 +1511,7 @@ whicb by Lem.~\ref{BoolAlgSpace} is equivalent to $\mathsf{BipEquiv}\; (A,a_0,a_
 \end{proof} 
 
 \begin{corollary}\label{BoolHInitIso}
-The path space between any two homotopy-initial bipointed types is contractible, i.e., 
+The path space between any two homotopy-initial bipointed types $A,B : \BoolAlg$ is contractible, i.e., 
 \[ 
 \mathsf{ishinitial}(A) \times \mathsf{ishinitial}(B) \to \iscontr(\Id(A,B)) \, .
 \] 
@@ -2433,7 +2416,7 @@ We then define the type of \emph{$P$-equivalences} between $C$ and $D$ as
 
 Clearly, the identity morphism on a $P$-algebra is a $P$-equivalence, with the left and right inverses being the identity morphism itself.
 
-\begin{lemma}\label{PAlgSpace} A $P$-morphism $(f, \bar{f}) \co \WHom(C,D)$ is a $P$-equivalence if and only
+\begin{lemma}\label{WAlgSpace} A $P$-morphism $(f, \bar{f}) \co \WHom(C,D)$ is a $P$-equivalence if and only
 if its underlying function $f \co C \to D$ is an equivalence. Furthermore, there is an equivalence of types
 \[
 \mathsf{isPequiv}(f, \bar{f})  \simeq \mathsf{isequiv}(f) \, . 
@@ -2443,117 +2426,96 @@ if its underlying function $f \co C \to D$ is an equivalence. Furthermore, there
 Let $(C,c), (D,d)$ be $P$-algebras and $(f, \bar{f})$ be a $P$-morphism between them. Expanding the type of proofs that $f$ is a $P$-equivalence yields the type
 \begin{multline*}
  \Big(\big(\Sigma \ell \co D \to  C \big) \big(\Sigma \bar{\ell} : (\Pi a) (\Pi s) \ell(d(a,s))=c(a,\ell \circ s)\big)
-P(f,\ell)\Big) \; \times \\ 
- \Big(\big(\Sigma r \co D \to C \big) \big(\Sigma \bar{r} : (\Pi a) (\Pi s) r(d(a,s))=c(a,r \circ s) \big) Q(f, r)  \Big)\, , 
+P(\ell,\bar{\ell})\Big) \; \times \\ 
+ \Big(\big(\Sigma r \co D \to C \big) \big(\Sigma \bar{r} : (\Pi a) (\Pi s) r(d(a,s))=c(a,r \circ s) \big) Q(r,\bar{r})  \Big)\, , 
 \end{multline*}
 where
 \begin{align*}
-P(f,\ell) & \defeq \Id \Big( \big( \ell \comp f, (\lambda a)(\lambda t) \ell(\bar{f}(a,t)) \ct \bar{g}(a, f \comp t)\big), \big( 1_C, (\lambda a)(\lambda t) \refl(c(a,t))\big) \Big)  \, , \\
-Q(f,r)    & \defeq \Id \Big( \big( f \comp r, (\lambda a)(\lambda s) f(\bar{r}(a,s)) \ct \bar{f}(a, r \comp s)\big) \, , \big( 1_D, (\lambda a)(\lambda s) \refl(d(a,s)) \big) \Big) \, .
+P(\ell,\bar{\ell}) & \defeq \Id \Big( \big( \ell \comp f, (\lambda a)(\lambda t) \ell(\bar{f}(a,t)) \ct \bar{\ell}(a, f \comp t)\big), \big( 1_C, (\lambda a)(\lambda t) \refl(c(a,t))\big) \Big)  \, , \\
+Q(r,\bar{r})    & \defeq \Id \Big( \big( f \comp r, (\lambda a)(\lambda s) f(\bar{r}(a,s)) \ct \bar{f}(a, r \comp s)\big) \, , \big( 1_D, (\lambda a)(\lambda s) \refl(d(a,s)) \big) \Big) \, .
 \end{align*}
-\end{proof}
-Using the characterization of paths in $\Sigma$-types, the type $P{f,\ell}$ can be equivalently expressed as
+Using the characterization of paths in $\Sigma$-types, the type $P(\ell,\bar{\ell})$ can be equivalently expressed as
 \begin{align*}
-\big(\Sigma p : \ell \comp f = \idfun{C} \big) \Big((\lambda a) (\lambda t) \ell(\bar{f}(a,t)) \ct \bar{g}(a, f \comp t)\Big) = p^{!} \Big((\lambda a) (\lambda t) \refl(c(a,t))\Big) 
+\big(\Sigma p : \ell \comp f = \idfun{C} \big) \Big((\lambda a) (\lambda t) \ell(\bar{f}(a,t)) \ct \bar{\ell}(a, f \comp t)\Big) = p^{!} \Big((\lambda a) (\lambda t) \refl(c(a,t))\Big) 
 \end{align*}
-By path induction on $p$, the transport $p^{!} \Big((\lambda a) (\lambda t) \refl(c(a,t))$ is equal to the function
-\[ (\lambda a) (\lambda t) \]
-
-
-HERE
-
-
-
-
-
-\begin{theorem}[Univalence for $P$-algebras] \label{WAlgSpace}
-Given $A:\UU$, $B : A \to \UU$ and $C,D  : \WAlg(A,B)$, the path space $C = D$ is equivalent to the space of equivalences between $C$ and $D$:
-\[ C = D  \simeq  \WAlgIso[C \, , D] \] 
-\end{theorem}
-\begin{proof}
-
-
-Using characterization of paths in dependent products, the type $P(f,\epsilon,g,\gamma)$ can be equivalently expressed as
-
-
-Using path induction on $\alpha$, this type is easily seen to be equivalent to
+By path induction on $p$, the transport $p^{!} \Big((\lambda a) (\lambda t) \refl(c(a,t))\Big)$ is equal to the function
+\[ (\lambda a) (\lambda t) \ext(p)_{c(a,t)} \ct \refl(c(a,t)) \ct \big(c(a)(\ext^{-1}(\ext(p) \circ t))\big)^{-1} \]
+where $\ext : \ell \comp f = \idfun{C} \to \ell \comp f \sim \idfun{C}$ is the canonical equivalence. This is of course propositionally equal to
+\[ (\lambda a) (\lambda t) \ext(p)_{c(a,t)} \ct \big(c(a)(\ext^{-1}(\ext(p) \circ t))\big)^{-1} \]
+Using the characterization of paths in $\Pi$-spaces, the type $P(\ell,\bar{\ell})$ can thus be expressed as
 \begin{align*}
-& \big(\Sigma \alpha : g \comp f = \idfun{C} \big) (\Pi a) (\Pi t) \happly(\alpha,c(a,t)) =  \\ & \;\;\; g(\epsilon(a,t)) \ct \gamma(a, f \comp t) \ct c(a)(\funext(\lam{b} \; \happly(\alpha,t\;b))) \ct \refl_{c(a,t)}^{-1}
+\big(\Sigma p : \ell \comp f = \idfun{C} \big) (\Pi a) (\Pi t) \Big(\ell(\bar{f}(a,t)) \ct \bar{\ell}(a, f \comp t) = \ext(p)_{c(a,t)} \ct \big(c(a)(\ext^{-1}(\ext(p) \circ t))\big)^{-1}\Big)
 \end{align*}
-where the identity path can be dropped to obtain
+Since the function $\ext$ is an equivalence, this is equivalent to
 \begin{align*}
-\big(\Sigma \alpha : g \comp f = \idfun{C} \big) (\Pi a) (\Pi t) \happly(\alpha,c(a,t)) = g(\epsilon(a,t)) \ct \gamma(a, f \comp t) \ct c(a)(\funext(\lam{b} \; \happly(\alpha,t\;b)))
+\big(\Sigma \alpha : \ell \circ f \sim \idfun{C} \big) (\Pi a) (\Pi t) \Big(\ell(\bar{f}(a,t)) \ct \bar{\ell}(a, f \comp t) = \alpha(c(a,t)) \ct \big(c(a)(\ext^{-1}(\alpha \circ t))\big)^{-1}\Big)
 \end{align*}
-Finally, since the function $\happly : (g \comp f = \idfun{C}) \to (g \comp f \sim \idfun{C})$ is an equivalence, this is equivalent to
+Analogously, the type $Q(r,\bar{r})$ is equivalent to
 \begin{align*}
-& \big(\Sigma \alpha : g \comp f \sim \idfun{C} \big) (\Pi a) (\Pi t) \alpha(c(a,t)) = g(\epsilon(a,t)) \ct \gamma(a, f \comp t) \ct c(a)(\funext(\lam{b} \; \alpha(t\;b)))
+\big(\Sigma \beta : f \comp r \sim \idfun{D} \big) (\Pi a) (\Pi s) \Big(f(\bar{r}(a,s)) \ct \bar{f}(a, r \comp s) = \beta(d(a,s)) \ct \big(d(a)(\ext^{-1}(\beta \circ s))\big)^{-1}\Big)
 \end{align*}
-Analogously, the type $Q_{f,\epsilon,h,\delta}$ is equivalent to
-\begin{alignat*}{4}
-\big(\Sigma \beta : f \comp h \sim \idfun{D} \big) (\Pi a) (\Pi s) \beta(d(a,s)) = f(\delta(a,s)) \ct \epsilon(a, h \comp s) \ct d(a)(\funext(\lam{b} \; \beta(s\;b)))
-\end{alignat*}
-Thus we can express $\WAlgIso \; (C,c) \; (D,d)$ equivalently as the type
-\begin{alignat*}{4}
-& \big(\Sigma f : C\to D) \big(\Sigma \epsilon : (\Pi a) (\Pi t) f(c(a,t)) = d(a,f \comp t)\big) \\ & \;\;\;\; \big(\Sigma g:D\to C\big) \big(\alpha : g \comp f \sim \idfun{C}\big) \big(\Sigma h:D \to C\big) \big(\Sigma \beta : f \comp h \sim \idfun{D}\big) R_{f,\epsilon,g,\alpha} \times S_{f,\epsilon,h,\beta}
-\end{alignat*}
+Therefore, we can express $\mathsf{isPequiv}(f,\bar{f})$ as the type
+\[ \big(\Sigma \ell : D\to C) \big(\Sigma \alpha : \ell \circ f \sim \idfun{C}\big) \big(\Sigma r : D\to C) \big(\Sigma \beta : f \circ r \sim \idfun{D}\big) R(\ell,\alpha) \times S(r,\beta)\]
 where
-\begin{alignat*}{4}
-& R_{f,\epsilon,g,\alpha} \defeq \big(\Sigma \gamma : (\Pi a) (\Pi s) g(d(a,s)) = c(a,g \comp s)\big) (\Pi a) (\Pi t) \\ & \;\;\;\;\;\;\;\;\;\;\;\; \alpha(c(a,t)) = g(\epsilon(a,t)) \ct \gamma(a, f \comp t) \ct c(a)(\funext(\lam{b} \; \alpha(t\;b))) \\
-& S_{f,\epsilon,h,\beta} \defeq \big(\Sigma \delta : (\Pi a) (\Pi s) h(d(a,s)) = c(a,h \comp s)\big) (\Pi a) (\Pi s) \\ & \;\;\;\;\;\;\;\;\;\;\;\; \beta(d(a,s)) = f(\delta(a,s)) \ct \epsilon(a, h \comp s) \ct d(a)(\funext(\lam{b} \; \beta(s\;b)))
-\end{alignat*}
-The type $S_{f,\epsilon,h,\beta}$ can be expressed equivalently as
 \begin{align*}
-& (\Pi a) (\Pi s) \big(\Sigma \delta : h(d(a,s)) = c(a,h \comp s)\big) \beta(d(a,s)) = f(\delta) \ct \epsilon(a, h \comp s) \ct d(a)(\funext(\lam{b} \; \beta(s\;b)))
+& R(\ell,\alpha) \defeq \big(\Sigma \bar{\ell} : (\Pi a) (\Pi s) \ell(d(a,s))=c(a,\ell \circ s)\big) (\Pi a) (\Pi t) \\ & \;\;\;\;\;\;\;\;\;\;\;\; \Big(\ell(\bar{f}(a,t)) \ct \bar{\ell}(a, f \comp t) = \alpha(c(a,t)) \ct \big(c(a)(\ext^{-1}(\alpha \circ t))\big)^{-1}\Big) \\
+& S(r,\beta) \defeq \big(\Sigma \bar{r} : (\Pi a) (\Pi s) r(d(a,s))=c(a,r \circ s) \big) (\Pi a) (\Pi s) \\ & \;\;\;\;\;\;\;\;\;\;\;\; \Big(f(\bar{r}(a,s)) \ct \bar{f}(a, r \comp s) = \beta(d(a,s)) \ct \big(d(a)(\ext^{-1}(\beta \circ s))\big)^{-1}\Big)
 \end{align*}
-using the global choice principle. After rearranging, the body of the above type can be expressed as
-\[ f(\delta) = \beta(d(a,s)) \ct \Big(d(a)(\funext(\lam{b} \; \beta(s\;b)))\Big)^{-1} \ct \epsilon(a, h \comp s)^{-1} \]
-The type 
-\[  \big(\Sigma \delta : h(d(a,s)) = c(a,h \comp s)\big) f(\delta) = \beta(d(a,s)) \ct \Big(d(a)(\funext(\lam{b} \; \beta(s\;b)))\Big)^{-1} \ct \epsilon(a, h \comp s)^{-1} \]
-is equivalent to $\one$, by Lem.~\ref{lem_singl_equiv_contr},~\ref{lem_ap_equiv}, and the fact that $g,\alpha,h,\beta$ make $f$ into an equivalence. Thus, the type $S_{f,\epsilon,h,\beta}$ is equivalent to $\one$.
+Using the global choice principle, we can express the type $S(r,\beta)$ equivalently as
+\[  (\Pi a) (\Pi s) \big(\Sigma \bar{r} : r(d(a,s))=c(a,r \circ s) \big) \Big(f(\bar{r}) \ct \bar{f}(a, r \comp s) = \beta(d(a,s)) \ct \big(d(a)(\ext^{-1}(\beta \circ s))\big)^{-1}\Big) \]
+Now we observe that for any equivalence $g : X \to Y$, and paths $q : \Id(g(x_2),y)$, $s : \Id(g(x_1),y)$, the type $\big(\Sigma p : \Id_X(x_1,x_2)\big) \Id(g(p) \ct q,s)$ is contractible. Since $\ell, \alpha, r, \beta$ make $f$ into an equivalence, we have $S(r,\beta) \simeq \one$.
 
-Since $f$ is an equivalence, as observed above, the mapping $t \mapsto f \comp t$ is an equivalence between $B(a) \to C$ and $B(a) \to D$ by Lem.~\ref{lem_equiv_comp}\ednote{Which says that if $f:B \to C$ is an equivalence, then so is the mapping $h \mapsto f \comp h$ between $A \to B$ and $A \to C$}. Thus the mapping $\gamma \mapsto (\lambda a) (\lambda t) \gamma(a,f \comp t)$ is an equivalence between the types $(\Pi a:A) (\Pi s:B(a)\to D) g(d(a,s)) = c(a,g \comp s)$ and $(\Pi a:A) (\Pi t:B(a)\to C) g(d(a,f \comp t)) = c(a,g \comp f \comp t)$. Thus, the type type $R_{f,\epsilon,g,\alpha}$ can be expressed equivalently as
+Since $f$ is an equivalence between $C$ and $D$, the mapping $t \mapsto f \comp t$ is an equivalence between $B(a) \to C$ and $B(a) \to D$. The mapping $\bar{\ell} \mapsto (\lambda a) (\lambda t) \bar{\ell}(a,f \comp t)$ is therefore an equivalence between the types $(\Pi a) (\Pi s) \ell(d(a,s)) = c(a,\ell \comp s)$ and $(\Pi a) (\Pi t) \ell(d(a,f \comp t)) = c(a,\ell \comp f \comp t)$. Thus, the type type $R(\ell,\alpha)$ can be expressed equivalently as
 \begin{align*}
-& \big(\Sigma \gamma : (\Pi a) (\Pi t) g(d(a,f \comp t)) = c(a,g \comp f \comp t)\big) (\Pi a) (\Pi t) \\
-& \;\;\;\;\;\;\;\;\;\; \alpha(c(a,t)) = g(\epsilon(a,t)) \ct \gamma(a,t) \ct c(a)(\funext(\lam{b} \; \alpha(t\;b)))
+& \big(\Sigma \gamma : (\Pi a) (\Pi t) \ell(d(a,f \circ t))=c(a,\ell \circ f \circ t)\big) (\Pi a) (\Pi t) \\ & \;\;\;\;\;\;\;\;\;\;\;\; \Big(\ell(\bar{f}(a,t)) \ct \gamma(a,t) = \alpha(c(a,t)) \ct \big(c(a)(\ext^{-1}(\alpha \circ t))\big)^{-1}\Big)
 \end{align*}
-Using the global choice principle, this is equivalent to
-\begin{align*}
-& (\Pi a) (\Pi t) \big(\Sigma \gamma :  g(d(a,f \comp t)) = c(a,g \comp f \comp t)\big) \\
-& \;\;\;\;\;\;\;\;\;\; \alpha(c(a,t)) = g(\epsilon(a,t)) \ct \gamma \ct c(a)(\funext(\lam{b} \; \alpha(t\;b)))
-\end{align*}
-After rearranging, the body of the above type can be expressed as
-\[ \gamma = \Big(g(\epsilon(a,t))\Big)^{-1} \ct \alpha(c(a,t)) \ct \Big(c(a)(\funext(\lam{b} \; \alpha(t\;b)))\Big)^{-1} \]
-The type
-\[ \big(\Sigma \gamma :  g(d(a,f \comp t)) = c(a,g \comp f \comp t)\big) \gamma = \Big(g(\epsilon(a,t))\Big)^{-1} \ct \alpha(c(a,t)) \ct \Big(c(a)(\funext(\lam{b} \; \alpha(t\;b)))\Big)^{-1} \]
-is equivalent to $\one$ by Lem.~\ref{lem_singl_contr}. Thus, the type $R_{f,\epsilon,g,\alpha}$ is equivalent to $\one$.
-
-Thus, the type $\WAlgIso \; (C,c) \; (D,d)$ is equivalent to
-\begin{align*}
-& \big(\Sigma f : C\to D \big) \big(\Sigma g:D\to C\big) \big( \Sigma \alpha : g \comp f \sim \idfun{C}\big) \big(\Sigma h:D \to C\big) \\ & \;\;\; \big(\Sigma \beta : f \comp h \sim \idfun{D}\big) (\Pi a) (\Pi t) f(c(a,t)) = d(a,f \comp t)
-\end{align*}
-The components $f,g,\alpha,h,\beta$ can be packed together to form an equivalence:
-\[ \big(\Sigma p : C \simeq D\big) (\Pi a) (\Pi t) \big(\fst(p) \; c(a,t)\big) = d(a, \fst(p) \comp t) \tag{$\star$} \]
-On the other hand, the path space $(C,c) = (D,d)$ can be expressed equivalently as
-\[  \big(\Sigma p : C = D\big) c = p^{!}(d) \]
-using the characterization of path spaces in dependent products. Using path induction on $p$, this is equivalent to the type
-\[  \big(\Sigma p : C = D\big) (\Pi a) (\Pi t) \Big(\fst(\idtoeq(p)) \; c(a,t)\Big) = d\Big(a, \fst(\idtoeq(p)) \comp t\Big) \]
-Since the function $\idtoeq : C = D \to C \simeq D$ is an equivalence, this gives us the equivalence with $\star$.
+Furthermore, using the global choice principle we see that this is equivalent to
+\[ (\Pi a) (\Pi t) \big(\Sigma \gamma : \ell(d(a,f \circ t))=c(a,\ell \circ f \circ t)\big) \Big(\ell(\bar{f}(a,t)) \ct \gamma = \alpha(c(a,t)) \ct \big(c(a)(\ext^{-1}(\alpha \circ t))\big)^{-1}\Big) \]
+Now we observe that for paths $q : \Id(y,x_1)$, $s : \Id(y,x_2)$, the type $\big(\Sigma p : \Id_X(x_1,x_2)\big) \Id(q \ct p,s)$ is contractible. Thus we have $R(\ell,\alpha) \simeq \one$. Therefore,
+\begin{align*} 
+\mathsf{isPequiv}(f,\bar{f}) 
+  & \simeq   \big(\Sigma \ell \co D \to C \big) \big(\Sigma \alpha : \ell \comp f \sim 1_C \big) \big(\Sigma r  \co D \to C \big) 
+ \big(\Sigma \beta \co f \comp r \sim 1_D \big) \, 1 \\
+ & \simeq \big(\Sigma \ell \co D \to C \big)  \big( \ell \comp f \sim 1_C \big) \times 
+ \big(\Sigma r  \co D \to C \big) \big( f \comp r \sim 1_D \big) \\
+ & \simeq \isequiv(f) \, ,
+\end{align*} 
+as required.
 \end{proof}
 
-
-As in the case of the type $\Bool$, we have the following corollary.
-
+\begin{theorem}[Univalence for $P$-algebras] \label{thm:Punivalence}
+For $A:\U$, $B : A \to \U$ and $P$-algebras $C,D  : \WAlg(A,B)$, the canonical function
+\[ 
+\ext : \Id \big(C,D\big) \to  \mathsf{PEquiv}(C,D) \, .
+\]
+defined by path induction and mapping the reflexivity path to the identity $P$-morphism is an equivalence.
+\end{theorem}
+\begin{proof} 
+Let $ (C,c), (D,d)$ be $P$-algebras. By the characterization of paths in $\Sigma$-types, the path space $(C,c) = (D,d)$ can be expressed as the type
+\[(\Sigma p : C = D) \big( c = p^{!}(d) \big)\]
+By path induction on $p$ and the characterization of paths in $\Pi$-types, this type is equivalent to
+\[  \big(\Sigma p : C = D\big) (\Pi a) (\Pi t) \Big(\fst(\ext_1(p)) \; c(a,t)\Big) = d\Big(a, \fst(\ext_1(p)) \comp t\Big) \]
+where $\ext_1 \co \Id(C,D) \to (C \simeq D)$ is the canonical equivalence. Since it is an equivalence, the above type is equivalent to
+\[(\Sigma e : C \simeq D) (\Pi a) (\Pi t) \Big(\fst(e) \; c(a,t)\Big) = d\Big(a, \fst(e) \comp t\Big) \]
+After rearranging we get
+\[
+ \big(\Sigma f \co \WHom \; (C,c) \; (D,d)\big) \; \isequiv(\fst(f))
+\]
+which by Lem.~\ref{WAlgSpace} is equivalent to $\mathsf{PEquiv}\; (C,c) \; (D,c)$ as desired. Finally, it is not hard to see that the composition of the above equivalences yields the canonical function $\ext$ (up to a homotopy).
+\end{proof} 
 
 \begin{corollary}\label{WHInitIso}
-Homotopy-initial algebras are unique up to propositional equality, \ie 
-if $C, D : \Palg$ are homotopy-initial then they are propositionally equal:
+The path space between any two homotopy-initial $P$-algebras $C,D : \WAlg(A,B)$ is contractible, i.e., 
 \[ 
-\big( \mathsf{ishinitial}(C) \times \mathsf{ishinitial}(C) \big) \to C = D \, .
+\mathsf{ishinitial}(C) \times \mathsf{ishinitial}(D) \to \iscontr(\Id(C,D)) \, .
 \] 
+In particular, homotopy-initial $P$-algebras are unique.
 \end{corollary}
 
 \begin{proof}
-By Lemma~\ref{WAlgSpace} it suffices to construct an isomorphism between $C$ and $D$. Since $C$ and $D$ are both homotopy-initial, there exist homomorphisms $f :  C \to D$ and $g : D \to C$. Again by homotopy initiality, we have $g \comp f = 1_C$ and $f \comp g = 1_D$, which gives us the desired isomorphism.
+By Theorem~\ref{thm:Punivalence} it suffices to prove $\iscontr(\mathsf{PEquiv}(C,D))$. The type $\WHom \; C \; D$ is contractible by homotopy-initiality of $C$. Since the dependent sum of a family of mere propositions over a mere proposition is again a mere proposition, it suffices to prove $\iscontr(\mathsf{isPequiv}(f))$ for any $P$-morphism $f$. This type is a mere proposition, as remarked earlier; thus it suffices to show it is inhabited.
+
+Since $D$ is homotopy-initial, there exists a $P$-morphism $g : D \to C$. Again by homotopy-initiality of $C$ and $D$, we have $g \comp f = 1_C$ and $f \comp g = 1_D$, which gives us the desired $P$-equivalence between $C$ and $D$.
 \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
