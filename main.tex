@@ -250,26 +250,27 @@
 
 
 % Successor types
-\newcommand{\NatAlg}{\nat\text{-}\mathsf{Alg}}
-\newcommand{\NatHom}{\nat\text{-}\mathsf{Hom}}
+\newcommand{\NatAlg}{\nat\mathsf{Alg}}
+\newcommand{\NatHom}{\nat\mathsf{Hom}}
 \newcommand{\HasNatRec}{\mathsf{has}\text{-}\nat\text{-}\mathsf{rec}}
 \newcommand{\HasNatInd}{\mathsf{has}\text{-}\nat\text{-}\mathsf{ind}}
 \newcommand{\HasNatRecUniq}{\mathsf{has}\text{-}\nat\text{-}\mathsf{rec}\text{-}\mathsf{uniq}}
 \newcommand{\HasNatIndUniq}{\mathsf{has}\text{-}\nat\text{-}\mathsf{ind}\text{-}\mathsf{uniq}}
-\newcommand{\NatFibAlg}{\nat\text{-}\mathsf{Fib}\text{-}\mathsf{Alg}}
-\newcommand{\NatFibHom}{\nat\text{-}\mathsf{Fib}\text{-}\mathsf{Hom}}
+\newcommand{\NatFibAlg}{\nat\mathsf{FibAlg}}
+\newcommand{\NatFibHom}{\nat\mathsf{Sect}}
 \newcommand{\IsNatInit}{\mathsf{is}\text{-}\nat\text{-}\mathsf{init}}
-\newcommand{\IsNatHInit}{\mathsf{is}\text{-}\nat\text{-}\mathsf{hinit}}
+\newcommand{\IsNatHInit}{\mathsf{is}\nat\mathsf{HomInit}}
+\newcommand{\IsNatHProj}{\mathsf{is}\nat\mathsf{HomProj}}
 % P-algebras
 \newcommand{\Palg}{P\text{-}\mathsf{Alg}}
 \newcommand{\WAlgToNatAlg}{\W\text{-}\mathsf{to}\text{-}\nat\text{-}\mathsf{Alg}}
-\newcommand{\WFibAlgToNatFibAlg}{\W\text{-}\mathsf{to}\text{-}\nat\text{-}\mathsf{Fib}\text{-}\mathsf{Alg}}
+\newcommand{\WFibAlgToNatFibAlg}{\mathsf{P}\text{-}\mathsf{to}\text{-}\nat\text{-}\mathsf{FibAlg}}
 \newcommand{\WCell}{\mathsf{PHot}}
 \newcommand{\WFibCell}{\mathsf{PFibHot}}
 \newcommand{\WAlg}{\mathsf{PAlg}}
 \newcommand{\WFibAlg}{\mathsf{PFibAlg}}
 \newcommand{\WHom}{\mathsf{PHom}}
-\newcommand{\WFibHom}{\mathsf{PFibHom}}
+\newcommand{\WFibHom}{\mathsf{PSect}}
 \newcommand{\HasWRec}{\mathsf{has}\text{-}\mathsf{W}\text{-}\mathsf{rec}}
 \newcommand{\HasWInd}{\mathsf{has}\text{-}\mathsf{W}\text{-}\mathsf{ind}}
 \newcommand{\HasWRecUniq}{\mathsf{has}\text{-}\mathsf{W}\text{-}\mathsf{rec}\text{-}\mathsf{uniq}}
@@ -1176,8 +1177,7 @@ simply as an intermediate step to prove that if a type is recursive then it is i
 
 
 
-\begin{definition} \label{def:2cellsection} Let $E = (E, e_0, e_1)$ be a fibered bipointed type over $A = (A, a_0, a_1)$. If $f = (f, \bar{f}_0, 
-\bar{f}_1)$ and $g = (g, \bar{g}_0, \bar{g}_1)$ are bipointed sections of $E$, a \emph{bipointed homotopy} 
+\begin{definition} \label{def:2cellsection} Let $E = (E, e_0, e_1)$ be a fibered bipointed type over $A = (A, a_0, a_1)$. If $f = (f, \bar{f}_0,\bar{f}_1)$ and $g = (g, \bar{g}_0, \bar{g}_1)$ are bipointed sections of $E$, a \emph{bipointed homotopy} 
 \[
 (\alpha, \bar{\alpha}_0, \bar{\alpha}_1) \co (f, \bar{f}_0, \bar{f}_1)  \rightarrow (g, \bar{g}_0, \bar{g}_1)
 \] 
@@ -1334,7 +1334,7 @@ Define the type of \emph{fibered bipointed types} over a bipointed type $\X : \B
 \[\BoolFibAlg \; (C,c_0,c_1) \defeq \sm{E : C \to \U} E(c_0) \times E(c_1) \]
 \end{definition}
 
-\noindent We note that the types $\BoolAlg$ and $\BoolFibAlg\; \X$ themselves live in a higher universe. The types of bipointed morphisms, bipointed sections, and bipointed homotopies are now defined as before:
+We note that the types $\BoolAlg$ and $\BoolFibAlg\; \X$ themselves live in a higher universe. The types of bipointed morphisms, bipointed sections, and bipointed homotopies are now defined as before:
 
 \begin{definition}\label{def:BoolHom}
 For bipointed types $\X,\Y : \BoolAlg$, define the type of \emph{bipointed morphisms} from $\X$ to $\Y$ by 
@@ -1343,8 +1343,9 @@ For bipointed types $\X,\Y : \BoolAlg$, define the type of \emph{bipointed morph
 
 \begin{definition}\label{def:BoolFibHom}
 For a bipointed type $\X : \BoolAlg$ and a fibered bipointed type $\Y : \BoolFibAlg \; \X$ over $\X$, define the type of \emph{bipointed sections} of $\Y$ by
-\[\BoolFibHom \; (C,c_0,c_1) \; (E,e_0,e_1) \defeq (\Sigma f: (\Pi x:A) E(x)) (f(a_0) = e_0) \times (f(a_1) = e_1) \]
+\[\BoolFibHom \; (A,a_0,a_1) \; (E,e_0,e_1) \defeq (\Sigma f: (\Pi x:A) E(x)) (f(a_0) = e_0) \times (f(a_1) = e_1) \]
 \end{definition}
+We will usually leave out all but the last argument to $\BoolFibHom$.
 
 \begin{definition}\label{def:BoolCell}
 For bipointed morphisms $\mu,\nu : \BoolHom \; \X \; \Y$, define the type of \emph{bipointed homotopies} between $\mu$ and $\nu$ by
@@ -1366,7 +1367,7 @@ A bipointed type $\X : \BoolAlg$ is said to be \emph{homotopy-initial} if for an
 \end{definition}
 \begin{definition}\label{def:BoolHProj}
 A bipointed type $\X : \BoolAlg$ is said to be \emph{homotopy-projective} if for any fibered bipointed type $\Y : \BoolAlg \; \X$ over $\X$, there exists a bipointed section of $\Y$:
-\[ \IsBoolHProj \; \X \defeq (\Pi \Y:\BoolAlg \; \X) \; \BoolFibHom \; \X \; \Y \]  
+\[ \IsBoolHProj \; \X \defeq (\Pi \Y:\BoolFibAlg \; \X) \; \BoolFibHom \; \Y \]  
 \end{definition}
 We point out that the internal notions of homotopy-initiality and homotopy-projection are stronger that their meta-theoretic counterparts introduced in the previous section, since they postulate the existence of a type-theoretic function assigning to every bipointed type a proof of contractibility (for homotopy-initiality), and to every fibered bipointed type a section (for homotopy-projection).
 
@@ -1498,7 +1499,7 @@ defined by path induction and mapping the reflexivity path to the identity bipoi
 
 \begin{proof} 
 Let $ (A,a_0,a_1), (B,b_0,b_1)$ be bipointed types. By the characterization of paths in $\Sigma$-types, the path space $(A,a_0,a_1) = (B,b_0,b_1)$ can be expressed as the type
-\[(\Sigma p : A = B) \big((\pair(a_0,a_1)) = p^{!}(\pair(b_0,b_1) \big)\]
+\[(\Sigma p : A = B) \big((\pair(a_0,a_1)) = p^{!}(\pair(b_0,b_1)) \big)\]
 By path induction on $p$ and the characterization of paths in product types, this type is equivalent to
 \[ \big(\Sigma p : A = B \big) \, \Id \big(\fst(\ext_1(p))_{a_0},  b_0\big) \times \Id \big( \fst(\ext_1(p))_{a_1} , b_1\big) \]
 where $\ext_1 \co \Id(A,B) \to (A \simeq B)$ is the canonical equivalence. Since it is an equivalence, the above type is equivalent to
@@ -2350,6 +2351,7 @@ For $P$-algebras $\X,\Y : \WAlg(A,B)$, define the type of \emph{$P$-morphisms} f
 For a $P$-algebra $\X : \WAlg(A,B)$ and a fibered $P$-algebra $\Y : \WFibAlg \; \X$ over $\X$, define the type of \emph{$P$-sections} of $\Y$ by
 \[ \WFibHom \; (C,c) \; (E,e) \defeq \sm{f:(\Pi x:C)E(x)}(\Pi x:A) (\Pi t: B(x) \to C) f(c(a,t)) = e(a,t,f \circ t) \]
 \end{definition}
+We will usually leave out all but the last argument to $\WFibHom$.
 
 \begin{definition}\label{def:WCell}
 For $P$-morphisms $\mu, \nu : \WHom \; \X \; \Y$, define the type of \emph{$P$-homotopies} between $\mu$ and $\nu$ by
@@ -2374,7 +2376,7 @@ A $P$-algebra $\X : \WAlg(A,B)$ is said to be \emph{homotopy-initial} if for any
 
 \begin{definition}\label{def:WHProj}
 A $P$-algebra $\X : \WAlg(A,B)$ is said to be \emph{homotopy-projective} if for any fibered $P$-algebra $\Y : \WAlg \; \X$ over $\X$, there exists a $P$-section of $\Y$:
-\[ \IsWHProj \; \X \defeq (\Pi \Y:\WAlg \; \X) \; \WFibHom \; \X \; \Y \]  
+\[ \IsWHProj \; \X \defeq (\Pi \Y:\WFibAlg \; \X) \; \WFibHom \; \Y \]  
 \end{definition}
 
 Our main result can now be expressed internally as follows.
@@ -2522,158 +2524,145 @@ Since $D$ is homotopy-initial, there exists a $P$-morphism $g : D \to C$. Again 
 \section{Definability}
 \label{sec:definability}
 
-A development entirely analogous to the foregoing can be given for the type of natural numbers, lists, the second number class, and other inductive types. For those types which can be presented as a $\W$-type, however - which includes the aforementioned examples - the characterization in terms of homotopy-initial algebras can be obtained as a corollary to the main theorem. We illustrate this for the type $\nat$ of natural numbers, with the usual rules for zero and successor, the familiar induction principle, and the computation rules in \emph{propositional} form. We refrain from giving these rules explicitly since they can be easily read off from the corresponding definitions of $\nat$-algebras, $\nat$-homomorphisms, etc.
+A development entirely analogous to the foregoing can be given for the type of natural numbers, lists, the second number class, and other inductive types. For those types which can be presented as a $\W$-type, however - which includes the aforementioned examples - the characterization in terms of homotopy-initial algebras can be obtained as a corollary to the main theorem. We illustrate this for the type $\nat$ of natural numbers.
 
 \begin{definition}\label{def:NatAlg}
-Define the type of \emph{$\nat$-algebras} on a universe $\UU_i$ as 
-\[\NatAlg_{\UU_i} \defeq \sm{C : \UU_i} C \times (C \to C) \]
+Define the type of \emph{$\nat$-algebras} as 
+\[\NatAlg \defeq \sm{C : \U} C \times (C \to C) \]
 \end{definition}
 
 \begin{definition}\label{def:NatFibAlg}
-Define the type of \emph{fibered $\nat$-algebras} on a universe $\UU_j$ over $\mathcal{X} : \NatAlg_{\UU_i}$ by
-\[\NatFibAlg_{\UU_j} \; (C,c_0,c_s) \defeq \sm{E : C \to \UU_j} E(c_0) \times \big(\prd{x:C} E(x) \to E(c_s \; x)\big) \]
+Define the type of \emph{fibered $\nat$-algebras} over a $\nat$-algebra $\X : \NatAlg$ by
+\[\NatFibAlg \; (C,c_0,c_s) \defeq \sm{E : C \to \U} E(c_0) \times \prd{x:C} E(x) \to E(c_s(x)) \]
 \end{definition}
 
 \begin{definition}\label{def:NatHom}
-Given algebras $\X : \NatAlg_{\UU_i}$ and $\Y : \NatAlg_{\UU_j}$, define the type of \emph{$\nat$-homomorphisms} from $\X$ to $\Y$ by 
-\[\NatHom \; (C,c_0,c_s) \; (D,d_0,d_s) \defeq \sm{f:C \to D} (f(c_0) = d_0) \times \big(\prd{x:C} f(c_s\;x) = d_s(f(x))\big) \]
+For $\nat$-algebras $\X,\Y: \NatAlg$, define the type of \emph{$\nat$-momorphisms} from $\X$ to $\Y$ by 
+\[\NatHom \; (C,c_0,c_s) \; (D,d_0,d_s) \defeq (\Sigma f:C \to D) (f(c_0) = d_0) \times \prd{x:C} f(c_s(x)) = d_s(f(x)) \]
 \end{definition}
 
 \begin{definition}\label{def:NatFibHom}
-Given algebras $\X : \NatAlg_{\UU_i}$ and $\Y : \NatFibAlg_{\UU_j} \; \X$, define the type of \emph{fibered $\nat$-homomorphisms} from $\X$ to $\Y$ by
-\[\NatFibHom \; (C,c_0,c_s) \; (E,e_0,e_s) \defeq \sm{(f:\prd{x:C} E(x))} (f(c_0) = e_0) \times \big(\prd{x:C} f(c_s\;x) = d_s(x,f(x))\big) \]
+For a $\nat$-algebra $\X : \NatAlg$ and a fibered $\nat$-algebra $\Y : \NatFibAlg \; \X$ over $\X$, define the type of \emph{$\nat$-sections} of $\Y$ by
+\[\NatFibHom \; (C,c_0,c_s) \; (E,e_0,e_s) \defeq (\Sigma f:(\prd{x:C} E(x))) (f(c_0) = e_0) \times \prd{x:C} f(c_s(x)) = d_s(x,f(x)) \]
+\end{definition}
+We will usually leave out all but the last argument to $\NatFibHom$.
+
+\begin{definition}\label{def:NatHInit}
+A $\nat$-algebra $\X : \NatAlg$ is said to be \emph{homotopy-initial} if for any $\nat$-algebra $\Y : \NatAlg$, the type of $\nat$-momorphisms from $\X$ to $\Y$ is contractible:
+\[ \IsNatHInit(\X) \defeq \big(\Pi \Y:\NatAlg\big) \iscontr(\NatHom \; \X \; \Y) \]  
 \end{definition}
 
-\begin{definition}\label{def:NatRec}
-An algebra $\X : \NatAlg_{\UU_i}$ \emph{satisfies the recursion principle} on a universe $\UU_j$ if for any 
-algebra $\Y : \NatAlg_{\UU_j}$ there exists a $\nat$-homomorphism between $\X$ and $\Y$:
-\[\HasNatRec_{\UU_j}(\X) \defeq \prd{(\Y:\NatAlg_{\UU_j})} \NatHom \; \X \; \Y\] 
+\begin{definition}\label{def:NatHProj}
+A $\nat$-algebra $\X : \NatAlg$ is said to be \emph{homotopy-projective} if for any fibered $\nat$-algebra $\Y : \NatFibAlg \; \X$ over $\X$, there exists a $\nat$-section of $\Y$:
+\[ \IsNatHProj(\X) \defeq \big(\Pi \Y:\NatFibAlg \; \X\big) \NatFibHom \; \Y \]  
 \end{definition}
 
-\begin{definition}\label{def:NatInd}
-An algebra $\mathcal{X} : \NatAlg_{\UU_i}$ \emph{satisfies the induction principle} on a universe $\UU_j$ if for any 
-fibered algebra $\Y : \NatFibAlg_{\UU_j} \; \X$ there exists a fibered $\nat$-homomorphism between $\X$ and $\Y$:
-\[\HasNatInd_{\UU_j}(\X) \defeq \prd{(\Y:\NatFibAlg_{\UU_j} \; \X)} \NatFibHom \; \X \; \Y\] 
-\end{definition}
-
-\begin{definition}\label{def:NatRecUniq}
-An algebra $\X : \NatAlg_{\UU_i}$ satisfies the \emph{recursion uniqueness principle} on a universe $\UU_j$ if for any algebra $\Y : \NatAlg_{\UU_j}$ any two $\nat$-homomorphisms between $\X$ and $\Y$ are equal:
-\[ \HasNatRecUniq_{\UU_j}(\X) \defeq \prd{(\Y:\NatAlg_{\UU_j})} \isprop(\NatHom \; \X \; \Y)\]
-\end{definition}
-
-\begin{definition}\label{def:NatIndUniq}
-An algebra $\X : \NatAlg_{\UU_i}$ satisfies the \emph{induction uniqueness principle} on a universe $\UU_j$ if for any fibered algebra $\Y : \NatFibAlg_{\UU_j}\;\X$ any two fibered $\nat$-homomorphisms between $\X$ and $\Y$ are equal:
-\[ \HasNatIndUniq_{\UU_j}(\X) \defeq \prd{(\Y:\NatFibAlg_{\UU_j} \; \X)} \isprop(\NatFibHom \; \X \; \Y)\]
-\end{definition}
-
-\begin{definition}\label{def:NatInit}
-An algebra $\X : \NatAlg_{\UU_i}$ is \emph{homotopy-initial} on a universe $\UU_j$ if for any algebra $\Y : \NatAlg_{\UU_j}$, the type of $\nat$-homomorphisms between $\X$ and $\Y$ is contractible:
-\[ \IsNatHInit_{\UU_j}(\X) \defeq \prd{(\Y:\NatAlg_{\UU_j})} \iscontr(\NatHom \; \X \; \Y) \]  
-\end{definition}
-
-We can encode the type of natural numbers as a $\W$-type with $A \defeq \Bool$ and $B$ given by $0 \mapsto \zero, 1 \mapsto \one$. By the propositional computation rules for $\Bool$ we have $B(0) = \zero$, $B(1) = \one$. Thus in particular we have an equivalence $F : B(0) \to \zero$ (and also $G : B(1) \to \one$ but this one is redundant).
+We can encode the type of natural numbers as a $\W$-type with $A \defeq \Bool$ and $B$ given by $0 \mapsto \zero, 1 \mapsto \one$. 
 \begin{lemma}
 There is an equivalence
-\[ \WAlgToNatAlg_{\UU_i} : \WAlg_{\UU_i}(A,B) \to \NatAlg_{\UU_i} \]
+\[ \WAlgToNatAlg : \WAlg(A,B) \to \NatAlg \]
 \end{lemma}
 \begin{proof}
-Fix $C : \UU_i$. We have an equivalence
+Fix $C : \U$. We have an equivalence
 \begin{center}
 \begin{tikzpicture}
 \node (N0) at (0,12) {$\prd{a:\Bool} (B(a) \to C) \to C$};
-\node (N1) at (0,10.5) {$\Big((B(0) \to C) \to C\Big) \times \Big((B(1) \to C) \to C\Big)$};
+\node (N1) at (0,10.5) {$((\zero \to C) \to C) \times ((\one \to C) \to C)$};
 \draw[->] (N0) -- node[right]{$c \mapsto (c(0), c(1))$} (N1);
 \end{tikzpicture}
 \end{center}
-Since $B(0) = 0$, the type $B(0) \to C$ is contractible, with center $\lam{b:B(0)} \abort(C,F \; b)$. We thus have an equivalence
+The type $\zero \to C$ is contractible with center $(\lambda b:\zero) \abort(C,b)$. We thus have an equivalence
 \begin{center}
 \begin{tikzpicture}
-\node (N0) at (0,12) {$(B(0) \to C) \to C$};
+\node (N0) at (0,12) {$(\zero \to C) \to C$};
 \node (N1) at (0,10.5) {$C$};
-\draw[->] (N0) -- node[right]{$u \mapsto u\big(\lam{b:B(0)} \abort(C,F \; b)\big)$} (N1);
+\draw[->] (N0) -- node[right]{$u \mapsto u\big((\lambda b:\zero) \abort(C,b)\big)$} (N1);
 \end{tikzpicture}
 \end{center}
-Since $B(1) = 1$, the map $x \mapsto \lam{\_}\; x$ is an equivalence from $C$ to $B(1) \to C$. Thus, we have an equivalence
+Since the map $x \mapsto (\lambda \_:\one)x$ is an equivalence from $C$ to $\one \to C$, we have an equivalence
 \begin{center}
 \begin{tikzpicture}
-\node (N0) at (0,12) {$(B(1) \to C) \to C$};
+\node (N0) at (0,12) {$(\one \to C) \to C$};
 \node (N1) at (0,10.5) {$C \to C$};
-\draw[->] (N0) -- node[right]{$u \mapsto \lam{x:C} u(\lam{\_} \; x)$} (N1);
+\draw[->] (N0) -- node[right]{$u \mapsto (\lambda x:C) u((\lambda \_:\one)x)$} (N1);
 \end{tikzpicture}
 \end{center}
 Putting this all together, we see that the map 
-\[ (C,c) \mapsto \Big(C,c\big(0,\lam{b} \abort(C,F \; b)\big),\lam{x:C} c(1, \lam{\_} \; x)\Big)\] 
-is an equivalence from $\WAlg_{\UU_i}(A,B)$ to $\NatAlg_{\UU_i}$.
+\[ (C,c) \mapsto \Big(C,c\big(0,(\lambda b:\zero) \abort(C,b)\big),(\lambda x:C) c(1, (\lambda \_:\one)x)\Big)\] 
+is an equivalence from $\WAlg(A,B)$ to $\NatAlg$.
 \end{proof}
 
 \begin{lemma}
-For any $\X : \WAlg_{\UU_i}(A,B)$ there is an equivalence
-\[ \WFibAlgToNatFibAlg_{\UU_j} : \WFibAlg_{\UU_j}(A,B) \; \X \to \NatFibAlg_{\UU_j}(\WAlgToNatAlg_{\UU_i}(\X)) \]
+For any $P$-algebra $\X : \WAlg(A,B)$ there is an equivalence
+\[ \WFibAlgToNatFibAlg : \WFibAlg \; \X \to \NatFibAlg \; (\WAlgToNatAlg(\X)) \]
 \end{lemma}
 \begin{proof}
-Let an algebra $(C,c) : \WAlg_{\UU_i}(A,B)$ be given and fix $E : C \to \UU_j$. We have an equivalence
+Let $(C,c)$ be a $P$-algebra and fix $E : C \to \U$. We have an equivalence
 \begin{center}
 \begin{tikzpicture}
 \node (N0) at (0,12) {$\prd{a:\Bool}\prd{t:B(a)\to C} (\prd{b:B(a)} E(t\;b)) \to E(c(a,t))$};
-\node (N1) at (0,10.5) {$\Big(\prd{t:B(0)\to C} (\prd{b:B(0)} E(t\;b)) \to E(c(0,t))\Big) \times \Big(\prd{t:B(1)\to C} (\prd{b:B(1)} E(t\;b)) \to E(c(1,t))\Big)$};
+\node (N1) at (0,10.5) {$\Big(\prd{t:\zero\to C} (\prd{b:\zero} E(t\;b)) \to E(c(0,t))\Big) \times \Big(\prd{t:\one\to C} (\prd{b:\one} E(t\;b)) \to E(c(1,t))\Big)$};
 \draw[->] (N0) -- node[right]{$e \mapsto (e(0), e(1))$} (N1);
 \end{tikzpicture}
 \end{center}
-Since $B(0) = 0$, the type $B(0) \to C$ is contractible, with center $\lam{b:B(0)} \abort(C,F \; b)$. Likewise, $\prd{b:B(0)} E(\abort(C,F \; b))$ is contractible, with center 
-$\lam{b:B(0)} \abort\big(E(\abort(C,F \; b)), F \;b\big)$. We thus have equivalences
+The type $\zero \to C$ is contractible with center $(\lambda b:\zero) \abort(C,b)$. Likewise, the type $\prd{b:\zero} E(\abort(C,b))$ is contractible with center 
+$(\lambda b:\zero) \abort\big(E(\abort(C,b)),b\big)$. We thus have equivalences
 \begin{center}
 \begin{tikzpicture}
-\node (N0) at (0,12) {$\prd{t:B(0)\to C} (\prd{b:B(0)} E(t\;b)) \to E(c(0,t))$};
-\node (N1) at (0,10.5) {$\big(\prd{b:B(0)} E(\abort(C,F \; b))\big) \to E(c(0,\lam{b:B(0)} \abort(C,F \; b)))$};
-\node (N2) at (0,9) {$E(c(0,\lam{b:B(0)} \abort(C,F \; b)))$};
-\draw[->] (N0) -- node[right]{$u \mapsto u\big(\lam{b:B(0)} \abort(C,F \; b)\big)$} (N1);
-\draw[->] (N1) -- node[right]{$u \mapsto u\big(\lam{b:B(0)} \abort\big(E(\abort(C,F \; b)), F \;b\big)\big)$} (N2);
+\node (N0) at (0,12) {$\prd{t:\zero\to C} (\prd{b:\zero} E(t\;b)) \to E(c(0,t))$};
+\node (N1) at (0,10.5) {$\big(\prd{b:\zero} E(\abort(C,b))\big) \to E(c(0,(\lambda b:\zero) \abort(C,b)))$};
+\node (N2) at (0,9) {$E(c(0,(\lambda b:\zero) \abort(C,b)))$};
+\draw[->] (N0) -- node[right]{$u \mapsto u\big((\lambda b:\zero) \abort(C,b)\big)$} (N1);
+\draw[->] (N1) -- node[right]{$u \mapsto u\big((\lambda b:\zero) \abort\big(E(\abort(C,b)),b\big)\big)$} (N2);
 \end{tikzpicture}
 \end{center}
-Since $B(1) = 1$, the map $x \mapsto \lam{\_}\; x$ is an equivalence from $C$ to $B(1) \to C$. Likewise, for any $x:C$ the map $y \mapsto \lam{\_}\; y$  is an equivalence from $E(x)$ to $B(1) \to E(x)$. Thus, we have equivalences
+The map $x \mapsto (\lambda \_:\one)x$ is an equivalence from $C$ to $\one \to C$. Likewise, for any $x:C$ the map $y \mapsto (\lambda \_:\one)y$  is an equivalence from $E(x)$ to $\one \to E(x)$. Thus, we have equivalences
 \begin{center}
 \begin{tikzpicture}
-\node (N0) at (0,12) {$\prd{t:B(1)\to C} (\prd{b:B(1)} E(t\;b)) \to E(c(1,t))$};
-\node (N1) at (0,10.5) {$\prd{x:C} (B(1) \to E(x)) \to E(c(1,\lam{\_} \; x))$};
-\node (N2) at (0,9) {$\prd{x:C} E(x) \to E(c(1,\lam{\_} \; x))$};
-\draw[->] (N0) -- node[right]{$u \mapsto \lam{x:C} u(\lam{\_} \; x)$} (N1);
-\draw[->] (N1) -- node[right]{$u \mapsto \lam{x:C} \lam{y:E(x)} u(x,\lam{\_} \; y)$} (N2);
+\node (N0) at (0,12) {$\prd{t:\one\to C} (\prd{b:\one} E(t\;b)) \to E(c(1,t))$};
+\node (N1) at (0,10.5) {$\prd{x:C} (\one \to E(x)) \to E(c(1,(\lambda \_:\one)x))$};
+\node (N2) at (0,9) {$\prd{x:C} E(x) \to E(c(1,(\lambda \_:\one)x))$};
+\draw[->] (N0) -- node[right]{$u \mapsto (\lambda x:C) u((\lambda \_:\one)x)$} (N1);
+\draw[->] (N1) -- node[right]{$u \mapsto (\lambda x:C) (\lambda y:E(x)) u(x,(\lambda \_:\one)y)$} (N2);
 \end{tikzpicture}
 \end{center}
 Putting this all together, we see that the map 
-\[ (E,e) \mapsto \Big(E,e\big(0,\lam{b} \abort(C,F \; b), \lam{b} \abort(E(\abort(C,F \; b)), F \;b)\big),\lam{x:C} \lam{y:E(x)} e(1, \lam{\_} \; x, \lam{\_} \; y)\Big)\] 
-is an equivalence from $\WFibAlg_{\UU_j}(A,B) \; (C,c)$ to $\NatFibAlg_{\UU_j}(\WAlgToNatAlg_{\UU_i} \; (C,c))$.
+\begin{align*}
+& (E,e) \mapsto \Big(E,e\big(0,(\lambda b:\zero) \abort(C,b), (\lambda b:\zero) \abort\big(E(\abort(C,b)),b\big)\big),\\ & \;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\; (\lambda x:C) (\lambda y:E(x)) e(1, (\lambda \_:\one)x), (\lambda \_:\one)y\Big)
+\end{align*}
+is an equivalence from $\WFibAlg \; (C,c)$ to $\NatFibAlg \; (\WAlgToNatAlg \; (C,c))$.
 \end{proof}
 
 \begin{lemma}
-For any $\X : \WAlg_{\UU_i}(A,B)$ and $\Y : \WFibAlg_{\UU_j}(A,B) \; \X$ we have
-\[ \WFibHom \; \X \; \Y \;\; \simeq \;\; \NatFibHom \; \big(\WAlgToNatAlg_{\UU_i}(\X)\big) \; \big(\WFibAlgToNatFibAlg_{\UU_j}(\Y)\big) \]
+For any $P$-algebra $\X : \WAlg(A,B)$ and fibered $P$-algebra $\Y : \WFibAlg \; \X$ over $\X$ we have
+\[ \WFibHom \; \Y \;\; \simeq \;\; \NatFibHom \; \big(\WFibAlgToNatFibAlg(\Y)\big) \]
 \end{lemma}
 \begin{proof}
-Let algebras $(C,c) : \WAlg_{\UU_i}(A,B)$ and $(E,e) : \WFibAlg_{\UU_j}(A,B) \; (C,c)$ be given and fix $f : \prd{x:C} E(x)$. We have an equivalence
+Let $(C,c)$ be a $P$-algebra and $(E,e)$ be a fibered $P$-algebra over $(C,c)$. Fix a function $f : (\Pi x:C) E(x)$. We have an equivalence
 \begin{center}
 \begin{tikzpicture}
-\node (N0) at (0,12) {$\prd{a:\Bool}\prd{t:B(a)\to C} f(c(a,t)) = e(a,t,\lam{b:B(a)} f(t\;b))$};
-\node (N1) at (0,10.5) {$\Big(\prd{t:B(0)\to C} f(c(0,t)) = e(0,t,\lam{b} f(t\;b))\Big) \times \Big(\prd{t:B(1)\to C} f(c(1,t)) = e(1,t,\lam{b} f(t\;b))\Big)$};
+\node (N0) at (0,12) {$\prd{a:\Bool}\prd{t:B(a)\to C} f(c(a,t)) = e(a,t,f \circ t)$};
+\node (N1) at (0,10.5) {$\Big(\prd{t:\zero\to C} f(c(0,t)) = e(0,t,f \circ t)\Big) \times \Big(\prd{t:\one\to C} f(c(1,t)) = e(1,t,f \circ t)\Big)$};
 \draw[->] (N0) -- node[right]{$\simeq$} (N1);
 \end{tikzpicture}
 \end{center}
-Since $B(0) = 0$, the type $B(0) \to C$ is contractible, with center $\lam{b:B(0)} \abort(C,F \; b)$. Furthermore, since all functions out of $\zero$ are equal, we have
-\[\lam{b} f(\abort(C,F \; b)) = \lam{b} \abort(E(\abort(C,F \; b)), F \;b)\] This implies the following equivalences:
+The type $\zero \to C$ is contractible with center $(\lambda b:\zero) \abort(C,b)$. Furthermore, since all functions out of $\zero$ having the same codomain are equal, we have
+\[f \circ (\lambda b:\zero) \abort(C,b) = (\lambda b:\zero) \abort(E(\abort(C,b)), b)\]
+This implies the following equivalences:
 \begin{center}
 \begin{tikzpicture}
-\node (N0) at (0,12) {$\prd{t:B(0)\to C} f(c(0,t)) = e(0,t,\lam{b} f(t\;b))$};
-\node (N1) at (0,10.5) {$f\big(c(0,\lam{b} \abort(C,F \; b))\big) = e\big(0,\lam{b} \abort(C,F \; b),\lam{b} f(\abort(C,F \; b))\big)$};
-\node (N2) at (0,9) {$f\big(c(0,\lam{b} \abort(C,F \; b))\big) = e\big(0,\lam{b} \abort(C,F \; b),\lam{b} \abort(E(\abort(C,F \; b)), F \;b)\big)$};
+\node (N0) at (0,12) {$\prd{t:\zero\to C} f(c(0,t)) = e(0,t,f \circ t)$};
+\node (N1) at (0,10.5) {$f\big(c(0,(\lambda b:\zero) \abort(C,b))\big) = e\big(0,(\lambda b:\zero) \abort(C,b), f \circ (\lambda b:\zero) \abort(C,b)\big)$};
+\node (N2) at (0,9) {$f\big(c(0,(\lambda b:\zero) \abort(C,b))\big) = e\big(0,(\lambda b:\zero) \abort(C,b),(\lambda b:\zero) \abort(E(\abort(C,b)), b)\big)$};
 \draw[-] (N0) -- node[right]{$\simeq$} (N1);
 \draw[-] (N1) -- node[right]{$\simeq$} (N2);
 \end{tikzpicture}
 \end{center}
-Since $B(1) = 1$, the map $x \mapsto \lam{\_}\; x$ is an equivalence from $C$ to $B(1) \to C$. Thus, we have an equivalence
+The map $x \mapsto (\lambda \_:\one)x$ is an equivalence from $C$ to $\one \to C$.  Thus, we have an equivalence
 \begin{center}
 \begin{tikzpicture}
-\node (N0) at (0,12) {$\prd{t:B(1)\to C} f(c(1,t)) = e(1,t,\lam{b} f(t\;b))$};
-\node (N1) at (0,10.5) {$\prd{x:C} f\big(c(1,\lam{\_} \; x)\big) = e\big(1,\lam{\_} \; x,\lam{\_} \; f(x)\big)$};
+\node (N0) at (0,12) {$\prd{t:\one\to C} f(c(1,t)) = e(1,t,f \circ t)$};
+\node (N1) at (0,10.5) {$\prd{x:C} f\big(c(1,(\lambda \_:\one)x)\big) = e\big(1,(\lambda \_:\one)x, f \circ (\lambda \_:\one)x\big)$};
 \draw[-] (N0) -- node[right]{$\simeq$} (N1);
 \end{tikzpicture}
 \end{center}
@@ -2681,48 +2670,28 @@ This finishes the proof.
 \end{proof}
 
 \begin{corollary}
-For any $\X : \WAlg_{\UU_i}(A,B)$ and $\Y : \WAlg_{\UU_j}(A,B)$ we have
-\[ \WHom \; \X \; \Y \;\; \simeq \;\; \NatHom \; \big(\WAlgToNatAlg_{\UU_i}(\X)\big) \; \big(\WAlgToNatAlg_{\UU_j}(\Y)\big) \]
+For any $P$-algebras $\X,\Y : \WAlg(A,B)$ we have
+\[ \WHom \; \X \; \Y \;\; \simeq \;\; \NatHom \; \big(\WAlgToNatAlg(\X)\big) \; \big(\WAlgToNatAlg(\Y)\big) \]
 \end{corollary}
 
 \begin{corollary}
-For any $\X : \NatAlg_{\UU_i}$ we have
+For any $\nat$-algebra $\X : \NatAlg$ we have
 \begin{alignat*}{4}
-& \HasNatRec_{\UU_j}(\X) & \;\; \simeq \;\; & \HasWRec_{\UU_j}(\WAlgToNatAlg_{\UU_i}^{-1}(\X)) \\
-& \HasNatInd_{\UU_j}(\X) & \;\; \simeq \;\; & \HasWInd_{\UU_j}(\WAlgToNatAlg_{\UU_i}^{-1}(\X)) \\
-& \HasNatRecUniq_{\UU_j}(\X) &  \simeq \;\; & \HasWRecUniq_{\UU_j}(\WAlgToNatAlg_{\UU_i}^{-1}(\X)) \\
-& \HasNatIndUniq_{\UU_j}(\X) & \simeq \;\; &  \HasWIndUniq_{\UU_j}(\WAlgToNatAlg_{\UU_i}^{-1}(\X)) \\
-& \IsNatHInit_{\UU_j}(\X) & \simeq \;\; & \IsWHInit_{\UU_j}(\WAlgToNatAlg_{\UU_i}^{-1}(\X))
+& \IsNatHInit(\X) \;\; & \simeq \;\; & \IsWHInit(\WAlgToNatAlg^{-1}(\X)) \\
+& \IsNatHProj(\X) \;\; & \simeq \;\; & \IsWHProj(\WAlgToNatAlg^{-1}(\X))
 \end{alignat*}
 \end{corollary}
 
-\begin{corollary}\label{lem:NatMainInt}
-In $\Hint$, the following conditions on an algebra $\X : \NatAlg_{\UU_i}$ are equivalent:
-\begin{enumerate}
-\item $\X$ satisfies the induction principle on the universe $\UU_j$
-\item $\X$ satisfies the recursion and recursion uniqueness principles on the universe $\UU_j$
-\item $\X$ is homotopy-initial on the universe $\UU_j$  
-\end{enumerate}
-for $j \geq i$. In other words, we have \[ \HasNatInd_{\UU_j}(\X)  \;\; \simeq \;\; \HasNatRec_{\UU_j}(\X) \times \HasNatRecUniq_{\UU_j}(\X) \;\; \simeq \;\; \IsNatHInit_{\UU_j}(\X) \]
-provided $j \geq i$. Furthermore, all 3 conditions are mere propositions.
-\end{corollary}
+\begin{theorem}\label{lem:WMainInternal}
+For a $\nat$-algebra $\X : \NatAlg$, we have
+\[ \IsNatHProj \; \X \;\;\; \leftrightarrow \;\;\; \IsNatHInit \; \X \]
+Moreover, both types are mere propositions; hence in particular we have
+\[ \IsNatHProj \; \X \;\;\; \simeq \;\;\; \IsNatHInit \; \X \]
+\end{theorem}
 
-We can thus characterize the type $\nat$ using the universal property of initiality as follows.
 \begin{corollary}\label{lem:NatInitInt}
-In $\Hint$ with natural numbers, the algebra $(\nat,\z,\suc(-)) : \NatAlg_{\UU_0}$ is homotopy-initial on any universe $\UU_j$.
+The $\nat$ algebra $(\nat,\z,\suc(-)) : \NatAlg$ is homotopy-initial.
 \end{corollary}
-
-\begin{corollary}\label{lem:NatCharInt}
-In $\Hint$ extended with an algebra $\X : \NatAlg_{\UU_0}$ which is homotopy-initial on any universe $\UU_j$, the type $\nat$ with propositional computation rules is definable. 
-\end{corollary}
-\begin{proof}
-We have an algebra $\cdot \vdash \X : \NatAlg_{\UU_0}$ such that for any $j$, there exists a term $\cdot \vdash h_j  : \IsNatHInit_{\UU_j}(\X)$. Since the requirement $j \geq 0$ always holds, Cor.~\ref{lem:NatMainInt} implies that for any $j$, we have a term $\cdot \vdash r_j : \HasNatInd_{\UU_j}(\X)$. This implies that the type $\nat$ with propositional computation rules is definable.
-\end{proof}
-
-
-
-
-
 
 \subsection*{Acknowledgements}
 
