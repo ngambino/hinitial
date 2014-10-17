@@ -1415,69 +1415,47 @@ In particular, any type equivalent to $\Bool$ is homotopy-initial.
 
 \subsection{Universes and internalization}
 
-If we work in a type theory with a hierarchy of universes $\U_0 : \U_1 : \ldots$, such as Martin-L{\"o}f's dependent type theory, the notion of a (fibered) bipointed type can be \emph{internalized} in a straightforward way. Since we are mainly concerned with small types, we will denote the universe $\U_0$ by $\U$ for brevity.
+We now work assuming a single universe type $\UU$ formulated \`a la Russell. Using it, the notion of a (fibered) bipointed type can be internalized in a straightforward way. First of all, we define the type of \emph{small bipointed types} as 
+\[
+\BoolAlg \defeq (\Sigma A : \U) A \times A 
+\]
+For $A \co \BoolAlg$, we then define the type of \emph{small fibered bipointed types} over a small bipointed type $A : \BoolAlg$ by letting
+\[
+\BoolFibAlg(A) \defeq (\Sigma E : A \to \UU) E(a_0) \times E(a_1)
+ \]
+We note that the types $\BoolAlg$ and $\BoolFibAlg\; \X$ themselves are not small. The types of bipointed morphisms, bipointed sections, and bipointed homotopies are now defined as before. In this way,  we internalize the properties of being homotopy-initial and homotopy-projective as follows.
 
-\begin{definition}\label{def:BoolAlg}
-Define the type of \emph{bipointed types} as 
-\[\BoolAlg \defeq \sm{C : \U} C \times C \]
-\end{definition}
 
-\begin{definition}\label{def:BoolFibAlg}
-Define the type of \emph{fibered bipointed types} over a bipointed type $\X : \BoolAlg$ by
-\[\BoolFibAlg \; (C,c_0,c_1) \defeq \sm{E : C \to \U} E(c_0) \times E(c_1) \]
-\end{definition}
-
-We note that the types $\BoolAlg$ and $\BoolFibAlg\; \X$ themselves live in a higher universe. The types of bipointed morphisms, bipointed sections, and bipointed homotopies are now defined as before:
-
-\begin{definition}\label{def:BoolHom}
-For bipointed types $\X,\Y : \BoolAlg$, define the type of \emph{bipointed morphisms} from $\X$ to $\Y$ by 
-\[\BoolHom \; (A,a_0,a_1) \; (B,b_0,b_1) \defeq (\Sigma f: A \to B) (f(a_0) = b_0) \times (f(a_1) = b_1) \]
-\end{definition}
-
-\begin{definition}\label{def:BoolFibHom}
-For a bipointed type $\X : \BoolAlg$ and a fibered bipointed type $\Y : \BoolFibAlg \; \X$ over $\X$, define the type of \emph{bipointed sections} of $\Y$ by
-\[\BoolFibHom \; (A,a_0,a_1) \; (E,e_0,e_1) \defeq (\Sigma f: (\Pi x:A) E(x)) (f(a_0) = e_0) \times (f(a_1) = e_1) \]
-\end{definition}
-We will usually leave out all but the last argument to $\BoolFibHom$.
-
-\begin{definition}\label{def:BoolCell}
-For bipointed morphisms $\mu,\nu : \BoolHom \; \X \; \Y$, define the type of \emph{bipointed homotopies} between $\mu$ and $\nu$ by
-\begin{align*}
-& \BoolCell \; (A,a_0,a_1) \; (B, b_0 \; b_1) \; (f,\bar{f}_0,\bar{f}_1) \; (g,\bar{g}_0,\bar{g}_1) \defeq \\ & \;\;\; \;\;\;\BoolFibHom \; (A,a_0,a_1) \; ((\lambda x:A) f(x) = g(x), \bar{f}_0 \ct (\bar{g}_0)^{-1}, \bar{f}_1 \ct (\bar{g}_1)^{-1})
-\end{align*}
-\end{definition}
-
-\begin{definition}\label{def:BoolFibCell}
-For bipointed sections $\mu,\nu : \BoolHom \; \X \; \Y$, define the type of \emph{bipointed homotopies of sections} between $\mu$ and $\nu$ by
-\begin{align*}
-& \BoolFibCell \; (A,a_0,a_1) \; (E, e_0 \; e_1) \; (f,\bar{f}_0,\bar{f}_1) \; (g,\bar{g}_0,\bar{g}_1) \defeq \\ & \;\;\; \;\;\;\BoolFibHom \; (A,a_0,a_1) \; ((\lambda x:A) f(x) = g(x), \bar{f}_0 \ct (\bar{g}_0)^{-1}, \bar{f}_1 \ct (\bar{g}_1)^{-1})
-\end{align*}
-\end{definition}
-For brevity, we will often leave out the first two arguments to $\BoolCell$ and $\BoolFibCell$. Finally, we internalize the properties of being homotopy-initial and homotopy-projective as follows:
 \begin{definition}\label{def:BoolHInit}
-A bipointed type $\X : \BoolAlg$ is said to be \emph{homotopy-initial} if for any bipointed type $\Y : \BoolAlg$, the type of bipointed morphisms from $\X$ to $\Y$ is contractible:
-\[ \IsBoolHInit \; \X \defeq (\Pi \Y:\BoolAlg) \; \iscontr(\BoolHom \; \X \; \Y) \]  
+A small bipointed type $A : \BoolAlg$ is said to be \emph{homotopy-initial} if for any small bipointed type $B : \BoolAlg$, the type of bipointed morphisms from $A$ to $B$ is contractible, i.e.\ the following type is inhabited
+\[ 
+\IsBoolHInit(A) \defeq (\Pi B : \BoolAlg) \; \iscontr\big(\BoolHom [ A,  B] \big)
+\]  
 \end{definition}
+
+
 \begin{definition}\label{def:BoolHProj}
-A bipointed type $\X : \BoolAlg$ is said to be \emph{homotopy-projective} if for any fibered bipointed type $\Y : \BoolAlg \; \X$ over $\X$, there exists a bipointed section of $\Y$:
-\[ \IsBoolHProj \; \X \defeq (\Pi \Y:\BoolFibAlg \; \X) \; \BoolFibHom \; \Y \]  
+A small bipointed type $A: \BoolAlg$ is said to be \emph{homotopy-projective} if for any fibered bipointed type $E : \BoolAlg(A)$ over $A$, there exists a bipointed section of $E$, i.e.\ the following type is inhabited:
+\[ 
+\IsBoolHProj(A) \defeq (\Pi E : \BoolFibAlg(A))  \BoolFibHom(E)
+\]  
 \end{definition}
-We point out that the internal notions of homotopy-initiality and homotopy-projection are stronger that their meta-theoretic counterparts introduced in the previous section, since they postulate the existence of a type-theoretic function assigning to every bipointed type a proof of contractibility (for homotopy-initiality), and to every fibered bipointed type a section (for homotopy-projection).
+We point out that the internal notions of homotopy-initiality and homotopy-projection are different from their meta-theoretic counterparts introduced in the previous section, since they postulate the existence of a type-theoretic function assigning to every bipointed type a proof of contractibility (for homotopy-initiality), and to every fibered bipointed type a section (for homotopy-projection). Our main result can now be expressed internally as follows. We again note that this result is different from the meta-theoretic Theorem~\ref{lem:BoolMainInt}, since it asserts a type equivalence rather than  a logical equivalence.
 
-Our main result can now be expressed internally as follows. We again note that this result is stronger than the meta-theoretic Thm~\ref{lem:BoolMainInt}, since it asserts a type equivalence rather than just a logical equivalence.
-
-\begin{theorem}\label{lem:BoolMainInternal}
-For a bipointed type $\X : \BoolAlg$, we have
-\[ \IsBoolHProj \; \X \;\;\; \leftrightarrow \;\;\; \IsBoolHInit \; \X \]
-Moreover, both types are mere propositions; hence in particular we have
-\[ \IsBoolHProj \; \X \;\;\; \simeq \;\;\; \IsBoolHInit \; \X \]
+\begin{theorem}\label{lem:BoolMainInternal} Let   $A: \BoolAlg$ be a small bipointed type.
+\begin{enumerate}[(i)] 
+\item  The types $\IsBoolHInit(A)$ and $\IsBoolHProj(A)$ are mere
+propositions.
+\item There is a logical equivalence $\IsBoolHInit(A) \leftrightarrow \IsBoolHProj(A)$.
+\item There is an equivalence $\IsBoolHInit(A)  \simeq   \IsBoolHProj(A)$.
+\end{enumerate}
 \end{theorem}
-\begin{proof}
-The type $\IsBoolHInit \; \X$ is a mere proposition since $\iscontr(X)$ is a mere proposition for any type $X$ and the dependent product of family of mere propositions is again a mere proposition.
 
-To show that $\IsBoolHProj \; \X$ is a mere proposition, we note that to prove that a type $X$ is a mere proposition, it suffices to do so under the assumption that $X$ is inhabited. Assume therefore that $\IsBoolHProj \; \X$ is inhabited. Since the dependent product of a family of mere propositions is again a mere proposition, it suffices to show that $\BoolFibHom \; \X \; \Y$ is a mere proposition for any $\Y$. Fix sections $\mu, \nu : \BoolFibHom \; \X \; \Y$. To show $\mu = \nu$, it suffices to exhibit a bipointed homotopy between $\mu$ and $\nu$. But since a bipointed homotopy is nothing more than a section of an appropriate fibered bipointed type, we can obtain it by using the fact that $\IsBoolHProj \; \X$ is inhabited.
-
-Now fix a bipointed type $(A,a_0,a_1) : \BoolAlg$. The logical equivalence between the types $\IsBoolHProj \; (A,a_0,a_1)$ and $\IsBoolHInit \; (A,a_0,a_1)$ is established in the same way as in the proof of Thm~\ref{lem:BoolMainInt}. 
+\begin{proof} For part (i), observe that
+the type $\IsBoolHInit(A)$ is a mere proposition since $\iscontr(X)$ is a mere proposition for any type $X$ and the dependent product of family of mere propositions is again a mere proposition. To show that $\IsBoolHProj (A)$ is a mere proposition, we note that to prove that a type $X$ is a mere proposition, it suffices to do so under the assumption that $X$ is inhabited. Assume therefore that $\IsBoolHProj(A)$ is inhabited. Since the dependent product of a family of mere propositions is again a mere proposition, it suffices to show that $\BoolFibHom(A,E)$ is a mere proposition for any $E$. Fix sections $\mu, \nu : \BoolFibHom(A,E)$. To show $\mu = \nu$, it suffices to exhibit a bipointed homotopy between $\mu$ and $\nu$. But since a bipointed homotopy is nothing more than a section of an appropriate fibered bipointed type, we can obtain it by using the fact that $\IsBoolHProj(A)$ is inhabited.
+For part (ii), the logical equivalence between the types $\IsBoolHProj(A)$ and 
+$\IsBoolHInit(A)$ is established in the same way as in the proof of  Theorem~\ref{lem:BoolMainInt}. 
+Part (iii) follows from part (i) and part (ii). 
 \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
