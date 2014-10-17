@@ -1417,13 +1417,13 @@ In particular, any type equivalent to $\Bool$ is homotopy-initial.
 
 We now work assuming a single universe type $\UU$ formulated \`a la Russell. Using it, the notion of a (fibered) bipointed type can be internalized in a straightforward way. First of all, we define the type of \emph{small bipointed types} as 
 \[
-\BoolAlg \defeq (\Sigma A : \U) A \times A 
+\BoolAlg \defeq (\Sigma A : \UU)( A \times A )
 \]
 For $A \co \BoolAlg$, we then define the type of \emph{small fibered bipointed types} over a small bipointed type $A : \BoolAlg$ by letting
 \[
 \BoolFibAlg(A) \defeq (\Sigma E : A \to \UU) E(a_0) \times E(a_1)
  \]
-We note that the types $\BoolAlg$ and $\BoolFibAlg\; \X$ themselves are not small. The types of bipointed morphisms, bipointed sections, and bipointed homotopies are now defined as before. In this way,  we internalize the properties of being homotopy-initial and homotopy-projective as follows.
+We note that the types $\BoolAlg$ and $\BoolFibAlg(A)$ are not small. The types of bipointed morphisms, bipointed sections, and bipointed homotopies for small bipointed types are defined as for general bipointed types. In this way,  we internalize the properties of being homotopy-initial and homotopy-projective as follows.
 
 
 \begin{definition}\label{def:BoolHInit}
@@ -1435,7 +1435,7 @@ A small bipointed type $A : \BoolAlg$ is said to be \emph{homotopy-initial} if f
 
 
 \begin{definition}\label{def:BoolHProj}
-A small bipointed type $A: \BoolAlg$ is said to be \emph{homotopy-projective} if for any fibered bipointed type $E : \BoolAlg(A)$ over $A$, there exists a bipointed section of $E$, i.e.\ the following type is inhabited:
+A small bipointed type $A: \BoolAlg$ is said to be \emph{homotopy-projective} if for any small fibered bipointed type $E : \BoolAlg(A)$ over $A$, there exists a bipointed section of $E$, i.e.\ the following type is inhabited:
 \[ 
 \IsBoolHProj(A) \defeq (\Pi E : \BoolFibAlg(A))  \BoolFibHom(E)
 \]  
@@ -1461,12 +1461,19 @@ Part (iii) follows from part (i) and part (ii).
 %%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Univalence for bipointed types} 
 
-\begin{definition} Let $A, B : \BoolAlg$ be bipointed types. We say that a bipointed morphism $f \co \BoolHom(A,B)$ is a \myemph{bipointed equivalence}
-if there exist bipointed morphisms $\ell \co \BoolHom(B,A)$ and $r \co \BoolHom(B,A)$ providing a left and a right bipointed inverse for $f$, \ie 
+\begin{definition} Let $A, B : \BoolAlg$ be small bipointed types. We say that a bipointed morphism $f \co \BoolHom(A,B)$ is a \myemph{bipointed equivalence}
+if there exist bipointed morphisms 
+\[
+\ell \co \BoolHom(B,A) \, ,  r \co \BoolHom(B,A) \ , ,
+\] 
+providing a left and a right bipointed inverse for $f$, \ie 
 \[ 
 \ell \circ f = 1_A \, , \quad f \circ r = 1_B \, ,
 \]
-where the propositional equalities are understood as equalities of bipointed morphisms. In other words, we define the type of proofs that $f$ is a bipointed equivalence as
+where the propositional equalities are understood as equalities of bipointed morphisms. 
+\end{definition}
+
+In other words, the type of proofs that $f$ is a bipointed equivalence is defined as
 \[
 \mathsf{isbipequiv}(f) \defeq   ( \Sigma \ell : \mathsf{BipHom}(B,A) ( \ell \circ f = 1_A )) \times 
     (\Sigma r : \mathsf{BipHom}(A, B))(  f \circ r = 1_B ) \, .
@@ -1476,8 +1483,6 @@ We then define the type of \emph{bipointed equivalences} between $A$ and $B$ as
 \mathsf{BipEquiv}(A, B)
 \defeq    (\Sigma f : \mathsf{BipHom}(A,B)) \, \mathsf{isbipequiv}(f)  \, . 
 \] 
-\end{definition}
-
 Clearly, the identity morphism on a bipointed type is a bipointed equivalence, with the left and right inverses being the indentity morphism itself.
 
 \begin{lemma}\label{BoolAlgSpace} A bipointed morphism $(f, \bar{f}_0, \bar{f}_1) \co \BoolHom(A,B)$ is a bipointed equivalence if and only
@@ -1558,32 +1563,40 @@ Furthermore, for any equivalence $g : X \to Y$, and paths $q : \Id(g(x_2),y)$, $
 as required.
 \end{proof}
 
-In particular, we note that for any bipointed morphism $\mu$ the type $\mathsf{isbipequiv}(\mu)$ is a mere proposition.
+\begin{remark} \label{thm:usemere}
+Lemma~\ref{BoolAlgSpace} implies that for any bipointed morphism $f$ the type $\mathsf{isbipequiv}(f)$ is a mere proposition.
+\end{remark} 
 
-\begin{theorem}[Univalence for bipointed types] \label{thm:bipunivalence}
- For bipointed types $A, B : \BoolAlg$, the canonical function
+
+
+\begin{theorem}[Univalence for bipointed types] \label{thm:bipunivalence} Assuming the Univalence Axiom, 
+ for bipointed types $A, B : \BoolAlg$, the canonical function
 \[ 
-\ext : \Id \big(A,B\big) \to  \mathsf{BipEquiv}(A,B) \, .
+\ext_{A,B} \co \Id \big(A,B\big) \to  \mathsf{BipEquiv}(A,B) \, .
 \] 
-defined by path induction and mapping the reflexivity path to the identity bipointed morphism is an equivalence.
+defined by the identity type elimination rule, mapping the reflexivity path to the identity bipointed morphism, 
+is an equivalence.
 \end{theorem} 
 
 \begin{proof} 
-Let $ (A,a_0,a_1), (B,b_0,b_1)$ be bipointed types. By the characterization of paths in $\Sigma$-types, the path space $(A,a_0,a_1) = (B,b_0,b_1)$ can be expressed as the type
+Let $ (A,a_0,a_1), (B,b_0,b_1)$ be bipointed types. By the characterization of the identity types
+of  elements of a $\Sigma$-type, the 
+identity type $(A,a_0,a_1) = (B,b_0,b_1)$ can be expressed as the type
 \[(\Sigma p : A = B) \big((\pair(a_0,a_1)) = p^{!}(\pair(b_0,b_1)) \big)\]
-By path induction on $p$ and the characterization of paths in product types, this type is equivalent to
+By $\Id$-elimination on $p$ and the characterization of identity proofs in product types, this type is equivalent to
 \[ \big(\Sigma p : A = B \big) \, \Id \big(\fst(\ext_1(p))_{a_0},  b_0\big) \times \Id \big( \fst(\ext_1(p))_{a_1} , b_1\big) \]
-where $\ext_1 \co \Id(A,B) \to (A \simeq B)$ is the canonical equivalence. Since it is an equivalence, the above type is equivalent to
+where $\ext_1 \co \Id(A,B) \to (A \simeq B)$ is the canonical function, which is asserted to be an equivalence by the
+Univalence Axiom. Since it is an equivalence, the above type is equivalent to
 \[ \big(\Sigma e : A \simeq B \big) \, \Id \big(\fst(e)_{a_0},  b_0\big) \times \Id \big( \fst(e)_{a_1} , b_1\big) \]
 After rearranging we get
 \[
- \big(\Sigma f \co \BoolHom \; (A,a_0,a_1) \; (B,b_0,b_1)\big) \; \isequiv(\fst(f))
+ \big(\Sigma f \co \BoolHom(A,B)\big) \; \isequiv(\fst(f))
 \]
-whicb by Lem.~\ref{BoolAlgSpace} is equivalent to $\mathsf{BipEquiv}\; (A,a_0,a_1) \; (B,b_0,b_1)$ as desired. Finally, it is not hard to see that the composition of the above equivalences yields the canonical function $\ext$ (up to a homotopy).
+which, by Lemma~\ref{BoolAlgSpace}, is equivalent to $\mathsf{BipEquiv}(A,B)$, as desired. Finally, it is not hard to see that the composition of the above equivalences yields the canonical function $\ext$ (up to a homotopy).
 \end{proof} 
 
 \begin{corollary}\label{BoolHInitIso}
-The path space between any two homotopy-initial bipointed types $A,B : \BoolAlg$ is contractible, i.e., 
+The identity type between any two small homotopy-initial bipointed types $A,B : \BoolAlg$ is contractible, i.e., 
 \[ 
 \mathsf{ishinitial}(A) \times \mathsf{ishinitial}(B) \to \iscontr(\Id(A,B)) \, .
 \] 
@@ -1591,9 +1604,9 @@ In particular, homotopy-initial bipointed types are unique.
 \end{corollary}
 
 \begin{proof}
-By Theorem~\ref{thm:bipunivalence} it suffices to prove $\iscontr(\mathsf{BipEquiv}(A,B))$. The type $\BoolHom \; A \; B$ is contractible by homotopy-initiality of $A$. Since the dependent sum of a family of mere propositions over a mere proposition is again a mere proposition, it suffices to prove $\iscontr(\mathsf{isbipequiv}(f))$ for any bipointed morphism $f$. This type is a mere proposition, as remarked earlier; thus it suffices to show it is inhabited.
-
-Since $B$ is homotopy-initial, there exists a bipointed morphism $g : B \to A$. Again by homotopy-initiality of $A$ and $B$, we have $g \comp f = 1_A$ and $f \comp g = 1_A$, which gives us the desired bipointed equivalence between $A$ and $B$.
+By Theorem~\ref{thm:bipunivalence} it suffices to prove $\iscontr(\mathsf{BipEquiv}(A,B))$. The type 
+$\BoolHom( A, B)$ is contractible by homotopy-initiality of $A$. Since the dependent sum of a family of mere propositions over a mere proposition is again a mere proposition, it suffices to prove $\iscontr(\mathsf{isbipequiv}(f))$ for any bipointed morphism $f$. This type is a mere proposition, as observed in Remark~\ref{thm:usemere}, and thus it suffices to show it is inhabited.
+Since $B$ is homotopy-initial, there exists a bipointed morphism $g : B \to A$. Again by homotopy-initiality of $A$ and $B$, we have $g \comp f = 1_A$ and~$f \comp g = 1_A$, which gives us the desired bipointed equivalence between $A$ and $B$.
 \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
