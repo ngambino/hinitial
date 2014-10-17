@@ -722,7 +722,7 @@ By \emph{basic inductive types} we mean types with an inductive specification th
 The type $\Bool$ is given by means of formation, introduction, elimination, and computation rules, given in Table~\ref{tab:bool}. Let $A$ be a type and suppose that there is an equivalence $f \co \Bool \to A$. Then, the type $A$ will satisfy essentially all the rules for $\Bool$,
 except for the computation rules, which need to be modified by replacing the definitional equalities in their conclusion with propositional ones. 
 In order to organize our study of these types and their properties, it is convenient to introduce the notion of a bipointed type, as stated in
-Definition~\ref{thm:bipointedtype}.
+Definition~\ref{thm:bipointedtype} below.
 
 
 
@@ -800,15 +800,16 @@ The type $\Bool$ and its canonical elements give us a bipointed type:
 \xymatrix{
  1 \ar[r]^-{0}&  \Bool  & 1 \ar[l]_-{1} \, . }
  \]
-If $A = (A, a_0, a_1)$ is a bipointed type and $B$ is an arbitrary type, any equivalence $f \co A \to B$ clearly induces the structure of a bipointed type on $B$,
-by taking~$b_0 \defeq f(a_0) : B$ and $b_1 \defeq f(a_1) : B$ as its distinguished elements. In the next definition, we isolate the rules that are transferred via
+If $A = (A, a_0, a_1)$ is a bipointed type and $B$ is an arbitrary type, any function $f \co A \to B$ clearly induces the structure of a bipointed type on $B$,
+by taking~$b_0 \defeq f(a_0) : B$ and $b_1 \defeq f(a_1) : B$ as its distinguished elements. When $f$ is an equivalence, this defines an equivalence of bipointed types (a notion that we will define later on). 
+ In the next definition, we isolate the rules that are transferred via
 equivalences from $\Bool$ to any other type. 
 
 \begin{definition} Let $A = (A, a_0, a_1)$ be a bipointed type. We say that $A$ is \emph{inductive} if it satisfies the following
-deduction rules:
+deduction rules.
 
-\begin{enumerate}[(i)] 
-\item Elimination rule, \smallskip
+\begin{itemize}
+\item Elimination rule: \smallskip
 \[
 \begin{prooftree}
 x: A \vdash E(x) : \type \qquad
@@ -818,92 +819,96 @@ e_1 : E(a_1) \qquad
 x \co A \vdash \ind(x, e_0, e_1) : E(x) 
 \end{prooftree}
 \]
-\item Propositional computation rules, \smallskip
+\item Propositional computation rules: \smallskip
 \begin{mathpar}
 \begin{prooftree}
 x: A \vdash E(x) : \type \qquad
 e_0 : E(a_0) \qquad
 e_1 : E(a_1)
 \justifies
- \beta_0 \co  \Id \big(  \ind(a_0, e_0, e_1),  e_0 \big)   \, , \\
+ \mathsf{comp}_0(e_0, e_1) \co    \ind(a_0, e_0, e_1) = e_0  \, , \\
 \end{prooftree} \\
 \begin{prooftree}
 x: A \vdash E(x) : \type \qquad
 e_0 : E(a_0) \qquad
 e_1 : E(a_1)
 \justifies
- \beta_1 \co  \Id \big(  \ind(a_1, e_0, e_1),  e_1\big)   \, , \\
+ \mathsf{comp}_1(e_0, e_1) \co    \ind(a_1, e_0, e_1) =   e_1    \, . \\
 \end{prooftree}
  \end{mathpar} 
-\end{enumerate}
+\end{itemize}
 \end{definition} 
+
+\medskip
 
 Note how the property of being inductive can be transported along equivalences. More precisely, if $A$ be an inductive bipointed type, $B$ a type and $f \co A \to B$ an equivalence of types, then $B$ is inductive with respect to the induced bipointed structure. We begin to explore some consequences of the assumption that a bipointed type is inductive. 
 
 \begin{lemma} \label{thm:etaind}
 If $A$ is an inductive bipointed type, then it satisfies the following rules:
-\begin{enumerate}[(i)]
-\item Propositional $\eta$-rule: \smallskip
+\begin{itemize}
+\item Propositional expansion rule: \smallskip
 \[
 \begin{prooftree}
 x \co A \vdash E(x) \co \type \qquad 
-e_0 \co E(a_0) \qquad
-e_1 \co E(a_1) \qquad 
 x \co A \vdash f(x) \co E(x) 
 \justifies
-x \co A \vdash \eta_f(x) \co \Id \big( \ind(x, f(a_0), f(a_1) ), f(x)  \big)
+x \co A \vdash \mathsf{exp}(f, x) \co  \ind(x, f(a_0), f(a_1) ) = f(x) 
 \end{prooftree}
 \]
- \item Propositional $(\beta, \eta)$-compatibility rules: \smallskip
+ \item Compatibility rules: \smallskip
 \begin{equation*}
 \begin{prooftree}
 x \co A \vdash E(x) \co \type \qquad 
-e_0 \co E(a_0) \qquad
-e_1 \co E(a_1) \qquad 
-x \co A \vdash f(x) \co E(x) \\
+x \co A \vdash f(x) \co E(x) 
 \justifies
-x \co A \vdash p_{f,0}(x) \co \Id \big(  \beta_0, \eta_f(a_0)   \big)
+\mathsf{p}_0(f)  \co  \mathsf{comp}_0( f(a_0), f(a_1))  = \mathsf{exp}(f, a_0) 
 \end{prooftree}
  \end{equation*}  \medskip
  \begin{equation*}
 \begin{prooftree}
-B \co \type \qquad 
-b_0 \co B \qquad
-b_1 \co B \qquad 
-x \co A \vdash f(x) \co B
+x \co A \vdash E(x) \co \type \qquad 
+x \co A \vdash f(x) \co E(x) 
 \justifies
-p_{f,1} \co \Id \big(  \beta_1, \eta_f(a_1)  \big)
+\mathsf{p}_1(f)  \co  \mathsf{comp}_1(f(a_0), f(a_1)) =  \mathsf{exp}(f, a_1)
 \end{prooftree}
  \end{equation*} 
-\end{enumerate} 
+\end{itemize}
 \end{lemma}
 
-\begin{proof} Let $A = (A, a_0, a_1)$ be a bipointed type.  We begin by proving the propositional $\eta$-rule  using the elimination rule. More precisely, 
-let us assume the premisses of the propositional~$\eta$-rule and, for $x \co A$, define
+\begin{proof} Let $A = (A, a_0, a_1)$ be an inductive bipointed type.  We begin by proving the propositional expansion rule. So, let us assume its premisses and, for $x \co A$, define
 \[
  E'(x) \defeq \Id_{E(x)} \big(  \ind( x, f(a_0), f(a_1)), f(x) \big) \, .
 \]
-We now apply the elimination rule as follows:
+We now apply the elimination rule for an inductive bipointed type as follows:
+
 \[
 \begin{prooftree}
-x \co A \vdash E(x) \co \type \qquad 
-\beta_0 \co E(a_0) \qquad
-\beta_1 \co E(a_1)
+x \co A \vdash E'(x) \co \type \qquad 
+e'_0  \co E'(a_0) \qquad
+e'_1  \co E'(a_1)
 \justifies
-x \co A \vdash  \ind(x, \beta_0, \beta_1)  \co E(x) \, .
+x \co A \vdash  \ind(x, e'_0, e'_1)  \co E'(x) \, ,
 \end{prooftree}
 \]
-Here, $\beta_0$ and $\beta_1$ are the terms given by the propositional computation rules, which have the 
-appropriate types since
+where the elements
+\begin{align*} 
+e'_0 & \defeq \mathsf{comp}_0( f(a_0), f(a_1)) \co \Id_{E(a_0)}(  \ind(a_0, f(a_0), f(a_1)), f(a_0) ) \, , \\
+e'_1 &  \defeq \mathsf{comp}_1(f(a_0), f(a_1)) \co \Id_{E(a_1)}(  \ind(a_1, f(a_0), f(a_1)), f(a_1) ) \, .
+\end{align*} 
+are given by the propositional computation rule of inductive bipointed types. For $x \co A$, we can then define the required term in the conclusion of the propositional expansion rule by letting
 \[
-E'(a_0) = \Id_{E(a_0)}(  \ind(a_0, f(a_0), f(a_1)), f(a_0) ) \, , \quad E'(a_1) = \Id_{E(a_1)}(  \ind(a_0, f(a_0), f(a_1)), f(a_1) ) \, . 
-\]
-For $x \co A$, we can define the required term by letting
-\[
- \eta_f(x) \defeq  \ind(x, \beta_0, \beta_1) \co \Id_{E(x)} \big(  \rec( x, f(a_0), f(a_1)), f(x) \big)  \, .
+ \mathsf{exp}(f,x) \defeq  \ind(x, e'_0, e'_1) \co \Id_{E(x)} \big(  \ind( x, f(a_0), f(a_1)), f(x) \big)  \, .
  \]
- With this definition, 
-the required propositional $(\beta,\eta)$-compatibility rules follow immediately by the propositional computation rules. 
+ With this definition, the required compatibility rules can be obtained very easily. For the first one, observe that
+ the definitions given above and the  the first computation rule for inductive types imply that 
+ we have the following chain of judgemental and 
+ propositional equalities:
+ \begin{align*}  
+ \mathsf{exp}(f, a_0) & \deq  \ind( a_0, e'_0, e'_1) \\
+  & = e'_0   \\ 
+  & \deq \mathsf{comp}_0( f(a_0), f(a_1))  \, .
+  \end{align*} 
+  The second compatibility rule is obtained in an analogous way.
 \end{proof} 
 
 
@@ -913,8 +918,8 @@ in Definition~\ref{thm:recursivetype}.
 
 \begin{definition} \label{thm:recursivetype}
 Let $A = (A, a_0, a_1)$ be a bipointed type. We say that $A$ is \emph{recursive} if the following rules
-are satisfied:
-\begin{enumerate}[(i)] 
+are satisfied: \\
+\begin{itemize}
 \item  Recursion rule, \smallskip
 \[
 \begin{prooftree}
@@ -932,49 +937,43 @@ B : \type \qquad
 b_0 : B \qquad
 b_1 : B 
 \justifies
-\beta_0 : \Id( \rec(a_0, b_0, b_1), b_0)  
+\beta_0(b_0, b_1) :  \rec(a_0, b_0, b_1) =  b_0 
 \end{prooftree} \\
 \begin{prooftree}
 B : \type \qquad
 b_0 : B \qquad
 b_1 : B 
 \justifies
-\beta_1 : \Id( \rec(a_1, b_0, b_1), b_1) 
+\beta_1(b_0, b_1) : \rec(a_1, b_0, b_1) =  b_1  
 \end{prooftree}
  \end{mathpar} 
 \item Propositional $\eta$-rule, \smallskip
 \[
 \begin{prooftree}
-B \co \type \quad 
-b_0 \co B \quad
-b_1 \co B \quad 
+B \co \type \qquad 
 x \co A \vdash f(x) \co B \\
 \justifies
-x \co A \vdash \eta_f(x) \co \Id \big( \rec(x, f(a_0), f(a_1) ), f(x)  \big)
+x \co A \vdash \eta_f(x) \co  \rec(x, f(a_0), f(a_1) ) = f(x) 
 \end{prooftree}
 \]
  \item Propositional $(\beta, \eta)$-compatibility rules, \smallskip
 \begin{equation*}
 \begin{prooftree}
-B \co \type \qquad 
-b_0 \co B \qquad
-b_1 \co B \qquad 
+B \co \type \qquad  
 x \co A \vdash f(x) \co B
 \justifies
-p_{f,0} \co \Id \big(  \beta_0, \eta_f(a_0)   \big)
+p_{f,0} \co  \beta_0( f(a_0), f(a_1)) = \eta_f(a_0)  
 \end{prooftree}
  \end{equation*}  \medskip
  \begin{equation*}
 \begin{prooftree}
-B \co \type \qquad 
-b_0 \co B \qquad
-b_1 \co B \qquad 
+B \co \type \qquad
 x \co A \vdash f(x) \co B
 \justifies
-p_{f,1} \co \Id \big(  \beta_1, \eta_f(a_1)  \big)
+p_{f,1} \co  \beta_1( f(a_0), f(a_1)) = \eta_f(a_1)  
 \end{prooftree}
  \end{equation*} 
-\end{enumerate} 
+\end{itemize}
 \end{definition}
 
 
@@ -993,12 +992,106 @@ propositional $(\beta, \eta)$-computatibility rules are special cases of the rul
 
 
 
-\begin{remark}[Extensional type theory] How the rules for a recursive type simplify in the extensional setting (no compatibility). How
-the implication from inductive to recursive can be easily proven in the extensional theory. 
+\begin{remark}[Extensional type theory]  \label{thm:extbip} In the fully extensional theory $\Hext$, which contains the 
+propositional reflection rule, it is easy to prove that a recursive bipointed type  is inductive, i.e.\ the converse of the statement in Proposition~\ref{thm:indrec}. To see this,
+observe that if~$A = (A, a_0, a_1)$ is a recursive bipointed type, then the following rules can be derived in
+$\Hext$. \\[1ex]
+
+\begin{itemize}
+\item Recursion rule: 
+\[
+\begin{prooftree}
+B : \type \qquad
+b_0 : B \qquad
+b_1 : B 
+\justifies
+x \co A \vdash \rec(x, b_0, b_1) : B
+\end{prooftree} \medskip
+\]
+\item Judgemental $\beta$-rules: \\[1ex]
+\[
+\begin{prooftree}
+B : \type \qquad
+b_0 : B \qquad
+b_1 : B 
+\justifies
+  \rec(a_0, b_0, b_1) \deq b_0 \co B
+\end{prooftree}   \qquad
+ \begin{prooftree}
+B : \type \qquad
+b_0 : B \qquad
+b_1 : B 
+\justifies
+  \rec(a_1, b_0, b_1) \deq b_1 \co B
+\end{prooftree} \bigskip
+\]
+\item Judgemental $\eta$-rule: \\[1ex]
+\[
+\begin{prooftree}
+B \co \type \quad 
+x \co A \vdash f(x) \co B \\
+\justifies
+x \co A \vdash  \rec(x, f(a_0), f(a_1) )  \deq f(x)
+\end{prooftree}
+\]
+\end{itemize} \bigskip
+In order to derive the elimination rule for an inductive type, we assume its premisses and define
+\[
+E' \defeq (\Sigma x : A) E(x) \co \type
+\]
+We can then apply the recursion rule above as follows:
+\[
+\begin{prooftree}
+E' \co \type \qquad
+e'_0 \co E' \qquad
+e'_1 \co E'
+\justifies
+x \co A \vdash \rec(x, e'_0, e'_1) \co E' \, ,
+\end{prooftree}
+\]
+where
+\[
+ e'_0 \defeq \pair(a_0, e_0) \co E' \, , \quad
+ e'_1 \defeq \pair(a_1, e_1) \co E' \, .
+ \]
+For $x \co A$, we  define 
+\begin{equation}
+\label{equ:indbipdef}
+\ind(x, b_0, b_1) \defeq \pi_2 \big(  \rec(x, e'_0, e'_1) \big) \co E\big( \pi_1 ( \rec(x, e'_0, e'_1)) \big) \, .
+\end{equation}
+Indeed, we have $\ind(x, b_0, b_1) \co E(x)$ as required, since we can show that
+\[
+\pi_1 ( \rec(x, e'_0, e'_1))  \deq x \co A \, .
+\]
+This is because both elements are judgementally equal to $\rec(x, a_0, a_1)  \co A$ by the
+judgemental~$\eta$-rule. The computation rules follows easily: for example, the first one
+can be obtained as follows:
+\begin{align*} 
+\ind(a_0, b_0, b_1)  & \defeq \pi_2 \big(  \rec(a_0, e'_0, e'_1) \big) \\
+ & \defeq \pi_2 (e'_0) \\
+ & \defeq \pi_2 (\pair(a_0, b_0)) \\
+ & \defeq b_0 \, .
+\end{align*}
+It should be noted that this argument relies essentially on the fact that the rules for recursive types
+imply, in $\Hext$, that a recursive bipointed type $A$ is universal, in the sense that for every bipointed 
+type $B$ there exists a unique (up to judgemental equality) homomorphism of bipointed types $f \co A \to B$.
+Indeed, this is what we used to show that the term $\ind(x, b_0, b_1)$ defined in~\eqref{equ:indbipdef}, has
+the correct type.
 \end{remark}
 
-[TO BE ADDED]  Description of the difficulty in reversing that
-implication in the intensional setting. Idea: the best that one can do is to show that it is unique among all such maps up to a path, which itself is unique up to a higher path, which in turn is unique up to a yet higher path, etc. This sort of ``homotopy" $\omega$-universality, which apparently involves infinitely much data, can nonetheless be captured directly within the system of type theory (without resorting to coinduction) using ideas from higher category theory. 
+\medskip
+
+Proving that every recursive type is inductive (i.e.\ reversing the implicaiton of Proposition~\ref{thm:indrec}) within
+the type theory $\Hint$ is more complicated. As the discussion in Remark~\ref{thm:extbip} shows, this issue is intimately related to the problem of characterizing what kind of weak universal property
+ an inductive type enjoys. For an inductive bipointed type $A = (A, a_0, a_1)$, the recursion and propositional $\beta$-rule allow us to define, for every bipointed type $B = (B, b_0, b_1)$, a homomorphism of
+bipointed types~$f \co A \to B$, defined by letting 
+\[
+f \defeq (\lambda x \co A) \rec(x, b_0, b_1) \, .
+\] 
+The fact that this is a homomorphism amounts to having  propositional equalities $f(a_0) = b_0$ and~$f(a_1) = b_1$,
+which are given by the propositional $\beta$-rules. Furthermore, using the elimination rule, it is
+possible to show that for any two homomorphisms $f, g \co A \to B$ are pointwise propositionally equal, in the sense that there is $ \alpha_x \co f(x) = g(x)$, for all $x \co A$. And hence, by function extensionality, there is a term 
+$p \co f = g$. Such a path $p$ is itself is unique up to a higher path, which in turn is unique up to a yet higher path, etc... As we will show in the reminder of this section, this sort of weak $\omega$-universality, which apparently involves infinitely much data, can nonetheless be fully captured within the system of type theory (without resorting to coinduction) using ideas from homotopical algebra and higher-dimensional category theory. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%
