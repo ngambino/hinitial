@@ -241,7 +241,7 @@
 \newcommand{\rec}{\mathsf{rec}}
 \newcommand{\Hom}{\mathsf{Hom}}
 \newcommand{\Ho}{\mathsf{Ho}}
-\newcommand{\BoolAlg}{\mathsf{BipType}}
+\newcommand{\Bip}{\mathsf{Bip}}
 \newcommand{\BipHom}{\mathsf{Bip}}
 \newcommand{\BoolCell}{\mathsf{BipHot}}
 \newcommand{\BoolFibCell}{\mathsf{BipHotSect}}
@@ -249,13 +249,13 @@
 \newcommand{\HasBoolInd}{\mathsf{has}\text{-}\mathsf{2}\text{-}\mathsf{ind}}
 \newcommand{\HasBoolRecUniq}{\mathsf{has}\text{-}\mathsf{2}\text{-}\mathsf{rec}\text{-}\mathsf{uniq}}
 \newcommand{\HasBoolIndUniq}{\mathsf{has}\text{-}\mathsf{2}\text{-}\mathsf{ind}\text{-}\mathsf{uniq}}
-\newcommand{\BoolFibAlg}{\mathsf{FibBipType}}
-\newcommand{\BoolFibHom}{\mathsf{BipSect}}
-\newcommand{\IsBoolHInit}{\mathsf{isBipHomInit}}
-\newcommand{\IsBoolHProj}{\mathsf{isBipHomProj}}
+\newcommand{\FibBip}{\mathsf{FibBip}}
+\newcommand{\BipSect}{\mathsf{BipSect}}
+\newcommand{\ishinit}{\mathsf{ishinit}}
+\newcommand{\ishproj}{\mathsf{ishproj}}
 \newcommand{\BoolIdHom}{\mathsf{2}\text{-}\mathsf{Id}\text{-}\mathsf{Hom}}
 \newcommand{\BoolCompHom}{\mathsf{2}\text{-}\mathsf{Comp}\text{-}\mathsf{Hom}}
-\newcommand{\BoolAlgIso}{\mathsf{2}\text{-}\mathsf{Alg}\text{-}\mathsf{Iso}}
+\newcommand{\BipIso}{\mathsf{2}\text{-}\mathsf{Alg}\text{-}\mathsf{Iso}}
 \newcommand{\isbipequiv}{\mathsf{isbipequiv}}
 \newcommand{\BipEquiv}{\mathsf{BipEquiv}}
 \newcommand{\BipHot}{\mathsf{BipHot}}
@@ -816,10 +816,14 @@ Our aim in this section is to provide a characterisation of the types equivalent
 
 
 \begin{definition} \label{thm:bipointedtype}
-A \emph{bipointed type} is a type $A$ with two distinguished elements, $a_0 \co A$, $a_1 : A$.
+A  \emph{bipointed type} is a type $A \co \UU$ equipped with two elements, $a_0 \co A$, $a_1 : A$.
 \end{definition}
 
-
+The type of small bipointed types is then defined by letting:
+\[
+\Bip \defeq (\Sigma A : \UU)( A \times A ) \, .
+\]
+Note that the type $\Bip$ is not small. 
 When referring to a bipointed type we sometimes suppress mention of its distinguished elements and write $A = (A, a_0, a_1)$ to
 recall this abuse of language.  In the following, it will be convenient to represent a bipointed type $A$ diagrammatically as follows:
 \[
@@ -874,14 +878,7 @@ homotopies, as in an $(\infty,1)$-category.  We now discuss the notion of equiva
 
 
 \begin{definition} We say that a bipointed morphism $f \co A \to B$ is a \myemph{bipointed equivalence}
-if there exist bipointed morphisms 
-\[
-\ell \co \BipHom(B,A) \, ,  \quad r \co \BipHom(B,A) \, ,
-\] 
-which provide a left and a right bipointed inverse for $f$, \ie 
-\[ 
-\ell \circ f = 1_A \, , \quad f \circ r = 1_B \, ,
-\]
+if there exist bipointed morphisms $\ell \co \BipHom(B,A)$ and $r \co \BipHom(B,A)$ which provide a left and a right bipointed inverse for $f$, \ie  $\ell \circ f = 1_A$ and $f \circ r = 1_B$, 
 where the propositional equalities are understood as equalities of bipointed morphisms. 
 \end{definition}
 
@@ -1049,14 +1046,15 @@ as required.
 
 \begin{definition} \label{def:fibbipointed}
 Let $A = (A, a_0, a_1)$ be a bipointed type. A \emph{fibered bipointed type} over $A$ is a dependent type
-\[
-x : A \vdash E(x) \co \type
-\]
-equipped with distinguished elements $e_0 \co E(a_0)$ and $e_1 \co E(a_1)$.
+$E \co A \to \UU$ equipped with distinguished elements $e_0 \co E(a_0)$ and $e_1 \co E(a_1)$.
 \end{definition}
 
-Given a 
-fibered bipointed type $E$ over $A$ as above, we can define $E' \defeq (\Sigma x : A) E(x)$ and observe that
+For $A \co \Bip$, the type of  fibered bipointed types over $A$ is then defined by letting
+\[
+\FibBip(A) \defeq (\Sigma E : A \to \UU)  \big( E(a_0) \times E(a_1) \big) \, .
+ \]
+ Note that the type $\FibBip(A)$ is not small. 
+Given a fibered bipointed type $E \co A \to \UU$, we can define $E' \defeq (\Sigma x : A) E(x)$ and observe that
 we can equip $E'$ with the structure of a bipointed type by taking $e'_0 \defeq \pair(a_0, e_0)$ and $e'_1 \defeq \pair(a_1, e_1)$.
 In this way, the first projection $\pi_1 \co E' \to A$ becomes a morphism of bipointed types:
 \[
@@ -1068,26 +1066,22 @@ In this way, the first projection $\pi_1 \co E' \to A$ becomes a morphism of bip
 
 
 \begin{definition} \label{def:fibsection} Let $E = (E, e_0, e_1)$ be a fibered bipointed type over
-$A = (A, a_0, a_1)$.  A \emph{bipointed section} of $E$,
-\[
-(f, \bar{f}_0, \bar{f}_1) \co A \to E \, ,
-\]
-consists of a section $f \co (\Pi x \co A) E(x)$ together with paths $\bar{f}_0 \co f(a_0) = e_0$ 
+$A = (A, a_0, a_1)$.  A \emph{bipointed section} of $E$, $(f, \bar{f}_0, \bar{f}_1) \co A \to E$, 
+consists of a section $f \co (\Pi x \co A) E(x)$ equipped with paths~$\bar{f}_0 \co f(a_0) = e_0$ 
 and $\bar{f}_1 \co f(a_1) = e_1$. \end{definition} 
 
 
-The type of bipointed sections of $E$ is then defined to be
+The type of bipointed sections of $E \co A \to \UU$ is then defined to be
 \[
-\BoolFibHom(E) \defeq (\Sigma f \co (\Pi x : A) E(x)) \, \Id( f(a_0), e_0)) \times \Id ( f(a_1), e_1)) \, .
+\BipSect(E) \defeq (\Sigma f \co (\Pi x : A) E(x)) \, \Id( f(a_0), e_0)) \times \Id ( f(a_1), e_1)) \, .
 \]
-Given a section $f = (f, \bar{f}_0, \bar{f}_1)$ of a bipointed type $E$, we can define a bipointed morphism~$(f', \bar{f'}_0, \bar{f'}_1) \co A \to E'$, where $E'$ is the
-bipointed type defined by $E' \defeq (\Sigma x :A) E(x)$.
-The underlying function is given by letting,  for $x : A$, 
+Given a section $f \co A \to E$, we can define a bipointed morphism~$f'  \co A \to E'$, where $E'$ is the
+bipointed type defined by $E' \defeq (\Sigma x :A) E(x)$. Its underlying function is given by letting,  for $x : A$, 
 \[
 f'(x) \defeq \pair(x, f(x))
 \]
 For $k \in \{ 0, 1 \}$, the required path~$\bar{f}'_k \co f'(a_k) = e'_k$,
-is then given by the following chain of identity proofs:
+is then given by the following chain of judgemental and propositional identity proofs:
 \[
 f'(a_k) \deq \pair(a_k, f(a_k)) =  \pair(a_k, e_k) \deq e'_k \, .
 \]
@@ -1106,13 +1100,11 @@ A . \ar@/_1.2pc/[u]_{f'} }
 
 
 \begin{definition} \label{def:2cellsection} Let $E$ be a fibered bipointed type over $A$. If $f = (f, \bar{f}_0,\bar{f}_1)$ and $g = (g, \bar{g}_0, \bar{g}_1)$ are bipointed sections of $E$, a \emph{bipointed homotopy} 
-\[
-(\alpha, \bar{\alpha}_0, \bar{\alpha}_1) \co (f, \bar{f}_0, \bar{f}_1)  \rightarrow (g, \bar{g}_0, \bar{g}_1)
-\] 
+$(\alpha, \bar{\alpha}_0, \bar{\alpha}_1) \co (f, \bar{f}_0, \bar{f}_1)  \rightarrow (g, \bar{g}_0, \bar{g}_1)$ 
 is a homotopy~$\alpha \co f \sim g$ together with paths $\bar{\alpha}_0 \co \Id( f(a_0),  g(a_0))$ and $\bar{\alpha}_1 \co \Id ( f(a_1) , g(a_1))$. 
 \end{definition} 
 
-The type of bipointed homotopies of bipointed sections is then defined as follows:
+The type of bipointed homotopies between bipointed sections $f$ and $g$ as above is then defined by letting:
 \[
 \BipHot \big( (f, \bar{f}_0, \bar{f}_1), (g, \bar{g}_0, \bar{g}_1) \big) \defeq
 (\Sigma \alpha \co f \sim g) \Id ( f(a_0), g(a_0) ) \times \Id ( f(a_1) , g(a_1) ) \, .
@@ -1149,10 +1141,11 @@ type in completely elementary and explicit terms.
 
 \begin{definition}\label{def:BoolInit}
 A bipointed type $A$ is said to be \emph{homotopy-initial}  if for any bipointed type $B$, the type $\BipHom(A,B)$ of bipointed morphisms from $A$ to $B$
-is contractible, \ie the following type is inhabilited
+is contractible, \ie the type
 \[
- \iscontr(\BipHom(A, B) ) \, .
-\]  
+(\Pi B \co \Bip) \, \iscontr(\BipHom(A, B) ) 
+\] 
+is inhabited
 \end{definition}
 
 Let us remark that the uniqueness implicit in Definition~\ref{def:BoolInit} requires that any two bipointed homomorphisms are propositionally equal as tuples. It is worth emphasizing also that homotopy-initiality is a purely type-theoretic notion; despite having an intuitive semantical interpretation, it is formulated in terms of inhabitation of specific, definable types. In fact, it is possible to give a characterization of homotopy-initial bipointed types in terms of type-theoretic rules, as the next proposition spells out.
@@ -1237,8 +1230,14 @@ In particular, any type equivalent to $\Bool$ is homotopy-initial.
 \begin{proof} Immediate.
 \end{proof}
 
-\begin{definition} We say that a bipointed type $A$ is \emph{homotopy-projective} if every fibered bipointed type over it has a bipointed section.
+\begin{definition} We say that a bipointed type $A$ is \emph{homotopy-projective} if every fibered bipointed type over it has a bipointed section, \ie the type
+\[ 
+\ishproj(A) \defeq (\Pi E : \FibBip(A))  \BipSect(E)
+\]  
+is inhabited.
 \end{definition} 
+
+
 
 
 \begin{proposition} \label{thm:hprojind} A bipointed type $A$ is homotopy-projective if and only if it is inductive, \ie it satisfies
@@ -1478,7 +1477,12 @@ $p \co f = g$. Such a path $p$ is itself is unique up to a higher path, which in
 We can now state and prove the main result of this first part of the paper.
 
 
-\begin{theorem}\label{lem:BoolMainInt} A bipointed type is homotopy-initial if and only if it is  homotopy-projective.
+\begin{theorem}\label{lem:BoolMainInt} A bipointed type is homotopy-initial if and only if it is  homotopy-projective, 
+\ie the type
+\[
+(\Pi A \co \Bip) \big( \ishinit(A) \leftrightarrow \ishproj(A) \big) \, .
+\]
+is inhabited.
 \end{theorem}
 
 \begin{proof} The fact that a homotopy-projective type is homotopy-indicuctive was proved in 
@@ -1555,6 +1559,17 @@ g(a_0) & \deq \alpha(a_0)_{!} \big( \pi_2 f(a_0)  \big) & & \qquad (\text{by def
 \end{proof}
 
 
+
+\begin{remark}\label{lem:BoolMainInternal} Let   $A: \Bip$ be a small bipointed type.
+ The types $\ishinit(A)$ and $\ishproj(A)$ are mere
+propositions and hence there is an equivalence $\ishinit(A)  \simeq   \ishproj(A)$.
+Indeed, observe that
+the type $\ishinit(A)$ is a mere proposition since $\iscontr(X)$ is a mere proposition for any type $X$ and the dependent product of family of mere propositions is again a mere proposition. To show that $\ishproj (A)$ is a mere proposition, we note that to prove that a type $X$ is a mere proposition, it suffices to do so under the assumption that $X$ is inhabited. Assume therefore that $\ishproj(A)$ is inhabited. Since the dependent product of a family of mere propositions is again a mere proposition, it suffices to show that $\BipSect(A,E)$ is a mere proposition for any $E$. Fix sections $\mu, \nu : \BipSect(A,E)$. To show $\mu = \nu$, it suffices to exhibit a bipointed homotopy between $\mu$ and $\nu$. But since a bipointed homotopy is nothing more than a section of an appropriate fibered bipointed type, we can obtain it by using the fact that $\ishproj(A)$ is inhabited.
+For part (ii), the logical equivalence between the types $\ishproj(A)$ and 
+$\ishinit(A)$ is established in the same way as in the proof of  Theorem~\ref{lem:BoolMainInt}. 
+\end{remark}
+
+
 \begin{corollary}\label{lem:BoolInitInt}
 A bipointed type is homotopy-initial if and only if it is equivalent to the type $\Bool$. In particular, $\Bool$ is homotopy-initial.
 \end{corollary}
@@ -1562,56 +1577,11 @@ A bipointed type is homotopy-initial if and only if it is equivalent to the type
 
 
 
+We conclude this section by showing that if the universe $\UU$ is univalent, then a form of the univalence axiom holds also for bipointed types, in the sense made precise by the next theorem.
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Univalence for bipointed types}
-
-We now work assuming a single universe type $\UU$ formulated \`a la Russell. We refer to its elements
-as \emph{small types}. Using it, the notions of a bipointed type
-and of a fibered bipointed type can be internalized in a straightforward way. First of all, we define the type of small bipointed types as 
-\[
-\BoolAlg \defeq (\Sigma A : \UU)( A \times A ) \, .
-\]
-For $A \co \BoolAlg$, we define the type of \emph{small fibered bipointed types} over $A$ by letting
-\[
-\BoolFibAlg(A) \defeq (\Sigma E : A \to \UU)  \big( E(a_0) \times E(a_1) \big) \, .
- \]
-We note that the types $\BoolAlg$ and $\BoolFibAlg(A)$ are not small. The types of bipointed morphisms, bipointed sections, and bipointed homotopies for small bipointed types are defined as for general bipointed types. In this way,  we internalize the properties of being homotopy-initial and homotopy-projective as follows.
-For a small bipointed type $A : \BoolAlg$ , the type of proofs that $A$ is homotopy-initial is defined by letting
-\[ 
-\IsBoolHInit(A) \defeq (\Pi B : \BoolAlg) \; \iscontr\big(\BipHom [ A,  B] \big)
-\]  
-Similarly, the type of proofs that $A$ is homotopy-projective is given by 
-\[ 
-\IsBoolHProj(A) \defeq (\Pi E : \BoolFibAlg(A))  \BoolFibHom(E)
-\]  
-We point out that the internal notions of homotopy-initiality and homotopy-projection are different from their meta-theoretic counterparts introduced in the previous section, since they postulate the existence of a type-theoretic function assigning to every bipointed type a proof of contractibility (for homotopy-initiality), and to every fibered bipointed type a section (for homotopy-projection). Our main result can now be expressed internally as follows. We again note that this result is different from the meta-theoretic Theorem~\ref{lem:BoolMainInt}, since it asserts a type equivalence rather than  a logical equivalence.
-
-\begin{theorem}\label{lem:BoolMainInternal} Let   $A: \BoolAlg$ be a small bipointed type.
-\begin{enumerate}[(i)] 
-\item  The types $\IsBoolHInit(A)$ and $\IsBoolHProj(A)$ are mere
-propositions.
-\item There is a logical equivalence $\IsBoolHInit(A) \leftrightarrow \IsBoolHProj(A)$.
-\item There is an equivalence $\IsBoolHInit(A)  \simeq   \IsBoolHProj(A)$.
-\end{enumerate}
-\end{theorem}
-
-\begin{proof} For part (i), observe that
-the type $\IsBoolHInit(A)$ is a mere proposition since $\iscontr(X)$ is a mere proposition for any type $X$ and the dependent product of family of mere propositions is again a mere proposition. To show that $\IsBoolHProj (A)$ is a mere proposition, we note that to prove that a type $X$ is a mere proposition, it suffices to do so under the assumption that $X$ is inhabited. Assume therefore that $\IsBoolHProj(A)$ is inhabited. Since the dependent product of a family of mere propositions is again a mere proposition, it suffices to show that $\BoolFibHom(A,E)$ is a mere proposition for any $E$. Fix sections $\mu, \nu : \BoolFibHom(A,E)$. To show $\mu = \nu$, it suffices to exhibit a bipointed homotopy between $\mu$ and $\nu$. But since a bipointed homotopy is nothing more than a section of an appropriate fibered bipointed type, we can obtain it by using the fact that $\IsBoolHProj(A)$ is inhabited.
-For part (ii), the logical equivalence between the types $\IsBoolHProj(A)$ and 
-$\IsBoolHInit(A)$ is established in the same way as in the proof of  Theorem~\ref{lem:BoolMainInt}. 
-Part (iii) follows from part (i) and part (ii). 
-\end{proof}
-
-
-If the universe $\UU$ is univalent, then a form of the univalence axiom holds also for bipointed types,
-as the next result makes precise.
-
-
-\begin{theorem}[Univalence for bipointed types] \label{thm:bipunivalence} Assuming the Univalence Axiom, 
- for bipointed types $A, B : \BoolAlg$, the canonical function
+\begin{theorem}[$\Hint + \mathrm{UA}$] \label{thm:bipunivalence}
+For bipointed types $A, B : \Bip$, the canonical function
 \[ 
 \ext_{A,B} \co \Id \big(A,B\big) \to  \BipEquiv(A,B) \, .
 \] 
@@ -1636,12 +1606,14 @@ After rearranging we get
 which, by Lemma~\ref{BoolAlgSpace}, is equivalent to $\BipEquiv(A,B)$, as desired. Finally, it is not hard to see that the composition of the above equivalences yields the canonical function $\ext$ (up to a homotopy).
 \end{proof} 
 
-\begin{corollary}\label{BoolHInitIso}
-The identity type between any two small homotopy-initial bipointed types $A,B : \BoolAlg$ is contractible, i.e., 
+\begin{corollary}[$\Hint + \mathrm{UA}$] \label{BoolHInitIso}
+The identity type between any two small homotopy-initial bipointed types $A,B : \Bip$ is contractible, i.e., the type
 \[ 
-\ishinitial(A) \times \ishinitial(B) \to \iscontr(\Id(A,B)) \, .
+(\Pi A \co \Bip)(\Pi B \co \Bip) 
+\big( \ishinitial(A) \times \ishinitial(B) \to \iscontr(\Id(A,B)) \big) \, .
 \] 
-In particular, homotopy-initial bipointed types are unique.
+is inhabited. In particular, homotopy-initial bipointed types are unique up to an essentially unique
+propositional equality.
 \end{corollary}
 
 \begin{proof}
