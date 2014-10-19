@@ -304,18 +304,6 @@
 \address{Carnegie Mellon University}
 \date{\today}
 
-% \category{F.4.1}{Mathematical Logic and Formal Languages}{Mathematical Logic}
-%\keywords{Homotopy type theory, homotopy-initial algebras, inductive types}
-%\category{F.4.1}{Mathematical Logic and Formal Languages}{Mathematical Logic}
-%\terms{Theory, Verification}
-%\keywords{Homotopy type theory, homotopy-initial algebras, inductive types}
-%\acmformat{Steve Awodey, Nicola Gambino, and Kristina Sojakova, 2014. Inductive Types in Homotopy Type Theory.}
-%\begin{bottomstuff}
-%Author's addresses: S. Awodey, Philosophy Department, Carnegie Mellon University;
-%N. Gambino, (Current address) School of Mathematics, University of Leeds; 
-%K. Sojakova, Computer Science Department, Carnegie Mellon University.
-%\end{bottomstuff}
-
 
 
 \begin{abstract}
@@ -751,7 +739,7 @@ x:\Bool \vdash E(x) : \type \qquad
 e_0 : E(0) \qquad
 e_1 : E(1)
 \justifies
-  \boolind(0, e_0, e_1)  =  e_0 \co E(0) \, , \\
+  \boolind(0, e_0, e_1)  \deq  e_0 \co E(0) \, , \\
 \end{prooftree}
  \end{equation*}  
  \bigskip
@@ -761,7 +749,7 @@ x:\Bool \vdash E(x) : \type \qquad
 e_0 : E(0) \qquad
 e_1 : E(1)
 \justifies
- \boolind(1,e_0,e_1)  = e_1 \co E(1) \, .
+ \boolind(1,e_0,e_1)  \deq e_1 \co E(1) \, .
 \end{prooftree}
  \end{equation*}  
 \end{itemize}
@@ -772,9 +760,45 @@ e_1 : E(1)
 \label{tab:bool} 
 \end{table}
 
-Let $A$ be a type and suppose that there is an equivalence $f \co \Bool \to A$. Then, the type $A$ will satisfy essentially all the rules for $\Bool$,
-except for the computation rules, which need to be modified by replacing the definitional equalities in their conclusion with propositional ones. 
-In order to organize our study of these types and their properties, it is convenient to introduce the notion of a bipointed type. 
+Let $A$ be a type and suppose that there is an equivalence $f \co \Bool \to A$. Then, the type $A$ 
+has two distinguished elements $a_0 \defeq f(0)$ and $a_1 \defeq f(1)$, and it satisfies
+analogues of the elimination and computation rules for $\Bool$, except that the conclusions of the computation 
+rules need to be modified  by replacing the judgemental equalities  with propositional ones. More 
+explicilty, it is easy to show that the following rules are derivable: 
+
+\[
+\begin{prooftree}
+x: A \vdash E(x) : \type \qquad
+e_0 : E(a_0) \qquad
+e_1 : E(a_1) \qquad
+\justifies
+x \co A \vdash \ind(x, e_0, e_1) : E(x) 
+\end{prooftree}
+\]
+ \medskip
+\[
+\begin{prooftree}
+x: A \vdash E(x) : \type \qquad
+e_0 : E(a_0) \qquad
+e_1 : E(a_1)
+\justifies
+ \mathsf{comp}_0(e_0, e_1) \co    \ind(a_0, e_0, e_1) = e_0  \, ,
+\end{prooftree} 
+\]
+ \medskip
+\[
+\begin{prooftree}
+x: A \vdash E(x) : \type \qquad
+e_0 : E(a_0) \qquad
+e_1 : E(a_1)
+\justifies
+ \mathsf{comp}_1(e_0, e_1) \co    \ind(a_1, e_0, e_1) =   e_1    \, . 
+\end{prooftree}
+\]
+
+\bigskip
+
+Our aim in this section is to provide a characterisation of the types equivalent to $\Bool$ by means of type-theoretical universal properties. In order to do so, we introduce the notion of a bipointed type. 
 
 
 \begin{definition} \label{thm:bipointedtype}
@@ -839,7 +863,7 @@ We now discuss the notion of equivalence between bipointed types.
 
 
 
-\begin{definition} Let $A, B : \BoolAlg$ be bipointed types. We say that a bipointed morphism $f \co A \to B$ is a \myemph{bipointed equivalence}
+\begin{definition} Let $A$ and  $B$ be bipointed types. We say that a bipointed morphism $f \co A \to B$ is a \myemph{bipointed equivalence}
 if there exist bipointed morphisms 
 \[
 \ell \co \BoolHom(B,A) \, ,  \quad r \co \BoolHom(B,A) \, ,
@@ -946,10 +970,8 @@ as required.
 
 
 
-
- In order
-to prove the main result in this section, it is convenient to obtain an equivalent description of the identity
-type between two bipointed morphisms. For this, we begin by introducing the notion of a bipointed homotopy in Definition~\ref{thm:biphomotopy} below.
+We now present an equivalent description of the identity type between two bipointed morphisms. This
+will be useful in our proof of Theorem~\ref{lem:BoolMainInt}. We begin by introducing the notion of a bipointed homotopy.
 
 
 
@@ -987,7 +1009,7 @@ We define the type of bipointed homotopies as above by letting
 \begin{lemma} \label{BoolHomSpace} 
 For every parallel pair of morphisms $(f, \bar{f}_0, \bar{f}_1), (g, \bar{g}_0, \bar{g}_1) \co A \to B$ of bipointed types, there is an equivalence of types
 \[
-\mathsf{BipHot}[ (f, \bar{f}_0, \bar{f}_1), (g, \bar{g}_0, \bar{g}_1) ) ]  \simeq 
+\mathsf{BipHot}\big( (f, \bar{f}_0, \bar{f}_1), (g, \bar{g}_0, \bar{g}_1) ) \big) \simeq 
 \Id \big( (f, \bar{f}_0, \bar{f}_1), (g, \bar{g}_0, \bar{g}_1) \big)\, .
 \]
 \end{lemma}
@@ -1003,7 +1025,6 @@ for the corresponding homotopy. We then have
 & \simeq (\Sigma p : f = g) \big((\bar{f}_0,\bar{f}_1) = p^{\ast} (\bar{g}_0,\bar{g}_1) \big) \\
 & \simeq  \Id \big( (f,\bar{f}_0,\bar{f}_1) , (g,\bar{g}_0,\bar{g}_1)  \big) \, ,
 \end{align*} 
-
 as required.
 \end{proof}
 
@@ -1126,7 +1147,7 @@ is contractible, \ie the following type is inhabilited
 
 Let us remark that the uniqueness implicit in Definition~\ref{def:BoolInit} requires that any two bipointed homomorphisms are propositionally equal as tuples. It is worth emphasizing also that homotopy-initiality is a purely type-theoretic notion; despite having an intuitive semantical interpretation, it is formulated in terms of inhabitation of specific, definable types. In fact, it is possible to give a characterization of homotopy-initial bipointed types in terms of type-theoretic rules, as the next proposition spells out.
 
-\begin{proposition} \label{thm:recursivetype}
+\begin{proposition} \label{thm:hinitrec}
 A bipointed type $A = (A, a_0, a_1)$ is homotopy-initial if and only if it is recursive, \ie it satisfies
  the following rules:
 \begin{itemize}
@@ -1186,16 +1207,31 @@ p_{f,1} \co  \beta_1( f(a_0), f(a_1)) = \eta_f(a_1)  \, .
 \end{itemize}
 \end{proposition}
 
-\bigskip
 
 
+\begin{proof} Let $A$ be a bipointed type
+and assume that it is recursive. We need to show that it is homotopy-initial. So, let $B = (B, b_0, b_1)$ be a bipointed type. We begin to prove
+that the type of morphisms from $A$ to $B$ is contractible by showing that it is inhabited. This follows easily by the assumption that $A$
+is recursive. Indeed, the elimination rule allows us to define a function~$f \co A \to B$ by letting~$f \defeq (\lambda x \co A) \rec(x, b_0, b_1)$. We can
+equip this function with the structure of a morphism of bipointed types since the propositional $\beta$-rules give us propositional identity 
+proofs~$\beta_0 \co \Id(f (a_0), b_0)$ and~$\beta_1 \co \Id (f(a_1), b_1)$, as required. To complete the proof that $\Hom(A,B)$ is contractible,
+we show that any two morphisms $f, g \co A \to B$ are propositionally equal.  TO BE ADDED.
+\end{proof} 
 
+
+\begin{proposition} \label{thm:hinitequiv}
+ If $A$ is a homotopy-initial and $B$ is equivalent to $A$ as a type, then $B$ is homotopy-initial.
+In particular, any type equivalent to $\Bool$ is homotopy-initial.
+\end{proposition} 
+
+\begin{proof} Immediate.
+\end{proof}
 
 \begin{definition} We say that a bipointed type $A$ is \emph{homotopy-projective} if every fibered bipointed type over it has a bipointed section.
 \end{definition} 
 
 
-\begin{proposition} \label{thm:projind} A bipointed type $A$ is homotopy-projective if and only if it is inductive, \ie it satisfies
+\begin{proposition} \label{thm:hprojind} A bipointed type $A$ is homotopy-projective if and only if it is inductive, \ie it satisfies
 the following rules:
 \begin{itemize}
 \item Elimination rule: \smallskip
@@ -1232,7 +1268,7 @@ e_1 : E(a_1)
 \begin{proof} Immediate.
 \end{proof} 
 
-By Proposition~\ref{thm:projind}, the type $\Bool$ of Boolean truth values with rules as in Table~\ref{tab:bool}
+By Proposition~\ref{thm:hprojind}, the type $\Bool$ of Boolean truth values with rules as in Table~\ref{tab:bool}
 is homotopy-projective. Furthermore, the property of being homotopy-projective can be transported along equivalences. More precisely, if $A$ be a homotopy-projective bipointed type, $B$ a type and $f \co A \to B$ an equivalence of types, then $B$ is homotopy-projective with respect to the induced bipointed structure.
 
 \medskip
@@ -1316,13 +1352,12 @@ context the proof that induction implies recursion.
 
 
 \begin{proposition} \label{thm:indrec}
-If a bipointed type is inductive then it is recursive.
+If a bipointed type is homotopy-projective then it is homotopy-initial.
 \end{proposition}
 
 
-\begin{proof} The recursion and propositional $\beta$-rules are special cases of the elimination and propositional 
-computation rules that are part of the definition of an inductive type. The propositional $\eta$-rule and the
-propositional $(\beta, \eta)$-computatibility rules are special cases of the rules in Lemma~\ref{thm:etaind}. 
+\begin{proof} By Proposition~\ref{thm:hinitrec} and Proposition~\ref{thm:hprojind}, it is sufficient to
+show that if a bipointed type is inductive then it is recursive. But the recursion and propositional $\beta$-rules are special cases of the elimination and propositional computation rules that are part of the definition of an inductive type. The propositional $\eta$-rule and the propositional $(\beta, \eta)$-computatibility rules are special cases of the rules in Lemma~\ref{thm:etaind}. 
 \end{proof}
 
 
@@ -1416,9 +1451,9 @@ the correct type.
 
 \medskip
 
-Proving that every recursive type is inductive (i.e.\ reversing the implicaiton of Proposition~\ref{thm:indrec}) within
+Proving that every homotopy-initial type is homotopy-projective (i.e.\ reversing the implicaiton of Proposition~\ref{thm:indrec}) within
 the type theory $\Hint$ is more complex. As the discussion in Remark~\ref{thm:extbip} shows, this issue is intimately related to the problem of characterizing what kind of weak universal property
- an inductive type enjoys. For an inductive bipointed type $A = (A, a_0, a_1)$, the recursion and propositional $\beta$-rule allow us to define, for every bipointed type $B = (B, b_0, b_1)$, a homomorphism of
+ a homotopy-projective type enjoys. For a homotopy-initial bipointed type $A = (A, a_0, a_1)$, the recursion and propositional $\beta$-rule allow us to define, for every bipointed type $B = (B, b_0, b_1)$, a homomorphism of
 bipointed types~$f \co A \to B$, defined by letting 
 \[
 f \defeq (\lambda x \co A) \rec(x, b_0, b_1) \, .
@@ -1436,21 +1471,10 @@ We can now state and prove the main result of this first part of the paper.
 \begin{theorem}\label{lem:BoolMainInt} A bipointed type is homotopy-initial if and only if it is  homotopy-projective.
 \end{theorem}
 
-\begin{proof} Let $A = (A, a_0, a_1)$ be a bipointed type.
-We proved (i) $\Rightarrow$ (ii) in Proposition~\ref{thm:indrec}. We now prove (ii) $\Rightarrow$ (iii). So, let $A$ be a bipointed type
-and assume that it is recursive. We need to show that it is homotopy-initial. So, let $B = (B, b_0, b_1)$ be a bipointed type. We begin to prove
-that the type of morphisms from $A$ to $B$ is contractible by showing that it is inhabited. This follows easily by the assumption that $A$
-is recursive. Indeed, the elimination rule allows us to define a function~$f \co A \to B$ by letting~$f \defeq (\lambda x \co A) \rec(x, b_0, b_1)$. We can
-equip this function with the structure of a morphism of bipointed types since the propositional $\beta$-rules give us propositional identity 
-proofs~$\beta_0 \co \Id(f (a_0), b_0)$ and~$\beta_1 \co \Id (f(a_1), b_1)$, as required. To complete the proof that $\Hom(A,B)$ is contractible,
-we show that any two morphisms $f, g \co A \to B$ are propositionally equal.  TO BE ADDED.
-
-
-
-
-We now  show that (iii) $\Rightarrow$ (iv).
-Let $A = (A, a_0, a_1)$ be a homotopy-initial pointed type. We need to show that it is projective. So, let $E = (E, e_0, e_1)$ be a fibered 
-bipointed type over $A$. Let us define the type 
+\begin{proof} The fact that a homotopy-projective type is homotopy-indicuctive was proved in 
+Proposition~\ref{thm:indrec}. For the other implication, 
+let $A = (A, a_0, a_1)$ be a homotopy-initial bipointed type. We need to show that it is homotopy-projective. 
+So, let $E = (E, e_0, e_1)$ be a fibered bipointed type over $A$. Let us define the type 
 \[
 E' \defeq (\Sigma x \co A) E(x) 
 \]
@@ -1522,18 +1546,13 @@ g(a_0) & \deq \alpha(a_0)_{!} \big( \pi_2 f(a_0)  \big) & & \qquad (\text{by def
 
 
 \begin{corollary}\label{lem:BoolInitInt}
-The bipointed type $\Bool$ is homotopy-initial.
+A bipointed type is homotopy-initial if and only if it is equivalent to the type $\Bool$. In particular, $\Bool$ is homotopy-initial.
 \end{corollary}
 
 
-Corollary~\ref{lem:BoolInitInt} is the analogue in our setting of the characterization of 
-the type $\Bool$ as a strict coproduct $1+1$ in extensional type theory. It makes precise the rough idea that, 
-in intensional type theory, $\Bool$ is a kind of homotopy coproduct or weak $\infty$-coproduct 
-in the $\infty$-category of types, functions, identity terms, higher identity terms, \ldots.  
 
-\begin{corollary} If $A$ is a homotopy-initial and $B$ is equivalent to $A$ as a type, then $B$ is homotopy-initial.
-In particular, any type equivalent to $\Bool$ is homotopy-initial.
-\end{corollary} 
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1552,20 +1571,15 @@ For $A \co \BoolAlg$, we define the type of \emph{small fibered bipointed types}
 We note that the types $\BoolAlg$ and $\BoolFibAlg(A)$ are not small. The types of bipointed morphisms, bipointed sections, and bipointed homotopies for small bipointed types are defined as for general bipointed types. In this way,  we internalize the properties of being homotopy-initial and homotopy-projective as follows.
 
 
-\begin{definition}\label{def:BoolHInit}
-A small bipointed type $A : \BoolAlg$ is said to be \emph{homotopy-initial} if for any small bipointed type $B : \BoolAlg$, the type of bipointed morphisms from $A$ to $B$ is contractible, i.e.\ the following type is inhabited
+
+For a small bipointed type $A : \BoolAlg$ , the type of proofs that $A$ is homotopy-initial is defined by letting
 \[ 
 \IsBoolHInit(A) \defeq (\Pi B : \BoolAlg) \; \iscontr\big(\BoolHom [ A,  B] \big)
 \]  
-\end{definition}
-
-
-\begin{definition}\label{def:BoolHProj}
-A small bipointed type $A: \BoolAlg$ is said to be \emph{homotopy-projective} if for any small fibered bipointed type $E : \BoolAlg(A)$ over $A$, there exists a bipointed section of $E$, i.e.\ the following type is inhabited:
+Similarly, the type of proofs that $A$ is homotopy-projective is given by 
 \[ 
 \IsBoolHProj(A) \defeq (\Pi E : \BoolFibAlg(A))  \BoolFibHom(E)
 \]  
-\end{definition}
 We point out that the internal notions of homotopy-initiality and homotopy-projection are different from their meta-theoretic counterparts introduced in the previous section, since they postulate the existence of a type-theoretic function assigning to every bipointed type a proof of contractibility (for homotopy-initiality), and to every fibered bipointed type a section (for homotopy-projection). Our main result can now be expressed internally as follows. We again note that this result is different from the meta-theoretic Theorem~\ref{lem:BoolMainInt}, since it asserts a type equivalence rather than  a logical equivalence.
 
 \begin{theorem}\label{lem:BoolMainInternal} Let   $A: \BoolAlg$ be a small bipointed type.
