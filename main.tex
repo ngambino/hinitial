@@ -727,7 +727,7 @@ Let us recall that the type $\Bool$ is given by means of formation, introduction
 \item Formation rule. \smallskip
 
 \[
- \Bool : \type \, .
+ \Bool : \UU \, .
  \]  \medskip
 \item Introduction rules. \smallskip
 
@@ -738,7 +738,7 @@ Let us recall that the type $\Bool$ is given by means of formation, introduction
 
 \[
 \begin{prooftree}
-x:\Bool \vdash E(x) : \type \qquad
+x:\Bool \vdash E(x) : \UU \qquad
 e_0 : E(0) \qquad
 e_1 : E(1) \qquad
 \justifies
@@ -749,7 +749,7 @@ x \co \Bool \vdash \boolind(x, e_0, e_1) : E(x)
 
 \begin{equation*}
 \begin{prooftree}
-x:\Bool \vdash E(x) : \type \qquad
+x:\Bool \vdash E(x) : \UU \qquad
 e_0 : E(0) \qquad
 e_1 : E(1)
 \justifies
@@ -759,7 +759,7 @@ e_1 : E(1)
  \bigskip
  \begin{equation*}
 \begin{prooftree}
-x:\Bool \vdash E(x) : \type \qquad
+x:\Bool \vdash E(x) : \UU \qquad
 e_0 : E(0) \qquad
 e_1 : E(1)
 \justifies
@@ -774,7 +774,7 @@ e_1 : E(1)
 \label{tab:bool} 
 \end{table}
 
-Let $A$ be a type and suppose that there is an equivalence $f \co \Bool \to A$. Then, the type $A$ 
+Let $A \co \UU$ be a type and suppose that there is an equivalence $f \co \Bool \to A$. Then, the type $A$ 
 has two distinguished elements $a_0 \defeq f(0)$ and $a_1 \defeq f(1)$, and it satisfies
 analogues of the elimination and computation rules for $\Bool$, except that the conclusions of the computation 
 rules need to be modified  by replacing the judgemental equalities  with propositional ones. More 
@@ -782,7 +782,7 @@ explicilty, it is easy to show that the following rules are derivable:
 
 \[
 \begin{prooftree}
-x: A \vdash E(x) : \type \qquad
+x: A \vdash E(x) : \UU \qquad
 e_0 : E(a_0) \qquad
 e_1 : E(a_1) \qquad
 \justifies
@@ -792,7 +792,7 @@ x \co A \vdash \ind(x, e_0, e_1) : E(x)
  \medskip
 \[
 \begin{prooftree}
-x: A \vdash E(x) : \type \qquad
+x: A \vdash E(x) : \UU \qquad
 e_0 : E(a_0) \qquad
 e_1 : E(a_1)
 \justifies
@@ -802,7 +802,7 @@ e_1 : E(a_1)
  \medskip
 \[
 \begin{prooftree}
-x: A \vdash E(x) : \type \qquad
+x: A \vdash E(x) : \UU \qquad
 e_0 : E(a_0) \qquad
 e_1 : E(a_1)
 \justifies
@@ -816,14 +816,14 @@ Our aim in this section is to provide a characterisation of the types equivalent
 
 
 \begin{definition} \label{thm:bipointedtype}
-A  \emph{bipointed type} is a type $A \co \UU$ equipped with two elements, $a_0 \co A$, $a_1 : A$.
+A  (small) \emph{bipointed type} consists of a small type $A \co \UU$ together with two distingished elements $a_0 \co A$, $a_1 : A$.
 \end{definition}
 
 The type of small bipointed types is then defined by letting:
 \[
 \Bip \defeq (\Sigma A : \UU)( A \times A ) \, .
 \]
-Note that the type $\Bip$ is not small. 
+Note that this type is not small.
 When referring to a bipointed type we sometimes suppress mention of its distinguished elements and write $A = (A, a_0, a_1)$ to
 recall this abuse of language.  In the following, it will be convenient to represent a bipointed type $A$ diagrammatically as follows:
 \[
@@ -1049,13 +1049,16 @@ Let $A = (A, a_0, a_1)$ be a bipointed type. A \emph{fibered bipointed type} ove
 $E \co A \to \UU$ equipped with distinguished elements $e_0 \co E(a_0)$ and $e_1 \co E(a_1)$.
 \end{definition}
 
-For $A \co \Bip$, the type of  fibered bipointed types over $A$ is then defined by letting
+The type of  fibered bipointed types over a bipointed type $A$ is then defined by letting
 \[
 \FibBip(A) \defeq (\Sigma E : A \to \UU)  \big( E(a_0) \times E(a_1) \big) \, .
  \]
- Note that the type $\FibBip(A)$ is not small. 
-Given a fibered bipointed type $E \co A \to \UU$, we can define $E' \defeq (\Sigma x : A) E(x)$ and observe that
-we can equip $E'$ with the structure of a bipointed type by taking $e'_0 \defeq \pair(a_0, e_0)$ and $e'_1 \defeq \pair(a_1, e_1)$.
+ Note that this type is not small. 
+Given a fibered bipointed type $E \co A \to \UU$, we can define
+\[
+E' \defeq (\Sigma x : A) E(x)
+\] 
+and observe that $E'$ can be equipped with the structure of  bipointed type by taking $e'_0 \defeq \pair(a_0, e_0)$ and~$e'_1 \defeq \pair(a_1, e_1)$.
 In this way, the first projection $\pi_1 \co E' \to A$ becomes a morphism of bipointed types:
 \[
 \xymatrix{
@@ -1076,9 +1079,9 @@ The type of bipointed sections of $E \co A \to \UU$ is then defined to be
 \BipSect(E) \defeq (\Sigma f \co (\Pi x : A) E(x)) \, \Id( f(a_0), e_0)) \times \Id ( f(a_1), e_1)) \, .
 \]
 Given a section $f \co A \to E$, we can define a bipointed morphism~$f'  \co A \to E'$, where $E'$ is the
-bipointed type defined by $E' \defeq (\Sigma x :A) E(x)$. Its underlying function is given by letting,  for $x : A$, 
+bipointed type defined by $E' \defeq (\Sigma x :A) E(x)$. Its underlying function is given by letting,  for~$x : A$, 
 \[
-f'(x) \defeq \pair(x, f(x))
+f'(x) \defeq \pair(x, f(x)) \, .
 \]
 For $k \in \{ 0, 1 \}$, the required path~$\bar{f}'_k \co f'(a_k) = e'_k$,
 is then given by the following chain of judgemental and propositional identity proofs:
@@ -1148,7 +1151,7 @@ is contractible, \ie the type
 is inhabited
 \end{definition}
 
-Let us remark that the uniqueness implicit in Definition~\ref{def:BoolInit} requires that any two bipointed homomorphisms are propositionally equal as tuples. It is worth emphasizing also that homotopy-initiality is a purely type-theoretic notion; despite having an intuitive semantical interpretation, it is formulated in terms of inhabitation of specific, definable types. In fact, it is possible to give a characterization of homotopy-initial bipointed types in terms of type-theoretic rules, as the next proposition spells out.
+Let us remark that the uniqueness implicit in Definition~\ref{def:BoolInit} requires that any two bipointed homomorphisms are propositionally equal as tuples. It is worth emphasizing also that homotopy-initiality is a purely type-theoretic notion: despite having an intuitive semantical interpretation, it is formulated in terms of inhabitation of specific, definable types. In fact, it is possible to give a characterization of homotopy-initial bipointed types in terms of type-theoretic rules, as the next proposition spells out.
 
 \begin{proposition} \label{thm:hinitrec}
 A bipointed type $A = (A, a_0, a_1)$ is homotopy-initial if and only if it is recursive, \ie it satisfies
