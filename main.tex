@@ -1139,7 +1139,7 @@ there is an equivalence of types
 
 
  In spite of the fact that bipointed types and morphisms do not form a category in a strict sense, it is possible to define the notion of a homotopy-initial bipointed
-type in completely elementary and explicit terms.
+type in completely elementary and explicit terms, as we do in the next definition.
 
 
 \begin{definition}\label{def:BoolInit}
@@ -1148,10 +1148,10 @@ is contractible, \ie the type
 \[
 (\Pi B \co \Bip) \, \iscontr(\BipHom(A, B) ) 
 \] 
-is inhabited
+is inhabited.
 \end{definition}
 
-Let us remark that the uniqueness implicit in Definition~\ref{def:BoolInit} requires that any two bipointed homomorphisms are propositionally equal as tuples. It is worth emphasizing also that homotopy-initiality is a purely type-theoretic notion: despite having an intuitive semantical interpretation, it is formulated in terms of inhabitation of specific, definable types. In fact, it is possible to give a characterization of homotopy-initial bipointed types in terms of type-theoretic rules, as the next proposition spells out.
+Let us remark that the uniqueness implicit in Definition~\ref{def:BoolInit} requires that any two bipointed homomorphisms are propositionally equal as tuples. Clearly, the property of being  homotopy-initial  can be transported along equivalences, in the sense that if two bipointed types are equivalent, then one is homotopy-initial if and only if the other one is. It is worth emphasizing also that homotopy-initiality is a purely type-theoretic notion: despite having an intuitive semantical interpretation, it is formulated in terms of inhabitation of specific, definable types. In fact, it is possible to give a characterization of homotopy-initial bipointed types in terms of type-theoretic rules, as the next proposition spells out.
 
 \begin{proposition} \label{thm:hinitrec}
 A bipointed type $A = (A, a_0, a_1)$ is homotopy-initial if and only if it is recursive, \ie it satisfies
@@ -1217,21 +1217,49 @@ p_{f,1} \co  \beta_1( f(a_0), f(a_1)) = \eta_f(a_1)  \, .
 
 \begin{proof} Let $A$ be a bipointed type
 and assume that it is recursive. We need to show that it is homotopy-initial. So, let $B = (B, b_0, b_1)$ be a bipointed type. We begin to prove
-that the type of morphisms from $A$ to $B$ is contractible by showing that it is inhabited. This follows easily by the assumption that $A$
-is recursive. Indeed, the elimination rule allows us to define a function~$f \co A \to B$ by letting~$f \defeq (\lambda x \co A) \rec(x, b_0, b_1)$. We can
-equip this function with the structure of a morphism of bipointed types since the propositional $\beta$-rules give us propositional identity 
-proofs~$\beta_0 \co \Id(f (a_0), b_0)$ and~$\beta_1 \co \Id (f(a_1), b_1)$, as required. To complete the proof that $\Hom(A,B)$ is contractible,
-we show that any two morphisms $f, g \co A \to B$ are propositionally equal.  TO BE ADDED.
+that the type of bipointed morphisms from $A$ to $B$ is contractible by showing that it is inhabited. This follows easily by the assumption that $A$
+is recursive: the elimination rule allows us to define a function~$(\lambda x \co A) \rec(x, b_0, b_1) \co A \to B$, 
+which can be equipped with the structure of a bipointed morphism  since the propositional $\beta$-rules give 
+us~$\beta_0 \co \rec(a_0, b_0, b_1) = b_0$ and~$\beta_1 \co \rec (a_1, b_0, b_1) = b_1$, as required. To complete the proof, we now show that for every bipointed morphism $(f, \bar{f}_0, \bar{f}_1) \co A \to B$ we have
+\[
+(f, \bar{f}_0, \bar{f}_1) = 
+\big( (\lambda x \co A) \rec(x, b_0, b_1), \beta_0, \beta_1 \big)      \, .
+ \]
+We begin by proving $f = (\lambda x \co A) \rec(x, b_0, b_1)$. By function extensionality, it suffices to show that, for $x \co A$, we have $ f(x) =  \rec(x, b_0, b_1)$.
+But we have paths
+\[
+\xymatrix@C=1cm{
+f(x) \ar[r]^-{\eta_f(x)} & \rec(x, f(a_0), f(a_1)) \ar[r]^-{\gamma_x} &  \rec(x, b_0, b_1) }  \, ,
+\] 
+where $\gamma_x$ is defined by $\Id$-elimination over $\bar{f}_0$ and $\bar{f}_1$. 
+By the properties of transport, it suffices to show that the two paths represented
+by composites in the diagram
+\[
+\xymatrix@C=1.5cm{
+\rec(a_0, f(a_0), f(a_1)) \ar[d]_{\eta_f(a_0)} \ar[r]^-{\gamma_{a_0}} & \rec(a_0, b_0, b_1) \ar[d]^{\beta_0(b_0, b_1)} \\
+f(a_0) \ar[r]_{\beta_0} & b_0}
+\]
+are propositionally equal. By the propositional $(\beta,\eta)$-compatibility, it suffices to show the corresponding
+statement for the diagram
+\[
+\xymatrix@C=1.5cm{
+ \rec(a_0, f(a_0), f(a_1))  \ar[d]_{\beta_0( f(a_0), f(a_1))}\ar[r]^-{\gamma_{a_0}} &  \rec(a_0, g(a_0), g(a_1))
+ \ar[d]^{\beta_0(b_0, b_1)} \\
+ b_0 \ar[r]_{\beta_0} & g(a_0)}
+\]
+The required propositonal equality now follows by $\Id$-elimination over $\bar{f}_0 \co f(a_0) = b_0$. The final
+propositional equality is proved analogously.
 \end{proof} 
 
 
-\begin{proposition} \label{thm:hinitequiv}
- If $A$ is a homotopy-initial and $B$ is equivalent to $A$ as a type, then $B$ is homotopy-initial.
-In particular, any type equivalent to $\Bool$ is homotopy-initial.
-\end{proposition} 
 
-\begin{proof} Immediate.
-\end{proof}
+We now provide an alternative characterization of homotopy-initial bipointed types, from which it
+will be immediate that $\Bool$ and any type equivalent to it (viewed with the induced bipointed structure)
+are homotopy-initial. A further reason of interest for this characterization is that it provides a counterpart
+in our context of the familiar proof that for the set of the natural numbers, say, the principles of induction
+and recursion are equivalent. 
+
+
 
 \begin{definition} We say that a bipointed type $A$ is \emph{homotopy-projective} if every fibered bipointed type over it has a bipointed section, \ie the type
 \[ 
@@ -1281,15 +1309,12 @@ e_1 : E(a_1)
 \end{proof} 
 
 By Proposition~\ref{thm:hprojind}, the type $\Bool$ of Boolean truth values with rules as in Table~\ref{tab:bool}
-is homotopy-projective. Furthermore, the property of being homotopy-projective can be transported along equivalences. More precisely, if $A$ be a homotopy-projective bipointed type, $B$ a type and $f \co A \to B$ an equivalence of types, then $B$ is homotopy-projective with respect to the induced bipointed structure.
-
-\medskip
-
+is homotopy-projective. Furthermore, the property of being homotopy-projective can be transported along equivalences, in the same sense as homotopy-initiality.
 Our goal for the reminder of this section is to show that a bipointed type is homotopy-initial if and only
-if it is homotopy-projective. In order to do so, we begin to explore some consequences of the assumption that a bipointed type is inductive. 
+if it is homotopy-projective. In order to do so, we begin to explore some consequences of the assumption that a bipointed type is homotopy-projective. 
 
 \begin{lemma} \label{thm:etaind}
-If $A$ is an inductive bipointed type, then it satisfies the following rules:
+If $A$ is a homotopy-projective bipointed type, then it satisfies the following rules:
 \begin{itemize}
 \item Propositional expansion rule: \smallskip
 \[
@@ -1320,11 +1345,13 @@ x \co A \vdash f(x) \co E(x)
 \end{itemize}
 \end{lemma}
 
-\begin{proof} Let $A = (A, a_0, a_1)$ be an inductive bipointed type.  We begin by proving the propositional expansion rule. So, let us assume its premisses and, for $x \co A$, define
+\begin{proof} Let $A = (A, a_0, a_1)$ be a homotopy-projective bipointed type. By Proposition~\ref{thm:etaind},
+it is inductive and hence we can use the elimination and computation rules. 
+ We begin by proving the propositional expansion rule. So, let us assume its premisses and, for $x \co A$, define
 \[
  E'(x) \defeq \Id_{E(x)} \big(  \ind( x, f(a_0), f(a_1)), f(x) \big) \, .
 \]
-We now apply the elimination rule for an inductive bipointed type as follows:
+We now apply the elimination rule  as 
 
 \[
 \begin{prooftree}
@@ -1338,14 +1365,14 @@ x \co A \vdash  \ind(x, e'_0, e'_1)  \co E'(x) \, ,
 where the elements
 \begin{align*} 
 e'_0 & \defeq \mathsf{comp}_0( f(a_0), f(a_1)) \co \Id_{E(a_0)}(  \ind(a_0, f(a_0), f(a_1)), f(a_0) ) \, , \\
-e'_1 &  \defeq \mathsf{comp}_1(f(a_0), f(a_1)) \co \Id_{E(a_1)}(  \ind(a_1, f(a_0), f(a_1)), f(a_1) ) \, .
+e'_1 &  \defeq \mathsf{comp}_1(f(a_0), f(a_1)) \co \Id_{E(a_1)}(  \ind(a_1, f(a_0), f(a_1)), f(a_1) ) 
 \end{align*} 
-are given by the propositional computation rule of inductive bipointed types. For $x \co A$, we can then define the required term in the conclusion of the propositional expansion rule by letting
+are given by the propositional computation rule for an inductive bipointed type. For $x \co A$, we can then define the required term in the conclusion of the propositional expansion rule by letting
 \[
  \mathsf{exp}(f,x) \defeq  \ind(x, e'_0, e'_1) \co \Id_{E(x)} \big(  \ind( x, f(a_0), f(a_1)), f(x) \big)  \, .
  \]
  With this definition, the required compatibility rules can be obtained very easily. For the first one, observe that
- the definitions given above and the  the first computation rule for inductive types imply that 
+ the definitions given above and the  the first computation rule for an inductive type imply that 
  we have the following chain of judgemental and 
  propositional equalities:
  \begin{align*}  
@@ -1356,9 +1383,10 @@ are given by the propositional computation rule of inductive bipointed types. Fo
   The second compatibility rule is obtained in an analogous way.
 \end{proof} 
 
+\medskip
 
-Next, we adapt to our
-context the proof that induction implies recursion. 
+
+We can now adapt  the proof that induction implies recursion to our context. 
 
 
 
