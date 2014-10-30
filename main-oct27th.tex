@@ -119,7 +119,6 @@
 \newtheorem{remark}[theorem]{Remark} 
 \newtheorem{remarks}[theorem]{Remarks} 
 \newtheorem*{remark*}{Remark} 
-\newtheorem*{remarks*}{Remarks} 
 \newtheorem{example}[theorem]{Example}
 \newtheorem{examples}[theorem]{Examples}
 \newtheorem*{example*}{Example}
@@ -391,11 +390,173 @@ of two types as usually defined via $\Sigma$-types. We say that two elements  $a
  the type $\Id(a,b)$ is inhabited.
 
 
+\begin{table}[ht]
+\fbox{ 
+\begin{minipage}{12cm}
+\medskip
+\begin{itemize}
+\item Formation rule
+\[
+\begin{prooftree}
+x \co A \vdash B(x) \co \type
+\justifies
+(\Pi x \co A) B(x) \co \type
+\end{prooftree}
+\]
+\item Introduction rule
+\[
+\begin{prooftree}
+x \co A \vdash b(x) \co B(x) 
+\justifies
+(\lambda x \co A)b(x) \co (\Pi x : A) B(x)
+\end{prooftree}
+\]
+\item Elimination rule
+\[
+\begin{prooftree}
+f \co (\Pi x : A) B(x) \quad
+a \co A 
+\justifies
+\app(f, a) \co B(a)
+\end{prooftree}
+\]
+\item $\beta$-rule
+\[
+\begin{prooftree}
+x \co A \vdash b(x) \co B(x) 
+\justifies
+\app( (\lambda x : A) b(x), a) \equiv b(a) \co B(a)
+\end{prooftree}
+\]
+\item $\eta$-rule
+\[
+\begin{prooftree}
+f \co (\Pi x :A) B(x) 
+\justifies
+f \equiv (\lambda x : A) \app(f, x) \co (\Pi x \co A) B(x)
+\end{prooftree}
+\]
+ \end{itemize} \medskip
+\end{minipage}}
+\medskip
+\caption{Rules for $\Pi$-types.}
+\label{tab:pi}
+\end{table}
+
+
+\begin{table}[ht]
+\fbox{ 
+\begin{minipage}{12cm}
+\medskip
+\begin{itemize}
+\item Formation rule
+\[
+\begin{prooftree}
+x \co A \vdash B(x) \co \type
+\justifies
+(\Sigma x \co A) B(x) \co \type
+\end{prooftree}
+\]
+\item Introduction rule
+\[
+\begin{prooftree}
+a \co A \qquad 
+b(a) \co B(a) 
+\justifies
+\pair(a,b) \co (\Sigma x : A) B(x)
+\end{prooftree}
+\]
+\item $\Sigma$-elimination rule.
+\[
+\begin{prooftree}
+\begin{array}{l} 
+u : (\Sigma x : A) B(x) \vdash E(u) :  \type \\
+ x :  A, y \co B(x) \vdash  e(x,y) :  E(\pair(x,y))  
+ \end{array}
+\justifies
+u :  (\Sigma x :A)B(x) \vdash  \mysplit(u,e) :  E(u)
+\end{prooftree}
+\]
+\item $\Sigma$-computation rule.
+\[
+\begin{prooftree}
+\begin{array}{l} 
+u : (\Sigma x : A) B(x) \vdash E(u) :  \type \\
+ x :  A, y \co B(x) \vdash  e(x,y) :  E(\pair(x,y))  
+ \end{array}
+ \justifies
+x :  A, y \co B(x) \vdash \mysplit(\pair(x,y),e) \equiv e(x,y) :  E(\pair(x,y)) \, .
+\end{prooftree}
+\]
+\end{itemize} \medskip
+\end{minipage}}
+\medskip
+\caption{Rules for $\Sigma$-types.}
+\label{tab:sigma}
+\end{table}
 
 
 
 
-\begin{remarks*} \hfill 
+\begin{table}[ht]
+\fbox{ 
+\begin{minipage}{12cm}
+\medskip
+\begin{itemize}
+\item $\Id$-formation rule.
+\[
+\begin{prooftree}
+A :  \type \quad 
+a :  A  \quad
+b :  A 
+\justifies
+ \id{A}(a,b) :  \type
+ \end{prooftree}
+\]
+\item $\Id$-introduction rule.
+\[
+\begin{prooftree}
+a :  A 
+\justifies
+ \refl(a) :  \id{A}(a,a)
+ \end{prooftree} 
+\]
+\item $\Id$-elimination rule.
+\[
+\begin{prooftree}
+\begin{array}{l} 
+x, y :  A, u :  \id{A}(x,y) \vdash E(x,y,u) :  \type \\
+ x :  A \vdash  e(x) :  E(x,x,\refl(x))  
+ \end{array}
+\justifies
+x, y :  A, u :  \id{A}(x,y) \vdash  \idrec(x,y,u,e) :  E(x,y,u)
+\end{prooftree}
+\]
+\item $\Id$-computation rule.
+\[
+\begin{prooftree}
+\begin{array}{l} 
+x, y :  A, u :  \id{A}(x,y) \vdash E(x,y,u) :  \type \\
+ x :  A \vdash  e(x) :  E(x,x,\refl(x)) 
+ \end{array}
+ \justifies
+x :  A \vdash \idrec(x,x,\refl(x), e) = e(x) :  E(x, x, \refl(x)) \, .
+\end{prooftree}
+\]
+\end{itemize} \medskip
+\end{minipage}}
+\medskip
+\caption{Rules for $\Id$-types.}
+\label{tab:id}
+\end{table}
+
+
+
+
+
+
+
+\begin{remarks} \hfill 
 \begin{enumerate}[(i)]
 \item The rules for $\Pi$-types of $\Hint$ are derivable from those
 in~\cite[Section~5.4]{NordstromB:marltt}. For simplicity, 
@@ -419,7 +580,7 @@ without FE.
 \item The type theory $\Hint$ will serve as the background theory for our study of 
 inductive types and W-types. For this reason, we need not assume it to have any primitive types.
 \end{enumerate}
-\end{remarks*}
+\end{remarks}
 
 
 \noindent
@@ -452,7 +613,12 @@ in the most recent formulations of Martin-L\"of type theories~\cite{NordstromB:m
 
 \bigskip
 
-The main import of the 
+The homotopical semantics of  $\Hint$ is based on the idea that an identity term~$p:  \id{A}(a,b)$ 
+is (interpreted as) a path $p: a\leadsto b$ between the points $a$ and $b$ in the space $A$.   
+More generally, the interpretations of terms $a(x)$ and $b(x)$ with free variables will be continuous 
+functions into the 
+space $A$, and an identity term $p(x) :  \id{A}\big(a(x),b(x)\big)$ is then a 
+continuous family of paths, \emph{i.e.}~a homotopy between the continuous functions. Now, the main import of the 
 $\Id$-elimination rule is that  type dependency must respect identity, in the following sense: given a dependent type
 \begin{equation}
 \label{equ:deptype}
@@ -460,8 +626,24 @@ x:A \vdash B(x) : \type \, ,
 \end{equation} 
 and $p: \id{A}(a,b)$, there is then a \emph{transport} function 
  $$p_{\, ! } : B(a) \rightarrow B(b),$$ which is defined by $\Id$-elimination, taking for $x : A$
-the function $\refl(x)_{\, !} : B(x) \rightarrow B(x)$ to be the identity on $B(x)$.  
- The topological notion of contractibility admits the following type-theoretic counterpart, originally
+the function $\refl(x)_{\, !} : B(x) \rightarrow B(x)$ to be the identity on $B(x)$.  Semantically, 
+given that an identity term $p: \id{A}(a,b)$ is interpreted as a path $p: a\leadsto b$, 
+ this means that a dependent type as in~\eqref{equ:deptype} must be interpreted as a space $B\rightarrow A$, fibered
+ over the space $A$,  and that the judgement
+  \[
+  x,y:A \vdash\id{A}(x,y) : \type
+  \] 
+  is interpreted as the canonical fibration $A^I \rightarrow A\times A$ 
+ of the path space $A^I$ over $A \times A$. For a more detailed overview of the homotopical interpretation, 
+ see~\cite{AwodeyS:typth}.
+
+Independently of this interpretation, each type $A$ can be shown to carry the structure of a weak 
+$\omega$-groupoid in the sense of~\cite{BataninM:mongcn,LeinsterT:higohc} with the elements of $A$ as objects, identity proofs $p : \id{A}(a,b)$ as morphisms and 
+ elements of iterated identity types 
+ as~$n$-cells~\cite{vandenBergB:typwg,LumsdaineP:weaci}. Furthermore, $\Hint$ 
+ determines a weak $\omega$-category~$\mathcal{C}(\Hint)$ having types as 0-cells, elements $f : A \rightarrow B$ as 1-cells, and elements of (iterated) identity types 
+as~$n$-cells~\cite{Lumsdaine:higcft}.   The relation between the weak $\omega$-category structure of~$\mathcal{C}(\Hint)$ and the homotopical interpretation of intensional type theories closely mirrors that between higher category theory and homotopy theory in modern algebraic topology, and some methods developed in the latter setting are also applicable in type theory.  For instance,
+ the topological notion of contractibility admits the following type-theoretic counterpart, originally
  introduced by Voevodsky in~\cite{VoevodskyV:unifc}.
 
 
@@ -492,13 +674,8 @@ Let us also recall from~\cite{VoevodskyV:unifc} the notions of weak equivalence 
 \[
  \hfiber(f,y) \defeq (\Sigma x : A) \id{B}(f x, y) \, .
 \]
-Recall that a function $f$ is an equivalence if an only if every fiber is contractible, \ie the type
-\[
- (\Pi y : B) \,  \iscontr(\hfiber(f,y)) 
-\]
-is inhabited. 
 
-
+%%%
 \begin{definition} \label{thm:weq}  We say that $f : A \rightarrow B$ is a weak equivalence if it has both a left inverse and a right inverse, \ie
 $\ell \co B \to A$ and $r \co B \to A$ such that 
 \[
@@ -510,7 +687,11 @@ $\ell \co B \to A$ and $r \co B \to A$ such that
  \[ 
  \isequiv(f) \defeq (\Sigma \ell \co B \to A) \Id( \ell \circ f, 1_A) \times (\Sigma r \co B \to A) \Id( r \circ f , 1_B) \, .
  \]
-Furthermore we say that $f$ is a \emph{homotopy equivalence} if there exist a function 
+Recall that a function $f$ is an equivalence if an only if every fiber is contractible, \ie the type
+\[
+ (\Pi y : B) \,  \iscontr(\hfiber(f,y)) 
+\]
+is inhabited. Furthermore we say that $f$ is a \emph{homotopy equivalence} if there exist a function 
 $g : B\rightarrow A$ and elements
 \begin{align*}
 \eta &: (\Pi x : A) \Id( g  f  x , x) \,  ,\\
@@ -521,7 +702,12 @@ Note that we could have replace the requirement of the existence of $p$ with tha
 where the same notation for both function application and
 the action of a function on an identity proof (which is easily definable by $\Id$-elimination),
 and we write $\alpha_x$ instead of $\alpha(x)$ for better readability.
+We also note that all type-theoretic constructions are homotopy invariant, in the sense that they respect this relation of equivalence, a fact which is exploited by the Univalence Axiom~\cite{VoevodskyV:notts}.
 
+
+\medskip
+
+In Section \ref{section:simple} below, these and related homotopy-theoretic insights will be used to study inductive types, but first we must briefly review some basic facts about  inductive types in the extensional setting.
 
 \newpage
 
@@ -855,115 +1041,7 @@ as required.
 
 
 
-\section{Inductive bipointed types} 
-
-
-
-\begin{definition} A bipointed type $A$ is said to be \emph{inductive} if it satisfies  the following rules:
-\begin{itemize}
-\item Elimination rule: \smallskip
-\[
-\begin{prooftree}
-x: A \vdash E(x) : \type \qquad
-e_0 : E(a_0) \qquad
-e_1 : E(a_1) \qquad
-\justifies
-x \co A \vdash \ind(x, e_0, e_1) : E(x) 
-\end{prooftree}
-\]
-\item Propositional computation rules: \smallskip
-\begin{mathpar}
-\begin{prooftree}
-x: A \vdash E(x) : \type \qquad
-e_0 : E(a_0) \qquad
-e_1 : E(a_1)
-\justifies
- \mathsf{comp}_0(e_0, e_1) \co    \ind(a_0, e_0, e_1) = e_0  \, , \\
-\end{prooftree} \\
-\begin{prooftree}
-x: A \vdash E(x) : \type \qquad
-e_0 : E(a_0) \qquad
-e_1 : E(a_1)
-\justifies
- \mathsf{comp}_1(e_0, e_1) \co    \ind(a_1, e_0, e_1) =   e_1    \, . \\
-\end{prooftree}
- \end{mathpar} 
-\end{itemize}
-\end{definition} 
-
-
-\medskip
-
-\begin{lemma} \label{thm:etaind}
-If $A$ is an inductive bipointed type, then it satisfies the following rules:
-\begin{itemize}
-\item Propositional expansion rule: \smallskip
-\[
-\begin{prooftree}
-x \co A \vdash E(x) \co \type \qquad 
-x \co A \vdash f(x) \co E(x) 
-\justifies
-x \co A \vdash \mathsf{exp}(f, x) \co  \ind(x, f(a_0), f(a_1) ) = f(x) 
-\end{prooftree}
-\]
- \item Compatibility rules: \smallskip
-\begin{equation*}
-\begin{prooftree}
-x \co A \vdash E(x) \co \type \qquad 
-x \co A \vdash f(x) \co E(x) 
-\justifies
-\mathsf{p}_0(f)  \co  \mathsf{comp}_0( f(a_0), f(a_1))  = \mathsf{exp}(f, a_0) 
-\end{prooftree}
- \end{equation*}  \medskip
- \begin{equation*}
-\begin{prooftree}
-x \co A \vdash E(x) \co \type \qquad 
-x \co A \vdash f(x) \co E(x) 
-\justifies
-\mathsf{p}_1(f)  \co  \mathsf{comp}_1(f(a_0), f(a_1)) =  \mathsf{exp}(f, a_1)
-\end{prooftree}
- \end{equation*} 
-\end{itemize}
-\end{lemma}
-
-\begin{proof} Let $A = (A, a_0, a_1)$ be a homotopy-projective bipointed type. By Proposition~\ref{thm:etaind},
-it is inductive and hence we can use the elimination and computation rules. 
- We begin by proving the propositional expansion rule. So, let us assume its premisses and, for $x \co A$, define
-\[
- E'(x) \defeq \Id_{E(x)} \big(  \ind( x, f(a_0), f(a_1)), f(x) \big) \, .
-\]
-We now apply the elimination rule  as 
-
-\[
-\begin{prooftree}
-x \co A \vdash E'(x) \co \type \qquad 
-e'_0  \co E'(a_0) \qquad
-e'_1  \co E'(a_1)
-\justifies
-x \co A \vdash  \ind(x, e'_0, e'_1)  \co E'(x) \, ,
-\end{prooftree}
-\]
-where the elements
-\begin{align*} 
-e'_0 & \defeq \mathsf{comp}_0( f(a_0), f(a_1)) \co \Id_{E(a_0)}(  \ind(a_0, f(a_0), f(a_1)), f(a_0) ) \, , \\
-e'_1 &  \defeq \mathsf{comp}_1(f(a_0), f(a_1)) \co \Id_{E(a_1)}(  \ind(a_1, f(a_0), f(a_1)), f(a_1) ) 
-\end{align*} 
-are given by the propositional computation rule for an inductive bipointed type. For $x \co A$, we can then define the required term in the conclusion of the propositional expansion rule by letting
-\[
- \mathsf{exp}(f,x) \defeq  \ind(x, e'_0, e'_1) \co \Id_{E(x)} \big(  \ind( x, f(a_0), f(a_1)), f(x) \big)  \, .
- \]
- With this definition, the required compatibility rules can be obtained very easily. For the first one, observe that
- the definitions given above and the  the first computation rule for an inductive type imply that 
- we have the following chain of judgemental and 
- propositional equalities:
- \begin{align*}  
- \mathsf{exp}(f, a_0) & \deq  \ind( a_0, e'_0, e'_1) \\
-  & = e'_0   \\ 
-  & \deq \mathsf{comp}_0( f(a_0), f(a_1))  \, .
-  \end{align*} 
-  The second compatibility rule is obtained in an analogous way.
-\end{proof} 
-
+\section{Fibered bipointed types} 
 
 
 \begin{definition} \label{def:fibbipointed}
@@ -1001,11 +1079,17 @@ The type of bipointed sections of $E \co A \to \UU$ is then defined to be
 \BipSect(E) \defeq (\Sigma f \co (\Pi x : A) E(x)) \, \Id( f(a_0), e_0)) \times \Id ( f(a_1), e_1)) \, .
 \]
 Given a section $f \co A \to E$, we can define a bipointed morphism~$f'  \co A \to E'$, where $E'$ is the
-bipointed type defined by $E' \defeq (\Sigma x :A) E(x)$. Its underlying function is given by 
-letting~$f'(x) \defeq \pair(x, f(x))$, for~$x : A$. For $k \in \{ 0, 1 \}$, it is 
-immediate to obtain the required path~$\bar{f}'_k \co f'(a_k) = e'_k$.
-The morphism $f' \co A \to E'$ provides a section, \ie a right inverse for~$\pi_1 \co E' \to A$,
- since, for~$x \co A$, we have judgemental equalities
+bipointed type defined by $E' \defeq (\Sigma x :A) E(x)$. Its underlying function is given by letting,  for~$x : A$, 
+\[
+f'(x) \defeq \pair(x, f(x)) \, .
+\]
+For $k \in \{ 0, 1 \}$, the required path~$\bar{f}'_k \co f'(a_k) = e'_k$,
+is then given by the following chain of judgemental and propositional identity proofs:
+\[
+f'(a_k) \deq \pair(a_k, f(a_k)) =  \pair(a_k, e_k) \deq e'_k \, .
+\]
+The morphism $f' \co A \to E'$ provides a strict right inverse for $\pi_1 \co E' \to A$ (\ie what is usually called a section in 
+category theory), since we have judgemental equalities
 \[
  (\pi_1 \circ f')(x) \deq \pi_1 (f'(x)) \deq \pi_1 (\pair(x, f x)) \deq x \, .
 \]
@@ -1016,30 +1100,6 @@ E' \ar[d]_{\pi_1} \\
 A . \ar@/_1.2pc/[u]_{f'} }
 \]
 
-
-
-\begin{definition} We say that a bipointed type $A$ is \emph{homotopy-projective} if every fibered bipointed type over it has a bipointed section, \ie the type
-\[ 
-\ishproj(A) \defeq (\Pi E : \FibBip(A))  \BipSect(E)
-\]  
-is inhabited.
-\end{definition} 
-
-
-
-
-\begin{proposition} \label{thm:hprojind} A bipointed type $A$ is homotopy-projective if and only if it is inductive.\end{proposition} 
-
-
-\begin{proof} Immediate.
-\end{proof} 
-
-By Proposition~\ref{thm:hprojind}, the type $\Bool$ of Boolean truth values with rules as in Table~\ref{tab:bool}
-is homotopy-projective. Furthermore, the property of being homotopy-projective can be transported along equivalences. We begin to explore some consequences of the assumption that a bipointed type is homotopy-projective. 
-
-We conclude this section by characterizing the identity type between two bipointed sections, using
-the notion of a bipointed homotopy. This is in complete analogy with the situation for bipointed
-morphisms.
 
 
 \begin{definition} \label{def:2cellsection} Let $E$ be a fibered bipointed type over $A$. If $f = (f, \bar{f}_0,\bar{f}_1)$ and $g = (g, \bar{g}_0, \bar{g}_1)$ are bipointed sections of $E$, a \emph{bipointed homotopy} 
@@ -1094,7 +1154,7 @@ is inhabited.
 Let us remark that the uniqueness implicit in Definition~\ref{def:BoolInit} requires that any two bipointed homomorphisms are propositionally equal as tuples. Clearly, the property of being  homotopy-initial  can be transported along equivalences, in the sense that if two bipointed types are equivalent, then one is homotopy-initial if and only if the other one is. It is worth emphasizing also that homotopy-initiality is a purely type-theoretic notion: despite having an intuitive semantical interpretation, it is formulated in terms of inhabitation of specific, definable types. In fact, it is possible to give a characterization of homotopy-initial bipointed types in terms of type-theoretic rules, as the next proposition spells out.
 
 \begin{proposition} \label{thm:hinitrec}
-A bipointed type $A = (A, a_0, a_1)$ is homotopy-initial if and only if it satisfies
+A bipointed type $A = (A, a_0, a_1)$ is homotopy-initial if and only if it is recursive, \ie it satisfies
  the following rules:
 \begin{itemize}
 \item  Recursion rule, \smallskip
@@ -1193,19 +1253,151 @@ propositional equality is proved analogously.
 
 
 
+We now provide an alternative characterization of homotopy-initial bipointed types, from which it
+will be immediate that $\Bool$ and any type equivalent to it (viewed with the induced bipointed structure)
+are homotopy-initial. A further reason of interest for this characterization is that it provides a counterpart
+in our context of the familiar proof that for the set of the natural numbers, say, the principles of induction
+and recursion are equivalent. 
+
+
+
+\begin{definition} We say that a bipointed type $A$ is \emph{homotopy-projective} if every fibered bipointed type over it has a bipointed section, \ie the type
+\[ 
+\ishproj(A) \defeq (\Pi E : \FibBip(A))  \BipSect(E)
+\]  
+is inhabited.
+\end{definition} 
+
+
+
+
+\begin{proposition} \label{thm:hprojind} A bipointed type $A$ is homotopy-projective if and only if it is inductive, \ie it satisfies
+the following rules:
+\begin{itemize}
+\item Elimination rule: \smallskip
+\[
+\begin{prooftree}
+x: A \vdash E(x) : \type \qquad
+e_0 : E(a_0) \qquad
+e_1 : E(a_1) \qquad
+\justifies
+x \co A \vdash \ind(x, e_0, e_1) : E(x) 
+\end{prooftree}
+\]
+\item Propositional computation rules: \smallskip
+\begin{mathpar}
+\begin{prooftree}
+x: A \vdash E(x) : \type \qquad
+e_0 : E(a_0) \qquad
+e_1 : E(a_1)
+\justifies
+ \mathsf{comp}_0(e_0, e_1) \co    \ind(a_0, e_0, e_1) = e_0  \, , \\
+\end{prooftree} \\
+\begin{prooftree}
+x: A \vdash E(x) : \type \qquad
+e_0 : E(a_0) \qquad
+e_1 : E(a_1)
+\justifies
+ \mathsf{comp}_1(e_0, e_1) \co    \ind(a_1, e_0, e_1) =   e_1    \, . \\
+\end{prooftree}
+ \end{mathpar} 
+\end{itemize}
+\end{proposition} 
+
+
+\begin{proof} Immediate.
+\end{proof} 
+
+By Proposition~\ref{thm:hprojind}, the type $\Bool$ of Boolean truth values with rules as in Table~\ref{tab:bool}
+is homotopy-projective. Furthermore, the property of being homotopy-projective can be transported along equivalences, in the same sense as homotopy-initiality.
 Our goal for the reminder of this section is to show that a bipointed type is homotopy-initial if and only
-if it is homotopy-projective. We begin by adapting  the proof that induction implies recursion to our context. 
+if it is homotopy-projective. In order to do so, we begin to explore some consequences of the assumption that a bipointed type is homotopy-projective. 
+
+\begin{lemma} \label{thm:etaind}
+If $A$ is a homotopy-projective bipointed type, then it satisfies the following rules:
+\begin{itemize}
+\item Propositional expansion rule: \smallskip
+\[
+\begin{prooftree}
+x \co A \vdash E(x) \co \type \qquad 
+x \co A \vdash f(x) \co E(x) 
+\justifies
+x \co A \vdash \mathsf{exp}(f, x) \co  \ind(x, f(a_0), f(a_1) ) = f(x) 
+\end{prooftree}
+\]
+ \item Compatibility rules: \smallskip
+\begin{equation*}
+\begin{prooftree}
+x \co A \vdash E(x) \co \type \qquad 
+x \co A \vdash f(x) \co E(x) 
+\justifies
+\mathsf{p}_0(f)  \co  \mathsf{comp}_0( f(a_0), f(a_1))  = \mathsf{exp}(f, a_0) 
+\end{prooftree}
+ \end{equation*}  \medskip
+ \begin{equation*}
+\begin{prooftree}
+x \co A \vdash E(x) \co \type \qquad 
+x \co A \vdash f(x) \co E(x) 
+\justifies
+\mathsf{p}_1(f)  \co  \mathsf{comp}_1(f(a_0), f(a_1)) =  \mathsf{exp}(f, a_1)
+\end{prooftree}
+ \end{equation*} 
+\end{itemize}
+\end{lemma}
+
+\begin{proof} Let $A = (A, a_0, a_1)$ be a homotopy-projective bipointed type. By Proposition~\ref{thm:etaind},
+it is inductive and hence we can use the elimination and computation rules. 
+ We begin by proving the propositional expansion rule. So, let us assume its premisses and, for $x \co A$, define
+\[
+ E'(x) \defeq \Id_{E(x)} \big(  \ind( x, f(a_0), f(a_1)), f(x) \big) \, .
+\]
+We now apply the elimination rule  as 
+
+\[
+\begin{prooftree}
+x \co A \vdash E'(x) \co \type \qquad 
+e'_0  \co E'(a_0) \qquad
+e'_1  \co E'(a_1)
+\justifies
+x \co A \vdash  \ind(x, e'_0, e'_1)  \co E'(x) \, ,
+\end{prooftree}
+\]
+where the elements
+\begin{align*} 
+e'_0 & \defeq \mathsf{comp}_0( f(a_0), f(a_1)) \co \Id_{E(a_0)}(  \ind(a_0, f(a_0), f(a_1)), f(a_0) ) \, , \\
+e'_1 &  \defeq \mathsf{comp}_1(f(a_0), f(a_1)) \co \Id_{E(a_1)}(  \ind(a_1, f(a_0), f(a_1)), f(a_1) ) 
+\end{align*} 
+are given by the propositional computation rule for an inductive bipointed type. For $x \co A$, we can then define the required term in the conclusion of the propositional expansion rule by letting
+\[
+ \mathsf{exp}(f,x) \defeq  \ind(x, e'_0, e'_1) \co \Id_{E(x)} \big(  \ind( x, f(a_0), f(a_1)), f(x) \big)  \, .
+ \]
+ With this definition, the required compatibility rules can be obtained very easily. For the first one, observe that
+ the definitions given above and the  the first computation rule for an inductive type imply that 
+ we have the following chain of judgemental and 
+ propositional equalities:
+ \begin{align*}  
+ \mathsf{exp}(f, a_0) & \deq  \ind( a_0, e'_0, e'_1) \\
+  & = e'_0   \\ 
+  & \deq \mathsf{comp}_0( f(a_0), f(a_1))  \, .
+  \end{align*} 
+  The second compatibility rule is obtained in an analogous way.
+\end{proof} 
+
+\medskip
+
+
+We can now adapt  the proof that induction implies recursion to our context. 
 
 
 
 
 \begin{proposition} \label{thm:indrec}
-If a bipointed type is inductive then it is homotopy-initial.
+If a bipointed type is homotopy-projective then it is homotopy-initial.
 \end{proposition}
 
 
-\begin{proof} By Proposition~\ref{thm:hprojind} and Proposition~\ref{thm:hinitrec}, it is sufficient to
-show that if a bipointed type is inductive then it is homotoy-initial. But the recursion and propositional $\beta$-rules are special cases of the elimination and propositional computation rules that are part of the definition of an inductive type. The propositional $\eta$-rule and the propositional $(\beta, \eta)$-computatibility rules are special cases of the rules in Lemma~\ref{thm:etaind}. 
+\begin{proof} By Proposition~\ref{thm:hinitrec} and Proposition~\ref{thm:hprojind}, it is sufficient to
+show that if a bipointed type is inductive then it is recursive. But the recursion and propositional $\beta$-rules are special cases of the elimination and propositional computation rules that are part of the definition of an inductive type. The propositional $\eta$-rule and the propositional $(\beta, \eta)$-computatibility rules are special cases of the rules in Lemma~\ref{thm:etaind}. 
 \end{proof}
 
 
@@ -2400,8 +2592,7 @@ where
 & S(r,\beta) \defeq \big(\Sigma \bar{r} : (\Pi a) (\Pi s) r(d(a,s))=c(a,r \circ s) \big) (\Pi a) (\Pi s) \\ & \;\;\;\;\;\;\;\;\;\;\;\; \Big(f(\bar{r}(a,s)) \ct \bar{f}(a, r \comp s) = \beta(d(a,s)) \ct \big(d(a)(\ext^{-1}(\beta \circ s))\big)^{-1}\Big)
 \end{align*}
 Using the global choice principle, we can express the type $S(r,\beta)$ equivalently as
-\[  (\Pi a) (\Pi s) \big(\Sigma \bar{r} : r(d(a,s))=c(a,r \circ s) \big) \Big(f(\bar{r}) \ct \bar{f}(a, r \comp s) = \beta(d(a,s)) \ct \big(d(a)(\ext^{-1}(\beta \circ s))\big)^{-1}\Big) \, .
-\]
+\[  (\Pi a) (\Pi s) \big(\Sigma \bar{r} : r(d(a,s))=c(a,r \circ s) \big) \Big(f(\bar{r}) \ct \bar{f}(a, r \comp s) = \beta(d(a,s)) \ct \big(d(a)(\ext^{-1}(\beta \circ s))\big)^{-1}\Big) \]
 Now we observe that for any equivalence $g : X \to Y$, and paths $q : \Id(g(x_2),y)$, $s : \Id(g(x_1),y)$, the type $\big(\Sigma p : \Id_X(x_1,x_2)\big) \Id(g(p) \ct q,s)$ is contractible. Since $\ell, \alpha, r, \beta$ make $f$ into an equivalence, we have $S(r,\beta) \simeq \one$.
 
 Since $f$ is an equivalence between $C$ and $D$, the mapping $t \mapsto f \comp t$ is an equivalence between $B(a) \to C$ and $B(a) \to D$. The mapping $\bar{\ell} \mapsto (\lambda a) (\lambda t) \bar{\ell}(a,f \comp t)$ is therefore an equivalence between the types $(\Pi a) (\Pi s) \ell(d(a,s)) = c(a,\ell \comp s)$ and $(\Pi a) (\Pi t) \ell(d(a,f \comp t)) = c(a,\ell \comp f \comp t)$. Thus, the type type $R(\ell,\alpha)$ can be expressed equivalently as
@@ -2646,174 +2837,6 @@ the National Science Foundation.
 Kristina Sojakova is grateful for the support of CyLab at Carnegie
 Mellon under grants DAAD19-02-1-0389 and W911NF-09-1-0273 from the Army
 Research Office.
-
-
-
-\appendix
-
-\section{Type-theoretic rules}
-
-
-\begin{table}[ht]
-\fbox{ 
-\begin{minipage}{12cm}
-\medskip
-\begin{itemize}
-\item Formation rule
-\[
-\begin{prooftree}
-x \co A \vdash B(x) \co \type
-\justifies
-(\Pi x \co A) B(x) \co \type
-\end{prooftree}
-\]
-\item Introduction rule
-\[
-\begin{prooftree}
-x \co A \vdash b(x) \co B(x) 
-\justifies
-(\lambda x \co A)b(x) \co (\Pi x : A) B(x)
-\end{prooftree}
-\]
-\item Elimination rule
-\[
-\begin{prooftree}
-f \co (\Pi x : A) B(x) \quad
-a \co A 
-\justifies
-\app(f, a) \co B(a)
-\end{prooftree}
-\]
-\item $\beta$-rule
-\[
-\begin{prooftree}
-x \co A \vdash b(x) \co B(x) 
-\justifies
-\app( (\lambda x : A) b(x), a) \equiv b(a) \co B(a)
-\end{prooftree}
-\]
-\item $\eta$-rule
-\[
-\begin{prooftree}
-f \co (\Pi x :A) B(x) 
-\justifies
-f \equiv (\lambda x : A) \app(f, x) \co (\Pi x \co A) B(x)
-\end{prooftree}
-\]
- \end{itemize} \medskip
-\end{minipage}}
-\medskip
-\caption{Rules for $\Pi$-types.}
-\label{tab:pi}
-\end{table}
-
-
-\begin{table}[ht]
-\fbox{ 
-\begin{minipage}{12cm}
-\medskip
-\begin{itemize}
-\item Formation rule
-\[
-\begin{prooftree}
-x \co A \vdash B(x) \co \type
-\justifies
-(\Sigma x \co A) B(x) \co \type
-\end{prooftree}
-\]
-\item Introduction rule
-\[
-\begin{prooftree}
-a \co A \qquad 
-b(a) \co B(a) 
-\justifies
-\pair(a,b) \co (\Sigma x : A) B(x)
-\end{prooftree}
-\]
-\item $\Sigma$-elimination rule.
-\[
-\begin{prooftree}
-\begin{array}{l} 
-u : (\Sigma x : A) B(x) \vdash E(u) :  \type \\
- x :  A, y \co B(x) \vdash  e(x,y) :  E(\pair(x,y))  
- \end{array}
-\justifies
-u :  (\Sigma x :A)B(x) \vdash  \mysplit(u,e) :  E(u)
-\end{prooftree}
-\]
-\item $\Sigma$-computation rule.
-\[
-\begin{prooftree}
-\begin{array}{l} 
-u : (\Sigma x : A) B(x) \vdash E(u) :  \type \\
- x :  A, y \co B(x) \vdash  e(x,y) :  E(\pair(x,y))  
- \end{array}
- \justifies
-x :  A, y \co B(x) \vdash \mysplit(\pair(x,y),e) \equiv e(x,y) :  E(\pair(x,y)) \, .
-\end{prooftree}
-\]
-\end{itemize} \medskip
-\end{minipage}}
-\medskip
-\caption{Rules for $\Sigma$-types.}
-\label{tab:sigma}
-\end{table}
-
-
-
-
-\begin{table}[ht]
-\fbox{ 
-\begin{minipage}{12cm}
-\medskip
-\begin{itemize}
-\item $\Id$-formation rule.
-\[
-\begin{prooftree}
-A :  \type \quad 
-a :  A  \quad
-b :  A 
-\justifies
- \id{A}(a,b) :  \type
- \end{prooftree}
-\]
-\item $\Id$-introduction rule.
-\[
-\begin{prooftree}
-a :  A 
-\justifies
- \refl(a) :  \id{A}(a,a)
- \end{prooftree} 
-\]
-\item $\Id$-elimination rule.
-\[
-\begin{prooftree}
-\begin{array}{l} 
-x, y :  A, u :  \id{A}(x,y) \vdash E(x,y,u) :  \type \\
- x :  A \vdash  e(x) :  E(x,x,\refl(x))  
- \end{array}
-\justifies
-x, y :  A, u :  \id{A}(x,y) \vdash  \idrec(x,y,u,e) :  E(x,y,u)
-\end{prooftree}
-\]
-\item $\Id$-computation rule.
-\[
-\begin{prooftree}
-\begin{array}{l} 
-x, y :  A, u :  \id{A}(x,y) \vdash E(x,y,u) :  \type \\
- x :  A \vdash  e(x) :  E(x,x,\refl(x)) 
- \end{array}
- \justifies
-x :  A \vdash \idrec(x,x,\refl(x), e) = e(x) :  E(x, x, \refl(x)) \, .
-\end{prooftree}
-\]
-\end{itemize} \medskip
-\end{minipage}}
-\medskip
-\caption{Rules for $\Id$-types.}
-\label{tab:id}
-\end{table}
-
 
 
 
