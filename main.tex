@@ -372,13 +372,14 @@ We work here with type theories that have the four standard forms of judgement
 \[
 A \co \type \, , \quad A \deq B \co \type \, , \quad   a \co A \, , \quad a \deq b \co A \, . 
 \]
-We refer to the equality relation in these judgements as \emph{definitional equality}, 
-which should be contrasted with the notion of \emph{propositional equality}
+We refer to the equality relation in these judgements as judgemental equality, 
+which should be contrasted with the notion of propositional equality
 recalled below. 
-Such a judgement $J$ can be made also relative to a \emph{context}~$\Gamma$ of variable declarations, a situation that we indicate by writing~$\Gamma \vdash J$. When stating deduction
-rules we make use of standard conventions to simplify the exposition, such as omitting the mention
-of a context that is common to premisses and conclusions of the rule.
-
+Such a judgement  can be made also relative to a context of variable declarations.
+However, when stating deduction
+rules we  omit the mention
+of a context that is common to premisses and conclusions of the rule and
+make use of other standard conventions to simplify the exposition.
 
 We will work over a dependent type theory $\Hint$ which has standard structural rules, rules for $\Pi$-types as in Table~\ref{tab:pi}, rules for $\Sigma$-types as in Table~\ref{tab:sigma}, rules for identity types as in Table~\ref{tab:id}, and the Function Extensionality axiom, \ie the axiom asserting that
 for every $f, g : A \rightarrow B$, the type
@@ -579,7 +580,7 @@ the rest of the data. Diagrammatically, we represent a bipointed morphism as fol
  \]
 Bipointed types and their morphisms behave much like objects and morphisms in a category.
 Given two bipointed morphisms  $(f, \bar{f}_0, \bar{f}_1) \co A \to B$ and $(g, \bar{g}_0, \bar{g}_1) \co B \to C$, we can define their composite 
- as the triple consisting of the composite $g \circ f \co A \to C$ and the identity proofs represented
+ as the triple consisting of the composite $g \circ f \co A \to C$ and the paths represented
 by the following pasting diagram
 \[
 \xymatrix@C=1.5cm{
@@ -710,7 +711,7 @@ will be useful in the proof of Theorem~\ref{lem:BoolMainInt}. We begin by introd
 \[
 (\alpha, \bar{\alpha}_0, \bar{\alpha}_1) \co (f, \bar{f}_0, \bar{f}_1) \to  (g, \bar{g}_0, \bar{g}_1)
 \] 
-consists of a homotopy $\alpha \co  f \sim g$ and identity proofs
+consists of a homotopy $\alpha \co  f \sim g$ and paths
 $\bar{\alpha}_0 \co  \bar{f}_0 = \alpha(a_0)  \cdot \bar{g}_0 $ and $\bar{\alpha}_1 \co \bar{f}_1 =  \alpha(a_1) \cdot \bar{g}_1$. 
 \end{definition}
 
@@ -776,8 +777,8 @@ Given a fibered bipointed type $E \co A \to \UU$, we can define
 \[
 E' \defeq (\Sigma x : A) E(x)
 \] 
-and observe that $E'$ can be equipped with the structure of  bipointed type by taking $e'_0 \defeq \pair(a_0, e_0)$ and~$e'_1 \defeq \pair(a_1, e_1)$.
-In this way, the first projection $\pi_1 \co E' \to A$ becomes a morphism of bipointed types:
+and observe that $E'$ is a bipointed type by considering $e'_k \defeq \pair(a_k, e_k)$, 
+for $k \in \{ 0, 1\}$. In this way, the first projection $\pi_1 \co E' \to A$ becomes a bipointed morphism:
 \[
 \xymatrix{
 1 \ar@/_1pc/[dr]_{a_0} \ar[r]^-{e'_0} & E' \ar[d]^{\pi_1} & 1 \ar[l]_-{e'_1} \ar@/^1pc/[dl]^{a_1} \\ 
@@ -787,19 +788,22 @@ In this way, the first projection $\pi_1 \co E' \to A$ becomes a morphism of bip
 
 
 \begin{definition} \label{def:fibsection} Let $E = (E, e_0, e_1)$ be a fibered bipointed type over
-$A = (A, a_0, a_1)$.  A \emph{bipointed section} of $E$, $(f, \bar{f}_0, \bar{f}_1) \co A \to E$, 
-consists of a section $f \co (\Pi x \co A) E(x)$ equipped with paths~$\bar{f}_0 \co f(a_0) = e_0$ 
-and $\bar{f}_1 \co f(a_1) = e_1$. \end{definition} 
+$A = (A, a_0, a_1)$.  A \emph{bipointed section} of $E$, 
+\[
+(s, \bar{s}_0, \bar{s}_1) \co A \to E \, ,
+\]
+consists of a section $s \co (\Pi x \co A) E(x)$ equipped with paths~$\bar{s}_0 \co s(a_0) = e_0$ 
+and $\bar{s}_1 \co s(a_1) = e_1$. \end{definition} 
 
 
 The type of bipointed sections of $E \co A \to \UU$ is then defined to be
 \[
-\BipSect(E) \defeq (\Sigma f \co (\Pi x : A) E(x)) \, \Id( f(a_0), e_0)) \times \Id ( f(a_1), e_1)) \, .
+\BipSect(E) \defeq (\Sigma s \co (\Pi x : A) E(x)) ( s(a_0) = e_0) ) \times ( s(a_1) =  e_1)  \, .
 \]
-Given a section $f \co A \to E$, we can define a bipointed morphism~$f'  \co A \to E'$, where $E'$ is the
+Given a section $s \co A \to E$, we can define a bipointed morphism~$f  \co A \to E'$, where $E'$ is the
 bipointed type defined by $E' \defeq (\Sigma x :A) E(x)$. Its underlying function is given by 
-letting~$f'(x) \defeq \pair(x, f(x))$, for~$x : A$. For $k \in \{ 0, 1 \}$, it is 
-immediate to obtain the required path~$\bar{f}'_k \co f'(a_k) = e'_k$.
+letting~$f(x) \defeq \pair(x, s(x))$, for~$x : A$. For $k \in \{ 0, 1 \}$, it is 
+immediate to obtain the required path~$\bar{s}_k \co f'(a_k) = e'_k$.
 The morphism $f' \co A \to E'$ provides a section, \ie a right inverse for~$\pi_1 \co E' \to A$,
  since, for~$x \co A$, we have judgemental equalities
 \[
@@ -878,7 +882,8 @@ characterisation of inductive bipointed types.
 
 
 
-\begin{lemma} Let $A = (A, a_0, a_1)$ be a bipointed type. Then $A$ is inductive if only if it satisfies the following rules: 
+\begin{lemma} Let $A = (A, a_0, a_1)$ be a bipointed type. Then $A$ is inductive if only if it satisfies the following rules,
+where $k \in \{ 0, 1 \}$: 
 
 \[
 \begin{array}{cc}
@@ -1219,12 +1224,16 @@ the correct type.
 We can now state and prove the main result of this first part of the paper.
 
 
-\begin{theorem}\label{lem:BoolMainInt} A bipointed type is homotopy-initial if and only if it is inductive, 
-\ie the type
-\[
-(\Pi A \co \Bip) \big( \ishinit(A) \leftrightarrow \isind(A) \big) \, .
-\]
-is inhabited.
+\begin{theorem}\label{lem:BoolMainInt} For a bipointed type $A = (A, a_0, a_1)$, the following 
+conditions are equivalent:
+\begin{enumerate}[(i)]
+\item $A$ is inductive,
+\item $A$ is homotopy-initial.
+\end{enumerate}
+Furthermore, assuming the rules for the type $\Bool$, the following is also equivalent:
+\begin{enumerate}[(i)] \setcounter{enumi}{2}
+\item $A$ is equivalent to $\Bool$.
+\end{enumerate}
 \end{theorem}
 
 \begin{proof} The fact that an inductive type is homotopy-initial was proved in 
@@ -1234,7 +1243,7 @@ So, let $E = (E, e_0, e_1)$ be a fibered bipointed type over $A$. Let us define 
 \[
 E' \defeq (\Sigma x \co A) E(x) 
 \]
-and recall that $E'$ can be equipped with the structure of a bipointed type by considering its elements $e'_0 \defeq \pair(a_0, e_0)$ and $e'_1 \defeq \pair(a_1, e_1)$. In this way,  the first projection $\pi_1 \co E' \to A$ is a bipointed morphism. By the homotopy-initiality of $A$, we have a bipointed morphism 
+and recall that $E'$ can be equipped with the structure of a bipointed type by considering its elements $e'_k \defeq \pair(a_k, e_k)$ for $k \in \{0, 1\}$. In this way,  the first projection $\pi_1 \co E' \to A$ is a bipointed morphism. By the homotopy-initiality of $A$, we have a bipointed morphism 
 \[
 (f, \bar{f}_0, \bar{f}_1) \co (A, a_0, a_1)  \to (E', e'_0, e'_1) 
 \]
@@ -1304,20 +1313,25 @@ g(a_k) & \deq \alpha(a_k)_{!} \big( \pi_2 f(a_k)  \big) & & \qquad (\text{by def
 
 
 
-\begin{remark}\label{lem:BoolMainInternal} Let   $A: \Bip$ be a small bipointed type.
+
+
+\begin{corollary} \label{lem:BoolMainInternal} 
+The type
+\[
+(\Pi A \co \Bip) \big( \mathsf{isboolequiv}(A) \simeq  \ishinit(A) \simeq \isind(A)  \big) \, .
+\]
+is inhabited.
+\end{corollary}
+
+\begin{proof}Let   $A: \Bip$ be a small bipointed type.
  The types $\ishinit(A)$ and $\isind(A)$ are mere
 propositions and hence there is an equivalence $\ishinit(A)  \simeq   \isind(A)$.
 Indeed, observe that
 the type $\ishinit(A)$ is a mere proposition since $\iscontr(X)$ is a mere proposition for any type $X$ and the dependent product of family of mere propositions is again a mere proposition. To show that $\isind (A)$ is a mere proposition, we note that to prove that a type $X$ is a mere proposition, it suffices to do so under the assumption that $X$ is inhabited. Assume therefore that $\isind(A)$ is inhabited. Since the dependent product of a family of mere propositions is again a mere proposition, it suffices to show that $\BipSect(A,E)$ is a mere proposition for any $E$. Fix sections $\mu, \nu : \BipSect(A,E)$. To show $\mu = \nu$, it suffices to exhibit a bipointed homotopy between $\mu$ and $\nu$. But since a bipointed homotopy is nothing more than a section of an appropriate fibered bipointed type, we can obtain it by using the fact that $\isind(A)$ is inhabited.
 For part (ii), the logical equivalence between the types $\isind(A)$ and 
 $\ishinit(A)$ is established in the same way as in the proof of  Theorem~\ref{lem:BoolMainInt}. 
-\end{remark}
 
-
-\begin{corollary}\label{lem:BoolInitInt}
-A bipointed type is homotopy-initial if and only if it is equivalent to the type $\Bool$. In particular, $\Bool$ is homotopy-initial.
-\end{corollary}
-
+\end{proof}
 
 
 
@@ -1338,7 +1352,7 @@ Let $ (A,a_0,a_1), (B,b_0,b_1)$ be bipointed types. By the characterization of t
 of  elements of a $\Sigma$-type, the 
 identity type $(A,a_0,a_1) = (B,b_0,b_1)$ can be expressed as the type
 \[(\Sigma p : A = B) \big((\pair(a_0,a_1)) = p^{!}(\pair(b_0,b_1)) \big)\]
-By $\Id$-elimination on $p$ and the characterization of identity proofs in product types, this type is equivalent to
+By $\Id$-elimination on $p$ and the characterization of paths in product types, this type is equivalent to
 \[ \big(\Sigma p : A = B \big) \, \Id \big(\fst(\ext_1(p))_{a_0},  b_0\big) \times \Id \big( \fst(\ext_1(p))_{a_1} , b_1\big) \]
 where $\ext_1 \co \Id(A,B) \to (A \simeq B)$ is the canonical function, which is asserted to be an equivalence by the
 Univalence Axiom. Since it is an equivalence, the above type is equivalent to
