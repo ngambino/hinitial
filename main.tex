@@ -139,7 +139,7 @@
 % Homotopy
 \newcommand{\ho}{\sim}
 % Definitions
-\newcommand{\defeq}{\deq_{\mathrm{def}}}
+\newcommand{\defeq}{=_{\mathrm{def}}}
 % Colon
 \newcommand{\co}{\colon}
 % Composition and identiies
@@ -194,7 +194,7 @@
 % Unit type
 \newcommand{\Unit}{\mathsf{Unit}}
 % Identity types
-\newcommand{\Id}{\mathsf{Id}}
+\newcommand{\Id}{\mathsf{Path}}
 \newcommand{\id}[1]{\Id_{#1}}
 \newcommand{\refl}{\mathsf{refl}}
 \newcommand{\idrec}{\mathsf{J}}
@@ -869,12 +869,16 @@ weakened by replacing the judgmental equality in its conclusion with a propositi
 
 \begin{definition} A bipointed type $A$ is said to be \emph{inductive} if every fibered bipointed type over it has a bipointed section, \ie the type
 \[ 
-\isind(A) \defeq (\Pi E : \FibBip(A))  \BipSect(E)
+\isind(A) \defeq \prod_{E \in \FibBip(A)}  \BipSect(E)
 \]  
 is inhabited. \end{definition} 
 
-
-
+Correspondingly, the type of (small) inductive bipointed types is given by
+\[
+\mathsf{BipInd} \defeq \sum_{A \in \Bip} \isind(A) \, .
+\]
+Thus, a canonical inductive bipointed type is given by a bipointed type $A = (A, a_0, a_1)$ together with a function 
+which, given a fibered bipointed type $E = (E, e_0, e_1)$ over $A$, returns a bipointed section of $E$.
 Clearly, the type $\Bool$ is an inductive bipointed type. Furthermore, the property of being inductive can be transported along equivalences, in the sense that if $A$ and $B$ are equivalent bipointed types and $A$ is inductive, then so is $B$. Thus, a
 type is equivalent to $\Bool$ if and only if it is inductive.
 We begin to explore some consequences of the assumption that a bipointed type is inductive, so as to give a 
@@ -882,138 +886,81 @@ characterisation of inductive bipointed types.
 
 
 
-\begin{lemma} Let $A = (A, a_0, a_1)$ be a bipointed type. Then $A$ is inductive if only if it satisfies the following rules,
-where $k \in \{ 0, 1 \}$: 
+\begin{proposition} \label{thm:inductiverules}
+Let $A = (A, a_0, a_1)$ be a bipointed type. Then $A$ is inductive if only if it satisfies the following rules:
 
-\[
-\begin{array}{cc}
+\begin{mathpar}
 \begin{prooftree}
-x: A \vdash E(x) : \type \qquad
-e_0 : E(a_0) \qquad
-e_1 : E(a_1) \qquad
+x: A \vdash E(x) \in \UU \qquad
+e_0 \in E(a_0) \qquad
+e_1 \in E(a_1) \qquad
 \justifies
-x \co A \vdash \ind(x, e_0, e_1) : E(x) 
-\end{prooftree} & \textup{(Elimination)} \\[5ex] 
+x \in A \vdash s(x, e_0, e_1) \in E(x) \, , 
+\end{prooftree} \\ \medskip
 \begin{prooftree}
-x: A \vdash E(x) : \type \qquad
-e_0 : E(a_0) \qquad
-e_1 : E(a_1)
+x\in A \vdash E(x) \in \UU \qquad
+e_0 \in E(a_0) \qquad
+e_1 \in E(a_1)
 \justifies
- \mathsf{comp}_k(e_0, e_1) \co    \ind(a_k, e_0, e_1) = e_k  \, .
-\end{prooftree}   &
-\textup{(Computation)}
-\end{array}
-\]
-\end{lemma}
+\bar{s}_k \in \Id \big(    s(a_k, e_0, e_1), e_k \big) \, ,
+\end{prooftree}  
+\end{mathpar}
+where $k = 0, 1$.
+\end{proposition}
 
 \begin{proof} Immediate.
 \end{proof}
 
-\begin{lemma} \label{thm:etaind} Let $A = (A, a_0, a_1)$ be a bipointed type. If $A$ is inductive, 
+Note that the rules in Proposition~\ref{thm:inductiverules} are exactly the weakening
+of the elimination and computation rules for $\Bool$ mentioned above.
+We now show that if a bipointed type $A$ is inductive, then 
+every fibered bipointed type over it has a bipointed section
+which is unique up to bipointed homotopy.
+
+\begin{lemma} \label{thm:inductiveuniquesec} Let $A = (A, a_0, a_1)$ be a bipointed type. If $A$ is inductive, 
 then the following rules are derivable:
 
 \[
-\begin{array}{cc}
 \begin{prooftree}
-x \co A \vdash E(x) \co \type \qquad 
-x \co A \vdash f(x) \co E(x) 
+(E, e_0, e_1) \in \FibBip(A) \quad
+(s, \bar{s}_0, \bar{s}_1) \in \BipSect(A,E) \quad
+(t, \bar{t}_0, \bar{t}_1) \in \BipSect(A,E) 
 \justifies
-x \co A \vdash \eta_f(x) \co  \ind(x, f(a_0), f(a_1) ) = f(x) 
-\end{prooftree} &
-\textup{($\eta$-rule)} \\[5ex] 
-\begin{prooftree}
-x \co A \vdash E(x) \co \type \qquad 
-x \co A \vdash f(x) \co E(x) 
-\justifies
-\mathsf{p}_k(f)  \co  \mathsf{comp}_k( f(a_0), f(a_1))  = \eta_f(a_k) 
-\end{prooftree} &
-\textup{(Coherence)} \\[3ex]
-\end{array}
+x \in A \vdash \varphi(x) \in \Id( s(x), t(x))
+\end{prooftree} \bigskip
 \]
+
+\[
+\begin{prooftree}
+(E, e_0, e_1) \in \FibBip(A) \quad
+(s, \bar{s}_0, \bar{s}_1) \in \BipSect(A,E) \quad
+(t, \bar{t}_0, \bar{t}_1) \in \BipSect(A,E) 
+\justifies
+\bar{\varphi}_k \in \Id( \bar{s}_k, \varphi(a_k) \cdot \bar{t}_k) 
+\end{prooftree}
+\]
+\noindent
+where $k = 0, 1$.
 \end{lemma}
 
-\begin{proof} We begin by proving the $\eta$-rule. Let us assume its premisses and, for $x \co A$, define
+\begin{proof} For the first rule, let us assume its premisses and, for $x \co A$, define
 \[
- E'(x) \defeq \Id_{E(x)} \big(  \ind( x, f(a_0), f(a_1)), f(x) \big) \, .
+ E'(x) \defeq \Id_{E(x)} \big( s(x), t(x) \big) \, .
 \]
 This is a fibered bipointed type over $A$, since for $k = 0, 1$, we have an element $e'_k \co E'(a_k)$  defined by letting
+$e'_k  \defeq \bar{s}_k \cdot \bar{t}_k^{-1}$.  By the assumption that $A$ is inductive, there exists a bipointed section of $E'$, say $\varphi  \in \prod_{x \in A} E'(x)$. 
+For $x \in A$, we then have
 \[
-e'_0  \defeq \mathsf{comp}_k( f(a_0), f(a_1)) \co \Id_{E(a_k)}(  \ind(a_k, f(a_0), f(a_1)), f(a_k) ) \, . \\
-\]
-By the assumption that $A$ is inductive, we have a bipointed section of $E'$, given by the section
-\[
-(\lambda x \co A) \ind(x, e'_0, e'_1)  \co (\Pi x \co A)E'(x) \, .
-\]
-For $x \co A$, we can then define the required term in the conclusion by letting
-\[
-\eta_f(x) \defeq  \ind(x, e'_0, e'_1) \co \Id_{E(x)} \big(  \ind( x, f(a_0), f(a_1)), f(x) \big)  \, .
+\varphi(x) \in \Id_{E(x)} \big(  s(x), t(x) \big)  \, ,
  \]
- With this definition, the coherence rules  can be obtained very easily. Indeed, observe that
-  the computation rule for an inductive type imply the following chain of judgemental and 
- propositional equalities:
- \begin{align*}  
- \mathsf{exp}(f, a_k) & \deq  \ind( a_k, e'_0, e'_1) \\
-  & = e'_k   \\ 
-  & \deq \mathsf{comp}_k( f(a_0), f(a_1))  \, . \qedhere
-  \end{align*} 
-\end{proof} 
+ as required. The other rules  can be obtained very easily. Indeed, since $\varphi$ is a bipointed section, we
+ have paths $\bar{\varphi}_k \in \Id( \varphi(a_k), e'_k)$, for $k = 0, 1$. The conclusion now follows by the definition of $e'_k$ and the groupoid laws for
+ composition of paths. 
+ \end{proof} 
 
-
-
-
-
-Characterizing inductive bipointed types requires us to understand what kind of weak universal property they enjoy. For this,
-observe that the elimination, computation, $\eta$-rule, and coherence rules stated above have the following special cases,
-obtained by considering $E \co A \to \UU$ to be constant, \ie to be a non-dependent type $B$. 
-
-\[
-\begin{array}{cc}
-\begin{prooftree}
-B : \type \qquad
-b_0 : B \qquad
-b_1 : B \qquad
-\justifies
-x \co A \vdash \ind(x, b_0, b_1) : B 
-\end{prooftree} & \textup{(Elimination)} \\[5ex] 
-\begin{prooftree}
-B : \type \qquad
-b_0 : B  \qquad
-b_1 : B
-\justifies
- \mathsf{comp}_k(b_0, b_1) \co    \ind(a_k, b_0, b_1) = b_k  \, .
-\end{prooftree}   &
-\textup{(Computation)} \\[5ex]
-\begin{prooftree}
-B \co \type \qquad 
-x \co A \vdash f(x) \co B 
-\justifies
-x \co A \vdash \eta_f(x) \co  \ind(x, f(a_0), f(a_1) ) = f(x) 
-\end{prooftree} &
-\textup{($\eta$-rule)} \\[5ex] 
-\begin{prooftree}
-B \co \type \qquad 
-x \co A \vdash f(x) \co B
-\justifies
-\mathsf{p}_k(f)  \co  \mathsf{comp}_k( f(a_0), f(a_1))  = \eta_f(a_k) 
-\end{prooftree} &
-\textup{(Coherence)} \\[3ex]
-\end{array}
-\]
-
-
-
-
-For a inductive bipointed type $A = (A, a_0, a_1)$, the elimination and  computation rule give us define, for every bipointed type $B = (B, b_0, b_1)$, a homomorphism of
-bipointed types~$f \co A \to B$, defined by letting 
-\[
-f \defeq (\lambda x \co A) \ind(x, b_0, b_1) \, .
-\] 
-The fact that this is a bipointed morphism amounts to having  paths $f(a_0) = b_0$ and~$f(a_1) = b_1$,
-which are given by the computation rules. Furthermore, using the again elimination rule, it is
-possible to show that for any two bipointed morphisms $(f, \bar{f}_0, \bar{f}_1), (g, \bar{g}_0, \bar{g}_1) \co A \to B$ 
-there is a homotopy $ \alpha \co f \sim g$ and hence, by function extensionality, there is a path
-$p \co f = g$. Such a path is itself is unique up to a higher path, which in turn is unique up to a yet higher path, etc... As we will show in the reminder of this section, this sort of weak $\omega$-universality, which apparently involves infinitely much data, can nonetheless be fully captured within the system of type theory (without resorting to coinduction) using ideas from homotopical algebra and higher-dimensional category theory. Indeed, in spite of the fact that bipointed types and morphisms do not form a category in a strict sense, it is possible 
- to introduce the  notion of a homotopy-initial bipointed type in completely elementary and explicit terms, as we do in the next definition.
+Thus, for a inductive bipointed type $A = (A, a_0, a_1)$, we can define, for every bipointed type $B = (B, b_0, b_1)$, a 
+bipointed morphism types~$f \co A \to B$ and  for any two bipointed morphisms $(f, \bar{f}_0, \bar{f}_1), (g, \bar{g}_0, \bar{g}_1) \co A \to B$  there is a bipointed homotopy $ \alpha \co f \sim g$. Thus, by Lemma~\ref{BoolHomSpace},
+there is a path $p \in \Id((f, \bar{f}_0, \bar{f}_1), (g, \bar{g}_0, \bar{g}_1))$. Such a path is itself is unique up to a higher path, which in turn is unique up to a yet higher path, etc... As we will show in the reminder of this section, this sort of weak $\omega$-universality, which apparently involves infinitely much data, can nonetheless be fully captured within the system of type theory (without resorting to coinduction) using ideas inspired by homotopy theory and higher-dimensional category theory. Indeed, in spite of the fact that bipointed types and morphisms do not form a category in a strict sense, it is possible to introduce the  notion of a homotopy-initial bipointed type in completely elementary and explicit terms, as we do in the next definition.
 
 
 \begin{definition}\label{def:BoolInit}
@@ -1027,81 +974,47 @@ is inhabited.
 
 Let us remark that the uniqueness implicit in Definition~\ref{def:BoolInit} requires that any two bipointed homomorphisms are propositionally equal as tuples. Clearly, the property of being  homotopy-initial  can be transported along equivalences, in the sense that if two bipointed types are equivalent, then one is homotopy-initial if and only if the other one is. It is worth emphasizing also that homotopy-initiality is a purely type-theoretic notion: despite having an intuitive homotopy-theoretic interpretation, it is formulated in terms of inhabitation of specific, definable types. In fact, it is possible to give a characterization of homotopy-initial bipointed types in terms of type-theoretic rules, as the next proposition spells out.
 
-\begin{proposition} \label{thm:hinitrec}
+\begin{proposition} \label{thm:hinitrules}
 A bipointed type $A = (A, a_0, a_1)$ is homotopy-initial if and only if it satisfies
- the following rules, where $k \in \{ 0, 1 \}$:
+ the following rules:
+ \begin{mathpar}
+\begin{prooftree}
+B \in \UU \qquad
+b_0 \in B \qquad
+b_1 \in B \qquad
+\justifies
+x \co A \vdash f(x, b_0, b_1) \in B 
+\end{prooftree} \\ \medskip
+\begin{prooftree}
+B \in \UU \qquad
+b_0 \in B  \qquad
+b_1 \in B
+\justifies
+\bar{f}_k \in \Id(  f(a_k, b_0, b_1), b_k ) 
+\end{prooftree}   \\ \medskip
 
+\begin{prooftree}
+(B, b_0, b_1) \in \Bip \quad
+(f, \bar{f}_0, \bar{f}_1) \in \Bip(A,B) \quad
+(g, \bar{g}_0, \bar{g}_1) \in \Bip(A,B) 
+\justifies
+x \in A \vdash \alpha(x) \in \Id( f(x), g(x))
+\end{prooftree}  \\ \medskip
 
-\[
-\begin{array}{cc}
 \begin{prooftree}
-B : \type \qquad
-b_0 : B \qquad
-b_1 : B 
+(B, b_0, b_1) \in \Bip \quad
+(f, \bar{f}_0, \bar{f}_1) \in \Bip(A,B) \quad
+(g, \bar{g}_0, \bar{g}_1) \in \Bip(A,B) 
 \justifies
-x \co A \vdash \rec(x, b_0, b_1) : B
-\end{prooftree} & \textup{(Recursion)} \\[5ex]
-\begin{prooftree}
-B : \type \qquad
-b_0 : B \qquad
-b_1 : B 
-\justifies
-\beta_k(b_0, b_1) :  \rec(a_k, b_0, b_1) =  b_k 
-\end{prooftree} &
-\textup{($\beta$-rule)} \\[5ex]
-\begin{prooftree}
-B \co \type \qquad 
-x \co A \vdash f(x) \co B 
-\justifies
-x \co A \vdash \eta_f(x) \co  \rec(x, f(a_0), f(a_1) ) = f(x) 
-\end{prooftree}  &
-\textup{($\eta$-rule)} \\[5ex] 
-\begin{prooftree}
-B \co \type \qquad  
-x \co A \vdash f(x) \co B
-\justifies
-p_{f,k} \co  \beta_k( f(a_0), f(a_1)) = \eta_f(a_k)  \medskip
-\end{prooftree} & 
-\textup{(Coherence)}
-\end{array} 
-\]
+\bar{\alpha}_k \in \Id( \bar{f}_k, \alpha(a_k) \cdot \bar{g}_k) 
+\end{prooftree}
+\end{mathpar}
+ where $k =  0, 1$.
 \end{proposition}
 
 
 
-\begin{proof} Let $A$ be a bipointed type
-and assume that it satisfies the rules stated above. We need to show that it is homotopy-initial. So, let $B = (B, b_0, b_1)$ be a bipointed type. We begin to prove
-that the type of bipointed morphisms $\Bip(A,B)$ is contractible by showing that it is inhabited. This is easy: the recursion rule allows us to define a function~$(\lambda x \co A) \rec(x, b_0, b_1) \co A \to B$, 
-which can be equipped with the structure of a bipointed morphism since the $\beta$-rules give 
-us~$\beta_k \co \rec(a_k, b_0, b_1) = b_k$, for $k \in \{ 0, 1\}$, as required. To complete the proof, we now show that for every bipointed morphism $(f, \bar{f}_0, \bar{f}_1) \co A \to B$ we have a path
-\[
-(f, \bar{f}_0, \bar{f}_1) = 
-\big( (\lambda x \co A) \rec(x, b_0, b_1), \beta_0, \beta_1 \big)      \, .
- \]
-We begin by proving $f = (\lambda x \co A) \rec(x, b_0, b_1)$. By function extensionality, it suffices to show that, for $x \co A$, we have $ f(x) =  \rec(x, b_0, b_1)$.
-But we have paths
-\[
-\xymatrix@C=1cm{
-f(x) \ar[r]^-{\eta_f(x)} & \rec(x, f(a_0), f(a_1)) \ar[r]^-{\gamma_x} &  \rec(x, b_0, b_1) }  \, ,
-\] 
-where $\gamma_x$ is defined by $\Id$-elimination over $\bar{f}_0$ and $\bar{f}_1$. 
-By the properties of transport, it suffices to show that the two paths represented
-by composites in the diagram
-\[
-\xymatrix@C=1.5cm{
-\rec(a_0, f(a_0), f(a_1)) \ar[d]_{\eta_f(a_0)} \ar[r]^-{\gamma_{a_0}} & \rec(a_0, b_0, b_1) \ar[d]^{\beta_0(b_0, b_1)} \\
-f(a_0) \ar[r]_{\beta_0} & b_0}
-\]
-are propositionally equal. By the coherence rule, it suffices to show the corresponding
-statement for the diagram
-\[
-\xymatrix@C=1.5cm{
- \rec(a_0, f(a_0), f(a_1))  \ar[d]_{\beta_0( f(a_0), f(a_1))}\ar[r]^-{\gamma_{a_0}} &  \rec(a_0, g(a_0), g(a_1))
- \ar[d]^{\beta_0(b_0, b_1)} \\
- b_0 \ar[r]_{\beta_0} & g(a_0)}
-\]
-The required propositonal equality now follows by $\Id$-elimination over $\bar{f}_0 \co f(a_0) = b_0$. The final
-propositional equality is proved analogously.
+\begin{proof} Immediate.
 \end{proof} 
 
 
@@ -1111,19 +1024,23 @@ propositional equality is proved analogously.
 
 
 Our goal for the reminder of this section is to show that a bipointed type is homotopy-initial if and only
-if it is inductive. We begin with the following consequence of Lemma~\ref{thm:etaind}.
+if it is inductive. We begin with the following easy observation.
 
 
 
 
 \begin{proposition} \label{thm:indrec}
-If a bipointed type is inductive then it is homotopy-initial.
+If a bipointed type is inductive then it is homotopy-initial, \ie the type
+\[
+(\Pi A \co \Bip) \big(  \ishinit(A) \rightarrow \isind(A) \big)
+\] 
+is inhabited.
 \end{proposition}
 
 
-\begin{proof} It is sufficient to
-show that if a bipointed type is inductive then it satisfies the recursion rule, the $\beta$-rule, the $\eta$-rule and the
-coherence rules of Proposition~\ref{thm:hinitrec}. But the recursion and $\beta$-rules are special cases of the rules that are part of the definition of an inductive type, while the $\eta$-rules and the coherence rules are special cases of the rules in Lemma~\ref{thm:etaind}. 
+\begin{proof} The rules characterising homotopy-initial bipointed types in Proposition~\ref{thm:hinitrules}
+are special cases of the rules in Proposition~\ref{thm:inductiverules} and Lemma~\ref{thm:inductiveuniquesec},
+which are provable for inductive bipointed types.
 \end{proof}
 
 
@@ -1215,25 +1132,15 @@ Indeed, this is what we used to show that the term $\ind(x, b_0, b_1)$ defined i
 the correct type.
 \end{remark*}
 
-\medskip
+
+\begin{theorem}\label{lem:BoolMainInt} A bipointed type 
+is  $A$ is inductive if and only if it is homotopy-initial, \ie  the type
+\[
+(\Pi A \co \Bip) \big(  \ishinit(A) \rightarrow \isind(A) \big)
+\] 
+is inhabited.
 
 
-
-\medskip
-
-We can now state and prove the main result of this first part of the paper.
-
-
-\begin{theorem}\label{lem:BoolMainInt} For a bipointed type $A = (A, a_0, a_1)$, the following 
-conditions are equivalent:
-\begin{enumerate}[(i)]
-\item $A$ is inductive,
-\item $A$ is homotopy-initial.
-\end{enumerate}
-Furthermore, assuming the rules for the type $\Bool$, the following is also equivalent:
-\begin{enumerate}[(i)] \setcounter{enumi}{2}
-\item $A$ is equivalent to $\Bool$.
-\end{enumerate}
 \end{theorem}
 
 \begin{proof} The fact that an inductive type is homotopy-initial was proved in 
@@ -1330,10 +1237,18 @@ Indeed, observe that
 the type $\ishinit(A)$ is a mere proposition since $\iscontr(X)$ is a mere proposition for any type $X$ and the dependent product of family of mere propositions is again a mere proposition. To show that $\isind (A)$ is a mere proposition, we note that to prove that a type $X$ is a mere proposition, it suffices to do so under the assumption that $X$ is inhabited. Assume therefore that $\isind(A)$ is inhabited. Since the dependent product of a family of mere propositions is again a mere proposition, it suffices to show that $\BipSect(A,E)$ is a mere proposition for any $E$. Fix sections $\mu, \nu : \BipSect(A,E)$. To show $\mu = \nu$, it suffices to exhibit a bipointed homotopy between $\mu$ and $\nu$. But since a bipointed homotopy is nothing more than a section of an appropriate fibered bipointed type, we can obtain it by using the fact that $\isind(A)$ is inhabited.
 For part (ii), the logical equivalence between the types $\isind(A)$ and 
 $\ishinit(A)$ is established in the same way as in the proof of  Theorem~\ref{lem:BoolMainInt}. 
-
 \end{proof}
 
 
+
+\begin{corollary}[$\Hint + \Bool$]\label{lem:BoolMainInt} For a bipointed type $A = (A, a_0, a_1)$, the following 
+conditions are equivalent:
+\begin{enumerate}[(i)]
+\item $A$ is inductive,
+\item $A$ is homotopy-initial.
+\item $A$ is equivalent to $\Bool$.
+\end{enumerate}
+\end{corollary}
 
 We conclude this section by showing that if the universe $\UU$ is univalent, then a form of the univalence axiom holds also for bipointed types, in the sense made precise by the next theorem.
 

@@ -1,0 +1,103 @@
+\[
+\begin{array}{cc}
+\begin{prooftree}
+x \co A \vdash E(x) \co \type \qquad 
+x \co A \vdash f(x) \co E(x) 
+\justifies
+x \co A \vdash \eta_f(x) \co  \ind(x, f(a_0), f(a_1) ) = f(x) 
+\end{prooftree} &
+\textup{($\eta$-rule)} \\[5ex] 
+\begin{prooftree}
+x \co A \vdash E(x) \co \type \qquad 
+x \co A \vdash f(x) \co E(x) 
+\justifies
+\mathsf{p}_k(f)  \co  \mathsf{comp}_k( f(a_0), f(a_1))  = \eta_f(a_k) 
+\end{prooftree} &
+\textup{(Coherence)} \\[3ex]
+\end{array}
+\]
+\end{lemma}
+
+
+\begin{prooftree}
+B \co \type \qquad 
+x \co A \vdash f(x) \co B 
+\justifies
+x \co A \vdash \eta_f(x) \co  \ind(x, f(a_0), f(a_1) ) = f(x) 
+\end{prooftree} \\ \medskip 
+\begin{prooftree}
+B \co \type \qquad 
+x \co A \vdash f(x) \co B
+\justifies
+\mathsf{p}_k(f)  \co  \mathsf{comp}_k( f(a_0), f(a_1))  = \eta_f(a_k) 
+\end{prooftree} 
+
+
+\[
+\begin{array}{cc}
+\begin{prooftree}
+B : \type \qquad
+b_0 : B \qquad
+b_1 : B 
+\justifies
+x \co A \vdash \rec(x, b_0, b_1) : B
+\end{prooftree} & \textup{(Recursion)} \\[5ex]
+\begin{prooftree}
+B : \type \qquad
+b_0 : B \qquad
+b_1 : B 
+\justifies
+\beta_k(b_0, b_1) :  \rec(a_k, b_0, b_1) =  b_k 
+\end{prooftree} &
+\textup{($\beta$-rule)} \\[5ex]
+\begin{prooftree}
+B \co \type \qquad 
+x \co A \vdash f(x) \co B 
+\justifies
+x \co A \vdash \eta_f(x) \co  \rec(x, f(a_0), f(a_1) ) = f(x) 
+\end{prooftree}  &
+\textup{($\eta$-rule)} \\[5ex] 
+\begin{prooftree}
+B \co \type \qquad  
+x \co A \vdash f(x) \co B
+\justifies
+p_{f,k} \co  \beta_k( f(a_0), f(a_1)) = \eta_f(a_k)  \medskip
+\end{prooftree} & 
+\textup{(Coherence)}
+\end{array} 
+\]
+
+
+Let $A$ be a bipointed type
+and assume that it satisfies the rules stated above. We need to show that it is homotopy-initial. So, let $B = (B, b_0, b_1)$ be a bipointed type. We begin to prove
+that the type of bipointed morphisms $\Bip(A,B)$ is contractible by showing that it is inhabited. This is easy: the recursion rule allows us to define a function~$(\lambda x \co A) \rec(x, b_0, b_1) \co A \to B$, 
+which can be equipped with the structure of a bipointed morphism since the $\beta$-rules give 
+us~$\beta_k \co \rec(a_k, b_0, b_1) = b_k$, for $k \in \{ 0, 1\}$, as required. To complete the proof, we now show that for every bipointed morphism $(f, \bar{f}_0, \bar{f}_1) \co A \to B$ we have a path
+\[
+(f, \bar{f}_0, \bar{f}_1) = 
+\big( (\lambda x \co A) \rec(x, b_0, b_1), \beta_0, \beta_1 \big)      \, .
+ \]
+We begin by proving $f = (\lambda x \co A) \rec(x, b_0, b_1)$. By function extensionality, it suffices to show that, for $x \co A$, we have $ f(x) =  \rec(x, b_0, b_1)$.
+But we have paths
+\[
+\xymatrix@C=1cm{
+f(x) \ar[r]^-{\eta_f(x)} & \rec(x, f(a_0), f(a_1)) \ar[r]^-{\gamma_x} &  \rec(x, b_0, b_1) }  \, ,
+\] 
+where $\gamma_x$ is defined by $\Id$-elimination over $\bar{f}_0$ and $\bar{f}_1$. 
+By the properties of transport, it suffices to show that the two paths represented
+by composites in the diagram
+\[
+\xymatrix@C=1.5cm{
+\rec(a_0, f(a_0), f(a_1)) \ar[d]_{\eta_f(a_0)} \ar[r]^-{\gamma_{a_0}} & \rec(a_0, b_0, b_1) \ar[d]^{\beta_0(b_0, b_1)} \\
+f(a_0) \ar[r]_{\beta_0} & b_0}
+\]
+are propositionally equal. By the coherence rule, it suffices to show the corresponding
+statement for the diagram
+\[
+\xymatrix@C=1.5cm{
+ \rec(a_0, f(a_0), f(a_1))  \ar[d]_{\beta_0( f(a_0), f(a_1))}\ar[r]^-{\gamma_{a_0}} &  \rec(a_0, g(a_0), g(a_1))
+ \ar[d]^{\beta_0(b_0, b_1)} \\
+ b_0 \ar[r]_{\beta_0} & g(a_0)}
+\]
+The required propositonal equality now follows by $\Id$-elimination over $\bar{f}_0 \co f(a_0) = b_0$. The final
+propositional equality is proved analogously.
