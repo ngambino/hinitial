@@ -251,7 +251,7 @@
 \newcommand{\HasBoolRecUniq}{\mathsf{has}\text{-}\mathsf{2}\text{-}\mathsf{rec}\text{-}\mathsf{uniq}}
 \newcommand{\HasBoolIndUniq}{\mathsf{has}\text{-}\mathsf{2}\text{-}\mathsf{ind}\text{-}\mathsf{uniq}}
 \newcommand{\FibBip}{\mathsf{FibBip}}
-\newcommand{\BipSect}{\mathsf{BipSect}}
+\newcommand{\BipSec}{\mathsf{BipSec}}
 \newcommand{\ishinit}{\mathsf{ishinit}}
 \newcommand{\isind}{\mathsf{isind}}
 \newcommand{\BoolIdHom}{\mathsf{2}\text{-}\mathsf{Id}\text{-}\mathsf{Hom}}
@@ -511,17 +511,7 @@ $\ell \co B \to A$ and $r \co B \to A$ such that
  \[ 
  \isequiv(f) \defeq (\Sigma \ell \co B \to A) \Id( \ell \circ f, 1_A) \times (\Sigma r \co B \to A) \Id( r \circ f , 1_B) \, .
  \]
-Furthermore we say that $f$ is a \emph{homotopy equivalence} if there exist a function 
-$g : B\rightarrow A$ and elements
-\begin{align*}
-\eta &: (\Pi x : A) \Id( g  f  x , x) \,  ,\\
-\varepsilon &: (\Pi y:B) \Id( f   g  y, y) \, . \\
-p & : (\Pi x : A) \Id ( \varepsilon_{f x} \, , f \, \eta_x )  \, , \\
-\end{align*}
-Note that we could have replace the requirement of the existence of $p$ with that of $q \co (\Pi y : B) \Id ( \eta_{g y} \, , g \, \varepsilon_y)$
-where the same notation for both function application and
-the action of a function on an identity proof (which is easily definable by $\Id$-elimination),
-and we write $\alpha_x$ instead of $\alpha(x)$ for better readability.
+
 
 
 \newpage
@@ -532,7 +522,7 @@ and we write $\alpha_x$ instead of $\alpha(x)$ for better readability.
 
 
 
-Let $A \in \UU$ be a type and suppose that there is an equivalence $f \co \Bool \to A$. Then, the type $A$ 
+Let $A \in \UU$ be a small type and suppose that there is an equivalence $f \co \Bool \to A$. Then, the type $A$ 
 has two distinguished elements $a_0 \defeq f(0)$ and $a_1 \defeq f(1)$, and it satisfies
 analogues of the elimination and computation rules for $\Bool$, except that the conclusions of the computation 
 rules need to be modified  by replacing the judgemental equalities  with propositional ones. Our aim in this section is to provide a characterisation of the types equivalent to $\Bool$ by means of type-theoretical universal properties. In order to do so, we introduce the notion of a bipointed type. 
@@ -600,17 +590,15 @@ homotopies, as in an $(\infty,1)$-category.  We now discuss the notion of equiva
 
 
 \begin{definition} We say that a bipointed morphism $f \co A \to B$ is a \myemph{bipointed equivalence}
-if there exist bipointed morphisms $\ell \co B \to A$ and $r \co B \to A$ which provide a left and a right bipointed inverse for $f$, \ie such that there exist paths 
-\[
-p \in \Id_{\Bip(A,A)}(\ell \circ f, 1_A) \, , \quad q \in \Id_{\Bip(B,B)}(f \circ r, 1_B) \, .
-\]
+if there exist bipointed morphisms $\ell \co B \to A$ and $r \co B \to A$ which provide a left and a right bipointed inverse for $f$, \ie such that there exist paths $p \co \ell \circ f \Rightarrow 1_A$ in $\Bip(A,A)$ and $q \co f \circ r \Rightarrow 1_B$
+in $\Bip(B,B)$.
 \end{definition}
 
 For a bipointed morphism $f \co A \to B$, the type of proofs that $f$ is a bipointed equivalence is
 then defined by letting
 \[
-\isbipequiv(f) \defeq   \sum_{\ell \in \BipHom(B,A)} ( \ell \circ f = 1_A ) \times 
-    \sum_{r \in \BipHom(A, B)}(  f \circ r = 1_B ) \, ,
+\isbipequiv(f) \defeq   \sum_{\ell \in \BipHom(B,A)} \Id( \ell \circ f, 1_A ) \times 
+    \sum_{r \in \BipHom(A, B)} \Id (f \circ r , 1_B ) \, ,
 \]
 and type of bipointed equivalences between $A$ and $B$ is defined by letting
 \[
@@ -624,25 +612,23 @@ gives an alternative characterisation of bipointed equivalences.
 \begin{lemma}\label{BoolAlgSpace}  \label{thm:usemere}
 A bipointed morphism $(f, \bar{f}_0, \bar{f}_1) \co A \to B$ is a bipointed equivalence if and only
 if its underlying function $f \co A \to B$ is an equivalence. Furthermore, there is an equivalence of types
-\[
-\isbipequiv(f, \bar{f}_0, \bar{f}_1)  \simeq \isequiv(f) \, . 
-\]
+$\isbipequiv(f, \bar{f}_0, \bar{f}_1)  \simeq \isequiv(f)$. 
 Thus, for any bipointed morphism $f$ the type $\isbipequiv(f)$ is a mere proposition.
 \end{lemma}  
 
 \begin{proof}
 Let $(A,a_0,a_1), (B,b_0,b_1)$ be bipointed types and $(f, \bar{f}_0, \bar{f}_1) \co A \to B$ be a bipointed morphism between them. Expanding the type of 
 proofs that $f$ is a bipointed equivalence yields the type
-\[
- \sum_{\ell \co B \to  A}  \; 
- \sum_{\bar{\ell}_0 : \ell(b_0)=a_0} \; 
- \sum_{\bar{\ell}_1 : \ell(b_1)=a_1} \; 
- P(\ell,\bar{\ell}_0,\bar{\ell}_1) \times
- \sum_{r \co B \to A} \; 
- \sum_{\bar{r}_0 : r(b_0)=a_0} \; 
- \sum_{\bar{r}_1 : r(b_1)=a_1} \; 
+\begin{multline*}
+ \sum_{\ell \co B \to  A}  
+ \sum_{\bar{\ell}_0 \co \ell(b_0) \Rightarrow a_0} 
+ \sum_{\bar{\ell}_1 \co \ell(b_1) \Rightarrow a_1} 
+ P(\ell,\bar{\ell}_0,\bar{\ell}_1) \times 
+ \sum_{r \co B \to A} 
+ \sum_{\bar{r}_0 \co r(b_0) \Rightarrow a_0} 
+ \sum_{\bar{r}_1 \co  r(b_1) \Rightarrow a_1} 
  Q(r,\bar{r}_0,\bar{r}_1)   \, ,
-\]
+\end{multline*}
 where
 \begin{align*}
 P(\ell,\bar{\ell}_0,\bar{\ell}_1) & \defeq \Id \Big( \big( \ell \comp f, \ell(\bar{f}_0) \ct \bar{\ell}_0, \ell(\bar{f}_1) \ct \bar{\ell}_1\big), \big( 1_A, \refl(a_0), \refl(a_1) \big) \Big)  \, , \\
@@ -650,16 +636,16 @@ Q(r,\bar{r}_0,\bar{r}_1) & \defeq \Id \Big( \big( f \comp h,   f(\bar{r}_0) \ct 
 \end{align*}
 Using the characterization of paths in $\Sigma$-types, the type $P(\ell,\bar{\ell}_0,\bar{\ell}_1)$ can be equivalently expressed as
 \[
-\sum_{p : \ell \comp f = 1_A}  
-\Id \Big(  \big( \ell (\bar{f}_0) \ct \bar{\ell }_0, \ell (\bar{f}_1) \ct \bar{\ell }_1\big), \big( p^{!}\big(\refl(a_0), \refl(a_1) \big) \big) \Big) \, .
+\sum_{p \co \ell \comp f \Rightarrow 1_A}  
+\Id \Big(  \big( \ell (\bar{f}_0) \ct \bar{\ell }_0, \ell (\bar{f}_1) \ct \bar{\ell }_1\big), \big( p_{!}\big(\refl(a_0), \refl(a_1) \big) \big) \Big) \, .
 \]
-By path elimination on $p$, the transport $p^{!}\big(\refl(a_0), \refl(a_1) \big)$ is equal to the pair 
+By path elimination on $p$, the transport $p_{!}\big(\refl(a_0), \refl(a_1) \big)$ is equal to the pair 
 \[
 \big(  \ext(p)_{a_0} \ct \refl(a_0) \, , \;  \ext(p)_{a_1} \ct \refl(a_1) \big) \, ,
 \]
-where $\ext : \Id(\ell \comp f, 1_A) \to \Hot(\ell \comp f,  1_A)$ is the canonical equivalence. This is of course propositionally equal to $\big(\ext(p)_{a_0}, \ext(p)_{a_1} \big)$. Using the characterization of paths in product spaces, the type $P(\ell,\bar{\ell}_0,\bar{\ell}_1)$ can thus be expressed as
+where $\ext : \Id(\ell \comp f, 1_A) \to \Hot(\ell \comp f,  1_A)$ is the canonical function, asserted to be an equivalence by the Function Extensionality axiom. This is of course propositionally equal to $\big(\ext(p)_{a_0}, \ext(p)_{a_1} \big)$. Using the characterization of paths in product spaces, the type $P(\ell,\bar{\ell}_0,\bar{\ell}_1)$ can thus be expressed as
 \[
-\sum_{ p : \ell \comp f = 1_A} \Big(
+\sum_{ p : \ell \comp f \Rightarrow 1_A} \Big(
 \Id  \big( \ell (\bar{f}_0) \ct \bar{\ell}_0 \, ,  \ext(p)_{a_0} \big) 
 \times 
 \Id \big( \ell(\bar{f}_1) \ct \bar{\ell}_1 \, ,  \ext(p)_{a_1} \big)
@@ -690,26 +676,26 @@ Therefore, we can express $\isbipequiv(f, \bar{f}_0, \bar{f}_1)$ as the type
 \sum_{\beta : f \comp r \sim 1_B} 
 	R_0(\ell,\alpha) \times R_1(\ell,\alpha) \times S_0(r,\beta) \times S_1(r,\beta)
 \]
-where, for $k \in \{0,1\}$, we set
+where, for $k = 0,1$, we set
 \begin{align*}
-& R_k(\ell,\alpha) \defeq \sum_{\bar{\ell}_k : \ell(b_k)=a_k} \Id \big( \ell (\bar{f}_k) \ct \bar{\ell}_k \, ,  \alpha(a_k) \big) \\
-& S_k(r,\beta) \defeq \sum_{\bar{r}_k : r(b_k)=a_k} \Id \big( f (\bar{r}_k) \ct \bar{f}_k \, ,  \beta(b_k) \big) 
+& R_k(\ell,\alpha) \defeq \sum_{\bar{\ell}_k : \ell(b_k) \Rightarrow a_k} \Id \big( \ell (\bar{f}_k) \ct \bar{\ell}_k \, ,  \alpha(a_k) \big) \\
+& S_k(r,\beta) \defeq \sum_{\bar{r}_k : r(b_k) \Rightarrow a_k} \Id \big( f (\bar{r}_k) \ct \bar{f}_k \, ,  \beta(b_k) \big) 
 \end{align*}
-Now recall  that for paths $q : \Id(y,x_1)$, $s : \Id(y,x_2)$, the type 
+Now recall  that for paths $q \in \Id(y,x_1)$, $s \in \Id(y,x_2)$, the type 
 \[
-\sum_{p : \Id_X(x_1,x_2)} \Id(q \ct p,s)
+\sum_{p \in \Id_X(x_1,x_2)} \Id(q \ct p,s)
 \] 
 is contractible. Thus we have $R_k(\ell,\alpha) \simeq \one$.
-Furthermore, for any equivalence $g : X \to Y$, and paths $q : \Id(g(x_2),y)$, $s : \Id(g(x_1),y)$, the type 
+Furthermore, for any equivalence $g : X \to Y$, and paths $q \in \Id(g(x_2),y)$, $s \in \Id(g(x_1),y)$, the type 
 \[
-\sum_{p : \Id_X(x_1,x_2)} \Id(g(p) \ct q,s)
+\sum_{p \in \Id_X(x_1,x_2)} \Id(g(p) \ct q,s)
 \] is contractible. Since $\ell, \alpha, r, \beta$ make $f$ into an equivalence, we have $S_k(\ell,\alpha) \simeq \one$. Thus,
 \begin{align*} 
 \isbipequiv(f,\bar{f}_0, \bar{f}_1) 
   & \simeq   \sum_{\ell \co B \to A} \sum_{\alpha : \ell \comp f \sim 1_A} \sum_{ r  \co B \to A} 
  \sum_{\beta \co f \comp r \sim 1_B} \, 1 \\
- & \simeq \sum_{\ell \co B \to A}  \big( \ell \comp f \sim 1_A \big) \times 
-\sum_{r  \co B \to A} \big( f \comp r \sim 1_B \big) \\
+ & \simeq \sum_{\ell \co B \to A}  \Hot( \ell \comp f , 1_A ) \times 
+\sum_{r  \co B \to A}  \Hot( f \comp r, 1_B ) \\
  & \simeq \isequiv(f) \, ,
 \end{align*} 
 as required.
@@ -718,7 +704,7 @@ as required.
 
 
 We now present an equivalent description of the identity type between two bipointed morphisms, which 
-will be useful in the proof of Theorem~\ref{lem:BoolMainInt}. We begin by introducing the notion of a bipointed homotopy between bipointed morphisms.
+will be useful in the proof of Theorem~\ref{thm:bipointedmain}. We begin by introducing the notion of a bipointed homotopy between bipointed morphisms.
 
 
 
@@ -729,29 +715,26 @@ will be useful in the proof of Theorem~\ref{lem:BoolMainInt}. We begin by introd
 (\alpha, \bar{\alpha}_0, \bar{\alpha}_1) \co (f, \bar{f}_0, \bar{f}_1) \to  (g, \bar{g}_0, \bar{g}_1)
 \] 
 consists of a homotopy $\alpha \co  f \sim g$ and paths
-$\bar{\alpha}_0 \co  \bar{f}_0 = \alpha(a_0)  \cdot \bar{g}_0 $ and $\bar{\alpha}_1 \co \bar{f}_1 =  \alpha(a_1) \cdot \bar{g}_1$. 
+$\bar{\alpha}_0 \co   \bar{f}_0 \Rightarrow \alpha(a_0)  \cdot \bar{g}_0$ and $\bar{\alpha}_1 \co 
+\bar{f}_1 \Rightarrow \alpha(a_1) \cdot \bar{g}_1$. 
 \end{definition}
 
 The type of bipointed homotopies between $f$ and $g$ is then defined by letting
 \[
  \BipHot  \big( (f,\bar{f}_0, \bar{f}_1), (g, \bar{g}_0, \bar{g}_1) \big)   \defeq   
- (\Sigma \alpha \co f \sim g)  \big( 
+ \sum_{\alpha \co f \sim g}  \big( 
   \Id\big( \bar{f}_0 ,  \alpha(a_0)  \ct \bar{g}_0 \big) \times 
   \Id \big( \bar{f}_1,  \alpha(a_1) \ct  \bar{g}_1 \big) \big) \, .
 \]
 As usual, we often refer to a bipointed homotopy by mentioning only its underlying homotopy.
-Diagrammatically, we represent the paths involved in a bipointed homotopy as follows:
+Diagrammatically, we represent the paths  involved in a bipointed homotopy as follows:
 \[
 \xymatrix@C=1.5cm{
-f(a_0) \ar[r]^{\alpha(a_0)}  \ar@/_1pc/[dr]_{\bar{f}_0}  
-\ar@{}[dr]|{\qquad \Rightarrow \; \bar{\alpha}_0}  & g(a_0) \ar[d]^{\bar{g}_0}  \\ 
- & b_0 } \qquad
- \xymatrix@C=1.5cm{
-f(a_1) \ar[r]^{\alpha(a_1)}  \ar@/_1pc/[dr]_{\bar{f}_1}  
-\ar@{}[dr]|{\qquad \Rightarrow \; \bar{\alpha}_1}  & g(a_1) \ar[d]^{\bar{g}_1}  \\ 
- & b_1 }
- \] 
-
+f(a_k) \ar[r]^{\alpha(a_k)}  \ar@/_1pc/[dr]_{\bar{f}_k}  
+\ar@{}[dr]|{\qquad \Rightarrow \; \bar{\alpha}_k}  & g(a_k) \ar[d]^{\bar{g}_k}  \\ 
+ & b_k }
+  \] 
+where $k = 0, 1$. 
 
 
 \begin{lemma} \label{BoolHomSpace} 
@@ -763,14 +746,16 @@ For every parallel pair of morphisms $(f, \bar{f}_0, \bar{f}_1), (g, \bar{g}_0, 
 \end{lemma}
 
 \begin{proof} Let  $f = (f, \bar{f}_0, \bar{f}_1)$ and $g = (g, \bar{g}_0, \bar{g}_1)$ be bipointed
-morphisms from $A$ to $B$. To simplify notation, for a path $p \co f = g$, we write $\alpha_p \co f \sim g$
+morphisms from $A$ to $B$. To simplify notation, for a path $p \in \Id( f, g)$, we write $\alpha_p \co f \sim g$
 for the corresponding homotopy. We then have
 \begin{align*}
 \BipHot \big( (f,\bar{f}_0,\bar{f}_1) \; (g,\bar{g}_0,\bar{g}_1) \big) & \deq  
-(\Sigma \alpha : f \sim g) \big(\bar{f}_0 = \alpha(a_0) \ct \bar{g}_0\big) \times \big(\bar{f}_1 = \alpha(a_1) \ct \bar{g}_1 \big) \\ 
-& \simeq  (\Sigma p : f = g) \big(\bar{f}_0 = \alpha_p(a_0) \ct \bar{g}_0\big) \times \big( \bar{f}_1 = \alpha_p(a_1) \ct \bar{g}_1 \big) \\
-& \simeq (\Sigma p : f = g) \big((\bar{f}_0,\bar{f}_1) = \big(\alpha_p(a_0) \ct \bar{g}_0 \, ,  \alpha_p(a_1) \ct \bar{g}_1\big) \big) \\
-& \simeq (\Sigma p : f = g) \big((\bar{f}_0,\bar{f}_1) = p^{\ast} (\bar{g}_0,\bar{g}_1) \big) \\
+\sum_{\alpha : f \sim g} \Id(\bar{f}_0, \alpha(a_0) \ct \bar{g}_0) \times \Id(\bar{f}_1, \alpha(a_1) \ct \bar{g}_1) \\ 
+& \simeq \sum_{p  \co  f \Rightarrow g} \Id(\bar{f}_0, \alpha_p(a_0) \ct \bar{g}_0) \times \Id( \bar{f}_1, \alpha_p(a_1) \ct \bar{g}_1) \\
+& \simeq
+\sum_{p \co f \Rightarrow g} \Id\big( (\bar{f}_0,\bar{f}_1),  \big(\alpha_p(a_0) \ct \bar{g}_0 \, ,  \alpha_p(a_1) \ct \bar{g}_1) \big) \\
+& \simeq
+\sum_{p \in  f \Rightarrow g} \Id \big(  (\bar{f}_0,\bar{f}_1),  p^{\ast} (\bar{g}_0,\bar{g}_1) \big) \\
 & \simeq  \Id \big( (f,\bar{f}_0,\bar{f}_1) , (g,\bar{g}_0,\bar{g}_1)  \big) \, ,
 \end{align*} 
 as required.
@@ -782,7 +767,7 @@ as required.
 
 \begin{definition} \label{def:fibbipointed}
 Let $A = (A, a_0, a_1)$ be a bipointed type. A \emph{fibered bipointed type} over $A$ is a dependent type
-$E \co A \to \UU$ equipped with distinguished elements $e_0 \co E(a_0)$ and $e_1 \co E(a_1)$.
+$E \co A \to \UU$ equipped with distinguished elements $e_0 \in E(a_0)$ and $e_1 \in E(a_1)$.
 \end{definition}
 
 The type of  fibered bipointed types over a bipointed type $A$ is then defined by letting
@@ -809,18 +794,19 @@ $A = (A, a_0, a_1)$.  A \emph{bipointed section} of $E$,
 \[
 (s, \bar{s}_0, \bar{s}_1) \co A \to E \, ,
 \]
-consists of a section $s \in \prod_{x \in A} E(x)$ equipped with paths~$\bar{s}_0 \in \Id( s(a_0),  e_0)$ 
-and $\bar{s}_1 \in \Id( s(a_1), e_1)$. \end{definition} 
+consists of a section $s \in \prod_{x \in A} E(x)$ equipped with paths~$\bar{s}_0 \co s(a_0) \Rightarrow e_0$ 
+and $\bar{s}_1 \co  s(a_1) \Rightarrow e_1$. 
+\end{definition} 
 
 
 The type of bipointed sections of $E \co A \to \UU$ is then defined to be
 \[
-\BipSect(E) \defeq \sum_{\textstyle s \in \prod_{x \in A} E(x)} \Id(s(a_0),  e_0)  \times \Id( s(a_1), e_1)  \, .
+\BipSec(E) \defeq \sum_{s \in \prod_{x \in A} E(x)} \Id(s(a_0),  e_0)  \times \Id( s(a_1), e_1)  \, .
 \]
-Given a section $s \co A \to E$, we can define a bipointed morphism~$f  \co A \to E'$, where $E'$ is the
-bipointed type defined by $E' \defeq (\Sigma x :A) E(x)$. Its underlying function is given by 
-letting~$f(x) \defeq \pair(x, s(x))$, for~$x : A$. For $k \in \{ 0, 1 \}$, it is 
-immediate to obtain the required path~$\bar{s}_k \co f'(a_k) = e'_k$.
+Given a bipointed section $s$, we can define a bipointed morphism~$f  \co A \to E'$, where $E'$ is the
+bipointed type defined by $E' \defeq \sum_{x \in A} E(x)$. Its underlying function is given by 
+letting~$f(x) \defeq \pair(x, s(x))$, for~$x : A$. For $k =  0, 1$, it is 
+immediate to obtain the required path~$\bar{s}_k \co f'(a_k) \Rightarrow e'_k$.
 The morphism $f' \co A \to E'$ provides a section, \ie a right inverse for~$\pi_1 \co E' \to A$,
  since, for~$x \co A$, we have judgemental equalities
 \[
@@ -832,8 +818,6 @@ The morphism $f' \co A \to E'$ provides a section, \ie a right inverse for~$\pi_
 E' \ar[d]_{\pi_1} \\
 A . \ar@/_1.2pc/[u]_{f'} }
 \]
-
-
 We conclude this section by characterizing the identity type between two bipointed sections, using
 the notion of a bipointed homotopy. This is in complete analogy with the situation for bipointed
 morphisms.
@@ -841,7 +825,7 @@ morphisms.
 
 \begin{definition} \label{def:2cellsection} Let $E$ be a fibered bipointed type over $A$. If $f = (f, \bar{f}_0,\bar{f}_1)$ and $g = (g, \bar{g}_0, \bar{g}_1)$ are bipointed sections of $E$, a \emph{bipointed homotopy} 
 $(\alpha, \bar{\alpha}_0, \bar{\alpha}_1) \co (f, \bar{f}_0, \bar{f}_1)  \rightarrow (g, \bar{g}_0, \bar{g}_1)$ 
-is a homotopy~$\alpha \co f \sim g$ together with paths $\bar{\alpha}_0 \in \Id( f(a_0),  g(a_0))$ and $\bar{\alpha}_1 \in \Id ( f(a_1) , g(a_1))$. 
+is a homotopy~$\alpha \co f \sim g$ together with paths $\bar{\alpha}_0 \co  f(a_0) \Rightarrow  g(a_0)$ and $\bar{\alpha}_1 \co f(a_1) \Rightarrow g(a_1)$. 
 \end{definition} 
 
 The type of bipointed homotopies between bipointed sections $f$ and $g$ as above is then defined by letting:
@@ -887,7 +871,7 @@ weakened by replacing the judgmental equality in its conclusion with a propositi
 
 \begin{definition} A bipointed type $A$ is said to be \emph{inductive} if every fibered bipointed type over it has a bipointed section, \ie the type
 \[ 
-\isind(A) \defeq \prod_{E \in \FibBip(A)}  \BipSect(E)
+\isind(A) \defeq \prod_{E \in \FibBip(A)}  \BipSec(E)
 \]  
 is inhabited. \end{definition} 
 
@@ -909,7 +893,7 @@ Let $A = (A, a_0, a_1)$ be a bipointed type. Then $A$ is inductive if only if it
 
 \begin{mathpar}
 \begin{prooftree}
-x: A \vdash E(x) \in \UU \qquad
+x \in A \vdash E(x) \in \UU \qquad
 e_0 \in E(a_0) \qquad
 e_1 \in E(a_1) \qquad
 \justifies
@@ -941,8 +925,8 @@ then the following rules are derivable:
 \[
 \begin{prooftree}
 (E, e_0, e_1) \in \FibBip(A) \quad
-(s, \bar{s}_0, \bar{s}_1) \in \BipSect(A,E) \quad
-(t, \bar{t}_0, \bar{t}_1) \in \BipSect(A,E) 
+(s, \bar{s}_0, \bar{s}_1) \in \BipSec(E) \quad
+(t, \bar{t}_0, \bar{t}_1) \in \BipSec(E) 
 \justifies
 x \in A \vdash \varphi(x) \in \Id( s(x), t(x))
 \end{prooftree} \bigskip
@@ -951,8 +935,8 @@ x \in A \vdash \varphi(x) \in \Id( s(x), t(x))
 \[
 \begin{prooftree}
 (E, e_0, e_1) \in \FibBip(A) \quad
-(s, \bar{s}_0, \bar{s}_1) \in \BipSect(A,E) \quad
-(t, \bar{t}_0, \bar{t}_1) \in \BipSect(A,E) 
+(s, \bar{s}_0, \bar{s}_1) \in \BipSec(E) \quad
+(t, \bar{t}_0, \bar{t}_1) \in \BipSec(E) 
 \justifies
 \bar{\varphi}_k \in \Id( \bar{s}_k, \varphi(a_k) \cdot \bar{t}_k) 
 \end{prooftree}
@@ -1053,7 +1037,7 @@ if it is inductive. We begin with the following easy observation.
 \begin{theorem}\label{thm:bipointedmain} A bipointed type 
 is  $A$ is inductive if and only if it is homotopy-initial, \ie  the type
 \[
-(\Pi A \co \Bip) \big(  \ishinit(A) \rightarrow \isind(A) \big)
+\prod_{A \in \Bip} \big(  \ishinit(A) \leftrightarrow \isind(A) \big)
 \] 
 is inhabited
 \end{theorem}
@@ -1063,11 +1047,17 @@ it is homotopy-initial. But this follows immediately observing that the rules ch
 are special cases of the rules in Proposition~\ref{thm:inductiverules} and Lemma~\ref{thm:inductiveuniquesec},
 which are provable for inductive bipointed types. For the other implication, 
 let us assume that $A = (A, a_0, a_1)$ is homotopy-initial and prove that it is inductive. 
-For this, let $E = (E, e_0, e_1)$ be a fibered bipointed type over $A$. Let us define the type 
+For this, let $E = (E, e_0, e_1)$ be a fibered bipointed type over $A$. We need to show that there
+exists a bipointed section
+\begin{equation}
+\label{equ:reqsec}
+(s, \bar{s}_0, \bar{s}_1) \co A \to E
+\end{equation}
+Let begin by defining the type 
 \[
-E' \defeq (\Sigma x \co A) E(x) 
+E' \defeq \sum_{x \in A} E(x) 
 \]
-and recall that $E'$ can be equipped with the structure of a bipointed type by considering its elements $e'_k \defeq \pair(a_k, e_k)$ for $k \in \{0, 1\}$. In this way,  the first projection $\pi_1 \co E' \to A$ is a bipointed morphism. By the homotopy-initiality of $A$, we have a bipointed morphism 
+and recall that $E'$ can be equipped with the structure of a bipointed type by considering its elements $e'_k \defeq \pair(a_k, e_k)$ for $k = 0, 1$. In this way,  the first projection $\pi_1 \co E' \to A$ is a bipointed morphism. By the homotopy-initiality of $A$, we have a bipointed morphism 
 \[
 (f, \bar{f}_0, \bar{f}_1) \co (A, a_0, a_1)  \to (E', e'_0, e'_1) 
 \]
@@ -1086,51 +1076,46 @@ which we represent with the diagram
  \]
 But the identity $1_A \co A \to A$ is also a bipointed morphism from $A$ to itself and hence, by the homotopy-initiality of $A$, there is a path
 \[
-\pi_1 \circ f = 1_A 
+\pi_1 \circ f \Rightarrow 1_A 
 \]
-in $\Bip(A,A)$. By Lemma~\ref{BoolHomSpace}, this implies that there  is a bipointed homotopy $(\alpha,
+in $\Bip(A,A)$. By Lemma~\ref{BoolHomSpace}, there  is a bipointed homotopy $(\alpha,
 \bar{\alpha}_0,\bar{\alpha}_1) \co \pi_1 \circ f \sim 1_A$. This gives us a homotopy $\alpha \co \pi_1 \circ f \sim 1_A$ and paths
 \[
-\xymatrix@C=1.5cm{
-\pi_1 f (a_0) \ar[r]^{\alpha(a_0)} \ar@/_1pc/[dr]_{\overline{(\pi_1 f)}_0} \ar@{}[dr]|{\quad \bar{\alpha}_0}  & a_0 \ar[d]^{\refl(a_0)} \\
- & a_0 } \qquad
- \xymatrix@C=1.5cm{
-\pi_1 f (a_1) \ar[r]^{\alpha(a_0)} \ar@/_1pc/[dr]_{\overline{(\pi_1 f)}_1} \ar@{}[dr]|{\quad \bar{\alpha}_1}  & a_1 \ar[d]^{\refl(a_1)} \\
- & a_1 }
+\bar{\alpha}_k \co \overline{(\pi_1 f)}_k \Rightarrow \alpha(a_k) \cdot \refl(a_k) 
 \]
-We begin to define the required bipointed section by defining, for~$x \co A$, 
+for $k = 0, 1$. We begin to define the required bipointed section as in~\eqref{equ:reqsec}, by defining, for~$x \co A$, 
 \begin{equation}
 \label{equ:defreqsection}
-g(x) \defeq \alpha(x)_{!} \big( \pi_2 f (x) \big) \, .
+s(x) \defeq \alpha(x)_{!} \big( \pi_2 f (x) \big) \, .
 \end{equation}
-It remains to obtain paths~$\bar{g}_k \co \Id( g(a_k), e_k)$, for $k \in \{0, 1\}$.  Let $k \in \{0, 1\}$. First of all, recall that 
-$\bar{f}_k \co \Id \big( f(a_k),  e'_k\big)$, where $e'_k \equiv \pair(a_k, e_k) \co (\Sigma x :A ) E(x)$. Since we have an equivalence
+We now construct  paths~$\bar{s}_k \co s(a_k) \Rightarrow e_k$, for $k = 0, 1$. First of all, recall that 
+$\bar{f}_k \co  f(a_k) \Rightarrow  e'_k$, where $e'_k \equiv \pair(a_k, e_k) \co \sum_{x \in A} E(x)$. Since there is an equivalence
 \[
-\ext \co \Id_{(\Sigma x : A) E(x)}( f(a_k), e'_k) \to \big( \Sigma p \co \Id_A( \pi_2 f(a_k), a_k) \big) \, \Id_{E(a_k)} \big( p_{!}( \pi_1 f(a_k)) , e_k \big) \, .
+ \Id_{E'}( f(a_k), e'_k) \simeq  \sum_{p \co  \pi_1 f(a_k) \Rightarrow a_k} \, \Id_{E(a_k)} \big( p_{!}( \pi_2 f(a_k)) , e_k \big) \, .
 \]
-there are paths 
+we have paths 
 \begin{equation}
-\label{equ:p0q0}
-p \co \Id \big( \pi_1 f (a_k) \, , a_k \big) \, , \quad q \co \Id \big( p_{!}( \pi_2 f (a_k)) \, , e_k \big)  \, .
+\label{equ:usefulpath}
+p \co   \pi_1 f (a_k) \Rightarrow a_k  \, , \quad q \co   p_{!}( \pi_2 f (a_k)) \Rightarrow e_k   \, .
 \end{equation}
-Furthermore, by the definition of composition of bipointed morphisms, we have
+Furthermore, we have 
 \begin{alignat*}{4}  
-\overline{(\pi_1 f)}_k  & = \pi_1(\bar{f}_k) \ct (\overline{\pi_1})_k & & \qquad (\text{by definition of } \pi_1 f)   \\
-& = \pi_1(\bar{f}_k) \ct \refl(a_k) & & \qquad (\text{by definition of } \pi_1)  \\
- & = \pi_1(\bar{f}_k) & & \qquad \\
- & = p  & & \qquad (\text{by definition of } \ext) \,  .
+\overline{(\pi_1 f)}_k  & \Rightarrow \pi_1(\bar{f}_k) \ct (\overline{\pi_1})_k & & \qquad (\text{by definition of } \pi_1 f)   \\
+& \Rightarrow \pi_1(\bar{f}_k) \ct \refl(a_k) & & \qquad (\text{by definition of } \pi_1)  \\
+ & \Rightarrow \pi_1(\bar{f}_k) & & \qquad (\text{by the groupoid laws}) \\
+ & \Rightarrow p  & & \qquad (\text{by definition of } \ext) \,  .
 \end{alignat*}
-Therefore, we have the following chain of propositional equalities:
+Therefore, we can construct the following chain of paths:
 \begin{alignat*}{4}
-p & =  \overline{(\pi_1 f)}_k & &  \qquad (\text{as just proved})  \\
-  & =  \alpha(a_k) \ct \refl(a_k) & &  \qquad (\text{by the identity proof } \bar{\alpha}_k ) \\ 
-  & =  \alpha(a_k) \, .
+p & \Rightarrow  \overline{(\pi_1 f)}_k & &  \qquad (\text{as just proved})  \\
+  & \Rightarrow  \alpha(a_k) \ct \refl(a_k) & &  \qquad (\text{by the path } \bar{\alpha}_k ) \\ 
+  & \Rightarrow  \alpha(a_k)  & & \qquad (\text{by the groupoid laws})
 \end{alignat*} 
-Hence,  the required identity proof $\bar{g}_k \co \Id( g(a_k), e_k)$ can be defined as the witness for the following chain of propositional equalities
+Hence,  the required path $\bar{s}_k \co  s(a_k) \Rightarrow e_k$ can be defined as the following composite:
 \begin{alignat*}{4}
-g(a_k) & \deq \alpha(a_k)_{!} \big( \pi_2 f(a_k)  \big) & & \qquad (\text{by definition of } g) \\
- &              \peq   p_{!} \big( \pi_2 f(a_k)  \big) & & \qquad (\text{since } p = \alpha(a_k)) \\
-   &            \peq  e_k  & &  \qquad (\text{by the identity proof } q \text{ in } \eqref{equ:p0q0})  \, .
+s(a_k) & \deq \alpha(a_k)_{!} \big( \pi_2 f(a_k)  \big) & & \qquad (\text{by the definition of } s) \\
+ &              \Rightarrow   p_{!} \big( \pi_2 f(a_k)  \big) & & \qquad (\text{since there is a path } p \Rightarrow \alpha(a_k)) \\
+   &            \Rightarrow  e_k  & &  \qquad (\text{by the path } q \text{ in } \eqref{equ:usefulpath})  \, .
    \end{alignat*} 
    This concludes the proof.
 \end{proof}
@@ -1148,7 +1133,7 @@ type theory~$\Hext$. TO BE ADDED.
 \end{enumerate}
 \end{corollary}
 
-\begin{proof} For claim (i), recall that  $\iscontr(X)$ is a mere proposition for any type $X$ and the dependent product of family of mere propositions is again a mere proposition. For (ii), recall that to prove that a type $X$ is a mere proposition, it suffices to do so under the assumption that $X$ is inhabited. Assume therefore that $\isind(A)$ is inhabited. Since the dependent product of a family of mere propositions is again a mere proposition, it suffices to show that $\BipSect(A,E)$ is a mere proposition for any $E$. But for any two sections $s, t \in \BipSect(A,E)$, we know that there is a 
+\begin{proof} For claim (i), recall that  $\iscontr(X)$ is a mere proposition for any type $X$ and the dependent product of family of mere propositions is again a mere proposition. For (ii), recall that to prove that a type $X$ is a mere proposition, it suffices to do so under the assumption that $X$ is inhabited. Assume therefore that $\isind(A)$ is inhabited. Since the dependent product of a family of mere propositions is again a mere proposition, it suffices to show that $\BipSec(A,E)$ is a mere proposition for any $E$. But for any two sections $s, t \in \BipSec(A,E)$, we know that there is a 
 bipointed homotopy $\phi \in \BipHot(s,t)$ by Lemma~\ref{thm:inductiveuniquesec} and hence, by 
 Lemma~\ref{thm:biphot}, there is a path $p \in \Id(s,t)$, as required. Part (iii) now follows from parts (i) and (ii) and  the logical equivalence of  Theorem~\ref{thm:bipointedmain}. 
 \end{proof}
@@ -1159,7 +1144,7 @@ Lemma~\ref{thm:biphot}, there is a path $p \in \Id(s,t)$, as required. Part (iii
 conditions are equivalent:
 \begin{enumerate}[(i)]
 \item $A$ is inductive,
-\item $A$ is homotopy-initial.
+\item $A$ is homotopy-initial,
 \item $A$ is equivalent to $\Bool$.
 \end{enumerate}
 \end{corollary}
@@ -1179,38 +1164,38 @@ is an equivalence.
 \begin{proof} 
 Let $ (A,a_0,a_1), (B,b_0,b_1)$ be bipointed types. By the characterization of the identity types
 of  elements of a $\Sigma$-type, the 
-identity type $(A,a_0,a_1) = (B,b_0,b_1)$ can be expressed as the type
+identity type $\Id\big( (A,a_0,a_1),  (B,b_0,b_1)\big)$ is equivalent to  the type
 \[
-\sum_{p : A = B} \Id(\pair(a_0,a_1),  p^{!}(\pair(b_0,b_1)))
+\sum_{p \in \Id(A,B)} \Id(\pair(a_0,a_1),  p_{!}(\pair(b_0,b_1))) \, .
 \]
 By path elimination on $p$ and the characterization of paths in product types, this type is equivalent to
 \[ 
-\sum_{p : A = B} \, \Id \big(\pi_1(\ext(p))_{a_0},  b_0\big) \times \Id \big( \pi_1(\ext(p))_{a_1} , b_1)
+\sum_{p \in \Id(A,B)} \, \Id \big( f_p(a_0),  b_0\big) \times \Id \big( f_p(a_1) , b_1)
  \]
-where $\ext \co \Id(A,B) \to \mathsf{Equiv}(A,B)$ is the canonical function, which is asserted to be an equivalence by the
-Univalence Axiom. Since it is an equivalence, the above type is equivalent to
+where we write $f_p \co A \to B$ for the equivalence associated to a path $p \in \Id(a,b)$.  By the Univalence Axiom,
+the above type is equivalent to
 \[ 
-\sum_{e : A \simeq B} \, \Id \big(\pi_1(e)_{a_0},  b_0\big) \times \Id \big( \pi_1(e)_{a_1} , b_1\big) \]
+\sum_{f \in \mathsf{Equiv}(A,B)} \, \Id \big( f(a_0),  b_0\big) \times \Id \big( f(a_1) , b_1\big) \]
 After rearranging we get
 \[
-\sum_{f \co \BipHom(A,B)} \; \isequiv(\pi_1(f))
+\sum_{(f, \bar{f}_0, \bar{f}_1) \in \BipHom(A,B)} \, \isequiv(f)
 \]
 which, by Lemma~\ref{BoolAlgSpace}, is equivalent to $\BipEquiv(A,B)$, as desired. Finally, it is not hard to see that the composition of the above equivalences yields the canonical function $\ext$ up to a homotopy.
 \end{proof} 
 
-\begin{corollary}[$\Hint + \mathrm{UA}$] \label{BoolHInitIso}
-The identity type between any two small homotopy-initial bipointed types $A,B : \Bip$ is contractible, i.e., the type
+\begin{corollary}[$\Hint + \mathrm{UA}$] \label{BoolHInitIso} 
+Homotopy-initial bipointed types are unique up to a contractible type of paths, i.e. the type
 \[ 
 \prod_{A \in \Bip} \, \prod_{ B \in \Bip}
 \big( \ishinitial(A) \times \ishinitial(B) \to \iscontr(\Id(A,B)) \big) \, .
 \] 
-is inhabited. In particular, homotopy-initial bipointed types are unique up to a contractible type of paths.
+is inhabited.
 \end{corollary}
 
-\begin{proof}
-By Theorem~\ref{thm:bipunivalence} it suffices to prove $\iscontr(\BipEquiv(A,B))$. The type 
-$\BipHom( A, B)$ is contractible by homotopy-initiality of $A$. Since the dependent sum of a family of mere propositions over a mere proposition is again a mere proposition, it suffices to prove $\iscontr(\isbipequiv(f))$ for any bipointed morphism $f$. This type is a mere proposition, as observed in Remark~\ref{thm:usemere}, and thus it suffices to show it is inhabited.
-Since $B$ is homotopy-initial, there exists a bipointed morphism $g : B \to A$. Again by homotopy-initiality of $A$ and $B$, we have $g \comp f = 1_A$ and~$f \comp g = 1_A$, which gives us the desired bipointed equivalence between $A$ and $B$.
+\begin{proof} Let $A$ and $B$ be homotopy-initial bipointed types. 
+By Theorem~\ref{thm:bipunivalence} it suffices to prove that the type $\BipEquiv(A,B)$ is contractible. The type 
+$\BipHom( A, B)$ is contractible by homotopy-initiality of $A$. Since the dependent sum of a family of mere propositions over a mere proposition is again a mere proposition, it suffices to prove that the type $\isbipequiv(f)$ is contractible for any bipointed morphism $f \co A \to B$. This type is a mere proposition by Lemma~\ref{thm:usemere}, and thus it suffices to show it is inhabited. But the existence of a right and a left bipointed inverse for $f$ follows immediately
+by the assumption that $A$ and $B$ are homotopy-initial.
 \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
