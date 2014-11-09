@@ -1,0 +1,122 @@
+We begin by briefly sketching the basic theory of W-types in the  setting of \emph{extensional} type theory (cf.~\cite{??}), as background for our development; the corresponding details of the intensional case will be provided in what follows.  Let $\mathcal{C}$ be the category with types as objects and elements $f : A \rightarrow B$ as maps, where two maps are considered equal if and only if they are definitionally equal. The premisses of the introduction rule determine the \emph{polynomial endofunctor} $P : \mathcal{C}\rightarrow \mathcal{C}$
+defined by 
+\[
+    P(X) \defeq (\Sigma x : A ) (B(x) \rightarrow X) \, .
+\]
+A $P$-algebra is a pair consisting of a type $C$ and an arrow $s_C : PC \rightarrow C$, called the structure map of the algebra. A homomorphism of algebras $h : (C, s_C) \to (D, s_D)$ is an arrow $h : C\to D$ making the evident square commute, $h\circ s_C = s_D\circ P(h)$, using the obvious action of $P$ on $h$, vis.\ $P(h)(x,u) = (x, h\circ u)$.  The formation rule gives us an object $$\W \defeq (\W x : A) B(x)$$ and the introduction rule (in combination with the rules for $\Pi$-types
+and $\Sigma$-types) provides a structure map $s_\W : P\W \rightarrow \W$.
+The elimination rule  states that in order for the projection $\pi_1 \colon E \rightarrow \W$, where
+$E \defeq (\Sigma w {\, : \, } \W) E(w)$, to have a section $s$, as in the diagram
+\[
+\xymatrix{
+& E  \ar[d]^{\pi_1} \\
+\W \ar[ru]^{s} \ar[r]_{1_\W} & \W, 
+}
+\]
+it is sufficient for the type $E$ to have a $P$-algebra structure over $\W$, i.e.\ for $E$ to have an algebra structure with respect to which $\pi_1$ is a homomorphism. Finally, the computation rule states that the section $\ind$ given by the elimination rule is also a $P$-algebra homomorphism. 
+
+The elimination rule implies what we call the $\W$-recursion rule:
+\[
+\begin{prooftree}
+C : \type  \qquad
+ x : A, v : B(x) \rightarrow C \vdash c(x,v) : C
+ \justifies
+w : \W \vdash \wrecs(w,c) :  C
+\end{prooftree}
+\]
+This can be recognized as a recursion principle for maps from $\W$ into $P$-algebras, since
+the premisses of the rule describe exactly a type $C$ equipped with a structure map $s_C 
+: PC  \rightarrow C$. For this special case of the elimination rule, the corresponding computation rule states that the function
+\[
+\lambda w. \wrecs(w,c) : \W \rightarrow C \, ,
+\] 
+where $c(x,v) = s_C(\pair(x,v))$ for $x : A$ and $v : B(x) \rightarrow C$, is a $P$-algebra homomorphism.
+Moreover, this homomorphism can then be shown to be definitionally unique using the elimination rule, the principle of function extensionality and the reflection rule of the extensional system.  
+
+The converse implication also holds: one can derive the general $\W$-elimination rule from the simple elimination rule and the following $\eta$-rule
+%
+\begin{equation*}
+\begin{prooftree}
+\begin{array}{l}
+C : \type  \qquad w : \W \vdash f(w) : C \\ 
+x : A, v : B(x) \rightarrow C \vdash c(x,v) : C\\
+x:A \, , u:  B(x) \rightarrow \W  \vdash f\left(\wsup(x,u)) = c(x,\lambda y. fu(y)\right) : C
+  \end{array}
+ \justifies
+w : \W \vdash  f(w) =  \wrecs(w,c) :  C
+\end{prooftree}
+\end{equation*}
+%
+stating the uniqueness of the $\wrecs$ term among algebra maps. Since, conversely, the $\eta$-rule can be derived from the the general $\W$-elimination rule, we therefore have that induction and recursion are interderivable in the extensional setting.
+%\[
+%\begin{array}{ccc}
+%\text{\underline{\myemph{Induction}}} & \Leftrightarrow & \text{\underline{\myemph{Recursion}}}\\[1ex]
+%\text{$\W$-elimination} & & \text{Simple $\W$-elimination}\\
+%\text{$\W$-computation} &&  \text{Simple $\W$-computation + $\eta$-rule} 
+%\end{array}
+%\]
+
+Finally, observe that induction is equivalent to the statement that, when $\W$ is regarded as a $P$-algebra with the structure map $s_\W : P\W \rightarrow \W$, then every $P$-algebra over it has a homomorphic section, while recursion is equivalent to the statement that 
+$\W$ is the initial $P$-algebra. The remainder of this section will be devoted to generalizing these equivalences to the setting of homotopy type theory.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\bigskip
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\subsection{W-types: intensional case}
+
+
+%Although it is more elaborate to state (and difficult to prove) owing to the presence of 
+%recursively generated data, our main result on  W-types is analogous to 
+%the foregoing example in the following respect: rather than being strict initial algebras, as in the 
+%extensional case, W-types with propositional computation rules are instead homotopy-initial algebras. This fact can again be stated 
+%entirely syntactically, as an equivalence between the definability of W-types with propositional computation rules (which we spell
+%out below) and the existence of a suitable family of homotopy-initial algebras.  Moreover, as in the simple case of the type $\Bool$ above, the proof is again entirely constructive.
+%
+
+%\begin{remark}\label{thm:wtypesinvariance}
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%
+%As before, the above rules imply a non-dependent version of elimination and the corresponding computation rule, where we write $\wrec(m)$ instead of $\wrec^{A,x.B}_{\UU_j}\big(C,x.r.c,m\big)$ where appropriate. \smallskip
+%\begin{itemize}
+%\item Simple $\W$-elimination rule.\smallskip
+%\begin{mathpar}
+%\inferrule{A : \UU_i \\ x:A \vdash B(x) : \UU_i \\ m : \W \\ C : \UU_j \\x:A, r : B(x) \to C \vdash c(x,r) : C}{\wrec^{A,x.B}_{\UU_j}\big(C,x.r.c,m\big) : C}
+%\end{mathpar}
+%\item Simple $\W$-computation rule.\smallskip
+%\begin{mathpar}
+%\inferrule{A : \UU_i \\ x:A \vdash B(x) : \UU_i \\ a : A \\ t : B(a) \to \W \\ C : \UU_j \\ x:A, r : B(x) \to C \vdash c(x,r) : C}
+%{\wrec(\wsup(a,t)) \equiv c(a,\lam{b:B(a)} \wrec(t \;b)) : C}
+%\end{mathpar}
+%\end{itemize} \smallskip
+%
+%The induction principle also implies the following uniqueness principles, which state that any two functions out of $\W$ which satisfy the same recurrence are pointwise equal:
+%\begin{itemize}
+%\item $\W$-uniqueness principle.\smallskip
+%\begin{mathpar}
+%\inferrule{A : \UU_i \\ x:A \vdash B(x) : \UU_i \\ m : \W \\ w:\W \vdash E(w) : \UU_j \\ x:A, p: B(x) \to \W, r : \prd{b:B(x)} E(p \;b) \vdash
+%e(x,p,r) :E(\wsup(x,p)) \\ w:\W \vdash f(w) : E(w) \\ x:A, p: B(x) \to \W \vdash f(\wsup(x,p)) \equiv e(x,p,\lam{b:B(x)} f(p \;b)) \\ w:\W \vdash g(w) : E(w) \\ x:A, p: B(x) \to \W \vdash g(\wsup(x,p)) \equiv e(x,p,\lam{b:B(x)} g(p \;b))}{f(m) \equiv g(m) : E(m)}
+%\end{mathpar}
+%\item Simple $\W$-uniqueness principle.\smallskip
+%\begin{mathpar}
+%\inferrule{A : \UU_i \\ x:A \vdash B(x) : \UU_i \\ m : \W \\ C : \UU_j \\ x:A, r : B(x) \to C \vdash c(x,r) : C \\ w:\W\vdash f(w) : C \\ x:A, p: B(x) \to \W \vdash f(\wsup(x,p)) \equiv c(x,\lam{b:B(x)} f(p \;b)) \\ w:\W\vdash g(x) : C \\ x:A, p: B(x) \to \W \vdash g(\wsup(x,p)) \equiv c(x,\lam{b:B(x)} g(p \;b))}{f(m) \equiv g(m) : C}
+%\end{mathpar}
+%\end{itemize}
+%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+

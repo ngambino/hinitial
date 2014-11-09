@@ -286,6 +286,8 @@ In the present work, we build on this homotopical interpretation to study induct
 However, most programming languages and proof assistants, such as Coq~\cite{BertotY:inttpp}, Agda~\cite{NorellU:towppl} and Epigram~\cite{McBrideC:viefl} use schematic inductive definitions~\cite{CoquandT:inddt,PaulinMorhringC:inddsc} rather than W-types to define inductive types.  This is due in part to the practical convenience of the schematic approach, but it is also a matter of necessity; these systems are based on intensional rather than extensional type theories, and in the intensional theory the usual reductions of inductive types to W-types fail~\cite{DybjerP:repids,McBrideC:wtygnb}.
 Nonetheless, W-types retain great importance from a theoretical perspective, since they allow us to internalize in type theory arguments about inductive types. Furthermore, as we will see in Section~\ref{section:intW}, a limited form of extensionality licensed by the homotopical interpretation suffices to develop the theory of W-types in a satisfactory way. In particular, we shall make use of ideas from higher category theory and homotopy theory to understand W-types as ``homotopy-initial" algebras of an appropriate kind.
 
+\vspace{3cm}
+
 In intensional type theories, inductive types cannot be characterized by standard category-theoretic
 universal properties. For instance, in this setting it is not possible to show that there exists a 
 definitionally-unique function out of the empty type with rules as in~\cite[Section~5.2]{NordstromB:marltt}, thus making it impossible to prove that the empty type provides an initial object. 
@@ -296,7 +298,7 @@ the usual elimination and computation rules for it are no longer derivable~\cite
 Due to this sort of poor behaviour of W-types, and other constructions, in the purely intensional setting, that system is often augmented by other extensionality principles that are somewhat weaker than the Reflection rule, such as Streicher's K-rule  or the Uniqueness of Identity Proofs (UIP)~\cite{StreicherT:invitt}, which has recently been reconsidered
 in the context of Observational Type Theory \cite{AltenkirchT:obsen}.  Inductive types in such intermediate systems are somewhat better behaved, but still exhibit some undesirable properties, making them less useful for practical purposes than one might wish~\cite{McBrideC:wtygnb}.  Moreover, these intermediate systems seem to lack a clear conceptual basis:  they neither intend to formalize constructive sets (like the extensional theory) nor is there a principled reason to choose these particular extensionality rules, beyond their practical advantages.  
 
-
+\newpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Preliminaries}
@@ -450,7 +452,7 @@ $\ell \co B \to A$ and $r \co B \to A$ such that
 
 
 
-
+\newpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Bipointed types}
@@ -793,7 +795,7 @@ there is an equivalence of types
 
 
 \section{Homotopy-initial bipointed types} 
-\label{sec:homibt}
+
 
 
 Let $A$ be a type and assume that it is equivalent to $\Bool$. Then, $A$ admits the structure of a bipointed type and
@@ -1147,28 +1149,189 @@ by the assumption that $A$ and $B$ are homotopy-initial.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{$P$-algebras}
+\section{W-types}
 \label{section:wfiles}
 
 
-A W-type can be seen informally as the free algebra for a signature
-with arbitrarily many operations of possibly infinite arity, but no equations. Indeed, the premises of the formation rule above can be thought of as specifying a signature that has the elements of~$A$ as (names of) operations and in which the arity of $a : A$ is the cardinality of the type $B(a)$. Then the introduction rule specifies the canonical way of forming an element of the free algebra, and the elimination rule can be seen as the propositions-as-types translation of the appropriate induction principle. Given $x:A \vdash B(x)\, \type$, we call 
+
+We recall the rules for W-types from~\cite{MartinLofP:inttt}; to state them more conveniently, we sometimes write simply $\W$ instead of $(\W{x : A})B(x)$.
+%; and $\wsup(a,t)$ instead of $\wsup^{A,x.B}_{\UU_i}(a,t)$; 
+%and $\wind(m)$ instead of $\wind^{A,x.B}_{\UU_j}\big(w.E,a.t.s.e,m\big)$.
+
+\begin{table}[ht]
+\fbox{ 
+\begin{minipage}{12cm}
+\medskip
+\begin{itemize}
+%\item $\W$-formation rule.\smallskip
+%\[
+%\begin{prooftree}
+% A : \UU_i \qquad
+% x:A \vdash B(x) : \UU_i
+% \justifies
+% \W^{\UU_i}_{x : A}B(x)
+%\end{prooftree}
+%\]
+%\item $\W$-introduction rule.\smallskip
+%\[
+%\begin{prooftree}
+%A : \UU_i \qquad
+%x:A \vdash B(x) : \UU_i \qquad
+%a:A \qquad
+%t : B(a) \to \W
+%\justifies
+%\wsup^{A,x.B}_{\UU_i}(a,t): \W
+%\end{prooftree}
+%\]
+%\item $\W$-elimination rule.\smallskip
+%\begin{mathpar}
+%\inferrule{A : \UU_i \\ x:A \vdash B(x) : \UU_i \\ m : \W \\ w : \W \vdash E(w) : \UU_j \\ x:A, p: B(x) \to \W, r : \prd{b:B(x)} E(p \;b) \vdash e(x,p,r) :E(\wsup(x,p))}{\wind^{A,x.B}_{\UU_j}\big(w.E,x.p.r.e,m\big) : E(m)}
+%\end{mathpar}
+%\item $\W$-computation rule.\smallskip
+%\begin{mathpar}
+%\inferrule{A : \UU_i \\ x:A \vdash B(x) : \UU_i \\ a : A \\ t : B(a) \to \W \\ w : \W \vdash E(w) : \UU_j \\ x:A, p: B(x) \to \W, r : \prd{b:B(x)} E(p \;b) \vdash
+%e(x,p,r) :E(\wsup(x,p))}
+%{\wind(\wsup(a,t)) \equiv e(a,t,\lam{b:B(a)} \wind(t\;b)) : E(\wsup(a,t))}
+\item $\W$-formation rule.\smallskip
 \[
-P(A,B)(X) \defeq (\Sigma x:A) (B(x)\to X)
+\begin{prooftree}
+ A : \type \qquad
+ x:A \vdash B(x) : \type
+ \justifies
+ (\W{x : A})B(x) : \type
+\end{prooftree}
 \]
-the associated \emph{polynomial functor}.  
+\item $\W$-introduction rule.\smallskip
+\[
+\begin{prooftree}
+%A : \type \qquad
+%x:A \vdash B(x) : \type \qquad
+a:A \qquad
+t : B(a) \to \W
+\justifies
+\wsup(a,t): \W
+\end{prooftree}
+\]
+\item $\W$-elimination rule.\smallskip
+\begin{mathpar}
+\inferrule{
+%A : \type \\  x:A \vdash B(x) : \type \\ 
+% m : \W  \\  
+w : \W \vdash E(w) : \type \\ 
+x:A,\, u : B(x) \to \W,\, v : \big(\Pi{y:B(x)}\big) E(u(y)) \vdash e(x,u,v) :E(\wsup(x,u))}
+{ w : \W \vdash \ind(w,e) : E(w)}
+\end{mathpar}
+\item $\W$-computation rule.\smallskip
+\begin{mathpar}
+\inferrule{
+w : \W \vdash E(w) : \type \\ 
+x:A,\, u : B(x) \to \W,\, v : \big(\Pi{y:B(x)}\big) E(u(y)) \vdash e(x,u,v) :E(\wsup(x,u))}
+{x:A,\, u : B(x) \to \W \vdash \\
+ \ind(\wsup(x,u),e) \equiv e\big(x,u,\lambda{y}.\ind(u(y),e)\big) : E(\wsup(x,u))}
+\end{mathpar}
+\end{itemize}
+\medskip
+\end{minipage}} \medskip
+\caption{Deduction rules for W-types.}
+\label{tab:boolrules}
+\end{table}
 
 
-\begin{definition} A\emph{$P(A,B)$-algebra} is a pair $(C, s_C: P(C) \to C)$.    
+A W-type can be seen informally as the free algebra for a signature
+with arbitrarily many operations of possibly infinite arity, but no equations. Indeed, the premises of the formation rule above can be thought of as specifying a signature that has the elements of~$A$ as (names of) operations and in which the arity of $a : A$ is the cardinality of the type $B(a)$. Then the introduction rule specifies the canonical way of forming an element of the free algebra, and the elimination rule can be seen as the propositions-as-types translation of the appropriate induction principle.
+
+%%%%%%%% Review of the extensional case %%%%%%%%%
+
+We begin by briefly sketching the basic theory of W-types in the  setting of \emph{extensional} type theory (cf.~\cite{??}), as background for our development; the corresponding details of the intensional case will be provided in what follows.  Let $\mathcal{C}$ be the category with types as objects and elements $f : A \rightarrow B$ as maps, where two maps are considered equal if and only if they are definitionally equal. The premisses of the introduction rule determine the \emph{polynomial endofunctor} $P : \mathcal{C}\rightarrow \mathcal{C}$
+defined by 
+\[
+    P(X) \defeq (\Sigma x : A ) (B(x) \rightarrow X) \, .
+\]
+A $P$-algebra is a pair consisting of a type $C$ and an arrow $s_C : PC \rightarrow C$, called the structure map of the algebra. A homomorphism of algebras $h : (C, s_C) \to (D, s_D)$ is an arrow $h : C\to D$ making the evident square commute, $h\circ s_C = s_D\circ P(h)$, using the obvious action of $P$ on $h$, vis.\ $P(h)(x,u) = (x, h\circ u)$.  The formation rule gives us an object $$\W \defeq (\W x : A) B(x)$$ and the introduction rule (in combination with the rules for $\Pi$-types
+and $\Sigma$-types) provides a structure map $s_\W : P\W \rightarrow \W$.
+The elimination rule  states that in order for the projection $\pi_1 \colon E \rightarrow \W$, where
+$E \defeq (\Sigma w {\, : \, } \W) E(w)$, to have a section $s$, as in the diagram
+\[
+\xymatrix{
+& E  \ar[d]^{\pi_1} \\
+\W \ar[ru]^{s} \ar[r]_{1_\W} & \W, 
+}
+\]
+it is sufficient for the type $E$ to have a $P$-algebra structure over $\W$, i.e.\ for $E$ to have an algebra structure with respect to which $\pi_1$ is a homomorphism. Finally, the computation rule states that the section $\ind$ given by the elimination rule is also a $P$-algebra homomorphism. 
+
+The elimination rule implies what we call the $\W$-recursion rule:
+\[
+\begin{prooftree}
+C : \type  \qquad
+ x : A, v : B(x) \rightarrow C \vdash c(x,v) : C
+ \justifies
+w : \W \vdash \wrecs(w,c) :  C
+\end{prooftree}
+\]
+This can be recognized as a recursion principle for maps from $\W$ into $P$-algebras, since
+the premisses of the rule describe exactly a type $C$ equipped with a structure map $s_C 
+: PC  \rightarrow C$. For this special case of the elimination rule, the corresponding computation rule states that the function
+\[
+\lambda w. \wrecs(w,c) : \W \rightarrow C \, ,
+\] 
+where $c(x,v) = s_C(\pair(x,v))$ for $x : A$ and $v : B(x) \rightarrow C$, is a $P$-algebra homomorphism.
+Moreover, this homomorphism can then be shown to be definitionally unique using the elimination rule, the principle of function extensionality and the reflection rule of the extensional system.  
+
+The converse implication also holds: one can derive the general $\W$-elimination rule from the simple elimination rule and the following $\eta$-rule
+%
+\begin{equation*}
+\begin{prooftree}
+\begin{array}{l}
+C : \type  \qquad w : \W \vdash f(w) : C \\ 
+x : A, v : B(x) \rightarrow C \vdash c(x,v) : C\\
+x:A \, , u:  B(x) \rightarrow \W  \vdash f\left(\wsup(x,u)) = c(x,\lambda y. fu(y)\right) : C
+  \end{array}
+ \justifies
+w : \W \vdash  f(w) =  \wrecs(w,c) :  C
+\end{prooftree}
+\end{equation*}
+%
+stating the uniqueness of the $\wrecs$ term among algebra maps. Since, conversely, the $\eta$-rule can be derived from the the general $\W$-elimination rule, we therefore have that induction and recursion are interderivable in the extensional setting.
+%\[
+%\begin{array}{ccc}
+%\text{\underline{\myemph{Induction}}} & \Leftrightarrow & \text{\underline{\myemph{Recursion}}}\\[1ex]
+%\text{$\W$-elimination} & & \text{Simple $\W$-elimination}\\
+%\text{$\W$-computation} &&  \text{Simple $\W$-computation + $\eta$-rule} 
+%\end{array}
+%\]
+
+Finally, observe that induction is equivalent to the statement that, when $\W$ is regarded as a $P$-algebra with the structure map $s_\W : P\W \rightarrow \W$, then every $P$-algebra over it has a homomorphic section, while recursion is equivalent to the statement that 
+$\W$ is the initial $P$-algebra. The remainder of this section will be devoted to generalizing these equivalences to the setting of homotopy type theory.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\bigskip
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\subsection{W-types: intensional case}
+
+
+%Although it is more elaborate to state (and difficult to prove) owing to the presence of 
+%recursively generated data, our main result on  W-types is analogous to 
+%the foregoing example in the following respect: rather than being strict initial algebras, as in the 
+%extensional case, W-types with propositional computation rules are instead homotopy-initial algebras. This fact can again be stated 
+%entirely syntactically, as an equivalence between the definability of W-types with propositional computation rules (which we spell
+%out below) and the existence of a suitable family of homotopy-initial algebras.  Moreover, as in the simple case of the type $\Bool$ above, the proof is again entirely constructive.
+%
+
+%\begin{remark}\label{thm:wtypesinvariance}
+
+Returning to the case of the intensional system $\Hint$, we now begin to fill in the corresponding details of the foregoing sketch.
+%as was the case for the type $\Bool$, the condition of being a W-type is preserved by equivalences of types, in a suitable sense.  
+%Indeed, given any type $A$ and an equivalence of types $\W_{x:A} B(x)\simeq A$, then $A$ can be shown to also satisfy the rules above (with suitable definable terms playing the role of the primitive constants), except that the computation rule will again hold only propositionally.
+
+\begin{definition}
+Given $x:A \vdash B(x)\, \type$, we call $$P(A,B)(X) \defeq (\Sigma x:A) (B(x)\to X)$$ the associated \emph{polynomial functor}.  A \emph{$P(A,B)$-algebra} is a pair $(C, s_C: P(C) \to C)$.    
 \end{definition}
 
-
-We define the type of \emph{$P$-algebras} as
-\[
-\WAlg(A,B) \; \defeq \sm{C : \U} (\Pi x:A) (B(x) \to C) \to C 
-\]
 We shall often write simply $P$ in place of $P(A,B)$, and refer to a map $s_C : P(C)\to C$ as a $P$-algebra.  
 If $f : X\to Y$, then there is an associated map $P(f) : P(X)\to P(Y)$ defined in the obvious way by $P(f)(a, b) = (a,f\circ b)
 $.  Although this assignment is not strictly functorial, we can still make use of it. For example, given a $P$-algebra structure $s_C :P(C)\to C$ on $C$, an equivalence of types $f : C \to D$ makes $D$ into a $P$-algebra with structure map $s_D : f\circ s_C\circ P(f^{-1})$,
@@ -1178,9 +1341,206 @@ P(C) \ar[d]_{s_C} \ar[r]_{P(f)} & \ar@/_1pc/[l]_{P(f^{-1})} P(D)  \ar[d]^{s_D}  
  C  \ar[r]_{f} & D
  }
  \]
- where $f^{-1} : D\to C$ is the quasi-inverse of $f : C\to D$. 
-Next, note that the $\W$-introduction rule makes $\sup : P(\W)\to \W$ into a $P$-algebra.  Given an equivalence  $f : \W \to C$, the induced $P$-algebra structure $s_C:P(C)\to C$ just defined then means that $C$ also satisfies the $\W$-introduction rule.  We shall see that $C$ satisfies the other rules as well, but with a propositional computation rule.
+ where $f^{-1} : D\to C$ is the quasi-inverse of $f : C\to D$.
 
+
+ 
+Next, note that the $\W$-introduction rule makes $\sup : P(\W)\to \W$ into a $P$-algebra.  Given an equivalence  $f : \W \to C$, the induced $P$-algebra structure $s_C:P(C)\to C$ just defined then means that $C$ also satisfies the $\W$-introduction rule.  We shall see that $C$ satisfies the other rules as well, but with a propositional computation rule, as in the following definition.
+
+\begin{definition}\label{def:Wind}
+Let $x:A \vdash B(x) \,\type$ be given and let $C$ be a type equipped with a family of elements $x:A, u : B(x)\to C \vdash s_C(x,u): C$.
+We say that the corresponding $P$-algebra $s_C : P(C)\to C$ is \emph{inductive} if it satisfies the following rules:
+\begin{enumerate}[(i)] 
+\item $\W$-elimination rule.\smallskip
+\begin{mathpar}
+\inferrule{
+%A : \type \\  x:A \vdash B(x) : \type \\ 
+% m : \W  \\  
+z : C \vdash E(z) : \type \\ 
+x:A,\, u : B(x) \to C,\, v : \big(\Pi{y:B(x)}\big) E(u(y)) \vdash e(x,u,v) :E(s_C(x,u))}
+{ z : C \vdash \ind(z,e) : E(z)}
+\end{mathpar}
+
+\item Propositional computation rule.\smallskip
+\begin{mathpar}
+\inferrule{
+z : C \vdash E(z) : \type \\ 
+x:A,\, u : B(x) \to C,\, v : \big(\Pi{y:B(x)}\big) E(u(y)) \vdash e(x,u,v) :E(s_C(x,u))}
+{x:A,\, u : B(x) \to C \vdash
+\beta(x,u,e) : \ind(s_C(x,u),e) \peq e\big(x,u,\lambda{y}.\ind(u(y),e)\big)}
+\end{mathpar}
+\end{enumerate}
+\end{definition}
+
+As in section \ref{sec:hip}, our ultimate goal is to show that being inductive is again equivalent to being recursive, and that these conditions are in turn equivalent to being homotopy projective and homotopy initial.  We begin by showing that being inductive in this sense implies a corresponding version of recursion.
+
+\begin{lemma} \label{lem:Wetaind}
+If $s_C : P(C)\to C$  is an inductive $P$-algebra, then it satisfies the following further rules:
+\begin{enumerate}[(i)]
+
+%\item Propositional $\W$-uniqueness principle.\smallskip
+%\begin{mathpar}
+%\inferrule{
+%z:C \vdash E(z)\,\type \\ x:A, u: B(x) \to C, v : \prd{y:B(x)} E(u(y)) \vdash e(x,u,v) :E(s_C(x,u)) \\ \\ 
+%z: C \vdash f(z) : E(z) \\ z:C \vdash g(z) : E(z) \\
+%\\
+%x:A, u: B(x) \to C \vdash p(x,u) : f(s_C(x,u)) = e(x,u,\lambda{y}. f(u(y))) \\
+%x:A, u: B(x) \to C \vdash q(x,u) : g(s_C(x,u)) = e(x,u,\lambda{y}. g(u(y)))}
+%{z:C \vdash \eta(z, p, q) : f(z) = g(z)}\end{mathpar}
+
+\item Propositional $\eta$-rule\smallskip
+\begin{mathpar}
+\inferrule{
+ z:C \vdash E(z)\,\type \\ \\ z:C \vdash f(z) : E(z) \\
+ x:A,\, u: B(x) \to C,\, v : (\Pi{y:B(x)}) E(u(y)) \vdash e(x,u,v) :E(s_C(x,u))  \\ x:A, u: B(x) \to C \vdash p(x,u) : f(s_C(x,u)) = e\big(x,u,\lambda{y}. f(u(y))\big)}
+{z:C \vdash \eta(z) :  f(z) = \ind(z,e)}
+\end{mathpar}
+
+%\item Propositional $\W$-coherence principle.\smallskip
+%\begin{mathpar}
+%\inferrule{A : \UU_i \\ x:A \vdash B(x) : \UU_i \\ a : A \\ t : B(a) \to \W \\ w:\W \vdash E(w) : \UU_j \\ x:A, p: B(x) \to \W, r : \prd{b:B(x)} E(p \;b) \vdash e(x,p,r) :E(\wsup(x,p)) \\ w:\W \vdash f(w) : E(w) \\ w:\W \vdash g(w) : E(w) \\ x:A, p: B(x) \to \W \vdash \gamma(x,p) : f(\wsup(x,p)) = e(x,p,\lam{b:B(x)} f(p \;b)) \\ x:A, p: B(x) \to \W \vdash \delta(x,p) : g(\wsup(x,p)) = e(x,p,\lam{b:B(x)} g(p \;b))}
+%{\windcoh_{\UU_i}(A,x.B,w.E,x.p.r.e,w.f,x.p.\gamma,w.g,x.p.\delta,a,t) : \\ \winduniq(\wsup(a,t)) = \gamma(a,t) \ct \app_{e(a,t,-)}(\funext(\lam{b:B(a)}\winduniq(t\;b)))\ct \delta(a,t)^{-1}}
+%\end{mathpar}
+%
+\item Propositional $(\beta, \eta)$-compatibility rule\smallskip
+\begin{mathpar}
+\inferrule{
+z:C \vdash E(z)   \\ z:C \vdash f(z) : E(z) \\ 
+x:A,\, u: B(x) \to C,\, v : (\Pi{y:B(x)}) E(u(y)) \vdash e(x,u,v) :E(s_C(x,u)) \\ 
+%z:C \vdash g(z) : E(z) \\ 
+x:A, u: B(x) \to C \vdash p(x,u) : f(s_C(x,u)) = e(x,u,\lambda{y}.f(u(y)))
+}
+%x:A, p: B(x) \to C \vdash \delta(x,p) : g(\wsup(x,p)) = e(x,p,\lam{b:B(x)} g(p \;b))}
+{x : A, u : B(x) \to C \vdash
+\gamma(x,u) : \eta(\wsup(x,u))\ct \beta(x,u) = 
+p(x,u)\cdot e(x,u,\int(\eta\circ u))
+}
+\end{mathpar}
+\end{enumerate}
+\end{lemma}
+The $(\beta,\eta)$-compatibility rule will be explained in Remark \ref{rem:explainrules} below.
+
+\begin{proof}
+We use the $\W$-elimination rule with the type family $z \mapsto f(z) =_{E(z)} \ind(z,e)$. Thus we need to show that for any $x,u$ we have a proof of $f(s_C(x,u)) = \ind(s_C(x,u),e)$, under the induction hypothesis $h : \prd{y:B(x)} f(u(y)) = \ind((u(y),e)$. We can construct this path explicitly as follows:
+\begin{align*}
+f(s_C(x,u)) &= e\big(x,u,\lambda y.f(u(y))\big) \by{p(x,u)}\\
+	&= e\big(x,u,\lambda y.\ind(u(y),e))\big) \by{e(x,u,\int(h))}\\
+	&= \ind(s_C(x,u),e) \by{\beta(x,u)^{-1}}.
+\end{align*}
+Call the resulting element $\eta(z) \defeq \ind(z,q)$, for $q(x,u,h) \defeq p(x,u)\cdot e(x,u,\int(h))\cdot\beta(x,u)^{-1}$.
+The propositional computation rule for this case then provides:
+\begin{align*}
+\beta'(x,u,q) :  \eta(s_C(x,u)) &\peq q\big(x,u,\lambda{y}.\eta(u(y))\big)\\
+	&\deq p(x,u)\cdot e(x,u,\int(\lambda y.\eta(u(y))))\cdot\beta(x,u)^{-1}.
+\end{align*}
+Whence we get
+\[
+\gamma (x,u) :  \eta(s_C(x,u)) \cdot \beta(x,u)\,\peq\,
+ 	p(x,u)\cdot e(x,u,\int(\eta\circ u))\, ,
+	\]
+as required.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+We can now show that induction implies recursion for $P$-algebras, in the sense of the following definition.
+
+\begin{definition}\label{def:recursiveW} Let $x:A \vdash B(x) \,\type$ be given and let $C$ be a type equipped with a family of elements $x:A, u : B(x)\to C \vdash s_C(x,u): C$.
+We say that the corresponding $P$-algebra $s_C : P(C)\to C$ is \emph{recursive} if it satisfies the following rules:
+\begin{enumerate}[(i)] 
+\item $\W$-recursion rule.\smallskip
+\begin{mathpar}
+\inferrule{
+%A : \type \\  x:A \vdash B(x) : \type \\ 
+% m : \W  \\  
+E : \type \\ 
+x:A,\, v : B(x) \to E \vdash e(x,v) :E }
+{ z : C \vdash \rec(z,e) : E}
+\end{mathpar}
+
+\item Simple propositional $\beta$-rule.\smallskip
+\begin{mathpar}
+\inferrule{
+E : \type \\ 
+x:A,\, v : B(x) \to E  \vdash e(x,v) :E}
+{x:A,\, u : B(x) \to C \vdash
+ \beta(x,u,e) : \rec(s_C(x,u),e) \peq e\big(x,\lambda{y}.\rec(u(y),e)\big) }
+\end{mathpar}
+
+\item Simple propositional $\eta$-rule.\smallskip
+\begin{mathpar}
+\inferrule{
+E:\type \\ z:C \vdash f(z) : E \\ 
+x:A,\, v: B(x) \to E \vdash e(x,v) :E \\ 
+x:A, u: B(x) \to C \vdash p(x,u) : f(s_C(x,u)) = e\big(x,\lambda{y}. f(u(y))\big)}
+{z:C \vdash \eta(z) :  f(z) = \rec(z,e)}
+\end{mathpar}
+
+\item Simple propositional $(\beta, \eta)$-compatibility rule.\smallskip
+\begin{mathpar}
+\inferrule{
+E:\type   \\ z:C \vdash f(z) : E \\ 
+x:A,\, v: B(x) \to C \vdash e(x,v) :E \\ 
+%z:C \vdash g(z) : E(z) \\ 
+x:A, u: B(x) \to C \vdash p(x,u) : f(s_C(x,u)) = e(x,\lambda{y}.f(u(y)))
+}
+%x:A, p: B(x) \to C \vdash \delta(x,p) : g(\wsup(x,p)) = e(x,p,\lam{b:B(x)} g(p \;b))}
+{x : A, u : B(x) \to C \vdash 
+\gamma(x,u) : \eta(\wsup(x,u))\ct \beta(x,u) = 
+p(x,u) \ct e(x,\int(\eta\circ u))
+}
+\end{mathpar}
+
+\end{enumerate}
+\end{definition}
+
+
+\begin{proposition} \label{thm:Windrec}
+If a $P$-algebra is inductive then it is recursive.
+\end{proposition}
+
+
+\begin{proof} The recursion and propositional $\beta$-rules are special cases of the elimination and propositional computation rules that are part of the definition of an inductive $P$-algebra. The propositional $\eta$-rule and the
+propositional $(\beta, \eta)$-computatibility rules are special cases of the rules in Lemma~\ref{lem:Wetaind}. 
+\end{proof}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%
+%As before, the above rules imply a non-dependent version of elimination and the corresponding computation rule, where we write $\wrec(m)$ instead of $\wrec^{A,x.B}_{\UU_j}\big(C,x.r.c,m\big)$ where appropriate. \smallskip
+%\begin{itemize}
+%\item Simple $\W$-elimination rule.\smallskip
+%\begin{mathpar}
+%\inferrule{A : \UU_i \\ x:A \vdash B(x) : \UU_i \\ m : \W \\ C : \UU_j \\x:A, r : B(x) \to C \vdash c(x,r) : C}{\wrec^{A,x.B}_{\UU_j}\big(C,x.r.c,m\big) : C}
+%\end{mathpar}
+%\item Simple $\W$-computation rule.\smallskip
+%\begin{mathpar}
+%\inferrule{A : \UU_i \\ x:A \vdash B(x) : \UU_i \\ a : A \\ t : B(a) \to \W \\ C : \UU_j \\ x:A, r : B(x) \to C \vdash c(x,r) : C}
+%{\wrec(\wsup(a,t)) \equiv c(a,\lam{b:B(a)} \wrec(t \;b)) : C}
+%\end{mathpar}
+%\end{itemize} \smallskip
+%
+%The induction principle also implies the following uniqueness principles, which state that any two functions out of $\W$ which satisfy the same recurrence are pointwise equal:
+%\begin{itemize}
+%\item $\W$-uniqueness principle.\smallskip
+%\begin{mathpar}
+%\inferrule{A : \UU_i \\ x:A \vdash B(x) : \UU_i \\ m : \W \\ w:\W \vdash E(w) : \UU_j \\ x:A, p: B(x) \to \W, r : \prd{b:B(x)} E(p \;b) \vdash
+%e(x,p,r) :E(\wsup(x,p)) \\ w:\W \vdash f(w) : E(w) \\ x:A, p: B(x) \to \W \vdash f(\wsup(x,p)) \equiv e(x,p,\lam{b:B(x)} f(p \;b)) \\ w:\W \vdash g(w) : E(w) \\ x:A, p: B(x) \to \W \vdash g(\wsup(x,p)) \equiv e(x,p,\lam{b:B(x)} g(p \;b))}{f(m) \equiv g(m) : E(m)}
+%\end{mathpar}
+%\item Simple $\W$-uniqueness principle.\smallskip
+%\begin{mathpar}
+%\inferrule{A : \UU_i \\ x:A \vdash B(x) : \UU_i \\ m : \W \\ C : \UU_j \\ x:A, r : B(x) \to C \vdash c(x,r) : C \\ w:\W\vdash f(w) : C \\ x:A, p: B(x) \to \W \vdash f(\wsup(x,p)) \equiv c(x,\lam{b:B(x)} f(p \;b)) \\ w:\W\vdash g(x) : C \\ x:A, p: B(x) \to \W \vdash g(\wsup(x,p)) \equiv c(x,\lam{b:B(x)} g(p \;b))}{f(m) \equiv g(m) : C}
+%\end{mathpar}
+%\end{itemize}
+%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Homotopy initial W-types}
+
+For the further investigation of W-types we require the notions of an algebra homomorphism and a homotopy of homomorphisms, again in both simple and fibered forms.  Throughout this section, fix $x:A\vdash B(x)$ and write $P(X)$ for the associated polynomial functor $(\Sigma x : A) (B(x) \rightarrow X)$.  Recall that a $P$-algebra is a type $C$ equipped with a map
+$s_C :  PC \rightarrow C$.  
 
 \begin{definition}
 For $P$-algebras $(C,s_C)$ and $(D,s_D)$, a \emph{(weak) 
@@ -1230,10 +1590,435 @@ as follows:
 \overline{gf} \defeq (g(\bar{f})\cdot g(Pf))\cdot s_E(p)
 \]
 Here the pre- and post-compositions of maps with identities, $s_E(p)$ and $g(\bar{f})$ respectively, are defined by identity elimination.
-This gives the required  element in $\Id(g\circ f\circ s_C ,\, s_E\circ P(gf))$. 
+This gives the required  element in $\Id(g\circ f\circ s_C ,\, s_E\circ P(gf))$.
 
 As in the case of bipointed types, we do not quite have a category since the composition operation is not strictly associative, but only so up to a system of higher and higher identities. 
+Nonetheless, it is again possible to explicitly define the notion of a homotopy-initial $P$-algebra:
 
+\begin{definition}\label{def:AlgInit}
+A $P$-algebra $(C, s_C)$ is  \emph{homotopy-initial}  if for any $P$-algebra $(D,s_D)$, the type $\Hom[(C, s_C),(D,s_D)]$ of morphisms from $(C, s_C)$ to $(D,s_D)$
+is contractible, \ie the following type is inhabilited
+\[
+ \iscontr(\Hom[(C, s_C),(D,s_D)]) \, .
+\]  
+\end{definition}
+
+We again stress that homotopy-initiality is a purely type-theoretic notion. We have the following analogue of Lambek's lemma for $\W$-types.
+
+
+\begin{lemma}\label{lem:IntLambek}
+If a $P$-algebra $(C,c)$ is homotopy-initial, then the structure map $c \co P(C) \to C$ is an equivalence.
+\end{lemma}
+
+
+\begin{proof}
+By abuse of notation we refer to both the curried and uncurried versions of the structure map by $c$. Since $(C,c)$ is homotopy-initial on $\UU_j$, it satisfies the recursion principle on $\UU_j$. We use it with the algebra \[\Big(\sm{x:A} B(x) \to C; a,s \mapsto \big(a,\lam{b:B(a)} c(s\;b)\big)\Big)\]
+We note that the carrier type belongs to $\UU_j$ as $i \leq j$. This gives us a homomorphism $(u,\theta)$ where $u : C \to \big(\sm{x:A} B(x) \to C\big)$ and $\theta : \prd{a}\prd{t} u(c(a,t)) = \big(a,\lam{b:B(a)} c(u(t\;b))\big)$.  We can now form two homomorphisms
+\[\big(c \comp u; a,t \mapsto \app_c(\theta(a,t))\big), \big(\idfun{C}; a,t \mapsto \refl_{c(a,t)}\big) : \WHom \; (C,c) \; (C,c)\]
+Since $(C,c)$ is initial on $\UU_j$, it satisfies the recursion uniqueness principle on $\UU_j$, thus the above homomorphisms are equal. Thus, we have $c \comp u = \idfun{C}$ and in particular there is a homotopy $\epsilon : c \comp u \sim \idfun{C}$. For any $a,t$, the path $\theta(a,t) \ct \app_{(a,-)}(\funext(\lam{b:B(a)} \epsilon(t\;b)))$ gives us $u(c(a,t)) = (a,t)$. Thus we have a homotopy $\eta : u \comp c \sim \idfun{\sm{x:A} B(x) \to C}$.
+\end{proof}
+
+
+
+In order to relate it to the rules for inductive and recursive types, we again require an alternate description of the identity type of two morphisms. For this, we shall require the notion of a homotopy between morphisms of $P$-algebras. 
+
+[THE FOLLOWING NEEDS TO BE FIXED -- WHERE TO USE HOMOTOPIES AND WHERE TO USE IDENTITY PROOFS]
+\begin{definition}
+For $P$-algebras $(C,s_C)$ and $(D,s_D)$ and morphisms $(f, \bar{f})$ and $(g, \bar{g})$ between them, a \emph{homotopy}  $$(h, \bar{h}) : (f, \bar{f}) \sim (g, \bar{g})$$
+consists of a homotopy $h : f \sim g$ together with a (higher) identity, 
+\[
+\bar{h} : \bar{f} \cdot s_D(Ph) = h(s_C)\cdot \bar{g}\, ,
+\]
+between elements in $\id{PC \rightarrow D}\big( f \circ s_C \, ,  s_{D} \circ Pf \big)$.  Here the identity $Ph : Pf = Pg$ is derived from $h : f \sim g$, and $h(s_C)$ and $s_D(Ph)$ are again pre- and post-compositions, respectively, of maps with homotopies.
+
+Such a homotopy can be represented as filling the three-dimensional space between the two pasting diagrams:
+\[
+\xymatrix{
+PC \ar@/^1pc/[r]^{Pg}   \ar[d]_{s_C}   \ar@/_1pc/[r]_{Pf} \ar@{}[r]|{Ph}
+& PD \ar[d]^{s_D}  \\
+C  \ar@/_1pc/[r]_f  \ar@{}[r]^{\bar{f}} & D }
+\qquad
+\xymatrix{
+PC \ar@/^1pc/[r]^{Pg}   \ar[d]_{s_C} \ar@{}[r]_(.52){\bar{g}}  & PD \ar[d]^{s_D}  \\
+C \ar@/^1pc/[r]^g  \ar@/_1pc/[r]_f  \ar@{}[r]|{h} & D }
+\]
+
+Accordingly, the type of homotopies of algebra maps is defined by
+\[
+\Ho
+\big[ (f,\bar{f}), (g, \bar{g})  \big]
+ \defeq  
+(\Sigma h:  f \sim g) \, \Id\big( \bar{f} \cdot s_D(Ph),\, (h(s_C))\cdot \bar{g} \big) \, .
+\]
+\end{definition}
+
+\begin{lemma}\label{IdEqHo}
+For $P$-algebras $(C,s_C)$ and $(D,s_D)$ and morphisms $(f, \bar{f})$ and $(g, \bar{g})$ between them, the type of identity proofs $p : (f, \bar{f}) = (g, \bar{g})$ is equivalent to the type of homotopies $(h, \bar{h}) : (f, \bar{f}) \sim (g, \bar{g})$,
+\[
+\Id\big((f, \bar{f}), (g, \bar{g})\big) \simeq \Ho\big((f, \bar{f}), (g, \bar{g})\big).
+\]
+\end{lemma}
+
+\begin{proof}
+This follows from a more general case to be proved in \ref{lem:fibhomeqid} below.
+\end{proof}
+
+\begin{remark}\label{rem:explainrules}
+In terms of the concepts just defined, we can now analyze the recursion rules in definition \ref{def:recursiveW} as follows: the $\W$-recursion rule says that, given any type $E$ together with the map $e : PE\to E$ --- i.e.\ any $P$-algebra --- there is a map $\rec : C\to E$.  The simple propositional $\beta$-rule says that this map $\rec$ is a homomorphism.  The simple propositional $\eta$-rule says that if $f : C\to E$ is any homomorphism, then there is an identity $\eta : f = \rec$.  And the simple propositional $(\beta, \eta)$-compatibility rule says that this identity $\eta$ is in fact a homotopy.
+\end{remark}
+
+\begin{proposition}\label{prop:Wrec2hinit}
+A $P$-algebra is homotopy-initial if it is recursive in the sense of definition \ref{def:recursiveW}.
+\end{proposition}
+
+\begin{proof}
+The center of contraction is $\rec$, and any homomorphism is homotopic to $\rec$ by $\eta$ and $(\beta,\eta)$-compatibiliy.
+
+[FILL IN THE PROOF: MODIFYING THIS ONE]
+
+So, let $A$ be a bipointed type
+and assume that it is recursive. We need to show that it is homotopy-initial. So, let $B = (B, b_0, b_1)$ be a bipointed type. We begin to prove
+that the type of morphisms from $A$ to $B$ is contractible by showing that it is inhabited. This follows easily by the assumption that $A$
+is recursive. Indeed, the elimination rule allows us to define a function~$f \co A \to B$ by letting~$f \defeq (\lambda x \co A) \rec(x, b_0, b_1)$. We can
+equip this function with the structure of a morphism of bipointed types since the propositional $\beta$-rules give us propositional identity 
+proofs~$\beta_0 \co \Id(f (a_0), b_0)$ and~$\beta_1 \co \Id (f(a_1), b_1)$, as required. To complete the proof that $\Hom(A,B)$ is contractible,
+we show that any two morphisms $f, g \co A \to B$ are propositionally equal.  TO BE ADDED.
+\end{proof}
+
+%%%%%%%%%%%% Fibered stuff %%%%%%%%%%%%%%%
+
+In order to extend our results from recursion to induction, we next require the fibered versions of the notions of a $P$-algebra, homomorphism, and homotopy.
+
+\begin{definition} \label{def:fibalg}
+Let $(C, s_C)$ be a $P$-algebra. A \emph{fibered $P$-algebra} over $C$ is a dependent type
+\[
+x : C \vdash E(x) \co \type
+\]
+equipped with a family of elements of the form
+\[
+x:A,\, u : B(x) \to C,\, v : \big(\Pi{y:B(x)}\big) E(u(y)) \vdash e(x,u,v) :E(s_C(x,u)).
+\]
+\end{definition}
+
+Note that the definition of a fibered algebra describes exactly the data in the premiss of the elimination rule for an inductive $P$-algebra in the sense of definition \ref{def:Wind}. 
+
+\begin{lemma}\label{lem:fibalg}
+Given a fibered $P$-algebra $(E, e)$ over $C$, the type $E' = (\Sigma z : C) E(z)$ can be equipped with the structure of a $P$-algebra $(E', s_{E'})$ in such a way that $\pi_1 : E'\to C$ is a homomorphism of algebras,
+\[
+\xymatrix{
+P(E') \ar[d]_{P\pi_1} \ar[r]^-{s_{E'}} \ar@{}[rd]|{p} & E' \ar[d]^{\pi_1} \\ 
+P(C) \ar[r]_-{s_C} & C.}
+ \]
+\end{lemma}
+
+\begin{proof}
+Use AC to rearrange the $\Sigma$ and $\Pi$.
+[FILL IN]
+\end{proof}
+
+\begin{definition} \label{def:fibalgsection} Let $E = (E, e)$ be a fibered $P$-algebra over the algebra $C$.  A \emph{(homomorphic) section} of $E$ is an element $i \co (\Pi z \co C) E(z)$ equipped with a family of paths $$ x:A,\, u : B(x) \to C \vdash \bar{i}(x, u) : i(s_C(x,u)) \peq e\big(x,u,\lambda{y}.i(u(y))\big).$$
+\end{definition} 
+
+Note that the definition of a section describes exactly the data in the conclusion of the elimination rule and the propositional computation rule for an inductive $P$-algebra in the sense of definition \ref{def:Wind}. 
+
+\begin{lemma}\label{lem:fibalghom}
+Given a fibered $P$-algebra $(E, e)$ over $C$ and an algebra section $(i, \bar{i})$, there is a corresponding algebra homomorphism $i : C\to E'$, where the type $E' = (\Sigma z : C) E(z)$ is equipped with the $P$-algebra structure $s_{E'} :P(E')\to E'$ from lemma \ref{lem:fibalg}.
+\[
+\xymatrix{
+P(E') \ar[d]^{P(\pi_1)} \ar[r]^-{s_{E'}} %\ar@{}[rd]^{p}
+	 & E' \ar[d]_{\pi_1} \\ 
+P(C)  \ar@/^1.2pc/[u]^{Pi} \ar[r]_-{s_C} & C  \ar@/_1.2pc/[u]_{i}.}
+ \]
+\end{lemma}
+
+\begin{proof}
+[REWORK THIS DISCUSSION]
+Given a section $i = (i, \bar{i})$ of a fibered algebra $E$ over $C$, we can define an algebra morphism $i' \co C \to E'$, where as before $E'$ is the algebra defined by $E' \defeq (\Sigma x :A) E(x)$, as follows.
+
+The underlying function is given by letting $s'(x) \defeq \pair(x, s(x))$, for $x : A$. For $k = 0, 1$, the required path $\bar{s}'_k \co s'(a_k) = e'_k$,
+is then given by
+\[
+s'(a_k) = \pair(a_k, s(a_k)) =  \pair(a_k, e_k) = e'_k \, .
+\]
+Observe how the morphism $s' \co A \to E'$ provides a right inverse for $\pi_1 \co E' \to A$ (\ie what is usually called a section in 
+category theory), since we have
+\[
+(\pi_1 \circ s)(x) = \pi_1 (\pair(x, sx)) = x 
+\]
+for every $x \co A$. We represent this situation with the diagram
+\[
+\xymatrix{
+E' \ar[d]^{\pi_1} \\
+A . \ar@/^1.2pc/[u]^{s'} }
+\]
+\end{proof}
+
+We can now give an algebraic formulation of being an inductive type.
+
+\begin{definition} We say that a $P$-algebra $C$ is \emph{homotopy-projective} if every fibered algebra over it has a homomorphic section.
+\end{definition} 
+
+In order to relate this condition to induction, we require an analysis of the identities of sections in terms of their homotopies.
+
+\begin{definition} \label{def:W2cellsection} Let $E = (E, e)$ be a fibered algebra over $C = (C, s_C)$, and let $f = (f, \bar{f})$ and $g = (g, \bar{g})$ be two sections of $E$.  An \emph{algebra homotopy} 
+\[
+(h, \bar{h}) \co (f, \bar{f})  \rightarrow (g, \bar{g})
+\] 
+is a homotopy~$h\co f \sim g$ together with a family of (higher) paths 
+\[
+x : A, u : B(x) \to C \vdash \bar{h}(x,u) : 
+\bar{f}(x,u)  \ct e\big(x,u,(\funext(\lambda{y}.h(u(y))))\big) = 
+h(s_C(x,u)) \ct \bar{g}(x,u).
+\]
+
+Accordingly, we define the type of homotopies of sections as follows:
+%\begin{equation}
+\begin{multline*}
+\HoSec[ (f, \bar{f}) ,\, (g, \bar{g}) ]\ \defeq\ 
+(\Sigma h \co f \sim g) (\Pi x : A)(\Pi u : B(x) \to C)\\
+\Id\big[ \bar{f}(x,u)  \ct e\big(x,u,(\funext(\lambda{y}.h(u(y))))\big),\ 
+h(s_C(x,u)) \ct \bar{g}(x,u) \big]\, .
+\end{multline*}
+%\end{equation}
+\end{definition} 
+
+Observe that the notion of a homotopy of sections corresponds to the $(\beta, \eta)$-compatibility condition of lemma \ref{lem:Wetaind}.  The choice of terminology is justified by the following.
+
+\begin{lemma}\label{lem:fibalghom}
+Given a fibered $P$-algebra $(E, e)$ over $C$, two algebra sections $(f, \bar{f})$ and $(g, \bar{g})$, and a homotopy $(h, \bar{h}) : (f, \bar{f}) \sim (g, \bar{g})$, there is an algebra  homotopy between the corresponding homomorphisms $f, g : C\to E'$ as defined in lemma \ref{lem:fibalghom}, where as before $E' = (\Sigma z : C) E(z)$ is equipped with the $P$-algebra structure $s_{E'} :P(E')\to E'$ from lemma \ref{lem:fibalg}.
+\[
+\xymatrix{
+ E' \ar@{}[d]|{h} \\ 
+C \ar@/^1.2pc/[u]^{f}  \ar@/_1.2pc/[u]_{g}
+}
+ \]
+\end{lemma}
+
+
+
+
+\begin{lemma}\label{lem:fibhomeqid} Let $E = (E, e)$ be a fibered algebra over $C = (C, s_C)$. 
+For every pair of sections $(f, \bar{f})$ and $(g, \bar{g})$, 
+there is an equivalence of types
+\[
+\HoSec[ (f, \bar{f}) ,\, (g, \bar{g}) ]\
+\simeq 
+\Id[ (f, \bar{f}) ,\, (g, \bar{g}) ] \, .
+\]
+\end{lemma}
+
+\begin{proof}
+Let algebras $(C,c) : \WAlg_{\UU_j}(A,B)$, $(E,e) : \WFibAlg_{\UU_k}(A,B) \; (C,c)$ and homomorphisms $(f,\gamma), (g,\delta) : \WFibHom \; (C,c) \; (E,e)$ be given. We have
+\begin{alignat*}{4}
+& (f,\gamma) = (g,\delta) & \simeq \\
+& \sm{\alpha : f = g} \Big(\delta = \trans_{\big(h \mapsto \prd{a}\prd{t} h(c(a,t)) = e(a,t,\lam{b} h(t\;b))\big)}(\alpha) \; \gamma\Big) & \simeq \\
+& \sm{\alpha : f = g} \Big(\delta = \lam{a} \lam{t} \happly(\alpha,c(a,t))^{-1} \ct \gamma(a,t) \ct \app_{e(a,t)}(\funext (\lam{b}\happly(\alpha,t \; b))) \Big) & \;\;\; \simeq \\
+& \sm{\alpha : f \sim g} \Big(\delta = \lam{a} \lam{t} \; \alpha(c(a,t))^{-1} \ct \gamma(a,t) \ct \app_{e(a,t)}(\funext (\lam{b}\; \alpha(t \; b))) \Big) & \simeq \\
+& \sm{\alpha : f \sim g} \prd{a}\prd{t}\Big(\delta(a,t) = \alpha(c(a,t))^{-1} \ct \gamma(a,t) \ct \app_{e(a,t)}(\funext (\lam{b}\; \alpha(t \; b))) \Big) & \simeq \\ 
+& \sm{\alpha : f \sim g} \prd{a}\prd{t}\Big(\alpha(c(a,t)) = \gamma(a,t) \ct \app_{e(a,t)}(\funext (\lam{b}\; \alpha(t \; b))) \ct \delta(a,t)^{-1} \Big) & \equiv \\ 
+& \WFibCell \; (f,\gamma) \; (g,\delta)
+\end{alignat*}
+\end{proof}
+
+\medskip
+
+We can now state and prove our main result. 
+
+\begin{theorem}\label{thm:Wmain} For a $P$-algeba $C = (C, s_C)$, the following are equivalent:
+\begin{enumerate}[(i)]
+\item $C$ is inductive, 
+\item $C$ is recursive,
+\item $C$ is homotopy-initial.
+\item $C$ is homotopy-projective.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof} 
+We proved (i) $\Rightarrow$ (ii) in Proposition~\ref{thm:Windrec}, and  (ii) $\Rightarrow$ (iii) in Lemma \ref{prop:Wrec2hinit}. 
+
+We now  show that (iii) $\Rightarrow$ (iv).
+
+[USE LEMMAS \ref{lem:fibalg} and \ref{lem:fibalghom}.]
+
+[REWORK THE FOLLOWING]
+
+Let $A = (A, a_0, a_1)$ be a homotopy-initial pointed type. We need to show that it is projective. So, let $E = (E, e_0, e_1)$ be a fibered 
+bipointed type over $A$. Let us define the type 
+\[
+E' \defeq (\Sigma x \co A) E(x) 
+\]
+and recall that $E'$ can be equipped with the structure of a bipointed type by considering its elements $e'_0 \defeq \pair(a_0, e_0)$ and $e'_1 \defeq \pair(a_1, e_1)$. In this way,  the first projection $\pi_1 \co E' \to A$ is a morphism of pointed types. By the homotopy-initiality of $A$, we have a morphism of bipointed types
+\[
+(f, \bar{f}_0, \bar{f}_1) \co (A, a_0, a_1)  \to (E', e'_0, e'_1) 
+\]
+which we represent by the diagram
+\[
+\xymatrix{
+1 \ar@/_1pc/[dr]_{e'_0} \ar[r]^{a_0} & A  \ar[d]^f & 1 \ar[l]_{a_1} \ar@/^1pc/[dl]^{e'_1} \\
+ & E' & }
+ \]
+ We can compose $f \co A \to E'$ with $\pi_1 \co E' \to A$ and obtain a morphism $\pi_1 \co f \co A \to A$, represented by the diagram
+  \[
+\xymatrix@C=1.5cm{
+1 \ar@/_1pc/[dr]_(.7){e'_0} \ar[r]^{a_0} \ar@/_1.5pc/[ddr]_{a_0}  & A  \ar[d]^f & 1 \ar[l]_{a_1} \ar@/^1pc/[dl]^(.7){e'_1} \ar@/^1.5pc/[ddl]^{a_1}  \\
+ & E' \ar[d]^{\pi_1} & \\
+ & A &  }
+ \]
+But the identity $1_A \co A \to A$ is also a morphism from $A$ to itself and hence, by the homotopy-initiality, the morphisms $\pi_1 \circ f \co A \to A$
+and $1_A \co A \to A$ have to be propositionally equal. By Lemma~\ref{BoolHomSpace}, this implies there exists a bipointed homotopy $(\alpha,
+\bar{\alpha}_0,\bar{\alpha}_1) \co \pi_1 \circ f \sim 1_A$ between them. This gives us a homotopy $\alpha \co \pi_1 \circ f \sim 1_A$ and paths
+\[
+\xymatrix@C=1.5cm{
+\pi_1 f (a_0) \ar[r]^{\alpha(a_0)} \ar@/_1pc/[dr]_{\overline{(\pi_1 f)}_0} \ar@{}[dr]|{\quad \bar{\alpha}_0}  & a_0 \ar[d]^{\refl(a_0)} \\
+ & a_0 } \qquad
+ \xymatrix@C=1.5cm{
+\pi_1 f (a_1) \ar[r]^{\alpha(a_0)} \ar@/_1pc/[dr]_{\overline{(\pi_1 f)}_1} \ar@{}[dr]|{\quad \bar{\alpha}_1}  & a_1 \ar[d]^{\refl(a_1)} \\
+ & a_1 }
+\]
+We begin to define the required bipointed section by defining  $s \co (\Pi x \co A) E(x)$. For $x \co A$, we let
+\begin{equation}
+\label{equ:defreqsection}
+s(x) \defeq \alpha(x)_{!} \big( \pi_2(f(x)) \big) \, . 
+\end{equation}
+It remains to complete the definition of the required bipointed section, it remains to obtain paths~$\bar{s}_0 \co s(a_0)  \peq e_0$ and~$\bar{s}_1 \co s(a_1) \peq e_1$. We consider only $\bar{s}_0$ since the construction of $\bar{s}_1$ is  analogous. First of all, recall that 
+$\bar{f}_0 \co f(a_0) \peq e'_0$, where $e'_0 \equiv \pair(a_0, e_0) \co (\Sigma x :A ) E(x)$. Hence, there are paths 
+\begin{equation}
+\label{equ:p0q0}
+p_0 \co \pi_1 f (a_0) \peq a_0 \, , \quad q_0 \co (p_0)_{!}( \pi_1 f (a_0)) \peq e_0 \, . 
+\end{equation}
+such that $\pair(p_0, q_0) \peq \idtopair(\bar{f}_0)$. Furthermore, by the definition of the composition of bipointed morphisms, we have
+$p_0 =  \overline{(\pi_1 f)}_0$ and so
+\begin{equation}
+\label{equ:p0alpha0}
+p_0 = \overline{(\pi_1 f)}_0 =  \alpha(a_0) \ct \refl(a_0)  = \alpha(a_0) \, ,
+\end{equation}
+where the second equation is given by $\bar{\alpha}_0$. Hence, $\bar{s}_0$ is the witness for the following chain of propositional equalities
+\[
+s(a_0) \peq \alpha(a_0)_{!} \big( \pi_2 f(a_0)  \big)  
+              \peq  (  p_0   )_{!} \big( \pi_2(f(a_0) ) \big) 
+               \peq  e_0 \, ,
+\]
+Here, the first equality is given by the definition of $s$ in~\eqref{equ:defreqsection}, the second is given by~\eqref{equ:p0alpha0}, and the third is given by the path $q_0$ in~\eqref{equ:p0q0}.
+
+The implication (iv) $\Rightarrow$ (i) is almost immediate, and is left to the reader.
+\end{proof}
+
+
+\begin{corollary}\label{lem:WInitInt}
+The $W$-type $(W x : A) B(x)$ is a homotopy-initial $P$-algebra.
+\end{corollary}
+
+
+Corollary~\ref{lem:WInitInt} is the analogue in our setting of the characterization of 
+the type $\W$ as a strict initial algebra in extensional type theory. It makes precise the informal idea that, in intensional type theory, $\W$ is a kind of homotopy or weak $\infty$-initial
+algebra in the $\infty$-category of types, functions, identity terms, higher identity terms, \ldots.  
+
+\begin{lemma}\label{lem:suppath}
+For all $a_1,a_2:A$, $t_1 : B(a_1) \to \W$, $t_2 : B(a_2) \to \W$ we have
+\[ 
+\wsup(a_1,t_1) = \wsup(a_2,t_2)  \simeq  (a_1,t_1) = (a_2,t_2)
+\]
+\end{lemma}
+
+\begin{proof}
+By Lemma~\ref{lem:IntLambek} and Corollary~\ref{lem:WInitInt}, the structure map $\wsup$ defines an equivalence between $\sm{x:A} B(x) \to \W$ and $\W$. The rest follows from Lem.~\ref{lem:apeq}.
+\end{proof}
+
+Finally, $\W$-types with propositional computation rules still preserve homotopy levels, in the following sense.
+
+\begin{theorem}
+If $A$ is an $(n+1)$-type, then so is $(\W x:A)B(x)$.
+\end{theorem}
+
+
+\begin{proof}
+We need to show that for any $w, w' : \W$ we have $\isntype{n}(w = w')$. By induction on $w$, it suffices to show that for any $a,t$ we have $(Pi w:\W) \isntype{n}(\wsup(a,t) = w)$ under the induction hypothesis $h : (\Pi b:B(a)) (\Pi w:\W) \isntype{n}(t(b) = w)$.  By another induction, this time on $w'$, it suffices to show that for any $a',t'$ we have
+$\isntype{n}\big(\wsup(a,t) = \wsup(a',t')\big)$ under the hypothesis $(\Pi b:B(a')) \isntype{n}\big(\wsup(a,t) = t'(b)\big)$, which however is not necessary. Now we have
+\begin{align*} 
+\wsup(a,t) = \wsup(a',t') 
+& \simeq (a,t) = (a',t') \\
+& \simeq (\Sigma p : a = a') \big(t = \trans_{x \mapsto B(x) \to \W}(p) \; t'\big) \\
+& \simeq  (\Sigma p : a = a')  \big(t = \lam{b:B(a)} t'(\trans_B(p) \; b)\big) \\
+& \simeq (\Sigma p : a = a') (\Pi b:B(a)) \big(t(b) = t'(\trans_B(p) \; b)\big) \, , 
+\end{align*}
+where the first equality follows by Corollary.~\ref{lem:suppath}. Since $A$ is an $(n+1)$-type by assumption, we have $\isntype{n}(a=a')$. For any $p,b$ we have $\isntype{n}\big(t(b) = t'(\trans_B(p) \; b)\big)$ by the hypothesis~$h\big(b,t'(\trans_B(p) \; b)\big)$. Since a family of $n$-types is an $n$-type and a dependent sum of a family of $n$-types over an $n$-type is again an $n$-type, the last type in the above chain of equalities is an $n$-type. 
+\end{proof}
+
+We note that there is no restriction on the homotopy level of the fibers of $B$ since they only appear contravariantly. Furthermore, we note that the lemma is no longer true if $n+1$ is replaced by $n$: if $A \defeq \one$ and $B(x) \defeq \one$, then $\W^{\UU_0}_{x:A} B(x) \simeq \zero$, which is of course not contractible. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Universes and internalization}
+
+Here we again assume a type theory with a hierarchy of universes $\U_0 : \U_1 : \ldots$, such as Martin-L{\"o}f's dependent type theory, denoting the universe $\U_0$ of small types by $\U$. We can internalize the notion of a (fibered) $P$-algebra as follows.
+
+\begin{definition}\label{def:WAlg}
+For $A:\U$, $B : A \to \U$, define the type of \emph{$P$-algebras} as
+\[\WAlg(A,B) \; \defeq \sm{C : \U} (\Pi x:A) (B(x) \to C) \to C \]
+\end{definition}
+
+\begin{definition}\label{def:WFibAlg}
+Define the type of \emph{fibered $P$-algebras} over a $P$-algebra $\X : \WAlg(A,B)$ by
+\[\WFibAlg \; (C,c) \defeq \sm{E : C \to \U} (\Pi x:A) (\Pi t: B(x) \to C) \big((\Pi b:B(x)) E(t \;b) \big) \to E(c(a,t)) \]
+\end{definition}
+
+\noindent The types of $P$-morphisms, $P$-sections, and $P$-homotopies are now defined as before:
+
+\begin{definition}\label{def:WHom}
+For $P$-algebras $\X,\Y : \WAlg(A,B)$, define the type of \emph{$P$-morphisms} from $\X$ to $\Y$ by
+\[ \WHom \; (C,c) \; (D,d) \defeq \sm{f:C\to D} (\Pi x:A) (\Pi t: B(x) \to C) f(c(a,t)) = d(a,f \circ t) \]
+\end{definition}
+
+\begin{definition}\label{def:WFibHom}
+For a $P$-algebra $\X : \WAlg(A,B)$ and a fibered $P$-algebra $\Y : \WFibAlg \; \X$ over $\X$, define the type of \emph{$P$-sections} of $\Y$ by
+\[ \WFibHom \; (C,c) \; (E,e) \defeq \sm{f:(\Pi x:C)E(x)}(\Pi x:A) (\Pi t: B(x) \to C) f(c(a,t)) = e(a,t,f \circ t) \]
+\end{definition}
+We will usually leave out all but the last argument to $\WFibHom$.
+
+\begin{definition}\label{def:WCell}
+For $P$-morphisms $\mu, \nu : \WHom \; \X \; \Y$, define the type of \emph{$P$-homotopies} between $\mu$ and $\nu$ by
+\begin{align*} 
+& \WCell \; (C,c) \; (D,d) \; (f,\bar{f}) \; (g,\bar{g}) \defeq \\ & \;\;\; \;\;\;\WFibHom \; (C,c) \; \Big((\lambda x:C) f(x) = g(x), (\lambda x) (\lambda t) (\lambda r) \bar{f}(x,t) \ct d(x)(\funext(r)) \ct \bar{g}(x,t)^{-1}\Big)
+\end{align*}
+\end{definition}
+
+\begin{definition}\label{def:WFibCell}
+For $P$-sections $\mu, \nu : \WFibHom \; \X \; \Y$, define the type of \emph{$P$-homotopies of sections} between $\mu$ and $\nu$ by
+\begin{align*}
+& \WFibCell \; (C,c) \; (E, e) \; (f,\bar{f}) \; (g,\bar{g}) \defeq \\ & \;\;\; \;\;\;\WFibHom \; (C,c) \; \Big((\lambda x:C) f(x) = g(x), (\lambda x) (\lambda t) (\lambda r) \bar{f}(x,t) \ct e(x,t)(\funext(r)) \ct \bar{g}(x,t)^{-1}\Big)
+\end{align*}
+\end{definition}
+
+For brevity, we will often leave out all but the last two arguments to $\WCell$ and $\WFibCell$. Finally, we internalize the properties of being homotopy-initial and homotopy-projective as follows:
+
+\begin{definition}\label{def:WHInit}
+A $P$-algebra $\X : \WAlg(A,B)$ is said to be \emph{homotopy-initial} if for any $P$-algebra $\Y : \WAlg(A,B)$, the type of $P$-morphisms from $\X$ to $\Y$ is contractible:
+\[ \IsWHInit \; \X \defeq (\Pi \Y:\WAlg(A,B)) \; \iscontr(\WHom \; \X \; \Y) \]  
+\end{definition}
+
+\begin{definition}\label{def:WHProj}
+A $P$-algebra $\X : \WAlg(A,B)$ is said to be \emph{homotopy-projective} if for any fibered $P$-algebra $\Y : \WAlg \; \X$ over $\X$, there exists a $P$-section of $\Y$:
+\[ \IsWHProj \; \X \defeq (\Pi \Y:\WFibAlg \; \X) \; \WFibHom \; \Y \]  
+\end{definition}
+
+Our main result can now be expressed internally as follows.
+
+\begin{theorem}\label{lem:WMainInternal}
+For $A:\U$, $B : A \to \U$, and a $P$-algebra $\X : \WAlg(A,B)$, we have
+\[ \IsWHProj \; \X \;\;\; \leftrightarrow \;\;\; \IsWHInit \; \X \]
+Moreover, both types are mere propositions; hence in particular we have
+\[ \IsWHProj \; \X \;\;\; \simeq \;\;\; \IsWHInit \; \X \]
+\end{theorem}
+\begin{proof}
+The type $\IsWHInit \; \X$ is a mere proposition since $\iscontr(X)$ is a mere proposition for any type $X$ and a family of mere propositions is again a mere proposition.
+
+To show that $\IsWHProj \; \X$ is a mere proposition, we note that to prove that a type $X$ is a mere proposition, it suffices to do so under the assumption that $X$ is inhabited. Assume therefore that $\IsWHProj \; \X$ is inhabited. Since a family of mere propositions is again a mere proposition, it suffices to show that $\WFibHom \; \X \; \Y$ is a mere proposition for any $\Y$. Fix sections $\mu, \nu : \WFibHom \; \X \; \Y$. To show $\mu = \nu$, it suffices to exhibit a $P$-homotopy between $\mu$ and $\nu$. But since a $P$-homotopy is nothing more than a section of an appropriate fibered $P$-algebra, we can obtain it by using the fact that $\IsWHProj \; \X$ is inhabited.
+
+Fix a $P$-algebra $(C,c) : \WAlg(A,B)$. The logical equivalence between the types $\IsWHProj \; (C,c)$ and $\IsWHInit \; (C,c)$ is established in the same way as in the proof of Thm~\ref{lem:WMainInt}. 
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Univalence for $P$-algebras}
 
 \begin{definition} Let $C,D : \WAlg(A,B)$ be $P$-algebras. We say that a $P$-morphism $f \co \WHom(C,D)$ is a \myemph{$P$-equivalence}
 if there exist $P$-morphisms $\ell,r \co \WHom(D,C)$ providing a left and a right $P$-inverse for $f$, \ie 
@@ -1321,542 +2106,6 @@ Now we observe that for paths $q : \Id(y,x_1)$, $s : \Id(y,x_2)$, the type $\big
 \end{align*} 
 as required.
 \end{proof}
-
-
-we again require an alternate description of the identity type of two morphisms. For this, we shall require the notion of a homotopy between morphisms of $P$-algebras. 
-
-[THE FOLLOWING NEEDS TO BE FIXED -- WHERE TO USE HOMOTOPIES AND WHERE TO USE IDENTITY PROOFS]
-\begin{definition}
-For $P$-algebras $(C,s_C)$ and $(D,s_D)$ and morphisms $(f, \bar{f})$ and $(g, \bar{g})$ between them, a \emph{homotopy}  $$(h, \bar{h}) : (f, \bar{f}) \sim (g, \bar{g})$$
-consists of a homotopy $h : f \sim g$ together with a (higher) identity, 
-\[
-\bar{h} : \bar{f} \cdot s_D(Ph) = h(s_C)\cdot \bar{g}\, ,
-\]
-between elements in $\id{PC \rightarrow D}\big( f \circ s_C \, ,  s_{D} \circ Pf \big)$. 
-\end{definition}
-
-Accordingly, the type of homotopies of algebra maps is defined by
-\[
-\Ho
-\big[ (f,\bar{f}), (g, \bar{g})  \big]
- \defeq  
-(\Sigma h:  f \sim g) \, \Id\big( \bar{f} \cdot s_D(Ph),\, (h(s_C))\cdot \bar{g} \big) \, .
-\]
-
-ALTERNATIVE
-
-For $P$-morphisms $\mu, \nu : \WHom \; \X \; \Y$, define the type of \emph{$P$-homotopies} between $\mu$ and $\nu$ by
-\begin{align*} 
-& \WCell \; (C,c) \; (D,d) \; (f,\bar{f}) \; (g,\bar{g}) \defeq \\ & \;\;\; \;\;\;\WFibHom \; (C,c) \; \Big((\lambda x:C) f(x) = g(x), (\lambda x) (\lambda t) (\lambda r) \bar{f}(x,t) \ct d(x)(\funext(r)) \ct \bar{g}(x,t)^{-1}\Big)
-\end{align*}
-
-Nota that here the identity $Ph : Pf = Pg$ is derived from $h : f \sim g$, and $h(s_C)$ and $s_D(Ph)$ are again pre- and post-compositions, respectively, of maps with homotopies. Such a homotopy can be represented as filling the three-dimensional space between the two pasting diagrams:
-\[
-\xymatrix{
-PC \ar@/^1pc/[r]^{Pg}   \ar[d]_{s_C}   \ar@/_1pc/[r]_{Pf} \ar@{}[r]|{Ph}
-& PD \ar[d]^{s_D}  \\
-C  \ar@/_1pc/[r]_f  \ar@{}[r]^{\bar{f}} & D }
-\qquad
-\xymatrix{
-PC \ar@/^1pc/[r]^{Pg}   \ar[d]_{s_C} \ar@{}[r]_(.52){\bar{g}}  & PD \ar[d]^{s_D}  \\
-C \ar@/^1pc/[r]^g  \ar@/_1pc/[r]_f  \ar@{}[r]|{h} & D }
-\]
-
-
-
-
-\begin{lemma}\label{IdEqHo}
-For $P$-algebras $(C,s_C)$ and $(D,s_D)$ and morphisms $(f, \bar{f})$ and $(g, \bar{g})$ between them, the type of identity proofs $p : (f, \bar{f}) = (g, \bar{g})$ is equivalent to the type of homotopies $(h, \bar{h}) : (f, \bar{f}) \sim (g, \bar{g})$,
-\[
-\Id\big((f, \bar{f}), (g, \bar{g})\big) \simeq \Ho\big((f, \bar{f}), (g, \bar{g})\big).
-\]
-\end{lemma}
-
-\begin{proof}
-This follows from a more general case to be proved in \ref{lem:fibhomeqid} below.
-\end{proof}
-
-
-
-
-In order to extend our results from recursion to induction, we next require the fibered versions of the notions of a $P$-algebra, homomorphism, and homotopy.
-
-\begin{definition} \label{def:fibalg}
-Let $(C, s_C)$ be a $P$-algebra. A \emph{fibered $P$-algebra} over $C$ is a dependent type
-\[
-x : C \vdash E(x) \co \type
-\]
-equipped with a family of elements of the form
-\[
-x:A,\, u : B(x) \to C,\, v : \big(\Pi{y:B(x)}\big) E(u(y)) \vdash e(x,u,v) :E(s_C(x,u)).
-\]
-\end{definition}
-
-
-We  define the type of \emph{fibered $P$-algebras} over a $P$-algebra $\X : \WAlg(A,B)$ by
-\[
-\WFibAlg \; (C,c) \defeq \sm{E : C \to \U} (\Pi x:A) (\Pi t: B(x) \to C) \big((\Pi b:B(x)) E(t \;b) \big) \to E(c(a,t))
- \]
-Note that the definition of a fibered algebra describes exactly the data in the premiss of the elimination rule for an
-inductive $P$-algebra in the sense of definition \ref{def:Wind}. 
-
-\begin{lemma}\label{lem:fibalg}
-Given a fibered $P$-algebra $(E, e)$ over $C$, the type $E' = (\Sigma z : C) E(z)$ can be equipped with the structure of a $P$-algebra $(E', s_{E'})$ in such a way that $\pi_1 : E'\to C$ is a homomorphism of algebras,
-\[
-\xymatrix{
-P(E') \ar[d]_{P\pi_1} \ar[r]^-{s_{E'}} \ar@{}[rd]|{p} & E' \ar[d]^{\pi_1} \\ 
-P(C) \ar[r]_-{s_C} & C.}
- \]
-\end{lemma}
-
-\begin{proof}
-Use AC to rearrange the $\Sigma$ and $\Pi$.
-[FILL IN]
-\end{proof}
-
-\begin{definition} \label{def:fibalgsection} Let $E = (E, e)$ be a fibered $P$-algebra over the algebra $C$.  A \emph{(homomorphic) section} of $E$ is an element $i \co (\Pi z \co C) E(z)$ equipped with a family of paths $$ x:A,\, u : B(x) \to C \vdash \bar{i}(x, u) : i(s_C(x,u)) \peq e\big(x,u,\lambda{y}.i(u(y))\big).$$
-\end{definition} 
-
-
-We define the type of \emph{$P$-sections} of $\Y$ by
-\[ 
-\WFibHom \; (C,c) \; (E,e) \defeq \sm{f:(\Pi x:C)E(x)}(\Pi x:A) (\Pi t: B(x) \to C) f(c(a,t)) = e(a,t,f \circ t) 
-\]
-We will usually leave out all but the last argument to $\WFibHom$. Note that the definition of a section describes exactly the data in the conclusion of the elimination rule and the propositional computation rule for an inductive $P$-algebra in the sense of definition \ref{def:Wind}. 
-
-\begin{lemma}\label{lem:fibalghom}
-Given a fibered $P$-algebra $(E, e)$ over $C$ and an algebra section $(i, \bar{i})$, there is a corresponding algebra homomorphism $i : C\to E'$, where the type $E' = (\Sigma z : C) E(z)$ is equipped with the $P$-algebra structure $s_{E'} :P(E')\to E'$ from lemma \ref{lem:fibalg}.
-\[
-\xymatrix{
-P(E') \ar[d]^{P(\pi_1)} \ar[r]^-{s_{E'}} %\ar@{}[rd]^{p}
-	 & E' \ar[d]_{\pi_1} \\ 
-P(C)  \ar@/^1.2pc/[u]^{Pi} \ar[r]_-{s_C} & C  \ar@/_1.2pc/[u]_{i}.}
- \]
-\end{lemma}
-
-\begin{proof}
-[REWORK THIS DISCUSSION]
-Given a section $i = (i, \bar{i})$ of a fibered algebra $E$ over $C$, we can define an algebra morphism $i' \co C \to E'$, where as before $E'$ is the algebra defined by $E' \defeq (\Sigma x :A) E(x)$, as follows.
-
-The underlying function is given by letting $s'(x) \defeq \pair(x, s(x))$, for $x : A$. For $k = 0, 1$, the required path $\bar{s}'_k \co s'(a_k) = e'_k$,
-is then given by
-\[
-s'(a_k) = \pair(a_k, s(a_k)) =  \pair(a_k, e_k) = e'_k \, .
-\]
-Observe how the morphism $s' \co A \to E'$ provides a right inverse for $\pi_1 \co E' \to A$ (\ie what is usually called a section in 
-category theory), since we have
-\[
-(\pi_1 \circ s)(x) = \pi_1 (\pair(x, sx)) = x 
-\]
-for every $x \co A$. We represent this situation with the diagram
-\[
-\xymatrix{
-E' \ar[d]^{\pi_1} \\
-A . \ar@/^1.2pc/[u]^{s'} }
-\]
-\end{proof}
-
-
-
-We require an analysis of the identities of sections in terms of their homotopies.
-
-\begin{definition} \label{def:W2cellsection} Let $E = (E, e)$ be a fibered algebra over $C = (C, s_C)$, and let $f = (f, \bar{f})$ and $g = (g, \bar{g})$ be two sections of $E$.  An \emph{algebra homotopy} 
-\[
-(h, \bar{h}) \co (f, \bar{f})  \rightarrow (g, \bar{g})
-\] 
-is a homotopy~$h\co f \sim g$ together with a family of (higher) paths 
-\[
-x : A, u : B(x) \to C \vdash \bar{h}(x,u) : 
-\bar{f}(x,u)  \ct e\big(x,u,(\funext(\lambda{y}.h(u(y))))\big) = 
-h(s_C(x,u)) \ct \bar{g}(x,u).
-\]
-\end{definition} 
-
-Accordingly, we define the type of homotopies of sections as follows:
-%\begin{equation}
-\begin{multline*}
-\HoSec[ (f, \bar{f}) ,\, (g, \bar{g}) ]\ \defeq\ 
-(\Sigma h \co f \sim g) (\Pi x : A)(\Pi u : B(x) \to C)\\
-\Id\big[ \bar{f}(x,u)  \ct e\big(x,u,(\funext(\lambda{y}.h(u(y))))\big),\ 
-h(s_C(x,u)) \ct \bar{g}(x,u) \big]\, .
-\end{multline*}
-%\end{equation}
-
-ALTERNATIVE 
-
-\begin{align*}
-& \WFibCell \; (C,c) \; (E, e) \; (f,\bar{f}) \; (g,\bar{g}) \defeq \\ & \;\;\; \;\;\;\WFibHom \; (C,c) \; \Big((\lambda x:C) f(x) = g(x), (\lambda x) (\lambda t) (\lambda r) \bar{f}(x,t) \ct e(x,t)(\funext(r)) \ct \bar{g}(x,t)^{-1}\Big)
-\end{align*}
-
-
-Observe that the notion of a homotopy of sections corresponds to the $(\beta, \eta)$-compatibility condition of lemma \ref{lem:Wetaind}.  The choice of terminology is justified by the following.
-
-\begin{lemma}\label{lem:fibalghom}
-Given a fibered $P$-algebra $(E, e)$ over $C$, two algebra sections $(f, \bar{f})$ and $(g, \bar{g})$, and a homotopy $(h, \bar{h}) : (f, \bar{f}) \sim (g, \bar{g})$, there is an algebra  homotopy between the corresponding homomorphisms $f, g : C\to E'$ as defined in lemma \ref{lem:fibalghom}, where as before $E' = (\Sigma z : C) E(z)$ is equipped with the $P$-algebra structure $s_{E'} :P(E')\to E'$ from lemma \ref{lem:fibalg}.
-\[
-\xymatrix{
- E' \ar@{}[d]|{h} \\ 
-C \ar@/^1.2pc/[u]^{f}  \ar@/_1.2pc/[u]_{g}
-}
- \]
-\end{lemma}
-
-
-
-
-\begin{lemma}\label{lem:fibhomeqid} Let $E = (E, e)$ be a fibered algebra over $C = (C, s_C)$. 
-For every pair of sections $(f, \bar{f})$ and $(g, \bar{g})$, 
-there is an equivalence of types
-\[
-\HoSec[ (f, \bar{f}) ,\, (g, \bar{g}) ]\
-\simeq 
-\Id[ (f, \bar{f}) ,\, (g, \bar{g}) ] \, .
-\]
-\end{lemma}
-
-\begin{proof}
-Let algebras $(C,c) : \WAlg_{\UU_j}(A,B)$, $(E,e) : \WFibAlg_{\UU_k}(A,B) \; (C,c)$ and homomorphisms $(f,\gamma), (g,\delta) : \WFibHom \; (C,c) \; (E,e)$ be given. We have
-\begin{alignat*}{4}
-& (f,\gamma) = (g,\delta) & \simeq \\
-& \sm{\alpha : f = g} \Big(\delta = \trans_{\big(h \mapsto \prd{a}\prd{t} h(c(a,t)) = e(a,t,\lam{b} h(t\;b))\big)}(\alpha) \; \gamma\Big) & \simeq \\
-& \sm{\alpha : f = g} \Big(\delta = \lam{a} \lam{t} \happly(\alpha,c(a,t))^{-1} \ct \gamma(a,t) \ct \app_{e(a,t)}(\funext (\lam{b}\happly(\alpha,t \; b))) \Big) & \;\;\; \simeq \\
-& \sm{\alpha : f \sim g} \Big(\delta = \lam{a} \lam{t} \; \alpha(c(a,t))^{-1} \ct \gamma(a,t) \ct \app_{e(a,t)}(\funext (\lam{b}\; \alpha(t \; b))) \Big) & \simeq \\
-& \sm{\alpha : f \sim g} \prd{a}\prd{t}\Big(\delta(a,t) = \alpha(c(a,t))^{-1} \ct \gamma(a,t) \ct \app_{e(a,t)}(\funext (\lam{b}\; \alpha(t \; b))) \Big) & \simeq \\ 
-& \sm{\alpha : f \sim g} \prd{a}\prd{t}\Big(\alpha(c(a,t)) = \gamma(a,t) \ct \app_{e(a,t)}(\funext (\lam{b}\; \alpha(t \; b))) \ct \delta(a,t)^{-1} \Big) & \equiv \\ 
-& \WFibCell \; (f,\gamma) \; (g,\delta)
-\end{alignat*}
-\end{proof}
-
-
- 
-
-\section{Homotopy-initial $P$-algebras}
-
-  Throughout this section, fix $x:A\vdash B(x)$ and write $P(X)$ for the associated polynomial functor $(\Sigma x : A) (B(x) \rightarrow X)$.  Recall that a $P$-algebra is a type $C$ equipped with a map
-$s_C :  PC \rightarrow C$.  
-
-
-
-
-\begin{definition}\label{def:Wind}
-Let $x:A \vdash B(x) \,\type$ be given and let $C$ be a type equipped with a family of elements $x:A, u : B(x)\to C \vdash s_C(x,u): C$.
-We say that the corresponding $P$-algebra $s_C : P(C)\to C$ is \emph{inductive} if every fibered $P$-algebra
-over it has a homomorphic section, \ie the type
-\[ 
-\IsWHProj \; \X \defeq (\Pi \Y:\WFibAlg \; \X) \; \WFibHom \; \Y 
-\]  
-is inhabited.
-\end{definition}
-
-\begin{proposition} $C$ is inductive if and only if it satisfies the following rules.
-\begin{enumerate}[(i)] 
-\item $\W$-elimination rule.\smallskip
-\begin{mathpar}
-\inferrule{
-%A : \type \\  x:A \vdash B(x) : \type \\ 
-% m : \W  \\  
-z : C \vdash E(z) : \type \\ 
-x:A,\, u : B(x) \to C,\, v : \big(\Pi{y:B(x)}\big) E(u(y)) \vdash e(x,u,v) :E(s_C(x,u))}
-{ z : C \vdash \ind(z,e) : E(z)}
-\end{mathpar}
-
-\item Propositional computation rule.\smallskip
-\begin{mathpar}
-\inferrule{
-z : C \vdash E(z) : \type \\ 
-x:A,\, u : B(x) \to C,\, v : \big(\Pi{y:B(x)}\big) E(u(y)) \vdash e(x,u,v) :E(s_C(x,u))}
-{x:A,\, u : B(x) \to C \vdash
-\beta(x,u,e) : \ind(s_C(x,u),e) \peq e\big(x,u,\lambda{y}.\ind(u(y),e)\big)}
-\end{mathpar}
-\end{enumerate}
-\end{proposition}
-
-We begin by showing that being implies the essential uniqueness of $P$-sections of fibered $P$-types.
-
-\begin{lemma} \label{lem:Wetaind}
-If $s_C : P(C)\to C$  is an inductive $P$-algebra, then it satisfies the following further rules:
-\begin{enumerate}[(i)]
-\item Propositional $\eta$-rule\smallskip
-\begin{mathpar}
-\inferrule{
- z:C \vdash E(z)\,\type \\ \\ z:C \vdash f(z) : E(z) \\
- x:A,\, u: B(x) \to C,\, v : (\Pi{y:B(x)}) E(u(y)) \vdash e(x,u,v) :E(s_C(x,u))  \\ x:A, u: B(x) \to C \vdash p(x,u) : f(s_C(x,u)) = e\big(x,u,\lambda{y}. f(u(y))\big)}
-{z:C \vdash \eta(z) :  f(z) = \ind(z,e)}
-\end{mathpar}
-\item Propositional $(\beta, \eta)$-compatibility rule\smallskip
-\begin{mathpar}
-\inferrule{
-z:C \vdash E(z)   \\ z:C \vdash f(z) : E(z) \\ 
-x:A,\, u: B(x) \to C,\, v : (\Pi{y:B(x)}) E(u(y)) \vdash e(x,u,v) :E(s_C(x,u)) \\ 
-x:A, u: B(x) \to C \vdash p(x,u) : f(s_C(x,u)) = e(x,u,\lambda{y}.f(u(y)))
-}
-{x : A, u : B(x) \to C \vdash
-\gamma(x,u) : \eta(\wsup(x,u))\ct \beta(x,u) = 
-p(x,u)\cdot e(x,u,\int(\eta\circ u))
-}
-\end{mathpar}
-\end{enumerate}
-\end{lemma}
-The $(\beta,\eta)$-compatibility rule will be explained in Remark \ref{rem:explainrules} below.
-
-\begin{proof}
-We use the $\W$-elimination rule with the type family $z \mapsto f(z) =_{E(z)} \ind(z,e)$. Thus we need to show that for any $x,u$ we have a proof of $f(s_C(x,u)) = \ind(s_C(x,u),e)$, under the induction hypothesis $h : \prd{y:B(x)} f(u(y)) = \ind((u(y),e)$. We can construct this path explicitly as follows:
-\begin{align*}
-f(s_C(x,u)) &= e\big(x,u,\lambda y.f(u(y))\big) \by{p(x,u)}\\
-	&= e\big(x,u,\lambda y.\ind(u(y),e))\big) \by{e(x,u,\int(h))}\\
-	&= \ind(s_C(x,u),e) \by{\beta(x,u)^{-1}}.
-\end{align*}
-Call the resulting element $\eta(z) \defeq \ind(z,q)$, for $q(x,u,h) \defeq p(x,u)\cdot e(x,u,\int(h))\cdot\beta(x,u)^{-1}$.
-The propositional computation rule for this case then provides:
-\begin{align*}
-\beta'(x,u,q) :  \eta(s_C(x,u)) &\peq q\big(x,u,\lambda{y}.\eta(u(y))\big)\\
-	&\deq p(x,u)\cdot e(x,u,\int(\lambda y.\eta(u(y))))\cdot\beta(x,u)^{-1}.
-\end{align*}
-Whence we get
-\[
-\gamma (x,u) :  \eta(s_C(x,u)) \cdot \beta(x,u)\,\peq\,
- 	p(x,u)\cdot e(x,u,\int(\eta\circ u))\, ,
-	\]
-as required.
-\end{proof}
-
-
-
-
-\begin{proposition} \label{thm:Windrec}
-If a $P$-algebra is inductive then it is recursive.
-\end{proposition}
-
-
-\begin{proof} The recursion and propositional $\beta$-rules are special cases of the elimination and propositional computation rules that are part of the definition of an inductive $P$-algebra. The propositional $\eta$-rule and the
-propositional $(\beta, \eta)$-computatibility rules are special cases of the rules in Lemma~\ref{lem:Wetaind}. 
-\end{proof}
-
-
-
-Nonetheless, it is again possible to explicitly define the notion of a homotopy-initial $P$-algebra:
-
-\begin{definition}\label{def:AlgInit}
-A $P$-algebra $(C, s_C)$ is  \emph{homotopy-initial}  if for any $P$-algebra $(D,s_D)$, the type $\Hom[(C, s_C),(D,s_D)]$ of morphisms from $(C, s_C)$ to $(D,s_D)$
-is contractible, \ie the following type is inhabilited
-\[
- (\Pi D :\WAlg(A,B)) \; \iscontr \Hom[(C, s_C),(D,s_D)]) \, .
-\]  
-\end{definition}
-
-We stress again that homotopy-initiality is a purely type-theoretic notion. In terms of the concepts just defined, we can now analyze the recursion rules in definition \ref{def:recursiveW} as follows: the $\W$-recursion rule says that, given any type $E$ together with the map $e : PE\to E$ --- i.e.\ any $P$-algebra --- there is a map $\rec : C\to E$.  The simple propositional $\beta$-rule says that this map $\rec$ is a homomorphism.  The simple propositional $\eta$-rule says that if $f : C\to E$ is any homomorphism, then there is an identity $\eta : f = \rec$.  And the simple propositional $(\beta, \eta)$-compatibility rule says that this identity $\eta$ is in fact a homotopy.
-
-\begin{proposition} 
-A $P$-algebra is homotopy-initial if and only if it satisfies the following rules:
-\begin{enumerate}[(i)] 
-\item $\W$-recursion rule.\smallskip
-\begin{mathpar}
-\inferrule{
-%A : \type \\  x:A \vdash B(x) : \type \\ 
-% m : \W  \\  
-E : \type \\ 
-x:A,\, v : B(x) \to E \vdash e(x,v) :E }
-{ z : C \vdash \rec(z,e) : E}
-\end{mathpar}
-\item Simple propositional $\beta$-rule.\smallskip
-\begin{mathpar}
-\inferrule{
-E : \type \\ 
-x:A,\, v : B(x) \to E  \vdash e(x,v) :E}
-{x:A,\, u : B(x) \to C \vdash
- \beta(x,u,e) : \rec(s_C(x,u),e) \peq e\big(x,\lambda{y}.\rec(u(y),e)\big) }
-\end{mathpar}
-\item Simple propositional $\eta$-rule.\smallskip
-\begin{mathpar}
-\inferrule{
-E:\type \\ z:C \vdash f(z) : E \\ 
-x:A,\, v: B(x) \to E \vdash e(x,v) :E \\ 
-x:A, u: B(x) \to C \vdash p(x,u) : f(s_C(x,u)) = e\big(x,\lambda{y}. f(u(y))\big)}
-{z:C \vdash \eta(z) :  f(z) = \rec(z,e)}
-\end{mathpar}
-\item Simple propositional $(\beta, \eta)$-compatibility rule.\smallskip
-\begin{mathpar}
-\inferrule{
-E:\type   \\ z:C \vdash f(z) : E \\ 
-x:A,\, v: B(x) \to C \vdash e(x,v) :E \\ 
-%z:C \vdash g(z) : E(z) \\ 
-x:A, u: B(x) \to C \vdash p(x,u) : f(s_C(x,u)) = e(x,\lambda{y}.f(u(y)))
-}
-%x:A, p: B(x) \to C \vdash \delta(x,p) : g(\wsup(x,p)) = e(x,p,\lam{b:B(x)} g(p \;b))}
-{x : A, u : B(x) \to C \vdash 
-\gamma(x,u) : \eta(\wsup(x,u))\ct \beta(x,u) = 
-p(x,u) \ct e(x,\int(\eta\circ u))
-}
-\end{mathpar}
-\end{enumerate}
-\end{proposition}
-
-
-
-\begin{proof}
-The center of contraction is $\rec$, and any homomorphism is homotopic to $\rec$ by $\eta$ and $(\beta,\eta)$-compatibiliy.
-
-[FILL IN THE PROOF: MODIFYING THIS ONE]
-
-So, let $A$ be a bipointed type
-and assume that it is recursive. We need to show that it is homotopy-initial. So, let $B = (B, b_0, b_1)$ be a bipointed type. We begin to prove
-that the type of morphisms from $A$ to $B$ is contractible by showing that it is inhabited. This follows easily by the assumption that $A$
-is recursive. Indeed, the elimination rule allows us to define a function~$f \co A \to B$ by letting~$f \defeq (\lambda x \co A) \rec(x, b_0, b_1)$. We can
-equip this function with the structure of a morphism of bipointed types since the propositional $\beta$-rules give us propositional identity 
-proofs~$\beta_0 \co \Id(f (a_0), b_0)$ and~$\beta_1 \co \Id (f(a_1), b_1)$, as required. To complete the proof that $\Hom(A,B)$ is contractible,
-we show that any two morphisms $f, g \co A \to B$ are propositionally equal.  TO BE ADDED.
-\end{proof}
-
-
-
-We have the following analogue of Lambek's lemma for $\W$-types.
-
-
-\begin{lemma}\label{lem:IntLambek}
-If a $P$-algebra $(C,c)$ is homotopy-initial, then the structure map $c \co P(C) \to C$ is an equivalence.
-\end{lemma}
-
-
-\begin{proof}
-By abuse of notation we refer to both the curried and uncurried versions of the structure map by $c$. Since $(C,c)$ is homotopy-initial on $\UU_j$, it satisfies the recursion principle on $\UU_j$. We use it with the algebra \[\Big(\sm{x:A} B(x) \to C; a,s \mapsto \big(a,\lam{b:B(a)} c(s\;b)\big)\Big)\]
-We note that the carrier type belongs to $\UU_j$ as $i \leq j$. This gives us a homomorphism $(u,\theta)$ where $u : C \to \big(\sm{x:A} B(x) \to C\big)$ and $\theta : \prd{a}\prd{t} u(c(a,t)) = \big(a,\lam{b:B(a)} c(u(t\;b))\big)$.  We can now form two homomorphisms
-\[\big(c \comp u; a,t \mapsto \app_c(\theta(a,t))\big), \big(\idfun{C}; a,t \mapsto \refl_{c(a,t)}\big) : \WHom \; (C,c) \; (C,c)\]
-Since $(C,c)$ is initial on $\UU_j$, it satisfies the recursion uniqueness principle on $\UU_j$, thus the above homomorphisms are equal. Thus, we have $c \comp u = \idfun{C}$ and in particular there is a homotopy $\epsilon : c \comp u \sim \idfun{C}$. For any $a,t$, the path $\theta(a,t) \ct \app_{(a,-)}(\funext(\lam{b:B(a)} \epsilon(t\;b)))$ gives us $u(c(a,t)) = (a,t)$. Thus we have a homotopy $\eta : u \comp c \sim \idfun{\sm{x:A} B(x) \to C}$.
-\end{proof}
-
-
-
-
-%%%%%%%%%%%% Fibered stuff %%%%%%%%%%%%%%%
-
-
-We can now state and prove our main result. 
-
-\begin{theorem}\label{thm:WMain} A $P$-algeba $C = (C, s_C)$ is inductive if and only if
-it is homotopy-initial, \ie the type
-\[ 
-\IsWHProj \; \X \;\;\; \leftrightarrow \;\;\; \IsWHInit \; \X 
-\]
-is inhabited. 
-\end{theorem}
-
-
-
-\begin{proof}  We now  show that (iii) $\Rightarrow$ (iv). [USE LEMMAS \ref{lem:fibalg} and \ref{lem:fibalghom}.]
-[REWORK THE FOLLOWING] Let $A = (A, a_0, a_1)$ be a homotopy-initial pointed type. We need to show that it is projective. So, let $E = (E, e_0, e_1)$ be a fibered 
-bipointed type over $A$. Let us define the type 
-\[
-E' \defeq (\Sigma x \co A) E(x) 
-\]
-and recall that $E'$ can be equipped with the structure of a bipointed type by considering its elements $e'_0 \defeq \pair(a_0, e_0)$ and $e'_1 \defeq \pair(a_1, e_1)$. In this way,  the first projection $\pi_1 \co E' \to A$ is a morphism of pointed types. By the homotopy-initiality of $A$, we have a morphism of bipointed types
-\[
-(f, \bar{f}_0, \bar{f}_1) \co (A, a_0, a_1)  \to (E', e'_0, e'_1) 
-\]
-which we represent by the diagram
-\[
-\xymatrix{
-1 \ar@/_1pc/[dr]_{e'_0} \ar[r]^{a_0} & A  \ar[d]^f & 1 \ar[l]_{a_1} \ar@/^1pc/[dl]^{e'_1} \\
- & E' & }
- \]
- We can compose $f \co A \to E'$ with $\pi_1 \co E' \to A$ and obtain a morphism $\pi_1 \co f \co A \to A$, represented by the diagram
-  \[
-\xymatrix@C=1.5cm{
-1 \ar@/_1pc/[dr]_(.7){e'_0} \ar[r]^{a_0} \ar@/_1.5pc/[ddr]_{a_0}  & A  \ar[d]^f & 1 \ar[l]_{a_1} \ar@/^1pc/[dl]^(.7){e'_1} \ar@/^1.5pc/[ddl]^{a_1}  \\
- & E' \ar[d]^{\pi_1} & \\
- & A &  }
- \]
-But the identity $1_A \co A \to A$ is also a morphism from $A$ to itself and hence, by the homotopy-initiality, the morphisms $\pi_1 \circ f \co A \to A$
-and $1_A \co A \to A$ have to be propositionally equal. By Lemma~\ref{BoolHomSpace}, this implies there exists a bipointed homotopy $(\alpha,
-\bar{\alpha}_0,\bar{\alpha}_1) \co \pi_1 \circ f \sim 1_A$ between them. This gives us a homotopy $\alpha \co \pi_1 \circ f \sim 1_A$ and paths
-\[
-\xymatrix@C=1.5cm{
-\pi_1 f (a_0) \ar[r]^{\alpha(a_0)} \ar@/_1pc/[dr]_{\overline{(\pi_1 f)}_0} \ar@{}[dr]|{\quad \bar{\alpha}_0}  & a_0 \ar[d]^{\refl(a_0)} \\
- & a_0 } \qquad
- \xymatrix@C=1.5cm{
-\pi_1 f (a_1) \ar[r]^{\alpha(a_0)} \ar@/_1pc/[dr]_{\overline{(\pi_1 f)}_1} \ar@{}[dr]|{\quad \bar{\alpha}_1}  & a_1 \ar[d]^{\refl(a_1)} \\
- & a_1 }
-\]
-We begin to define the required bipointed section by defining  $s \co (\Pi x \co A) E(x)$. For $x \co A$, we let
-\begin{equation}
-\label{equ:defreqsection}
-s(x) \defeq \alpha(x)_{!} \big( \pi_2(f(x)) \big) \, . 
-\end{equation}
-It remains to complete the definition of the required bipointed section, it remains to obtain paths~$\bar{s}_0 \co s(a_0)  \peq e_0$ and~$\bar{s}_1 \co s(a_1) \peq e_1$. We consider only $\bar{s}_0$ since the construction of $\bar{s}_1$ is  analogous. First of all, recall that 
-$\bar{f}_0 \co f(a_0) \peq e'_0$, where $e'_0 \equiv \pair(a_0, e_0) \co (\Sigma x :A ) E(x)$. Hence, there are paths 
-\begin{equation}
-\label{equ:p0q0}
-p_0 \co \pi_1 f (a_0) \peq a_0 \, , \quad q_0 \co (p_0)_{!}( \pi_1 f (a_0)) \peq e_0 \, . 
-\end{equation}
-such that $\pair(p_0, q_0) \peq \idtopair(\bar{f}_0)$. Furthermore, by the definition of the composition of bipointed morphisms, we have
-$p_0 =  \overline{(\pi_1 f)}_0$ and so
-\begin{equation}
-\label{equ:p0alpha0}
-p_0 = \overline{(\pi_1 f)}_0 =  \alpha(a_0) \ct \refl(a_0)  = \alpha(a_0) \, ,
-\end{equation}
-where the second equation is given by $\bar{\alpha}_0$. Hence, $\bar{s}_0$ is the witness for the following chain of propositional equalities
-\[
-s(a_0) \peq \alpha(a_0)_{!} \big( \pi_2 f(a_0)  \big)  
-              \peq  (  p_0   )_{!} \big( \pi_2(f(a_0) ) \big) 
-               \peq  e_0 \, ,
-\]
-Here, the first equality is given by the definition of $s$ in~\eqref{equ:defreqsection}, the second is given by~\eqref{equ:p0alpha0}, and the third is given by the path $q_0$ in~\eqref{equ:p0q0}.
-\end{proof}
-
-\begin{proposition} Moreover, both types are mere propositions; hence in particular we have
-\[ \IsWHProj \; \X \;\;\; \simeq \;\;\; \IsWHInit \; \X \]
-\end{proposition}
-
-\begin{proof}
-The type $\IsWHInit \; \X$ is a mere proposition since $\iscontr(X)$ is a mere proposition for any type $X$ and a family of mere propositions is again a mere proposition.
-
-To show that $\IsWHProj \; \X$ is a mere proposition, we note that to prove that a type $X$ is a mere proposition, it suffices to do so under the assumption that $X$ is inhabited. Assume therefore that $\IsWHProj \; \X$ is inhabited. Since a family of mere propositions is again a mere proposition, it suffices to show that $\WFibHom \; \X \; \Y$ is a mere proposition for any $\Y$. Fix sections $\mu, \nu : \WFibHom \; \X \; \Y$. To show $\mu = \nu$, it suffices to exhibit a $P$-homotopy between $\mu$ and $\nu$. But since a $P$-homotopy is nothing more than a section of an appropriate fibered $P$-algebra, we can obtain it by using the fact that $\IsWHProj \; \X$ is inhabited.
-
-Fix a $P$-algebra $(C,c) : \WAlg(A,B)$. The logical equivalence between the types $\IsWHProj \; (C,c)$ and $\IsWHInit \; (C,c)$ is established in Theorem~\ref{thm:WMain}. 
-\end{proof}
-
-
-\begin{corollary}\label{lem:WInitInt}
-The $W$-type $(W x : A) B(x)$ is a homotopy-initial $P$-algebra.
-\end{corollary}
-
-
-Corollary~\ref{lem:WInitInt} is the analogue in our setting of the characterization of 
-the type $\W$ as a strict initial algebra in extensional type theory. It makes precise the informal idea that, in intensional type theory, $\W$ is a kind of homotopy or weak $\infty$-initial
-algebra in the $\infty$-category of types, functions, identity terms, higher identity terms, \ldots.  
-
-\begin{lemma}\label{lem:suppath}
-For all $a_1,a_2:A$, $t_1 : B(a_1) \to \W$, $t_2 : B(a_2) \to \W$ we have
-\[ 
-\wsup(a_1,t_1) = \wsup(a_2,t_2)  \simeq  (a_1,t_1) = (a_2,t_2)
-\]
-\end{lemma}
-
-\begin{proof}
-By Lemma~\ref{lem:IntLambek} and Corollary~\ref{lem:WInitInt}, the structure map $\wsup$ defines an equivalence between $\sm{x:A} B(x) \to \W$ and $\W$. The rest follows from Lem.~\ref{lem:apeq}.
-\end{proof}
-
-Finally, $\W$-types with propositional computation rules still preserve homotopy levels, in the following sense.
-
-\begin{theorem}
-If $A$ is an $(n+1)$-type, then so is $(\W x:A)B(x)$.
-\end{theorem}
-
-
-\begin{proof}
-We need to show that for any $w, w' : \W$ we have $\isntype{n}(w = w')$. By induction on $w$, it suffices to show that for any $a,t$ we have $(Pi w:\W) \isntype{n}(\wsup(a,t) = w)$ under the induction hypothesis $h : (\Pi b:B(a)) (\Pi w:\W) \isntype{n}(t(b) = w)$.  By another induction, this time on $w'$, it suffices to show that for any $a',t'$ we have
-$\isntype{n}\big(\wsup(a,t) = \wsup(a',t')\big)$ under the hypothesis $(\Pi b:B(a')) \isntype{n}\big(\wsup(a,t) = t'(b)\big)$, which however is not necessary. Now we have
-\begin{align*} 
-\wsup(a,t) = \wsup(a',t') 
-& \simeq (a,t) = (a',t') \\
-& \simeq (\Sigma p : a = a') \big(t = \trans_{x \mapsto B(x) \to \W}(p) \; t'\big) \\
-& \simeq  (\Sigma p : a = a')  \big(t = \lam{b:B(a)} t'(\trans_B(p) \; b)\big) \\
-& \simeq (\Sigma p : a = a') (\Pi b:B(a)) \big(t(b) = t'(\trans_B(p) \; b)\big) \, , 
-\end{align*}
-where the first equality follows by Corollary.~\ref{lem:suppath}. Since $A$ is an $(n+1)$-type by assumption, we have $\isntype{n}(a=a')$. For any $p,b$ we have $\isntype{n}\big(t(b) = t'(\trans_B(p) \; b)\big)$ by the hypothesis~$h\big(b,t'(\trans_B(p) \; b)\big)$. Since a family of $n$-types is an $n$-type and a dependent sum of a family of $n$-types over an $n$-type is again an $n$-type, the last type in the above chain of equalities is an $n$-type. 
-\end{proof}
-
-We note that there is no restriction on the homotopy level of the fibers of $B$ since they only appear contravariantly. Furthermore, we note that the lemma is no longer true if $n+1$ is replaced by $n$: if $A \defeq \one$ and $B(x) \defeq \one$, then $\W^{\UU_0}_{x:A} B(x) \simeq \zero$, which is of course not contractible. 
-
 
 \begin{theorem}[Univalence for $P$-algebras] \label{thm:Punivalence}
 For $A:\U$, $B : A \to \U$ and $P$-algebras $C,D  : \WAlg(A,B)$, the canonical function
@@ -2080,7 +2329,7 @@ x :  A \vdash \idrec(x,x,\refl(x), e) = e(x) :  E(x, x, \refl(x)) \, .
 
 
 
-\begin{table}[htb]
+\begin{table}[ht]
 \fbox{ 
 \begin{minipage}{12cm}
 \medskip
@@ -2135,90 +2384,7 @@ e_1 : E(1)
 \label{tab:bool} 
 \end{table}
 
-
-\begin{table}[ht]
-\fbox{ 
-\begin{minipage}{12cm}
-\medskip
-\begin{itemize}
-%\item $\W$-formation rule.\smallskip
-%\[
-%\begin{prooftree}
-% A : \UU_i \qquad
-% x:A \vdash B(x) : \UU_i
-% \justifies
-% \W^{\UU_i}_{x : A}B(x)
-%\end{prooftree}
-%\]
-%\item $\W$-introduction rule.\smallskip
-%\[
-%\begin{prooftree}
-%A : \UU_i \qquad
-%x:A \vdash B(x) : \UU_i \qquad
-%a:A \qquad
-%t : B(a) \to \W
-%\justifies
-%\wsup^{A,x.B}_{\UU_i}(a,t): \W
-%\end{prooftree}
-%\]
-%\item $\W$-elimination rule.\smallskip
-%\begin{mathpar}
-%\inferrule{A : \UU_i \\ x:A \vdash B(x) : \UU_i \\ m : \W \\ w : \W \vdash E(w) : \UU_j \\ x:A, p: B(x) \to \W, r : \prd{b:B(x)} E(p \;b) \vdash e(x,p,r) :E(\wsup(x,p))}{\wind^{A,x.B}_{\UU_j}\big(w.E,x.p.r.e,m\big) : E(m)}
-%\end{mathpar}
-%\item $\W$-computation rule.\smallskip
-%\begin{mathpar}
-%\inferrule{A : \UU_i \\ x:A \vdash B(x) : \UU_i \\ a : A \\ t : B(a) \to \W \\ w : \W \vdash E(w) : \UU_j \\ x:A, p: B(x) \to \W, r : \prd{b:B(x)} E(p \;b) \vdash
-%e(x,p,r) :E(\wsup(x,p))}
-%{\wind(\wsup(a,t)) \equiv e(a,t,\lam{b:B(a)} \wind(t\;b)) : E(\wsup(a,t))}
-\item $\W$-formation rule.\smallskip
-\[
-\begin{prooftree}
- A : \type \qquad
- x:A \vdash B(x) : \type
- \justifies
- (\W{x : A})B(x) : \type
-\end{prooftree}
-\]
-\item $\W$-introduction rule.\smallskip
-\[
-\begin{prooftree}
-%A : \type \qquad
-%x:A \vdash B(x) : \type \qquad
-a:A \qquad
-t : B(a) \to \W
-\justifies
-\wsup(a,t): \W
-\end{prooftree}
-\]
-\item $\W$-elimination rule.\smallskip
-\begin{mathpar}
-\inferrule{
-%A : \type \\  x:A \vdash B(x) : \type \\ 
-% m : \W  \\  
-w : \W \vdash E(w) : \type \\ 
-x:A,\, u : B(x) \to \W,\, v : \big(\Pi{y:B(x)}\big) E(u(y)) \vdash e(x,u,v) :E(\wsup(x,u))}
-{ w : \W \vdash \ind(w,e) : E(w)}
-\end{mathpar}
-\item $\W$-computation rule.\smallskip
-\begin{mathpar}
-\inferrule{
-w : \W \vdash E(w) : \type \\ 
-x:A,\, u : B(x) \to \W,\, v : \big(\Pi{y:B(x)}\big) E(u(y)) \vdash e(x,u,v) :E(\wsup(x,u))}
-{x:A,\, u : B(x) \to \W \vdash \\
- \ind(\wsup(x,u),e) \equiv e\big(x,u,\lambda{y}.\ind(u(y),e)\big) : E(\wsup(x,u))}
-\end{mathpar}
-\end{itemize}
-\medskip
-\end{minipage}} \medskip
-\caption{Deduction rules for W-types.}
-\label{tab:boolrules}
-\end{table}
-
-\pagebreak
-
-\phantom{a}
-
-
+\newpage
 
 \bibliographystyle{plain}
 
