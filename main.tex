@@ -147,6 +147,10 @@
 \newcommand{\idrec}{\mathsf{J}}
 \newcommand{\nat}{\ensuremath{\mathbb{N}}} 
 \newcommand{\suc}{\mathsf{suc}}
+
+
+\renewcommand{\sup}{\mathrm{sup}}
+
 \newcommand{\W}{\mathsf{W}}
 \newcommand{\wsup}{\mathsf{sup}}
 \newcommand{\wrec}{\mathsf{wrec}}
@@ -195,7 +199,7 @@
 \newcommand{\FibBip}{\mathsf{FibBip}}
 \newcommand{\BipSec}{\mathsf{BipSec}}
 \newcommand{\ishinit}{\mathsf{ishinit}}
-\newcommand{\isind}{\mathsf{isind}}
+\newcommand{\isbipind}{\mathsf{isbipind}}
 \newcommand{\BoolIdHom}{\mathsf{2}\text{-}\mathsf{Id}\text{-}\mathsf{Hom}}
 \newcommand{\BoolCompHom}{\mathsf{2}\text{-}\mathsf{Comp}\text{-}\mathsf{Hom}}
 \newcommand{\BipIso}{\mathsf{2}\text{-}\mathsf{Alg}\text{-}\mathsf{Iso}}
@@ -461,7 +465,7 @@ $\ell \co B \to A$ and $r \co B \to A$ such that
 Let $A \in \UU$ be a small type and suppose that there is an equivalence $f \co \Bool \to A$. Then, the type $A$ 
 has two distinguished elements $a_0 \defeq f(0)$ and $a_1 \defeq f(1)$, and it satisfies
 analogues of the elimination and computation rules for $\Bool$, except that the conclusions of the computation 
-rules need to be modified  by replacing the judgemental equalities  with propositional ones. Our aim in this section is to provide a characterisation of the types equivalent to $\Bool$ by means of type-theoretical universal properties. In order to do so, we introduce the notion of a bipointed type. 
+rules need to be modified  by replacing the judgemental equalities  with propositional ones. Our aim in this section is to provide a characterisation of the types equivalent to $\Bool$ by means of a type-theoretical universal property. In order to do so, we introduce the notion of a bipointed type. 
 
 
 \begin{definition} \label{thm:bipointedtype}
@@ -477,7 +481,7 @@ recall this abuse of language.  In the following, it will be convenient to repre
 \xymatrix{
  1 \ar[r]^-{a_0}&  A & 1 \ar[l]_-{a_1} \, .}
  \]
-The type $\Bool$ and its canonical elements give us a bipointed type:
+The type $\Bool$ and its canonical elements $0, 1 \in \Bool$ give us a bipointed type:
 \[
 \xymatrix{
  1 \ar[r]^-{0}&  \Bool  & 1 \ar[l]_-{1} \, . }
@@ -506,12 +510,12 @@ the rest of the data. Diagrammatically, we represent a bipointed morphism as fol
 Bipointed types and their morphisms behave much like objects and morphisms in a category.
 Given two bipointed morphisms  $(f, \bar{f}_0, \bar{f}_1) \co A \to B$ and $(g, \bar{g}_0, \bar{g}_1) \co B \to C$, we can define their composite 
  as the triple consisting of the composite $g \circ f \co A \to C$ and the paths represented
-by the following pasting diagram
+by the following pasting diagram:
 \[
 \xymatrix@C=1.5cm{
 1 \ar[r]   \ar[r]^{a_0}   \ar@/_1pc/[dr]^{b_0} \ar@/_1pc/[ddr]_{c_0}  & A  \ar[d]^{f} & 1 \ar[l]_{a_1}  \ar@/^1pc/[dl]_{b_1}  \ar@/^1pc/[ddl]^{c_1} \\
   & B \ar[d]^g &   \\
-  & C &   }
+  & C \, . &   }
   \]
 Explicitly,
 \[
@@ -521,7 +525,11 @@ Explicitly,
 Also, for any bipointed type $A = (A, a_0, a_1)$, the identity function $1_A \co A \to A$ can be equipped with the structure of a 
 bipointed morphism in an evident way. 
 We do not quite have a category, however, since the composition operation is not strictly associative, but only associative up to a system of higher and higher 
-homotopies, as in an $(\infty,1)$-category.  We now discuss the notion of equivalence between bipointed types.
+homotopies, as in an $(\infty,1)$-category.  
+
+\medskip
+
+We now discuss the notion of equivalence between bipointed types.
 
 
 
@@ -548,14 +556,16 @@ gives an alternative characterisation of bipointed equivalences.
 \begin{lemma}\label{BoolAlgSpace}  \label{thm:usemere}
 A bipointed morphism $(f, \bar{f}_0, \bar{f}_1) \co A \to B$ is a bipointed equivalence if and only
 if its underlying function $f \co A \to B$ is an equivalence. Furthermore, there is an equivalence of types
-$\isbipequiv(f, \bar{f}_0, \bar{f}_1)  \simeq \isequiv(f)$. 
-Thus, for any bipointed morphism $f$ the type $\isbipequiv(f)$ is a mere proposition.
+\[
+\isbipequiv(f, \bar{f}_0, \bar{f}_1)  \simeq \isequiv(f) \, .
+\]
+Thus, for any bipointed morphism $f$, the type $\isbipequiv(f)$ is a mere proposition.
 \end{lemma}  
 
 \begin{proof}
 Let $(A,a_0,a_1), (B,b_0,b_1)$ be bipointed types and $(f, \bar{f}_0, \bar{f}_1) \co A \to B$ be a bipointed morphism between them. Expanding the type of 
 proofs that $f$ is a bipointed equivalence yields the type
-\begin{multline*}
+\[
  \sum_{\ell \co B \to  A}  
  \sum_{\bar{\ell}_0 \co \ell(b_0) \Rightarrow a_0} 
  \sum_{\bar{\ell}_1 \co \ell(b_1) \Rightarrow a_1} 
@@ -564,7 +574,7 @@ proofs that $f$ is a bipointed equivalence yields the type
  \sum_{\bar{r}_0 \co r(b_0) \Rightarrow a_0} 
  \sum_{\bar{r}_1 \co  r(b_1) \Rightarrow a_1} 
  Q(r,\bar{r}_0,\bar{r}_1)   \, ,
-\end{multline*}
+\]
 where
 \begin{align*}
 P(\ell,\bar{\ell}_0,\bar{\ell}_1) & \defeq \Id \Big( \big( \ell \comp f, \ell(\bar{f}_0) \ct \bar{\ell}_0, \ell(\bar{f}_1) \ct \bar{\ell}_1\big), \big( 1_A, \refl(a_0), \refl(a_1) \big) \Big)  \, , \\
@@ -585,15 +595,15 @@ where $\ext : \Id(\ell \comp f, 1_A) \to \Hot(\ell \comp f,  1_A)$ is the canoni
 \Id  \big( \ell (\bar{f}_0) \ct \bar{\ell}_0 \, ,  \ext(p)_{a_0} \big) 
 \times 
 \Id \big( \ell(\bar{f}_1) \ct \bar{\ell}_1 \, ,  \ext(p)_{a_1} \big)
-\Big)
+\Big) \, .
 \]
 Since the function $\ext$ is an equivalence, this is equivalent to
 \begin{align*}
 \sum_{\alpha : \ell \comp f \sim 1_A} 
 \Big( \Id  \big( \ell (\bar{f}_0) \ct \bar{\ell}_0 \, ,  \alpha(a_0) \big) 
 \times 
-\Id \big( \ell(\bar{f}_1) \ct \bar{\ell}_1 \, ,  \alpha(a_1) \big)
-\Big)
+\Id \big( \ell(\bar{f}_1) \ct \bar{\ell}_1 \, ,  \alpha(a_1) \big) 
+\Big) \, .
 \end{align*}
 Analogously, the type $Q(r,\bar{r}_0,\bar{r}_1)$ is equivalent to
 \[
@@ -711,11 +721,11 @@ The type of  fibered bipointed types over a bipointed type $A$ is then defined b
 \FibBip(A) \defeq \sum_{E \co A \to \UU} E(a_0) \times E(a_1)  \, .
  \]
  Note that this type is not small. 
-Given a fibered bipointed type $E \co A \to \UU$, its total type
+Given a fibered bipointed type $E \co A \to \UU$, its total type is defined by letting
 \[
-E'  \defeq \sum_{x \in A} E(x)
+E'  \defeq \sum_{x \in A} E(x) \, .
 \] 
-and observe that $E'$ is a bipointed type by considering $e'_k \defeq \pair(a_k, e_k)$, 
+Observe that $E'$ is a bipointed type by considering $e'_k \defeq \pair(a_k, e_k)$, 
 for $k =  0, 1$. In this way, the first projection $\pi_1 \co E' \to A$ becomes a bipointed morphism:
 \[
 \xymatrix{
@@ -739,12 +749,12 @@ The type of bipointed sections of $E \co A \to \UU$ is then defined to be
 \[
 \BipSec(E) \defeq \sum_{s \in \prod_{x \in A} E(x)} \Id(s(a_0),  e_0)  \times \Id( s(a_1), e_1)  \, .
 \]
-Given a bipointed section $s$, we can define a bipointed morphism~$f  \co A \to E'$, where $E'$ is the
-bipointed type defined by $E' \defeq \sum_{x \in A} E(x)$. Its underlying function is given by 
-letting~$f(x) \defeq \pair(x, s(x))$, for~$x : A$. For $k =  0, 1$, it is 
-immediate to obtain the required path~$\bar{s}_k \co f'(a_k) \Rightarrow e'_k$.
-The morphism $f' \co A \to E'$ provides a section, \ie a right inverse for~$\pi_1 \co E' \to A$,
- since, for~$x \co A$, we have judgemental equalities
+Given a bipointed section $s \co A \to E$, we can define a bipointed morphism~$f  \co A \to E'$, where $E'$ is the
+total bipointed type associated to $E$. Its underlying function is given by 
+letting~$f(x) \defeq \pair(x, s(x))$, for~$x \in A$. With this definition, it is 
+immediate to get the path~$\bar{s}_k \co f'(a_k) \Rightarrow e'_k$, for $k = 0, 1$.
+The morphism $f' \co A \to E'$ provides a section in the usual category-theoretic sense, \ie a right inverse for~$\pi_1 \co E' \to A$,
+ since, for~$x \in A$, we have judgemental equalities
 \[
  (\pi_1 \circ f')(x) \deq \pi_1 (f'(x)) \deq \pi_1 (\pair(x, f x)) \deq x \, .
 \]
@@ -756,7 +766,7 @@ A . \ar@/_1.2pc/[u]_{f'} }
 \]
 We conclude this section by characterizing the identity type between two bipointed sections, using
 the notion of a bipointed homotopy. This is in complete analogy with the situation for bipointed
-morphisms.
+morphisms discussed earlier (cf.\,Lemma~\ref{BoolHomSpace}). 
 
 
 \begin{definition} \label{def:2cellsection} Let $E$ be a fibered bipointed type over $A$. If $f = (f, \bar{f}_0,\bar{f}_1)$ and $g = (g, \bar{g}_0, \bar{g}_1)$ are bipointed sections of $E$, a \emph{bipointed homotopy} 
@@ -796,7 +806,7 @@ there is an equivalence of types
 \label{sec:homibt}
 
 
-Let $A$ be a type and assume that it is equivalent to $\Bool$. Then, $A$ admits the structure of a bipointed type and
+Let $A \in \UU$ be a small type and assume that it is equivalent to $\Bool$. Then, $A$ admits the structure of a bipointed type and
 it satisfies the counterparts of the elimination and computation rules for $\Bool$ in which the computation rule is 
 weakened by replacing the judgmental equality in its conclusion with a propositional equality. Using the notions of a fibered bipointed type and of a bipointed section introduced in Section~\ref{sec:bip}, it is immediate to see that the these rules rules assert that every fibered bipointed type over $A$ has a bipointed section. Since bipointed types $A$ of this kind  play an important role in the following, we introduce some terminology to refer to them.
 
@@ -807,19 +817,19 @@ weakened by replacing the judgmental equality in its conclusion with a propositi
 
 \begin{definition} A bipointed type $A$ is said to be \emph{inductive} if every fibered bipointed type over it has a bipointed section, \ie the type
 \[ 
-\isind(A) \defeq \prod_{E \in \FibBip(A)}  \BipSec(E)
+\isbipind(A) \defeq \prod_{E \in \FibBip(A)}  \BipSec(E)
 \]  
 is inhabited. \end{definition} 
 
 Consequently, the type of (small) inductive bipointed types is given by
 \[
-\mathsf{BipInd} \defeq \sum_{A \in \Bip} \isind(A) \, .
+\mathsf{BipInd} \defeq \sum_{A \in \Bip} \isbipind(A) \, .
 \]
 Thus, a canonical inductive bipointed type is given by a bipointed type $A = (A, a_0, a_1)$ together with a function 
 which, given a fibered bipointed type $E = (E, e_0, e_1)$ over $A$, returns a bipointed section of $E$.
 Clearly, the type $\Bool$ is an inductive bipointed type. Furthermore, the property of being inductive can be transported along equivalences, in the sense that if $A$ and $B$ are equivalent bipointed types and $A$ is inductive, then so is $B$. Thus, a
-type is equivalent to $\Bool$ if and only if it is inductive.
-We begin to explore some consequences of the assumption that a bipointed type is inductive, so as to give a 
+type is equivalent to $\Bool$ if and only if it is inductive. Below,
+we begin to explore some consequences of the assumption that a bipointed type is inductive, so as to give a 
 characterisation of inductive bipointed types.
 
 
@@ -849,11 +859,12 @@ where $k = 0, 1$.
 \begin{proof} Immediate.
 \end{proof}
 
-Note that the rules in Proposition~\ref{thm:inductiverules} are exactly the weakening
-of the elimination and computation rules for $\Bool$ mentioned above.
-We now show that if a bipointed type $A$ is inductive, then 
-every fibered bipointed type over it has a bipointed section
-which is unique up to bipointed homotopy.
+Note that the rules in Proposition~\ref{thm:inductiverules} are exactly the elimination rule
+and the weakening computation rules for $\Bool$ obtained by replacing the judgemental
+equality in the conclusion with a propositional one, as mentioned above.
+We now show that if a bipointed type $A$ is inductive, then not only 
+every fibered bipointed type over it has a bipointed section, but this section
+is unique up to a bipointed homotopy.
 
 \begin{lemma} \label{thm:inductiveuniquesec} Let $A = (A, a_0, a_1)$ be a bipointed type. If $A$ is inductive, 
 then the following rules are derivable:
@@ -902,10 +913,13 @@ For $x \in A$, we then have
  
  \medskip
 
-As we will see in more detail below, Proposition~\ref{thm:inductiverules} and Lemma~\ref{thm:inductiveuniquesec}
-imply that if $A = (A, a_0, a_1)$ is a inductive bipointed type then, for every bipointed type $B = (B, b_0, b_1)$, 
-there exists a bipointed morphism~$f \co A \to B$, which is unique in the sense that  for any two bipointed morphisms $(f, \bar{f}_0, \bar{f}_1), (g, \bar{g}_0, \bar{g}_1) \co A \to B$  there is a bipointed homotopy $ \alpha \co f \sim g$. Thus, by Lemma~\ref{BoolHomSpace},
-there is a path $p \in \Id((f, \bar{f}_0, \bar{f}_1), (g, \bar{g}_0, \bar{g}_1))$. Such a path is itself is unique up to a higher path, which in turn is unique up to a yet higher path, etc... As we will show in the reminder of this section, this sort of weak $\omega$-universality, which apparently involves infinitely much data, can nonetheless be fully captured within the system of type theory (without resorting to coinduction) using ideas inspired by homotopy theory and higher-dimensional category theory. Indeed, in spite of the fact that bipointed types and morphisms do not form a category in a strict sense, it is possible to introduce the  notion of a homotopy-initial bipointed type in completely elementary and explicit terms, as we do in the next definition.
+Proposition~\ref{thm:inductiverules} and Lemma~\ref{thm:inductiveuniquesec}
+imply that if $A$ is a inductive bipointed type then, for every bipointed type $B$, 
+there exists a bipointed morphism~$f \co A \to B$, which is unique in the sense that  for any two bipointed morphisms $(f, \bar{f}_0, \bar{f}_1), (g, \bar{g}_0, \bar{g}_1) \co A \to B$  there is a bipointed homotopy~$\alpha \co f \sim g$. Thus, by Lemma~\ref{BoolHomSpace}, there is a path 
+\[
+p \in \Id((f, \bar{f}_0, \bar{f}_1), (g, \bar{g}_0, \bar{g}_1)) \, .
+\] 
+Furthermore, it can be shown that such a path is itself is unique up to a higher path, which in turn is unique up to a yet higher path, etc... As we will show in the reminder of this section, this sort of weak $\infty$-universality, which apparently involves infinitely much data, can nonetheless be fully captured within the system of type theory (without resorting to coinduction) using ideas inspired by homotopy theory and higher-dimensional category theory. Indeed, in spite of the fact that bipointed types and morphisms do not form a category in a strict sense, it is possible to introduce the  notion of a homotopy-initial bipointed type in completely elementary and explicit terms, as we do in the next definition.
 
 
 \begin{definition}\label{def:BoolInit}
@@ -917,7 +931,7 @@ is contractible, \ie the type
 is inhabited.
 \end{definition}
 
-Let us remark that the uniqueness implicit in Definition~\ref{def:BoolInit} requires that any two bipointed homomorphisms are propositionally equal as tuples. Clearly, the property of being  homotopy-initial  can be transported along equivalences, in the sense that if two bipointed types are equivalent, then one is homotopy-initial if and only if the other one is. It is worth emphasizing also that homotopy-initiality is a purely type-theoretic notion: despite having an intuitive homotopy-theoretic interpretation, it is formulated in terms of inhabitation of specific, definable types. In fact, it is possible to give a characterization of homotopy-initial bipointed types in terms of type-theoretic rules, as the next proposition spells out.
+Let us remark that the uniqueness implicit in Definition~\ref{def:BoolInit} requires that any two bipointed homomorphisms are propositionally equal as tuples. It should also be noted that the property of being  homotopy-initial  can be transported along equivalences, in the sense that if two bipointed types are equivalent, then one is homotopy-initial if and only if the other one is. It is worth emphasizing also that homotopy-initiality is a purely type-theoretic notion: despite having an intuitive homotopy-theoretic interpretation, it is formulated in terms of inhabitation of specific, definable types. In fact, it is possible to give a characterization of homotopy-initial bipointed types in terms of type-theoretic rules, as the next proposition spells out.
 
 \begin{proposition} \label{thm:hinitrules}
 A bipointed type $A = (A, a_0, a_1)$ is homotopy-initial if and only if it satisfies
@@ -972,8 +986,7 @@ x \in A \vdash \alpha(x) \in \Id( f(x), g(x))
 
 
 
-Our goal for the reminder of this section is to show that a bipointed type is homotopy-initial if and only
-if it is inductive. We begin with the following easy observation.
+The next theorem provides the characterisation of inductive bipoinited types.
 
 
 
@@ -983,7 +996,7 @@ if it is inductive. We begin with the following easy observation.
 \begin{theorem}\label{thm:bipointedmain} A bipointed type 
 is  $A$ is inductive if and only if it is homotopy-initial, \ie  the type
 \[
-\prod_{A \in \Bip} \big(  \ishinit(A) \leftrightarrow \isind(A) \big)
+\prod_{A \in \Bip} \big(  \ishinit(A) \leftrightarrow \isbipind(A) \big)
 \] 
 is inhabited
 \end{theorem}
@@ -999,11 +1012,11 @@ exists a bipointed section
 \label{equ:reqsec}
 (s, \bar{s}_0, \bar{s}_1) \co A \to E
 \end{equation}
-Let begin by defining the type 
+Let us begin by considering the total bipointed type associated to $E$, with carrier 
 \[
 E' \defeq \sum_{x \in A} E(x) 
 \]
-and recall that $E'$ can be equipped with the structure of a bipointed type by considering its elements $e'_k \defeq \pair(a_k, e_k)$ for $k = 0, 1$. In this way,  the first projection $\pi_1 \co E' \to A$ is a bipointed morphism. By the homotopy-initiality of $A$, we have a bipointed morphism 
+and distinguished elements $e'_k \defeq \pair(a_k, e_k)$ for $k = 0, 1$. In this way,  the first projection $\pi_1 \co E' \to A$ is a bipointed morphism. By the homotopy-initiality of $A$, we have a bipointed morphism 
 \[
 (f, \bar{f}_0, \bar{f}_1) \co (A, a_0, a_1)  \to (E', e'_0, e'_1) 
 \]
@@ -1021,25 +1034,26 @@ which we represent with the diagram
  & A &  }
  \]
 But the identity $1_A \co A \to A$ is also a bipointed morphism from $A$ to itself and hence, by the homotopy-initiality of $A$, there is a path
-\[
+\begin{equation}
+\label{equ:pathcrucial}
 \pi_1 \circ f \Rightarrow 1_A 
-\]
+\end{equation}
 in $\Bip(A,A)$. By Lemma~\ref{BoolHomSpace}, there  is a bipointed homotopy $(\alpha,
 \bar{\alpha}_0,\bar{\alpha}_1) \co \pi_1 \circ f \sim 1_A$. This gives us a homotopy $\alpha \co \pi_1 \circ f \sim 1_A$ and paths
-\[
+\begin{equation*}
 \bar{\alpha}_k \co \overline{(\pi_1 f)}_k \Rightarrow \alpha(a_k) \cdot \refl(a_k) 
-\]
-for $k = 0, 1$. We begin to define the required bipointed section as in~\eqref{equ:reqsec}, by defining, for~$x \co A$, 
+\end{equation*}
+for $k = 0, 1$. We begin to define the required bipointed section as in~\eqref{equ:reqsec}, by defining, for~$x \in A$, 
 \begin{equation}
 \label{equ:defreqsection}
 s(x) \defeq \alpha(x)_{!} \big( \pi_2 f (x) \big) \, .
 \end{equation}
 We now construct  paths~$\bar{s}_k \co s(a_k) \Rightarrow e_k$, for $k = 0, 1$. First of all, recall that 
-$\bar{f}_k \co  f(a_k) \Rightarrow  e'_k$, where $e'_k \equiv \pair(a_k, e_k) \co \sum_{x \in A} E(x)$. Since there is an equivalence
+$\bar{f}_k \co  f(a_k) \Rightarrow  e'_k$, where $e'_k = \pair(a_k, e_k) \in \sum_{x \in A} E(x)$. Using the equivalence
 \[
- \Id_{E'}( f(a_k), e'_k) \simeq  \sum_{p \co  \pi_1 f(a_k) \Rightarrow a_k} \, \Id_{E(a_k)} \big( p_{!}( \pi_2 f(a_k)) , e_k \big) \, .
+\ext_E \co \Id_{E'}( f(a_k), e'_k) \longrightarrow \sum_{p \co  \pi_1 f(a_k) \Rightarrow a_k} \, \Id_{E(a_k)} \big( p_{!}( \pi_2 f(a_k)) , e_k \big) \, ,
 \]
-we have paths 
+we obtain paths 
 \begin{equation}
 \label{equ:usefulpath}
 p \co   \pi_1 f (a_k) \Rightarrow a_k  \, , \quad q \co   p_{!}( \pi_2 f (a_k)) \Rightarrow e_k   \, .
@@ -1049,11 +1063,11 @@ Furthermore, we have
 \overline{(\pi_1 f)}_k  & \Rightarrow \pi_1(\bar{f}_k) \ct (\overline{\pi_1})_k & & \qquad (\text{by definition of } \pi_1 f)   \\
 & \Rightarrow \pi_1(\bar{f}_k) \ct \refl(a_k) & & \qquad (\text{by definition of } \pi_1)  \\
  & \Rightarrow \pi_1(\bar{f}_k) & & \qquad (\text{by the groupoid laws}) \\
- & \Rightarrow p  & & \qquad (\text{by definition of } \ext) \,  .
+ & \Rightarrow p  & & \qquad (\text{by definition of } \ext_E) \,  .
 \end{alignat*}
 Therefore, we can construct the following chain of paths:
 \begin{alignat*}{4}
-p & \Rightarrow  \overline{(\pi_1 f)}_k & &  \qquad (\text{as just proved})  \\
+p & \Rightarrow  \overline{(\pi_1 f)}_k & &  \qquad (\text{by what we just proved})  \\
   & \Rightarrow  \alpha(a_k) \ct \refl(a_k) & &  \qquad (\text{by the path } \bar{\alpha}_k ) \\ 
   & \Rightarrow  \alpha(a_k)  & & \qquad (\text{by the groupoid laws})
 \end{alignat*} 
@@ -1067,19 +1081,23 @@ s(a_k) & \deq \alpha(a_k)_{!} \big( \pi_2 f(a_k)  \big) & & \qquad (\text{by the
 \end{proof}
 
 
-Note how the proof of Theorem~\ref{thm:bipointedmain} simplifies considerably within the extensional
-type theory~$\Hext$. TO BE ADDED.
+Obviously, the proof of Theorem~\ref{thm:bipointedmain} simplifies considerably within the extensional
+type theory~$\Hext$. In that type theory, the path in~\eqref{equ:pathcrucial} gives a definitional equality 
+between the composite $\pi_1 \circ f \co A \to A$ and the identity $1_A \co A \to A$, with which the
+rest of the argument can be shortened considerably. In that setting, one obtains the familiar characterisation 
+of an inductive type by means of a standard universal property.
+
 
 
 \begin{corollary}  Let $A = (A, a_0, a_1)$ be a bipointed type.
 \begin{enumerate}[(i)]
 \item The type $\ishinit(A)$ is a mere proposition.
-\item The type $\isind(A)$ is a mere proposition.
-\item There is an equivalence $\ishinit(A) \simeq \isind(A)$.
-\end{enumerate}
+\item The type $\isbipind(A)$ is a mere proposition.
+\item There is an equivalence $\ishinit(A) \simeq \isbipind(A)$. 
+\end{enumerate} 
 \end{corollary}
 
-\begin{proof} For claim (i), recall that  $\iscontr(X)$ is a mere proposition for any type $X$ and the dependent product of family of mere propositions is again a mere proposition. For (ii), recall that to prove that a type $X$ is a mere proposition, it suffices to do so under the assumption that $X$ is inhabited. Assume therefore that $\isind(A)$ is inhabited. Since the dependent product of a family of mere propositions is again a mere proposition, it suffices to show that $\BipSec(A,E)$ is a mere proposition for any $E$. But for any two sections $s, t \in \BipSec(A,E)$, we know that there is a 
+\begin{proof} For claim (i), recall that  $\iscontr(X)$ is a mere proposition for any type $X$ and the dependent product of family of mere propositions is again a mere proposition. For (ii), recall that to prove that a type $X$ is a mere proposition, it suffices to do so under the assumption that $X$ is inhabited. Assume therefore that $\isbipind(A)$ is inhabited. Since the dependent product of a family of mere propositions is again a mere proposition, it suffices to show that $\BipSec(A,E)$ is a mere proposition for any $E$. But for any two sections $s, t \in \BipSec(A,E)$, we know that there is a 
 bipointed homotopy $\phi \in \BipHot(s,t)$ by Lemma~\ref{thm:inductiveuniquesec} and hence, by 
 Lemma~\ref{thm:biphot}, there is a path $p \in \Id(s,t)$, as required. Part (iii) now follows from parts (i) and (ii) and  the logical equivalence of  Theorem~\ref{thm:bipointedmain}. 
 \end{proof}
@@ -1091,19 +1109,18 @@ conditions are equivalent:
 \begin{enumerate}[(i)]
 \item $A$ is inductive,
 \item $A$ is homotopy-initial,
-\item $A$ is equivalent to $\Bool$.
+\item $A$ is equivalent to $\Bool$. \qed
 \end{enumerate}
 \end{corollary}
 
-We conclude this section by showing that if the universe $\UU$ is univalent, then a form of the univalence axiom holds also for bipointed types, in the sense made precise by the next theorem.
+We conclude this section by showing that if the universe $\UU$ is univalent, then a form of the Univalence Axiom holds also for bipointed types, in the sense made precise by the next theorem.
 
 
 \begin{theorem}[$\Hint + \mathrm{UA}$] \label{thm:bipunivalence}
-For bipointed types $A, B \in \Bip$, the canonical function
+For small bipointed types $A, B \in \Bip$, the canonical function
 \[ 
 \ext_{A,B} \co \Id \big(A,B\big) \to  \BipEquiv(A,B) \, .
 \] 
-defined by the identity type elimination rule, mapping the reflexivity path to the identity bipointed morphism, 
 is an equivalence.
 \end{theorem} 
 
@@ -1149,117 +1166,121 @@ by the assumption that $A$ and $B$ are homotopy-initial.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{$P$-algebras}
+\section{Polynomial functors and their algebras}
 \label{section:wfiles}
 
 
 A W-type can be seen informally as the free algebra for a signature
-with arbitrarily many operations of possibly infinite arity, but no equations. Indeed, the premises of the formation rule above can be thought of as specifying a signature that has the elements of~$A$ as (names of) operations and in which the arity of $a : A$ is the cardinality of the type $B(a)$. Then the introduction rule specifies the canonical way of forming an element of the free algebra, and the elimination rule can be seen as the propositions-as-types translation of the appropriate induction principle. Given $x:A \vdash B(x)\, \type$, we call 
+with arbitrarily many operations of possibly infinite arity, but no equations. Indeed, the premises of the formation rule above can be thought of as specifying a signature that has the elements of~$A$ as (names of) operations and in which the arity of $a \in A$ is the cardinality of the type $B(a)$. Then the introduction rule specifies the canonical way of forming an element of the free algebra, and the elimination rule can be seen as the propositions-as-types translation of the appropriate induction principle. Given $A \in \UU$ and $B \co A \to UU$, we define 
 \[
-P(A,B)(X) \defeq (\Sigma x:A) (B(x)\to X)
+P(X) \defeq \sum_{a \in A} X^{B(a)}
 \]
-the associated \emph{polynomial functor}.  
+If $f : X\to Y$, we define $P(f) : P(X)\to P(Y)$ so that, for $\pair(a, t) \in P(X)$, we have 
+\[
+P(f)(a, t) = (a,f\circ t) \, .
+\] 
+Although this assignment is not strictly functorial, we still refer to $P \co \UU \to \UU$ as the \emph{polynomial functor} associated to $A$ and $B$. 
 
-
-\begin{definition} A\emph{$P(A,B)$-algebra} is a pair $(C, s_C: P(C) \to C)$.    
+\begin{definition} A $P$-algebra is a pair $(X, \sup_X)$ consisting of a small type $X \in \UU$ and a function
+$\sup_X \co P(X) \to X$. 
 \end{definition}
 
-
-We define the type of \emph{$P$-algebras} as
-\[
-\WAlg(A,B) \; \defeq \sm{C : \U} (\Pi x:A) (B(x) \to C) \to C 
-\]
-We shall often write simply $P$ in place of $P(A,B)$, and refer to a map $s_C : P(C)\to C$ as a $P$-algebra.  
-If $f : X\to Y$, then there is an associated map $P(f) : P(X)\to P(Y)$ defined in the obvious way by $P(f)(a, b) = (a,f\circ b)
-$.  Although this assignment is not strictly functorial, we can still make use of it. For example, given a $P$-algebra structure $s_C :P(C)\to C$ on $C$, an equivalence of types $f : C \to D$ makes $D$ into a $P$-algebra with structure map $s_D : f\circ s_C\circ P(f^{-1})$,
-  \[
-\xymatrix{
-P(C) \ar[d]_{s_C} \ar[r]_{P(f)} & \ar@/_1pc/[l]_{P(f^{-1})} P(D)  \ar[d]^{s_D}  \\
- C  \ar[r]_{f} & D
- }
- \]
- where $f^{-1} : D\to C$ is the quasi-inverse of $f : C\to D$. 
-Next, note that the $\W$-introduction rule makes $\sup : P(\W)\to \W$ into a $P$-algebra.  Given an equivalence  $f : \W \to C$, the induced $P$-algebra structure $s_C:P(C)\to C$ just defined then means that $C$ also satisfies the $\W$-introduction rule.  We shall see that $C$ satisfies the other rules as well, but with a propositional computation rule.
+ The type of $P$-algebras is then defined as $\Palg  \defeq \sum_{X \in \UU} X^{P(X)}$. As usual,  we will often refer to a 
+ $P$-algebra by referring only to its carrier. We refer to the function $\sup_X : P(X)\to X$ as the structure map of the $P$- algebra. For example, the introduction rule for $W$-types provides a structure map $\sup_W : P(W)\to W$, thus making 
+$W$  into a $P$-algebra. 
 
 
 \begin{definition}
-For $P$-algebras $(C,s_C)$ and $(D,s_D)$, a \emph{(weak) 
-homomorphism}  $$(f, \bar{f}) : (C, s_C) \rightarrow (D, s_D)$$
-consists of a map $f : C \rightarrow D$ and an identity,
+For $P$-algebras $X$ and $Y$, a $P$-algebra morphism  
 \[
-\bar{f} : \id{PC \rightarrow D}\big( f \circ s_C \, ,  s_{D} \circ Pf \big) \, .
+(f, \bar{f}) \co (X, \sup_X) \rightarrow (Y, \sup_Y)
 \]
+consists of a function $f \co X \rightarrow Y$ and a path
+\[
+\bar{f} \in \Id \big( f \circ \sup_X \, ,  \sup_{Y} \circ P(f) \big) \, .
+\]
+\end{definition}
+
+
 Such an algebra homomorphism can be represented suggestively in the form:
 \[
 \xymatrix{
- PC \ar[d]_{s_C} \ar[r]^{Pf}  \ar@{}[dr]|{\bar{f}} &  PD \ar[d]^{s_D}\\
-C \ar[r]_{f}   & D }
+ PX \ar[d]_{\sup_X} \ar[r]^{P(f)}  \ar@{}[dr]|{\bar{f}} &  PY \ar[d]^{\sup_Y}\\
+X \ar[r]_{f}   & Y }
 \] 
-Accordingly, the type of algebra maps is defined by
+Accordingly, the type of $P$-algebra morphisms is defined by
 \[
 \Palg
-\big[ (C,s_C), (D, s_D)  \big]
+\big(  (X,\sup_X), (Y, \sup_Y)  \big)
  \defeq  
-(\Sigma f:  C \rightarrow D) \, \Id(f\circ s_C, s_D\circ Pf) \, .
+\sum_{f:  X \rightarrow Y} \, \Id(f\circ \sup_X \, ,  \sup_Y \circ P(f) )  \, .
 \]
-\end{definition}
-\medskip
-
-We will sometime refer to an algebra homomorphism $(f, \bar{f}) : (C, s_C) \rightarrow (D, s_D)$ simply by $f$, and to an algebra by its underlying type $C$.
-Given two morphisms of $P$-algebras $f \co C \to D$ and $g \co D \to E$, as indicated in:
+We will sometime refer to an algebra homomorphism $(f, \bar{f}) : (X, \sup_X) \rightarrow (Y, \sup_Y)$ simply by $f$.
+Given two morphisms of $P$-algebras $f \co X \to Y$ and $g \co Y \to Z$, as indicated in:
 \[
 \xymatrix{
- PC \ar[d]_{s_C} \ar[r]^{Pf}  \ar@{}[dr]|{\bar{f}} &  PD \ar[d]^{s_D}  \ar[r]^{Pg}  \ar@{}[dr]|{\bar{g}} &  PE \ar[d]^{s_E} \\
-C \ar[r]_{f}   & D \ar[r]_{g}   & E }
+ PX \ar[d]_{\sup_X} \ar[r]^{Pf}  \ar@{}[dr]|{\bar{f}} &  PY \ar[d]^{\sup_Y}  \ar[r]^{Pg}  \ar@{}[dr]|{\bar{g}} &  PZ \ar[d]^{\sup_Z} \\
+X \ar[r]_{f}   & Y \ar[r]_{g}   & Z }
 \]
-we can define their composite by ``pasting together the identities $\bar{f}$ and $\bar{g}$" as follows.
-The composite $$(g, \bar{g}) \circ (f, \bar{f}) \co (C,s_C) \to (E,s_E)$$ will have $g\circ f$ in the first component, but the second component must be an identity of the form
+we can define their composite by pasting together the identities $\bar{f}$ and $\bar{g}$, as follows.
+The composite $P$-algebra morphism
 \[
-g\circ f\circ s_C = s_E\circ P(gf)\, .
+(g, \bar{g}) \circ (f, \bar{f}) \co (X, \sup_X) \to (Z, \sup_Z)
+\] 
+has $g\circ f\co X \to Z$ in the first component, but the second component must be a path of the form
+\[
+ \overline{ g \circ f} \co (g\circ f) \circ \sup_X \Rightarrow \sup_Z \circ P(gf)\, .
 \]
-To get this, let $p : Pg\circ Pf = P(gf)$ as expected, then we can compose identities between arrows of the form $PC \to E$, as indicated in
-
-[NEED TO MAKE p INVISIBLE]
+To get this, let $p : Pg\circ Pf \Rightarrow P(gf)$ be the evident path. We can then compose paths between 
+functions from $PX$ to $Z$, as indicated in the diagram
 \[
 \xymatrix{
- PC \ar[d]_{s_C} \ar[r]^{Pf}  \ar@{}[dr]|{\bar{f}} \ar@{}@/^2pc/[rr]|{p} \ar@/^3pc/[rr]^{P(gf)} &  PD \ar[d]^{s_D}  \ar[r]^{Pg}  \ar@{}[dr]|{\bar{g}} &  PE \ar[d]^{s_E} \\
-C \ar[r]_{f}   & D \ar[r]_{g}   & E }
+ PX \ar[d]  \ar[r]^{Pf}  \ar@{}[dr]|{\bar{f}} \ar@/^3pc/[rr]^{P(gf)} &  PY \ar[d]  \ar[r]^{Pg}  \ar@{}[dr]|{\bar{g}} &  PZ \ar[d]  \\
+X \ar[r]_{f}   & D \ar[r]_{g}   & Z \, , }
 \]
 as follows:
 \[
-\overline{gf} \defeq (g(\bar{f})\cdot g(Pf))\cdot s_E(p)
+\overline{gf} \defeq (g(\bar{f})\cdot g(Pf))\cdot \sup_Z(p)
 \]
-Here the pre- and post-compositions of maps with identities, $s_E(p)$ and $g(\bar{f})$ respectively, are defined by identity elimination.
-This gives the required  element in $\Id(g\circ f\circ s_C ,\, s_E\circ P(gf))$. 
+Note that we used the pre-composition and post-compositions of functions with paths to define the paths~$\sup_Z(p)$ and $g(\bar{f})$, respectively. This gives the required  element of $\Id(g\circ f\circ \sup_X ,\, \sup_Z \circ P(gf))$. As in the case of bipointed types, we do not quite have a category since the composition operation is not strictly associative, but only so up to a system of higher and higher identities. 
 
-As in the case of bipointed types, we do not quite have a category since the composition operation is not strictly associative, but only so up to a system of higher and higher identities. 
+\medskip
 
 
-\begin{definition} Let $C,D : \WAlg(A,B)$ be $P$-algebras. We say that a $P$-morphism $f \co \WHom(C,D)$ is a \myemph{$P$-equivalence}
-if there exist $P$-morphisms $\ell,r \co \WHom(D,C)$ providing a left and a right $P$-inverse for $f$, \ie 
+
+
+
+
+
+\begin{definition} Let $X, Y$ be $P$-algebras. We say that a $P$-morphism $f \co X \to Y$ is an equivalence
+if there exist $P$-morphisms $\ell,r \co Y \to X$  which provide a left and a right $P$-inverse for $f$, \ie for
+which there are paths
 \[ 
-\ell \circ f = 1_C \, , \quad f \circ r = 1_D \, ,
+p \co \ell \circ f \Rightarrow 1_X \, , \quad q \co f \circ r \Rightarrow 1_Y \, ,
 \]
-where the propositional equalities are understood as equalities of $P$-morphisms. In other words, we define the type of proofs that $f$ is a $P$-equivalence as
-\[
-\mathsf{isPequiv}(f) \defeq   ( \Sigma \ell : \WHom(C,D) ( \ell \circ f = 1_C )) \times 
-    (\Sigma r : \WHom(C, D))(  f \circ r = 1_D ) \, .
-\]
-We then define the type of \emph{$P$-equivalences} between $C$ and $D$ as
-\[
-\mathsf{PEquiv}(C, D)
-\defeq    (\Sigma f : \WHom(C,D)) \, \mathsf{isPequiv}(f)  \, . 
-\] 
+where the propositional equalities are understood as equalities of $P$-morphisms. 
 \end{definition}
 
-Clearly, the identity morphism on a $P$-algebra is a $P$-equivalence, with the left and right inverses being the identity morphism itself.
+For example, the identity morphism on a $P$-algebra is a $P$-equivalence, with the left and right inverses being the identity morphism itself. Given $P$-algebras $X$ and $Y$ and a function $f \co X \to Y$, we define the type of proofs that $f$ is an equivalence of $P$-algebras as follows:
+\[
+\mathsf{isPequiv}(f) \defeq   \sum_{\ell \in  \Palg(X,Y)} \Id( \ell \circ f, 1_X )  \times 
+    \sum_{r  \in \Palg(Y, X)} \Id( f \circ r , 1_Y ) \, .
+\]
+We then define the type of \emph{$P$-algebra equivalences} between $X$ and $Y$ as
+\[
+\mathsf{PEquiv}(X, Y)
+\defeq    \sum_{f : \Palg(X,Y)} \, \mathsf{isequiv}(f)  \, . 
+\] 
 
-\begin{lemma}\label{WAlgSpace} A $P$-morphism $(f, \bar{f}) \co \WHom(C,D)$ is a $P$-equivalence if and only
-if its underlying function $f \co C \to D$ is an equivalence. Furthermore, there is an equivalence of types
+
+\begin{lemma}\label{WAlgSpace} A $P$-algebra morphism $(f, \bar{f}) \co X \to Y$ is an equivalence if and only
+if its underlying function $f \co X \to Y$ is an equivalence. Furthermore, there is an equivalence of types
 \[
 \mathsf{isPequiv}(f, \bar{f})  \simeq \mathsf{isequiv}(f) \, . 
 \]
 \end{lemma}  
+
+
 \begin{proof}
 Let $(C,c), (D,d)$ be $P$-algebras and $(f, \bar{f})$ be a $P$-morphism between them. Expanding the type of proofs that $f$ is a $P$-equivalence yields the type
 \begin{multline*}
@@ -1323,180 +1344,145 @@ as required.
 \end{proof}
 
 
-we again require an alternate description of the identity type of two morphisms. For this, we shall require the notion of a homotopy between morphisms of $P$-algebras. 
+We require an alternative description of the identity type of two $P$-algebra morphisms. For this, we introduce 
+the notion of a homotopy between  $P$-algebra morphisms. 
 
-[THE FOLLOWING NEEDS TO BE FIXED -- WHERE TO USE HOMOTOPIES AND WHERE TO USE IDENTITY PROOFS]
+
 \begin{definition}
-For $P$-algebras $(C,s_C)$ and $(D,s_D)$ and morphisms $(f, \bar{f})$ and $(g, \bar{g})$ between them, a \emph{homotopy}  $$(h, \bar{h}) : (f, \bar{f}) \sim (g, \bar{g})$$
-consists of a homotopy $h : f \sim g$ together with a (higher) identity, 
+For $P$-algebras $X$, $Y$ and $P$-algebra morphisms $(f, \bar{f}) \, , (g, \bar{g}) \co X \to Y$, a \emph{homotopy}  
 \[
-\bar{h} : \bar{f} \cdot s_D(Ph) = h(s_C)\cdot \bar{g}\, ,
+(h, \bar{h}) : (f, \bar{f}) \sim (g, \bar{g})
 \]
-between elements in $\id{PC \rightarrow D}\big( f \circ s_C \, ,  s_{D} \circ Pf \big)$. 
+consists of a homotopy $\alpha : f \sim g$ together with a path
+\[
+\bar{\alpha} : \bar{f} \cdot \sup_Y (P \alpha) \Rightarrow \alpha(\sup_X)\cdot \bar{g}\, ,
+\]
+between elements of $\Id \big( f \circ \sup_X \, ,  \sup_Y \circ Pf \big)$. 
 \end{definition}
 
-Accordingly, the type of homotopies of algebra maps is defined by
+Accordingly, the type of homotopies of $P$-algebra morphisms is defined by
 \[
-\Ho
-\big[ (f,\bar{f}), (g, \bar{g})  \big]
+\Ho \big( (f,\bar{f}), (g, \bar{g})  \big)
  \defeq  
-(\Sigma h:  f \sim g) \, \Id\big( \bar{f} \cdot s_D(Ph),\, (h(s_C))\cdot \bar{g} \big) \, .
+\sum_{\alpha :  f \sim g} \, \Id\big( \bar{f} \cdot \sup_Y(P \alpha),\, (h(\sup_X))\cdot \bar{g} \big) \, .
 \]
-
-ALTERNATIVE
-
-For $P$-morphisms $\mu, \nu : \WHom \; \X \; \Y$, define the type of \emph{$P$-homotopies} between $\mu$ and $\nu$ by
-\begin{align*} 
-& \WCell \; (C,c) \; (D,d) \; (f,\bar{f}) \; (g,\bar{g}) \defeq \\ & \;\;\; \;\;\;\WFibHom \; (C,c) \; \Big((\lambda x:C) f(x) = g(x), (\lambda x) (\lambda t) (\lambda r) \bar{f}(x,t) \ct d(x)(\funext(r)) \ct \bar{g}(x,t)^{-1}\Big)
-\end{align*}
-
-Nota that here the identity $Ph : Pf = Pg$ is derived from $h : f \sim g$, and $h(s_C)$ and $s_D(Ph)$ are again pre- and post-compositions, respectively, of maps with homotopies. Such a homotopy can be represented as filling the three-dimensional space between the two pasting diagrams:
+Note that here the path $P\alpha \co Pf \Rightarrow Pg$ is derived from $\alpha : f \sim g$, and $\alpha(\sup_X)$ and $\sup-Y(P \alpha)$ are again pre-composition and post-compositions, respectively, of maps with homotopies. Such a homotopy can be represented as filling the three-dimensional space between the two pasting diagrams:
 \[
 \xymatrix{
-PC \ar@/^1pc/[r]^{Pg}   \ar[d]_{s_C}   \ar@/_1pc/[r]_{Pf} \ar@{}[r]|{Ph}
-& PD \ar[d]^{s_D}  \\
-C  \ar@/_1pc/[r]_f  \ar@{}[r]^{\bar{f}} & D }
+PX \ar@/^1pc/[r]^{Pg}   \ar[d]_{\sup_X}   \ar@/_1pc/[r]_{Pf} \ar@{}[r]|{P\alpha}
+& PY \ar[d]^{\sup_Y}  \\
+X  \ar@/_1pc/[r]_f  \ar@{}[r]^{\bar{f}} & Y }
 \qquad
 \xymatrix{
-PC \ar@/^1pc/[r]^{Pg}   \ar[d]_{s_C} \ar@{}[r]_(.52){\bar{g}}  & PD \ar[d]^{s_D}  \\
-C \ar@/^1pc/[r]^g  \ar@/_1pc/[r]_f  \ar@{}[r]|{h} & D }
+PX \ar@/^1pc/[r]^{Pg}   \ar[d]_{\sup_X} \ar@{}[r]_(.52){\bar{g}}  & PY \ar[d]^{\sup_Y}  \\
+X \ar@/^1pc/[r]^g  \ar@/_1pc/[r]_f  \ar@{}[r]|{h} & Y }
 \]
 
 
 
 
 \begin{lemma}\label{IdEqHo}
-For $P$-algebras $(C,s_C)$ and $(D,s_D)$ and morphisms $(f, \bar{f})$ and $(g, \bar{g})$ between them, the type of identity proofs $p : (f, \bar{f}) = (g, \bar{g})$ is equivalent to the type of homotopies $(h, \bar{h}) : (f, \bar{f}) \sim (g, \bar{g})$,
+For $P$-algebras $X$ and $Y$ and $P$-algebra morphisms $(f, \bar{f}) \, , (g, \bar{g}) \co X \to Y$ between them, 
+there is an equivalence of types
 \[
 \Id\big((f, \bar{f}), (g, \bar{g})\big) \simeq \Ho\big((f, \bar{f}), (g, \bar{g})\big).
 \]
 \end{lemma}
 
 \begin{proof}
-This follows from a more general case to be proved in \ref{lem:fibhomeqid} below.
+This follows from a more general statement to be proved in Proposition~\ref{lem:fibhomeqid} below.
 \end{proof}
 
 
-
-
-In order to extend our results from recursion to induction, we next require the fibered versions of the notions of a $P$-algebra, homomorphism, and homotopy.
+Next, we require the fibered versions of the notions of a $P$-algebra, homomorphism, and homotopy.
 
 \begin{definition} \label{def:fibalg}
-Let $(C, s_C)$ be a $P$-algebra. A \emph{fibered $P$-algebra} over $C$ is a dependent type
-\[
-x : C \vdash E(x) \co \type
-\]
-equipped with a family of elements of the form
-\[
-x:A,\, u : B(x) \to C,\, v : \big(\Pi{y:B(x)}\big) E(u(y)) \vdash e(x,u,v) :E(s_C(x,u)).
-\]
+Let $X$ be a $P$-algebra. A \emph{fibered $P$-algebra} over $X$ is a dependent type $E \co X \to \UU$
+equipped with a function $e$ mapping $a \in A$, $t \in X^{B(a)}$ and $v \in \prod_{b \in B(a)} E(tb)$ to
+an element $e(a,t,v) \in E(\sup(a,t))$. 
 \end{definition}
 
-
-We  define the type of \emph{fibered $P$-algebras} over a $P$-algebra $\X : \WAlg(A,B)$ by
+For a $P$-algebra $X$, we then define the the type of \emph{fibered $P$-algebras} over $X$ as follows:
 \[
-\WFibAlg \; (C,c) \defeq \sm{E : C \to \U} (\Pi x:A) (\Pi t: B(x) \to C) \big((\Pi b:B(x)) E(t \;b) \big) \to E(c(a,t))
+\WFibAlg(X)  \defeq \sum_{E : X \to \UU} \prod_{a \in A} \prod_{ t \in X^{B(a)}} 
+ \prod_{b \in B(a)}  E(t b)  \to E(\sup_X(a,t))
  \]
-Note that the definition of a fibered algebra describes exactly the data in the premiss of the elimination rule for an
-inductive $P$-algebra in the sense of definition \ref{def:Wind}. 
+This definition is justified by the following lemma. 
 
 \begin{lemma}\label{lem:fibalg}
-Given a fibered $P$-algebra $(E, e)$ over $C$, the type $E' = (\Sigma z : C) E(z)$ can be equipped with the structure of a $P$-algebra $(E', s_{E'})$ in such a way that $\pi_1 : E'\to C$ is a homomorphism of algebras,
+Given a fibered $P$-algebra $E$ over $X$, the type $E' =  \sum_{x \in  X} E(x)$ can be equipped with the structure of a $P$-algebra in such a way that  the projection function $\pi_1 : E'\to X$ becomes a $P$-algebra morphism:
 \[
 \xymatrix{
-P(E') \ar[d]_{P\pi_1} \ar[r]^-{s_{E'}} \ar@{}[rd]|{p} & E' \ar[d]^{\pi_1} \\ 
-P(C) \ar[r]_-{s_C} & C.}
+P(E') \ar[r]^{P\pi_1} \ar[d]_-{\sup_{E'}} \ar@{}[rd]|{p} & PX \ar[d]^{\sup_X} \\ 
+E'  \ar[r]_-{\pi_1} & X \, .}
  \]
 \end{lemma}
 
-\begin{proof}
-Use AC to rearrange the $\Sigma$ and $\Pi$.
-[FILL IN]
+\begin{proof} This follows by an application of the distributivity of sums and products (\ie what is sometimes
+referred to as the type-theoretic axiom of choice). 
 \end{proof}
 
-\begin{definition} \label{def:fibalgsection} Let $E = (E, e)$ be a fibered $P$-algebra over the algebra $C$.  A \emph{(homomorphic) section} of $E$ is an element $i \co (\Pi z \co C) E(z)$ equipped with a family of paths $$ x:A,\, u : B(x) \to C \vdash \bar{i}(x, u) : i(s_C(x,u)) \peq e\big(x,u,\lambda{y}.i(u(y))\big).$$
+\begin{definition} \label{def:fibalgsection} Let $E = (E, e)$ be a fibered $P$-algebra over the algebra $C$.  A \emph{$P$-algebra section} of $E$ is a section $s \co \prod_{x \co X} E(x)$ equipped with a family of paths 
+\[ 
+a \in  A,\, t : B(a) \to X \vdash \bar{s}(a, t) \co  s(\sup_X(a,t)) \Rightarrow  e\big(a ,t , (\lambda b \in B(a))  s(t(b)) \big) \, .
+\]
 \end{definition} 
 
-
-We define the type of \emph{$P$-sections} of $\Y$ by
+Note that the definition of a section describes exactly the data in the conclusion of the elimination rule and the propositional computation rule for an inductive $P$-algebra in the sense of Definition~\ref{def:Wind}. According to the above definition, we define the type of $P$-algebra sections of $X$ by
 \[ 
-\WFibHom \; (C,c) \; (E,e) \defeq \sm{f:(\Pi x:C)E(x)}(\Pi x:A) (\Pi t: B(x) \to C) f(c(a,t)) = e(a,t,f \circ t) 
+\WFibHom(X,E)  \defeq \sum_{ s  \in \prod_{x \in X} E(x)}\prod_{a \in A} \prod_{t : B(a) \to X} 
+\Id(   s(\sup_X(a,t)) ,  e(a,t,s  \circ t) ) \, .
 \]
-We will usually leave out all but the last argument to $\WFibHom$. Note that the definition of a section describes exactly the data in the conclusion of the elimination rule and the propositional computation rule for an inductive $P$-algebra in the sense of definition \ref{def:Wind}. 
+We will usually leave out all but the last argument of an element of $\WFibHom$. 
+
+
 
 \begin{lemma}\label{lem:fibalghom}
-Given a fibered $P$-algebra $(E, e)$ over $C$ and an algebra section $(i, \bar{i})$, there is a corresponding algebra homomorphism $i : C\to E'$, where the type $E' = (\Sigma z : C) E(z)$ is equipped with the $P$-algebra structure $s_{E'} :P(E')\to E'$ from lemma \ref{lem:fibalg}.
+Given a fibered $P$-algebra $(E, e)$ over $X$ and an algebra section $(s, \bar{s})$, there is a $P$-algebra 
+morphism $s' : X \to E'$, where the type $E' = \sum_{x \in X} E(x)$ is equipped with its canonical 
+$P$-algebra structure. 
 \[
-\xymatrix{
-P(E') \ar[d]^{P(\pi_1)} \ar[r]^-{s_{E'}} %\ar@{}[rd]^{p}
-	 & E' \ar[d]_{\pi_1} \\ 
-P(C)  \ar@/^1.2pc/[u]^{Pi} \ar[r]_-{s_C} & C  \ar@/_1.2pc/[u]_{i}.}
+\xymatrix@C=2cm@R=1.5cm{
+P(E')  \ar[d]_-{\sup_{E'}}   \ar[r]_{P(\pi_1)}   & P(X)  \ar[d]^-{\sup_X}   \ar@/_1.4pc/[l]_{Ps}  \\ 
+E'  \ar[r]^{\pi_1}    & X \ar@/^1.4pc/[l]^{s} }
  \]
 \end{lemma}
 
-\begin{proof}
-[REWORK THIS DISCUSSION]
-Given a section $i = (i, \bar{i})$ of a fibered algebra $E$ over $C$, we can define an algebra morphism $i' \co C \to E'$, where as before $E'$ is the algebra defined by $E' \defeq (\Sigma x :A) E(x)$, as follows.
-
-The underlying function is given by letting $s'(x) \defeq \pair(x, s(x))$, for $x : A$. For $k = 0, 1$, the required path $\bar{s}'_k \co s'(a_k) = e'_k$,
-is then given by
-\[
-s'(a_k) = \pair(a_k, s(a_k)) =  \pair(a_k, e_k) = e'_k \, .
-\]
-Observe how the morphism $s' \co A \to E'$ provides a right inverse for $\pi_1 \co E' \to A$ (\ie what is usually called a section in 
-category theory), since we have
-\[
-(\pi_1 \circ s)(x) = \pi_1 (\pair(x, sx)) = x 
-\]
-for every $x \co A$. We represent this situation with the diagram
-\[
-\xymatrix{
-E' \ar[d]^{\pi_1} \\
-A . \ar@/^1.2pc/[u]^{s'} }
-\]
+\begin{proof} TO BE ADDED 
 \end{proof}
 
 
 
 We require an analysis of the identities of sections in terms of their homotopies.
 
-\begin{definition} \label{def:W2cellsection} Let $E = (E, e)$ be a fibered algebra over $C = (C, s_C)$, and let $f = (f, \bar{f})$ and $g = (g, \bar{g})$ be two sections of $E$.  An \emph{algebra homotopy} 
+\begin{definition} \label{def:W2cellsection} Let $E$ be a fibered $P$algebra over $X$, and let $f = (f, \bar{f})$ and $g = (g, \bar{g})$ be two $P$-algebra sections of $E$.  A \emph{$P$-algebra homotopy} 
 \[
-(h, \bar{h}) \co (f, \bar{f})  \rightarrow (g, \bar{g})
+(\alpha , \bar{\alpha}) \co (f, \bar{f})  \rightarrow (g, \bar{g})
 \] 
-is a homotopy~$h\co f \sim g$ together with a family of (higher) paths 
+is a homotopy~$\alpha \co f \sim g$ together with a family of  paths 
 \[
-x : A, u : B(x) \to C \vdash \bar{h}(x,u) : 
-\bar{f}(x,u)  \ct e\big(x,u,(\funext(\lambda{y}.h(u(y))))\big) = 
-h(s_C(x,u)) \ct \bar{g}(x,u).
+a \in  A, t : B(a) \to X \vdash \bar{\alpha}(a,t) : 
+\bar{f}(a,t)  \ct e  \big(a,t,  \ext  (\alpha \circ t ) \big) = 
+\alpha (\sup_X(a,t)) \ct \bar{g}(a,t).
 \]
 \end{definition} 
 
 Accordingly, we define the type of homotopies of sections as follows:
-%\begin{equation}
 \begin{multline*}
-\HoSec[ (f, \bar{f}) ,\, (g, \bar{g}) ]\ \defeq\ 
-(\Sigma h \co f \sim g) (\Pi x : A)(\Pi u : B(x) \to C)\\
-\Id\big[ \bar{f}(x,u)  \ct e\big(x,u,(\funext(\lambda{y}.h(u(y))))\big),\ 
-h(s_C(x,u)) \ct \bar{g}(x,u) \big]\, .
+\HoSec[ (f, \bar{f}) ,\, (g, \bar{g}) ]  \defeq \\ 
+\sum_{\alpha \co f \sim g} \prod_{a \in A} \prod_{t : B(a) \to X} 
+\Id\big[ \bar{f}(a,t)  \ct e\big(a,t, \ext (\alpha \circ t) \big),\ 
+\alpha(\sup_X(a,t)) \ct \bar{g}(a,t) \big]\, .
 \end{multline*}
-%\end{equation}
-
-ALTERNATIVE 
-
-\begin{align*}
-& \WFibCell \; (C,c) \; (E, e) \; (f,\bar{f}) \; (g,\bar{g}) \defeq \\ & \;\;\; \;\;\;\WFibHom \; (C,c) \; \Big((\lambda x:C) f(x) = g(x), (\lambda x) (\lambda t) (\lambda r) \bar{f}(x,t) \ct e(x,t)(\funext(r)) \ct \bar{g}(x,t)^{-1}\Big)
-\end{align*}
-
-
-Observe that the notion of a homotopy of sections corresponds to the $(\beta, \eta)$-compatibility condition of lemma \ref{lem:Wetaind}.  The choice of terminology is justified by the following.
+Observe that the notion of a $P$-algebra homotopy corresponds to the $(\beta, \eta)$-compatibility condition of 
+Lemma~\ref{lem:Wetaind}.  The choice of terminology is justified by the following.
 
 \begin{lemma}\label{lem:fibalghom}
-Given a fibered $P$-algebra $(E, e)$ over $C$, two algebra sections $(f, \bar{f})$ and $(g, \bar{g})$, and a homotopy $(h, \bar{h}) : (f, \bar{f}) \sim (g, \bar{g})$, there is an algebra  homotopy between the corresponding homomorphisms $f, g : C\to E'$ as defined in lemma \ref{lem:fibalghom}, where as before $E' = (\Sigma z : C) E(z)$ is equipped with the $P$-algebra structure $s_{E'} :P(E')\to E'$ from lemma \ref{lem:fibalg}.
+Given a fibered $P$-algebra $(E, e)$ over $X$, two $P$-algebra sections $(f, \bar{f})$ and $(g, \bar{g})$, and a homotopy $(\alpha, \bar{\alpha}) : (f, \bar{f}) \sim (g, \bar{g})$, there is a $P$-algebra algebra homotopy between the corresponding $P$-algebra homomorphisms $f, g : X \to E'$ 
 \[
 \xymatrix{
- E' \ar@{}[d]|{h} \\ 
-C \ar@/^1.2pc/[u]^{f}  \ar@/_1.2pc/[u]_{g}
+ E' \ar@{}[d]|{\alpha} \\ 
+X \ar@/^1.2pc/[u]^{f}  \ar@/_1.2pc/[u]_{g}
 }
  \]
 \end{lemma}
@@ -1524,7 +1510,7 @@ Let algebras $(C,c) : \WAlg_{\UU_j}(A,B)$, $(E,e) : \WFibAlg_{\UU_k}(A,B) \; (C,
 & \sm{\alpha : f \sim g} \prd{a}\prd{t}\Big(\delta(a,t) = \alpha(c(a,t))^{-1} \ct \gamma(a,t) \ct \app_{e(a,t)}(\funext (\lam{b}\; \alpha(t \; b))) \Big) & \simeq \\ 
 & \sm{\alpha : f \sim g} \prd{a}\prd{t}\Big(\alpha(c(a,t)) = \gamma(a,t) \ct \app_{e(a,t)}(\funext (\lam{b}\; \alpha(t \; b))) \ct \delta(a,t)^{-1} \Big) & \equiv \\ 
 & \WFibCell \; (f,\gamma) \; (g,\delta)
-\end{alignat*}
+\end{alignat*}  \qedhere
 \end{proof}
 
 
@@ -1533,7 +1519,14 @@ Let algebras $(C,c) : \WAlg_{\UU_j}(A,B)$, $(E,e) : \WFibAlg_{\UU_k}(A,B) \; (C,
 \section{Homotopy-initial $P$-algebras}
 
   Throughout this section, fix $x:A\vdash B(x)$ and write $P(X)$ for the associated polynomial functor $(\Sigma x : A) (B(x) \rightarrow X)$.  Recall that a $P$-algebra is a type $C$ equipped with a map
-$s_C :  PC \rightarrow C$.  
+$s_C :  PC \rightarrow C$.  Given a $P$-algebra $X$ with structure map $\sup_X \co P(X)\to X$, an equivalence of types $f : X \to Y$ makes $Y$ into a $P$-algebra with structure map $s_Y : f \circ \sup_X \circ P(f^{-1})$,
+  \[
+\xymatrix{
+P(X) \ar[d]_{\sup_X} \ar[r]_{P(f)} & \ar@/_1pc/[l]_{P(f^{-1})} P(Y)  \ar[d]^{\sup_Y}  \\
+ X  \ar[r]_{f} & Y
+ }
+ \]
+ where $f^{-1} : Y \to X$ is the quasi-inverse of $f : X \to Y$. In particular,  given an equivalence  $f : W \to X$, the induced $P$-algebra structure $\sup_X :P(X)\to X$ just defined then means that $X$ also satisfies the $W$-introduction rule.  We shall see that $X$ satisfies the other rules as well, but with weakened computation rule.
 
 
 
