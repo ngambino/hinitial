@@ -102,7 +102,7 @@
 
 % Composition and identiies
 \newcommand{\idfun}[1]{\mathsf{id}_{#1}}
-\newcommand{\comp}{\circ}
+% \newcommand{\comp}{\circ}
 \newcommand{\ct}{\cdot}
 
 % Names for type theories
@@ -142,8 +142,8 @@
 \newcommand{\false}{0}
 \newcommand{\one}{\mathsf{1}}
 \newcommand{\zero}{\mathsf{0}}
-\newcommand{\boolind}{\mathsf{ind}}
-\newcommand{\boolrec}{\mathsf{rec}}
+\newcommand{\boolind}{\mathsf{boolelim}}
+\newcommand{\boolrec}{\mathsf{boolrec}}
 
 % Nat
 
@@ -187,7 +187,6 @@
 % Bipointed types
 
 \newcommand{\ind}{\mathsf{ind}}
-\newcommand{\rec}{\mathsf{rec}}
 \newcommand{\Hom}{\mathsf{Hom}}
 \newcommand{\Bip}{\mathsf{Bip}}
 \newcommand{\BipHom}{\mathsf{Bip}}
@@ -197,6 +196,9 @@
 \newcommand{\isbipequiv}{\mathsf{isbipequiv}}
 \newcommand{\BipEquiv}{\mathsf{BipEquiv}}
 \newcommand{\HoSec}{\mathsf{BipSecHo}}
+\newcommand{\elim}{\mathsf{elim}}
+\newcommand{\comp}{\mathsf{comp}}
+\newcommand{\rec}{\mathsf{rec}}
 
 % P-algebras
 
@@ -784,7 +786,7 @@ there is an equivalence of types
 \label{sec:homibt}
 
 
-Let $A \co \U$ be a small type and assume that it is equivalent to $\Bool$. Then, $A$ admits the structure of a bipointed type and
+Let $A \co \U$ be a  type and assume that it is equivalent to $\Bool$. Then, $A$ admits the structure of a bipointed type and
 it satisfies the counterparts of the elimination and computation rules for $\Bool$ in which the computation rule is 
 weakened by replacing the judgmental equality in its conclusion with a propositional equality. Using the notions of a fibered bipointed type and of a bipointed section introduced in Section~\ref{sec:bip}, it is immediate to see that the these rules rules assert that every fibered bipointed type over $A$ has a bipointed section. Since bipointed types $A$ of this kind  play an important role in the following, we introduce some terminology to refer to them.
 
@@ -814,24 +816,29 @@ characterisation of inductive bipointed types.
 
 \begin{proposition} \label{thm:inductiverules}
 Let $A = (A, a_0, a_1)$ be a bipointed type. Then $A$ is inductive if only if it satisfies the following rules:
-
-\begin{mathpar}
+\begin{enumerate}[(i)]
+\item the elimination rule
+\[
 \begin{prooftree}
 x \co A \vdash E(x) \co \U \qquad
 e_0 \co E(a_0) \qquad
 e_1 \co E(a_1) \qquad
 \justifies
-x \co A \vdash s(x, e_0, e_1) \co E(x) \, , 
-\end{prooftree} \\ \medskip
+x \co A \vdash \elim(x, e_0, e_1) \co E(x) \, , 
+\end{prooftree} 
+\]
+\item the computation rules 
+\[
 \begin{prooftree}
 x\co A \vdash E(x) \co \U \qquad
 e_0 \co E(a_0) \qquad
 e_1 \co E(a_1)
 \justifies
-\bar{s}_k \co \Id \big(    s(a_k, e_0, e_1), e_k \big) \, ,
+\comp_k(e_0, e_1) \co \Id \big(    \elim(a_k, e_0, e_1), e_k \big) \, ,
 \end{prooftree}  
-\end{mathpar}
-where $k = 0, 1$.
+\]
+where $k \in \{ 0, 1\}$.
+\end{enumerate}
 \end{proposition}
 
 \begin{proof} Immediate.
@@ -840,58 +847,76 @@ where $k = 0, 1$.
 Note that the rules in Proposition~\ref{thm:inductiverules} are exactly the elimination rule
 and the weakening computation rules for $\Bool$ obtained by replacing the judgemental
 equality in the conclusion with a propositional one, as mentioned above.
-We now show that if a bipointed type $A$ is inductive, then not only 
-every fibered bipointed type over it has a bipointed section, but this section
-is unique up to a bipointed homotopy.
+
 
 \begin{lemma} \label{thm:inductiveuniquesec} Let $A = (A, a_0, a_1)$ be a bipointed type. If $A$ is inductive, 
 then the following rules are derivable:
 
+\begin{enumerate}[(i)]
+\item the $\eta$-rule
 \[
 \begin{prooftree}
-(E, e_0, e_1) \co \FibBip(A) \quad
-(s, \bar{s}_0, \bar{s}_1) \co \BipSec(E) \quad
-(t, \bar{t}_0, \bar{t}_1) \co \BipSec(E) 
+\begin{array}{c} 
+x \co A \vdash E(x) \co \type \quad
+e_0 \co E(a_0) \quad
+e_1 \co E(a_1) \\[1ex]
+x \co A \vdash f(x) \co E(x) \quad
+\bar{f}_0 \co \Id(f(a_0), e_0) \quad
+\bar{f}_1 \co \Id(f(a_1), e_1)
+\end{array}
 \justifies
-x \co A \vdash \varphi(x) \co \Id( s(x), t(x))
+x \co A \vdash \eta_x \co \Id( \elim(x, e_0, e_1), f(x))
 \end{prooftree} \bigskip
 \]
-
+\item the coherence rule
 \[
 \begin{prooftree}
-(E, e_0, e_1) \co \FibBip(A) \quad
-(s, \bar{s}_0, \bar{s}_1) \co \BipSec(E) \quad
-(t, \bar{t}_0, \bar{t}_1) \co \BipSec(E) 
+\begin{array}{c} 
+x \co A \vdash E(x) \co \type \quad
+e_0 \co E(a_0) \quad
+e_1 \co E(a_1) \\[1ex]
+x \co A \vdash f(x) \co E(x) \quad
+\bar{f}_0 \co \Id(f(a_0), e_0) \quad
+\bar{f}_1 \co \Id(f(a_1), e_1)
+\end{array}
 \justifies
-\bar{\varphi}_k \co \Id( \bar{s}_k, \varphi(a_k) \cdot \bar{t}_k) 
+\bar{\eta}_k \co \Id \big( \eta_{a_k} \ct \bar{f}_k,  \comp_k(e_0, e_1) \big)
 \end{prooftree}
 \]
 \noindent
 where $k = 0, 1$.
+\end{enumerate}
 \end{lemma}
 
-\begin{proof} For the first rule, let us assume its premisses and, for $x \co A$, define
+\begin{proof} Let us assume the premisses of the $\eta$-rule. For $x \co A$, define $F(x) \co \type$  by letting~
 \[
- E'(x) \defeq \Id_{E(x)} \big( s(x), t(x) \big) \, .
+F(x) \defeq 
+\Id( \elim(x, e_0, e_1), f(x)) \, .
+\] 
+With this notation, proving the conclusion of the $\eta$-rule amounts to defining
+$\eta_x \co F(x)$, for $x \co A$. We do so using the elimination rule for $A$, as stated in Propositon~\ref{thm:inductiverules}.
+Thus, we need to find elements $p_k \in F(a_k)$ for $k \in \{0, 1\}$. Such paths can be constructed as the composite
+\[
+\comp_0(e_0, e_1) \ct \bar{f}_0^{-1} \co  \elim(a_k, e_0, e_1) \Rightarrow e_0 \Rightarrow f(a_k) \, .
 \]
-This is a fibered bipointed type over $A$, since for $k = 0, 1$, we have an element $e'_k \co E'(a_k)$  defined by letting
-$e'_k  \defeq \bar{s}_k \cdot \bar{t}_k^{-1}$.  By the assumption that $A$ is inductive, there exists a bipointed section of $E'$, say $\varphi  \co \prod_{x \co A} E'(x)$. 
-For $x \co A$, we then have
+For $x \co A$, we can then defined the required element $\eta_x \co F(x)$ by letting 
 \[
-\varphi(x) \co \Id_{E(x)} \big(  s(x), t(x) \big)  \, ,
- \]
- as required. The other rules  can be obtained very easily. Indeed, since $\varphi$ is a bipointed section, we
- have paths $\bar{\varphi}_k \co \Id( \varphi(a_k), e'_k)$, for $k = 0, 1$. The conclusion now follows by the definition of $e'_k$ and the groupoid laws for
- composition of paths. 
+\eta_x \defeq \elim(x, p_0, p_1) \, . 
+\]
+The computation rule of Propositon~\ref{thm:inductiverules} then gives us paths $\eta_{a_k} \Rightarrow p_k$, \ie 
+\[
+\eta_{a_k} \Rightarrow \comp_k(e_0, e_1) \ct \bar{f}_k^{-1} \, , 
+\]
+with which the paths required to exist by the coherence rule can be obtained using the groupoid laws.
  \end{proof} 
  
  \medskip
  
- ADD REMARK ON ETA-RULES.
- 
- \medskip
-
-Proposition~\ref{thm:inductiverules} and Lemma~\ref{thm:inductiveuniquesec}
+ It follows from Lemma~\ref{thm:inductiveuniquesec} that if a bipointed type $A$ is inductive, then not only 
+every fibered bipointed type over it has a bipointed section, but this section
+is unique up to a bipointed homotopy. If we focus on the case where the fibered bipointed type is 
+a constant type, \ie we have simply a bipointed type, 
+ Proposition~\ref{thm:inductiverules} and Lemma~\ref{thm:inductiveuniquesec}
 imply that if $A$ is a inductive bipointed type then, for every bipointed type $B$, 
 there exists a bipointed morphism~$f \co A \to B$, which is unique in the sense that  for any two bipointed morphisms $(f, \bar{f}_0, \bar{f}_1), (g, \bar{g}_0, \bar{g}_1) \co A \to B$  there is a bipointed homotopy~$\alpha \co f \sim g$. Thus, by Lemma~\ref{BoolHomSpace}, there is a path 
 \[
@@ -914,54 +939,57 @@ Let us remark that the uniqueness implicit in Definition~\ref{def:BoolInit} requ
 \begin{proposition} \label{thm:hinitrules}
 A bipointed type $A = (A, a_0, a_1)$ is homotopy-initial if and only if it satisfies
  the following rules:
- \begin{mathpar}
+ 
+ \begin{enumerate}[(i)]
+ \item the recursion rule
+ \[
 \begin{prooftree}
 B \co \U \qquad
 b_0 \co B \qquad
 b_1 \co B \qquad
 \justifies
-x \co A \vdash f(x, b_0, b_1) \co B 
-\end{prooftree} \\ \medskip
+x \co A \vdash \rec(x, b_0, b_1) \co B 
+\end{prooftree} 
+\]
+\item the $\beta$-rules
+\[
 \begin{prooftree}
 B \co \U \qquad
 b_0 \co B  \qquad
 b_1 \co B
 \justifies
-\bar{f}_k \co \Id(  f(a_k, b_0, b_1), b_k ) 
-\end{prooftree}   \\ \medskip
-
+\beta_k \co \Id(  \rec(a_k, b_0, b_1), b_k ) 
+\end{prooftree}  
+\]
+where $k \in \{0, 1\}$. 
+\item the $\eta$-rule
+\[
 \begin{prooftree}
 (B, b_0, b_1) \co \Bip \quad
-(f, \bar{f}_0, \bar{f}_1) \co \Bip(A,B) \quad
-(g, \bar{g}_0, \bar{g}_1) \co \Bip(A,B) 
+(f, \bar{f}_0, \bar{f}_1) \co \Bip(A,B)
 \justifies
-x \co A \vdash \alpha(x) \co \Id( f(x), g(x))
-\end{prooftree}  \\ \medskip
-
+x \co A \vdash \eta_x \co \Id( \rec(x, b_0, b_1), f(x) )
+\end{prooftree}  
+\]
+\item the $(\beta, \eta)$-coherence rule
+\[
 \begin{prooftree}
 (B, b_0, b_1) \co \Bip \quad
-(f, \bar{f}_0, \bar{f}_1) \co \Bip(A,B) \quad
-(g, \bar{g}_0, \bar{g}_1) \co \Bip(A,B) 
+(f, \bar{f}_0, \bar{f}_1) \co \Bip(A,B) 
 \justifies
-\bar{\alpha}_k \co \Id( \bar{f}_k, \alpha(a_k) \cdot \bar{g}_k) 
+\bar{\eta}_k \co \Id( \beta_k, \eta_{a_k} \cdot \bar{f}_k) 
 \end{prooftree}
-\end{mathpar}
+\]
  where $k =  0, 1$.
+ \end{enumerate}
 \end{proposition}
 
 
 
-\begin{proof} Immediate.
+\begin{proof} Read the meaning of what homotopy-initial means.
 \end{proof} 
 
-
 \medskip
- 
- ADD REMARK ON ETA-RULES.
- 
- \medskip
-
-
 
 
 The next theorem provides the characterisation of inductive bipointed types.
@@ -1551,7 +1579,7 @@ x \co X \vdash E(x) \co \U \\
 a \co A \, , t  \co B(a) \to X,\, e \co \prod_{b \co B(a)}  E(t b) \vdash s_E(a,t,e) \co E(\sup_X(a,t))
 \end{array}
 \justifies
-x \co X \vdash \mathsf{elim}(x,s_E) \co E(x)
+x \co X \vdash \elim(x,s_E) \co E(x)
 \end{prooftree}
 \]
 
@@ -1566,7 +1594,7 @@ x \co X \vdash E(x) \co \U \\
 a \co A ,\, t \co  B(a) \to X ,\, e \co \prod_{b \co B(a)}  E(tb) \vdash s_E(a,t,e) \co E(\sup_X(a,t))
 \end{array}
 \justifies
-{a \co A,\, t \co B(a) \to X \vdash \mathsf{comp}(a,t,s_E) \co \Id \big( \ind(\sup_X(a,t),s_E),  e(a,t, (\lambda b) \ind(t b,s_E)) \big)}
+{a \co A,\, t \co B(a) \to X \vdash \comp(a,t,s_E) \co \Id \big( \ind(\sup_X(a,t),s_E),  e(a,t, (\lambda b) \ind(t b,s_E)) \big)}
 \end{prooftree}
 \]
 \end{enumerate}
@@ -1592,7 +1620,7 @@ Let $X = (X, \sup_X)$ be a $P$-algebra. If $X$ is inductive, then it satisfies t
  a \co A \, ,  t \co B(a) \to X \vdash \bar{f}(a,t) \co \Id  \big(  f(\sup_X(a,t)) ,  s_E\big(a,t, f \circ t ) \big) 
  \end{array}
  \justifies
-x \co X \vdash \eta_x \co \Id( f(x),  \mathsf{elim}(x,s_E))
+x \co X \vdash \eta_x \co \Id( f(x),  \elim(x,s_E))
 \end{prooftree}
 \]
 
@@ -1608,8 +1636,8 @@ x \co X \vdash E(x) \co \U   \\
 a \co A \, ,  t \co B(a) \to X \vdash \bar{f}(a,t) \co \Id  \big(  f(\sup_X(a,t)) ,  s_E\big(a,t, f \circ t ) \big) 
 \end{array}
 \justifies
-a \co A, t \co B(a) \to X \vdash \bar{\eta}_{(a,t)} \in
-\Id\big( \eta_{\sup_X(a,t)} \ct \mathsf{comp}(a,t), \; 
+a \co A, t \co B(a) \to X \vdash \bar{\eta}_{(a,t)} \co
+\Id\big( \eta_{\sup_X(a,t)} \ct \comp(a,t), \; 
 \bar{f}(a,t)\cdot s_E(a,t,\int(\eta\circ t)) \big)
 \end{prooftree}
 \]
@@ -1630,7 +1658,7 @@ We can construct this path explicitly as follows:
 \begin{align*}
 f(\sup_X(a,t)) &\Rightarrow s_E\big(a,t, f \circ t  \big)   \by{\bar{f}(a,t)}\\
 	&\Rightarrow s_E\big(a,t, (\lambda b)\, \ind(t b,s_E) \big) \by{s_E(a,t,\int(\alpha))}\\
-	& \Rightarrow \ind(s_X(a,t),s_E) \by{\mathsf{comp}(a,t)^{-1}}.
+	& \Rightarrow \ind(s_X(a,t),s_E) \by{\comp(a,t)^{-1}}.
 \end{align*}
 For $x \co X$, we can then define
 \[
@@ -1638,7 +1666,7 @@ For $x \co X$, we can then define
 \] 
 For $a \co A$ and $t \co B(a) \to X$, the  computation rule of Proposition~\ref{thm:palgindrec} then gives us
 \[
- \eta_{\sup_X(a,t)} \Rightarrow  \bar{f}(a,t) \cdot s_E(a,t,\int(  \eta \circ t ))  \cdot  \mathsf{comp}(a,t)^{-1} \, .
+ \eta_{\sup_X(a,t)} \Rightarrow  \bar{f}(a,t) \cdot s_E(a,t,\int(  \eta \circ t ))  \cdot  \comp(a,t)^{-1} \, .
 \]
 The path required to prove  the coherence rule is then obtained using the groupoid laws.
 \end{proof}

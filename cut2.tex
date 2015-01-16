@@ -40,3 +40,19 @@
 \newcommand{\canzero}{\ast_0}
 \newcommand{\canone}{\ast_1}
 \newcommand{\idtopair}{\mathsf{idtopair}}
+
+PROOF OF OLD LEMMA 4.3.
+
+For the first rule, let us assume its premisses and, for $x \co A$, define
+\[
+ E'(x) \defeq \Id_{E(x)} \big( s(x), t(x) \big) \, .
+\]
+This is a fibered bipointed type over $A$, since for $k = 0, 1$, we have an element $e'_k \co E'(a_k)$  defined by letting
+$e'_k  \defeq \bar{s}_k \cdot \bar{t}_k^{-1}$.  By the assumption that $A$ is inductive, there exists a bipointed section of $E'$, say $\varphi  \co \prod_{x \co A} E'(x)$. 
+For $x \co A$, we then have
+\[
+\varphi(x) \co \Id_{E(x)} \big(  s(x), t(x) \big)  \, ,
+ \]
+ as required. The other rules  can be obtained very easily. Indeed, since $\varphi$ is a bipointed section, we
+ have paths $\bar{\varphi}_k \co \Id( \varphi(a_k), e'_k)$, for $k = 0, 1$. The conclusion now follows by the definition of $e'_k$ and the groupoid laws for
+ composition of paths. 
