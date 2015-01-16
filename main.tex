@@ -97,7 +97,7 @@
 \newcommand{\peq}{\Rightarrow}
 \newcommand{\ho}{\sim}
 \newcommand{\defeq}{=_{\mathrm{def}}}
-\newcommand{\co}{\colon}
+\newcommand{\co}{\,{:}\,}
 \newcommand{\type}{\mathsf{Type}}
 
 % Composition and identiies
@@ -436,19 +436,19 @@ $\ell \co B \to A$ and $r \co B \to A$ such that
 
 
 
-Let $A \co \U$ be a small type and suppose that there is an equivalence $f \co \Bool \to A$. Then, the type $A$ 
+Let $A \co \U$ be a type and suppose that there is an equivalence $f \co \Bool \to A$. Then, the type $A$ 
 has two distinguished elements $a_0 \defeq f(0)$ and $a_1 \defeq f(1)$, and it satisfies
 analogues of the elimination and computation rules for $\Bool$, except that the conclusions of the computation 
 rules need to be modified  by replacing the judgemental equalities  with propositional ones. Our aim in this section is to provide a characterisation of the types equivalent to $\Bool$ by means of a type-theoretical universal property. In order to do so, we introduce the notion of a bipointed type. 
 
 
 \begin{definition} \label{thm:bipointedtype}
-A  (small) \emph{bipointed type} consists of a small type $A \co \U$ and two elements 
+A \emph{bipointed type} consists of a small type $A \co \U$ and two elements 
 $a_0 \co A$, $a_1 \co A$.
 \end{definition}
 
-The type of small bipointed types is then defined by letting $\Bip \defeq \sum_ {A \co \U}( A \times A )$. 
-Note that this type is not small.
+The type of bipointed types is then defined by letting $\Bip \defeq \sum_ {A \co \U}( A \times A )$. 
+Note that this type has a universe higher that that of its elements. 
 When referring to a bipointed type we sometimes suppress mention of its distinguished elements and write $A = (A, a_0, a_1)$ to
 recall this abuse of language.  In the following, it will be convenient to represent a bipointed type $A$ diagrammatically as follows:
 \[
@@ -964,7 +964,7 @@ x \co A \vdash \alpha(x) \co \Id( f(x), g(x))
 
 
 
-The next theorem provides the characterisation of inductive bipoinited types.
+The next theorem provides the characterisation of inductive bipointed types.
 
 
 
@@ -1536,26 +1536,40 @@ over it has a $P$-algebra section, \ie the type
 is inhabited.
 \end{definition}
 
-\begin{proposition} Let $X = (X, \sup_X)$ be a $P$-algebra. Then $X$ is inductive if and only if it satisfies the following rules:
-\begin{itemize} 
-\item elimination rule, \smallskip
-\begin{mathpar}
-\inferrule{  
-x \co X \vdash E(x) \co \U \\ 
-\textstyle
-a \co A \, , t  \co B(a) \to X,\, e \co \prod_{b \co B(a)}  E(t b) \vdash s_E(a,t,e) \co E(\sup_X(a,t))}
-{ x \co X \vdash \ind(x,s_E) \co E(x)}
-\end{mathpar}
+\begin{proposition} \label{thm:palgindrec}
+Let $X = (X, \sup_X)$ be a $P$-algebra. Then $X$ is inductive if and only if it satisfies the following rules:
 
-\item propositional computation rule, \smallskip
-\begin{mathpar}
-\inferrule{
+\smallskip
+
+\begin{enumerate}[(i)]
+\item the elimination rule, 
+\[
+\begin{prooftree}
+\begin{array}{c}
 x \co X \vdash E(x) \co \U \\ 
 \textstyle
-a \co A ,\, t \co  B(a) \to X ,\, e \co \prod_{b \co B(a)}  E(tb) \vdash s_E(a,t,e) \co E(\sup_X(a,t))}
-{a \co A,\, t \co B(a) \to X \vdash \beta(a,t,s_E) \co \Id \big( \ind(\sup_X(a,t),s_E),  e(a,t, (\lambda b) \ind(t b,s_E)) \big)}
-\end{mathpar}
-\end{itemize}
+a \co A \, , t  \co B(a) \to X,\, e \co \prod_{b \co B(a)}  E(t b) \vdash s_E(a,t,e) \co E(\sup_X(a,t))
+\end{array}
+\justifies
+x \co X \vdash \mathsf{elim}(x,s_E) \co E(x)
+\end{prooftree}
+\]
+
+\bigskip
+
+\item the computation rule,
+\[
+\begin{prooftree}
+\begin{array}{c}
+x \co X \vdash E(x) \co \U \\ 
+\textstyle
+a \co A ,\, t \co  B(a) \to X ,\, e \co \prod_{b \co B(a)}  E(tb) \vdash s_E(a,t,e) \co E(\sup_X(a,t))
+\end{array}
+\justifies
+{a \co A,\, t \co B(a) \to X \vdash \mathsf{comp}(a,t,s_E) \co \Id \big( \ind(\sup_X(a,t),s_E),  e(a,t, (\lambda b) \ind(t b,s_E)) \big)}
+\end{prooftree}
+\]
+\end{enumerate}
 \end{proposition}
 
 \medskip
@@ -1565,30 +1579,43 @@ We begin by showing that being implies the essential uniqueness of $P$-sections 
 
 \begin{lemma} \label{lem:Wetaind}
 Let $X = (X, \sup_X)$ be a $P$-algebra. If $X$ is inductive, then it satisfies the following further rules:
-\begin{itemize}
-\item propositional $\eta$-rule\smallskip
-\begin{mathpar}
-\inferrule{
+
+
+\begin{enumerate}[(i)]
+\item the $\eta$-rule, 
+\[
+\begin{prooftree}
+\begin{array}{c} 
  x \co X \vdash E(x) \co \U   \\ 
  \textstyle a \co A,\,    t \co B(a) \to X,\, e \co \prod_{b \co B(a)} E(tb) \vdash s_E(a,t,e) \co E(\sup_X(a,t))  \\  
-  x \co X \vdash f(x) \co E(x) \\ \\
- a \co A \, ,  t \co B(a) \to X \vdash \bar{f}(a,t) \co \Id  \big(  f(\sup_X(a,t)) ,  s_E\big(a,t, f \circ t ) \big) }
-{x \co X \vdash \eta(x) \co \Id( f(x),  \ind(x,s_E))}
-\end{mathpar}
-\item coherence rule\smallskip
-\begin{mathpar}
-\inferrule{
+  x \co X \vdash f(x) \co E(x) \\ 
+ a \co A \, ,  t \co B(a) \to X \vdash \bar{f}(a,t) \co \Id  \big(  f(\sup_X(a,t)) ,  s_E\big(a,t, f \circ t ) \big) 
+ \end{array}
+ \justifies
+x \co X \vdash \eta_x \co \Id( f(x),  \mathsf{elim}(x,s_E))
+\end{prooftree}
+\]
+
+\bigskip
+
+\item the coherence rule,
+\[
+\begin{prooftree}
+\begin{array}{c}
 x \co X \vdash E(x) \co \U   \\ 
 \textstyle a \co A,\,    t \co B(a) \to X,\, e \co \prod_{b \co B(a)} E(tb) \vdash s_E(a,t,e) \co E(\sup_X(a,t))  \\  
- x \co X \vdash f(x) \co E(x) \\ \\
-a \co A \, ,  t \co B(a) \to X \vdash \bar{f}(a,t) \co \Id  \big(  f(\sup_X(a,t)) ,  s_E\big(a,t, f \circ t ) \big) }
-{
-a \co A, t \co B(a) \to X \vdash \gamma(a,t) \in
-\Id\big( \eta(\sup_X(a,t))\ct \beta(a,t), 
+ x \co X \vdash f(x) \co E(x) \\ 
+a \co A \, ,  t \co B(a) \to X \vdash \bar{f}(a,t) \co \Id  \big(  f(\sup_X(a,t)) ,  s_E\big(a,t, f \circ t ) \big) 
+\end{array}
+\justifies
+a \co A, t \co B(a) \to X \vdash \bar{\eta}_{(a,t)} \in
+\Id\big( \eta_{\sup_X(a,t)} \ct \mathsf{comp}(a,t), \; 
 \bar{f}(a,t)\cdot s_E(a,t,\int(\eta\circ t)) \big)
-}
-\end{mathpar}
-\end{itemize}
+\end{prooftree}
+\]
+
+\end{enumerate}
+
 \end{lemma}
 
 
@@ -1603,21 +1630,17 @@ We can construct this path explicitly as follows:
 \begin{align*}
 f(\sup_X(a,t)) &\Rightarrow s_E\big(a,t, f \circ t  \big)   \by{\bar{f}(a,t)}\\
 	&\Rightarrow s_E\big(a,t, (\lambda b)\, \ind(t b,s_E) \big) \by{s_E(a,t,\int(\alpha))}\\
-	& \Rightarrow \ind(s_X(a,t),s_E) \by{\beta(a,t)^{-1}}.
+	& \Rightarrow \ind(s_X(a,t),s_E) \by{\mathsf{comp}(a,t)^{-1}}.
 \end{align*}
 For $x \co X$, we can then define
 \[
 \eta(x) \defeq \ind(x,q) \co F(x) \, ,
 \] 
-For $a \co A$ and $t \co B(a) \to X$, the propositional computation then gives us
+For $a \co A$ and $t \co B(a) \to X$, the  computation rule of Proposition~\ref{thm:palgindrec} then gives us
 \[
- \eta(s_X(a,t)) \Rightarrow  \bar{f}(a,t) \cdot s_E(a,t,\int(  \eta \circ t ))  \cdot  \beta(a,t)^{-1} \, .
+ \eta_{\sup_X(a,t)} \Rightarrow  \bar{f}(a,t) \cdot s_E(a,t,\int(  \eta \circ t ))  \cdot  \mathsf{comp}(a,t)^{-1} \, .
 \]
-and thefore, by the groupoid laws, we get a path
-\[
- \eta(s_X(a,t)) \cdot \beta(a,t) \Rightarrow \bar{f}(a,t)\cdot s_E(a,t,\int(\eta\circ t))\, ,
-	\]
-which proves the coherence rule.
+The path required to prove  the coherence rule is then obtained using the groupoid laws.
 \end{proof}
 
 
@@ -1680,55 +1703,88 @@ the third is the path $p$ constructed above, and the fourth one is given again b
 
 \begin{proposition} \label{thm:recursiveW}
 A $P$-algebra $X = (X, \sup_X)$  is  homotopy-initial if and only if it satisfies the following rules:
-\begin{itemize}
-\item recursion rule, \smallskip
-\begin{mathpar}
-\inferrule{
-%A \co \type \\  x:A \vdash B(x) \co \type \\ 
-% m \co \W  \\  
-Y \co \U \\ 
-a \co A \, ,  t \co B(a) \to Y \vdash \sup_Y(a,t) \co Y }
-{ x \co X \vdash \rec(x,\sup_Y) \co Y}
-\end{mathpar}
-\item simple propositional computation rule, \smallskip
-\begin{mathpar}
-\inferrule{
-Y \co \U \\ 
-a \co A,\, t \co B(a) \to Y  \vdash \sup_Y(a,t) \co Y }
-{a \co A,\, t \co B(a) \to Y \vdash
- \beta(a,t,\sup_Y) \co \Id \big( \rec(\sup_X(a,t),\sup_Y) \, ,  \sup_Y\big(a, (\lambda{b}) \rec(t b, \sup_Y)\big) \big)}
-\end{mathpar}
-\item simple propositional $\eta$-rule, \smallskip
-\begin{mathpar}
-\inferrule{
-Y \co \U \\ 
-a \co A,\, t \co B(a) \to Y \vdash \sup_Y(a,t) \co Y \\ 
-x \co X  \vdash f(x) \co Y \\ \\
-a \co A, t \co B(a) \to Y \vdash \bar{f}(a,t) \co \Id( f(\sup_X(a,t)),  \sup_Y(a , t \circ f )) }
-{x  \co A \vdash \eta(x) \co \Id( f(x) , \rec(x,\sup_Y))}
-\end{mathpar}
-\item simple propositional coherence rule, \smallskip
-\begin{mathpar}
-\inferrule{
-Y \co \U 
+
+\medskip
+
+\begin{enumerate}[(i)]
+\item the recursion rule,
+\[
+\begin{prooftree}
+Y \co \U \qquad 
+a \co A \, ,  t \co B(a) \to Y \vdash \sup_Y(a,t) \co Y 
+\justifies
+x \co X \vdash \rec(x,\sup_Y) \co Y
+\end{prooftree}
+\]
+\item the $\beta$-rule,
+\[
+\begin{prooftree}
+Y \co \U \qquad 
+a \co A \, ,  t \co B(a) \to Y \vdash \sup_Y(a,t) \co Y 
+\justifies
+a \co A,\, t \co B(a) \to Y \vdash
+ \beta(a,t,\sup_Y) \co \Id \big( \rec(\sup_X(a,t),\sup_Y) \, ,  \sup_Y\big(a, \lambda{b}. \,  \rec(t b, \sup_Y)\big) \big)
+\end{prooftree}
+\]
+
+\item the $\eta$-rule,
+ \smallskip
+\[
+\begin{prooftree}
+\begin{array}{c}
+ Y \co \U \\ 
+a \co A,\, t \co B(a) \to Y  \vdash  \sup_Y(a,t) \co Y \\ 
+x \co X  \vdash f(x) \co Y \\ 
+a \co A, t \co B(a) \to Y  \vdash  \bar{f}(a,t) \co \Id( f(\sup_X(a,t)),  \sup_Y(a , t \circ f )) 
+\end{array}
+\justifies
+x  \co A \vdash \eta_x \co \Id( f(x) , \rec(x,\sup_Y))
+\end{prooftree}
+\]
+
+\item the $(\beta, \eta)$-compatibility rule, 
+\[
+\begin{prooftree}
+\begin{array}{c}
+Y \co \U  \\ 
 a \co A,\, t \co B(a) \to Y \vdash \sup_Y(a,t)  \co Y \\ 
-  \\ x \co X \vdash f(x) \co Y \\ 
-%z:C \vdash g(z) \co E(z) \\ 
+ x \co X \vdash f(x) \co Y \\ 
 a \co A, t \co B(a) \to Y \vdash \bar{f}(a,t) \co \Id( f(\sup_X(a,t)) , \sup_Y(a, f \circ t ))
-}
-%x:A, p: B(x) \to C \vdash \delta(x,p) \co g(\wsup(x,p)) = e(x,p,\lam{b:B(x)} g(p \;b))}
-{a \co A, t \co B(a) \to X \vdash 
-\gamma(a,t) \co \Id( \eta(\wsup(a,t))\ct \beta(a,t), 
+\end{array}
+\justifies
+a \co A, t \co B(a) \to X \vdash 
+\bar{\eta}(a,t) \co \Id( \eta_{\wsup(a,t)} \ct \beta(a,t,\sup_Y), 
 \bar{f}(a,t) \ct \sup_Y(a,\int(\eta\circ t)))
-}
-\end{mathpar}
-\end{itemize}
+\end{prooftree} \smallskip
+\]
+\end{enumerate}
+
 \end{proposition}
 
 
 
 
-\begin{proof} The rules can be read as follows: the recursion rule says that, given any type $Y$ together with the function $\sup_Y \co PY \to Y$, \ie any $P$-algebra, there is a map $\rec \co X\to Y$.  The simple propositional computation rule says that this map $\rec$ is a $P$-algebra morphism.  The simple propositional $\eta$-rule says that if $f \co X \to Y$ is a $P$-algebra morphism, then there is a homotopy $\eta \co f \sim \rec$.  And the simple propositional $(\beta, \eta)$-compatibility rule says that $\eta$ is in fact a $P$-algebra homotopy.
+\begin{proof} The rules can be read as follows. The recursion rule says that, given any type $Y$ together 
+with the function $\sup_Y \co PY \to Y$, \ie any $P$-algebra, there is a function $r \co X \to Y$
+defined by letting,  for $x \co X$, 
+\[
+r(x) = \rec(x, \sup_Y) \, .
+\]
+The $\beta$-rule implies that we have a homotopy 
+\[
+\beta \co \Hot( r \circ \sup_X \, , \sup_Y \circ Pr)
+\]
+and so, by Proposition~\ref{lem:fibhomeqid}, we get a path $\bar{r}$ fitting in the diagram
+\[
+\xymatrix{
+PX \ar[d]_{\sup_X} \ar[r]^{Pr} \ar@{}[dr]|{\bar{r}} & PY \ar[d]^{\sup_Y} \\
+X \ar[r]_r & Y}
+\]
+We therefore obtain a $P$-algebra morphism  $(r, \bar{r}) \co X \to Y$.  The 
+$\eta$-rule says that if $f \co X \to Y$ is a $P$-algebra morphism, then there is a homotopy $\eta \co f \sim r$.  
+And the $(\beta,\eta)$-compatibility rule says that $\eta$ is in fact a $P$-algebra homotopy. Using again 
+Proposition~\ref{lem:fibhomeqid}, this shows that there is a path from $(r, \bar{r})$ to $(f, \bar{f})$, thus
+proving the contractibility of $\Palg(X,Y)$.
 \end{proof}
 
 
@@ -1762,7 +1818,8 @@ ADAPT THE PROOF OF THEOREM~\ref{thm:bipointedmain}.
 \end{proposition}
 
 \begin{proof}
-The type $\isalghinit(X)$ is a mere proposition since $\iscontr(A)$ is a mere proposition for any type $A$ and a family of mere propositions is again a mere proposition. To show that $\isalgind(X)$ is a mere proposition, we note that to prove that a type $X$ is a mere proposition, it suffices to do so under the assumption that $X$ is inhabited. Assume therefore that $\isalgind(X)$ is inhabited. Since a family of mere propositions is again a mere proposition, it suffices to show that $\PalgSec(X,Y)$ is a mere proposition for any $Y$. Fix sections $\mu, \nu \co \PalgSec(X,Y)$. To show $\mu = \nu$, it suffices to exhibit a $P$-homotopy between $\mu$ and $\nu$. But since a $P$-homotopy is nothing more than a section of an appropriate fibered $P$-algebra, we can obtain it by using the fact that $\isalgind(X)$ is inhabited. Part (iii) follows
+The type $\isalghinit(X)$ is a mere proposition since $\iscontr(A)$ is a mere proposition for any type $A$ and a family of mere propositions is again a mere proposition. To show that $\isalgind(X)$ is a mere proposition, we note that to prove that a type $X$ is a mere proposition, it suffices to do so under the assumption that $X$ is inhabited. Assume therefore that $\isalgind(X)$ is inhabited. Since a family of mere propositions is again a mere proposition, it suffices to show that $\PalgSec(X,Y)$ is a mere proposition for any $Y$. Fix sections 
+$(f, \bar{f}), (g, \bar{g}) \co \PalgSec(X,Y)$. By Proposition~\ref{lem:fibhomeqid}, in order to show this, it suffices to exhibit a $P$-algebra homotopy between them. But this follows from Lemma~\ref{lem:Wetaind}. Part (iii) follows
 immediately from part (i) and part (ii) via Theorem~\ref{thm:WMain}.
 \end{proof}
 
