@@ -254,7 +254,7 @@ The present work investigates inductive types in this setting. Modified rules fo
 
 The general topic of Homotopy Type Theory is concerned with the study of the constructive type theories of Martin-L\"of under their new interpretation into abstract homotopy theory and higher-dimensional category theory. Martin-L\"of type theories are foundational systems which have been used to formalize large parts of constructive mathematics, and also for the development of high-level programming languages~\cite{MartinLofP:conmcp}.  They are prized for their combination of expressive strength and desirable proof-theoretic properties.  One aspect of these type theories that has led to special difficulties in providing semantics is the intensional character of equality.  In recent work \cite{AwodeyS:homtmi,VoevodskyV:notts,vandenBergB:topsmi,AwodeyS:typth}, it has emerged that the topological notion of \emph{homotopy} provides an adequate basis for the semantics of intensionality.  This extends the paradigm of computability as continuity, familiar from domain theory, beyond the simply-typed 
 $\lambda$-calculus to dependently-typed theories involving:\begin{enumerate}[(i)]
-\item dependent sums $(\Sigma x\colon\!{A})B(x)$ and dependent products $(\Pi x\colon\!{A})B(x)$, modelled respectively by the total space and the space of sections of the fibration modelling the dependency of $B(x)$ over $ x : A$; \item
+\item dependent sums $(\Sigma x\colon\!{A})B(x)$ and dependent products $(\Pi x\colon\!{A})B(x)$, modelled respectively by the total space and the space of sections of the fibration modelling the dependency of $B(x)$ over $ x \co A$; \item
 and, crucially, including the identity type constructor~$\id{A}(a,b)$, interpreted as the space of all \emph{paths} in~$A$ between points~$a$ and~$b$. \end{enumerate}
 
 In the present work, we build on this homotopical interpretation to study inductive types, such as the natural numbers, Booleans, lists, and W-types. Within extensional type theories, W-types can be used to  provide a constructive counterpart of the classical notion of a well-ordering~\cite{MartinLofP:inttt} and to uniformly define a variety of inductive types~\cite{DybjerP:repids}.
@@ -295,13 +295,13 @@ make use of other standard conventions to simplify the exposition.
 
 We will work over a dependent type theory $\Hint$ which has standard structural rules, rules for $\Pi$-types, $\Sigma$-types and
 identity types as in Appendix~\ref{app:rules}, and the Function Extensionality axiom, \ie the axiom asserting that
-for every $f, g : A \rightarrow B$, the type
+for every $f, g \co A \rightarrow B$, the type
 \[
-(\Pi x :  A)\id{B}( \app(f, x), \app(g, x)) \rightarrow \id{A \rightarrow B}(f,g) 
+\prod_{x \co  A}\Id{B}( \app(f, x), \app(g, x)) \rightarrow \Id_{A \rightarrow B}(f,g) 
 \]
 is inhabited. Here, we have used the notation $A \rightarrow B$ to indicate function types, defined via
 $\Pi$-types in the usual way. Similarly, we will write $A \times B$ to denote the binary product
-of two types as usually defined via $\Sigma$-types. We say that two elements  $a, b :A$ are propositionally equal if 
+of two types as usually defined via $\Sigma$-types. We say that two elements  $a, b \co A$ are propositionally equal if 
  the type $\Id(a,b)$ is inhabited.
 
 
@@ -317,14 +317,15 @@ we will write~$f(a)$ or~$f  a$ instead of $\app(f,a)$.
 \item As shown in~\cite{VoevodskyV:unifc}, the principle of propositional function extensionality stated above implies
 the corresponding principle for dependent functions, \emph{i.e.} 
 \[
-(\Pi x :  A)\id{B(x)}( f x, g x) \rightarrow \id{(\Pi x : A) B(x)}(f,g) \, .
+\prod_{x \co  A}\Id( f x, g x) \rightarrow \Id(f,g) \, .
 \]
 \item The following form of the $\eta$-rule for $\Sigma$-types is derivable:
 \[
 \begin{prooftree}
-c  : (\Sigma x : A)B(x) 
+\textstyle
+c  \co \sum_{x \co A} B(x)
 \justifies
-\eta_{\Sigma}(c) : \Id(c, \pair( \pi_1 c \, , \pi_2 c)) \, , 
+\eta(c) \co \Id(c, \pair( \pi_1 c \, , \pi_2 c)) \, , 
 \end{prooftree}
 \]
  where $\pi_1$ and $\pi_2$ are the projections. This  can be proved by $\Sigma$-elimination,
@@ -352,9 +353,9 @@ in which the following rule, known as the identity reflection rule, is also assu
 \begin{equation}
 \label{equ:collapse}
 \begin{prooftree}
- p :  \id{A}(a,b)
+ p \co  \id{A}(a,b)
   \justifies
-  a=b :  A
+  a=b \co  A
 \end{prooftree}
 \end{equation}
 This rule collapses propositional equality with definitional equality, thus making the overall system
@@ -370,11 +371,11 @@ The main import of the
 $\Id$-elimination rule is that  type dependency must respect identity, in the following sense: given a dependent type
 \begin{equation}
 \label{equ:deptype}
-x:A \vdash B(x) : \type \, ,
+x\co A \vdash B(x) \co \type \, ,
 \end{equation} 
-and $p: \id{A}(a,b)$, there is then a \emph{transport} function 
- $$p_{\, ! } : B(a) \rightarrow B(b),$$ which is defined by $\Id$-elimination, taking for $x : A$
-the function $\refl(x)_{\, !} : B(x) \rightarrow B(x)$ to be the identity on $B(x)$.  
+and $p\co \id{A}(a,b)$, there is then a \emph{transport} function 
+ $$p_{\, ! } \co B(a) \rightarrow B(b),$$ which is defined by $\Id$-elimination, taking for $x \co A$
+the function $\refl(x)_{\, !} \co B(x) \rightarrow B(x)$ to be the identity on $B(x)$.  
  The topological notion of contractibility admits the following type-theoretic counterpart, originally
  introduced by Voevodsky in~\cite{VoevodskyV:unifc}.
 
@@ -382,7 +383,7 @@ the function $\refl(x)_{\, !} : B(x) \rightarrow B(x)$ to be the identity on $B(
 \begin{definition}  A type $A$ is said to be \emph{contractible} if the  type 
  \begin{equation}
  \label{eq:contractible}
-\iscontr(A) \defeq (\Sigma x:A)(\Pi y:A)\id{A}(x,y)
+\iscontr(A) \defeq \sum_{x\co A} \prod_{y\co A}\Id(x,y)
 \end{equation}
 is inhabited.
 \end{definition} 
@@ -390,39 +391,39 @@ is inhabited.
 The type $\iscontr(A)$ can be seen as the propositions-as-types translation
 of the formula stating that $A$ has a unique element. However, its homotopical interpretation 
 is as a space that is inhabited if and only if the space interpreting $A$ is contractible in the usual
-topological sense. Note that if $A$ is a contractible type, then for every $a, b : A$, the type $\id{A}(a,b)$ is again contractible. 
+topological sense. Note that if $A$ is a contractible type, then for every $a, b \co A$, the type $\id{A}(a,b)$ is again contractible. 
 This can be proved  by $\Id$-elimination. The notion of contractibility can be used to articulate the world of types  into \emph{h-levels} according to their
 homotopical complexity~\cite{VoevodskyV:unifc}. We will need to recall only the notion of type of $h$-level 0, or h-proposition.
 
 \begin{definition} A type $A$ is said to be a \emph{h-proposition} if the type
 \[
-\isprop(A) \defeq (\Pi x : A)(\Pi y : A) \iscontr( \Id(x,y)) 
+\isprop(A) \defeq \prod_{x \co A} \prod_{y \co A} \iscontr( \Id(x,y)) 
 \]
 is inhabilted.
 \end{definition}
 
 
-Let us also recall from~\cite{VoevodskyV:unifc} the notions of weak equivalence and homotopy equivalence. To do this, we need to fix some notation. For $f : A \rightarrow B$ and $y : B$, define the he \emph{homotopy fiber} of $f$ at $y$ as the type
+Let us also recall from~\cite{VoevodskyV:unifc} the notions of weak equivalence and homotopy equivalence. To do this, we need to fix some notation. For $f \co A \rightarrow B$ and $y \co B$, define the he \emph{homotopy fiber} of $f$ at $y$ as the type
 \[
- \hfiber(f,y) \defeq (\Sigma x : A) \id{B}(f x, y) \, .
+ \hfiber(f,y) \defeq \sum_{x \co A} \Id(f x, y) \, .
 \]
 Recall that a function $f$ is an equivalence if an only if every fiber is contractible, \ie the type
 \[
- (\Pi y : B) \,  \iscontr(\hfiber(f,y)) 
+ \prod_{y \co B}   \iscontr(\hfiber(f,y)) 
 \]
 is inhabited. 
 
 
-\begin{definition} \label{thm:weq}  We say that $f : A \rightarrow B$ is a weak equivalence if it has both a left inverse and a right inverse, \ie
+\begin{definition} \label{thm:weq}  We say that $f \co A \rightarrow B$ is a weak equivalence if it has both a left inverse and a right inverse, \ie
 $\ell \co B \to A$ and $r \co B \to A$ such that 
 \[
  \ell \circ f = 1_A \, ,  \quad  f \circ r = 1_B  \, .
  \]
  \end{definition}
  
- Accordingly, for $f : A \rightarrow B$, we define the type of proofs that $f$ is an equivalence by letting
+ Accordingly, for $f \co A \rightarrow B$, we define the type of proofs that $f$ is an equivalence by letting
  \[ 
- \isequiv(f) \defeq (\Sigma \ell \co B \to A) \Id( \ell \circ f, 1_A) \times (\Sigma r \co B \to A) \Id( r \circ f , 1_B) \, .
+ \isequiv(f) \defeq \sum_{\ell \co B \to A} \Id( \ell \circ f, 1_A) \times \sum_{r \co B \to A} \Id( r \circ f , 1_B) \, .
  \]
 
 
@@ -435,18 +436,18 @@ $\ell \co B \to A$ and $r \co B \to A$ such that
 
 
 
-Let $A \in \U$ be a small type and suppose that there is an equivalence $f \co \Bool \to A$. Then, the type $A$ 
+Let $A \co \U$ be a small type and suppose that there is an equivalence $f \co \Bool \to A$. Then, the type $A$ 
 has two distinguished elements $a_0 \defeq f(0)$ and $a_1 \defeq f(1)$, and it satisfies
 analogues of the elimination and computation rules for $\Bool$, except that the conclusions of the computation 
 rules need to be modified  by replacing the judgemental equalities  with propositional ones. Our aim in this section is to provide a characterisation of the types equivalent to $\Bool$ by means of a type-theoretical universal property. In order to do so, we introduce the notion of a bipointed type. 
 
 
 \begin{definition} \label{thm:bipointedtype}
-A  (small) \emph{bipointed type} consists of a small type $A \in \U$ and two elements 
-$a_0 \in A$, $a_1 \in A$.
+A  (small) \emph{bipointed type} consists of a small type $A \co \U$ and two elements 
+$a_0 \co A$, $a_1 \co A$.
 \end{definition}
 
-The type of small bipointed types is then defined by letting $\Bip \defeq \sum_ {A \in \U}( A \times A )$. 
+The type of small bipointed types is then defined by letting $\Bip \defeq \sum_ {A \co \U}( A \times A )$. 
 Note that this type is not small.
 When referring to a bipointed type we sometimes suppress mention of its distinguished elements and write $A = (A, a_0, a_1)$ to
 recall this abuse of language.  In the following, it will be convenient to represent a bipointed type $A$ diagrammatically as follows:
@@ -454,7 +455,7 @@ recall this abuse of language.  In the following, it will be convenient to repre
 \xymatrix{
  1 \ar[r]^-{a_0}&  A & 1 \ar[l]_-{a_1} \, .}
  \]
-The type $\Bool$ and its canonical elements $0, 1 \in \Bool$ give us a bipointed type:
+The type $\Bool$ and its canonical elements $0, 1 \co \Bool$ give us a bipointed type:
 \[
 \xymatrix{
  1 \ar[r]^-{0}&  \Bool  & 1 \ar[l]_-{1} \, . }
@@ -514,14 +515,14 @@ in $\Bip(B,B)$.
 For a bipointed morphism $f \co A \to B$, the type of proofs that $f$ is a bipointed equivalence is
 then defined by letting
 \[
-\isbipequiv(f) \defeq   \sum_{\ell \in \BipHom(B,A)} \Id( \ell \circ f, 1_A ) \times 
-    \sum_{r \in \BipHom(A, B)} \Id (f \circ r , 1_B ) \, ,
+\isbipequiv(f) \defeq   \sum_{\ell \co \BipHom(B,A)} \Id( \ell \circ f, 1_A ) \times 
+    \sum_{r \co \BipHom(A, B)} \Id (f \circ r , 1_B ) \, ,
 \]
 and type of bipointed equivalences between $A$ and $B$ is defined by letting
 \[
 \BipEquiv(A, B)
 \defeq    
-\sum_{f \in \BipHom(A,B)} \, \isbipequiv(f)  \, . 
+\sum_{f \co \BipHom(A,B)} \, \isbipequiv(f)  \, . 
 \] 
 Clearly, the identity morphism on a bipointed type is a bipointed equivalence. The next lemma
 gives an alternative characterisation of bipointed equivalences.
@@ -562,9 +563,9 @@ By path elimination on $p$, the transport $p_{!}\big(\refl(a_0), \refl(a_1) \big
 \[
 \big(  \ext(p)_{a_0} \ct \refl(a_0) \, , \;  \ext(p)_{a_1} \ct \refl(a_1) \big) \, ,
 \]
-where $\ext : \Id(\ell \comp f, 1_A) \to \Hot(\ell \comp f,  1_A)$ is the canonical function, asserted to be an equivalence by the Function Extensionality axiom. This is of course propositionally equal to $\big(\ext(p)_{a_0}, \ext(p)_{a_1} \big)$. Using the characterization of paths in product spaces, the type $P(\ell,\bar{\ell}_0,\bar{\ell}_1)$ can thus be expressed as
+where $\ext \co \Id(\ell \comp f, 1_A) \to \Hot(\ell \comp f,  1_A)$ is the canonical function, asserted to be an equivalence by the Function Extensionality axiom. This is of course propositionally equal to $\big(\ext(p)_{a_0}, \ext(p)_{a_1} \big)$. Using the characterization of paths in product spaces, the type $P(\ell,\bar{\ell}_0,\bar{\ell}_1)$ can thus be expressed as
 \[
-\sum_{ p : \ell \comp f \Rightarrow 1_A} \Big(
+\sum_{ p \co \ell \comp f \Rightarrow 1_A} \Big(
 \Id  \big( \ell (\bar{f}_0) \ct \bar{\ell}_0 \, ,  \ext(p)_{a_0} \big) 
 \times 
 \Id \big( \ell(\bar{f}_1) \ct \bar{\ell}_1 \, ,  \ext(p)_{a_1} \big)
@@ -572,7 +573,7 @@ where $\ext : \Id(\ell \comp f, 1_A) \to \Hot(\ell \comp f,  1_A)$ is the canoni
 \]
 Since the function $\ext$ is an equivalence, this is equivalent to
 \begin{align*}
-\sum_{\alpha : \ell \comp f \sim 1_A} 
+\sum_{\alpha \co \ell \comp f \sim 1_A} 
 \Big( \Id  \big( \ell (\bar{f}_0) \ct \bar{\ell}_0 \, ,  \alpha(a_0) \big) 
 \times 
 \Id \big( \ell(\bar{f}_1) \ct \bar{\ell}_1 \, ,  \alpha(a_1) \big) 
@@ -580,7 +581,7 @@ Since the function $\ext$ is an equivalence, this is equivalent to
 \end{align*}
 Analogously, the type $Q(r,\bar{r}_0,\bar{r}_1)$ is equivalent to
 \[
-\sum_{\beta : f \comp r \sim 1_B}
+\sum_{\beta \co f \comp r \sim 1_B}
 \Big(
 \Id  \big( f (\bar{r}_0) \ct \bar{f}_0 \, ,  \beta(b_0) \big) 
 \times 
@@ -590,28 +591,28 @@ Analogously, the type $Q(r,\bar{r}_0,\bar{r}_1)$ is equivalent to
 Therefore, we can express $\isbipequiv(f, \bar{f}_0, \bar{f}_1)$ as the type
 \[
 \sum_{\ell \co B \to  A} 
-\sum_{\alpha : \ell \comp f \sim 1_A}
+\sum_{\alpha \co \ell \comp f \sim 1_A}
 \sum_{ r \co B \to A} 
-\sum_{\beta : f \comp r \sim 1_B} 
+\sum_{\beta \co f \comp r \sim 1_B} 
 	R_0(\ell,\alpha) \times R_1(\ell,\alpha) \times S_0(r,\beta) \times S_1(r,\beta)
 \]
 where, for $k = 0,1$, we set
 \begin{align*}
-& R_k(\ell,\alpha) \defeq \sum_{\bar{\ell}_k : \ell(b_k) \Rightarrow a_k} \Id \big( \ell (\bar{f}_k) \ct \bar{\ell}_k \, ,  \alpha(a_k) \big) \\
-& S_k(r,\beta) \defeq \sum_{\bar{r}_k : r(b_k) \Rightarrow a_k} \Id \big( f (\bar{r}_k) \ct \bar{f}_k \, ,  \beta(b_k) \big) 
+& R_k(\ell,\alpha) \defeq \sum_{\bar{\ell}_k \co \ell(b_k) \Rightarrow a_k} \Id \big( \ell (\bar{f}_k) \ct \bar{\ell}_k \, ,  \alpha(a_k) \big) \\
+& S_k(r,\beta) \defeq \sum_{\bar{r}_k \co r(b_k) \Rightarrow a_k} \Id \big( f (\bar{r}_k) \ct \bar{f}_k \, ,  \beta(b_k) \big) 
 \end{align*}
-Now recall  that for paths $q \in \Id(y,x_1)$, $s \in \Id(y,x_2)$, the type 
+Now recall  that for paths $q \co \Id(y,x_1)$, $s \co \Id(y,x_2)$, the type 
 \[
-\sum_{p \in \Id_X(x_1,x_2)} \Id(q \ct p,s)
+\sum_{p \co \Id_X(x_1,x_2)} \Id(q \ct p,s)
 \] 
 is contractible. Thus we have $R_k(\ell,\alpha) \simeq \one$.
-Furthermore, for any equivalence $g : X \to Y$, and paths $q \in \Id(g(x_2),y)$, $s \in \Id(g(x_1),y)$, the type 
+Furthermore, for any equivalence $g \co X \to Y$, and paths $q \co \Id(g(x_2),y)$, $s \co \Id(g(x_1),y)$, the type 
 \[
-\sum_{p \in \Id_X(x_1,x_2)} \Id(g(p) \ct q,s)
+\sum_{p \co \Id_X(x_1,x_2)} \Id(g(p) \ct q,s)
 \] is contractible. Since $\ell, \alpha, r, \beta$ make $f$ into an equivalence, we have $S_k(\ell,\alpha) \simeq \one$. Thus,
 \begin{align*} 
 \isbipequiv(f,\bar{f}_0, \bar{f}_1) 
-  & \simeq   \sum_{\ell \co B \to A} \sum_{\alpha : \ell \comp f \sim 1_A} \sum_{ r  \co B \to A} 
+  & \simeq   \sum_{\ell \co B \to A} \sum_{\alpha \co \ell \comp f \sim 1_A} \sum_{ r  \co B \to A} 
  \sum_{\beta \co f \comp r \sim 1_B} \, 1 \\
  & \simeq \sum_{\ell \co B \to A}  \Hot( \ell \comp f , 1_A ) \times 
 \sum_{r  \co B \to A}  \Hot( f \comp r, 1_B ) \\
@@ -666,11 +667,11 @@ For every parallel pair of morphisms $(f, \bar{f}_0, \bar{f}_1), (g, \bar{g}_0, 
 \end{lemma}
 
 \begin{proof} Let  $f = (f, \bar{f}_0, \bar{f}_1)$ and $g = (g, \bar{g}_0, \bar{g}_1)$ be bipointed
-morphisms from $A$ to $B$. To simplify notation, for a path $p \in \Id( f, g)$, we write $\alpha_p \co f \sim g$
+morphisms from $A$ to $B$. To simplify notation, for a path $p \co \Id( f, g)$, we write $\alpha_p \co f \sim g$
 for the corresponding homotopy. We then have
 \begin{align*}
 \BipHot \big( (f,\bar{f}_0,\bar{f}_1) \; (g,\bar{g}_0,\bar{g}_1) \big) & \deq  
-\sum_{\alpha : f \sim g} \Id(\bar{f}_0, \alpha(a_0) \ct \bar{g}_0) \times \Id(\bar{f}_1, \alpha(a_1) \ct \bar{g}_1) \\ 
+\sum_{\alpha \co f \sim g} \Id(\bar{f}_0, \alpha(a_0) \ct \bar{g}_0) \times \Id(\bar{f}_1, \alpha(a_1) \ct \bar{g}_1) \\ 
 & \simeq \sum_{p  \co  f \Rightarrow g} \Id(\bar{f}_0, \alpha_p(a_0) \ct \bar{g}_0) \times \Id( \bar{f}_1, \alpha_p(a_1) \ct \bar{g}_1) \\
 & \simeq
 \sum_{p \co f \Rightarrow g} \Id\big( (\bar{f}_0,\bar{f}_1),  \big(\alpha_p(a_0) \ct \bar{g}_0 \, ,  \alpha_p(a_1) \ct \bar{g}_1) \big) \\
@@ -687,7 +688,7 @@ as required.
 
 \begin{definition} \label{def:fibbipointed}
 Let $A = (A, a_0, a_1)$ be a bipointed type. A \emph{fibered bipointed type} over $A$ is a dependent type
-$E \co A \to \U$ equipped with distinguished elements $e_0 \in E(a_0)$ and $e_1 \in E(a_1)$.
+$E \co A \to \U$ equipped with distinguished elements $e_0 \co E(a_0)$ and $e_1 \co E(a_1)$.
 \end{definition}
 
 The type of  fibered bipointed types over a bipointed type $A$ is then defined by letting
@@ -697,7 +698,7 @@ The type of  fibered bipointed types over a bipointed type $A$ is then defined b
  Note that this type is not small. 
 Given a fibered bipointed type $E \co A \to \U$, its total type is defined by letting
 \[
-E'  \defeq \sum_{x \in A} E(x) \, .
+E'  \defeq \sum_{x \co A} E(x) \, .
 \] 
 Observe that $E'$ is a bipointed type by considering $e'_k \defeq \pair(a_k, e_k)$, 
 for $k =  0, 1$. In this way, the first projection $\pi_1 \co E' \to A$ becomes a bipointed morphism:
@@ -714,21 +715,21 @@ $A = (A, a_0, a_1)$.  A \emph{bipointed section} of $E$,
 \[
 (s, \bar{s}_0, \bar{s}_1) \co A \to E \, ,
 \]
-consists of a section $s \in \prod_{x \in A} E(x)$ equipped with paths~$\bar{s}_0 \co s(a_0) \Rightarrow e_0$ 
+consists of a section $s \co \prod_{x \co A} E(x)$ equipped with paths~$\bar{s}_0 \co s(a_0) \Rightarrow e_0$ 
 and $\bar{s}_1 \co  s(a_1) \Rightarrow e_1$. 
 \end{definition} 
 
 
 The type of bipointed sections of $E \co A \to \U$ is then defined to be
 \[
-\BipSec(E) \defeq \sum_{s \in \prod_{x \in A} E(x)} \Id(s(a_0),  e_0)  \times \Id( s(a_1), e_1)  \, .
+\BipSec(E) \defeq \sum_{s \co \prod_{x \co A} E(x)} \Id(s(a_0),  e_0)  \times \Id( s(a_1), e_1)  \, .
 \]
 Given a bipointed section $s \co A \to E$, we can define a bipointed morphism~$f  \co A \to E'$, where $E'$ is the
 total bipointed type associated to $E$. Its underlying function is given by 
-letting~$f(x) \defeq \pair(x, s(x))$, for~$x \in A$. With this definition, it is 
+letting~$f(x) \defeq \pair(x, s(x))$, for~$x \co A$. With this definition, it is 
 immediate to get the path~$\bar{s}_k \co f'(a_k) \Rightarrow e'_k$, for $k = 0, 1$.
 The morphism $f' \co A \to E'$ provides a section in the usual category-theoretic sense, \ie a right inverse for~$\pi_1 \co E' \to A$,
- since, for~$x \in A$, we have judgemental equalities
+ since, for~$x \co A$, we have judgemental equalities
 \[
  (\pi_1 \circ f')(x) \deq \pi_1 (f'(x)) \deq \pi_1 (\pair(x, f x)) \deq x \, .
 \]
@@ -783,7 +784,7 @@ there is an equivalence of types
 \label{sec:homibt}
 
 
-Let $A \in \U$ be a small type and assume that it is equivalent to $\Bool$. Then, $A$ admits the structure of a bipointed type and
+Let $A \co \U$ be a small type and assume that it is equivalent to $\Bool$. Then, $A$ admits the structure of a bipointed type and
 it satisfies the counterparts of the elimination and computation rules for $\Bool$ in which the computation rule is 
 weakened by replacing the judgmental equality in its conclusion with a propositional equality. Using the notions of a fibered bipointed type and of a bipointed section introduced in Section~\ref{sec:bip}, it is immediate to see that the these rules rules assert that every fibered bipointed type over $A$ has a bipointed section. Since bipointed types $A$ of this kind  play an important role in the following, we introduce some terminology to refer to them.
 
@@ -794,13 +795,13 @@ weakened by replacing the judgmental equality in its conclusion with a propositi
 
 \begin{definition} A bipointed type $A$ is said to be \emph{inductive} if every fibered bipointed type over it has a bipointed section, \ie the type
 \[ 
-\isbipind(A) \defeq \prod_{E \in \FibBip(A)}  \BipSec(E)
+\isbipind(A) \defeq \prod_{E \co \FibBip(A)}  \BipSec(E)
 \]  
 is inhabited. \end{definition} 
 
 Consequently, the type of (small) inductive bipointed types is given by
 \[
-\mathsf{BipInd} \defeq \sum_{A \in \Bip} \isbipind(A) \, .
+\mathsf{BipInd} \defeq \sum_{A \co \Bip} \isbipind(A) \, .
 \]
 Thus, a canonical inductive bipointed type is given by a bipointed type $A = (A, a_0, a_1)$ together with a function 
 which, given a fibered bipointed type $E = (E, e_0, e_1)$ over $A$, returns a bipointed section of $E$.
@@ -816,18 +817,18 @@ Let $A = (A, a_0, a_1)$ be a bipointed type. Then $A$ is inductive if only if it
 
 \begin{mathpar}
 \begin{prooftree}
-x \in A \vdash E(x) \in \U \qquad
-e_0 \in E(a_0) \qquad
-e_1 \in E(a_1) \qquad
+x \co A \vdash E(x) \co \U \qquad
+e_0 \co E(a_0) \qquad
+e_1 \co E(a_1) \qquad
 \justifies
-x \in A \vdash s(x, e_0, e_1) \in E(x) \, , 
+x \co A \vdash s(x, e_0, e_1) \co E(x) \, , 
 \end{prooftree} \\ \medskip
 \begin{prooftree}
-x\in A \vdash E(x) \in \U \qquad
-e_0 \in E(a_0) \qquad
-e_1 \in E(a_1)
+x\co A \vdash E(x) \co \U \qquad
+e_0 \co E(a_0) \qquad
+e_1 \co E(a_1)
 \justifies
-\bar{s}_k \in \Id \big(    s(a_k, e_0, e_1), e_k \big) \, ,
+\bar{s}_k \co \Id \big(    s(a_k, e_0, e_1), e_k \big) \, ,
 \end{prooftree}  
 \end{mathpar}
 where $k = 0, 1$.
@@ -848,21 +849,21 @@ then the following rules are derivable:
 
 \[
 \begin{prooftree}
-(E, e_0, e_1) \in \FibBip(A) \quad
-(s, \bar{s}_0, \bar{s}_1) \in \BipSec(E) \quad
-(t, \bar{t}_0, \bar{t}_1) \in \BipSec(E) 
+(E, e_0, e_1) \co \FibBip(A) \quad
+(s, \bar{s}_0, \bar{s}_1) \co \BipSec(E) \quad
+(t, \bar{t}_0, \bar{t}_1) \co \BipSec(E) 
 \justifies
-x \in A \vdash \varphi(x) \in \Id( s(x), t(x))
+x \co A \vdash \varphi(x) \co \Id( s(x), t(x))
 \end{prooftree} \bigskip
 \]
 
 \[
 \begin{prooftree}
-(E, e_0, e_1) \in \FibBip(A) \quad
-(s, \bar{s}_0, \bar{s}_1) \in \BipSec(E) \quad
-(t, \bar{t}_0, \bar{t}_1) \in \BipSec(E) 
+(E, e_0, e_1) \co \FibBip(A) \quad
+(s, \bar{s}_0, \bar{s}_1) \co \BipSec(E) \quad
+(t, \bar{t}_0, \bar{t}_1) \co \BipSec(E) 
 \justifies
-\bar{\varphi}_k \in \Id( \bar{s}_k, \varphi(a_k) \cdot \bar{t}_k) 
+\bar{\varphi}_k \co \Id( \bar{s}_k, \varphi(a_k) \cdot \bar{t}_k) 
 \end{prooftree}
 \]
 \noindent
@@ -874,13 +875,13 @@ where $k = 0, 1$.
  E'(x) \defeq \Id_{E(x)} \big( s(x), t(x) \big) \, .
 \]
 This is a fibered bipointed type over $A$, since for $k = 0, 1$, we have an element $e'_k \co E'(a_k)$  defined by letting
-$e'_k  \defeq \bar{s}_k \cdot \bar{t}_k^{-1}$.  By the assumption that $A$ is inductive, there exists a bipointed section of $E'$, say $\varphi  \in \prod_{x \in A} E'(x)$. 
-For $x \in A$, we then have
+$e'_k  \defeq \bar{s}_k \cdot \bar{t}_k^{-1}$.  By the assumption that $A$ is inductive, there exists a bipointed section of $E'$, say $\varphi  \co \prod_{x \co A} E'(x)$. 
+For $x \co A$, we then have
 \[
-\varphi(x) \in \Id_{E(x)} \big(  s(x), t(x) \big)  \, ,
+\varphi(x) \co \Id_{E(x)} \big(  s(x), t(x) \big)  \, ,
  \]
  as required. The other rules  can be obtained very easily. Indeed, since $\varphi$ is a bipointed section, we
- have paths $\bar{\varphi}_k \in \Id( \varphi(a_k), e'_k)$, for $k = 0, 1$. The conclusion now follows by the definition of $e'_k$ and the groupoid laws for
+ have paths $\bar{\varphi}_k \co \Id( \varphi(a_k), e'_k)$, for $k = 0, 1$. The conclusion now follows by the definition of $e'_k$ and the groupoid laws for
  composition of paths. 
  \end{proof} 
  
@@ -894,7 +895,7 @@ Proposition~\ref{thm:inductiverules} and Lemma~\ref{thm:inductiveuniquesec}
 imply that if $A$ is a inductive bipointed type then, for every bipointed type $B$, 
 there exists a bipointed morphism~$f \co A \to B$, which is unique in the sense that  for any two bipointed morphisms $(f, \bar{f}_0, \bar{f}_1), (g, \bar{g}_0, \bar{g}_1) \co A \to B$  there is a bipointed homotopy~$\alpha \co f \sim g$. Thus, by Lemma~\ref{BoolHomSpace}, there is a path 
 \[
-p \in \Id((f, \bar{f}_0, \bar{f}_1), (g, \bar{g}_0, \bar{g}_1)) \, .
+p \co \Id((f, \bar{f}_0, \bar{f}_1), (g, \bar{g}_0, \bar{g}_1)) \, .
 \] 
 Furthermore, it can be shown that such a path is itself is unique up to a higher path, which in turn is unique up to a yet higher path, etc... As we will show in the reminder of this section, this sort of weak $\infty$-universality, which apparently involves infinitely much data, can nonetheless be fully captured within the system of type theory (without resorting to coinduction) using ideas inspired by homotopy theory and higher-dimensional category theory. Indeed, in spite of the fact that bipointed types and morphisms do not form a category in a strict sense, it is possible to introduce the  notion of a homotopy-initial bipointed type in completely elementary and explicit terms, as we do in the next definition.
 
@@ -903,7 +904,7 @@ Furthermore, it can be shown that such a path is itself is unique up to a higher
 A bipointed type $A$ is said to be \emph{homotopy-initial}  if for any bipointed type $B$, the type $\BipHom(A,B)$ of bipointed morphisms from $A$ to $B$
 is contractible, \ie the type
 \[
-\prod_{B \in \Bip} \, \iscontr(\BipHom(A, B) )
+\prod_{B \co \Bip} \, \iscontr(\BipHom(A, B) )
 \] 
 is inhabited.
 \end{definition}
@@ -915,34 +916,34 @@ A bipointed type $A = (A, a_0, a_1)$ is homotopy-initial if and only if it satis
  the following rules:
  \begin{mathpar}
 \begin{prooftree}
-B \in \U \qquad
-b_0 \in B \qquad
-b_1 \in B \qquad
+B \co \U \qquad
+b_0 \co B \qquad
+b_1 \co B \qquad
 \justifies
-x \in A \vdash f(x, b_0, b_1) \in B 
+x \co A \vdash f(x, b_0, b_1) \co B 
 \end{prooftree} \\ \medskip
 \begin{prooftree}
-B \in \U \qquad
-b_0 \in B  \qquad
-b_1 \in B
+B \co \U \qquad
+b_0 \co B  \qquad
+b_1 \co B
 \justifies
-\bar{f}_k \in \Id(  f(a_k, b_0, b_1), b_k ) 
+\bar{f}_k \co \Id(  f(a_k, b_0, b_1), b_k ) 
 \end{prooftree}   \\ \medskip
 
 \begin{prooftree}
-(B, b_0, b_1) \in \Bip \quad
-(f, \bar{f}_0, \bar{f}_1) \in \Bip(A,B) \quad
-(g, \bar{g}_0, \bar{g}_1) \in \Bip(A,B) 
+(B, b_0, b_1) \co \Bip \quad
+(f, \bar{f}_0, \bar{f}_1) \co \Bip(A,B) \quad
+(g, \bar{g}_0, \bar{g}_1) \co \Bip(A,B) 
 \justifies
-x \in A \vdash \alpha(x) \in \Id( f(x), g(x))
+x \co A \vdash \alpha(x) \co \Id( f(x), g(x))
 \end{prooftree}  \\ \medskip
 
 \begin{prooftree}
-(B, b_0, b_1) \in \Bip \quad
-(f, \bar{f}_0, \bar{f}_1) \in \Bip(A,B) \quad
-(g, \bar{g}_0, \bar{g}_1) \in \Bip(A,B) 
+(B, b_0, b_1) \co \Bip \quad
+(f, \bar{f}_0, \bar{f}_1) \co \Bip(A,B) \quad
+(g, \bar{g}_0, \bar{g}_1) \co \Bip(A,B) 
 \justifies
-\bar{\alpha}_k \in \Id( \bar{f}_k, \alpha(a_k) \cdot \bar{g}_k) 
+\bar{\alpha}_k \co \Id( \bar{f}_k, \alpha(a_k) \cdot \bar{g}_k) 
 \end{prooftree}
 \end{mathpar}
  where $k =  0, 1$.
@@ -973,7 +974,7 @@ The next theorem provides the characterisation of inductive bipoinited types.
 \begin{theorem}\label{thm:bipointedmain} A bipointed type 
 is  $A$ is inductive if and only if it is homotopy-initial, \ie  the type
 \[
-\prod_{A \in \Bip} \big(  \isbiphinit(A) \leftrightarrow \isbipind(A) \big)
+\prod_{A \co \Bip} \big(  \isbiphinit(A) \leftrightarrow \isbipind(A) \big)
 \] 
 is inhabited
 \end{theorem}
@@ -991,7 +992,7 @@ exists a bipointed section
 \end{equation}
 Let us begin by considering the total bipointed type associated to $E$, with carrier 
 \[
-E' \defeq \sum_{x \in A} E(x) 
+E' \defeq \sum_{x \co A} E(x) 
 \]
 and distinguished elements $e'_k \defeq \pair(a_k, e_k)$ for $k = 0, 1$. In this way,  the first projection $\pi_1 \co E' \to A$ is a bipointed morphism. By the homotopy-initiality of $A$, we have a bipointed morphism 
 \[
@@ -1020,13 +1021,13 @@ in $\Bip(A,A)$. By Lemma~\ref{BoolHomSpace}, there  is a bipointed homotopy $(\a
 \begin{equation*}
 \bar{\alpha}_k \co \overline{(\pi_1 f)}_k \Rightarrow \alpha(a_k) \cdot \refl(a_k) 
 \end{equation*}
-for $k = 0, 1$. We begin to define the required bipointed section as in~\eqref{equ:reqsec}, by defining, for~$x \in A$, 
+for $k = 0, 1$. We begin to define the required bipointed section as in~\eqref{equ:reqsec}, by defining, for~$x \co A$, 
 \begin{equation}
 \label{equ:defreqsection}
 s(x) \defeq \alpha(x)_{!} \big( \pi_2 f (x) \big) \, .
 \end{equation}
 We now construct  paths~$\bar{s}_k \co s(a_k) \Rightarrow e_k$, for $k = 0, 1$. First of all, recall that 
-$\bar{f}_k \co  f(a_k) \Rightarrow  e'_k$, where $e'_k = \pair(a_k, e_k) \in \sum_{x \in A} E(x)$. Using the equivalence
+$\bar{f}_k \co  f(a_k) \Rightarrow  e'_k$, where $e'_k = \pair(a_k, e_k) \co \sum_{x \co A} E(x)$. Using the equivalence
 \[
 \ext_E \co \Id_{E'}( f(a_k), e'_k) \longrightarrow \sum_{p \co  \pi_1 f(a_k) \Rightarrow a_k} \, \Id_{E(a_k)} \big( p_{!}( \pi_2 f(a_k)) , e_k \big) \, ,
 \]
@@ -1074,9 +1075,9 @@ of an inductive type by means of a standard universal property.
 \end{enumerate} 
 \end{corollary}
 
-\begin{proof} For claim (i), recall that  $\iscontr(X)$ is a mere proposition for any type $X$ and the dependent product of family of mere propositions is again a mere proposition. For (ii), recall that to prove that a type $X$ is a mere proposition, it suffices to do so under the assumption that $X$ is inhabited. Assume therefore that $\isbipind(A)$ is inhabited. Since the dependent product of a family of mere propositions is again a mere proposition, it suffices to show that $\BipSec(A,E)$ is a mere proposition for any $E$. But for any two sections $s, t \in \BipSec(A,E)$, we know that there is a 
-bipointed homotopy $\phi \in \BipHot(s,t)$ by Lemma~\ref{thm:inductiveuniquesec} and hence, by 
-Lemma~\ref{thm:biphot}, there is a path $p \in \Id(s,t)$, as required. Part (iii) now follows from parts (i) and (ii) and  the logical equivalence of  Theorem~\ref{thm:bipointedmain}. 
+\begin{proof} For claim (i), recall that  $\iscontr(X)$ is a mere proposition for any type $X$ and the dependent product of family of mere propositions is again a mere proposition. For (ii), recall that to prove that a type $X$ is a mere proposition, it suffices to do so under the assumption that $X$ is inhabited. Assume therefore that $\isbipind(A)$ is inhabited. Since the dependent product of a family of mere propositions is again a mere proposition, it suffices to show that $\BipSec(A,E)$ is a mere proposition for any $E$. But for any two sections $s, t \co \BipSec(A,E)$, we know that there is a 
+bipointed homotopy $\phi \co \BipHot(s,t)$ by Lemma~\ref{thm:inductiveuniquesec} and hence, by 
+Lemma~\ref{thm:biphot}, there is a path $p \co \Id(s,t)$, as required. Part (iii) now follows from parts (i) and (ii) and  the logical equivalence of  Theorem~\ref{thm:bipointedmain}. 
 \end{proof}
 
 
@@ -1095,7 +1096,7 @@ We conclude this section by showing that if the universe $\U$ is univalent, then
 
 
 \begin{theorem}[$\Hint + \mathrm{UA}$] \label{thm:bipunivalence}
-For small bipointed types $A, B \in \Bip$, the canonical function
+For small bipointed types $A, B \co \Bip$, the canonical function
 \[ 
 \ext_{A,B} \co \Id \big(A,B\big) \to  \BipEquiv(A,B) \, .
 \] 
@@ -1107,19 +1108,19 @@ Let $ (A,a_0,a_1), (B,b_0,b_1)$ be bipointed types. By the characterization of t
 of  elements of a $\Sigma$-type, the 
 identity type $\Id\big( (A,a_0,a_1),  (B,b_0,b_1)\big)$ is equivalent to  the type
 \[
-\sum_{p \in \Id(A,B)} \Id(\pair(a_0,a_1),  p_{!}(\pair(b_0,b_1))) \, .
+\sum_{p \co \Id(A,B)} \Id(\pair(a_0,a_1),  p_{!}(\pair(b_0,b_1))) \, .
 \]
 By path elimination on $p$ and the characterization of paths in product types, this type is equivalent to
 \[ 
-\sum_{p \in \Id(A,B)} \, \Id \big( f_p(a_0),  b_0\big) \times \Id \big( f_p(a_1) , b_1)
+\sum_{p \co \Id(A,B)} \, \Id \big( f_p(a_0),  b_0\big) \times \Id \big( f_p(a_1) , b_1)
  \]
-where we write $f_p \co A \to B$ for the equivalence associated to a path $p \in \Id(a,b)$.  By the Univalence Axiom,
+where we write $f_p \co A \to B$ for the equivalence associated to a path $p \co \Id(a,b)$.  By the Univalence Axiom,
 the above type is equivalent to
 \[ 
-\sum_{f \in \mathsf{Equiv}(A,B)} \, \Id \big( f(a_0),  b_0\big) \times \Id \big( f(a_1) , b_1\big) \]
+\sum_{f \co \mathsf{Equiv}(A,B)} \, \Id \big( f(a_0),  b_0\big) \times \Id \big( f(a_1) , b_1\big) \]
 After rearranging we get
 \[
-\sum_{(f, \bar{f}_0, \bar{f}_1) \in \BipHom(A,B)} \, \isequiv(f)
+\sum_{(f, \bar{f}_0, \bar{f}_1) \co \BipHom(A,B)} \, \isequiv(f)
 \]
 which, by Lemma~\ref{BoolAlgSpace}, is equivalent to $\BipEquiv(A,B)$, as desired. Finally, it is not hard to see that the composition of the above equivalences yields the canonical function $\ext$ up to a homotopy.
 \end{proof} 
@@ -1127,7 +1128,7 @@ which, by Lemma~\ref{BoolAlgSpace}, is equivalent to $\BipEquiv(A,B)$, as desire
 \begin{corollary}[$\Hint + \mathrm{UA}$] \label{BoolHInitIso} 
 Homotopy-initial bipointed types are unique up to a contractible type of paths, i.e. the type
 \[ 
-\prod_{A \in \Bip} \, \prod_{ B \in \Bip}
+\prod_{A \co \Bip} \, \prod_{ B \co \Bip}
 \big( \isbiphinit(A) \times \isbiphinit(B) \to \iscontr(\Id(A,B)) \big) \, .
 \] 
 is inhabited.
@@ -1150,14 +1151,14 @@ by the assumption that $A$ and $B$ are homotopy-initial.
 
 
 A W-type can be seen informally as the free algebra for a signature
-with arbitrarily many operations of possibly infinite arity, but no equations. Indeed, the premises of the formation rule above can be thought of as specifying a signature that has the elements of~$A$ as (names of) operations and in which the arity of $a \in A$ is the cardinality of the type $B(a)$. Then the introduction rule specifies the canonical way of forming an element of the free algebra, and the elimination rule can be seen as the propositions-as-types translation of the appropriate induction principle. Throughout this section and the next, we consider a fixed  $A \in \U$ and $B \co A \to \U$. For $X \in \U$,
+with arbitrarily many operations of possibly infinite arity, but no equations. Indeed, the premises of the formation rule above can be thought of as specifying a signature that has the elements of~$A$ as (names of) operations and in which the arity of $a \co A$ is the cardinality of the type $B(a)$. Then the introduction rule specifies the canonical way of forming an element of the free algebra, and the elimination rule can be seen as the propositions-as-types translation of the appropriate induction principle. Throughout this section and the next, we consider a fixed  $A \co \U$ and $B \co A \to \U$. For $X \co \U$,
 we define
 \[
-PX \defeq \sum_{a \in A} X^{B(a)}
+PX \defeq \sum_{a \co A} X^{B(a)}
 \]
 In this way, we obtain a function $P \co \U \to \U$. This operation on types extends to an operation of functions between 
  types, as follows. For $f \co X\to Y$, we define $P f  \co PX\to PY$ by $\Sigma$-elimination
-so that, for $(a, t) \in PX$, we have 
+so that, for $(a, t) \co PX$, we have 
 \[
 Pf (a, t) = (a,f\circ t) \, .
 \] 
@@ -1170,14 +1171,14 @@ Although this assignment is not strictly functorial, we still refer to  as the \
 
  The type of $P$-algebras is then defined as 
  \[
- \Palg  \defeq \sum_{X \in \U} X^{PX} \, .
+ \Palg  \defeq \sum_{X \co \U} X^{PX} \, .
  \]
  Given a $P$-algebra $X = (X, \sup_X)$,
- we refer to the type $X$ as the carrier or the underlying type of the algebra and to the function $\sup_X : PX\to X$ as the \emph{structure map} of the $P$-algebra. 
+ we refer to the type $X$ as the carrier or the underlying type of the algebra and to the function $\sup_X \co PX\to X$ as the \emph{structure map} of the $P$-algebra. 
  As usual,  we will often refer to a 
  $P$-algebra by mentioning only to its carrier. We adopt similar conventions for other kinds of structures that we consider
  in the following.  In the
- presence of W-types, an example of $P$-algebra is given by the type $W \defeq \WW_{x\in A} B(x)$, with structure map given by the introduction rule for W-types.
+ presence of W-types, an example of $P$-algebra is given by the type $W \defeq \WW_{x\co A} B(x)$, with structure map given by the introduction rule for W-types.
  
 
 
@@ -1186,7 +1187,7 @@ For $P$-algebras $X$ and $Y$, a \emph{$P$-algebra morphism}
 \[
 (f, \bar{f}) \co (X, \sup_X) \rightarrow (Y, \sup_Y)
 \]
-consists of a function $f \co X \rightarrow Y$ and a path $\bar{f} \in \Id( f \circ \sup_X \, ,  \sup_{Y} \circ P f )$.
+consists of a function $f \co X \rightarrow Y$ and a path $\bar{f} \co \Id( f \circ \sup_X \, ,  \sup_{Y} \circ P f )$.
 \end{definition}
 
 A $P$-algebra morphism as above can be represented with a diagram of the form
@@ -1245,19 +1246,19 @@ if there exist $P$-algebra morphisms $\ell,r \co Y \to X$  which provide a left 
 $P$-algebra morphism, \ie for
 which there are paths between $P$-algebra morphisms
 \[ 
-p \in \Id_{\Bip(X,X)}( \ell \circ f,  1_X) \, , \quad q \in \Id_{\Bip(Y,Y)}( f \circ r , 1_Y) \, .
+p \co \Id_{\Bip(X,X)}( \ell \circ f,  1_X) \, , \quad q \co \Id_{\Bip(Y,Y)}( f \circ r , 1_Y) \, .
 \]
 \end{definition}
 
 For example, the identity morphism on a $P$-algebra is a $P$-equivalence, with the left and right inverses given by the identity morphism itself. Given $P$-algebras $X = (X, \sup_X)$ and $Y = (Y, \sup_Y)$ and a function $f \co X \to Y$ between the underlying types, we define the type of proofs that $f$ is an equivalence of $P$-algebras as follows:
 \[
-\isalgequiv(f) \defeq   \sum_{\ell \in  \Palg(X,Y)} \Id( \ell \circ f, 1_X )  \times 
-    \sum_{r  \in \Palg(Y, X)} \Id( f \circ r , 1_Y ) \, .
+\isalgequiv(f) \defeq   \sum_{\ell \co  \Palg(X,Y)} \Id( \ell \circ f, 1_X )  \times 
+    \sum_{r  \co \Palg(Y, X)} \Id( f \circ r , 1_Y ) \, .
 \]
 We then define the type of \emph{$P$-algebra equivalences} between $X$ and $Y$ as
 \[
 \AlgEquiv(X, Y)
-\defeq    \sum_{f : \Palg(X,Y)} \isalgequiv(f)  \, . 
+\defeq    \sum_{f \co \Palg(X,Y)} \isalgequiv(f)  \, . 
 \] 
 
 
@@ -1274,9 +1275,9 @@ if its underlying function $f \co X \to Y$ is an equivalence of types. Furthermo
 $P$-algebra equivalence yields the type
 \begin{multline*}
  \Big(
- \sum_{\ell \co Y \to X} \sum_{\bar{\ell} \in  \prod_{a \in A} \prod_{t \in B(a) \to X} \Id \big( \ell( \sup_X(a,t)) , \sup_Y(a, \ell \circ t) \big)}
+ \sum_{\ell \co Y \to X} \sum_{\bar{\ell} \co  \prod_{a \co A} \prod_{t \co B(a) \to X} \Id \big( \ell( \sup_X(a,t)) , \sup_Y(a, \ell \circ t) \big)}
  P(\ell,\bar{\ell})\Big) \; \times \\ 
- \Big(\big(\Sigma r \co D \to C \big) \big(\Sigma \bar{r} : (\Pi a) (\Pi s) r(d(a,s))=c(a,r \circ s) \big) Q(r,\bar{r})  \Big)\, , 
+ \Big(\big(\Sigma r \co D \to C \big) \big(\Sigma \bar{r} \co (\Pi a) (\Pi s) r(d(a,s))=c(a,r \circ s) \big) Q(r,\bar{r})  \Big)\, , 
 \end{multline*}
 where
 \begin{align*}
@@ -1285,46 +1286,46 @@ Q(r,\bar{r})    & \defeq \Id \Big( \big( f \comp r, (\lambda a)(\lambda s) f(\ba
 \end{align*}
 Using the characterization of paths in $\Sigma$-types, the type $P(\ell,\bar{\ell})$ can be equivalently expressed as
 \begin{align*}
-\big(\Sigma p : \ell \comp f = \idfun{C} \big) \Big((\lambda a) (\lambda t) \ell(\bar{f}(a,t)) \ct \bar{\ell}(a, f \comp t)\Big) = p^{!} \Big((\lambda a) (\lambda t) \refl(c(a,t))\Big) 
+\big(\Sigma p \co \ell \comp f = \idfun{C} \big) \Big((\lambda a) (\lambda t) \ell(\bar{f}(a,t)) \ct \bar{\ell}(a, f \comp t)\Big) = p^{!} \Big((\lambda a) (\lambda t) \refl(c(a,t))\Big) 
 \end{align*}
 By path induction on $p$, the transport $p^{!} \Big((\lambda a) (\lambda t) \refl(c(a,t))\Big)$ is equal to the function
 \[ (\lambda a) (\lambda t) \ext(p)_{c(a,t)} \ct \refl(c(a,t)) \ct \big(c(a)(\ext^{-1}(\ext(p) \circ t))\big)^{-1} \]
-where $\ext : \ell \comp f = \idfun{C} \to \ell \comp f \sim \idfun{C}$ is the canonical equivalence. This is of course propositionally equal to
+where $\ext \co \ell \comp f = \idfun{C} \to \ell \comp f \sim \idfun{C}$ is the canonical equivalence. This is of course propositionally equal to
 \[ (\lambda a) (\lambda t) \ext(p)_{c(a,t)} \ct \big(c(a)(\ext^{-1}(\ext(p) \circ t))\big)^{-1} \]
 Using the characterization of paths in $\Pi$-spaces, the type $P(\ell,\bar{\ell})$ can thus be expressed as
 \begin{align*}
-\big(\Sigma p : \ell \comp f = \idfun{C} \big) (\Pi a) (\Pi t) \Big(\ell(\bar{f}(a,t)) \ct \bar{\ell}(a, f \comp t) = \ext(p)_{c(a,t)} \ct \big(c(a)(\ext^{-1}(\ext(p) \circ t))\big)^{-1}\Big)
+\big(\Sigma p \co \ell \comp f = \idfun{C} \big) (\Pi a) (\Pi t) \Big(\ell(\bar{f}(a,t)) \ct \bar{\ell}(a, f \comp t) = \ext(p)_{c(a,t)} \ct \big(c(a)(\ext^{-1}(\ext(p) \circ t))\big)^{-1}\Big)
 \end{align*}
 Since the function $\ext$ is an equivalence, this is equivalent to
 \begin{align*}
-\big(\Sigma \alpha : \ell \circ f \sim \idfun{C} \big) (\Pi a) (\Pi t) \Big(\ell(\bar{f}(a,t)) \ct \bar{\ell}(a, f \comp t) = \alpha(c(a,t)) \ct \big(c(a)(\ext^{-1}(\alpha \circ t))\big)^{-1}\Big)
+\big(\Sigma \alpha \co \ell \circ f \sim \idfun{C} \big) (\Pi a) (\Pi t) \Big(\ell(\bar{f}(a,t)) \ct \bar{\ell}(a, f \comp t) = \alpha(c(a,t)) \ct \big(c(a)(\ext^{-1}(\alpha \circ t))\big)^{-1}\Big)
 \end{align*}
 Analogously, the type $Q(r,\bar{r})$ is equivalent to
 \begin{align*}
-\big(\Sigma \beta : f \comp r \sim \idfun{D} \big) (\Pi a) (\Pi s) \Big(f(\bar{r}(a,s)) \ct \bar{f}(a, r \comp s) = \beta(d(a,s)) \ct \big(d(a)(\ext^{-1}(\beta \circ s))\big)^{-1}\Big)
+\big(\Sigma \beta \co f \comp r \sim \idfun{D} \big) (\Pi a) (\Pi s) \Big(f(\bar{r}(a,s)) \ct \bar{f}(a, r \comp s) = \beta(d(a,s)) \ct \big(d(a)(\ext^{-1}(\beta \circ s))\big)^{-1}\Big)
 \end{align*}
 Therefore, we can express $\mathsf{isPequiv}(f,\bar{f})$ as the type
-\[ \big(\Sigma \ell : D\to C) \big(\Sigma \alpha : \ell \circ f \sim \idfun{C}\big) \big(\Sigma r : D\to C) \big(\Sigma \beta : f \circ r \sim \idfun{D}\big) R(\ell,\alpha) \times S(r,\beta)\]
+\[ \big(\Sigma \ell \co D\to C) \big(\Sigma \alpha \co \ell \circ f \sim \idfun{C}\big) \big(\Sigma r \co D\to C) \big(\Sigma \beta \co f \circ r \sim \idfun{D}\big) R(\ell,\alpha) \times S(r,\beta)\]
 where
 \begin{align*}
-& R(\ell,\alpha) \defeq \big(\Sigma \bar{\ell} : (\Pi a) (\Pi s) \ell(d(a,s))=c(a,\ell \circ s)\big) (\Pi a) (\Pi t) \\ & \;\;\;\;\;\;\;\;\;\;\;\; \Big(\ell(\bar{f}(a,t)) \ct \bar{\ell}(a, f \comp t) = \alpha(c(a,t)) \ct \big(c(a)(\ext^{-1}(\alpha \circ t))\big)^{-1}\Big) \\
-& S(r,\beta) \defeq \big(\Sigma \bar{r} : (\Pi a) (\Pi s) r(d(a,s))=c(a,r \circ s) \big) (\Pi a) (\Pi s) \\ & \;\;\;\;\;\;\;\;\;\;\;\; \Big(f(\bar{r}(a,s)) \ct \bar{f}(a, r \comp s) = \beta(d(a,s)) \ct \big(d(a)(\ext^{-1}(\beta \circ s))\big)^{-1}\Big)
+& R(\ell,\alpha) \defeq \big(\Sigma \bar{\ell} \co (\Pi a) (\Pi s) \ell(d(a,s))=c(a,\ell \circ s)\big) (\Pi a) (\Pi t) \\ & \;\;\;\;\;\;\;\;\;\;\;\; \Big(\ell(\bar{f}(a,t)) \ct \bar{\ell}(a, f \comp t) = \alpha(c(a,t)) \ct \big(c(a)(\ext^{-1}(\alpha \circ t))\big)^{-1}\Big) \\
+& S(r,\beta) \defeq \big(\Sigma \bar{r} \co (\Pi a) (\Pi s) r(d(a,s))=c(a,r \circ s) \big) (\Pi a) (\Pi s) \\ & \;\;\;\;\;\;\;\;\;\;\;\; \Big(f(\bar{r}(a,s)) \ct \bar{f}(a, r \comp s) = \beta(d(a,s)) \ct \big(d(a)(\ext^{-1}(\beta \circ s))\big)^{-1}\Big)
 \end{align*}
 Using the global choice principle, we can express the type $S(r,\beta)$ equivalently as
-\[  (\Pi a) (\Pi s) \big(\Sigma \bar{r} : r(d(a,s))=c(a,r \circ s) \big) \Big(f(\bar{r}) \ct \bar{f}(a, r \comp s) = \beta(d(a,s)) \ct \big(d(a)(\ext^{-1}(\beta \circ s))\big)^{-1}\Big) \, .
+\[  (\Pi a) (\Pi s) \big(\Sigma \bar{r} \co r(d(a,s))=c(a,r \circ s) \big) \Big(f(\bar{r}) \ct \bar{f}(a, r \comp s) = \beta(d(a,s)) \ct \big(d(a)(\ext^{-1}(\beta \circ s))\big)^{-1}\Big) \, .
 \]
-Now we observe that for any equivalence $g : X \to Y$, and paths $q : \Id(g(x_2),y)$, $s : \Id(g(x_1),y)$, the type $\big(\Sigma p : \Id_X(x_1,x_2)\big) \Id(g(p) \ct q,s)$ is contractible. Since $\ell, \alpha, r, \beta$ make $f$ into an equivalence, we have $S(r,\beta) \simeq \one$.
+Now we observe that for any equivalence $g \co X \to Y$, and paths $q \co \Id(g(x_2),y)$, $s \co \Id(g(x_1),y)$, the type $\big(\Sigma p \co \Id_X(x_1,x_2)\big) \Id(g(p) \ct q,s)$ is contractible. Since $\ell, \alpha, r, \beta$ make $f$ into an equivalence, we have $S(r,\beta) \simeq \one$.
 
 Since $f$ is an equivalence between $C$ and $D$, the mapping $t \mapsto f \comp t$ is an equivalence between $B(a) \to C$ and $B(a) \to D$. The mapping $\bar{\ell} \mapsto (\lambda a) (\lambda t) \bar{\ell}(a,f \comp t)$ is therefore an equivalence between the types $(\Pi a) (\Pi s) \ell(d(a,s)) = c(a,\ell \comp s)$ and $(\Pi a) (\Pi t) \ell(d(a,f \comp t)) = c(a,\ell \comp f \comp t)$. Thus, the type type $R(\ell,\alpha)$ can be expressed equivalently as
 \begin{align*}
-& \big(\Sigma \gamma : (\Pi a) (\Pi t) \ell(d(a,f \circ t))=c(a,\ell \circ f \circ t)\big) (\Pi a) (\Pi t) \\ & \;\;\;\;\;\;\;\;\;\;\;\; \Big(\ell(\bar{f}(a,t)) \ct \gamma(a,t) = \alpha(c(a,t)) \ct \big(c(a)(\ext^{-1}(\alpha \circ t))\big)^{-1}\Big)
+& \big(\Sigma \gamma \co (\Pi a) (\Pi t) \ell(d(a,f \circ t))=c(a,\ell \circ f \circ t)\big) (\Pi a) (\Pi t) \\ & \;\;\;\;\;\;\;\;\;\;\;\; \Big(\ell(\bar{f}(a,t)) \ct \gamma(a,t) = \alpha(c(a,t)) \ct \big(c(a)(\ext^{-1}(\alpha \circ t))\big)^{-1}\Big)
 \end{align*}
 Furthermore, using the global choice principle we see that this is equivalent to
-\[ (\Pi a) (\Pi t) \big(\Sigma \gamma : \ell(d(a,f \circ t))=c(a,\ell \circ f \circ t)\big) \Big(\ell(\bar{f}(a,t)) \ct \gamma = \alpha(c(a,t)) \ct \big(c(a)(\ext^{-1}(\alpha \circ t))\big)^{-1}\Big) \]
-Now we observe that for paths $q : \Id(y,x_1)$, $s : \Id(y,x_2)$, the type $\big(\Sigma p : \Id_X(x_1,x_2)\big) \Id(q \ct p,s)$ is contractible. Thus we have $R(\ell,\alpha) \simeq \one$. Therefore,
+\[ (\Pi a) (\Pi t) \big(\Sigma \gamma \co \ell(d(a,f \circ t))=c(a,\ell \circ f \circ t)\big) \Big(\ell(\bar{f}(a,t)) \ct \gamma = \alpha(c(a,t)) \ct \big(c(a)(\ext^{-1}(\alpha \circ t))\big)^{-1}\Big) \]
+Now we observe that for paths $q \co \Id(y,x_1)$, $s \co \Id(y,x_2)$, the type $\big(\Sigma p \co \Id_X(x_1,x_2)\big) \Id(q \ct p,s)$ is contractible. Thus we have $R(\ell,\alpha) \simeq \one$. Therefore,
 \begin{align*} 
 \isalgequiv(f,\bar{f}) 
-  & \simeq   \big(\Sigma \ell \co D \to C \big) \big(\Sigma \alpha : \ell \comp f \sim 1_C \big) \big(\Sigma r  \co D \to C \big) 
+  & \simeq   \big(\Sigma \ell \co D \to C \big) \big(\Sigma \alpha \co \ell \comp f \sim 1_C \big) \big(\Sigma r  \co D \to C \big) 
  \big(\Sigma \beta \co f \comp r \sim 1_D \big) \, 1 \\
  & \simeq \big(\Sigma \ell \co D \to C \big)  \big( \ell \comp f \sim 1_C \big) \times 
  \big(\Sigma r  \co D \to C \big) \big( f \comp r \sim 1_D \big) \\
@@ -1343,8 +1344,8 @@ For $P$-algebra morphisms $(f, \bar{f}) \, , (g, \bar{g}) \co X \to Y$, a \emph{
 \[
 (\alpha, \bar{\alpha}) \co (f, \bar{f}) \sim (g, \bar{g})
 \] 
-consists of a homotopy $\alpha : f \sim g$ and a path
-$\bar{\alpha} \in \Id( \bar{f} \cdot \sup_Y (P \alpha) ,  \alpha(\sup_X)\cdot \bar{g})$. 
+consists of a homotopy $\alpha \co f \sim g$ and a path
+$\bar{\alpha} \co \Id( \bar{f} \cdot \sup_Y (P \alpha) ,  \alpha(\sup_X)\cdot \bar{g})$. 
 \end{definition}
 
 Such a $P$-algebra homotopy can be thought of as a proof that the two paths produced by the pasting diagrams
@@ -1363,7 +1364,7 @@ $\Id \big( f \circ \sup_X \, ,  \sup_Y \circ Pg \big)$, and that $\alpha(\sup_X)
 \[
 \AlgHot \big( (f,\bar{f}), (g, \bar{g})  \big)
  \defeq  
-\sum_{\alpha :  f \sim g} \, \Id\big( \bar{f} \cdot \sup_Y(P \alpha),\, (\alpha(\sup_X))\cdot \bar{g} \big) \, .
+\sum_{\alpha \co  f \sim g} \, \Id\big( \bar{f} \cdot \sup_Y(P \alpha),\, (\alpha(\sup_X))\cdot \bar{g} \big) \, .
 \]
 
 
@@ -1385,25 +1386,25 @@ This follows from a more general statement to be proved in Proposition~\ref{lem:
 We now introduce the fibered versions of the notions of a $P$-algebra, $P$-algebra morphism, and $P$-algebra homotopy.
 
 \begin{definition} \label{def:fibalg}
-Let $X$ be a $P$-algebra. A \emph{fibered $P$-algebra} over $X$ consists of a dependent type $E \in X \to \U$
+Let $X$ be a $P$-algebra. A \emph{fibered $P$-algebra} over $X$ consists of a dependent type $E \co X \to \U$
 and a function 
 \[
-s_E \in \prod_{a \in A} \prod_{t \in B(a) \to X}  \prod_{b \in B(a)}  E(t b)  \to E(\sup_X(a,t))
+s_E \co \prod_{a \co A} \prod_{t \co B(a) \to X}  \prod_{b \co B(a)}  E(t b)  \to E(\sup_X(a,t))
  \] 
 \end{definition}
 
 
 As we will see in Lemma~\ref{lem:fibalg} below, a fibered $P$-algebra amounts essentially to a dependent type whose total
-type $E' \defeq \sum_{x \in X} E(x)$ carries the structure of a $P$-algebra for which the projection $\pi_1 \co E' 
+type $E' \defeq \sum_{x \co X} E(x)$ carries the structure of a $P$-algebra for which the projection $\pi_1 \co E' 
 \to X$ is a $P$-algebra morphism.  For a $P$-algebra $X$, we then define the type of \emph{fibered $P$-algebras} over $X$ as follows:
 \[
-\Palg(X) \defeq \sum_{E \in X \to \U} \prod_{a \in A} \prod_{t \in B(a) \to X} 
- \prod_{b \in B(a)}  E(t b)  \to E(\sup_X(a,t))
+\Palg(X) \defeq \sum_{E \co X \to \U} \prod_{a \co A} \prod_{t \co B(a) \to X} 
+ \prod_{b \co B(a)}  E(t b)  \to E(\sup_X(a,t))
  \]
 This terminology and notation used in the definition is justified by the following lemma. 
 
 \begin{lemma}\label{lem:fibalg}
-Given a fibered $P$-algebra $E$ over $X$, the type $E' =  \sum_{x \in  X} E(x)$ can be equipped with the structure of a $P$-algebra in such a way that  the projection function $\pi_1 : E'\to X$ becomes a $P$-algebra morphism:
+Given a fibered $P$-algebra $E$ over $X$, the type $E' =  \sum_{x \co  X} E(x)$ can be equipped with the structure of a $P$-algebra in such a way that  the projection function $\pi_1 \co E'\to X$ becomes a $P$-algebra morphism:
 \[
 \xymatrix{
 P(E') \ar[r]^{P\pi_1} \ar[d]_-{\sup_{E'}} \ar@{}[rd]|{p} & PX \ar[d]^{\sup_X} \\ 
@@ -1416,15 +1417,15 @@ referred to as the type-theoretic axiom of choice).
 \end{proof}
 
 \begin{definition} \label{def:fibalgsection} Let $E = (E, s_E)$ be a fibered $P$-algebra over a $P$-algebra $X$.  
-A \emph{$P$-algebra section} of $E$ consists of a section $f \in \prod_{x \in X} E(x)$ and a path
+A \emph{$P$-algebra section} of $E$ consists of a section $f \co \prod_{x \co X} E(x)$ and a path
 \[ 
-\bar{f} \in \prod_{a \in A} \prod_{t \in B(a) \to X} \Id \big( f(\sup_X(a,t)), s_E(a, t, f \circ t) \big)
+\bar{f} \co \prod_{a \co A} \prod_{t \co B(a) \to X} \Id \big( f(\sup_X(a,t)), s_E(a, t, f \circ t) \big)
 \]
 \end{definition} 
 
 Note that the definition of a $P$-algebra section describes exactly the data in the conclusion of the elimination rule and the propositional computation rule for an inductive $P$-algebra in the sense of Definition~\ref{def:Wind}. According to the above definition, we define the type of $P$-algebra sections of $X$ by
 \[ 
-\PalgSec(X,E)  \defeq \sum_{f  \in \prod_{x \in X} E(x)}\prod_{a \in A} \prod_{t \in B(a) \to X} 
+\PalgSec(X,E)  \defeq \sum_{f  \co \prod_{x \co X} E(x)}\prod_{a \co A} \prod_{t \co B(a) \to X} 
 \Id\big(   f(\sup_X(a,t)) ,  s_E(a,t,f  \circ t) \big) \, .
 \]
 We will usually leave out all but the last argument of an element of $\PalgSec(X,E)$. 
@@ -1433,7 +1434,7 @@ We will usually leave out all but the last argument of an element of $\PalgSec(X
 
 \begin{lemma}
 Given a fibered $P$-algebra $(E, e)$ over $X$ and a $P$-algebra section $(f, \bar{f})$ of $E$, there is a $P$-algebra 
-morphism $f' : X \to E'$, where the type $E' = \sum_{x \in X} E(x)$ is equipped with its canonical 
+morphism $f' \co X \to E'$, where the type $E' = \sum_{x \co X} E(x)$ is equipped with its canonical 
 $P$-algebra structure. 
 \[
 \xymatrix@C=2cm@R=1.5cm{
@@ -1455,7 +1456,7 @@ notion of a $P$-algebra homotopy.
 (\alpha , \bar{\alpha}) \co (f, \bar{f})  \rightarrow (g, \bar{g})
 \] 
 is a homotopy~$\alpha \co f \sim g$ with a path
-$\bar{\alpha} \in 
+$\bar{\alpha} \co 
 \Id\big( \bar{f}(a,t)  \ct s_E\big(a,t, \ext (\alpha \circ t) \big),
 \alpha(\sup_X(a,t)) \ct \bar{g}(a,t) \big)$. 
 \end{definition} 
@@ -1463,7 +1464,7 @@ $\bar{\alpha} \in
 Accordingly, we define the type of $P$-algebra homotopies of sections as follows:
 \begin{multline*}
 \AlgSecHot( (f, \bar{f}) ,\, (g, \bar{g}) )  \defeq \\ 
-\sum_{\alpha \co f \sim g} \prod_{a \in A} \prod_{t \in B(a) \to X} 
+\sum_{\alpha \co f \sim g} \prod_{a \co A} \prod_{t \co B(a) \to X} 
 \Id\big( \bar{f}(a,t)  \ct s_E \big(a,t, \ext (\alpha \circ t) \big),\ 
 \alpha(\sup_X(a,t)) \ct \bar{g}(a,t) \big) \, .
 \end{multline*}
@@ -1472,7 +1473,7 @@ Lemma~\ref{lem:Wetaind}.  The choice of terminology is justified by the followin
 
 \begin{lemma}\label{lem:fibalghom}
 Given a fibered $P$-algebra $(E, e)$ over $X$, two $P$-algebra sections $(f, \bar{f})$ and $(g, \bar{g})$, and a 
-$P$-algebra homotopy $(\alpha, \bar{\alpha}) : (f, \bar{f}) \sim (g, \bar{g})$, there is a $P$-algebra homotopy between the corresponding $P$-algebra morphisms $f, g : X \to E'$ 
+$P$-algebra homotopy $(\alpha, \bar{\alpha}) \co (f, \bar{f}) \sim (g, \bar{g})$, there is a $P$-algebra homotopy between the corresponding $P$-algebra morphisms $f, g \co X \to E'$ 
 \[
 \xymatrix{
  E' \ar@{}[d]|{\alpha} \\ 
@@ -1494,16 +1495,16 @@ For every pair of $P$-algebra sections $(f, \bar{f})$ and $(g, \bar{g})$,  there
 \end{lemma}
 
 \begin{proof}Let $E = (E, s_E)$ be a fibered algebra over a $P$-algebra $X = (X, \sup_X)$ and consider two $P$-algebra
-sections $(f,\bar{f}), (g,\bar{g}) \in \PalgSec(X,E)$. We have
+sections $(f,\bar{f}), (g,\bar{g}) \co \PalgSec(X,E)$. We have
 \begin{align*}
  & \Id\big( (f,\bar{f}),  (g,\bar{g}) \big) \\ 
-& \quad \simeq \sum_{p \in \Id( f , g)} \Id \Big(\bar{g} , \trans_p ( \bar{f} ) \Big)  \\
-& \quad \simeq \sum_{p \in \Id( f , g)} \Id \Big(\bar{g}, 
+& \quad \simeq \sum_{p \co \Id( f , g)} \Id \Big(\bar{g} , \trans_p ( \bar{f} ) \Big)  \\
+& \quad \simeq \sum_{p \co \Id( f , g)} \Id \Big(\bar{g}, 
 (\lambda a)(\lambda t) \, \ext(p)_{\sup_X(a,t)}^{-1} \ct \bar{f}(a,t) \ct \app_{s_E(a,t)}(\int (\lambda b . \, \ext(p)_{t  b})  \Big)  \\
-& \quad \simeq \sum_{\alpha \in \Hot( f, g)} \Id \Big(\bar{g},  (\lambda a) (\lambda t) \, \alpha_{\sup_X(a,t)}^{-1} \ct \bar{f}(a,t) \ct 
+& \quad \simeq \sum_{\alpha \co \Hot( f, g)} \Id \Big(\bar{g},  (\lambda a) (\lambda t) \, \alpha_{\sup_X(a,t)}^{-1} \ct \bar{f}(a,t) \ct 
 \app_{s_E(a,t)} (\int (\lambda b. \,  \alpha_{t b}))  \Big)  \\
-&\quad \simeq \sum_{\alpha \in \Hot( f, g)} \prod_{a \in A}\prod_{t \in B(a) \to X } \Id \Big(\bar{g}(a,t) , \alpha_{\sup_X(a,t)}^{-1} \ct \bar{f}(a,t) \ct \app_{s_E(a,t)}(\int (\lambda b. \, \alpha_{t  b})) \Big)  \\ 
-& \quad \simeq \sum_{\alpha \in \Hot( f, g)} \prod_{a \in A}\prod_{t \in B(a) \to X } \Id \Big(\alpha_{\sup_X(a,t)} \ct \bar{g}(a,t) , \bar{f}(a,t) \ct 
+&\quad \simeq \sum_{\alpha \co \Hot( f, g)} \prod_{a \co A}\prod_{t \co B(a) \to X } \Id \Big(\bar{g}(a,t) , \alpha_{\sup_X(a,t)}^{-1} \ct \bar{f}(a,t) \ct \app_{s_E(a,t)}(\int (\lambda b. \, \alpha_{t  b})) \Big)  \\ 
+& \quad \simeq \sum_{\alpha \co \Hot( f, g)} \prod_{a \co A}\prod_{t \co B(a) \to X } \Id \Big(\alpha_{\sup_X(a,t)} \ct \bar{g}(a,t) , \bar{f}(a,t) \ct 
 \app_{s_E(a,t)}(\int  (\lambda b. \,  \alpha_{t  b})) \Big) \\[1ex]
 & \quad = \  \FibAlgHot \big( (f,\bar{f}) \; (g,\bar{g}) \big) \, . \qedhere
 \end{align*}  
@@ -1514,13 +1515,13 @@ sections $(f,\bar{f}), (g,\bar{g}) \in \PalgSec(X,E)$. We have
 
 \section{Homotopy-initial $P$-algebras}
 
-Given a $P$-algebra $X = (X, \sup_X)$ and a type $Y$, an equivalence of types $f \in X \to Y$ makes $Y$ into a $P$-algebra with structure map $s_Y \in PY \to Y$ given by the composite
+Given a $P$-algebra $X = (X, \sup_X)$ and a type $Y$, an equivalence of types $f \co X \to Y$ makes $Y$ into a $P$-algebra with structure map $s_Y \co PY \to Y$ given by the composite
 \[
 \xymatrix@C=1.2cm{
 PY \ar[r]^{P(f^{-1})} & PX \ar[r]^{\sup_X} & X \ar[r]^f & Y \, , }
 \]
- where $f^{-1} \in Y \to X$ is the quasi-inverse of $f \in X \to Y$. In particular, for $W = \W_{x \in A} B(x)$, if we have an equivalence  
- $f \in W \to Y$, then the induced $P$-algebra structure $\sup_Y \in P(Y)\to Y$ defined as above is such that $Y$ also satisfies 
+ where $f^{-1} \co Y \to X$ is the quasi-inverse of $f \co X \to Y$. In particular, for $W = \W_{x \co A} B(x)$, if we have an equivalence  
+ $f \co W \to Y$, then the induced $P$-algebra structure $\sup_Y \co P(Y)\to Y$ defined as above is such that $Y$ also satisfies 
  a form of the elimination rule for $W$-types.  We shall see that $Y$ satisfies the other rules as well, but with weakened computation rule.
 
 
@@ -1530,7 +1531,7 @@ PY \ar[r]^{P(f^{-1})} & PX \ar[r]^{\sup_X} & X \ar[r]^f & Y \, , }
 We say that a $P$-algebra $X$  is \emph{inductive} if every fibered $P$-algebra
 over it has a $P$-algebra section, \ie the type
 \[ 
-\isalgind(X) \defeq \prod_{E \in \FibPalg(X)}  \PalgSec(X,E) 
+\isalgind(X) \defeq \prod_{E \co \FibPalg(X)}  \PalgSec(X,E) 
 \]  
 is inhabited.
 \end{definition}
@@ -1540,19 +1541,19 @@ is inhabited.
 \item elimination rule, \smallskip
 \begin{mathpar}
 \inferrule{  
-x \in X \vdash E(x) \in \U \\ 
+x \co X \vdash E(x) \co \U \\ 
 \textstyle
-a \in A \, , t  \in B(a) \to X,\, e \in \prod_{b \in B(a)}  E(t b) \vdash s_E(a,t,e) \in E(\sup_X(a,t))}
-{ x \in X \vdash \ind(x,s_E) \in E(x)}
+a \co A \, , t  \co B(a) \to X,\, e \co \prod_{b \co B(a)}  E(t b) \vdash s_E(a,t,e) \co E(\sup_X(a,t))}
+{ x \co X \vdash \ind(x,s_E) \co E(x)}
 \end{mathpar}
 
 \item propositional computation rule, \smallskip
 \begin{mathpar}
 \inferrule{
-x \in X \vdash E(x) \in \U \\ 
+x \co X \vdash E(x) \co \U \\ 
 \textstyle
-a \in A ,\, t \in  B(a) \to X ,\, e \in \prod_{b \in B(a)}  E(tb) \vdash s_E(a,t,e) \in E(\sup_X(a,t))}
-{a \in A,\, t \in B(a) \to X \vdash \beta(a,t,s_E) \in \Id \big( \ind(\sup_X(a,t),s_E),  e(a,t, (\lambda b) \ind(t b,s_E)) \big)}
+a \co A ,\, t \co  B(a) \to X ,\, e \co \prod_{b \co B(a)}  E(tb) \vdash s_E(a,t,e) \co E(\sup_X(a,t))}
+{a \co A,\, t \co B(a) \to X \vdash \beta(a,t,s_E) \co \Id \big( \ind(\sup_X(a,t),s_E),  e(a,t, (\lambda b) \ind(t b,s_E)) \big)}
 \end{mathpar}
 \end{itemize}
 \end{proposition}
@@ -1568,21 +1569,21 @@ Let $X = (X, \sup_X)$ be a $P$-algebra. If $X$ is inductive, then it satisfies t
 \item propositional $\eta$-rule\smallskip
 \begin{mathpar}
 \inferrule{
- x \in X \vdash E(x) \in \U   \\ 
- \textstyle a \in A,\,    t \in B(a) \to X,\, e \in \prod_{b \in B(a)} E(tb) \vdash s_E(a,t,e) \in E(\sup_X(a,t))  \\  
-  x \in X \vdash f(x) \in E(x) \\ \\
- a \in A \, ,  t \in B(a) \to X \vdash \bar{f}(a,t) \in \Id  \big(  f(\sup_X(a,t)) ,  s_E\big(a,t, f \circ t ) \big) }
-{x \in X \vdash \eta(x) \in \Id( f(x),  \ind(x,s_E))}
+ x \co X \vdash E(x) \co \U   \\ 
+ \textstyle a \co A,\,    t \co B(a) \to X,\, e \co \prod_{b \co B(a)} E(tb) \vdash s_E(a,t,e) \co E(\sup_X(a,t))  \\  
+  x \co X \vdash f(x) \co E(x) \\ \\
+ a \co A \, ,  t \co B(a) \to X \vdash \bar{f}(a,t) \co \Id  \big(  f(\sup_X(a,t)) ,  s_E\big(a,t, f \circ t ) \big) }
+{x \co X \vdash \eta(x) \co \Id( f(x),  \ind(x,s_E))}
 \end{mathpar}
 \item coherence rule\smallskip
 \begin{mathpar}
 \inferrule{
-x \in X \vdash E(x) \in \U   \\ 
-\textstyle a \in A,\,    t \in B(a) \to X,\, e \in \prod_{b \in B(a)} E(tb) \vdash s_E(a,t,e) \in E(\sup_X(a,t))  \\  
- x \in X \vdash f(x) \in E(x) \\ \\
-a \in A \, ,  t \in B(a) \to X \vdash \bar{f}(a,t) \in \Id  \big(  f(\sup_X(a,t)) ,  s_E\big(a,t, f \circ t ) \big) }
+x \co X \vdash E(x) \co \U   \\ 
+\textstyle a \co A,\,    t \co B(a) \to X,\, e \co \prod_{b \co B(a)} E(tb) \vdash s_E(a,t,e) \co E(\sup_X(a,t))  \\  
+ x \co X \vdash f(x) \co E(x) \\ \\
+a \co A \, ,  t \co B(a) \to X \vdash \bar{f}(a,t) \co \Id  \big(  f(\sup_X(a,t)) ,  s_E\big(a,t, f \circ t ) \big) }
 {
-a \in A, t \in B(a) \to X \vdash \gamma(a,t) \in
+a \co A, t \co B(a) \to X \vdash \gamma(a,t) \in
 \Id\big( \eta(\sup_X(a,t))\ct \beta(a,t), 
 \bar{f}(a,t)\cdot s_E(a,t,\int(\eta\circ t)) \big)
 }
@@ -1591,12 +1592,12 @@ a \in A, t \in B(a) \to X \vdash \gamma(a,t) \in
 \end{lemma}
 
 
-\begin{proof} For $x \in X$, let us define $F(x) \defeq \Id \big(   f(x), \ind(x,s_E))$. With this notation, proving
- the propositional $\eta$-rule amounts to defining $\eta(x) \in F(x)$, for $x \in X$. In order to do so, we apply
-the elimination rule for $X$. Thus, we need to show that, for $a \in A$, $t \in B(a) \to X$ and~$\alpha \in \prod_{b \in B(a)} F(tb)$, there 
+\begin{proof} For $x \co X$, let us define $F(x) \defeq \Id \big(   f(x), \ind(x,s_E))$. With this notation, proving
+ the propositional $\eta$-rule amounts to defining $\eta(x) \co F(x)$, for $x \co X$. In order to do so, we apply
+the elimination rule for $X$. Thus, we need to show that, for $a \co A$, $t \co B(a) \to X$ and~$\alpha \co \prod_{b \co B(a)} F(tb)$, there 
 is 
 \[
-q(a,t,\alpha) \in   F(\sup_X(a,t)) \, .
+q(a,t,\alpha) \co   F(\sup_X(a,t)) \, .
 \]
 We can construct this path explicitly as follows:
 \begin{align*}
@@ -1604,11 +1605,11 @@ f(\sup_X(a,t)) &\Rightarrow s_E\big(a,t, f \circ t  \big)   \by{\bar{f}(a,t)}\\
 	&\Rightarrow s_E\big(a,t, (\lambda b)\, \ind(t b,s_E) \big) \by{s_E(a,t,\int(\alpha))}\\
 	& \Rightarrow \ind(s_X(a,t),s_E) \by{\beta(a,t)^{-1}}.
 \end{align*}
-For $x \in X$, we can then define
+For $x \co X$, we can then define
 \[
-\eta(x) \defeq \ind(x,q) \in F(x) \, ,
+\eta(x) \defeq \ind(x,q) \co F(x) \, ,
 \] 
-For $a \in A$ and $t \in B(a) \to X$, the propositional computation then gives us
+For $a \co A$ and $t \co B(a) \to X$, the propositional computation then gives us
 \[
  \eta(s_X(a,t)) \Rightarrow  \bar{f}(a,t) \cdot s_E(a,t,\int(  \eta \circ t ))  \cdot  \beta(a,t)^{-1} \, .
 \]
@@ -1631,7 +1632,7 @@ $Y = (Y, \sup_Y)$, the type $\Palg(X,Y)$ of $P$-algebra morphisms from $X$ to $Y
 is contractible, \ie the following type is inhabilited
 \[
 \isalghinit(X) \defeq
- \prod_{Y \in \Palg}  \iscontr \big( \Palg(X,Y) \big)  \, .
+ \prod_{Y \co \Palg}  \iscontr \big( \Palg(X,Y) \big)  \, .
 \]  
 \end{definition}
 
@@ -1659,8 +1660,8 @@ PX \ar[d]_{s} \ar[r]^{Pt} \ar@{}[dr]|{\bar{t}}& PPX \ar[d]^{Ps} \\
 X \ar[r]_{t} & PX}
 \end{equation}
 Now, the composite $s \circ t \co X \to X$ and the identity $1_X \co X \to X$ are both $P$-algebra
-morphisms and so, by the contractibility of $\Palg(X,X)$, there has to be a path $p \in \Id(s\circ t ,1_X)$. 
-Using this fact, we can also show that there is a path $q \in \Id(t \circ s, 1_{PX})$. Indeed, we have
+morphisms and so, by the contractibility of $\Palg(X,X)$, there has to be a path $p \co \Id(s\circ t ,1_X)$. 
+Using this fact, we can also show that there is a path $q \co \Id(t \circ s, 1_{PX})$. Indeed, we have
 \[
 t \circ s  \Rightarrow Ps \circ Pt 
  \Rightarrow P(s \circ t) 
@@ -1683,41 +1684,41 @@ A $P$-algebra $X = (X, \sup_X)$  is  homotopy-initial if and only if it satisfie
 \item recursion rule, \smallskip
 \begin{mathpar}
 \inferrule{
-%A : \type \\  x:A \vdash B(x) : \type \\ 
-% m : \W  \\  
-Y \in \U \\ 
-a \in A \, ,  t \in B(a) \to Y \vdash \sup_Y(a,t) \in Y }
-{ x \in X \vdash \rec(x,\sup_Y) \in Y}
+%A \co \type \\  x:A \vdash B(x) \co \type \\ 
+% m \co \W  \\  
+Y \co \U \\ 
+a \co A \, ,  t \co B(a) \to Y \vdash \sup_Y(a,t) \co Y }
+{ x \co X \vdash \rec(x,\sup_Y) \co Y}
 \end{mathpar}
 \item simple propositional computation rule, \smallskip
 \begin{mathpar}
 \inferrule{
-Y \in \U \\ 
-a \in A,\, t \in B(a) \to Y  \vdash \sup_Y(a,t) \in Y }
-{a \in A,\, t \in B(a) \to Y \vdash
- \beta(a,t,\sup_Y) \in \Id \big( \rec(\sup_X(a,t),\sup_Y) \, ,  \sup_Y\big(a, (\lambda{b}) \rec(t b, \sup_Y)\big) \big)}
+Y \co \U \\ 
+a \co A,\, t \co B(a) \to Y  \vdash \sup_Y(a,t) \co Y }
+{a \co A,\, t \co B(a) \to Y \vdash
+ \beta(a,t,\sup_Y) \co \Id \big( \rec(\sup_X(a,t),\sup_Y) \, ,  \sup_Y\big(a, (\lambda{b}) \rec(t b, \sup_Y)\big) \big)}
 \end{mathpar}
 \item simple propositional $\eta$-rule, \smallskip
 \begin{mathpar}
 \inferrule{
-Y \in \U \\ 
-a \in A,\, t \in B(a) \to Y \vdash \sup_Y(a,t) \in Y \\ 
-x \in X  \vdash f(x) \in Y \\ \\
-a \in A, t \in B(a) \to Y \vdash \bar{f}(a,t) \in \Id( f(\sup_X(a,t)),  \sup_Y(a , t \circ f )) }
-{x  \in A \vdash \eta(x) \in \Id( f(x) , \rec(x,\sup_Y))}
+Y \co \U \\ 
+a \co A,\, t \co B(a) \to Y \vdash \sup_Y(a,t) \co Y \\ 
+x \co X  \vdash f(x) \co Y \\ \\
+a \co A, t \co B(a) \to Y \vdash \bar{f}(a,t) \co \Id( f(\sup_X(a,t)),  \sup_Y(a , t \circ f )) }
+{x  \co A \vdash \eta(x) \co \Id( f(x) , \rec(x,\sup_Y))}
 \end{mathpar}
 \item simple propositional coherence rule, \smallskip
 \begin{mathpar}
 \inferrule{
-Y \in \U 
-a \in A,\, t \in B(a) \to Y \vdash \sup_Y(a,t)  \in Y \\ 
-  \\ x \in X \vdash f(x) \in Y \\ 
-%z:C \vdash g(z) : E(z) \\ 
-a \in A, t \in B(a) \to Y \vdash \bar{f}(a,t) \in \Id( f(\sup_X(a,t)) , \sup_Y(a, f \circ t ))
+Y \co \U 
+a \co A,\, t \co B(a) \to Y \vdash \sup_Y(a,t)  \co Y \\ 
+  \\ x \co X \vdash f(x) \co Y \\ 
+%z:C \vdash g(z) \co E(z) \\ 
+a \co A, t \co B(a) \to Y \vdash \bar{f}(a,t) \co \Id( f(\sup_X(a,t)) , \sup_Y(a, f \circ t ))
 }
-%x:A, p: B(x) \to C \vdash \delta(x,p) : g(\wsup(x,p)) = e(x,p,\lam{b:B(x)} g(p \;b))}
-{a \in A, t \in B(a) \to X \vdash 
-\gamma(a,t) \in \Id( \eta(\wsup(a,t))\ct \beta(a,t), 
+%x:A, p: B(x) \to C \vdash \delta(x,p) \co g(\wsup(x,p)) = e(x,p,\lam{b:B(x)} g(p \;b))}
+{a \co A, t \co B(a) \to X \vdash 
+\gamma(a,t) \co \Id( \eta(\wsup(a,t))\ct \beta(a,t), 
 \bar{f}(a,t) \ct \sup_Y(a,\int(\eta\circ t)))
 }
 \end{mathpar}
@@ -1727,7 +1728,7 @@ a \in A, t \in B(a) \to Y \vdash \bar{f}(a,t) \in \Id( f(\sup_X(a,t)) , \sup_Y(a
 
 
 
-\begin{proof} The rules can be read as follows: the recursion rule says that, given any type $Y$ together with the function $\sup_Y \in PY \to Y$, \ie any $P$-algebra, there is a map $\rec \co X\to Y$.  The simple propositional computation rule says that this map $\rec$ is a $P$-algebra morphism.  The simple propositional $\eta$-rule says that if $f \co X \to Y$ is a $P$-algebra morphism, then there is a homotopy $\eta \co f \sim \rec$.  And the simple propositional $(\beta, \eta)$-compatibility rule says that $\eta$ is in fact a $P$-algebra homotopy.
+\begin{proof} The rules can be read as follows: the recursion rule says that, given any type $Y$ together with the function $\sup_Y \co PY \to Y$, \ie any $P$-algebra, there is a map $\rec \co X\to Y$.  The simple propositional computation rule says that this map $\rec$ is a $P$-algebra morphism.  The simple propositional $\eta$-rule says that if $f \co X \to Y$ is a $P$-algebra morphism, then there is a homotopy $\eta \co f \sim \rec$.  And the simple propositional $(\beta, \eta)$-compatibility rule says that $\eta$ is in fact a $P$-algebra homotopy.
 \end{proof}
 
 
@@ -1737,7 +1738,7 @@ We can now state and prove our main result.
 \begin{theorem}\label{thm:WMain} A $P$-algebra is inductive if and only if
 it is homotopy-initial, \ie the type
 \[ 
-\prod_{X \in \Palg} \big( \isalgind(X) \leftrightarrow \isalghinit(X) \big)
+\prod_{X \co \Palg} \big( \isalgind(X) \leftrightarrow \isalghinit(X) \big)
 \]
 is inhabited. 
 \end{theorem}
@@ -1761,12 +1762,12 @@ ADAPT THE PROOF OF THEOREM~\ref{thm:bipointedmain}.
 \end{proposition}
 
 \begin{proof}
-The type $\isalghinit(X)$ is a mere proposition since $\iscontr(A)$ is a mere proposition for any type $A$ and a family of mere propositions is again a mere proposition. To show that $\isalgind(X)$ is a mere proposition, we note that to prove that a type $X$ is a mere proposition, it suffices to do so under the assumption that $X$ is inhabited. Assume therefore that $\isalgind(X)$ is inhabited. Since a family of mere propositions is again a mere proposition, it suffices to show that $\PalgSec(X,Y)$ is a mere proposition for any $Y$. Fix sections $\mu, \nu : \PalgSec(X,Y)$. To show $\mu = \nu$, it suffices to exhibit a $P$-homotopy between $\mu$ and $\nu$. But since a $P$-homotopy is nothing more than a section of an appropriate fibered $P$-algebra, we can obtain it by using the fact that $\isalgind(X)$ is inhabited. Part (iii) follows
+The type $\isalghinit(X)$ is a mere proposition since $\iscontr(A)$ is a mere proposition for any type $A$ and a family of mere propositions is again a mere proposition. To show that $\isalgind(X)$ is a mere proposition, we note that to prove that a type $X$ is a mere proposition, it suffices to do so under the assumption that $X$ is inhabited. Assume therefore that $\isalgind(X)$ is inhabited. Since a family of mere propositions is again a mere proposition, it suffices to show that $\PalgSec(X,Y)$ is a mere proposition for any $Y$. Fix sections $\mu, \nu \co \PalgSec(X,Y)$. To show $\mu = \nu$, it suffices to exhibit a $P$-homotopy between $\mu$ and $\nu$. But since a $P$-homotopy is nothing more than a section of an appropriate fibered $P$-algebra, we can obtain it by using the fact that $\isalgind(X)$ is inhabited. Part (iii) follows
 immediately from part (i) and part (ii) via Theorem~\ref{thm:WMain}.
 \end{proof}
 
 For the next proposition, we work in the type theory $\Hint + \W$, obtained by adding to $\Hint$ the rules for $W$-types.
-We consider again $A \in \U$ and $B \in A \to \U$ and let $W \defeq \WW_{x \in A} B(x)$.
+We consider again $A \co \U$ and $B \co A \to \U$ and let $W \defeq \WW_{x \co A} B(x)$.
 
 \begin{corollary}[$\Hint + \W$]
 \label{lem:WInitInt} Let $X = (X, \sup_X)$ be a $P$-algebra. The following conditions are
@@ -1783,7 +1784,7 @@ In particular, the type $W$ is a homotopy-initial $P$-algebra.
 Corollary~\ref{lem:WInitInt} provides the analogue in our setting of the characterization of W-types as a strict initial algebra in extensional type theory. It makes precise the informal idea that, in intensional type theory, W-types are a kind of homotopy or weak $\infty$-initial algebra in the $\infty$-category of types, functions, paths, higher paths, \ldots.  
 
 \begin{lemma}[$\Hint + \W$]\label{lem:suppath}
-For all $a_1,a_2 \in A$, $t_1 \in B(a_1) \to W$, $t_2 \in B(a_2) \to W$, there is an equivalence of types
+For all $a_1,a_2 \co A$, $t_1 \co B(a_1) \to W$, $t_2 \co B(a_2) \to W$, there is an equivalence of types
 \[ 
 \Id ( \wsup(a_1,t_1),  \wsup(a_2,t_2)  ) \simeq  \Id \big( (a_1,t_1), (a_2,t_2) \big) \, . 
 \]
@@ -1796,19 +1797,19 @@ By Lemma~\ref{lem:IntLambek} and Corollary~\ref{lem:WInitInt}, the structure map
 We also remark that $W$-types with propositional computation rules still preserve homotopy levels, in the following sense.
 
 \begin{theorem}[$\Hint + \W$]
-If $A$ is an $(n+1)$-type, then so is $\WW_{x \in A} B(x)$.
+If $A$ is an $(n+1)$-type, then so is $\WW_{x \co A} B(x)$.
 \end{theorem}
 
 
 \begin{proof}
-We need to show that for any $w, w' : \W$ we have $\isntype{n}(w = w')$. By induction on $w$, it suffices to show that for any $a,t$ we have $(Pi w:\W) \isntype{n}(\wsup(a,t) = w)$ under the induction hypothesis $h : (\Pi b:B(a)) (\Pi w:\W) \isntype{n}(t(b) = w)$.  By another induction, this time on $w'$, it suffices to show that for any $a',t'$ we have
+We need to show that for any $w, w' \co \W$ we have $\isntype{n}(w = w')$. By induction on $w$, it suffices to show that for any $a,t$ we have $(Pi w:\W) \isntype{n}(\wsup(a,t) = w)$ under the induction hypothesis $h \co (\Pi b:B(a)) (\Pi w:\W) \isntype{n}(t(b) = w)$.  By another induction, this time on $w'$, it suffices to show that for any $a',t'$ we have
 $\isntype{n}\big(\wsup(a,t) = \wsup(a',t')\big)$ under the hypothesis $(\Pi b:B(a')) \isntype{n}\big(\wsup(a,t) = t'(b)\big)$, which however is not necessary. Now we have
 \begin{align*} 
 \wsup(a,t) = \wsup(a',t') 
 & \simeq (a,t) = (a',t') \\
-& \simeq (\Sigma p : a = a') \big(t = \trans_{x \mapsto B(x) \to \W}(p) \; t'\big) \\
-& \simeq  (\Sigma p : a = a')  \big(t = \lam{b:B(a)} t'(\trans_B(p) \; b)\big) \\
-& \simeq (\Sigma p : a = a') (\Pi b:B(a)) \big(t(b) = t'(\trans_B(p) \; b)\big) \, , 
+& \simeq (\Sigma p \co a = a') \big(t = \trans_{x \mapsto B(x) \to \W}(p) \; t'\big) \\
+& \simeq  (\Sigma p \co a = a')  \big(t = \lam{b:B(a)} t'(\trans_B(p) \; b)\big) \\
+& \simeq (\Sigma p \co a = a') (\Pi b:B(a)) \big(t(b) = t'(\trans_B(p) \; b)\big) \, , 
 \end{align*}
 where the first equality follows by Corollary.~\ref{lem:suppath}. Since $A$ is an $(n+1)$-type by assumption, we have $\isntype{n}(a=a')$. For any $p,b$ we have $\isntype{n}\big(t(b) = t'(\trans_B(p) \; b)\big)$ by the hypothesis~$h\big(b,t'(\trans_B(p) \; b)\big)$. Since a family of $n$-types is an $n$-type and a dependent sum of a family of $n$-types over an $n$-type is again an $n$-type, the last type in the above chain of equalities is an $n$-type. 
 \end{proof}
@@ -1825,18 +1826,18 @@ types, a form of univalence holds also for $P$-algebras, as the next theorem mak
 \begin{theorem}[$\Hint + \UA$] \label{thm:Punivalence}
 Let $X$ and $Y$ be $P$-algebras. The canonical function
 \[ 
-\ext : \Id \big(X,Y\big) \to  \AlgEquiv(X,Y) \, .
+\ext \co \Id \big(X,Y\big) \to  \AlgEquiv(X,Y) \, .
 \]
 is an equivalence.
 \end{theorem}
 
 \begin{proof} 
 Let $ (C,c), (D,d)$ be $P$-algebras. By the characterization of paths in $\Sigma$-types, the path space $(C,c) = (D,d)$ can be expressed as the type
-\[(\Sigma p : C = D) \big( c = p^{!}(d) \big)\]
+\[(\Sigma p \co C = D) \big( c = p^{!}(d) \big)\]
 By path induction on $p$ and the characterization of paths in $\Pi$-types, this type is equivalent to
-\[  \big(\Sigma p : C = D\big) (\Pi a) (\Pi t) \Big(\fst(\ext_1(p)) \; c(a,t)\Big) = d\Big(a, \fst(\ext_1(p)) \comp t\Big) \]
+\[  \big(\Sigma p \co C = D\big) (\Pi a) (\Pi t) \Big(\fst(\ext_1(p)) \; c(a,t)\Big) = d\Big(a, \fst(\ext_1(p)) \comp t\Big) \]
 where $\ext_1 \co \Id(C,D) \to (C \simeq D)$ is the canonical equivalence. Since it is an equivalence, the above type is equivalent to
-\[(\Sigma e : C \simeq D) (\Pi a) (\Pi t) \Big(\fst(e) \; c(a,t)\Big) = d\Big(a, \fst(e) \comp t\Big) \]
+\[(\Sigma e \co C \simeq D) (\Pi a) (\Pi t) \Big(\fst(e) \; c(a,t)\Big) = d\Big(a, \fst(e) \comp t\Big) \]
 After rearranging we get
 \[
  \big(\Sigma f \co \Palg \; (C,c) \; (D,d)\big) \; \isequiv(\fst(f))
@@ -1850,14 +1851,14 @@ homotopy-initial algebras are unique up to propositional equality.
 \begin{corollary}[$\Hint + \UA$] \label{WHInitIso}
 The path space between any two homotopy-initial $P$-algebras is contractible, i.e. the type
 \[ 
-\prod_{X \in \Palg} \prod_{Y \in \Palg}  \Big( \isalghinit(X) \times \isalghinit(Y)  \to 
+\prod_{X \co \Palg} \prod_{Y \co \Palg}  \Big( \isalghinit(X) \times \isalghinit(Y)  \to 
 \iscontr(\Id(X,Y)) \Big) \, .
 \] 
 \end{corollary}
 
 \begin{proof}
 By Theorem~\ref{thm:Punivalence} it suffices to prove $\iscontr(\AlgEquiv(X,Y))$. The type $\Palg(X,Y)$ is contractible by homotopy-initiality of $X$. Since the dependent sum of a family of mere propositions over a mere proposition is again a mere proposition, it suffices to prove $\iscontr(\isalgequiv(f))$ for any $P$-algebra morphism $f$. This type is a mere proposition, as remarked earlier; thus it suffices to show it is inhabited.
-Since $Y$ is homotopy-initial, there exists a $P$-algebra morphism $g : Y \to X$. Again by homotopy-initiality of $X$ and 
+Since $Y$ is homotopy-initial, there exists a $P$-algebra morphism $g \co Y \to X$. Again by homotopy-initiality of $X$ and 
 $Y$, we have $g \comp f = 1_X$ and $f \comp g = 1_Y$, which gives us the desired $P$-algebra equivalence between 
 $X$ and $Y$.
 \end{proof}
@@ -1891,47 +1892,47 @@ Research Office.
 \item Formation rule
 \[
 \begin{prooftree}
-x \in A \vdash B(x) \in \type
+x \co A \vdash B(x) \co \type
 \justifies
 \textstyle
-\prod_{x \in A} B(x) \in \type
+\prod_{x \co A} B(x) \co \type
 \end{prooftree}
 \]
 \item Introduction rule
 \[
 \begin{prooftree}
-x \co A \vdash b(x) \in B(x) 
+x \co A \vdash b(x) \co B(x) 
 \justifies
 \textstyle
-(\lambda x \in A)b(x) \in \prod_{x \in A} B(x)
+(\lambda x \co A)b(x) \co \prod_{x \co A} B(x)
 \end{prooftree}
 \]
 \item Elimination rule
 \[
 \begin{prooftree}
 \textstyle
-f \in \prod_{x \in A} B(x) \quad
-a \in A 
+f \co \prod_{x \co A} B(x) \quad
+a \co A 
 \justifies
-\app(f, a) \in B(a)
+\app(f, a) \co B(a)
 \end{prooftree}
 \]
 \item Computation rule
 \[
 \begin{prooftree}
-x \in A \vdash b(x) \in B(x) 
+x \co A \vdash b(x) \co B(x) 
 \justifies
-\app( (\lambda x \in A) b(x), a) = b(a) \in B(a)
+\app( (\lambda x \co A) b(x), a) = b(a) \co B(a)
 \end{prooftree}
 \]
 \item $\eta$-rule
 \[
 \begin{prooftree}
 \textstyle
-f \in \prod_{x \in A} B(x)
+f \co \prod_{x \co A} B(x)
 \justifies
 \textstyle
-f = (\lambda x \in A) \app(f, x) \in  \prod_{x \in A} B(x)
+f = (\lambda x \co A) \app(f, x) \co  \prod_{x \co A} B(x)
 \end{prooftree}
 \]
  \end{itemize} \
@@ -1943,41 +1944,41 @@ f = (\lambda x \in A) \app(f, x) \in  \prod_{x \in A} B(x)
 \item Formation rule
 \[
 \begin{prooftree}
-x \in A \vdash B(x) \in \type
+x \co A \vdash B(x) \co \type
 \justifies
 \textstyle
-\sum_{x \in A} B(x) \in \type
+\sum_{x \co A} B(x) \co \type
 \end{prooftree}
 \]
 \item Introduction rule
 \[
 \begin{prooftree}
-a \in A \qquad 
-b(a) \in B(a) 
+a \co A \qquad 
+b(a) \co B(a) 
 \justifies
 \textstyle
-\pair(a,b) \in \sum_{x \in A} B(x)
+\pair(a,b) \co \sum_{x \co A} B(x)
 \end{prooftree}
 \]
 \item $\Sigma$-elimination rule.
 \[
 \begin{prooftree}
 \textstyle
-u \in \sum_{x \in A} B(x) \vdash E(u) \in \type \quad
- x \in A, y \in B(x) \vdash  e(x,y) \in  E(\pair(x,y))  
+u \co \sum_{x \co A} B(x) \vdash E(u) \co \type \quad
+ x \co A, y \co B(x) \vdash  e(x,y) \co  E(\pair(x,y))  
 \justifies
 \textstyle
-u \in \sum_{x \in A} B(x) \vdash  \mysplit(u,e) \in  E(u)
+u \co \sum_{x \co A} B(x) \vdash  \mysplit(u,e) \co  E(u)
 \end{prooftree}
 \]
 \item $\Sigma$-computation rule.
 \[
 \begin{prooftree}
 \textstyle
-u \in \sum_{x \in A} B(x) \vdash E(u) \in  \type \quad
- x \in  A, y \co B(x) \vdash  e(x,y) \in  E(\pair(x,y))  
+u \co \sum_{x \co A} B(x) \vdash E(u) \co  \type \quad
+ x \co  A, y \co B(x) \vdash  e(x,y) \co  E(\pair(x,y))  
  \justifies
-x \in A, y \co B(x) \vdash \mysplit(\pair(x,y),e) = e(x,y) \in  E(\pair(x,y)) \, .
+x \co A, y \co B(x) \vdash \mysplit(\pair(x,y),e) = e(x,y) \co  E(\pair(x,y)) \, .
 \end{prooftree}
 \]
 \end{itemize} 
@@ -1990,37 +1991,37 @@ x \in A, y \co B(x) \vdash \mysplit(\pair(x,y),e) = e(x,y) \in  E(\pair(x,y)) \,
 \item $\Id$-formation rule.
 \[
 \begin{prooftree}
-A \in  \type \quad 
-a \in  A  \quad
-b \in  A 
+A \co  \type \quad 
+a \co  A  \quad
+b \co  A 
 \justifies
- \id{A}(a,b) \in  \type
+ \id{A}(a,b) \co  \type
  \end{prooftree}
 \]
 \item $\Id$-introduction rule.
 \[
 \begin{prooftree}
-a \in A 
+a \co A 
 \justifies
- \refl(a) \in  \id{A}(a,a)
+ \refl(a) \co  \id{A}(a,a)
  \end{prooftree} 
 \]
 \item $\Id$-elimination rule.
 \[
 \begin{prooftree}
-x, y \in A, u \in  \id{A}(x,y) \vdash E(x,y,u) \in \type \qquad
- x \in A \vdash  e(x) \in  E(x,x,\refl(x))  
+x, y \co A, u \co  \id{A}(x,y) \vdash E(x,y,u) \co \type \qquad
+ x \co A \vdash  e(x) \co  E(x,x,\refl(x))  
 \justifies
-x, y \in A, u \in  \id{A}(x,y) \vdash  \idrec(x,y,u,e) \in E(x,y,u)
+x, y \co A, u \co  \id{A}(x,y) \vdash  \idrec(x,y,u,e) \co E(x,y,u)
 \end{prooftree}
 \]
 \item $\Id$-computation rule.
 \[
 \begin{prooftree}
-x, y \in  A, u \in  \id{A}(x,y) \vdash E(x,y,u) \in \type \qquad
- x \in  A \vdash  e(x) \in  E(x,x,\refl(x)) 
+x, y \co  A, u \co  \id{A}(x,y) \vdash E(x,y,u) \co \type \qquad
+ x \co  A \vdash  e(x) \co  E(x,x,\refl(x)) 
  \justifies
-x \in A \vdash \idrec(x,x,\refl(x), e) = e(x) \in  E(x, x, \refl(x)) \, .
+x \co A \vdash \idrec(x,x,\refl(x), e) = e(x) \co  E(x, x, \refl(x)) \, .
 \end{prooftree}
 \]
 \end{itemize} 
@@ -2033,31 +2034,31 @@ x \in A \vdash \idrec(x,x,\refl(x), e) = e(x) \in  E(x, x, \refl(x)) \, .
 \item Formation rule. \smallskip
 
 \[
- \Bool \in \U \, .
+ \Bool \co \U \, .
  \]  \medskip
 \item Introduction rules. \smallskip
 
 \[
-0 \in \Bool \, ,  \qquad  1 \in \Bool \, .
+0 \co \Bool \, ,  \qquad  1 \co \Bool \, .
 \]  
 \item Elimination rule.\medskip
 
 \[
 \begin{prooftree}
-x\in\Bool \vdash E(x) \in \U \qquad
-e_0 \in E(0) \qquad
-e_1 \in E(1) \qquad
+x\in\Bool \vdash E(x) \co \U \qquad
+e_0 \co E(0) \qquad
+e_1 \co E(1) \qquad
 \justifies
-x \co \Bool \vdash \boolind(x, e_0, e_1) \in E(x) 
+x \co \Bool \vdash \boolind(x, e_0, e_1) \co E(x) 
 \end{prooftree}
 \] \bigskip
 \item Computation rules. \smallskip
 
 \begin{equation*}
 \begin{prooftree}
-x\in\Bool \vdash E(x) \in \U \qquad
-e_0 \in E(0) \qquad
-e_1 \in E(1)
+x\in\Bool \vdash E(x) \co \U \qquad
+e_0 \co E(0) \qquad
+e_1 \co E(1)
 \justifies
   \boolind(0, e_0, e_1)  \deq  e_0 \co E(0) \, , \\
 \end{prooftree}
@@ -2065,9 +2066,9 @@ e_1 \in E(1)
  \bigskip
  \begin{equation*}
 \begin{prooftree}
-x\in\Bool \vdash E(x) \in \U \qquad
-e_0 \in E(0) \qquad
-e_1 \in E(1)
+x\in\Bool \vdash E(x) \co \U \qquad
+e_0 \co E(0) \qquad
+e_1 \co E(1)
 \justifies
  \boolind(1,e_0,e_1)  \deq e_1 \co E(1) \, .
 \end{prooftree}
@@ -2081,37 +2082,37 @@ e_1 \in E(1)
 \item Formation rule \smallskip
 \[
 \begin{prooftree}
- A \in \type \qquad
- x \in A \vdash B(x) \in \type
+ A \co \type \qquad
+ x \co A \vdash B(x) \co \type
  \justifies
  \textstyle
- \WW_{x \in A} B(x) \in \type
+ \WW_{x \co A} B(x) \co \type
 \end{prooftree}
 \]
 \item Introduction rule \smallskip
 \[
 \begin{prooftree}
-a \in A \qquad
-t \in B(a) \to W
+a \co A \qquad
+t \co B(a) \to W
 \justifies
-\wsup(a,t)\in W
+\wsup(a,t)\co W
 \end{prooftree}
 \]
 \item Elimination rule \smallskip
 \begin{mathpar}
 \inferrule{
-w \in W \vdash E(w) \in \type \\ 
+w \co W \vdash E(w) \co \type \\ 
 \textstyle
-x \in A,\, u \in B(x) \to W,\, v \in \prod_{y \in B(x)} E(uy) \vdash s_E(x,u,v) \in E(\wsup(x,u))}
-{ w \in W \vdash \ind(w,s_E) \in E(w)}
+x \co A,\, u \co B(x) \to W,\, v \co \prod_{y \co B(x)} E(uy) \vdash s_E(x,u,v) \co E(\wsup(x,u))}
+{ w \co W \vdash \ind(w,s_E) \co E(w)}
 \end{mathpar}
 \item Computation rule \smallskip
 \begin{mathpar}
 \inferrule{
-w \in W \vdash E(w) \in \type \\ 
+w \co W \vdash E(w) \co \type \\ 
 \textstyle
-x\in A,\, u \in B(x) \to W,\, v \in \prod_{y \in B(x)} E(u y)  \vdash s_E(x,u,v) \in E(\wsup(x,u))}
-{x\in A,\, u \in B(x) \to W \vdash  \ind(\wsup(x,u),s_E) = s_E\big(x,u, ( \lambda y ) \ind(u y,s_E)\big) \in E(\wsup(x,u))}
+x\co A,\, u \co B(x) \to W,\, v \co \prod_{y \co B(x)} E(u y)  \vdash s_E(x,u,v) \co E(\wsup(x,u))}
+{x\co A,\, u \co B(x) \to W \vdash  \ind(\wsup(x,u),s_E) = s_E\big(x,u, ( \lambda y ) \ind(u y,s_E)\big) \co E(\wsup(x,u))}
 \end{mathpar}
 \end{itemize}
 
