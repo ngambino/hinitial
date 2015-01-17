@@ -257,7 +257,7 @@ The present work investigates inductive types in this setting. Modified rules fo
 The general topic of Homotopy Type Theory is concerned with the study of the constructive type theories of Martin-L\"of under their new interpretation into abstract homotopy theory and higher-dimensional category theory. Martin-L\"of type theories are foundational systems which have been used to formalize large parts of constructive mathematics, and also for the development of high-level programming languages~\cite{MartinLofP:conmcp}.  They are prized for their combination of expressive strength and desirable proof-theoretic properties.  One aspect of these type theories that has led to special difficulties in providing semantics is the intensional character of equality.  In recent work \cite{AwodeyS:homtmi,VoevodskyV:notts,vandenBergB:topsmi,AwodeyS:typth}, it has emerged that the topological notion of \emph{homotopy} provides an adequate basis for the semantics of intensionality.  This extends the paradigm of computability as continuity, familiar from domain theory, beyond the simply-typed 
 $\lambda$-calculus to dependently-typed theories involving:\begin{enumerate}[(i)]
 \item dependent sums $(\Sigma x\colon\!{A})B(x)$ and dependent products $(\Pi x\colon\!{A})B(x)$, modelled respectively by the total space and the space of sections of the fibration modelling the dependency of $B(x)$ over $ x \co A$; \item
-and, crucially, including the identity type constructor~$\id{A}(a,b)$, interpreted as the space of all \emph{paths} in~$A$ between points~$a$ and~$b$. \end{enumerate}
+and, crucially, including the identity type constructor~$\Id(a,b)$, interpreted as the space of all \emph{paths} in~$A$ between points~$a$ and~$b$. \end{enumerate}
 
 In the present work, we build on this homotopical interpretation to study inductive types, such as the natural numbers, Booleans, lists, and W-types. Within extensional type theories, W-types can be used to  provide a constructive counterpart of the classical notion of a well-ordering~\cite{MartinLofP:inttt} and to uniformly define a variety of inductive types~\cite{DybjerP:repids}.
 However, most programming languages and proof assistants, such as Coq~\cite{BertotY:inttpp}, Agda~\cite{NorellU:towppl} and Epigram~\cite{McBrideC:viefl} use schematic inductive definitions~\cite{CoquandT:inddt,PaulinMorhringC:inddsc} rather than W-types to define inductive types.  This is due in part to the practical convenience of the schematic approach, but it is also a matter of necessity; these systems are based on intensional rather than extensional type theories, and in the intensional theory the usual reductions of inductive types to W-types fail~\cite{DybjerP:repids,McBrideC:wtygnb}.
@@ -299,7 +299,7 @@ We will work over a dependent type theory $\Hint$ which has standard structural 
 identity types as in Appendix~\ref{app:rules}, and the Function Extensionality axiom, \ie the axiom asserting that
 for every $f, g \co A \rightarrow B$, the type
 \[
-\prod_{x \co  A}\Id{B}( \app(f, x), \app(g, x)) \rightarrow \Id_{A \rightarrow B}(f,g) 
+\prod_{x \co  A}\Id( \app(f, x), \app(g, x)) \rightarrow \Id(f,g) 
 \]
 is inhabited. Here, we have used the notation $A \rightarrow B$ to indicate function types, defined via
 $\Pi$-types in the usual way. Similarly, we will write $A \times B$ to denote the binary product
@@ -355,7 +355,7 @@ in which the following rule, known as the identity reflection rule, is also assu
 \begin{equation}
 \label{equ:collapse}
 \begin{prooftree}
- p \co  \id{A}(a,b)
+ p \co  \Id(a,b)
   \justifies
   a=b \co  A
 \end{prooftree}
@@ -375,7 +375,7 @@ $\Id$-elimination rule is that  type dependency must respect identity, in the fo
 \label{equ:deptype}
 x\co A \vdash B(x) \co \type \, ,
 \end{equation} 
-and $p\co \id{A}(a,b)$, there is then a \emph{transport} function 
+and $p\co \Id(a,b)$, there is then a \emph{transport} function 
  $$p_{\, ! } \co B(a) \rightarrow B(b),$$ which is defined by $\Id$-elimination, taking for $x \co A$
 the function $\refl(x)_{\, !} \co B(x) \rightarrow B(x)$ to be the identity on $B(x)$.  
  The topological notion of contractibility admits the following type-theoretic counterpart, originally
@@ -393,7 +393,7 @@ is inhabited.
 The type $\iscontr(A)$ can be seen as the propositions-as-types translation
 of the formula stating that $A$ has a unique element. However, its homotopical interpretation 
 is as a space that is inhabited if and only if the space interpreting $A$ is contractible in the usual
-topological sense. Note that if $A$ is a contractible type, then for every $a, b \co A$, the type $\id{A}(a,b)$ is again contractible. 
+topological sense. Note that if $A$ is a contractible type, then for every $a, b \co A$, the type $\Id(a,b)$ is again contractible. 
 This can be proved  by $\Id$-elimination. The notion of contractibility can be used to articulate the world of types  into \emph{h-levels} according to their
 homotopical complexity~\cite{VoevodskyV:unifc}. We will need to recall only the notion of type of $h$-level 0, or h-proposition.
 
@@ -897,7 +897,7 @@ With this notation, proving the conclusion of the $\eta$-rule amounts to definin
 $\eta_x \co F(x)$, for $x \co A$. We do so using the elimination rule for $A$, as stated in Propositon~\ref{thm:inductiverules}.
 Thus, we need to find elements $p_k \in F(a_k)$ for $k \in \{0, 1\}$. Such paths can be constructed as the composite
 \[
-\comp_0(e_0, e_1) \ct \bar{f}_0^{-1} \co  \elim(a_k, e_0, e_1) \Rightarrow e_0 \Rightarrow f(a_k) \, .
+\comp_k(e_0, e_1) \ct \bar{f}_k^{-1} \co  \elim(a_k, e_0, e_1) \Rightarrow e_k \Rightarrow f(a_k) \, .
 \]
 For $x \co A$, we can then defined the required element $\eta_x \co F(x)$ by letting 
 \[
@@ -961,7 +961,7 @@ b_1 \co B
 \beta_k \co \Id(  \rec(a_k, b_0, b_1), b_k ) 
 \end{prooftree}  
 \]
-where $k \in \{0, 1\}$. 
+where $k \in \{0, 1\}$, 
 \item the $\eta$-rule
 \[
 \begin{prooftree}
@@ -1876,7 +1876,7 @@ For all $a_1,a_2 \co A$, $t_1 \co B(a_1) \to W$, $t_2 \co B(a_2) \to W$, there i
 \end{lemma}
 
 \begin{proof}
-By Lemma~\ref{lem:IntLambek} and Corollary~\ref{lem:WInitInt}, the structure map $\wsup \co PW \to W$ is an equivalence.
+By Lemma~\ref{lem:IntLambek} and Corollary~\ref{lem:WInitInt}, the structure map $\sup_W \co PW \to W$ is an equivalence.
 \end{proof}
 
 We also remark that $W$-types with propositional computation rules still preserve homotopy levels, in the following sense.
@@ -1887,20 +1887,28 @@ If $A$ is an $(n+1)$-type, then so is $\WW_{x \co A} B(x)$.
 
 
 \begin{proof}
-We need to show that for any $w, w' \co \W$ we have $\isntype{n}(w = w')$. By induction on $w$, it suffices to show that for any $a,t$ we have $(Pi w:\W) \isntype{n}(\wsup(a,t) = w)$ under the induction hypothesis $h \co (\Pi b:B(a)) (\Pi w:\W) \isntype{n}(t(b) = w)$.  By another induction, this time on $w'$, it suffices to show that for any $a',t'$ we have
-$\isntype{n}\big(\wsup(a,t) = \wsup(a',t')\big)$ under the hypothesis $(\Pi b:B(a')) \isntype{n}\big(\wsup(a,t) = t'(b)\big)$, which however is not necessary. Now we have
+We need to show that $\Id(w, w')$ is an $n$-type for all $w, w' \co W$. We do so applying the elimination for W-types.
+So, let $a \co A, t \co B(a) \to W$ and assume the induction hypothesis 
+\begin{itemize}
+\item[$(\ast)$] for every $b \co B(a)$, $w' \co W$, the type $\Id(tb,w')$ is an $n$-type, 
+\end{itemize}
+and show that  the type $\Id(\sup_W(a,t), w')$ is an $n$-type for all $w' \co W$. We apply again the elimination rule for W-types. So, let   $a' \co A$, $t' \co B(a') \to W$ and assume the induction hypothesis, which we do not spell out since we will not need it, and show that $\Id( \sup_W(a,t) , \sup_W(a',t'))$ is an $n$-type. We have
 \begin{align*} 
-\wsup(a,t) = \wsup(a',t') 
-& \simeq (a,t) = (a',t') \\
-& \simeq (\Sigma p \co a = a') \big(t = \trans_{x \mapsto B(x) \to \W}(p) \; t'\big) \\
-& \simeq  (\Sigma p \co a = a')  \big(t = \lam{b:B(a)} t'(\trans_B(p) \; b)\big) \\
-& \simeq (\Sigma p \co a = a') (\Pi b:B(a)) \big(t(b) = t'(\trans_B(p) \; b)\big) \, , 
+\Id(\sup_W(a,t), \sup_W(a',t'))
+& \simeq \Id((a,t) , (a',t')) \\
+& \simeq \sum_{p \co \Id(a, a')} \Id( t , p_{!} \, t' )   \\
+& \simeq \sum_{p \co \Id(a,a')}  \Id\big(t, \lambda b. \,  t'( p_{!} b)\big) \\
+& \simeq \sum_{p \co \Id(a,a')} \prod_{b \co B(a)} \Id \big( tb , t'(p_{!} \, b)\big) \, , 
 \end{align*}
-where the first equality follows by Corollary.~\ref{lem:suppath}. Since $A$ is an $(n+1)$-type by assumption, we have $\isntype{n}(a=a')$. For any $p,b$ we have $\isntype{n}\big(t(b) = t'(\trans_B(p) \; b)\big)$ by the hypothesis~$h\big(b,t'(\trans_B(p) \; b)\big)$. Since a family of $n$-types is an $n$-type and a dependent sum of a family of $n$-types over an $n$-type is again an $n$-type, the last type in the above chain of equalities is an $n$-type. 
+Here, the first equivalence follows by Corollary.~\ref{lem:suppath}. Since $A$ is an $(n+1)$-type by assumption, we have 
+that~$\Id(a,a')$ is an $n$-type. Also, for any $p \co \Id(a,a')$ and $b \co B(a) \to W$, the type $\Id(tb,  t'(p_{!} \, b))$ is an $n$-type by the 
+induction 
+hypothesis in~$(\ast)$. The claim follows by recalling that $n$-types are closed under arbitrary dependent products and under dependent 
+sums over $n$-types. 
 \end{proof}
 
 We note that there is no restriction on the homotopy level of the fibers of $B$ since they only appear contravariantly. Furthermore, we note that the lemma is no longer true if $n+1$ is replaced by $n$, as the following example
-illustrates: if $A \defeq \one$ and $B(x) \defeq \one$, then $(W x:A) B(x) \simeq \zero$, which is not contractible. 
+illustrates: if $A \defeq 1$ and $B(x) \defeq 1$, then $\W_{x:A} B(x) \simeq 0$, which is not contractible. 
 
 \medskip
 
@@ -1911,23 +1919,33 @@ types, a form of univalence holds also for $P$-algebras, as the next theorem mak
 \begin{theorem}[$\Hint + \UA$] \label{thm:Punivalence}
 Let $X$ and $Y$ be $P$-algebras. The canonical function
 \[ 
-\ext \co \Id \big(X,Y\big) \to  \AlgEquiv(X,Y) \, .
+\ext \co \Id \big(X,Y\big) \to  \AlgEquiv(X,Y) 
 \]
 is an equivalence.
 \end{theorem}
 
 \begin{proof} 
-Let $ (C,c), (D,d)$ be $P$-algebras. By the characterization of paths in $\Sigma$-types, the path space $(C,c) = (D,d)$ can be expressed as the type
-\[(\Sigma p \co C = D) \big( c = p^{!}(d) \big)\]
+Let $X = (X,\sup_X)$ and $Y= (Y,\sup_Y)$ be $P$-algebras. By the characterization of paths in $\Sigma$-types, the path space 
+$\Id \big( (X,\sup_X) ,  (Y,\sup_Y) \big)$ can be expressed as the type
+\[
+\sum_{p \co \Id(X, Y)} \Id \big( \sup_X ,  p_{!}(\sup_Y)  \big) \, .
+\]
 By path induction on $p$ and the characterization of paths in $\Pi$-types, this type is equivalent to
-\[  \big(\Sigma p \co C = D\big) (\Pi a) (\Pi t) \Big(\fst(\ext_1(p)) \; c(a,t)\Big) = d\Big(a, \fst(\ext_1(p)) \comp t\Big) \]
-where $\ext_1 \co \Id(C,D) \to (C \simeq D)$ is the canonical equivalence. Since it is an equivalence, the above type is equivalent to
-\[(\Sigma e \co C \simeq D) (\Pi a) (\Pi t) \Big(\fst(e) \; c(a,t)\Big) = d\Big(a, \fst(e) \comp t\Big) \]
+\[  
+\sum_{p \co \Id(X,Y)}  
+\prod_{a \in A} 
+\prod_{t \co B(a) \to W} 
+\Id \big(  \pi_1(\ext(p))( \sup_X(a,t)),  \sup_Y(a, \pi_1(\ext (p)) \circ t) \big) \, , 
+\]
+where $\ext \co \Id(X,Y) \to \mathsf{Equiv}(X,Y)$ is the canonical equivalence. Since it is an equivalence, the above type is equivalent to
+\[
+\sum_{f \co \mathsf{Equiv}(X,Y)} \prod_{a \co A} \prod_{t \co B(a) \to W} \Id \big( \pi_1(f) (\sup_X(a,t))  , \sup_Y (a, \pi_1(f) \circ t) \big) \, .
+\]
 After rearranging we get
 \[
- \big(\Sigma f \co \Palg \; (C,c) \; (D,d)\big) \; \isequiv(\fst(f))
+\sum_{f \co \Palg ( (X,\sup_X),  (Y,\sup_Y) )}  \isequiv(\pi_1(f)) \, .
 \]
-which by Lemma~\ref{WAlgSpace} is equivalent to $\AlgEquiv(C,c) \; (D,c)$ as desired. Finally, it is not hard to see that the composition of the above equivalences yields the canonical function $\ext$ (up to a homotopy).
+By Lemma~\ref{WAlgSpace}, this type is equivalent to $\AlgEquiv \big( (X,\sup_X),  (Y,\sup_Y)\big)$, as desired. Finally, it is not hard to see that the composition of the above equivalences yields, up to a homotopy, the canonical function $\ext$ which is therefore an equivalence, as required.
 \end{proof} 
 
 The following corollary, still obtained under the assumption of the Univalence Axiom, shows that
@@ -1944,7 +1962,7 @@ The path space between any two homotopy-initial $P$-algebras is contractible, i.
 \begin{proof}
 By Theorem~\ref{thm:Punivalence} it suffices to prove $\iscontr(\AlgEquiv(X,Y))$. The type $\Palg(X,Y)$ is contractible by homotopy-initiality of $X$. Since the dependent sum of a family of mere propositions over a mere proposition is again a mere proposition, it suffices to prove $\iscontr(\isalgequiv(f))$ for any $P$-algebra morphism $f$. This type is a mere proposition, as remarked earlier; thus it suffices to show it is inhabited.
 Since $Y$ is homotopy-initial, there exists a $P$-algebra morphism $g \co Y \to X$. Again by homotopy-initiality of $X$ and 
-$Y$, we have $g \comp f = 1_X$ and $f \comp g = 1_Y$, which gives us the desired $P$-algebra equivalence between 
+$Y$, we have $\Id(g \circ f, 1_X)$ and $\Id(f \circ g, 1_Y)$, which gives us the desired $P$-algebra equivalence between 
 $X$ and $Y$.
 \end{proof}
 
