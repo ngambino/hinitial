@@ -1,0 +1,64 @@
+PROOF NUMBER ONE
+
+
+\begin{proof} Let $(f, \bar{f}) \co (X, \sup_X) \to (Y, \sup_Y)$ be a  $P$-algebra morphism. Expanding the type of proofs that $f$ is a 
+$P$-algebra equivalence yields the type
+\begin{multline*}
+ \Big(
+ \sum_{\ell \co Y \to X} \sum_{\bar{\ell} \co  \prod_{a \co A} \prod_{t \co B(a) \to X} \Id \big( \ell( \sup_X(a,t)) , \sup_Y(a, \ell \circ t) \big)}
+ P(\ell,\bar{\ell})\Big) \; \times \\ 
+ \Big(\big(\Sigma r \co D \to C \big) \big(\Sigma \bar{r} \co (\Pi a) (\Pi s) r(d(a,s))=c(a,r \circ s) \big) Q(r,\bar{r})  \Big)\, , 
+\end{multline*}
+where
+\begin{align*}
+P(\ell,\bar{\ell}) & \defeq \Id \Big( \big( \ell \com f, (\lambda a)(\lambda t) \ell(\bar{f}(a,t)) \ct \bar{\ell}(a, f \com t)\big), \big( 1_C, (\lambda a)(\lambda t) \refl(c(a,t))\big) \Big)  \, , \\
+Q(r,\bar{r})    & \defeq \Id \Big( \big( f \com r, (\lambda a)(\lambda s) f(\bar{r}(a,s)) \ct \bar{f}(a, r \com s)\big) \, , \big( 1_D, (\lambda a)(\lambda s) \refl(d(a,s)) \big) \Big) \, .
+\end{align*}
+Using the characterization of paths in $\Sigma$-types, the type $P(\ell,\bar{\ell})$ can be equivalently expressed as
+\begin{align*}
+\big(\Sigma p \co \ell \com f = \idfun{C} \big) \Big((\lambda a) (\lambda t) \ell(\bar{f}(a,t)) \ct \bar{\ell}(a, f \com t)\Big) = p^{!} \Big((\lambda a) (\lambda t) \refl(c(a,t))\Big) 
+\end{align*}
+By path induction on $p$, the transport $p^{!} \Big((\lambda a) (\lambda t) \refl(c(a,t))\Big)$ is equal to the function
+\[ (\lambda a) (\lambda t) \ext(p)_{c(a,t)} \ct \refl(c(a,t)) \ct \big(c(a)(\ext^{-1}(\ext(p) \circ t))\big)^{-1} \]
+where $\ext \co \ell \com f = \idfun{C} \to \ell \com f \sim \idfun{C}$ is the canonical equivalence. This is of course propositionally equal to
+\[ (\lambda a) (\lambda t) \ext(p)_{c(a,t)} \ct \big(c(a)(\ext^{-1}(\ext(p) \circ t))\big)^{-1} \]
+Using the characterization of paths in $\Pi$-spaces, the type $P(\ell,\bar{\ell})$ can thus be expressed as
+\begin{align*}
+\big(\Sigma p \co \ell \com f = \idfun{C} \big) (\Pi a) (\Pi t) \Big(\ell(\bar{f}(a,t)) \ct \bar{\ell}(a, f \com t) = \ext(p)_{c(a,t)} \ct \big(c(a)(\ext^{-1}(\ext(p) \circ t))\big)^{-1}\Big)
+\end{align*}
+Since the function $\ext$ is an equivalence, this is equivalent to
+\begin{align*}
+\big(\Sigma \alpha \co \ell \circ f \sim \idfun{C} \big) (\Pi a) (\Pi t) \Big(\ell(\bar{f}(a,t)) \ct \bar{\ell}(a, f \com t) = \alpha(c(a,t)) \ct \big(c(a)(\ext^{-1}(\alpha \circ t))\big)^{-1}\Big)
+\end{align*}
+Analogously, the type $Q(r,\bar{r})$ is equivalent to
+\begin{align*}
+\big(\Sigma \beta \co f \com r \sim \idfun{D} \big) (\Pi a) (\Pi s) \Big(f(\bar{r}(a,s)) \ct \bar{f}(a, r \com s) = \beta(d(a,s)) \ct \big(d(a)(\ext^{-1}(\beta \circ s))\big)^{-1}\Big)
+\end{align*}
+Therefore, we can express $\mathsf{isPequiv}(f,\bar{f})$ as the type
+\[ \big(\Sigma \ell \co D\to C) \big(\Sigma \alpha \co \ell \circ f \sim \idfun{C}\big) \big(\Sigma r \co D\to C) \big(\Sigma \beta \co f \circ r \sim \idfun{D}\big) R(\ell,\alpha) \times S(r,\beta)\]
+where
+\begin{align*}
+& R(\ell,\alpha) \defeq \big(\Sigma \bar{\ell} \co (\Pi a) (\Pi s) \ell(d(a,s))=c(a,\ell \circ s)\big) (\Pi a) (\Pi t) \\ & \;\;\;\;\;\;\;\;\;\;\;\; \Big(\ell(\bar{f}(a,t)) \ct \bar{\ell}(a, f \com t) = \alpha(c(a,t)) \ct \big(c(a)(\ext^{-1}(\alpha \circ t))\big)^{-1}\Big) \\
+& S(r,\beta) \defeq \big(\Sigma \bar{r} \co (\Pi a) (\Pi s) r(d(a,s))=c(a,r \circ s) \big) (\Pi a) (\Pi s) \\ & \;\;\;\;\;\;\;\;\;\;\;\; \Big(f(\bar{r}(a,s)) \ct \bar{f}(a, r \com s) = \beta(d(a,s)) \ct \big(d(a)(\ext^{-1}(\beta \circ s))\big)^{-1}\Big)
+\end{align*}
+Using the global choice principle, we can express the type $S(r,\beta)$ equivalently as
+\[  (\Pi a) (\Pi s) \big(\Sigma \bar{r} \co r(d(a,s))=c(a,r \circ s) \big) \Big(f(\bar{r}) \ct \bar{f}(a, r \com s) = \beta(d(a,s)) \ct \big(d(a)(\ext^{-1}(\beta \circ s))\big)^{-1}\Big) \, .
+\]
+Now we observe that for any equivalence $g \co X \to Y$, and paths $q \co \Id(g(x_2),y)$, $s \co \Id(g(x_1),y)$, the type $\big(\Sigma p \co \Id_X(x_1,x_2)\big) \Id(g(p) \ct q,s)$ is contractible. Since $\ell, \alpha, r, \beta$ make $f$ into an equivalence, we have $S(r,\beta) \simeq \one$.
+
+Since $f$ is an equivalence between $C$ and $D$, the mapping $t \mapsto f \com t$ is an equivalence between $B(a) \to C$ and $B(a) \to D$. The mapping $\bar{\ell} \mapsto (\lambda a) (\lambda t) \bar{\ell}(a,f \com t)$ is therefore an equivalence between the types $(\Pi a) (\Pi s) \ell(d(a,s)) = c(a,\ell \com s)$ and $(\Pi a) (\Pi t) \ell(d(a,f \com t)) = c(a,\ell \com f \com t)$. Thus, the type type $R(\ell,\alpha)$ can be expressed equivalently as
+\begin{align*}
+& \big(\Sigma \gamma \co (\Pi a) (\Pi t) \ell(d(a,f \circ t))=c(a,\ell \circ f \circ t)\big) (\Pi a) (\Pi t) \\ & \;\;\;\;\;\;\;\;\;\;\;\; \Big(\ell(\bar{f}(a,t)) \ct \gamma(a,t) = \alpha(c(a,t)) \ct \big(c(a)(\ext^{-1}(\alpha \circ t))\big)^{-1}\Big)
+\end{align*}
+Furthermore, using the global choice principle we see that this is equivalent to
+\[ (\Pi a) (\Pi t) \big(\Sigma \gamma \co \ell(d(a,f \circ t))=c(a,\ell \circ f \circ t)\big) \Big(\ell(\bar{f}(a,t)) \ct \gamma = \alpha(c(a,t)) \ct \big(c(a)(\ext^{-1}(\alpha \circ t))\big)^{-1}\Big) \]
+Now we observe that for paths $q \co \Id(y,x_1)$, $s \co \Id(y,x_2)$, the type $\big(\Sigma p \co \Id_X(x_1,x_2)\big) \Id(q \ct p,s)$ is contractible. Thus we have $R(\ell,\alpha) \simeq \one$. Therefore,
+\begin{align*} 
+\isalgequiv(f,\bar{f}) 
+  & \simeq   \big(\Sigma \ell \co D \to C \big) \big(\Sigma \alpha \co \ell \com f \sim 1_C \big) \big(\Sigma r  \co D \to C \big) 
+ \big(\Sigma \beta \co f \com r \sim 1_D \big) \, 1 \\
+ & \simeq \big(\Sigma \ell \co D \to C \big)  \big( \ell \com f \sim 1_C \big) \times 
+ \big(\Sigma r  \co D \to C \big) \big( f \com r \sim 1_D \big) \\
+ & \simeq \isequiv(f) \, ,
+\end{align*} 
+as required.

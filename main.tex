@@ -1,6 +1,7 @@
 \documentclass[10pt,a4paper,oneside,reqno]{amsart}
 
 \usepackage{amsmath,geometry,amssymb,mathpartir,mathtools,latexsym,amsthm,enumerate,leftidx,tikz}
+
 \usepackage[all]{xy}
 \newcommand{\xycenter}[1]{\vcenter{\hbox{\xymatrix{#1}}}}
 \SelectTips{cm}{}
@@ -1268,21 +1269,17 @@ Note that we used the pre-composition and post-compositions of functions with pa
 
 
 
-
-
-
-
 \begin{definition} Let $X, Y$ be $P$-algebras. We say that a $P$-algebra morphism $f \co X \to Y$ is 
  a~\emph{$P$-algebra equivalence}
 if there exist $P$-algebra morphisms $\ell,r \co Y \to X$  which provide a left and a right $P$-inverse for $f$ as a
 $P$-algebra morphism, \ie for
-which there are paths between $P$-algebra morphisms
+which there are paths of $P$-algebra morphisms
 \[ 
 p \co \Id_{\Bip(X,X)}( \ell \circ f,  1_X) \, , \quad q \co \Id_{\Bip(Y,Y)}( f \circ r , 1_Y) \, .
 \]
 \end{definition}
 
-For example, the identity morphism on a $P$-algebra is a $P$-equivalence, with the left and right inverses given by the identity morphism itself. Given $P$-algebras $X = (X, \sup_X)$ and $Y = (Y, \sup_Y)$ and a function $f \co X \to Y$ between the underlying types, we define the type of proofs that $f$ is an equivalence of $P$-algebras as follows:
+For example, the identity morphism on a $P$-algebra is a $P$-equivalence, with the left and right inverses given by the identity morphism itself.  Given $P$-algebras $X = (X, \sup_X)$ and $Y = (Y, \sup_Y)$ and a $P$-algebra morphism $f \co X \to Y$, we define the type of proofs that $f$ is an equivalence of $P$-algebras as follows:
 \[
 \isalgequiv(f) \defeq   \sum_{\ell \co  \Palg(X,Y)} \Id( \ell \circ f, 1_X )  \times 
     \sum_{r  \co \Palg(Y, X)} \Id( f \circ r , 1_Y ) \, .
@@ -1298,7 +1295,7 @@ We then define the type of \emph{$P$-algebra equivalences} between $X$ and $Y$ a
 $P$-algebras if and only
 if its underlying function $f \co X \to Y$ is an equivalence of types. Furthermore, the projection
 \[
-\pi \co \isalgequiv(f, \bar{f})  \to \mathsf{isequiv}(f) \, . 
+\pi \co \isalgequiv(f, \bar{f})  \to \mathsf{isequiv}(f)  
 \]
 is an equivalence. Thus, for every $P$-algebra morphism $(f, \bar{f})$, the type $\isalgequiv(f, \bar{f})$ is
 a mere proposition. 
@@ -1309,64 +1306,98 @@ a mere proposition.
 $P$-algebra equivalence yields the type
 \begin{multline*}
  \Big(
- \sum_{\ell \co Y \to X} \sum_{\bar{\ell} \co  \prod_{a \co A} \prod_{t \co B(a) \to X} \Id \big( \ell( \sup_X(a,t)) , \sup_Y(a, \ell \circ t) \big)}
- P(\ell,\bar{\ell})\Big) \; \times \\ 
- \Big(\big(\Sigma r \co D \to C \big) \big(\Sigma \bar{r} \co (\Pi a) (\Pi s) r(d(a,s))=c(a,r \circ s) \big) Q(r,\bar{r})  \Big)\, , 
+	 \sum_{\ell \co Y \to X} \sum_{\bar{\ell} \co  (\Pi a \co A)( \Pi t \co X^{B(a)}) \Id( \ell (\sup_X(a,t)) ,\, \sup_Y(a, \ell \circ t))}
+ 		P(\ell, \bar{\ell})
+		\Big) \\
+\times\ \Big(
+	\sum_{r \co Y \to X} \sum_{\bar{r} \co (\Pi a\co A) (\Pi s \co X^{B(a)}) \Id( r(\sup_X(a,s)), \sup_Y(a, r \circ s))}
+		Q(r, \bar{r})  
+		\Big)\, , 
 \end{multline*}
 where
 \begin{align*}
-P(\ell,\bar{\ell}) & \defeq \Id \Big( \big( \ell \com f, (\lambda a)(\lambda t) \ell(\bar{f}(a,t)) \ct \bar{\ell}(a, f \com t)\big), \big( 1_C, (\lambda a)(\lambda t) \refl(c(a,t))\big) \Big)  \, , \\
-Q(r,\bar{r})    & \defeq \Id \Big( \big( f \com r, (\lambda a)(\lambda s) f(\bar{r}(a,s)) \ct \bar{f}(a, r \com s)\big) \, , \big( 1_D, (\lambda a)(\lambda s) \refl(d(a,s)) \big) \Big) \, .
+P(\ell,\bar{\ell}) & \defeq \Id \Big( \big( \ell \com f, (\lambda a)(\lambda t) (\ell(\bar{f}(a,t)) \ct \bar{\ell}(a, f \com t))\big), \big( 1_X, (\lambda a)(\lambda t) \refl(\sup_X(a,t))\big) \Big)  \, , \\
+Q(r,\bar{r})    & \defeq \Id \Big( \big( f \com r, (\lambda a)(\lambda s) (f(\bar{r}(a,s)) \ct \bar{f}(a, r \com s))\big) \, , \big( 1_Y, (\lambda a)(\lambda s) \refl(\sup_Y(a,s)) \big) \Big) \, .
 \end{align*}
 Using the characterization of paths in $\Sigma$-types, the type $P(\ell,\bar{\ell})$ can be equivalently expressed as
 \begin{align*}
-\big(\Sigma p \co \ell \com f = \idfun{C} \big) \Big((\lambda a) (\lambda t) \ell(\bar{f}(a,t)) \ct \bar{\ell}(a, f \com t)\Big) = p^{!} \Big((\lambda a) (\lambda t) \refl(c(a,t))\Big) 
+\sum_{ p \co \ell \com f \Rightarrow 1{_X}} 
+	\Id\big((\lambda a) (\lambda t) (\ell(\bar{f}(a,t)) \ct \bar{\ell}(a, f \com t)) ,\, p_{!}((\lambda a) (\lambda t) \refl(\sup_X(a,t)) \big) \,.
 \end{align*}
-By path induction on $p$, the transport $p^{!} \Big((\lambda a) (\lambda t) \refl(c(a,t))\Big)$ is equal to the function
-\[ (\lambda a) (\lambda t) \ext(p)_{c(a,t)} \ct \refl(c(a,t)) \ct \big(c(a)(\ext^{-1}(\ext(p) \circ t))\big)^{-1} \]
-where $\ext \co \ell \com f = \idfun{C} \to \ell \com f \sim \idfun{C}$ is the canonical equivalence. This is of course propositionally equal to
-\[ (\lambda a) (\lambda t) \ext(p)_{c(a,t)} \ct \big(c(a)(\ext^{-1}(\ext(p) \circ t))\big)^{-1} \]
+By path induction on $p$, the transport $p_{!} ((\lambda a) (\lambda t) \refl(\sup_X(a,t)))$ is equal to the function
+\[ (\lambda a) (\lambda t) \big( \ext(p)_{\sup_X(a,t)} \ct \refl(\sup_X(a,t)) \ct \big(\sup_X(a, \ext^{-1}(\ext(p) \circ t))\big)^{-1}\big) \]
+where $\ext \co \Id(\ell \com f ,1_X ) \to \Hot(\ell \com f , 1_X )$ is the canonical equivalence. 
+%SA: this term doesn't look right to me, are we sure of it?
+This is propositionally equal to
+\[ (\lambda a)(\lambda t)\big( \ext(p)_{\sup_X(a,t)} \ct \big(\sup_X(a, \ext^{-1}(\ext(p) \circ t))\big)^{-1}\big) .\]
 Using the characterization of paths in $\Pi$-spaces, the type $P(\ell,\bar{\ell})$ can thus be expressed as
 \begin{align*}
-\big(\Sigma p \co \ell \com f = \idfun{C} \big) (\Pi a) (\Pi t) \Big(\ell(\bar{f}(a,t)) \ct \bar{\ell}(a, f \com t) = \ext(p)_{c(a,t)} \ct \big(c(a)(\ext^{-1}(\ext(p) \circ t))\big)^{-1}\Big)
+\sum_{ p \co \ell \com f \Rightarrow 1{_X}} \prod_{a:A} \prod_{t: X^{B(a)}} 
+	\Id\Big(\ell(\bar{f}(a,t)) \ct \bar{\ell}(a, f \com t),\, \ext(p)_{\sup_X(a,t)} \ct \big(\sup_X(a, \ext^{-1}(\ext(p) \circ t))\big)^{-1}\Big).
 \end{align*}
 Since the function $\ext$ is an equivalence, this is equivalent to
 \begin{align*}
-\big(\Sigma \alpha \co \ell \circ f \sim \idfun{C} \big) (\Pi a) (\Pi t) \Big(\ell(\bar{f}(a,t)) \ct \bar{\ell}(a, f \com t) = \alpha(c(a,t)) \ct \big(c(a)(\ext^{-1}(\alpha \circ t))\big)^{-1}\Big)
+\sum_{ \alpha \co \ell \circ f \sim 1{_X}} \prod_{a:A} \prod_{t: X^{B(a)}} 
+	\Id\Big(\ell(\bar{f}(a,t)) \ct \bar{\ell}(a, f \com t),\, \alpha(\sup_X(a,t)) \ct \big(\sup_X(a, \ext^{-1}(\alpha \circ t))\big)^{-1}\Big).
 \end{align*}
 Analogously, the type $Q(r,\bar{r})$ is equivalent to
 \begin{align*}
-\big(\Sigma \beta \co f \com r \sim \idfun{D} \big) (\Pi a) (\Pi s) \Big(f(\bar{r}(a,s)) \ct \bar{f}(a, r \com s) = \beta(d(a,s)) \ct \big(d(a)(\ext^{-1}(\beta \circ s))\big)^{-1}\Big)
+\sum_{ \beta \co f \com r \sim 1{_Y}} \prod_{a:A} \prod_{s: Y^{B(a)}} 
+\Id\Big(f(\bar{r}(a,s)) \ct \bar{f}(a, r \com s),\, \beta(\sup_Y(a,s)) \ct \big(\sup_Y(a,\ext^{-1}(\beta \circ s))\big)^{-1}\Big).
 \end{align*}
-Therefore, we can express $\mathsf{isPequiv}(f,\bar{f})$ as the type
-\[ \big(\Sigma \ell \co D\to C) \big(\Sigma \alpha \co \ell \circ f \sim \idfun{C}\big) \big(\Sigma r \co D\to C) \big(\Sigma \beta \co f \circ r \sim \idfun{D}\big) R(\ell,\alpha) \times S(r,\beta)\]
+Therefore, we can express $\mathsf{isalgequiv}(f,\bar{f})$ as the type
+\[ \sum_{\ell \co X\to Y} \sum_{\alpha \co \ell \circ f \sim 1_X} \sum_{r \co Y\to X} \sum_{\beta \co f \circ r \sim 1_Y}
+	R(\ell,\alpha) \times S(r,\beta)\]
 where
 \begin{align*}
-& R(\ell,\alpha) \defeq \big(\Sigma \bar{\ell} \co (\Pi a) (\Pi s) \ell(d(a,s))=c(a,\ell \circ s)\big) (\Pi a) (\Pi t) \\ & \;\;\;\;\;\;\;\;\;\;\;\; \Big(\ell(\bar{f}(a,t)) \ct \bar{\ell}(a, f \com t) = \alpha(c(a,t)) \ct \big(c(a)(\ext^{-1}(\alpha \circ t))\big)^{-1}\Big) \\
-& S(r,\beta) \defeq \big(\Sigma \bar{r} \co (\Pi a) (\Pi s) r(d(a,s))=c(a,r \circ s) \big) (\Pi a) (\Pi s) \\ & \;\;\;\;\;\;\;\;\;\;\;\; \Big(f(\bar{r}(a,s)) \ct \bar{f}(a, r \com s) = \beta(d(a,s)) \ct \big(d(a)(\ext^{-1}(\beta \circ s))\big)^{-1}\Big)
+R(\ell,\alpha) \defeq& \sum_{\bar{\ell} \co (\prod a:A) (\prod s:Y^{B(a)}) \Id(\ell(\sup_Y(a,s)), \sup_X(a,\ell \circ s))}
+	 \prod_{a:A}\prod_{t: X^{B(a)}}\\
+		&\strut\qquad\qquad \Id\Big(\ell(\bar{f}(a,t)) \ct \bar{\ell}(a, f \com t),\, \alpha(\sup_X(a,t)) \ct \big(\sup_X(a,\ext^{-1}(\alpha \circ t))\big)^{-1}\Big) \\
+S(r,\beta) \defeq& \sum_{\bar{r} \co (\prod a:A) (\prod s:Y^{B(a)}) \Id(r(\sup_Y(a,s)), \sup_X(a,r\circ s))}
+	 \prod_{a:A}\prod_{s: Y^{B(a)}}\\
+	 		&\strut\qquad\qquad \Id\Big(f(\bar{r}(a,s)) \ct \bar{f}(a, r \com s),\, \beta(\sup_Y(a,s)) \ct \big(\sup_Y(a,\ext^{-1}(\beta \circ s))\big)^{-1}\Big).
 \end{align*}
-Using the global choice principle, we can express the type $S(r,\beta)$ equivalently as
-\[  (\Pi a) (\Pi s) \big(\Sigma \bar{r} \co r(d(a,s))=c(a,r \circ s) \big) \Big(f(\bar{r}) \ct \bar{f}(a, r \com s) = \beta(d(a,s)) \ct \big(d(a)(\ext^{-1}(\beta \circ s))\big)^{-1}\Big) \, .
+Using the type-theoretic choice principle, we can express $S(r,\beta)$ equivalently as
+\[  
+ \prod_{a:A}\prod_{s: Y^{B(a)}}
+\sum_{\bar{r} \co \Id(r(\sup_Y(a,s)), \sup_X(a,r \circ s))}
+\Id\Big(f(\bar{r}) \ct \bar{f}(a, r \com s) ,\, \beta(\sup_Y(a,s)) \ct \big(\sup_Y(a,\ext^{-1}(\beta \circ s))\big)^{-1}\Big) \, .
 \]
-Now we observe that for any equivalence $g \co X \to Y$, and paths $q \co \Id(g(x_2),y)$, $s \co \Id(g(x_1),y)$, the type $\big(\Sigma p \co \Id_X(x_1,x_2)\big) \Id(g(p) \ct q,s)$ is contractible. Since $\ell, \alpha, r, \beta$ make $f$ into an equivalence, we have $S(r,\beta) \simeq \one$.
+Now we observe that for any equivalence $g \co X \to Y$, and paths $q \co \Id(g(x_2),y)$ and $s \co \Id(g(x_1),y)$, the type $\sum_{p \co \Id_X(x_1,x_2)} \Id(g(p) \ct q,s)$ is contractible. Since $\ell, \alpha, r, \beta$ make $f$ into an equivalence, we have $S(r,\beta) \simeq \one$.
 
-Since $f$ is an equivalence between $C$ and $D$, the mapping $t \mapsto f \com t$ is an equivalence between $B(a) \to C$ and $B(a) \to D$. The mapping $\bar{\ell} \mapsto (\lambda a) (\lambda t) \bar{\ell}(a,f \com t)$ is therefore an equivalence between the types $(\Pi a) (\Pi s) \ell(d(a,s)) = c(a,\ell \com s)$ and $(\Pi a) (\Pi t) \ell(d(a,f \com t)) = c(a,\ell \com f \com t)$. Thus, the type type $R(\ell,\alpha)$ can be expressed equivalently as
-\begin{align*}
-& \big(\Sigma \gamma \co (\Pi a) (\Pi t) \ell(d(a,f \circ t))=c(a,\ell \circ f \circ t)\big) (\Pi a) (\Pi t) \\ & \;\;\;\;\;\;\;\;\;\;\;\; \Big(\ell(\bar{f}(a,t)) \ct \gamma(a,t) = \alpha(c(a,t)) \ct \big(c(a)(\ext^{-1}(\alpha \circ t))\big)^{-1}\Big)
-\end{align*}
-Furthermore, using the global choice principle we see that this is equivalent to
-\[ (\Pi a) (\Pi t) \big(\Sigma \gamma \co \ell(d(a,f \circ t))=c(a,\ell \circ f \circ t)\big) \Big(\ell(\bar{f}(a,t)) \ct \gamma = \alpha(c(a,t)) \ct \big(c(a)(\ext^{-1}(\alpha \circ t))\big)^{-1}\Big) \]
-Now we observe that for paths $q \co \Id(y,x_1)$, $s \co \Id(y,x_2)$, the type $\big(\Sigma p \co \Id_X(x_1,x_2)\big) \Id(q \ct p,s)$ is contractible. Thus we have $R(\ell,\alpha) \simeq \one$. Therefore,
+Moreover, since $f$ is an equivalence between $X$ and $Y$, the mapping $t \mapsto f \com t$ is an equivalence between $X^{B(a)}$ and $Y^{B(a)}$. The mapping $\bar{\ell} \mapsto (\lambda a) (\lambda t) \bar{\ell}(a,f \com t)$ is therefore an equivalence between the types $$\prod_{a:A}\prod_{s: Y^{B(a)}}\Id(\ell(\sup_Y(a,s)), \sup_X(a,\ell \com s))$$ and $$ \prod_{a:A}\prod_{t: X^{B(a)}} \Id(\ell(\sup_Y(a,f \com t)), \sup_X(a,\ell \com f \com t)).$$ 
+Thus, the type $R(\ell,\alpha)$ can be expressed equivalently as
+\[
+\begin{split}
+\sum_{\gamma \co \prod_{a:A}\prod_{t: X^{B(a)}} \Id(\ell(\sup_Y(a,f \circ t)),\, \sup_X(a,\ell \circ f \circ t))}
+	 \prod_{a:A}\prod_{t: X^{B(a)}}\\
+	\Id\big(\ell(\bar{f}(a,t)) \ct \gamma(a,t),\, \alpha(c(a,t)) \ct \big(c(a)(\ext^{-1}(\alpha \circ t))\big)^{-1}\big)
+\end{split}
+\]
+Again using the choice principle, we see that this is equivalent to
+\[ 
+ \prod_{a:A}\prod_{t: X^{B(a)}}
+ \sum_{\gamma \co \Id(\ell(d(a,f \circ t)), c(a,\ell \circ f \circ t)}
+  \big(\ell(\bar{f}(a,t)) \ct \gamma = \alpha(\sup_X(a,t)) \ct \big(\sup_X(a, \ext^{-1}(\alpha \circ t))\big)^{-1}\big) 
+  \]
+Finally, we observe that for paths $q \co \Id(y,x_1)$, $s \co \Id(y,x_2)$, the type $\sum_{ p \co \Id_X(x_1,x_2)} \Id(q \ct p,s)$ is contractible. So we also have $R(\ell,\alpha) \simeq \one$. 
+
+Therefore,
 \begin{align*} 
-\isalgequiv(f,\bar{f}) 
-  & \simeq   \big(\Sigma \ell \co D \to C \big) \big(\Sigma \alpha \co \ell \com f \sim 1_C \big) \big(\Sigma r  \co D \to C \big) 
- \big(\Sigma \beta \co f \com r \sim 1_D \big) \, 1 \\
- & \simeq \big(\Sigma \ell \co D \to C \big)  \big( \ell \com f \sim 1_C \big) \times 
- \big(\Sigma r  \co D \to C \big) \big( f \com r \sim 1_D \big) \\
- & \simeq \isequiv(f) \, ,
+\isalgequiv(f,\bar{f})\ 
+  & \simeq\  \sum_{\ell \co Y \to X} \sum_{ \alpha \co \ell \com f \sim 1_X} \sum_{ r  \co Y \to X}
+\sum_{\beta \co f \com r \sim 1_Y} 1 \\
+ & \simeq\ \sum_{\ell \co Y \to X} \Hot( \ell \com f,1_X )\times 
+		\sum_{r  \co Y \to X} \Hot( f \com r, 1_Y)  \\
+ & \simeq\ \isequiv(f) \, ,
 \end{align*} 
 as required.
 \end{proof}
+
+
+
+
+
 
 
 We require an alternative description of the identity type between two $P$-algebra morphisms. For this, we introduce 
@@ -1833,12 +1864,141 @@ is inhabited.
 
 
 
+
 \begin{proof}
-To prove that if a $P$-algebra is inductive then it is homotopy-initial.
- The recursion and propositional $\beta$-rules are special cases of the elimination and propositional computation rules that are part of the definition of an inductive $P$-algebra. The propositional $\eta$-rule and the
-propositional $(\beta, \eta)$-computatibility rules are special cases of the rules in Proposition~\ref{lem:Wetaind}.   We now  show that if $X$ is homotopy-initial then it is inductive. [USE LEMMAS \ref{lem:fibalg} and \ref{lem:fibalghom}.]
-ADAPT THE PROOF OF THEOREM~\ref{thm:bipointedmain}.
+Let $X = (X, \sup_X)$ be an inductive $P$-algebra; we wish to show that it is homotopy initial.
+For this, it suffices to observe that the rules in Proposition~\ref{thm:recursiveW} are a special case of those given in Propositions~\ref{thm:palgindrec} and \ref{lem:Wetaind}, where the dependent type $x \co X \vdash E(x) \co \U$ is constant $Y \co \U$.
+
+To show that $X = (X, \sup_X)$ is inductive if it is homotopy-initial, we proceed as in the proof of~\ref{thm:bipointedmain}. 
+Thus let $E = (E, s_E)$ be a fibered algebra over $X$. We need to show that there
+exists an algebra section $(s, \bar{s})$, where $s \co \prod_{x \co X} E(x)$ and 
+\[ 
+\bar{s} \co \prod_{a \co A} \prod_{t \co B(a) \to X} \Id \big( s(\sup_X(a,t)), s_E(a, t, s \circ t) \big)
+\]
+%
+Consider the total algebra $(E', \sup_{E'})$ associated to $E$, as described in Lemma~\ref{lem:fibalg}, with carrier 
+\[
+E' \defeq \sum_{x \co A} E(x) 
+\]
+and structure map
+\[
+\sup_{E'} \co PE' \to E'
+\]
+defined by
+\[
+\sup_{E'}(a,t') \defeq \Big(\sup_X(a,\pi_1 \circ t'), s_E\big(a,\pi_1 \circ t', \pi_2 \circ t'\big)\Big) .
+\]
+The first projection $\pi_1 \co E' \to X$ is then an algebra morphism,
+\[
+\xymatrix{
+PE' \ar[r]^{P\pi_1} \ar[d]_-{\sup_{E'}} \ar@{}[rd]|{p} & PX \ar[d]^{\sup_X} \\ 
+E'  \ar[r]_-{\pi_1} & X \, .}
+ \]
+%
+By the homotopy-initiality of $X$, we also have an algebra morphism 
+\[
+(f, \bar{f}) \co (X, \sup_X)  \to (E', \sup_{E'}) 
+\]
+which we can represent with the diagram
+\[
+\xymatrix{
+PX \ar[r]^{Pf} \ar[d]_-{\sup_{X}} \ar@{}[rd]|{\bar{f}} & PE' \ar[d]^{\sup_{E'}} \\ 
+X  \ar[r]_-{f} & E' \, .}
+ \]
+%
+Composing $f \co X \to E'$ with $\pi_1 \co E' \to X$ we obtain an algebra morphism $\pi_1 \com f \co X \to X$, represented by the diagram
+\[
+\xymatrix{
+PX \ar[rr]^{P(\pi_1 \com f)} \ar[d]_-{\sup_{X}} \ar@{}[rrd]|{\overline{\pi_1 \com f}} && PX \ar[d]^{\sup_{X}} \\ 
+X  \ar[rr]_-{\pi_1 \com f} && X \, .}
+ \]
+%
+The homotopy $\overline{(\pi_1 \com f)}$ is a function mapping each $(a,t)$ to
+a path $\pi_1(f(\sup_X(a,t))) \Rightarrow \sup_X(a, \pi_1 \circ f \circ t)$. We have
+\[
+\overline{(\pi_1 \com f)}(a,t) = \pi_1(\idtodpair(\bar{f}(a,t))) ,
+\]
+where $$\idtodpair : \Id(u,v) \simeq \sum_{p : \pi_1(u) \Rightarrow \pi_1(v)} \Id\big(p_{!}(\pi_2(u)), \pi_2(v)\big)$$ is the canonical equivalence for paths in $\Sigma$-types. 
+By the homotopy-initiality of $X$,  there is then a path
+\begin{equation*}
+\pi_1 \circ f \Rightarrow 1_X 
+\end{equation*}
+in $\Palg(X,X)$ from the composite to the identity algebra morphism $1_X \co X \to X$.
+%
+By Lemma~\ref{IdEqHo}, there is a corresponding algebra homotopy $(\alpha,\bar{\alpha}) \co \pi_1 \circ f \sim 1_X$,  consisting of a homotopy of the underlying maps $\alpha \co \pi_1 \circ f \sim 1_X$ and a (higher) path
+\begin{equation*}
+\bar{\alpha} \co \overline{(\pi_1 \com f)} \cdot \sup_X (P \alpha) \Rightarrow \alpha(\sup_X) \cdot \overline{1_X}.
+\end{equation*}
+Thus for every $a:A$ and $t\co B(a)\to X$, there is a path
+\begin{equation}\label{equ:alphabar}
+\bar{\alpha}(a,t) :   \overline{(\pi_1 \com f)}(a,t) \ct \sup_X(a,\ext_\Pi^{-1}(\alpha(t))) \Rightarrow \alpha(\sup_X(a,t)) \cdot \refl_{\sup_X(a,t)},
+\end{equation}
+where $$\ext_\Pi : \Id(g,h) \to \Hot(g, h)$$ is the canonical equivalence for paths in $\Pi$-types. 
+In particular, we therefore have the path $\ext_\Pi^{-1}(\alpha(t))\co\pi_1 \circ f \circ t \Rightarrow t$ in $X^{B(a)}$.
+
+To construct an algebra section $(s, \bar{s})$ of $(E, s_E)$, we define for~$x \co X$, 
+\begin{equation}
+\label{equ:defreqsection}
+s(x) \defeq \alpha(x)_{!} \big( \pi_2 \com f (x) \big) \, ,
+\end{equation}
+which indeed has type $E(x)$, since the transport along $\alpha(x) \co (\pi_1 \circ f)(x) \Rightarrow x$ has type $\alpha(x)_{!} : E(\pi_1 \com f (x)) \to E(x)$.
+%
+To construct a path $\bar{s} \co \prod_{a \co A} \prod_{t \co B(a) \to X} \Id \big( s(\sup_X(a,t)), s_E(a, t, s \circ t) \big)$, for each $a:A$ and $t:B(a)\to X$ we require a path
+\[
+\bar{s}(a,t) \co s(\sup_X(a,t)) \Rightarrow s_E(a, t, s \circ t).
+\] 
+Expanding the definition of $s$, this means we need a higher path
+\begin{equation}\label{eq:proof:thm:WMain:needpath}
+\bar{s}(a,t) \co \alpha(\sup_X(a,t))_{!} \big( \pi_2 \com f (\sup_X(a,t)) \big) \Rightarrow s_E\big(a, t, \lam{b}[\alpha(t(b))_{!} \big( \pi_2 (f(t(b)))\big)]\big).
+\end{equation}
+
+Now clearly $\alpha(\sup_X(a,t)) \Rightarrow \alpha(\sup_X(a,t)) \ct \refl_{\sup_X(a,t)}$. 
+By $\bar{\alpha}(a,t)^{-1}$ from \eqref{equ:alphabar}, the latter path is equal to $\overline{(\pi_1 \com f)}(a,t) \ct \sup_X(a,\ext^{-1}(\alpha \circ t))$. 
+We thus have
+\begin{align}
+\alpha(\sup_X(a,t))_{!}& \big( \pi_2 \com f (\sup_X(a,t)) \big) \notag \\
+ \Rightarrow\ &\Big(\overline{(\pi_1 \com f)}(a,t) \ct \sup_X(a,\ext^{-1}(\alpha \circ t))\Big)_{!} \big( \pi_2 (f (\sup_X(a,t))) \big) \label{eqnstart}
+\end{align}
+Expanding the transport on the right hand side gives
+\begin{align*}
+\Big(\overline{(\pi_1 \com f)}(a,t)& \ct \sup_X(a,\ext^{-1}(\alpha \circ t))\Big)_{!} \big( \pi_2 (f (\sup_X(a,t))) \big) \\
+\Rightarrow &\big(\sup_X(a,\ext^{-1}(\alpha \circ t))\big)_{!} \; \Big( \big(\overline{(\pi_1 \com f)}(a,t)\big)_{!} \; \big(\pi_2 (f (\sup_X(a,t))) \big) \Big).
+\end{align*}
+%
+Next, note that there is a path 
+\begin{align*}
+\pi_2(\ext_\Sigma(\bar{f}(a,t))) : \big(\overline{(\pi_1 \com f)}(a,t)\big)_{!} \; \big(\pi_2(f (\sup_X(a,t))) \big)
+\Rightarrow\ \pi_2(\sup_{E'}(a, f \circ t)).
+\end{align*}
+Expanding the definition of $\sup_{E'}$ on the right hand side, this becomes
+\begin{align*}
+\pi_2(\ext_\Sigma(\bar{f}(a,t))) : \big(\overline{(\pi_1 \com f)}(a,t)\big)_{!} \; \big(\pi_2(f (\sup_X(a,t))) \big)
+\Rightarrow\ s_E\big(a,\pi_1 \circ f \circ t, \pi_2 \circ f \circ t\big)
+\end{align*}
+We thus have
+\begin{align*}
+\big(\sup_X(a,\ext^{-1}(\alpha \circ t))\big)_{!} \;& \big( \big(\overline{(\pi_1 \com f)}(a,t)\big)_{!} \; \big(\pi_2 (f (\sup_X(a,t))) \big) \big) \\
+\Rightarrow\ &\big(\sup_X(a,\ext^{-1}(\alpha \circ t))\big)_{!} \; s_E\big(a,\pi_1 \circ f \circ t, \pi_2 \circ f \circ t\big).
+\end{align*}
+%
+Now for any $a : A$, any path $p : t_1 \Rightarrow t_2$ in $X^{B(a)}$ and any $e : \prod_{b:B(a)} E(t_1(b))$, there is a higher path 
+\[ 
+\epsilon(a,p,e) : (\sup_X(a,p))_{!}\, s_E(a,t_1,e) \Rightarrow s_E\big(a,t_2, \lam{b} [\big(\ext(p)(b)\big)_{!}\, e(b)]\big)\,, 
+\]
+defined by path induction on $p$.
+The path $\epsilon(a,\ext^{-1}(\alpha \circ t),\pi_2 \circ f \circ t)$ therefore has the form
+\begin{align*}
+\big(\sup_X(a,\ext^{-1}(\alpha \circ t))\big)_{!} \; &s_E\big(a,\pi_1 \circ f \circ t, \pi_2 \circ f \circ t\big)\\
+\Rightarrow\ & s_E\big(a,t, \lam{b}[ \big(\ext(\ext^{-1}(\alpha \circ t))(b)\big)_{!} \; \pi_2(f(t(b)))]\big)
+\end{align*}
+Cancelling $\ext$ and $\ext^{-1}$  yields
+\begin{align}
+s_E\big(a,t, \lam{b}[ \big(\ext_2(\ext^{-1}_2(\alpha \circ t))(b)\big)_{!} \; \pi_2(f(t(b)))]\big) \Rightarrow s_E\big(a,t, \lam{b}[ \big(\alpha(t(b))\big)_{!} \; \pi_2(f(t(b)))]\big)
+ \label{eqnend}
+\end{align}
+Composing \eqref{eqnstart}--\eqref{eqnend} provides the desired path $\bar{s}(a,t)$ as in \eqref{eq:proof:thm:WMain:needpath}.
 \end{proof}
+
 
 
 Note that, by Theorem~\ref{thm:WMain}, for every $P$-algebra $X = (X, \sup_X)$ there is actually an equivalence $\isalgind(X) \simeq \isalghinit(X)$ since both types are propositions.  For the next proposition, we work in the type theory $\Hint + \W$, obtained by adding to $\Hint$ the rules for $W$-types.
