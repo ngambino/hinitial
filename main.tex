@@ -119,6 +119,7 @@
 \newcommand{\isntype}[1]{\mathsf{is}\text{-}\mathsf{#1}\text{-}\mathsf{type}}
 \newcommand{\isprop}{\mathsf{isprop}}
 \newcommand{\isequiv}{\mathsf{isequiv}}
+\newcommand{\iswequiv}{\mathsf{iswequiv}}
 \newcommand{\isind}{\mathsf{isind}}
 \newcommand{\isbipind}{\mathsf{isind}}
 \newcommand{\isalgind}{\mathsf{isind}}
@@ -284,21 +285,20 @@ in the context of Observational Type Theory \cite{AltenkirchT:obsen}.  Inductive
 
 
 
-We work here with type theories that have the four standard forms of judgement
+In this paper, we work with a basic system $\Hint$ that is very close to what is usually  known as \emph{(intensional) Martin-L\"of type theory} (see \cite{NordstromB:marltt}), modified as indicated below.  By way of review there are four standard forms of judgement
 \[
 A \co \type \, , \quad A \deq B \co \type \, , \quad   a \co A \, , \quad a \deq b \co A \, . 
 \]
 We refer to the equality relation in these judgements as \emph{judgemental equality}, 
-which should be contrasted with the notion of propositional equality
-recalled below. 
-Each kind of judgement can be made also relative to a context of variable declarations.
-However, when stating deduction
-rules we  omit the mention
-of a context that is common to premisses and conclusions of the rule and
+which should be contrasted with the notion of \emph{propositional equality}
+defined below. 
+Each kind of judgement can also be made relative to a context of variable declarations $\Gamma$, e.g. $\Gamma \vdash A \co \type$, etc..
+However, when stating deduction rules we may omit the mention
+of a context common to premisses and conclusions of the rule, and we
 make use of other standard conventions to simplify the exposition.
 
-We will work over a dependent type theory $\Hint$ which has standard structural rules, rules for $\Pi$-types, $\Sigma$-types and
-identity types as in Appendix~\ref{app:rules}.   The system $\Hint$  also includes the Function Extensionality axiom, which asserts that
+The dependent type theory $\Hint$ has standard structural rules, and rules for $\Pi$-types, $\Sigma$-types and
+identity types $\Id$ as listed in Appendix~\ref{app:rules}.   The system $\Hint$  also includes the Function Extensionality axiom, which asserts that
 for every $f, g \co A \rightarrow B$, the type
 \[\tag{FE}
 \prod_{x \co  A}\Id( \app(f, x), \app(g, x)) \rightarrow \Id(f,g) 
@@ -318,9 +318,9 @@ we will write~$f(a)$ or~$f  a$ instead of $\app(f,a)$.
 \[
 \Hot(f,g) \deq \Pi_{x:A}\Id_{B}(f(x),g(x)).
 \]
-Thus the rule FE states that $(f \sim g) \rightarrow (f \Rightarrow g)$ is inhabited.
-\item As shown in~\cite{VoevodskyV:unifc}, the principle of propositional function extensionality stated above implies
-the corresponding principle for dependent functions, \emph{i.e.} 
+Thus the rule FE states that the type $(f \sim g) \rightarrow (f \Rightarrow g)$ is inhabited.
+\item As shown in~\cite{VoevodskyV:unifc}, the principle of function extensionality stated above implies
+the corresponding principle for dependent functions $x:A\vdash f(x), g(x):B(x)$, \emph{i.e.} 
 \[
 \prod_{x \co  A}\Id( f x, g x) \rightarrow \Id(f,g) \, .
 \]
@@ -338,6 +338,7 @@ without FE.
 \item $\Hint$ does \emph{not} include the $\eta$-rules as definitional equalities for $\Sigma$-types as is done in~\cite{GoguenH:inddtw}.
 \item The type theory $\Hint$ will serve as the background theory for our study of 
 inductive types and W-types. For this reason, we need not assume it to have any primitive types.
+\item Although in general we do not  require $\Hint$ to have universes, for some later results we will need one such universe, which we then denote $\U$, and which is assumed to satisfy the usual rules \cite{MLuniverse}.  This provides a corresponding distinction between small and large types: a type $A$ is \emph{small} if it is in the universe $A\co\U$, and \emph{large} otherwise.
 \end{enumerate}
 \end{remarks*}
 
@@ -349,8 +350,8 @@ used in Voevodsky's Univalent Foundations library~\cite{VoevodskyV:unifc}.  In p
 Function Extensionality axiom is formally implied by Voevodsky's Univalence axiom~\cite{VoevodskyV:notts}, 
 which is also valid in homotopy-theoretic models, but will not be needed here. Note that, 
 while the Function Extensionality axiom is valid also in set-theoretic models, the Univalence 
-axiom is not. Although $\Hint$ has a straightforward set-theoretical semantics, we stress that it 
-does not have any global extensionality rules, like the identity reflection rule, K, or UIP. This makes it also compatible with ``higher-dimensional" interpretations such as the groupoid model~\cite{HofmannM:gromtt}, in which the rules of $\Hint$ are also valid.
+axiom is not. Although $\Hint$ also has a straightforward set-theoretical semantics, we stress that it 
+does not include any global extensionality rules, like the identity reflection rule, K, or UIP. This makes it also compatible with homotopical and ``higher-dimensional" interpretations such as the groupoid model~\cite{HofmannM:gromtt}, in which the rules of $\Hint$ are also valid.
 
 \begin{remark}[Extensional type theories] 
 Most work on inductive types to date (\eg~\cite{AbbottM:concsp,DybjerP:repids,GambinoN:weltdp,MoerdijkI:weltc}) has been in the setting of extensional type theories,  
@@ -363,26 +364,23 @@ in which the following rule, known as the identity reflection rule, is also assu
   a=b \co  A
 \end{prooftree}
 \end{equation}
-This rule collapses propositional equality with definitional equality, thus making the overall system
-somewhat simpler to work with. However, it destroys the constructive character of the intensional system, since it makes type-checking undecidable~\cite{HofmannM:extcit}. For this reason, it is not assumed
+This rule collapses propositional equality to definitional equality, thus making the overall system
+somewhat simpler to work with. However, it destroys part of the constructive character of the intensional system, since it makes type-checking undecidable~\cite{HofmannM:extcit}. For this reason, it is not assumed
 in the most recent formulations of Martin-L\"of type theories~\cite{NordstromB:marltt} or in automated proof assistants like Coq~\cite{BertotY:inttpp}.
 
 \end{remark}
 
-
-\bigskip
-
-The main import of the 
+Observe that the main import of the 
 $\Id$-elimination rule is that  type dependency must respect identity, in the following sense: given a dependent type
 \begin{equation}
 \label{equ:deptype}
 x\co A \vdash B(x) \co \type \, ,
 \end{equation} 
-and $p\co \Id(a,b)$, there is then a \emph{transport} function 
+and any $a,b\co A$ with $p\co \Id(a,b)$, there is then a \emph{transport} function 
  $$p_{\, ! } \co B(a) \rightarrow B(b),$$ which is defined by $\Id$-elimination, taking for $x \co A$
-the function $\refl(x)_{\, !} \co B(x) \rightarrow B(x)$ to be the identity on $B(x)$.  
+the function $\refl(x)_{\, !} \co B(x) \rightarrow B(x)$ to be the identity on $B(x)$.  This transport operation is familiar from homotopy theory as the distinctive property of a ``fibration'' of spaces.  Indeed, as introduced in \cite{AwodeyS:homtmi}, we shall think of the projection $\Sigma_{x:A}B(x) \to A$ as a topological fibration from the total space $\Sigma_{x:A}B(x)$, with fiber $B(x)$ for $x\co A$.
 
- The topological notion of contractibility admits the following type-theoretic counterpart, originally
+Next, note that the topological notion of contractibility of a space admits the following type-theoretic counterpart, originally
  introduced by Voevodsky in~\cite{VoevodskyV:unifc}.
 
 \begin{definition}  A type $A$ is said to be \emph{contractible} if the  type 
@@ -399,10 +397,10 @@ is as a space that is inhabited if and only if the space interpreting $A$ is con
 topological sense. Note that if $A$ is a contractible type, then for every $a, b \co A$, the type $\Id(a,b)$ is again contractible. 
 This can be proved  by $\Id$-elimination. 
 
-The notion of contractibility can be used to articulate the world of types  into \emph{h-levels} according to their
-homotopical complexity~\cite{VoevodskyV:unifc}. We will need to recall only the notion of a type of $h$-level 1, or h-proposition.
+The notion of contractibility can be used to articulate the world of types  into a hierarchy of so-called \emph{h-levels} according to their
+homotopical complexity~\cite{VoevodskyV:unifc}. We will need to recall only the notion of a type of h-level 1, or h-proposition.
 
-\begin{definition} A type $A$ is said to be a \emph{homotopy proposition} (\emph{h-proposition} for short) if the type
+\begin{definition} A type $A$ is said to be an \emph{h-proposition} if the type
 \[
 \isprop(A) \defeq \prod_{x \co A} \prod_{y \co A} \iscontr( \Id(x,y)) 
 \]
@@ -422,11 +420,11 @@ is inhabited.
 \begin{definition} \label{thm:weq}  We say that $f \co A \rightarrow B$ is a \emph{weak equivalence} if it has both a left inverse and a right inverse, \ie
 $\ell \co B \to A$ and $r \co B \to A$ such that the following types are inhabited. 
 \[
- \Id(\ell \circ f, 1_A)\, ,  \quad  \Id(f \circ r = 1_B) \, .
+ \Id(\ell \circ f, 1_A)\, ,  \quad  \Id(f \circ r, 1_B) \, .
  \] 
  Accordingly, for $f \co A \rightarrow B$, we define the type of proofs that $f$ is a weak equivalence by letting
  \[ 
- \isequiv(f) \defeq \sum_{\ell \co B \to A} \Id( \ell \circ f, 1_A) \times \sum_{r \co B \to A} \Id( r \circ f , 1_B) \, .
+ \iswequiv(f) \defeq \sum_{\ell \co B \to A} \Id( \ell \circ f, 1_A) \times \sum_{r \co B \to A} \Id( r \circ f , 1_B) \, .
  \]
   \end{definition}
   
