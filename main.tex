@@ -176,8 +176,7 @@
 
 % W-types
 
-\newcommand{\W}{\mathrm{W}}
-\DeclareMathOperator*{\WW}{\text{\Large $\mathrm{W}$}}
+\newcommand{\W}{\mathsf{W}}
 \newcommand{\wsup}{\mathsf{sup}}
 \newcommand{\wrec}{\mathsf{wrec}}
 \newcommand{\wind}{\mathsf{wind}}
@@ -388,7 +387,7 @@ x \co A \vdash b(x) \co B(x)
 \end{prooftree} \medskip 
 \]
 \end{minipage}} \medskip
-\caption{Rules for $\Pi$-types}
+\caption{Rules for $\Pi$-types.}
 \label{tab:pirules}
 
  \end{table}
@@ -645,7 +644,9 @@ More precisely, for $f \co A \rightarrow B$, we have
  \iswequiv(f) \simeq (\Sigma \ell \co B \to A) \Id( \ell \circ f, 1_A) \times (\Sigma r \co B \to A) \Id( r \circ f , 1_B) \, .
  \]
 
-
+\begin{center}
+NEED TO ADD $\mathsf{ext}$ FOR PI, SIGMA and U. 
+\end{center}
 
 \newpage
 
@@ -1475,8 +1476,13 @@ by the assumption that $A$ and $B$ are homotopy-initial.
 \section{Polynomial functors and their algebras}
 \label{section:wfiles}
 
-A W-type can be seen informally as the free algebra for a signature
-with arbitrarily many operations of possibly infinite arity, but no equations. Indeed, the premises of the formation rule above can be thought of as specifying a signature that has the elements of~$A$ as (names of) operations and in which the arity of $a \co A$ is the cardinality of the type $B(a)$. Then the introduction rule specifies the canonical way of forming an element of the free algebra, and the elimination rule can be seen as the propositions-as-types translation of the appropriate induction principle.
+
+The aim of the rest of the paper is to carry out a similar analysis for well-ordering types, or W-types. We recall
+the rules for W-types in Table~\ref{tab:wrules}. There, we sometimes write $W$ for~$(\W x \co A) B(x)$ for
+brevity.  Informally, 
+a W-type can be seen as the free algebra for a signature
+with arbitrarily many operations of possibly infinite arity, but no equations. Indeed, the premises of the formation rule above can be thought of as specifying a signature that has the elements of the type $A$ as~(names of) operations and in which the arity of $a \co A$ is (the cardinality of) the type $B(a)$. Then the introduction rule specifies the canonical way of forming an element of the free algebra, and the elimination rule can be seen as the propositions-as-types translation of the appropriate induction principle. As usual, the computation rule states what happens if we apply the
+the elimination rule to a canonical element of the inductive type.
 
 \begin{table}[htb]
 \fbox{\begin{minipage}{14.5cm}
@@ -1486,7 +1492,7 @@ with arbitrarily many operations of possibly infinite arity, but no equations. I
  x \co A \vdash B(x) \co \type
  \justifies
  \textstyle
- (\mathsf{W} x \co A) B(x) \co \type
+ (\W x \co A) B(x) \co \type
 \end{prooftree} \qquad 
 \begin{prooftree}
 a \co A \qquad
@@ -1509,50 +1515,47 @@ x \co A,\, u \co B(x) \to W,\, v \co (\Pi y \co B(x)) E(uy) \vdash e(x,u,v) \co 
 w \co W \vdash E(w) \co \type  \quad
 x\co A,\, u \co B(x) \to W,\, v \co (\Pi y \co B(x)) E(u y)  \vdash e(x,u,v) \co E(\wsup(x,u))
 \justifies
-x\co A,\, u \co B(x) \to W \vdash  \ind(\wsup(x,u),e) = e\big(x,u, ( \lambda y ) \ind(u y,s_E)\big) \co E(\wsup(x,u))
+x\co A,\, u \co B(x) \to W \vdash  \ind(\wsup(x,u),e) = e(x,u, ( \lambda y \co B(x)) \ind(u y,s_E)) \co E(\wsup(x,u))
 \end{prooftree} \medskip
 \]
 \end{minipage}} \smallskip
 \caption{Rules for $W$-types.} 
+\label{tab:wrules}
 \end{table}
 
-\newpage
 
-
-
- Throughout this section and the next, we consider a fixed  $A \co \U$ and $B \co A \to \U$. For $X \co \U$,
+We now consider a small type $A \co \U$ and a small dependent type $B \co A \to \U$, which we consider
+fixed for this section and the next. For $X \co \U$,
 we define
 \[
-PX \defeq \sum_{a \co A} X^{B(a)}
+PX \defeq (\Sigma a \co A) X^{B(a)} \, .
 \]
-In this way, we obtain a function $P \co \U \to \U$. This operation on types extends to an operation of functions between 
+In this way, we obtain a function $P \co \U \to \U$. This operation on types extends to an operation on functions between 
  types, as follows. For $f \co X\to Y$, we define $P f  \co PX\to PY$ by $\Sigma$-elimination
 so that, for $(a, t) \co PX$, we have 
 \[
 Pf (a, t) = (a,f\circ t) \, .
 \] 
-Although this assignment is not strictly functorial, we still refer to  as the \emph{polynomial functor} associated to $A$ and $B$. 
+Although this assignment is not strictly functorial, we still refer to  as the \emph{polynomial functor} associated to $A$ and $B$, so as to highlight the analogy with the theory of polynomial functors on locally cartesian closed categories.
 
-\begin{definition} A \emph{$P$-algebra} consists of a small type $X$ and a function $\sup_X \co PX \to X$. 
+\begin{definition} A \emph{$P$-algebra} consists of a small type $X \co \U$ and a function $\sup_X \co PX \to X$. 
 \end{definition}
 
 \smallskip
 
  The type of $P$-algebras is then defined as 
  \[
- \Palg  \defeq \sum_{X \co \U} X^{PX} \, .
+ \Palg  \defeq (\Sigma X \co \U) X^{PX} \, .
  \]
  Given a $P$-algebra $X = (X, \sup_X)$,
- we refer to the type $X$ as the carrier or the underlying type of the algebra and to the function $\sup_X \co PX\to X$ as the \emph{structure map} of the $P$-algebra. 
+ we refer to the type $X$ as the \emph{carrier} or \emph{underlying type} of the algebra and to the function $\sup_X \co PX\to X$ as the \emph{structure map} of the $P$-algebra. 
  As usual,  we will often refer to a 
- $P$-algebra by mentioning only to its carrier. We adopt similar conventions for other kinds of structures that we consider
+ $P$-algebra by mentioning only its carrier. We adopt similar conventions for other kinds of structures that we consider
  in the following.  In the
- presence of W-types, an example of $P$-algebra is given by the type $W \defeq \WW_{x\co A} B(x)$, with structure map given by the introduction rule for W-types.
- 
+ presence of W-types, an example of $P$-algebra is given by the type $W \defeq (\W x\co A)B(x)$, with structure map given by the introduction rule for W-types. 
+Let us now fix $P$-algebras $X = (X, \sup_X)$ and $Y = (Y, \sup_Y)$. 
 
-
-\begin{definition}
-For $P$-algebras $X$ and $Y$, a \emph{$P$-algebra morphism}
+\begin{definition} A \emph{$P$-algebra morphism}
 \[
 (f, \bar{f}) \co (X, \sup_X) \rightarrow (Y, \sup_Y)
 \]
@@ -1572,7 +1575,7 @@ morphisms between $X$ and $Y$ is defined by
 \[
 \Palg(X,Y)
  \defeq  
-\sum_{f:  X \rightarrow Y} \, \Id(f\circ \sup_X \, ,  \sup_Y \circ P f )  \, .
+(\Sigma f:  X \rightarrow Y) \, \Id(f\circ \sup_X \, ,  \sup_Y \circ P f )  \, .
 \]
 We now define the composition operation for $P$-algebra morphisms. Given $(f, \bar{f}) \co X \to Y$ and~$(g, \bar{g}) \co Y \to Z$,
 their composite 
@@ -1599,31 +1602,31 @@ More precisely, it is given by the following composition of paths:
  & \Rightarrow \sup_Z \circ (Pg \circ Pf) \\
  & \Rightarrow \sup_Z \circ P (g\circ f) \, .
  \end{align*}
-Note that we used the pre-composition and post-compositions of functions with paths. As in the case of bipointed types, we do not quite have a category since the composition operation is not strictly associative, but only so up to a system of higher and higher identities. 
+Note that we used the pre-composition and post-compositions of functions with paths. As in the case of bipointed types, the equations for a category do not hold up to judgemental equality, but only so up to a system of higher and higher identities. Next, we introduce the notion of equivalence between $P$-algebras.
 
 \medskip
 
 
 
-\begin{definition} Let $X, Y$ be $P$-algebras. We say that a $P$-algebra morphism $f \co X \to Y$ is 
+\begin{definition} We say that a $P$-algebra morphism $f \co X \to Y$ is 
  a~\emph{$P$-algebra equivalence}
 if there exist $P$-algebra morphisms $\ell,r \co Y \to X$  which provide a left and a right $P$-inverse for $f$ as a
 $P$-algebra morphism, \ie for
 which there are paths of $P$-algebra morphisms
 \[ 
-p \co \Id_{\Bip(X,X)}( \ell \circ f,  1_X) \, , \quad q \co \Id_{\Bip(Y,Y)}( f \circ r , 1_Y) \, .
+p \co \Id_{\Palg(X,X)}( \ell \circ f,  1_X) \, , \quad q \co \Id_{\Palg(Y,Y)}( f \circ r , 1_Y) \, .
 \]
 \end{definition}
 
-For example, the identity morphism on a $P$-algebra is a $P$-equivalence, with the left and right inverses given by the identity morphism itself.  Given $P$-algebras $X = (X, \sup_X)$ and $Y = (Y, \sup_Y)$ and a $P$-algebra morphism $f \co X \to Y$, we define the type of proofs that $f$ is an equivalence of $P$-algebras as follows:
+For example, the identity morphism on a $P$-algebra is a $P$-equivalence, with the left and right inverses given by the identity morphism itself.  Given a $P$-algebra morphism $f \co X \to Y$, we define the type of proofs that $f$ is an equivalence of $P$-algebras as follows:
 \[
-\isalgequiv(f) \defeq   \sum_{\ell \co  \Palg(X,Y)} \Id( \ell \circ f, 1_X )  \times 
-    \sum_{r  \co \Palg(Y, X)} \Id( f \circ r , 1_Y ) \, .
+\isalgequiv(f) \defeq  (\Sigma \ell \co  \Palg(X,Y)) \Id( \ell \circ f, 1_X )  \times 
+    (\Sigma r  \co \Palg(Y, X)) \Id( f \circ r , 1_Y ) \, .
 \]
 We then define the type of \emph{$P$-algebra equivalences} between $X$ and $Y$ as
 \[
 \AlgEquiv(X, Y)
-\defeq    \sum_{f \co \Palg(X,Y)} \isalgequiv(f)  \, . 
+\defeq   (\Sigma f \co \Palg(X,Y)) \isalgequiv(f)  \, . 
 \] 
 
 
@@ -1736,7 +1739,7 @@ as required.
 
 
 
-We require an alternative description of the identity type between two $P$-algebra morphisms. For this, we introduce 
+We will require an alternative description of the identity type between two $P$-algebra morphisms. For this, we introduce 
 the notion of a $P$-algebra homotopy in the next definition.
 
 
@@ -1761,7 +1764,7 @@ PX \ar@/^1pc/[r]^{Pg}   \ar[d]_{\sup_X} \ar@{}[r]_(.52){\bar{g}}  & PY \ar[d]^{\
 X \ar@/^1pc/[r]^g  \ar@/_1pc/[r]_f  \ar@{}[r]|{\alpha} & Y }
 \]
 are equal (which is the condition defining an algebra 2-cell in 2-dimensional category theory). Note that $\bar{\alpha}$ is a higher path, between elements of 
-$\Id \big( f \circ \sup_X \, ,  \sup_Y \circ Pg \big)$, and that $\alpha(\sup_X)$ and $\sup_Y(P \alpha)$ are obtained by pre-composition and post-compositions, respectively, of maps with homotopies.  The type of homotopies of $P$-algebra morphisms is then defined by
+$\Id \big( f \circ \sup_X \, ,  \sup_Y \circ Pg \big)$. Also observe that $\alpha(\sup_X)$ and $\sup_Y(P \alpha)$ are obtained by pre-composition and post-compositions, respectively, of maps with homotopies.  The type of homotopies of $P$-algebra morphisms is then defined by
 \[
 \AlgHot \big( (f,\bar{f}), (g, \bar{g})  \big)
  \defeq  
@@ -1792,41 +1795,41 @@ We now introduce the fibered versions of the notions of a $P$-algebra, $P$-algeb
 Let $X$ be a $P$-algebra. A \emph{fibered $P$-algebra} over $X$ consists of a dependent type $E \co X \to \U$
 and a function 
 \[
-s_E \co \prod_{a \co A} \prod_{t \co B(a) \to X}  \prod_{b \co B(a)}  E(t b)  \to E(\sup_X(a,t))
+s_E \co (\Pi a \co A) (\Pi t \co B(a) \to X) \big( (\Pi b \co B(a))  E(t b)  \to E(\sup_X(a,t)) \big) 
  \] 
 \end{definition}
 
 
-As we will see in Lemma~\ref{lem:fibalg} below, a fibered $P$-algebra amounts essentially to a dependent type whose total
-type $E' \defeq \sum_{x \co X} E(x)$ carries the structure of a $P$-algebra for which the projection $\pi_1 \co E' 
+As we will see in Remark~\ref{thm:fibalg} below, a fibered $P$-algebra amounts essentially to a dependent type whose total
+type $\mathsf{Tot}(E) \defeq (\Sigma x \co X) E(x)$ carries the structure of a $P$-algebra for which the projection $\pi_1 \co \mathsf{Tot}(E) 
 \to X$ is a $P$-algebra morphism.  For a $P$-algebra $X$, we then define the type of \emph{fibered $P$-algebras} over $X$ as follows:
 \[
-\Palg(X) \defeq \sum_{E \co X \to \U} \prod_{a \co A} \prod_{t \co B(a) \to X} 
- \prod_{b \co B(a)}  E(t b)  \to E(\sup_X(a,t))
+\Palg(X) \defeq (\Sigma E \co X \to \U) (\Pi a \co A) (\Pi t \co B(a) \to X) 
+ (\Pi b \co B(a))  E(t b)  \to E(\sup_X(a,t))
  \]
 This terminology and notation used in the definition is justified by the following remark.
 
-\begin{remark*}\label{lem:fibalg}
-Given a fibered $P$-algebra $E$ over $X$, the type $E' =  \sum_{x \co  X} E(x)$ can be equipped with the structure of a $P$-algebra in such a way that  the projection function $\pi_1 \co E'\to X$ becomes a $P$-algebra morphism:
+\begin{remark}\label{thm:fibalg}
+Given a fibered $P$-algebra $E$ over $X$, the type $\Tot(E) =  \sum_{x \co  X} E(x)$ can be equipped with the structure of a $P$-algebra in such a way that  the projection function $\pi_1 \co \Tot(E) \to X$ becomes a $P$-algebra morphism:
 \[
-\xymatrix{
-P(E') \ar[r]^{P\pi_1} \ar[d]_-{\sup_{E'}} \ar@{}[rd]|{p} & PX \ar[d]^{\sup_X} \\ 
-E'  \ar[r]_-{\pi_1} & X \, .}
+\xymatrix@C=2cm{
+P(\Tot(E)) \ar[r]^-{P\pi_1} \ar[d]_-{\sup_{\Tot(E)}} \ar@{}[rd]|{p} & PX \ar[d]^{\sup_X} \\ 
+\Tot(E)  \ar[r]_-{\pi_1} & X \, .}
  \]
- This follows by an application of the distributivity of sums and products (\ie what is sometimes
+ This follows by an application of the distributivity of $\Sigma$ and $\Pi$ (\ie what is sometimes
 referred to as the type-theoretic axiom of choice). 
-\end{remark*}
+\end{remark}
 
 \begin{definition} \label{def:fibalgsection} Let $E = (E, s_E)$ be a fibered $P$-algebra over a $P$-algebra $X$.  
-A \emph{$P$-algebra section} of $E$ consists of a section $f \co \prod_{x \co X} E(x)$ and a path
+A \emph{$P$-algebra section} of $E$ consists of a section $f \co (\Pi x \co X) E(x)$ and a path
 \[ 
-\bar{f} \co \prod_{a \co A} \prod_{t \co B(a) \to X} \Id \big( f(\sup_X(a,t)), s_E(a, t, f \circ t) \big)
+\bar{f} \co (\Pi a \co A) (\Pi t \co X^{B(a)}) \Id \big( f(\sup_X(a,t)), s_E(a, t, f \circ t) \big)
 \]
 \end{definition} 
 
 According to the above definition, we define the type of $P$-algebra sections of $X$ by
 \[ 
-\PalgSec(X,E)  \defeq \sum_{f  \co \prod_{x \co X} E(x)}\prod_{a \co A} \prod_{t \co B(a) \to X} 
+\PalgSec(X,E)  \defeq (\Sigma f  \co (\Pi x \co X) E(x)) (\Pi a \co A) (\Pi t \co  X^{B(a)} ) 
 \Id\big(   f(\sup_X(a,t)) ,  s_E(a,t,f  \circ t) \big) \, .
 \]
 We will usually leave out all but the last argument of an element of $\PalgSec(X,E)$. 
@@ -1925,7 +1928,7 @@ PY \ar[r]^{P(f^{-1})} & PX \ar[r]^{\sup_X} & X \ar[r]^f & Y \, , }
 We say that a $P$-algebra $X$  is \emph{inductive} if every fibered $P$-algebra
 over it has a $P$-algebra section, \ie the type
 \[ 
-\isalgind(X) \defeq \prod_{E \co \FibPalg(X)}  \PalgSec(X,E) 
+\isalgind(X) \defeq (\Pi E \co \FibPalg(X)) \,  \PalgSec(X,E) 
 \]  
 is inhabited.
 \end{definition}
@@ -1945,7 +1948,7 @@ Let $X = (X, \sup_X)$ be a $P$-algebra. Then $X$ is inductive if and only if it 
 \begin{array}{c}
 x \co X \vdash E(x) \co \U \\ 
 \textstyle
-a \co A \, , t  \co B(a) \to X,\, e \co \prod_{b \co B(a)}  E(t b) \vdash s_E(a,t,e) \co E(\sup_X(a,t))
+a \co A \, , t  \co B(a) \to X,\, e \co (\Pi b \co B(a))  E(t b) \vdash s_E(a,t,e) \co E(\sup_X(a,t))
 \end{array}
 \justifies
 x \co X \vdash \elim(x,s_E) \co E(x)
@@ -1963,7 +1966,7 @@ x \co X \vdash E(x) \co \U \\
 a \co A ,\, t \co  B(a) \to X ,\, e \co \prod_{b \co B(a)}  E(tb) \vdash s_E(a,t,e) \co E(\sup_X(a,t))
 \end{array}
 \justifies
-{a \co A,\, t \co B(a) \to X \vdash \comp(a,t,s_E) \co \Id \big( \ind(\sup_X(a,t),s_E),  e(a,t, (\lambda b) \ind(t b,s_E)) \big)}
+{a \co A,\, t \co B(a) \to X \vdash \comp(a,t,s_E) \co \Id \big( \ind(\sup_X(a,t),s_E),  e(a,t, (\lambda b \co B(a)) \elim(t b,s_E)) \big)}
 \end{prooftree}
 \]
 \end{enumerate}
@@ -2051,7 +2054,7 @@ $Y = (Y, \sup_Y)$, the type $\Palg(X,Y)$ of $P$-algebra morphisms from $X$ to $Y
 is contractible, \ie the following type is inhabilited
 \[
 \isalghinit(X) \defeq
- \prod_{Y \co \Palg}  \iscontr \big( \Palg(X,Y) \big)  \, .
+ (\Pi Y \co \Palg)  \, \iscontr \big( \Palg(X,Y) \big)  \, .
 \]  
 \end{definition}
 
@@ -2192,7 +2195,7 @@ We can now state and prove our main result.
 \begin{theorem}\label{thm:WMain} A $P$-algebra is inductive if and only if
 it is homotopy-initial, \ie the type
 \[ 
-\prod_{X \co \Palg} \big( \isalgind(X) \leftrightarrow \isalghinit(X) \big)
+(\Pi X \co \Palg) \big( \isalgind(X) \leftrightarrow \isalghinit(X) \big)
 \]
 is inhabited. 
 \end{theorem}
@@ -2207,20 +2210,16 @@ For this, it suffices to observe that the rules in Proposition~\ref{thm:recursiv
 
 To show that $X = (X, \sup_X)$ is inductive if it is homotopy-initial, we proceed as in the proof of~\ref{thm:bipointedmain}. 
 Thus let $E = (E, s_E)$ be a fibered algebra over $X$. We need to show that there
-exists an algebra section $(s, \bar{s})$, where $s \co \prod_{x \co X} E(x)$ and 
+exists an algebra section $(s, \bar{s})$, where $s \co (\Pi x \co X) E(x)$ and 
 \[ 
-\bar{s} \co \prod_{a \co A} \prod_{t \co B(a) \to X} \Id \big( s(\sup_X(a,t)), s_E(a, t, s \circ t) \big)
+\bar{s} \co (\Pi a \co A)(\Pi t \co B(a) \to X) \Id \big( s(\sup_X(a,t)), s_E(a, t, s \circ t) \big)
 \]
 %
-Consider the total algebra $(E', \sup_{E'})$ associated to $E$, as described in Lemma~\ref{lem:fibalg}, with carrier 
+Consider the total algebra $(E', \sup_{E'})$ associated to $E$, as described in Remark~\ref{thm:fibalg}, with carrier 
 \[
-E' \defeq \sum_{x \co A} E(x) 
+E' \defeq (\Sigma x \co A) E(x) 
 \]
-and structure map
-\[
-\sup_{E'} \co PE' \to E'
-\]
-defined by
+and structure map $\sup_{E'} \co PE' \to E'$ defined by
 \[
 \sup_{E'}(a,t') \defeq \Big(\sup_X(a,\pi_1 \circ t'), s_E\big(a,\pi_1 \circ t', \pi_2 \circ t'\big)\Big) .
 \]
@@ -2269,7 +2268,7 @@ Thus for every $a:A$ and $t\co B(a)\to X$, there is a path
 \begin{equation}\label{equ:alphabar}
 \bar{\alpha}(a,t) :   \overline{(\pi_1 \com f)}(a,t) \ct \sup_X(a,\ext_\Pi^{-1}(\alpha(t))) \Rightarrow \alpha(\sup_X(a,t)) \cdot \refl_{\sup_X(a,t)},
 \end{equation}
-where $$\ext_\Pi : \Id(g,h) \to \Hot(g, h)$$ is the canonical equivalence for paths in $\Pi$-types. 
+where $\ext : \Id(g,h) \to \Hot(g, h)$ is the canonical equivalence for paths in $\Pi$-types. 
 In particular, we therefore have the path $\ext_\Pi^{-1}(\alpha(t))\co\pi_1 \circ f \circ t \Rightarrow t$ in $X^{B(a)}$.
 
 To construct an algebra section $(s, \bar{s})$ of $(E, s_E)$, we define for~$x \co X$, 
@@ -2337,8 +2336,12 @@ Composing \eqref{eqnstart}--\eqref{eqnend} provides the desired path $\bar{s}(a,
 
 
 
-Note that, by Theorem~\ref{thm:WMain}, for every $P$-algebra $X = (X, \sup_X)$ there is actually an equivalence $\isalgind(X) \simeq \isalghinit(X)$ since both types are propositions.  For the next proposition, we work in the type theory $\Hint + \W$, obtained by adding to $\Hint$ the rules for $W$-types.
-We consider again $A \co \U$ and $B \co A \to \U$ and let $W \defeq \WW_{x \co A} B(x)$.
+Note that, by Theorem~\ref{thm:WMain}, for every $P$-algebra $X = (X, \sup_X)$ there is actually an equivalence 
+\[
+\isalgind(X) \simeq \isalghinit(X)
+\]
+since both types are mere propositions.  For the next corollary, we work in the type theory $\Hint + \W$, obtained by adding to $\Hint$ the rules for $W$-types.
+We consider again~$A \co \U$ and $B \co A \to \U$ and let~$W \defeq (\W x \co A) B(x)$.
 
 \begin{corollary}[$\Hint + \W$]
 \label{lem:WInitInt} Let $X = (X, \sup_X)$ be a $P$-algebra. The following conditions are
@@ -2346,13 +2349,13 @@ equivalent:
 \begin{enumerate}[(i)]
 \item $X$ is inductive,
 \item $X$ is homotopy initial,
-\item $X$ is equivalent to $W$.
+\item $X$ is equivalent to $W$ as a $P$-algebra.
 \end{enumerate}
 In particular, the type $W$ is a homotopy-initial $P$-algebra.
 \end{corollary}
 
 
-Corollary~\ref{lem:WInitInt} provides the analogue in our setting of the characterization of W-types as a strict initial algebra in extensional type theory. It makes precise the informal idea that, in intensional type theory, W-types are a kind of homotopy or weak $\infty$-initial algebra in the $\infty$-category of types, functions, paths, higher paths, \ldots.  
+Corollary~\ref{lem:WInitInt} provides the analogue in our setting of the characterization of W-types as a strict initial algebra in extensional type theory. It makes precise the informal idea that, in intensional type theory, W-types are a kind of initial algebra in the weak $(\infty, 1)$-category of types, functions, paths, higher paths, \ldots.  
 
 \begin{lemma}[$\Hint + \W$]\label{lem:suppath}
 For all $a_1,a_2 \co A$, $t_1 \co B(a_1) \to W$, $t_2 \co B(a_2) \to W$, there is an equivalence of types
@@ -2372,7 +2375,7 @@ By Lemma~\ref{lem:IntLambek} and Corollary~\ref{lem:WInitInt}, $\sup_W \co PW \t
 We  remark that $W$-types  preserve homotopy levels, in the following sense.
 
 \begin{theorem}[$\Hint + \W$]
-If $A$ is an $(n+1)$-type, then so is $\WW_{x \co A} B(x)$.
+If $A$ is an $(n+1)$-type, then so is $(\W x \co A) B(x)$.
 \end{theorem}
 
 
@@ -2441,8 +2444,8 @@ homotopy-initial algebras are unique up to a unique path.
 \begin{corollary}[$\Hint + \UA$] \label{WHInitIso}
 Homotopy-initial $P$-algebras are unique up to a  contractible type of paths, i.e. the type
 \[ 
-\prod_{X \co \Palg} \prod_{Y \co \Palg}  \Big( \isalghinit(X) \times \isalghinit(Y)  \to 
-\iscontr(\Id(X,Y)) \Big) \, .
+(\Pi X \co \Palg) (\Pi Y \co \Palg) \big( \isalghinit(X) \times \isalghinit(Y)  \to 
+\iscontr(\Id(X,Y)) \big) \, .
 \] 
 is inhabited.
 \end{corollary}
