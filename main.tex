@@ -99,7 +99,7 @@
 \newcommand{\ho}{\sim}
 \newcommand{\defeq}{=_{\mathrm{def}}}
 \newcommand{\co}{\,{:}\,}
-\newcommand{\type}{\mathsf{Type}}
+\newcommand{\type}{\mathsf{type}}
 \newcommand{\com}{\circ}
 
 % Composition and identiies
@@ -164,7 +164,7 @@
 
 \newcommand{\prd}[1]{\Pi_{#1}}
 \newcommand{\lam}[1]{\lambda_{#1}}   
-\newcommand{\app}{\mathsf{ap}}
+\newcommand{\app}{\mathsf{app}}
 
 % Sigma-types
 
@@ -185,7 +185,7 @@
 
 % Universes
 
-\newcommand{\U}{\mathsf{Type}}
+\newcommand{\U}{\mathsf{U}}
 
 % Bipointed types
 
@@ -202,6 +202,7 @@
 \newcommand{\elim}{\mathsf{elim}}
 \newcommand{\comp}{\mathsf{comp}}
 \newcommand{\rec}{\mathsf{rec}}
+\newcommand{\Tot}{\mathsf{Tot}}
 
 % P-algebras
 
@@ -284,74 +285,275 @@ in the context of Observational Type Theory \cite{AltenkirchT:obsen}.  Inductive
 \label{section:prelim}
 
 
-
-In this paper, we work with a basic system $\Hint$ that is very close to what is usually  known as \emph{(intensional) Martin-L\"of type theory} (see \cite{NordstromB:marltt}), modified as indicated below.  By way of review there are four standard forms of judgement
+\subsection*{Review of Martin-L\"of type theory.} We begin by introducing a very simple  Martin-L\"of type 
+theory, denoted by~$\mathcal{M}$, which provides the basis for the type theory $\Hint$, introduce later,
+with which will work in the paper.
+Our type theories will be formulated using the four standard forms of judgement
 \[
 A \co \type \, , \quad A \deq B \co \type \, , \quad   a \co A \, , \quad a \deq b \co A \, . 
 \]
 We refer to the equality relation in these judgements as \emph{judgemental equality}, 
 which should be contrasted with the notion of \emph{propositional equality}
 defined below. 
-Each kind of judgement can also be made relative to a context of variable declarations $\Gamma$, e.g. $\Gamma \vdash A \co \type$, etc..
-However, when stating deduction rules we may omit the mention
+Each kind of judgement can also be made relative to a context of variable declarations $\Gamma$, e.g. $\Gamma \vdash A \co \type$, etc... However, when stating deduction rules we may omit the mention
 of a context common to premisses and conclusions of the rule, and we
-make use of other standard conventions to simplify the exposition.
-
-The dependent type theory $\Hint$ has standard structural rules, and rules for $\Pi$-types, $\Sigma$-types and
-identity types $\Id$ as listed in Appendix~\ref{app:rules}.   The system $\Hint$  also includes the Function Extensionality axiom, which asserts that
-for every $f, g \co A \rightarrow B$, the type
-\[\tag{FE}
-\prod_{x \co  A}\Id( \app(f, x), \app(g, x)) \rightarrow \Id(f,g) 
-\]
-is inhabited. Here, we have used the notation $A \rightarrow B$ to indicate function types, defined via
-$\Pi$-types in the usual way. Similarly, we will write $A \times B$ to denote the binary product
-of two types as usually defined via $\Sigma$-types. We say that two elements  $a, b \co A$ are \emph{propositionally equal} if 
- the type $\Id(a,b)$ is inhabited.
-
-
-\begin{remarks*} \hfill 
-\begin{enumerate}[(i)]
-\item The rules for $\Pi$-types of $\Hint$ are derivable from those
-in~\cite[Section~5.4]{NordstromB:marltt}. For simplicity, 
-we will write~$f(a)$ or~$f  a$ instead of $\app(f,a)$. 
-\item We will sometimes write $p : a \Rightarrow b$ as alternate notation for $p:\Id(a,b)$. Similarly, a homotopy between $f, g :A\to B$ is sometimes written $\alpha : f \sim g$ rather than $\alpha : \Hot(f,g)$, where
+make use of other standard conventions to simplify the exposition. The type theory $\mathcal{M}$ has
+rules for the following forms of type:
 \[
-\Hot(f,g) \deq \Pi_{x:A}\Id_{B}(f(x),g(x)).
-\]
-Thus the rule FE states that the type $(f \sim g) \rightarrow (f \Rightarrow g)$ is inhabited.
-\item As shown in~\cite{VoevodskyV:unifc}, the principle of function extensionality stated above implies
-the corresponding principle for dependent functions $x:A\vdash f(x), g(x):B(x)$, \emph{i.e.} 
+(\Sigma x \co A) B(x) \, , \quad 
+(\Pi x \co A) B(x) \, , \quad
+ \Id_A(a,b) \,  ,  \quad
+ \U \, . 
+ \]
+The rules for these types are recalled in 
+Tables~\ref{tab:sigmarules},~\ref{tab:pirules},~\ref{tab:idrules} and~\ref{tab:urules}, respectively. The rules
+are as in~\cite{NordstromB:marltt}. In particular, note that the rules for the type universe $\U$ are stated 
+in the so-called Russell-style. Neither the type theory $\mathcal{M}$ nor the type theory $\Hint$ which we 
+introduce below have any ground types. This is because these type theories are intended as background
+theories for our study of inductive types. 
+
+
+
+\begin{table}[htb]
+\fbox{\begin{minipage}{14cm}
 \[
-\prod_{x \co  A}\Id( f x, g x) \rightarrow \Id(f,g) \, .
-\]
-\item The following form of the $\eta$-rule for $\Sigma$-types is derivable:
+\begin{prooftree}
+x \co A \vdash B(x) \co \type
+\justifies
+\textstyle
+(\Sigma x \co A) B(x) \co \type
+\end{prooftree}
+\qquad \qquad
+\begin{prooftree}
+a \co A \qquad 
+b(a) \co B(a) 
+\justifies
+\textstyle
+\pair(a,b) \co (\Sigma x \co A) B(x)
+\end{prooftree}
+\]  \bigskip
 \[
 \begin{prooftree}
 \textstyle
-c  \co \sum_{x \co A} B(x)
+u \co (\Sigma x \co A) B(x) \vdash E(u) \co \type \quad
+ x \co A, y \co B(x) \vdash  e(x,y) \co  E(\pair(x,y))  
 \justifies
-\eta(c) \co \Id(c, \pair( \pi_1 c \, , \pi_2 c)) \, , 
+\textstyle
+u \co (\Sigma x \co A) B(x) \vdash  \mysplit(u,e) \co  E(u)
+\end{prooftree}
+\]  \bigskip
+\[
+\begin{prooftree}
+\textstyle
+u \co (\Sigma x \co A) B(x) \vdash E(u) \co  \type \quad
+ x \co  A, y \co B(x) \vdash  e(x,y) \co  E(\pair(x,y))  
+ \justifies
+x \co A, y \co B(x) \vdash \mysplit(\pair(x,y),e) = e(x,y) \co  E(\pair(x,y)) \, .
+\end{prooftree} \medskip
+\]
+\end{minipage}} \smallskip
+\caption{Rules for $\Sigma$-types.}
+\label{tab:sigmarules} 
+\end{table}
+
+\begin{table}[htb]
+\fbox{
+\begin{minipage}{14cm}
+\[
+\begin{prooftree}
+x \co A \vdash B(x) \co \type
+\justifies
+\textstyle
+(\Pi x \co A) B(x) \co \type
+\end{prooftree} \qquad \qquad
+\begin{prooftree}
+x \co A \vdash b(x) \co B(x) 
+\justifies
+\textstyle
+(\lambda x \co A)b(x) \co (\Pi x \co A)B(x)
+\end{prooftree}
+\] \medskip 
+\[
+\begin{prooftree}
+\textstyle
+f \co (\Pi x \co A) B(x) \quad
+a \co A 
+\justifies
+\app(f, a) \co B(a)
+\end{prooftree} \qquad \qquad
+\begin{prooftree}
+x \co A \vdash b(x) \co B(x) 
+\justifies
+\app( (\lambda x \co A) b(x), a) = b(a) \co B(a)
+\end{prooftree} \medskip 
+\]
+\end{minipage}} \medskip
+\caption{Rules for $\Pi$-types}
+\label{tab:pirules}
+
+ \end{table}
+ 
+
+\begin{table}[htb]
+\fbox{
+\begin{minipage}{14cm}
+\[
+\begin{prooftree}
+A \co  \type \quad 
+a \co  A  \quad
+b \co  A 
+\justifies
+ \id{A}(a,b) \co  \type
+ \end{prooftree} \qquad \qquad 
+\begin{prooftree}
+a \co A 
+\justifies
+ \refl(a) \co  \id{A}(a,a)
+ \end{prooftree} 
+\] \bigskip
+\[
+\begin{prooftree}
+x, y \co A, u \co  \id{A}(x,y) \vdash E(x,y,u) \co \type \qquad
+ x \co A \vdash  e(x) \co  E(x,x,\refl(x))  
+\justifies
+x, y \co A, u \co  \id{A}(x,y) \vdash  \idrec(x,y,u,e) \co E(x,y,u)
+\end{prooftree}
+\] \bigskip
+\[
+\begin{prooftree}
+x, y \co  A, u \co  \id{A}(x,y) \vdash E(x,y,u) \co \type \qquad
+ x \co  A \vdash  e(x) \co  E(x,x,\refl(x)) 
+ \justifies
+x \co A \vdash \idrec(x,x,\refl(x), e) = e(x) \co  E(x, x, \refl(x)) \, .
+\end{prooftree}
+\] \smallskip
+\end{minipage}} \smallskip
+\caption{Rules for $\Id$-types.} 
+\label{tab:idrules}
+\end{table}
+
+
+\begin{table}
+\fbox{
+\begin{minipage}{14cm}
+\[
+\begin{prooftree}
+A \co \U \quad
+x \co A \vdash B(x) \co \U 
+\justifies
+(\Sigma x \co A) B(x) \co \U
+\end{prooftree} \qquad
+\begin{prooftree}
+A \co \U \quad
+x \co A \vdash B(x) \co \U 
+\justifies
+(\Pi x \co A) B(x) \co \U
+\end{prooftree}  
+\]
+\medskip
+\[
+\begin{prooftree}
+A \co \U \quad
+a \co A \quad
+b \co A 
+\justifies
+\Id_A(a,b) \co \U
+\end{prooftree}  \qquad
+\begin{prooftree}
+A \co \U 
+\justifies
+A \co \type
 \end{prooftree}
 \]
- where $\pi_1$ and $\pi_2$ are the projections. This  can be proved by $\Sigma$-elimination,
-without FE.
-\item $\Hint$ does \emph{not} include the $\eta$-rules as definitional equalities for $\Sigma$-types as is done in~\cite{GoguenH:inddtw}.
-\item The type theory $\Hint$ will serve as the background theory for our study of 
-inductive types and W-types. For this reason, we need not assume it to have any primitive types.
-\item Although in general we do not  require $\Hint$ to have universes, for some later results we will need one such universe, which we then denote $\U$, and which is assumed to satisfy the usual rules \cite{MLuniverse}.  This provides a corresponding distinction between small and large types: a type $A$ is \emph{small} if it is in the universe $A\co\U$, and \emph{large} otherwise.
-\end{enumerate}
-\end{remarks*}
+\smallskip
+\end{minipage}} \smallskip 
+\caption{Rules for the type universe $\U$.}
+\label{tab:urules}
+\end{table}
+
+We conclude our discussion of the type theory $\mathcal{M}$ by establishing some notation and recalling some
+basic facts and  terminogy. First of all, for simplicitity, for $f \co (\Pi x \co A) B(x)$ and $a \co A$, we write~$f(a)$ or~$f  a$ instead of $\app(f,a)$. Given types $A$ and $B$, the product type $A \times B$ and the function $A \rightarrow B$  are defined via $\Sigma$-types and $\Pi$-types in the usual way.  The rules for $\Sigma$-types allow us to derive the rules for projections
+
+\[
+\begin{prooftree}
+c \co (\Sigma x \co A)B(x) 
+\justifies
+\pi_1(c) \co A 
+\end{prooftree} \qquad
+\begin{prooftree}
+c \co (\Sigma x \co A)B(x) 
+\justifies
+\pi_2(c) \co B(\pi_1(c))
+\end{prooftree} \medskip
+\]
+We say that two elements  $a, b \co A$ are \emph{propositionally equal} if  the type $\Id(a,b)$ is inhabited.  We will sometimes write  $p \co a \Rightarrow b$ as alternate notation for $p \co \Id(a,b)$. The rules for $\Sigma$-types allow us to prove the following propositional form of the $\eta$-rule for $\Sigma$-types:
+\[
+\begin{prooftree}
+c \co (\Sigma x \co A) B(x)
+\justifies
+\eta_c \co \Id( c, \pair(\pi_1(c), \pi_2(c))
+\end{prooftree}
+\]
+This rule asserts that every element of a $\Sigma$-type is propositionally equal to one of canonical form.
+Note that neither $\mathcal{M}$ nor $\Hint$ include the judgemental form of the $\eta$-rules for $\Sigma$-types, 
+as is done in~\cite{GoguenH:inddtw}. Finally, let us recall that the presence of the type universe $\U$ allows us to define a notion of a small type.
+As usual, we say that a type  $A$ is \emph{small} if it is in the universe, \ie $A\co\U$. 
 
 
-\noindent
-This particular combination of rules is motivated by the fact that $\Hint$ has a clear
-homotopy-theoretic sematics. Indeed, the type theory~$\Hint$ is a subsystem of the type theory 
-used in Voevodsky's Univalent Foundations library~\cite{VoevodskyV:unifc}.  In particular, the 
-Function Extensionality axiom is formally implied by Voevodsky's Univalence axiom~\cite{VoevodskyV:notts}, 
-which is also valid in homotopy-theoretic models, but will not be needed here. Note that, 
-while the Function Extensionality axiom is valid also in set-theoretic models, the Univalence 
-axiom is not. Although $\Hint$ also has a straightforward set-theoretical semantics, we stress that it 
-does not include any global extensionality rules, like the identity reflection rule, K, or UIP. This makes it also compatible with homotopical and ``higher-dimensional" interpretations such as the groupoid model~\cite{HofmannM:gromtt}, in which the rules of $\Hint$ are also valid.
+
+ 
+ \subsection*{The type theory $\Hint$}
+The type theory $\Hint$ which will serve as the background theory for our development extends the type
+theory $\mathcal{M}$ described above with two additional rules. The first additional rule is a judgemental form of the 
+$\eta$-rule for $\Pi$-types:
+\begin{equation}
+\label{equ:etapi}
+\begin{prooftree}
+\textstyle
+f \co (\Pi x \co A) B(x) 
+\justifies
+\textstyle
+f = (\lambda x \co A) \app(f, x) \co  (\Pi x \co A)B(x)
+\end{prooftree} 
+\end{equation}
+The second additional rule is what we call the Function Extensionality principle, 
+which is considered here with propositional equalities:
+ \begin{equation}
+ \label{equ:funext}
+ \begin{prooftree} 
+ f \co (\Pi x \co A)B(x) \qquad
+ g \co (\Pi x \co A) B(x) \qquad
+ x \co A \vdash p(x) \co \Id(f(x), g(x))
+ \justifies
+ \mathsf{funext}(f, g, p) \co \Id(f,g) \, .
+ \end{prooftree}
+\end{equation}
+ 
+\medskip
+
+
+
+
+
+
+The particular choice of rules for $\Hint$ implies that this theory has a both a set-theoretic
+semantics and a homotopy-theoretic one. In particular, 
+even if $\Hint$ also has a straightforward set-theoretical semantics,  it 
+does not include any global extensionality rules, like the identity reflection rule, the K rule, or 
+the Uniqueness of Identity Proofs principle~\cite{StreicherT:inviit}. This makes $\Hint$  compatible 
+with homotopy-theoretic interpretations such as the groupoid model~\cite{HofmannM:gromtt}, in which the rules of $\Hint$ are also valid. Indeed, $\Hint$ is a subsystem of the type theory 
+used in Voevodsky's Univalent Foundations library~\cite{VoevodskyV:unifc}. 
+In particular, the 
+Function Extensionality axiom in~\eqref{equ:funext} is formally implied by Voevodsky's Univalence axiom~\cite{VoevodskyV:notts} (using the fact, also shown in~\cite{VoevodskyV:notts}, that Function Extensionality, as stated in~\eqref{equ:funext}, follows from its special case for function types). In contrast with the Univalence
+Axiom, the Function Extensionality axiom is valid also in set-theoretic models. 
+
+
+\begin{remark} Our results continue to hold when the judgemental $\eta$-rule for $\Pi$-types in~\eqref{equ:etapi}
+is weakened by replacing the judgemental equality in its conclusion with a propositional one. However, since the
+current version of the Coq proof assistant assumes the rule~\eqref{equ:etapi} and some of the proofs can be 
+simplified in its presence, we prefer to work with it to keep our presentation simpler and 
+more faithful to the formalization.
+\end{remark}
 
 \begin{remark}[Extensional type theories] 
 Most work on inductive types to date (\eg~\cite{AbbottM:concsp,DybjerP:repids,GambinoN:weltdp,MoerdijkI:weltc}) has been in the setting of extensional type theories,  
@@ -367,74 +569,81 @@ in which the following rule, known as the identity reflection rule, is also assu
 This rule collapses propositional equality to definitional equality, thus making the overall system
 somewhat simpler to work with. However, it destroys part of the constructive character of the intensional system, since it makes type-checking undecidable~\cite{HofmannM:extcit}. For this reason, it is not assumed
 in the most recent formulations of Martin-L\"of type theories~\cite{NordstromB:marltt} or in automated proof assistants like Coq~\cite{BertotY:inttpp}.
-
 \end{remark}
 
-Observe that the main import of the 
-$\Id$-elimination rule is that  type dependency must respect identity, in the following sense: given a dependent type
-\begin{equation}
-\label{equ:deptype}
+\subsection*{Homotopy-theoretic notions in type theory.} For $f \, , g \co (\Pi x \co A) B(x)$, the type of
+\emph{homotopies} between $f$ and $g$ is defined by letting
+\[
+\Hot(f,g) \deq (\Pi x:A) \Id_{B}(f(x),g(x)) \, .
+\]
+A homotopy between $f, g :A\to B$ is sometimes written $\alpha \co f \sim g$ rather than $\alpha \co \Hot(f,g)$
+Thus, the function extensionality rule in~\eqref{equ:funext} states that the type 
+\[
+(f \sim g) \rightarrow (f \Rightarrow g)
+\] 
+is inhabited. Observe that the main import of the 
+$\Id$-elimination rule is that  type dependency must respect propositional equality, in the following sense: given a dependent type
+\begin{equation*}
 x\co A \vdash B(x) \co \type \, ,
-\end{equation} 
+\end{equation*} 
 and any $a,b\co A$ with $p\co \Id(a,b)$, there is then a \emph{transport} function 
- $$p_{\, ! } \co B(a) \rightarrow B(b),$$ which is defined by $\Id$-elimination, taking for $x \co A$
-the function $\refl(x)_{\, !} \co B(x) \rightarrow B(x)$ to be the identity on $B(x)$.  This transport operation is familiar from homotopy theory as the distinctive property of a ``fibration'' of spaces.  Indeed, as introduced in \cite{AwodeyS:homtmi}, we shall think of the projection $\Sigma_{x:A}B(x) \to A$ as a topological fibration from the total space $\Sigma_{x:A}B(x)$, with fiber $B(x)$ for $x\co A$.
-
+ $$p_{\, ! } \co B(a) \rightarrow B(b),$$ which is defined by $\Id$-elimination so that, for $x \co A$
+the function $\refl(x)_{\, !} \co B(x) \rightarrow B(x)$ is identity function on $B(x)$.  This transport operation is familiar from homotopy theory as the distinctive property of a fibration of spaces.  Indeed, as exploited
+in~\cite{AwodeyS:homtmi}, we shall think of the projection 
+\[
+\pi_1 \co (\Sigma x:A) B(x) \to A
+\] 
+as a fibration from the total space $(\Sigma x:A)B(x)$, with fiber $B(x)$ for $x\co A$.
 Next, note that the topological notion of contractibility of a space admits the following type-theoretic counterpart, originally
  introduced by Voevodsky in~\cite{VoevodskyV:unifc}.
 
 \begin{definition}  A type $A$ is said to be \emph{contractible} if the  type 
  \begin{equation}
  \label{eq:contractible}
-\iscontr(A) \defeq \sum_{x\co A} \prod_{y\co A}\Id(x,y)
+\iscontr(A) \defeq (\Sigma x\co A) (\Pi y\co A) \Id(x,y)
 \end{equation}
 is inhabited.
 \end{definition} 
-%
+
 The type $\iscontr(A)$ can be seen as the propositions-as-types translation
 of the formula stating that $A$ has a unique element. However, its homotopical interpretation 
 is as a space that is inhabited if and only if the space interpreting $A$ is contractible in the usual
 topological sense. Note that if $A$ is a contractible type, then for every $a, b \co A$, the type $\Id(a,b)$ is again contractible. 
 This can be proved  by $\Id$-elimination. 
-
 The notion of contractibility can be used to articulate the world of types  into a hierarchy of so-called \emph{h-levels} according to their
 homotopical complexity~\cite{VoevodskyV:unifc}. We will need to recall only the notion of a type of h-level 1, or h-proposition.
 
 \begin{definition} A type $A$ is said to be an \emph{h-proposition} if the type
 \[
-\isprop(A) \defeq \prod_{x \co A} \prod_{y \co A} \iscontr( \Id(x,y)) 
+\isprop(A) \defeq (\Pi x \co A)(\Pi  y \co A) \iscontr( \Id(x,y)) 
 \]
 is inhabilted.
 \end{definition}
 
 Let us also recall from~\cite{VoevodskyV:unifc} the notions of weak equivalence and homotopy equivalence. To do this, we need to fix some notation. For $f \co A \rightarrow B$ and $y \co B$, define the \emph{homotopy fiber} of $f$ at $y$ as the type
 \[
- \hfiber(f,y) \defeq \sum_{x \co A} \Id(f x, y) \, .
+ \hfiber(f,y) \defeq (\Sigma x \co A) \Id(f x, y) \, .
 \]
-Recall that a function $f$ is by definition an \emph{equivalence} if and only if every fiber is contractible, \ie the type
+
+
+\begin{definition} A function $f$ is  an \emph{equivalence} if and only if every fiber is contractible, \ie the type
 \[
- \prod_{y \co B}   \iscontr(\hfiber(f,y)) 
+ \iswequiv(f) \defeq (\Pi y \co B)  \iscontr(\hfiber(f,y)) 
 \]
 is inhabited. 
+\end{definition}
 
-\begin{definition} \label{thm:weq}  We say that $f \co A \rightarrow B$ is a \emph{weak equivalence} if it has both a left inverse and a right inverse, \ie
+ We write $A\simeq B$ if there is an equivalence from $A$ to $B$.   As shown in~\cite{HoTT}, a function $f \co A \rightarrow B$ is an equivalence if and only if  it has both a left inverse and a right inverse, \ie there are 
 $\ell \co B \to A$ and $r \co B \to A$ such that the following types are inhabited. 
 \[
  \Id(\ell \circ f, 1_A)\, ,  \quad  \Id(f \circ r, 1_B) \, .
  \] 
- Accordingly, for $f \co A \rightarrow B$, we define the type of proofs that $f$ is a weak equivalence by letting
+More precisely, for $f \co A \rightarrow B$, we have
  \[ 
- \iswequiv(f) \defeq \sum_{\ell \co B \to A} \Id( \ell \circ f, 1_A) \times \sum_{r \co B \to A} \Id( r \circ f , 1_B) \, .
+ \textstyle
+ \iswequiv(f) \simeq (\Sigma \ell \co B \to A) \Id( \ell \circ f, 1_A) \times (\Sigma r \co B \to A) \Id( r \circ f , 1_B) \, .
  \]
-  \end{definition}
-  
-  Finally, recall from \cite[4]{HoTT} the following basic result.
-  
-  \begin{proposition}
-  A map $f : A\to B$ is an equivalence if and only if it is a weak equivalence.
-  \end{proposition}
-%  
- We write $A\simeq B$ if there is an equivalence from $A$ to $B$.   
+
 
 
 \newpage
@@ -443,23 +652,68 @@ $\ell \co B \to A$ and $r \co B \to A$ such that the following types are inhabit
 \section{Bipointed types}
 \label{sec:bip}
 
+In order to motivate our development in this section and the next, 
+let us begin by recalling the rules for the type $\Bool$ of Boolean truth values. The introduction rule state that we have two canonical elements in $\Bool$, written $0$ and $1$ here. The elimination rule can be understood as the propositions-as-types of an induction principle for $\Bool$. Finally, the computation rules specify what happens if one applies in sequence the introduction and the elimination rule.
 
 
-Let $A \co \U$ be a type and suppose that there is an equivalence $f \co \Bool \to A$. Then, the type $A$ 
+
+\begin{table}[htb]
+\fbox{
+\begin{minipage}{14cm}
+\[
+ \Bool \co \type  \qquad \qquad 
+0 \co \Bool  \qquad  1 \co \Bool 
+\]  
+\smallskip
+\[
+\begin{prooftree}
+x\in\Bool \vdash E(x) \co \type \qquad
+e_0 \co E(0) \qquad
+e_1 \co E(1) 
+\justifies
+x \co \Bool \vdash \boolind(x, e_0, e_1) \co E(x) 
+\end{prooftree}
+\] \smallskip
+
+\begin{equation*}
+\begin{prooftree}
+x\in\Bool \vdash E(x) \co \type \qquad
+e_0 \co E(0) \qquad
+e_1 \co E(1)
+\justifies
+  \boolind(0, e_0, e_1)  \deq  e_0 \co E(0) \, , 
+\end{prooftree}
+ \end{equation*}  
+ \bigskip
+ \begin{equation*}
+\begin{prooftree}
+x\in\Bool \vdash E(x) \co \type \qquad
+e_0 \co E(0) \qquad
+e_1 \co E(1)
+\justifies
+ \boolind(1,e_0,e_1)  \deq e_1 \co E(1) \, .
+\end{prooftree}
+ \end{equation*}
+ \medskip
+ \end{minipage}} \smallskip
+ \caption{Rules for the type of Boolean truth values.}
+ \end{table}
+ 
+In the presence of the type universe $\U$, as in our underlying type theory $\Hint$, it is natural to have also a rule asserting that $\Bool$ is a small type,  \ie 
+$\Bool \co \U$. Let us now suppose to have a small type $A \co \U$ be a small type and suppose that there is an equivalence $f \co \Bool \to A$. Then, the type~$A$ 
 has two distinguished elements $a_0 \defeq f(0)$ and $a_1 \defeq f(1)$, and it satisfies
 analogues of the elimination and computation rules for $\Bool$, except that the conclusions of the computation 
-rules need to be modified  by replacing the judgemental equalities  with propositional ones. Our aim in this section is to provide a characterisation of the types equivalent to $\Bool$ by means of a type-theoretical universal property. In order to do so, we introduce the notion of a bipointed type. 
+rules need to be modified  by replacing the judgemental equalities  with propositional ones. Our aim in this section is to provide a characterisation of the small types equivalent to $\Bool$ by means of a type-theoretical universal property. In order to do so, we introduce the notion of a bipointed type. 
 
 
 \begin{definition} \label{thm:bipointedtype}
-A \emph{bipointed type} consists of a  type $A \co \U$ and two elements 
-$a_0 \co A$, $a_1 \co A$.
+A \emph{bipointed type} consists of a type $A$ 
+and two elements  $a_0 \, , a_1 \co A$. 
 \end{definition}
 
-The type of bipointed types is then defined by letting $\Bip \defeq \sum_ {A \co \U}( A \times A )$. 
-Note that this type has a universe higher that that of its elements. 
-When referring to a bipointed type we sometimes suppress mention of its distinguished elements and write $A = (A, a_0, a_1)$ to
-recall this abuse of language.  In the following, it will be convenient to represent a bipointed type $A$ diagrammatically as follows:
+
+
+When referring to a bipointed type we sometimes suppress mention of its distinguished elements and write $A = (A, a_0, a_1)$ to recall this abuse of language.  In the following, it will be convenient to represent a bipointed type $A$  as follows:
 \[
 \xymatrix{
  1 \ar[r]^-{a_0}&  A & 1 \ar[l]_-{a_1} \, .}
@@ -469,9 +723,16 @@ The type $\Bool$ and its canonical elements $0, 1 \co \Bool$ give us a bipointed
 \xymatrix{
  1 \ar[r]^-{0}&  \Bool  & 1 \ar[l]_-{1} \, . }
  \]
-We now introduce the notion of a bipointed morphism.
+We say that a bipointed type $A = (A, a_0, a_1)$ is \emph{small} if the type $A$ is a small type, \ie $A \co \U$. 
+Accordingly, the type of small bipointed types is then defined by letting 
+\[
+\Bip \defeq (\Sigma A \co \U)( A \times A ) \, .
+\]
+Clearly,  this type is not small.  We introduce the notion of a bipointed morphism between bipointed types. 
+For this, we consider two bipointed types $A = (A, a_0, a_1)$ and~$B = (B, b_0, b_1)$. 
 
-\begin{definition} For bipointed types $A = (A, a_0, a_1)$ and $B = (B, b_0, b_1)$, a \emph{bipointed morphism} 
+
+\begin{definition} A \emph{bipointed morphism} 
 \[
 (f, \bar{f}_0, \bar{f}_1)  \co (A, a_0, a_1)  \to (B, b_0, b_1)
 \] 
@@ -481,9 +742,9 @@ and~$\bar{f}_1 \co f(a_1) \Rightarrow b_1$.  \end{definition}
 
 The type of bipointed morphisms from $A$ to $B$ is then defined by letting
 \[
-\BipHom(A,B) \defeq \sum_{ f \co A \to B} \Id(  f(a_0), b_0 )  \times \Id(  f(a_1), b_1 ) \, .
+\BipHom(A,B) \defeq (\Sigma f \co A \to B) \big( \Id(  f(a_0), b_0 )  \times \Id(  f(a_1), b_1 )  \big) \, .
 \]
-We will often refer to a bipointed morphism by mentioning only its underlying function, leaving implicit
+As usual, we often refer to a bipointed morphism by mentioning only its underlying function, leaving implicit
 the rest of the data. Diagrammatically, we represent a bipointed morphism as follows:
 \[
 \xymatrix{
@@ -505,10 +766,9 @@ Explicitly,
 \overline{(g \circ f)}_0 \defeq g(\bar{f}_0) \cdot  \bar{g}_0 \, ,   \quad 
 \overline{(g \circ f) }_1 \defeq  g(\bar{f}_1) \cdot   \bar{g}_1 \, .
 \]
-Also, for any bipointed type $A = (A, a_0, a_1)$, the identity function $1_A \co A \to A$ can be equipped with the structure of a 
-bipointed morphism in an evident way. 
-We do not quite have a category, however, since the composition operation is not strictly associative, but only associative up to a system of higher and higher 
-homotopies, as in an $(\infty,1)$-category.  
+Also, for any bipointed type $A = (A, a_0, a_1)$, the identity function $1_A \co A \to A$ can be equipped with the structure of a bipointed morphism in an evident way. 
+The equations for associativity and unit laws in a category do not hold up to judgemental equality, but only 
+to a system of higher and higher homotopies, similarly to what happens in a weak $(\infty,1)$-category.  
 
 \medskip
 
@@ -524,19 +784,20 @@ in $\Bip(B,B)$.
 For a bipointed morphism $f \co A \to B$, the type of proofs that $f$ is a bipointed equivalence is
 then defined by letting
 \[
-\isbipequiv(f) \defeq   \sum_{\ell \co \BipHom(B,A)} \Id( \ell \circ f, 1_A ) \times 
-    \sum_{r \co \BipHom(A, B)} \Id (f \circ r , 1_B ) \, ,
+\isbipequiv(f) \defeq   (\Sigma \ell \co \BipHom(B,A)) \Id( \ell \circ f, 1_A ) \times 
+    (\Sigma r \co \BipHom(A, B)) \Id (f \circ r , 1_B ) \, ,
 \]
 and type of bipointed equivalences between $A$ and $B$ is defined by letting
 \[
 \BipEquiv(A, B)
 \defeq    
-\sum_{f \co \BipHom(A,B)} \, \isbipequiv(f)  \, . 
+(\Sigma f \co \BipHom(A,B)) \, \isbipequiv(f)  \, . 
 \] 
 Clearly, the identity morphism on a bipointed type is a bipointed equivalence. The next proposition
-gives an alternative characterisation of bipointed equivalences.
+gives an alternative characterisation of bipointed equivalences which will be used
+ in the proof of Theorem~\ref{thm:bipunivalence} and Corollary~\ref{BoolHInitIso}.
 
-\begin{proposition}\label{BoolAlgSpace}  \label{thm:usemere}
+\begin{proposition}  \label{thm:usemere}
 A bipointed morphism $(f, \bar{f}_0, \bar{f}_1) \co A \to B$ is a bipointed equivalence if and only
 if its underlying function $f \co A \to B$ is an equivalence. Furthermore, the projection
 \[
@@ -546,18 +807,20 @@ is an equivalence of types. Thus, for any bipointed morphism $(f, \bar{f}_0, \ba
 \end{proposition}  
 
 \begin{proof}
-Let $(A,a_0,a_1), (B,b_0,b_1)$ be bipointed types and $(f, \bar{f}_0, \bar{f}_1) \co A \to B$ be a bipointed morphism between them. Expanding the type of 
+Let  $(f, \bar{f}_0, \bar{f}_1) \co A \to B$ be a bipointed morphism between them. Expanding the type of 
 proofs that $f$ is a bipointed equivalence yields the type
-\[
+\begin{multline*} 
+\textstyle
  \sum_{\ell \co B \to  A}  
  \sum_{\bar{\ell}_0 \co \ell(b_0) \Rightarrow a_0} 
  \sum_{\bar{\ell}_1 \co \ell(b_1) \Rightarrow a_1} 
- P(\ell,\bar{\ell}_0,\bar{\ell}_1) \times 
+ P(\ell,\bar{\ell}_0,\bar{\ell}_1) \times \\
+ \textstyle
  \sum_{r \co B \to A} 
  \sum_{\bar{r}_0 \co r(b_0) \Rightarrow a_0} 
  \sum_{\bar{r}_1 \co  r(b_1) \Rightarrow a_1} 
  Q(r,\bar{r}_0,\bar{r}_1)   \, ,
-\]
+\end{multline*}
 where
 \begin{align*}
 P(\ell,\bar{\ell}_0,\bar{\ell}_1) & \defeq \Id \Big( \big( \ell \com f, \ell(\bar{f}_0) \ct \bar{\ell}_0, \ell(\bar{f}_1) \ct \bar{\ell}_1\big), \big( 1_A, \refl(a_0), \refl(a_1) \big) \Big)  \, , \\
@@ -652,7 +915,7 @@ $\bar{\alpha}_0 \co \Id(  \bar{f}_0 , \alpha(a_0)  \cdot \bar{g}_0)$ and $\bar{\
 The type of bipointed homotopies between $f$ and $g$ is then defined by letting
 \[
  \BipHot  \big( (f,\bar{f}_0, \bar{f}_1), (g, \bar{g}_0, \bar{g}_1) \big)   \defeq   
- \sum_{\alpha \co f \sim g}  \big( 
+ (\Sigma \alpha \co f \sim g)  \big( 
   \Id\big( \bar{f}_0 ,  \alpha(a_0)  \ct \bar{g}_0 \big) \times 
   \Id \big( \bar{f}_1,  \alpha(a_1) \ct  \bar{g}_1 \big) \big) \, .
 \]
@@ -664,7 +927,8 @@ f(a_k) \ar[r]^{\alpha(a_k)}  \ar@/_1pc/[dr]_{\bar{f}_k}
 \ar@{}[dr]|{\qquad \Rightarrow \; \bar{\alpha}_k}  & g(a_k) \ar[d]^{\bar{g}_k}  \\ 
  & b_k }
   \] 
-where $k \in \{ 0, 1\}$. 
+where $k \in \{ 0, 1\}$. The next lemma tells us that bipointed homotopies are essentially the
+same thing as paths between bipointed morphisms.
 
 
 \begin{lemma} \label{BoolHomSpace} 
@@ -701,25 +965,28 @@ Let $A = (A, a_0, a_1)$ be a bipointed type. A \emph{fibered bipointed type over
 \[
 (E, e_0, e_1)
 \]  
-is a dependent type $E \co A \to \U$ together with elements $e_0 \co E(a_0)$ and $e_1 \co E(a_1)$.
+is a dependent type $x \co A \vdash E(x) \co \type$ together with elements $e_0 \co E(a_0)$ and $e_1 \co E(a_1)$.
 \end{definition}
 
-The type of  fibered bipointed types over a bipointed type $A$ is then defined by letting
+We write $E = (E,e_0, e_1)$ to denote a fibered bipointed type. 
+Given such a fibered bipointed type, its total type is defined by letting
 \[
-\FibBip(A) \defeq \sum_{E \co A \to \U} E(a_0) \times E(a_1)  \, .
- \]
- Note that this type is not small. 
-Given a fibered bipointed type $E \co A \to \U$, its total type is defined by letting
-\[
-E'  \defeq \sum_{x \co A} E(x) \, .
+\Tot(E)  \defeq (\Sigma x \co A) E(x) \, .
 \] 
-Observe that $E'$ is a bipointed type by considering $e'_k \defeq \pair(a_k, e_k)$, 
-for $k =  0, 1$. In this way, the first projection $\pi_1 \co E' \to A$ becomes a bipointed morphism:
+Observe that $\Tot(E)$ is a bipointed type by considering $e'_k \defeq \pair(a_k, e_k)$, 
+for $k \in \{ 0, 1 \}$. In this way, the first projection $\pi_1 \co \Tot(E) \to A$ becomes a bipointed morphism:
 \[
 \xymatrix{
-1 \ar@/_1pc/[dr]_{a_0} \ar[r]^-{e'_0} & E' \ar[d]^{\pi_1} & 1 \ar[l]_-{e'_1} \ar@/^1pc/[dl]^{a_1} \\ 
+1 \ar@/_1pc/[dr]_{a_0} \ar[r]^-{e'_0} & \Tot(E) \ar[d]^{\pi_1} & 1 \ar[l]_-{e'_1} \ar@/^1pc/[dl]^{a_1} \\ 
  & A \, .& }
  \]
+We say that a fibered bipointed type $E = (E, e_0, e_1)$ is small if, for
+$x \co A$, we have $E(x) \co \U$.  Accordingly, the type of  small fibered bipointed types over a bipointed type $A$ is then defined by letting
+\[
+\FibBip(A) \defeq (\Sigma E \co A \to \U) \big( E(a_0) \times E(a_1) \big) \, .
+ \]
+ Note that this type is not small. 
+
 
 
 
@@ -728,14 +995,14 @@ $A = (A, a_0, a_1)$.  A \emph{bipointed section} of $E$,
 \[
 (s, \bar{s}_0, \bar{s}_1) \co A \to E \, ,
 \]
-is a section $s \co \prod_{x \co A} E(x)$ together with paths~$\bar{s}_0 \co \Id(s(a_0), e_0)$ 
+is a section $s \co (\Pi x \co A) E(x)$ together with paths~$\bar{s}_0 \co \Id(s(a_0), e_0)$ 
 and $\bar{s}_1 \co  \Id( s(a_1) , e_1)$. 
 \end{definition} 
 
 
-The type of bipointed sections of $E \co A \to \U$ is then defined to be
+The type of bipointed sections of $E = (E, e_0, e_1)$ is then defined to be
 \[
-\BipSec(E) \defeq \sum_{s \co \prod_{x \co A} E(x)} \Id(s(a_0),  e_0)  \times \Id( s(a_1), e_1)  \, .
+\BipSec(A,E) \defeq (\Sigma s \co \mathsf{Sec}(A,E) )  \Id(s(a_0),  e_0)  \times \Id( s(a_1), e_1)  \, .
 \]
 Given a bipointed section $s \co A \to E$, we can define a bipointed morphism~$f  \co A \to E'$, where $E'$ is the
 total bipointed type associated to $E$. Its underlying function is given by 
@@ -768,7 +1035,7 @@ $\bar{\alpha}_1 \co \Id( f(a_1),  g(a_1))$.
 The type of bipointed homotopies between bipointed sections $f$ and $g$ as above is then defined by letting:
 \[
 \BipHot \big( (f, \bar{f}_0, \bar{f}_1), (g, \bar{g}_0, \bar{g}_1) \big) \defeq
-\sum_{\alpha \co f \sim g} \Id ( f(a_0), g(a_0) ) \times \Id ( f(a_1) , g(a_1) ) \, .
+(\Sigma \alpha \co f \sim g) \Id ( f(a_0), g(a_0) ) \times \Id ( f(a_1) , g(a_1) ) \, .
 \]
 
 
@@ -797,35 +1064,39 @@ is an equivalence of types.
 \label{sec:homibt}
 
 
-Let $A \co \U$ be a  type and assume that it is equivalent to $\Bool$. Then, $A$ admits the structure of a bipointed type and
+As we mentioned at the start of Section~\ref{sec:bip}, if a type $A$ is equivalent to $\Bool$, then 
 it satisfies the counterparts of the elimination and computation rules for $\Bool$ in which the computation rule is 
-weakened by replacing the judgmental equality in its conclusion with a propositional equality. Using the notions of a fibered bipointed type and of a bipointed section introduced in Section~\ref{sec:bip}, it is immediate to see that the these rules rules assert that every fibered bipointed type over $A$ has a bipointed section. Since bipointed types $A$ of this kind  play an important role in the following, we introduce some terminology to refer to them.
+weakened by replacing the judgmental equality in its conclusion with a propositional equality. Using the notions of a small fibered bipointed type and of a bipointed section introduced in Section~\ref{sec:bip}, it is immediate to see that the these rules rules imply that every fibered bipointed type over~$A$, and in particular every fibered small bipointed type, has a bipointed section. 
+Since bipointed types $A$ of this kind  play an important role in the following, we introduce some terminology to refer to them.
 
 
  
 
 
 
-\begin{definition} A bipointed type $A$ is said to be \emph{inductive} if every fibered bipointed type over it has a bipointed section, \ie the type
+\begin{definition} A bipointed type $A$ is said to be \emph{inductive} if every fibered small bipointed type over it has a bipointed section, \ie the type
 \[ 
-\isbipind(A) \defeq \prod_{E \co \FibBip(A)}  \BipSec(E)
+\isbipind(A) \defeq (\Pi E \co \FibBip(A))  \BipSec(E)
 \]  
 is inhabited. \end{definition} 
 
 
 
-
-Remark that  $\isbipind(A)$ is a mere proposition. Indeed, recall that to prove that a type  is a mere proposition, it suffices to do so under the assumption that it is inhabited. Assume therefore that $\isbipind(A)$ is inhabited. Since the dependent product of a family of mere propositions is again a mere proposition, it suffices to show that $\BipSec(A,E)$ is a mere proposition for any $E$. But for any two sections $s, t \co \BipSec(A,E)$, we know that there is a 
+\begin{remark} For every bipointed type $A = (A, a_0, a_1)$, the type $\isbipind(A)$ is a mere proposition. Indeed, recall that to prove that a type  is a mere proposition, it suffices to do so under the assumption that it is inhabited. Assume therefore that~$\isbipind(A)$ is inhabited. Since the dependent product of a family of mere propositions is again a mere proposition, it suffices to show that~$\BipSec(A,E)$ is a mere proposition for any $E$. But for any two sections $s, t \co \BipSec(A,E)$, we know that there is a 
 bipointed homotopy $\phi \co \BipHot(s,t)$ by Lemma~\ref{thm:inductiveuniquesec} and hence, by 
-Lemma~\ref{thm:biphot}, there is a path $p \co \Id(s,t)$, as required. The type of (small) inductive bipointed types is given by
+Lemma~\ref{thm:biphot}, there is a path $p \co \Id(s,t)$, as required. 
+\end{remark}
+
+We define the type of small inductive bipointed types by letting
 \[
-\mathsf{BipInd} \defeq \sum_{A \co \Bip} \isbipind(A) \, .
+\mathsf{BipInd} \defeq (\Sigma A \co \Bip) \isbipind(A) \, .
 \]
 Thus, a canonical inductive bipointed type is given by a bipointed type $A = (A, a_0, a_1)$ together with a function 
 which, given a fibered bipointed type $E = (E, e_0, e_1)$ over $A$, returns a bipointed section of $E$.
 Clearly, the type $\Bool$ is an inductive bipointed type. Furthermore, the property of being inductive can be transported along equivalences, in the sense that if $A$ and $B$ are equivalent bipointed types and $A$ is inductive, then so is $B$. Thus, a
 type is equivalent to $\Bool$ if and only if it is inductive. Below,
-we begin to explore some consequences of the assumption that a bipointed type is inductive, so as to give a 
+we begin to explore some consequences of the assumption that a bipointed type is inductive, with the goal
+of arriving at a 
 characterisation of inductive bipointed types.
 
 
@@ -838,7 +1109,7 @@ Let $A = (A, a_0, a_1)$ be a bipointed type. Then $A$ is inductive if only if it
 \begin{prooftree}
 x \co A \vdash E(x) \co \U \qquad
 e_0 \co E(a_0) \qquad
-e_1 \co E(a_1) \qquad
+e_1 \co E(a_1) 
 \justifies
 x \co A \vdash \elim(x, e_0, e_1) \co E(x) \, , 
 \end{prooftree} 
@@ -861,11 +1132,13 @@ where $k \in \{ 0, 1\}$.
 \end{proof}
 
 Note that the rules in Proposition~\ref{thm:inductiverules} are exactly the elimination rule
-and the weakening computation rules for $\Bool$ obtained by replacing the judgemental
+and the weakening computation rules for $\Bool$ obtained by restricting the eliminating
+type to families of small dependent types and, most importantly,  replacing the judgemental
 equality in the conclusion with a propositional one, as mentioned above. The next lemma
-shows that, for an inductive type $A$, then not only every fibered bipointed type over it
-has a section, but that such a section is unique up to a bipointed homotopy. 
-
+shows that, for an inductive bipointed type~$A$, then not only every fibered bipointed type over it
+has a section, but that such a section is unique up to a bipointed homotopy. For convenience of
+illustration, in the next proposition, the premisses of a deduction rule are listed in more than one 
+row.
 
 \begin{proposition} \label{thm:inductiveuniquesec} Let $A = (A, a_0, a_1)$ be a bipointed type. If $A$ is inductive, 
 then the following rules are derivable:
@@ -875,7 +1148,7 @@ then the following rules are derivable:
 \[
 \begin{prooftree}
 \begin{array}{c} 
-x \co A \vdash E(x) \co \type \quad
+x \co A \vdash E(x) \co \U \quad
 e_0 \co E(a_0) \quad
 e_1 \co E(a_1) \\[1ex]
 x \co A \vdash f(x) \co E(x) \quad
@@ -890,7 +1163,7 @@ x \co A \vdash \eta_x \co \Id( \elim(x, e_0, e_1), f(x))
 \[
 \begin{prooftree}
 \begin{array}{c} 
-x \co A \vdash E(x) \co \type \quad
+x \co A \vdash E(x) \co \U \quad
 e_0 \co E(a_0) \quad
 e_1 \co E(a_1) \\[1ex]
 x \co A \vdash f(x) \co E(x) \quad
@@ -902,11 +1175,11 @@ x \co A \vdash f(x) \co E(x) \quad
 \end{prooftree}
 \]
 \noindent
-where $k = 0, 1$.
+where $k \in \{ 0, 1 \}$.
 \end{enumerate}
 \end{proposition}
 
-\begin{proof} Let us assume the premisses of the $\eta$-rule. For $x \co A$, define $F(x) \co \type$  by letting~
+\begin{proof} Let us assume the premisses of the $\eta$-rule. For $x \co A$, define $F(x) \co \U$  by letting~
 \[
 F(x) \defeq 
 \Id( \elim(x, e_0, e_1), f(x)) \, .
@@ -931,9 +1204,9 @@ with which the paths required  can be obtained using the groupoid laws.
  
  \medskip
  
- Let $A$ be a bipointed type and assume that it is inductive. 
-  If we focus on the special case of fibered bipointed types that 
-are constant, \ie we have simply a bipointed type $B$, then 
+ Let $A$ be a small bipointed type and assume that it is inductive. 
+  If we focus on the special case of fibered small bipointed types that 
+are constant, \ie we have simply a small bipointed type $B$, then 
  Proposition~\ref{thm:inductiverules} and Lemma~\ref{thm:inductiveuniquesec}
 imply that there exists a bipointed morphism~$f \co A \to B$, which is unique in the sense that  for any two bipointed morphisms $(f, \bar{f}_0, \bar{f}_1), (g, \bar{g}_0, \bar{g}_1) \co A \to B$  there is a bipointed homotopy~$\alpha \co f \sim g$. Thus, by Lemma~\ref{BoolHomSpace}, there is a path 
 \[
@@ -943,10 +1216,10 @@ Furthermore, it can be shown that such a path is itself is unique up to a higher
 
 
 \begin{definition}\label{def:BoolInit}
-A bipointed type $A$ is said to be \emph{homotopy-initial}  if for any bipointed type $B$, the type $\BipHom(A,B)$ of bipointed morphisms from $A$ to $B$
+A small bipointed type $A$ is said to be \emph{homotopy-initial}  if for any small bipointed type $B$, the type $\BipHom(A,B)$ of bipointed morphisms from $A$ to $B$
 is contractible, \ie the type
 \[
-\prod_{B \co \Bip} \, \iscontr(\BipHom(A, B) )
+\ishinit(A) \defeq (\Pi B \co \Bip) \, \iscontr(\BipHom(A, B) )
 \] 
 is inhabited.
 \end{definition}
@@ -956,7 +1229,7 @@ sense that $\ishinit(A)$ is a mere proposition. Indeed, the type $\iscontr(B)$ i
 
 
 \begin{proposition} \label{thm:hinitrules}
-A bipointed type $A = (A, a_0, a_1)$ is homotopy-initial if and only if it satisfies
+A small bipointed type $A = (A, a_0, a_1)$ is homotopy-initial if and only if it satisfies
  the following rules:
  
  \begin{enumerate}[(i)]
@@ -965,7 +1238,7 @@ A bipointed type $A = (A, a_0, a_1)$ is homotopy-initial if and only if it satis
 \begin{prooftree}
 B \co \U \qquad
 b_0 \co B \qquad
-b_1 \co B \qquad
+b_1 \co B 
 \justifies
 x \co A \vdash \rec(x, b_0, b_1) \co B 
 \end{prooftree} 
@@ -1005,7 +1278,7 @@ x \co A \vdash \eta_x \co \Id( \rec(x, b_0, b_1), f(x) )
 
 
 
-\begin{proof} Read the meaning of what homotopy-initial means.
+\begin{proof} The claim follows by unfolding the definition of homotopy-initiality.
 \end{proof} 
 
 \medskip
@@ -1018,20 +1291,20 @@ The next theorem provides the characterisation of inductive bipointed types.
 
 
 
-\begin{theorem}\label{thm:bipointedmain} A bipointed type 
+\begin{theorem}\label{thm:bipointedmain} A small bipointed type 
 is  $A$ is inductive if and only if it is homotopy-initial, \ie  the type
 \[
-\prod_{A \co \Bip} \big(  \isbiphinit(A) \leftrightarrow \isbipind(A) \big)
+(\Pi A \co \Bip) \big(  \isbiphinit(A) \leftrightarrow \isbipind(A) \big)
 \] 
 is inhabited
 \end{theorem}
 
-\begin{proof} Let $A = (A, a_0, a_1)$ be a bipointed type. First, we show that if $A$ is inductive then
+\begin{proof} Let $A = (A, a_0, a_1)$ be a small bipointed type. First, we show that if $A$ is inductive then
 it is homotopy-initial. But this follows immediately observing that the rules characterising homotopy-initial bipointed types in Proposition~\ref{thm:hinitrules}
 are special cases of the rules in Proposition~\ref{thm:inductiverules} and Lemma~\ref{thm:inductiveuniquesec},
 which are provable for inductive bipointed types. For the other implication, 
 let us assume that $A = (A, a_0, a_1)$ is homotopy-initial and prove that it is inductive. 
-For this, let $E = (E, e_0, e_1)$ be a fibered bipointed type over $A$. We need to show that there
+For this, let~$E = (E, e_0, e_1)$ be a fibered small bipointed type over $A$. We need to show that there
 exists a bipointed section
 \begin{equation}
 \label{equ:reqsec}
@@ -1039,11 +1312,12 @@ exists a bipointed section
 \end{equation}
 Let us begin by considering the total bipointed type associated to $E$, with carrier 
 \[
-E' \defeq \sum_{x \co A} E(x) 
+\Tot(E) \defeq (\Sigma x \co A) E(x) 
 \]
-and distinguished elements $e'_k \defeq \pair(a_k, e_k)$ for $k = 0, 1$. In this way,  the first projection $\pi_1 \co E' \to A$ is a bipointed morphism. By the homotopy-initiality of $A$, we have a bipointed morphism 
+and distinguished elements $e'_k \defeq \pair(a_k, e_k)$ for $k = 0, 1$. In this way,  the first projection $\pi_1 \co 
+\Tot(E) \to A$ is a bipointed morphism. By the homotopy-initiality of $A$, we have a bipointed morphism 
 \[
-(f, \bar{f}_0, \bar{f}_1) \co (A, a_0, a_1)  \to (E', e'_0, e'_1) 
+(f, \bar{f}_0, \bar{f}_1) \co (A, a_0, a_1)  \to (\Tot(E), e'_0, e'_1) 
 \]
 which we represent with the diagram
 \[
@@ -1051,7 +1325,7 @@ which we represent with the diagram
 1 \ar@/_1pc/[dr]_{e'_0} \ar[r]^{a_0} & A  \ar[d]^f & 1 \ar[l]_{a_1} \ar@/^1pc/[dl]^{e'_1} \\
  & E' & }
  \]
- We can compose $f \co A \to E'$ with $\pi_1 \co E' \to A$ and obtain a bipointed morphism $\pi_1 \co f \co A \to A$, represented by the diagram
+ We can compose $f \co A \to \Tot(E)$ with $\pi_1 \co \Tot(E) \to A$ and obtain a bipointed morphism $\pi_1 \co f \co A \to A$, represented by the diagram
   \[
 \xymatrix@C=1.5cm{
 1 \ar@/_1pc/[dr]_(.7){e'_0} \ar[r]^{a_0} \ar@/_1.5pc/[ddr]_{a_0}  & A  \ar[d]^f & 1 \ar[l]_{a_1} \ar@/^1pc/[dl]^(.7){e'_1} \ar@/^1.5pc/[ddl]^{a_1}  \\
@@ -1068,7 +1342,7 @@ in $\Bip(A,A)$. By Lemma~\ref{BoolHomSpace}, there  is a bipointed homotopy $(\a
 \begin{equation*}
 \bar{\alpha}_k \co \overline{(\pi_1 f)}_k \Rightarrow \alpha(a_k) \cdot \refl(a_k) 
 \end{equation*}
-for $k = 0, 1$. We begin to define the required bipointed section as in~\eqref{equ:reqsec}, by defining, for~$x \co A$, 
+for $k \in \{ 0, 1 \}$. We begin to define the required bipointed section as in~\eqref{equ:reqsec}, by defining, for~$x \co A$, 
 \begin{equation}
 \label{equ:defreqsection}
 s(x) \defeq \alpha(x)_{!} \big( \pi_2 f (x) \big) \, .
@@ -1105,12 +1379,22 @@ s(a_k) & \deq \alpha(a_k)_{!} \big( \pi_2 f(a_k)  \big) & & \qquad (\text{by the
    This concludes the proof.
 \end{proof}
 
-Let us remark that, for a bipointed type $A$, there is actually an equivalence  $\isbiphinit(A) \simeq \isbipind(A)$,
-since $\isbiphinit(A)$ and $\isbipind(A)$ are a mere propositions. The proof of Theorem~\ref{thm:bipointedmain} simplifies considerably within the extensional
+
+The proof of Theorem~\ref{thm:bipointedmain} simplifies considerably within the extensional
 type theory~$\Hext$. In that type theory, the path in~\eqref{equ:pathcrucial} gives a definitional equality 
 between the composite $\pi_1 \circ f \co A \to A$ and the identity $1_A \co A \to A$, with which the
 rest of the argument can be shortened considerably. In that setting, one obtains the familiar characterisation 
-of an inductive type by means of a standard universal property. The next proposition characterises the
+of an inductive type by means of a standard universal property.
+
+\begin{remark} 
+Let us remark that, for a bipointed type $A$, there is actually an equivalence  
+\[
+\isbiphinit(A) \simeq \isbipind(A) \, ,
+\]
+since $\isbiphinit(A)$ and $\isbipind(A)$ are a mere propositions. 
+\end{remark} 
+
+The next proposition characterises the
 type $\Bool$ up to equivalence.
 
 
@@ -1120,7 +1404,7 @@ conditions are equivalent:
 \begin{enumerate}[(i)]
 \item $A$ is inductive,
 \item $A$ is homotopy-initial,
-\item $A$ is equivalent to $\Bool$. 
+\item $A$ and $\Bool$ are equivalent as bipointed types.
 \end{enumerate}
 In particular, $\Bool$ is a homotopy-initial bipointed type.
 \end{corollary}
@@ -1130,7 +1414,7 @@ In particular, $\Bool$ is a homotopy-initial bipointed type.
 
 
 
-We conclude this section by showing that if the universe $\U$ is univalent, then a form of the Univalence Axiom holds also for bipointed types, in the sense made precise by the next theorem.
+We conclude this section by showing that if the universe $\U$ is assumed to be univalent, then a form of the Univalence Axiom holds also for bipointed types, in the sense made precise by the next theorem.
 
 
 \begin{theorem}[$\Hint + \mathrm{UA}$] \label{thm:bipunivalence}
@@ -1142,31 +1426,31 @@ is an equivalence.
 \end{theorem} 
 
 \begin{proof} 
-Let $ (A,a_0,a_1), (B,b_0,b_1)$ be bipointed types. By the characterization of the identity types
+Let $ (A,a_0,a_1), (B,b_0,b_1)$ be small bipointed types. By the characterization of the identity types
 of  elements of a $\Sigma$-type, the 
 identity type $\Id\big( (A,a_0,a_1),  (B,b_0,b_1)\big)$ is equivalent to  the type
 \[
-\sum_{p \co \Id(A,B)} \Id(\pair(a_0,a_1),  p_{!}(\pair(b_0,b_1))) \, .
+(\Sigma p \co \Id(A,B))  \Id(\pair(a_0,a_1),  p_{!}(\pair(b_0,b_1))) \, .
 \]
 By path elimination on $p$ and the characterization of paths in product types, this type is equivalent to
 \[ 
-\sum_{p \co \Id(A,B)} \, \Id \big( f_p(a_0),  b_0\big) \times \Id \big( f_p(a_1) , b_1)
+(\Sigma p \co \Id(A,B)) \, \Id \big( f_p(a_0),  b_0\big) \times \Id \big( f_p(a_1) , b_1)
  \]
 where we write $f_p \co A \to B$ for the equivalence associated to a path $p \co \Id(a,b)$.  By the Univalence Axiom,
 the above type is equivalent to
 \[ 
-\sum_{f \co \mathsf{Equiv}(A,B)} \, \Id \big( f(a_0),  b_0\big) \times \Id \big( f(a_1) , b_1\big) \]
+(\Sigma f \co \mathsf{Equiv}(A,B)) \, \Id \big( f(a_0),  b_0\big) \times \Id \big( f(a_1) , b_1\big) \]
 After rearranging we get
 \[
-\sum_{(f, \bar{f}_0, \bar{f}_1) \co \BipHom(A,B)} \, \isequiv(f)
+(\Sigma (f, \bar{f}_0, \bar{f}_1) \co \BipHom(A,B)) \, \isequiv(f)
 \]
-which, by Proposition~\ref{BoolAlgSpace}, is equivalent to $\BipEquiv(A,B)$, as desired. Finally, it is not hard to see that the composition of the above equivalences yields the canonical function $\ext$ up to a homotopy.
+which, by Proposition~\ref{thm:usemere}, is equivalent to $\BipEquiv(A,B)$, as desired. Finally, it is not hard to see that the composition of the above equivalences yields the canonical function $\ext$ up to a homotopy.
 \end{proof} 
 
 \begin{corollary}[$\Hint + \mathrm{UA}$] \label{BoolHInitIso} 
-Homotopy-initial bipointed types are unique up to a contractible type of paths, i.e. the type
+Homotopy-initial small bipointed types are unique up to a contractible type of paths, i.e. the type
 \[ 
-\prod_{A \co \Bip} \, \prod_{ B \co \Bip}
+(\Pi A \co \Bip) (\Pi B \co \Bip)
 \big( \isbiphinit(A) \times \isbiphinit(B) \to \iscontr(\Id(A,B)) \big) \, .
 \] 
 is inhabited.
@@ -1174,22 +1458,66 @@ is inhabited.
 
 \begin{proof} Let $A$ and $B$ be homotopy-initial bipointed types. 
 By Theorem~\ref{thm:bipunivalence} it suffices to prove that the type $\BipEquiv(A,B)$ is contractible. The type 
-$\BipHom( A, B)$ is contractible by homotopy-initiality of $A$. Since the dependent sum of a family of mere propositions over a mere proposition is again a mere proposition, it suffices to prove that the type $\isbipequiv(f)$ is contractible for any bipointed morphism $f \co A \to B$. This type is a mere proposition by Lemma~\ref{thm:usemere}, and thus it suffices to show it is inhabited. But the existence of a right and a left bipointed inverse for $f$ follows immediately
+$\BipHom( A, B)$ is contractible by homotopy-initiality of $A$. Since the dependent sum of a family of mere propositions over a mere proposition is again a mere proposition, it suffices to prove that the type $\isbipequiv(f)$ is contractible for any bipointed morphism $f \co A \to B$. This type is a mere proposition by 
+Proposition~\ref{thm:usemere}, and thus it suffices to show it is inhabited. But the existence of a right and a left bipointed inverse for $f$ follows immediately
 by the assumption that $A$ and $B$ are homotopy-initial.
 \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\newpage
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Polynomial functors and their algebras}
 \label{section:wfiles}
 
-
 A W-type can be seen informally as the free algebra for a signature
-with arbitrarily many operations of possibly infinite arity, but no equations. Indeed, the premises of the formation rule above can be thought of as specifying a signature that has the elements of~$A$ as (names of) operations and in which the arity of $a \co A$ is the cardinality of the type $B(a)$. Then the introduction rule specifies the canonical way of forming an element of the free algebra, and the elimination rule can be seen as the propositions-as-types translation of the appropriate induction principle. Throughout this section and the next, we consider a fixed  $A \co \U$ and $B \co A \to \U$. For $X \co \U$,
+with arbitrarily many operations of possibly infinite arity, but no equations. Indeed, the premises of the formation rule above can be thought of as specifying a signature that has the elements of~$A$ as (names of) operations and in which the arity of $a \co A$ is the cardinality of the type $B(a)$. Then the introduction rule specifies the canonical way of forming an element of the free algebra, and the elimination rule can be seen as the propositions-as-types translation of the appropriate induction principle.
+
+\begin{table}[htb]
+\fbox{\begin{minipage}{14.5cm}
+\[
+\begin{prooftree}
+ A \co \type \qquad
+ x \co A \vdash B(x) \co \type
+ \justifies
+ \textstyle
+ (\mathsf{W} x \co A) B(x) \co \type
+\end{prooftree} \qquad 
+\begin{prooftree}
+a \co A \qquad
+t \co B(a) \to W
+\justifies
+\wsup(a,t)\co W
+\end{prooftree}
+\]
+\bigskip
+\[
+\begin{prooftree}
+w \co W \vdash E(w) \co \type  \quad
+x \co A,\, u \co B(x) \to W,\, v \co (\Pi y \co B(x)) E(uy) \vdash e(x,u,v) \co E(\wsup(x,u))
+\justifies
+ w \co W \vdash \ind(w,e) \co E(w)
+ \end{prooftree} \]
+ \bigskip
+ \[
+\begin{prooftree}
+w \co W \vdash E(w) \co \type  \quad
+x\co A,\, u \co B(x) \to W,\, v \co (\Pi y \co B(x)) E(u y)  \vdash e(x,u,v) \co E(\wsup(x,u))
+\justifies
+x\co A,\, u \co B(x) \to W \vdash  \ind(\wsup(x,u),e) = e\big(x,u, ( \lambda y ) \ind(u y,s_E)\big) \co E(\wsup(x,u))
+\end{prooftree} \medskip
+\]
+\end{minipage}} \smallskip
+\caption{Rules for $W$-types.} 
+\end{table}
+
+\newpage
+
+
+
+ Throughout this section and the next, we consider a fixed  $A \co \U$ and $B \co A \to \U$. For $X \co \U$,
 we define
 \[
 PX \defeq \sum_{a \co A} X^{B(a)}
@@ -1202,7 +1530,7 @@ Pf (a, t) = (a,f\circ t) \, .
 \] 
 Although this assignment is not strictly functorial, we still refer to  as the \emph{polynomial functor} associated to $A$ and $B$. 
 
-\begin{definition} A \emph{$P$-algebra} consists of a type $X$ and a function $\sup_X \co PX \to X$. 
+\begin{definition} A \emph{$P$-algebra} consists of a small type $X$ and a function $\sup_X \co PX \to X$. 
 \end{definition}
 
 \smallskip
@@ -2123,7 +2451,7 @@ $Y$, we have $\Id(g \circ f, 1_X)$ and $\Id(f \circ g, 1_Y)$, which gives us the
 $X$ and $Y$.
 \end{proof}
 
-\newpage
+
 
 \section*{Acknowledgements}
 
@@ -2138,245 +2466,11 @@ the National Science Foundation. Kristina Sojakova is grateful for the support o
 Mellon under grants DAAD19-02-1-0389 and W911NF-09-1-0273 from the Army
 Research Office.
 
-\newpage
-
-
-\appendix
-
-\section{Type-theoretic rules}
-\label{app:rules}
-
-\subsection*{Rules for $\Pi$-types}
-
-\begin{itemize}
-\item Formation rule
-\[
-\begin{prooftree}
-x \co A \vdash B(x) \co \type
-\justifies
-\textstyle
-\prod_{x \co A} B(x) \co \type
-\end{prooftree}
-\]
-\item Introduction rule
-\[
-\begin{prooftree}
-x \co A \vdash b(x) \co B(x) 
-\justifies
-\textstyle
-(\lambda x \co A)b(x) \co \prod_{x \co A} B(x)
-\end{prooftree}
-\]
-\item Elimination rule
-\[
-\begin{prooftree}
-\textstyle
-f \co \prod_{x \co A} B(x) \quad
-a \co A 
-\justifies
-\app(f, a) \co B(a)
-\end{prooftree}
-\]
-\item Computation rule
-\[
-\begin{prooftree}
-x \co A \vdash b(x) \co B(x) 
-\justifies
-\app( (\lambda x \co A) b(x), a) = b(a) \co B(a)
-\end{prooftree}
-\]
-\item $\eta$-rule
-\[
-\begin{prooftree}
-\textstyle
-f \co \prod_{x \co A} B(x)
-\justifies
-\textstyle
-f = (\lambda x \co A) \app(f, x) \co  \prod_{x \co A} B(x)
-\end{prooftree}
-\]
- \end{itemize} \
- 
- 
- \subsection*{Rules for $\Sigma$-types}
- 
- \begin{itemize}
-\item Formation rule
-\[
-\begin{prooftree}
-x \co A \vdash B(x) \co \type
-\justifies
-\textstyle
-\sum_{x \co A} B(x) \co \type
-\end{prooftree}
-\]
-\item Introduction rule
-\[
-\begin{prooftree}
-a \co A \qquad 
-b(a) \co B(a) 
-\justifies
-\textstyle
-\pair(a,b) \co \sum_{x \co A} B(x)
-\end{prooftree}
-\]
-\item $\Sigma$-elimination rule.
-\[
-\begin{prooftree}
-\textstyle
-u \co \sum_{x \co A} B(x) \vdash E(u) \co \type \quad
- x \co A, y \co B(x) \vdash  e(x,y) \co  E(\pair(x,y))  
-\justifies
-\textstyle
-u \co \sum_{x \co A} B(x) \vdash  \mysplit(u,e) \co  E(u)
-\end{prooftree}
-\]
-\item $\Sigma$-computation rule.
-\[
-\begin{prooftree}
-\textstyle
-u \co \sum_{x \co A} B(x) \vdash E(u) \co  \type \quad
- x \co  A, y \co B(x) \vdash  e(x,y) \co  E(\pair(x,y))  
- \justifies
-x \co A, y \co B(x) \vdash \mysplit(\pair(x,y),e) = e(x,y) \co  E(\pair(x,y)) \, .
-\end{prooftree}
-\]
-\end{itemize} 
 
 
 
-\subsection*{Rules for $\Id$-types}
-
-\begin{itemize}
-\item $\Id$-formation rule.
-\[
-\begin{prooftree}
-A \co  \type \quad 
-a \co  A  \quad
-b \co  A 
-\justifies
- \id{A}(a,b) \co  \type
- \end{prooftree}
-\]
-\item $\Id$-introduction rule.
-\[
-\begin{prooftree}
-a \co A 
-\justifies
- \refl(a) \co  \id{A}(a,a)
- \end{prooftree} 
-\]
-\item $\Id$-elimination rule.
-\[
-\begin{prooftree}
-x, y \co A, u \co  \id{A}(x,y) \vdash E(x,y,u) \co \type \qquad
- x \co A \vdash  e(x) \co  E(x,x,\refl(x))  
-\justifies
-x, y \co A, u \co  \id{A}(x,y) \vdash  \idrec(x,y,u,e) \co E(x,y,u)
-\end{prooftree}
-\]
-\item $\Id$-computation rule.
-\[
-\begin{prooftree}
-x, y \co  A, u \co  \id{A}(x,y) \vdash E(x,y,u) \co \type \qquad
- x \co  A \vdash  e(x) \co  E(x,x,\refl(x)) 
- \justifies
-x \co A \vdash \idrec(x,x,\refl(x), e) = e(x) \co  E(x, x, \refl(x)) \, .
-\end{prooftree}
-\]
-\end{itemize} 
 
 
-\subsection*{Rules for $\Bool$}
-
-
-\begin{itemize}
-\item Formation rule. \smallskip
-
-\[
- \Bool \co \U \, .
- \]  \medskip
-\item Introduction rules. \smallskip
-
-\[
-0 \co \Bool \, ,  \qquad  1 \co \Bool \, .
-\]  
-\item Elimination rule.\medskip
-
-\[
-\begin{prooftree}
-x\in\Bool \vdash E(x) \co \U \qquad
-e_0 \co E(0) \qquad
-e_1 \co E(1) \qquad
-\justifies
-x \co \Bool \vdash \boolind(x, e_0, e_1) \co E(x) 
-\end{prooftree}
-\] \bigskip
-\item Computation rules. \smallskip
-
-\begin{equation*}
-\begin{prooftree}
-x\in\Bool \vdash E(x) \co \U \qquad
-e_0 \co E(0) \qquad
-e_1 \co E(1)
-\justifies
-  \boolind(0, e_0, e_1)  \deq  e_0 \co E(0) \, , \\
-\end{prooftree}
- \end{equation*}  
- \bigskip
- \begin{equation*}
-\begin{prooftree}
-x\in\Bool \vdash E(x) \co \U \qquad
-e_0 \co E(0) \qquad
-e_1 \co E(1)
-\justifies
- \boolind(1,e_0,e_1)  \deq e_1 \co E(1) \, .
-\end{prooftree}
- \end{equation*}  
-\end{itemize}
-
-
-\subsection*{Rules for $W$-types}
-
-\begin{itemize}
-\item Formation rule \smallskip
-\[
-\begin{prooftree}
- A \co \type \qquad
- x \co A \vdash B(x) \co \type
- \justifies
- \textstyle
- \WW_{x \co A} B(x) \co \type
-\end{prooftree}
-\]
-\item Introduction rule \smallskip
-\[
-\begin{prooftree}
-a \co A \qquad
-t \co B(a) \to W
-\justifies
-\wsup(a,t)\co W
-\end{prooftree}
-\]
-\item Elimination rule \smallskip
-\begin{mathpar}
-\inferrule{
-w \co W \vdash E(w) \co \type \\ 
-\textstyle
-x \co A,\, u \co B(x) \to W,\, v \co \prod_{y \co B(x)} E(uy) \vdash s_E(x,u,v) \co E(\wsup(x,u))}
-{ w \co W \vdash \ind(w,s_E) \co E(w)}
-\end{mathpar}
-\item Computation rule \smallskip
-\begin{mathpar}
-\inferrule{
-w \co W \vdash E(w) \co \type \\ 
-\textstyle
-x\co A,\, u \co B(x) \to W,\, v \co \prod_{y \co B(x)} E(u y)  \vdash s_E(x,u,v) \co E(\wsup(x,u))}
-{x\co A,\, u \co B(x) \to W \vdash  \ind(\wsup(x,u),s_E) = s_E\big(x,u, ( \lambda y ) \ind(u y,s_E)\big) \co E(\wsup(x,u))}
-\end{mathpar}
-\end{itemize}
-
-\newpage
 
 
 \bibliographystyle{plain}
