@@ -281,12 +281,12 @@ in the context of Observational Type Theory \cite{AltenkirchT:obsen}.  Inductive
 \newpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Preliminaries}
-\label{section:prelim}
+\section{Background}
+\label{sec:bac}
 
 
 \subsection*{Review of Martin-L\"of type theory.} We begin by introducing a very simple  Martin-L\"of type 
-theory, denoted by~$\mathcal{M}$, which provides the basis for the type theory $\Hint$, introduce later,
+theory, denoted by~$\mathcal{M}$, which provides the basis for the type theory $\Hint$, introduced later,
 with which will work in the paper.
 Our type theories will be formulated using the four standard forms of judgement
 \[
@@ -307,8 +307,8 @@ rules for the following forms of type:
  \]
 The rules for these types are recalled in 
 Tables~\ref{tab:sigmarules},~\ref{tab:pirules},~\ref{tab:idrules} and~\ref{tab:urules}, respectively. The rules
-are as in~\cite{NordstromB:marltt}. In particular, note that the rules for the type universe $\U$ are stated 
-in the so-called Russell-style. Neither the type theory $\mathcal{M}$ nor the type theory $\Hint$ which we 
+are as in~\cite{NordstromB:marltt}, except that the rules for the type universe $\U$ are stated 
+in the so-called Russell-style for simplicity. Neither the type theory $\mathcal{M}$ nor the type theory $\Hint$ which we 
 introduce below have any ground types. This is because these type theories are intended as background
 theories for our study of inductive types. 
 
@@ -471,8 +471,8 @@ A \co \type
 \label{tab:urules}
 \end{table}
 
-We conclude our discussion of the type theory $\mathcal{M}$ by establishing some notation and recalling some
-basic facts and  terminogy. First of all, for simplicitity, for $f \co (\Pi x \co A) B(x)$ and $a \co A$, we write~$f(a)$ or~$f  a$ instead of $\app(f,a)$. Given types $A$ and $B$, the product type $A \times B$ and the function $A \rightarrow B$  are defined via $\Sigma$-types and $\Pi$-types in the usual way.  The rules for $\Sigma$-types allow us to derive the rules for projections
+Let us establish some notation and recall some
+basic facts and  terminogy. First of all, for~$f \co (\Pi x \co A) B(x)$ and $a \co A$, we write~$f(a)$ or~$f  a$ instead of $\app(f,a)$. Given types $A$ and~$B$, the product type $A \times B$ and the function $A \rightarrow B$  are defined via $\Sigma$-types and $\Pi$-types in the usual way.  The rules for $\Sigma$-types allow us to derive the rules for projections
 
 \[
 \begin{prooftree}
@@ -611,9 +611,10 @@ is as a space that is inhabited if and only if the space interpreting $A$ is con
 topological sense. Note that if $A$ is a contractible type, then for every $a, b \co A$, the type $\Id(a,b)$ is again contractible. 
 This can be proved  by $\Id$-elimination. 
 The notion of contractibility can be used to articulate the world of types  into a hierarchy of so-called \emph{h-levels} according to their
-homotopical complexity~\cite{VoevodskyV:unifc}. We will need to recall only the notion of a type of h-level 1, or h-proposition.
+homotopical complexity~\cite{VoevodskyV:unifc}. We will need to recall only the notion of a type of h-level 1, or 
+mere proposition.
 
-\begin{definition} A type $A$ is said to be an \emph{h-proposition} if the type
+\begin{definition} A type $A$ is said to be an \emph{mere proposition} if the type
 \[
 \isprop(A) \defeq (\Pi x \co A)(\Pi  y \co A) \iscontr( \Id(x,y)) 
 \]
@@ -653,7 +654,7 @@ More precisely, for $f \co A \rightarrow B$, we have
 \label{sec:bip}
 
 In order to motivate our development in this section and the next, 
-let us begin by recalling the rules for the type $\Bool$ of Boolean truth values. The introduction rule state that we have two canonical elements in $\Bool$, written $0$ and $1$ here. The elimination rule can be understood as the propositions-as-types of an induction principle for $\Bool$. Finally, the computation rules specify what happens if one applies in sequence the introduction and the elimination rule.
+let us begin by recalling the rules for the type $\Bool$ of Boolean truth values. The introduction rule state that we have two canonical elements in $\Bool$, written $0$ and $1$ here. The elimination rule can be understood as the propositions-as-types translation of an induction principle for $\Bool$. Finally, the computation rules specify what happens if one applies in sequence the introduction and the elimination rule.
 
 
 
@@ -703,7 +704,8 @@ In the presence of the type universe $\U$, as in our underlying type theory $\Hi
 $\Bool \co \U$. Let us now suppose to have a small type $A \co \U$ be a small type and suppose that there is an equivalence $f \co \Bool \to A$. Then, the type~$A$ 
 has two distinguished elements $a_0 \defeq f(0)$ and $a_1 \defeq f(1)$, and it satisfies
 analogues of the elimination and computation rules for $\Bool$, except that the conclusions of the computation 
-rules need to be modified  by replacing the judgemental equalities  with propositional ones. Our aim in this section is to provide a characterisation of the small types equivalent to $\Bool$ by means of a type-theoretical universal property. In order to do so, we introduce the notion of a bipointed type. 
+rules need to be modified  by replacing the judgemental equalities  with propositional ones. Our aim in this section is to provide a characterisation of the small types equivalent to $\Bool$ by means of a type-theoretical universal property. But in our development we shall not assume to have a type $\Bool$, and work in the type theory $\Hint$ specified
+in Section~\ref{sec:bac}.  We begin introduce the notion of a bipointed type. 
 
 
 \begin{definition} \label{thm:bipointedtype}
@@ -713,11 +715,13 @@ and two elements  $a_0 \, , a_1 \co A$.
 
 
 
-When referring to a bipointed type we sometimes suppress mention of its distinguished elements and write $A = (A, a_0, a_1)$ to recall this abuse of language.  In the following, it will be convenient to represent a bipointed type $A$  as follows:
+When referring to a bipointed type we sometimes suppress mention of its distinguished elements and write $A = (A, a_0, a_1)$ to recall this abuse of language.  In the following, it will be convenient to represent a bipointed type $A$  
+diagrammatically as follows:
 \[
 \xymatrix{
- 1 \ar[r]^-{a_0}&  A & 1 \ar[l]_-{a_1} \, .}
+1 \ar[r]^-{a_0}&  A & 1 \ar[l]_-{a_1} \, .}
  \]
+Here, the symbol $1$ does not represent the unit type, which is not assumed as part the type theory $\Hint$.
 The type $\Bool$ and its canonical elements $0, 1 \co \Bool$ give us a bipointed type:
 \[
 \xymatrix{
@@ -728,8 +732,8 @@ Accordingly, the type of small bipointed types is then defined by letting
 \[
 \Bip \defeq (\Sigma A \co \U)( A \times A ) \, .
 \]
-Clearly,  this type is not small.  We introduce the notion of a bipointed morphism between bipointed types. 
-For this, we consider two bipointed types $A = (A, a_0, a_1)$ and~$B = (B, b_0, b_1)$. 
+Clearly,  this type is not small.  Next, we introduce the notion of a bipointed morphism between bipointed types. 
+For this, let us fix two bipointed types $A = (A, a_0, a_1)$ and~$B = (B, b_0, b_1)$. 
 
 
 \begin{definition} A \emph{bipointed morphism} 
@@ -810,11 +814,10 @@ is an equivalence of types. Thus, for any bipointed morphism $(f, \bar{f}_0, \ba
 Let  $(f, \bar{f}_0, \bar{f}_1) \co A \to B$ be a bipointed morphism between them. Expanding the type of 
 proofs that $f$ is a bipointed equivalence yields the type
 \begin{multline*} 
-\textstyle
- \sum_{\ell \co B \to  A}  
- \sum_{\bar{\ell}_0 \co \ell(b_0) \Rightarrow a_0} 
- \sum_{\bar{\ell}_1 \co \ell(b_1) \Rightarrow a_1} 
- P(\ell,\bar{\ell}_0,\bar{\ell}_1) \times \\
+(\Sigma \ell \co B \to  A)
+(\Sigma \bar{\ell}_0 \co \Id( \ell(b_0), a_0)) 
+(\Sigma  \bar{\ell}_1 \co \Id( \ell(b_1), a_1) \, 
+ P(\ell,\bar{\ell}_0,\bar{\ell}_1) \, \times \\
  \textstyle
  \sum_{r \co B \to A} 
  \sum_{\bar{r}_0 \co r(b_0) \Rightarrow a_0} 
