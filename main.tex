@@ -486,13 +486,14 @@ c \co (\Sigma x \co A)B(x)
 \end{prooftree} \medskip
 \]
 We say that two elements  $a, b \co A$ are \emph{propositionally equal} if  the type $\Id(a,b)$ is inhabited.  We will sometimes write  $p \co a \Rightarrow b$ as alternate notation for $p \co \Id(a,b)$. The rules for $\Sigma$-types allow us to prove the following propositional form of the $\eta$-rule for $\Sigma$-types:
-\[
+\begin{equation}
+\label{equ:etasigma}
 \begin{prooftree}
 c \co (\Sigma x \co A) B(x)
 \justifies
 \eta_c \co \Id( c, \pair(\pi_1(c), \pi_2(c))
 \end{prooftree}
-\]
+\end{equation}
 This rule asserts that every element of a $\Sigma$-type is propositionally equal to one of canonical form.
 Note that neither $\mathcal{M}$ nor $\Hint$ include the judgemental form of the $\eta$-rules for $\Sigma$-types, 
 as is done in~\cite{GoguenH:inddtw}. Finally, let us recall that the presence of the type universe $\U$ allows us to define a notion of a small type.
@@ -570,6 +571,8 @@ somewhat simpler to work with. However, it destroys part of the constructive cha
 in the most recent formulations of Martin-L\"of type theories~\cite{NordstromB:marltt} or in automated proof assistants like Coq~\cite{BertotY:inttpp}.
 \end{remark}
 
+
+
 \subsection*{Homotopy-theoretic notions in type theory.} For $f \, , g \co (\Pi x \co A) B(x)$, the type of
 \emph{homotopies} between $f$ and $g$ is defined by letting
 \[
@@ -643,12 +646,42 @@ More precisely, for $f \co A \rightarrow B$, we have
  \textstyle
  \iswequiv(f) \simeq (\Sigma \ell \co B \to A) \Id( \ell \circ f, 1_A) \times (\Sigma r \co B \to A) \Id( r \circ f , 1_B) \, .
  \]
+ and 
+ \begin{equation}
+ \label{equ:weq}
+ \mathsf{Weq}(A,B) \defeq (\Sigma f \co A \to B) \iswequiv(f) \, .
+ \end{equation}
 
-\begin{center}
-NEED TO ADD $\mathsf{ext}$ FOR PI, SIGMA and U. 
-\end{center}
 
-\newpage
+\subsection*{Aspects of extensionality} We need to recall some facts regarding the identity types, and in particular how  identity types of $\Sigma$-types and $\Pi$-types admit an equivalent description. In order to illustrate the general point, let us begin by considering the special case of binary products. So, let $A$ and $B$ be two types. For any 
+pair of elements $c, d  \co A \times B$, there is a canonical map
+\begin{equation}
+\label{equ:exttimes}
+\ext^{\times}_{A, B}  \co \Id_{A \times B}(c, d) \to \Id_{A}(c_1, d_1) \times \Id_{B}(c_2, d_2) \, , 
+\end{equation}
+where, for $k \in \{ 1, 2 \}$,  $c_k$ and $d_k$ are the $k$-th projections of $c$ and $d$, respectively. The existence of this map implies that, for every 
+propositional equality~$p \co c \Rightarrow d$ we can obtain a pair of propositional equalities~$p_1 \co c_1 \Rightarrow d_1$ and $p_2 \co c_2 \Rightarrow d_2$. Similarly, we
+have families of canonical maps
+\begin{gather}
+\ext^\Sigma_{A,B} \co  \Id_{(\Sigma x \co A)B(x)}(c, d) \to (\Sigma p \co \Id(c_1, d_1)) \, , \Id( p_{!}(c_2), d_2) \, , 
+\label{equ:extsigma} \\
+\ext^\Pi_{A,B} \co  \Id_{(\Pi x \co A)B(x)}(f, g) \to (\Pi x \co A) \Id_{B(x)}(f x, gx)  \, , 
+\label{equ:extpi} \\
+\ext^\U \co  \Id_\U(A, B) \to \mathsf{Weq}(A, B) \, ,  \label{equ:extu}
+\end{gather}
+where $\mathsf{Weq}(A,B)$ is the type of weak equivalences between $A$ and $B$, as defined in~\eqref{equ:weq}.
+Note that the functions in~\eqref{equ:exttimes} are special cases of the ones in~\eqref{equ:extsigma}. Now,
+the functions in~\eqref{equ:extsigma}, and hence those in~\eqref{equ:exttimes}, can be shown to be 
+equivalences within the type theory $\mathcal{M}$ by the $\eta$-rule for $\Sigma$-types in~\eqref{equ:etasigma}. 
+As shown in~\cite{VoevodskyV:notts}, the functions in~\eqref{equ:extpi} are equivalences can be proved
+assuming the Function 
+Extensionality principle in~\eqref{equ:funext}, that is part of $\Hint$ but not $\mathcal{M}$. Indeed, the assumption
+of Function Extensionality in the type theory $\mathcal{H}$ is due to the fact that it allows us to systematically
+identify a $\Pi$-type of a family of identity types with the identity type of a $\Pi$-type, thus allowing us to use
+its elimination rule. Finally, the functions in~\eqref{equ:extu} are equivalences once we assume also the
+Univalence Axiom (see~\cite{VoevodskyV:notts}). 
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Bipointed types}
