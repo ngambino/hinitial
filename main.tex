@@ -555,7 +555,8 @@ simplified in its presence, we prefer to work with it to keep our presentation s
 more faithful to the formalization.
 \end{remark}
 
-\begin{remark}[The extensional type theory $\Hext$] We write $\Hext$ for the extensional type
+\begin{remark}[The extensional type theory $\Hext$] \label{thm:hext}
+ We write $\Hext$ for the extensional type
 theory obtained from $\Hint$ by adding the following rule, known as the identity reflection rule, is also assumed:
 \begin{equation}
 \label{equ:collapse}
@@ -634,21 +635,33 @@ is inhabited.
 \end{definition}
 
  We write $A\simeq B$ if there is an equivalence from $A$ to $B$.   As shown in~\cite{HoTT}, a function $f \co A \rightarrow B$ is an equivalence if and only if  it has both a left inverse and a right inverse, \ie there are 
-$\ell \co B \to A$ and $r \co B \to A$ such that the following types are inhabited. 
-\[
- \Id(\ell \circ f, 1_A)\, ,  \quad  \Id(f \circ r, 1_B) \, .
- \] 
-More precisely, for $f \co A \rightarrow B$, we have
+$\ell \co B \to A$ and $r \co B \to A$ such that the  types $ \Id(\ell \circ f, 1_A)$ and $\Id(f \circ r, 1_B)$ are inhabited. 
+More precisely, for $f \co A \rightarrow B$, we define the type of proofs that $f$ is an equivalence as 
  \[ 
- \textstyle
  \iswequiv(f) \simeq (\Sigma \ell \co B \to A) \Id( \ell \circ f, 1_A) \times (\Sigma r \co B \to A) \Id( r \circ f , 1_B) \, .
  \]
- and 
+For types $A$ and $B$, the type of weak equivalences from $A$ to $B$ is then defined so that its canonical elements
+are pairs consisting of a function $f \co A \to B$ and a proof that it is a weak equivalence:
  \begin{equation}
  \label{equ:weq}
  \mathsf{Weq}(A,B) \defeq (\Sigma f \co A \to B) \iswequiv(f) \, .
  \end{equation}
+The next remark will be used in the proof of Proposition~\ref{thm:usemere}.
 
+\begin{remark} \hfill \label{thm:useful}
+\begin{enumerate}[(i)]
+\item Let $A$ be a type and $a_1, a_2, b \co A$. For paths $q \co \Id(b,a_1)$, $s \co \Id(b,a_2)$, the type 
+\[
+(\Sigma p \co \Id_A(a_1,a_2)) \, \Id(q \ct p,s)
+\] 
+is contractible. 
+\item For any equivalence $f \co A \to B$, and paths $q \co \Id(f(a_2),b)$, $s \co \Id(f(a_1),b)$, the type 
+\[
+(\Sigma p \co \Id_A(a_1,a_2)) \, \Id(f(p) \ct q,s)
+\] 
+is contractible.
+\end{enumerate}
+\end{remark}
 
 \subsection*{Aspects of extensionality} We need to recall some facts regarding the identity types, and in particular how  identity types of $\Sigma$-types and $\Pi$-types admit an equivalent description. In order to illustrate the general point, let us begin by considering the special case of binary products. So, let $A$ and $B$ be two types. For any 
 pair of elements $c, d  \co A \times B$, there is a canonical map
@@ -923,19 +936,12 @@ where, for $k = 0,1$, we set
 (\Sigma \bar{\ell}_k \co \Id( \ell(b_k),  a_k))  \, \Id \big( \ell (\bar{f}_k) \ct \bar{\ell}_k \, ,  \alpha(a_k) \big) \\
 & S_k(r,\beta) \defeq (\Sigma \bar{r}_k \co \Id( r(b_k) , a_k)) \, \Id \big( f (\bar{r}_k) \ct \bar{f}_k \, ,  \beta(b_k) \big) 
 \end{align*}
-Now recall  that, in general, for paths $q \co \Id(y,x_1)$, $s \co \Id(y,x_2)$, the type 
-\[
-(\Sigma p \co \Id_X(x_1,x_2)) \, \Id(q \ct p,s)
-\] 
-is contractible. Thus we have $R_k(\ell,\alpha) \simeq \one$.
-Furthermore, for any equivalence $g \co X \to Y$, and paths $q \co \Id(g(x_2),y)$, $s \co \Id(g(x_1),y)$, the type 
-\[
-(\Sigma p \co \Id_X(x_1,x_2)) \, \Id(g(p) \ct q,s)
-\] is contractible. Since $\ell, \alpha, r, \beta$ make $f$ into an equivalence, we have $S_k(\ell,\alpha) \simeq \one$. Thus,
+By a special case of Remark~\ref{thm:useful}, we have that $R_k(\ell,\alpha) \simeq \one$ and
+ $S_k(\ell,\alpha) \simeq \one$. Thus,
 \begin{align*} 
 \isbipequiv(f,\bar{f}_0, \bar{f}_1) 
   & \simeq  (\Sigma \ell \co B \to A)(\Sigma \alpha \co \ell \com f \sim 1_A) (\Sigma r  \co B \to A)
- (\Sigma \beta \co f \com r \sim 1_B)  \, 1 \\
+ (\Sigma \beta \co f \com r \sim 1_B)  \, \one \\
  & \simeq (\Sigma \ell \co B \to A)  \, \Hot( \ell \com f , 1_A ) \times 
 (\Sigma r  \co B \to A) \,  \Hot( f \com r, 1_B ) \\
  & \simeq \isequiv(f) \, ,
@@ -1091,11 +1097,11 @@ The type of bipointed homotopies between bipointed sections $f$ and $g$ as above
 
 
 \begin{lemma} \label{thm:biphot}
-Let $E = (E, e_0, e_1)$ be a fibered bipointed type over $A = (A, a_0, a_1)$. 
+Let $E = (E, e_0, e_1)$ be a fibered bipointed type over a bipointed type $A = (A, a_0, a_1)$. 
 For every pair of bipointed sections $f = (f, \bar{f}_0, \bar{f}_1)$ and $g = (g, \bar{g}_0, \bar{g}_1)$, 
-the function
+the canonical function
 \[
-\ext \co \Id\big( (f, \bar{f}_0, \bar{f}_1), (g, \bar{g}_0, \bar{g}_1) \big) \rightarrow
+\ext^{\BipHot}_{f,g} \co \Id\big( (f, \bar{f}_0, \bar{f}_1), (g, \bar{g}_0, \bar{g}_1) \big) \rightarrow
 \BipHot \big( (f, \bar{f}_0, \bar{f}_1), (g, \bar{g}_0, \bar{g}_1) \big) \, .
 \]
 is an equivalence of types. 
@@ -1401,7 +1407,7 @@ s(x) \defeq \alpha(x)_{!} \big( \pi_2 f (x) \big) \, .
 We now construct  paths~$\bar{s}_k \co s(a_k) \Rightarrow e_k$, for $k = 0, 1$. First of all, recall that 
 $\bar{f}_k \co  f(a_k) \Rightarrow  e'_k$, where $e'_k = \pair(a_k, e_k) \co (\Sigma x \co A) E(x)$. Using the equivalence,
 \[
-\ext_E \co \Id_{E'}( f(a_k), e'_k) \longrightarrow (\Sigma p \co \Id( \pi_1 f(a_k) , a_k)) \, \Id_{E(a_k)} \big( p_{!}( \pi_2 f(a_k)) , e_k \big) \, ,
+ \Id_{E'}( f(a_k), e'_k) \simeq (\Sigma p \co \Id( \pi_1 f(a_k) , a_k)) \, \Id_{E(a_k)} \big( p_{!}( \pi_2 f(a_k)) , e_k \big) \, ,
 \]
 which is a special case of the equivalences in~\eqref{equ:extsigma}, we obtain paths 
 \begin{equation}
@@ -1432,7 +1438,7 @@ s(a_k) & \deq \alpha(a_k)_{!} \big( \pi_2 f(a_k)  \big) & & \qquad (\text{by the
 
 
 The proof of Theorem~\ref{thm:bipointedmain} simplifies considerably within the extensional
-type theory~$\Hext$ obtained by adding to $\Hint$ the equality reflection rule in~\eqref{equ:collapse}. In that type theory, the path in~\eqref{equ:pathcrucial} gives a judgemental equality 
+type theory~$\Hext$ introduced in Remark~\ref{thm:hext}. In that type theory, the path in~\eqref{equ:pathcrucial} gives a judgemental equality 
 between the composite $\pi_1 \circ f \co A \to A$ and the identity $1_A \co A \to A$, with which the
 rest of the argument can be shortened considerably. In that setting, one obtains the familiar characterisation 
 of an inductive type by means of a standard universal property.
@@ -1820,14 +1826,15 @@ $\Id \big( f \circ \sup_C \, ,  \sup_D \circ Pg \big)$. Also observe that $\alph
 \]
 
 
+\newcommand{\HotAlg}{\mathsf{HotAlg}}
 
 
 \begin{lemma}\label{IdEqHo}
 For every pair of $P$-algebra morphisms $(f, \bar{f}) \, , (g, \bar{g}) \co C \to D$,  
-the function
+the canonical function
 \[
-\ext \co 
-\Id\big((f, \bar{f}), (g, \bar{g})\big) \to \Hot \big((f, \bar{f}), (g, \bar{g})\big).
+\ext^{\Palg}_{f,g}  \co 
+\Id\big((f, \bar{f}), (g, \bar{g})\big) \to \HotAlg \big((f, \bar{f}), (g, \bar{g})\big).
 \]
  is an equivalence of types. 
 \end{lemma}
