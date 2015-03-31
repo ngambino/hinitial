@@ -9,7 +9,7 @@
 
 % Numberings 
 \setcounter{tocdepth}{1}
-% \numberwithin{equation}{section}
+\numberwithin{equation}{section}
 
 % Table of contents
 \makeatletter
@@ -485,7 +485,7 @@ c \co (\Sigma x \co A)B(x)
 \pi_2(c) \co B(\pi_1(c))
 \end{prooftree} \medskip
 \]
-We say that two elements  $a, b \co A$ are \emph{propositionally equal} if  the type $\Id(a,b)$ is inhabited.  We will sometimes write  $p \co a \Rightarrow b$ as alternate notation for $p \co \Id(a,b)$. The rules for $\Sigma$-types allow us to prove the following propositional form of the $\eta$-rule for $\Sigma$-types:
+We say that two elements  $a, b \co A$ are \emph{propositionally equal} if  the type $\Id_A(a,b)$ is inhabited.  We will sometimes write  $p \co a \Rightarrow b$ as alternate notation for $p \co \Id(a,b)$. The rules for $\Sigma$-types allow us to prove the following propositional form of the $\eta$-rule for $\Sigma$-types:
 \begin{equation}
 \label{equ:etasigma}
 \begin{prooftree}
@@ -523,9 +523,9 @@ which is considered here with propositional equalities:
  \begin{prooftree} 
  f \co (\Pi x \co A)B(x) \qquad
  g \co (\Pi x \co A) B(x) \qquad
- x \co A \vdash p(x) \co \Id(f(x), g(x))
+ x \co A \vdash \alpha(x) \co \Id_{B(x)}(f(x), g(x))
  \justifies
- \mathsf{funext}(f, g, p) \co \Id(f,g) \, .
+ \mathsf{funext}(f, g, \alpha) \co \Id_{(\Pi x \co A)B(x)}(f,g) \, .
  \end{prooftree}
 \end{equation}
  
@@ -536,15 +536,15 @@ which is considered here with propositional equalities:
 
 
 
-The particular choice of rules for $\Hint$ implies that this theory has a both a set-theoretic
-semantics and a homotopy-theoretic one. In particular, 
-even if $\Hint$ also has a straightforward set-theoretical semantics,  it 
+The particular choice of rules for $\Hint$ implies that this theory has a both set-theoretic
+models and a homotopy-theoretic ones.  In particular, $\Hint$ 
 does not include any global extensionality rules, like the identity reflection rule, the K rule, or 
-the Uniqueness of Identity Proofs principle~\cite{StreicherT:inviit}. This makes $\Hint$  compatible 
-with homotopy-theoretic interpretations such as the groupoid model~\cite{HofmannM:gromtt}, in which the rules of $\Hint$ are also valid. Indeed, $\Hint$ is a subsystem of the type theory 
-used in Voevodsky's Univalent Foundations library~\cite{VoevodskyV:unifc}. 
+the Uniqueness of Identity Proofs principle~\cite{StreicherT:inviit}. This makes $\Hint$ it possible
+for $\Hint$ to have not only straightforward set-theoretic models (where those extensionality
+principles are valid) but also with homotopy-theoretic models, such as the groupoid model~\cite{HofmannM:gromtt}, in which the rules of $\Hint$, but not the extensionality principles mentioned above, remain valid. Indeed, $\Hint$ is a subsystem of the type theory 
+used in Voevodsky's Univalent Foundations of Mathematics programme~\cite{VoevodskyV:unifc}. 
 In particular, the 
-Function Extensionality axiom in~\eqref{equ:funext} is formally implied by Voevodsky's Univalence axiom~\cite{VoevodskyV:notts} (using the fact, also shown in~\cite{VoevodskyV:notts}, that Function Extensionality, as stated in~\eqref{equ:funext}, follows from its special case for function types). In contrast with the Univalence
+Function Extensionality axiom in~\eqref{equ:funext} is formally implied by Voevodsky's Univalence axiom~\cite{VoevodskyV:notts} (using the fact, also shown in~\cite{VoevodskyV:notts}, that Function Extensionality, as stated in~\eqref{equ:funext}, follows from its special case for function types). But, in contrast with the Univalence
 Axiom, the Function Extensionality axiom is valid also in set-theoretic models. 
 
 
@@ -555,35 +555,32 @@ simplified in its presence, we prefer to work with it to keep our presentation s
 more faithful to the formalization.
 \end{remark}
 
-\begin{remark}[Extensional type theories] 
-Most work on inductive types to date (\eg~\cite{AbbottM:concsp,DybjerP:repids,GambinoN:weltdp,MoerdijkI:weltc}) has been in the setting of extensional type theories,  
-in which the following rule, known as the identity reflection rule, is also assumed:
+\begin{remark}[The extensional type theory $\Hext$] We write $\Hext$ for the extensional type
+theory obtained from $\Hint$ by adding the following rule, known as the identity reflection rule, is also assumed:
 \begin{equation}
 \label{equ:collapse}
 \begin{prooftree}
- p \co  \Id(a,b)
+ p \co  \Id_A(a,b)
   \justifies
   a=b \co  A
 \end{prooftree}
 \end{equation}
 This rule collapses propositional equality to definitional equality, thus making the overall system
 somewhat simpler to work with. However, it destroys part of the constructive character of the intensional system, since it makes type-checking undecidable~\cite{HofmannM:extcit}. For this reason, it is not assumed
-in the most recent formulations of Martin-L\"of type theories~\cite{NordstromB:marltt} or in automated proof assistants like Coq~\cite{BertotY:inttpp}.
+in the most recent formulations of Martin-L\"of type theories~\cite{NordstromB:marltt} or in automated proof assistants like Coq~\cite{BertotY:inttpp}. However, most work on inductive types to date (\eg~\cite{AbbottM:concsp,DybjerP:repids,GambinoN:weltdp,MoerdijkI:weltc}) has been in the setting of extensional type theories.
 \end{remark}
 
 
 
-\subsection*{Homotopy-theoretic notions in type theory.} For $f \, , g \co (\Pi x \co A) B(x)$, the type of
-\emph{homotopies} between $f$ and $g$ is defined by letting
+\subsection*{Homotopy-theoretic notions in type theory.} For $f \, , g \co (\Pi x \co A) B(x)$, a \emph{homotopy}
+between $f$ and $g$ is an element of the type $\Hot(f,g)$ defined by 
 \[
 \Hot(f,g) \deq (\Pi x:A) \Id_{B}(f(x),g(x)) \, .
 \]
-A homotopy between $f, g :A\to B$ is sometimes written $\alpha \co f \sim g$ rather than $\alpha \co \Hot(f,g)$
-Thus, the function extensionality rule in~\eqref{equ:funext} states that the type 
-\[
-(f \sim g) \rightarrow (f \Rightarrow g)
-\] 
-is inhabited. Observe that the main import of the 
+We often write  $\alpha \co f \sim g$ rather than $\alpha \co \Hot(f,g)$ and indicate the path obtained by applying a 
+homotopy~$\alpha \co f \sim g$ as above to an element $x \co A$ as $\alpha_x$. 
+
+One of the main consequences of the 
 $\Id$-elimination rule is that  type dependency must respect propositional equality, in the following sense: given a dependent type
 \begin{equation*}
 x\co A \vdash B(x) \co \type \, ,
@@ -679,7 +676,17 @@ Extensionality principle in~\eqref{equ:funext}, that is part of $\Hint$ but not 
 of Function Extensionality in the type theory $\mathcal{H}$ is due to the fact that it allows us to systematically
 identify a $\Pi$-type of a family of identity types with the identity type of a $\Pi$-type, thus allowing us to use
 its elimination rule. Finally, the functions in~\eqref{equ:extu} are equivalences once we assume also the
-Univalence Axiom (see~\cite{VoevodskyV:notts}). 
+Univalence Axiom (see~\cite{VoevodskyV:notts}). When these maps are weak equivalences, they have 
+inverses, which we denote as 
+\begin{gather}
+\int^\Sigma_{c,d} \co   (\Sigma p \co \Id(c_1, d_1)) \Id( p_{!}(c_2), d_2) \to \Id_{(\Sigma x \co A)B(x)}(c, d) \, , 
+\label{equ:intsigma} \\
+\int^\Pi_{f, g} \co  (\Pi x \co A) \Id_{B(x)}(f x, gx) \to   \Id_{(\Pi x \co A)B(x)}(f, g) \, , 
+\label{equ:intpi} \\
+\int^\U_{A,B} \co  \mathsf{Weq}(A, B) \to \Id_\U(A, B)  \, .  \label{equ:intu}
+\end{gather}
+In the following, we shall always omit  superscripts and subscripts when manipulating these functions,
+as the context makes it clear which one we are referring to. 
 
 
 
@@ -853,9 +860,9 @@ proofs that $f$ is a bipointed equivalence yields the type
 (\Sigma  \bar{\ell}_1 \co \Id( \ell(b_1), a_1) \, 
  P(\ell,\bar{\ell}_0,\bar{\ell}_1) \, \times \\
  \textstyle
- \sum_{r \co B \to A} 
- \sum_{\bar{r}_0 \co r(b_0) \Rightarrow a_0} 
- \sum_{\bar{r}_1 \co  r(b_1) \Rightarrow a_1} 
+ (\Sigma r \co B \to A)
+ (\Sigma \bar{r}_0 \co \Id ( r(b_0),  a_0))
+ (\Sigma \bar{r}_1 \co  \Id r(b_1),  a_1)) \, 
  Q(r,\bar{r}_0,\bar{r}_1)   \, ,
 \end{multline*}
 where
@@ -863,18 +870,23 @@ where
 P(\ell,\bar{\ell}_0,\bar{\ell}_1) & \defeq \Id \Big( \big( \ell \com f, \ell(\bar{f}_0) \ct \bar{\ell}_0, \ell(\bar{f}_1) \ct \bar{\ell}_1\big), \big( 1_A, \refl(a_0), \refl(a_1) \big) \Big)  \, , \\
 Q(r,\bar{r}_0,\bar{r}_1) & \defeq \Id \Big( \big( f \com h,   f(\bar{r}_0) \ct \bar{f}_0, f(\bar{r}_1) \ct \bar{f}_1  \big) \, , \big( 1_B, \refl(b_0), \refl(b_1) \big) \Big) \, .
 \end{align*}
-Using the characterization of paths in $\Sigma$-types, the type $P(\ell,\bar{\ell}_0,\bar{\ell}_1)$ can be equivalently expressed as
+Using the characterization of paths in $\Sigma$-types (see~\ref{equ:extsigma}), the type $P(\ell,\bar{\ell}_0,\bar{\ell}_1)$ can be equivalently expressed as
 \[
-\sum_{p \co \ell \com f \Rightarrow 1_A}  
+(\Sigma p \co  \Id( \ell \com f, 1_A))
 \Id \Big(  \big( \ell (\bar{f}_0) \ct \bar{\ell }_0, \ell (\bar{f}_1) \ct \bar{\ell }_1\big), \big( p_{!}\big(\refl(a_0), \refl(a_1) \big) \big) \Big) \, .
 \]
 By path elimination on $p$, the transport $p_{!}\big(\refl(a_0), \refl(a_1) \big)$ is equal to the pair 
 \[
-\big(  \ext(p)_{a_0} \ct \refl(a_0) \, , \;  \ext(p)_{a_1} \ct \refl(a_1) \big) \, ,
+\big(  \ext(p)_{a_0} \ct \refl(a_0) \, , \;  \ext(p)_{a_1} \ct \refl(a_1) \big) \, , 
 \]
-where $\ext \co \Id(\ell \com f, 1_A) \to \Hot(\ell \com f,  1_A)$ is the canonical function, asserted to be an equivalence by the Function Extensionality axiom. This is of course propositionally equal to $\big(\ext(p)_{a_0}, \ext(p)_{a_1} \big)$. Using the characterization of paths in product spaces, the type $P(\ell,\bar{\ell}_0,\bar{\ell}_1)$ can thus be expressed as
+where $\ext$ is an instance of the function in~\eqref{equ:extpi}, which is propositionally equal 
+to
 \[
-\sum_{ p \co \ell \com f \Rightarrow 1_A} \Big(
+ \big(\ext(p)_{a_0}, \ext(p)_{a_1} \big) \, .
+ \] 
+ Using the characterization of paths in product spaces, the type $P(\ell,\bar{\ell}_0,\bar{\ell}_1)$ can thus be expressed as
+\[
+(\Sigma p \co \Id( \ell \com f, 1_A) \Big(
 \Id  \big( \ell (\bar{f}_0) \ct \bar{\ell}_0 \, ,  \ext(p)_{a_0} \big) 
 \times 
 \Id \big( \ell(\bar{f}_1) \ct \bar{\ell}_1 \, ,  \ext(p)_{a_1} \big)
@@ -882,7 +894,7 @@ where $\ext \co \Id(\ell \com f, 1_A) \to \Hot(\ell \com f,  1_A)$ is the canoni
 \]
 Since the function $\ext$ is an equivalence, this is equivalent to
 \begin{align*}
-\sum_{\alpha \co \ell \com f \sim 1_A} 
+(\Sigma \alpha \co \Hot( \ell \com f, 1_A))
 \Big( \Id  \big( \ell (\bar{f}_0) \ct \bar{\ell}_0 \, ,  \alpha(a_0) \big) 
 \times 
 \Id \big( \ell(\bar{f}_1) \ct \bar{\ell}_1 \, ,  \alpha(a_1) \big) 
@@ -890,7 +902,7 @@ Since the function $\ext$ is an equivalence, this is equivalent to
 \end{align*}
 Analogously, the type $Q(r,\bar{r}_0,\bar{r}_1)$ is equivalent to
 \[
-\sum_{\beta \co f \com r \sim 1_B}
+(\Sigma \beta \co \Hot(f \com r, 1_B))
 \Big(
 \Id  \big( f (\bar{r}_0) \ct \bar{f}_0 \, ,  \beta(b_0) \big) 
 \times 
@@ -898,33 +910,34 @@ Analogously, the type $Q(r,\bar{r}_0,\bar{r}_1)$ is equivalent to
 \Big) \, .
 \]
 Therefore, we can express $\isbipequiv(f, \bar{f}_0, \bar{f}_1)$ as the type
-\[
-\sum_{\ell \co B \to  A} 
-\sum_{\alpha \co \ell \com f \sim 1_A}
-\sum_{ r \co B \to A} 
-\sum_{\beta \co f \com r \sim 1_B} 
-	R_0(\ell,\alpha) \times R_1(\ell,\alpha) \times S_0(r,\beta) \times S_1(r,\beta)
-\]
+\begin{multline*} 
+(\Sigma \ell \co B \to  A)
+(\Sigma \alpha \co \Hot(\ell \com f,  1_A))
+(\Sigma r \co B \to A)
+(\Sigma \beta \co\Hot( f \com r, 1_B)) \\
+	R_0(\ell,\alpha) \times R_1(\ell,\alpha) \times S_0(r,\beta) \times S_1(r,\beta) \, ,
+\end{multline*} 
 where, for $k = 0,1$, we set
 \begin{align*}
-& R_k(\ell,\alpha) \defeq \sum_{\bar{\ell}_k \co \ell(b_k) \Rightarrow a_k} \Id \big( \ell (\bar{f}_k) \ct \bar{\ell}_k \, ,  \alpha(a_k) \big) \\
-& S_k(r,\beta) \defeq \sum_{\bar{r}_k \co r(b_k) \Rightarrow a_k} \Id \big( f (\bar{r}_k) \ct \bar{f}_k \, ,  \beta(b_k) \big) 
+& R_k(\ell,\alpha) \defeq 
+(\Sigma \bar{\ell}_k \co \Id( \ell(b_k),  a_k))  \, \Id \big( \ell (\bar{f}_k) \ct \bar{\ell}_k \, ,  \alpha(a_k) \big) \\
+& S_k(r,\beta) \defeq (\Sigma \bar{r}_k \co \Id( r(b_k) , a_k)) \, \Id \big( f (\bar{r}_k) \ct \bar{f}_k \, ,  \beta(b_k) \big) 
 \end{align*}
-Now recall  that for paths $q \co \Id(y,x_1)$, $s \co \Id(y,x_2)$, the type 
+Now recall  that, in general, for paths $q \co \Id(y,x_1)$, $s \co \Id(y,x_2)$, the type 
 \[
-\sum_{p \co \Id_X(x_1,x_2)} \Id(q \ct p,s)
+(\Sigma p \co \Id_X(x_1,x_2)) \, \Id(q \ct p,s)
 \] 
 is contractible. Thus we have $R_k(\ell,\alpha) \simeq \one$.
 Furthermore, for any equivalence $g \co X \to Y$, and paths $q \co \Id(g(x_2),y)$, $s \co \Id(g(x_1),y)$, the type 
 \[
-\sum_{p \co \Id_X(x_1,x_2)} \Id(g(p) \ct q,s)
+(\Sigma p \co \Id_X(x_1,x_2)) \, \Id(g(p) \ct q,s)
 \] is contractible. Since $\ell, \alpha, r, \beta$ make $f$ into an equivalence, we have $S_k(\ell,\alpha) \simeq \one$. Thus,
 \begin{align*} 
 \isbipequiv(f,\bar{f}_0, \bar{f}_1) 
-  & \simeq   \sum_{\ell \co B \to A} \sum_{\alpha \co \ell \com f \sim 1_A} \sum_{ r  \co B \to A} 
- \sum_{\beta \co f \com r \sim 1_B} \, 1 \\
- & \simeq \sum_{\ell \co B \to A}  \Hot( \ell \com f , 1_A ) \times 
-\sum_{r  \co B \to A}  \Hot( f \com r, 1_B ) \\
+  & \simeq  (\Sigma \ell \co B \to A)(\Sigma \alpha \co \ell \com f \sim 1_A) (\Sigma r  \co B \to A)
+ (\Sigma \beta \co f \com r \sim 1_B)  \, 1 \\
+ & \simeq (\Sigma \ell \co B \to A)  \, \Hot( \ell \com f , 1_A ) \times 
+(\Sigma r  \co B \to A) \,  \Hot( f \com r, 1_B ) \\
  & \simeq \isequiv(f) \, ,
 \end{align*} 
 as required.
@@ -972,7 +985,7 @@ same thing as paths between bipointed morphisms.
 For every  pair of morphisms $(f, \bar{f}_0, \bar{f}_1), (g, \bar{g}_0, \bar{g}_1) \co A \to B$ of bipointed types, the
 function 
 \[
-\ext \co \Id \big( (f, \bar{f}_0, \bar{f}_1), (g, \bar{g}_0, \bar{g}_1) \big) \to 
+\ext^{\Bip}_{f,g} \co \Id \big( (f, \bar{f}_0, \bar{f}_1), (g, \bar{g}_0, \bar{g}_1) \big) \to 
 \BipHot\big( (f, \bar{f}_0, \bar{f}_1), (g, \bar{g}_0, \bar{g}_1) ) \big) \, .
 \]
 is an equivalence of types.
@@ -983,11 +996,11 @@ morphisms from $A$ to $B$. To simplify notation, for a path $p \co \Id( f, g)$, 
 for the corresponding homotopy. We then have
 \begin{align*}
  \Id \big( (f,\bar{f}_0,\bar{f}_1) , (g,\bar{g}_0,\bar{g}_1)  \big)
-  &  \simeq \sum_{p \co  f \Rightarrow g} \Id \big(  (\bar{f}_0,\bar{f}_1),  p^{\ast} (\bar{g}_0,\bar{g}_1) \big) \\
+  &  \simeq (\Sigma p \co \Id( f, g))  \, \Id \big(  (\bar{f}_0,\bar{f}_1),  p^{\ast} (\bar{g}_0,\bar{g}_1) \big) \\
   & \simeq
-\sum_{p \co f \Rightarrow g} \Id\big( (\bar{f}_0,\bar{f}_1),  \big(\alpha_p(a_0) \ct \bar{g}_0 \, ,  \alpha_p(a_1) \ct \bar{g}_1) \big) \\
-& \simeq \sum_{p  \co  f \Rightarrow g} \Id(\bar{f}_0, \alpha_p(a_0) \ct \bar{g}_0) \times \Id( \bar{f}_1, \alpha_p(a_1) \ct \bar{g}_1) \\
-& \simeq \sum_{\alpha \co f \sim g} \Id(\bar{f}_0, \alpha(a_0) \ct \bar{g}_0) \times \Id(\bar{f}_1, \alpha(a_1) \ct \bar{g}_1) \\
+(\Sigma  p \co \Id(f ,  g)) \, \Id\big( (\bar{f}_0,\bar{f}_1),  \big(\alpha_p(a_0) \ct \bar{g}_0 \, ,  \alpha_p(a_1) \ct \bar{g}_1) \big) \\
+& \simeq (\Sigma p  \co \Id(f,g))  \, \Id(\bar{f}_0, \alpha_p(a_0) \ct \bar{g}_0) \times \Id( \bar{f}_1, \alpha_p(a_1) \ct \bar{g}_1) \\
+& \simeq (\Sigma \alpha \co \Hot(f, g)) \,  \Id(\bar{f}_0, \alpha(a_0) \ct \bar{g}_0) \times \Id(\bar{f}_1, \alpha(a_1) \ct \bar{g}_1) \\
 & = \BipHot \big( (f,\bar{f}_0,\bar{f}_1) \; (g,\bar{g}_0,\bar{g}_1) \big) \, , 
 \end{align*} 
 as required.
@@ -1003,6 +1016,8 @@ Let $A = (A, a_0, a_1)$ be a bipointed type. A \emph{fibered bipointed type over
 (E, e_0, e_1)
 \]  
 is a dependent type $x \co A \vdash E(x) \co \type$ together with elements $e_0 \co E(a_0)$ and $e_1 \co E(a_1)$.
+We say that a fibered bipointed type $E = (E, e_0, e_1)$ is \emph{small} if, for
+$x \co A$, we have $E(x) \co \U$.  
 \end{definition}
 
 We write $E = (E,e_0, e_1)$ to denote a fibered bipointed type. 
@@ -1017,8 +1032,7 @@ for $k \in \{ 0, 1 \}$. In this way, the first projection $\pi_1 \co \Tot(E) \to
 1 \ar@/_1pc/[dr]_{a_0} \ar[r]^-{e'_0} & \Tot(E) \ar[d]^{\pi_1} & 1 \ar[l]_-{e'_1} \ar@/^1pc/[dl]^{a_1} \\ 
  & A \, .& }
  \]
-We say that a fibered bipointed type $E = (E, e_0, e_1)$ is small if, for
-$x \co A$, we have $E(x) \co \U$.  Accordingly, the type of  small fibered bipointed types over a bipointed type $A$ is then defined by letting
+The type of  small fibered bipointed types over a bipointed type $A$ is then defined by letting
 \[
 \FibBip(A) \defeq (\Sigma E \co A \to \U) \big( E(a_0) \times E(a_1) \big) \, .
  \]
@@ -1385,11 +1399,11 @@ for $k \in \{ 0, 1 \}$. We begin to define the required bipointed section as in~
 s(x) \defeq \alpha(x)_{!} \big( \pi_2 f (x) \big) \, .
 \end{equation}
 We now construct  paths~$\bar{s}_k \co s(a_k) \Rightarrow e_k$, for $k = 0, 1$. First of all, recall that 
-$\bar{f}_k \co  f(a_k) \Rightarrow  e'_k$, where $e'_k = \pair(a_k, e_k) \co \sum_{x \co A} E(x)$. Using the equivalence
+$\bar{f}_k \co  f(a_k) \Rightarrow  e'_k$, where $e'_k = \pair(a_k, e_k) \co (\Sigma x \co A) E(x)$. Using the equivalence,
 \[
-\ext_E \co \Id_{E'}( f(a_k), e'_k) \longrightarrow \sum_{p \co  \pi_1 f(a_k) \Rightarrow a_k} \, \Id_{E(a_k)} \big( p_{!}( \pi_2 f(a_k)) , e_k \big) \, ,
+\ext_E \co \Id_{E'}( f(a_k), e'_k) \longrightarrow (\Sigma p \co \Id( \pi_1 f(a_k) , a_k)) \, \Id_{E(a_k)} \big( p_{!}( \pi_2 f(a_k)) , e_k \big) \, ,
 \]
-we obtain paths 
+which is a special case of the equivalences in~\eqref{equ:extsigma}, we obtain paths 
 \begin{equation}
 \label{equ:usefulpath}
 p \co   \pi_1 f (a_k) \Rightarrow a_k  \, , \quad q \co   p_{!}( \pi_2 f (a_k)) \Rightarrow e_k   \, .
@@ -1418,7 +1432,7 @@ s(a_k) & \deq \alpha(a_k)_{!} \big( \pi_2 f(a_k)  \big) & & \qquad (\text{by the
 
 
 The proof of Theorem~\ref{thm:bipointedmain} simplifies considerably within the extensional
-type theory~$\Hext$. In that type theory, the path in~\eqref{equ:pathcrucial} gives a definitional equality 
+type theory~$\Hext$ obtained by adding to $\Hint$ the equality reflection rule in~\eqref{equ:collapse}. In that type theory, the path in~\eqref{equ:pathcrucial} gives a judgemental equality 
 between the composite $\pi_1 \circ f \co A \to A$ and the identity $1_A \co A \to A$, with which the
 rest of the argument can be shortened considerably. In that setting, one obtains the familiar characterisation 
 of an inductive type by means of a standard universal property.
@@ -1451,13 +1465,14 @@ In particular, $\Bool$ is a homotopy-initial bipointed type.
 
 
 
-We conclude this section by showing that if the universe $\U$ is assumed to be univalent, then a form of the Univalence Axiom holds also for bipointed types, in the sense made precise by the next theorem.
+We conclude this section by showing that if the universe $\U$ is assumed to be univalent, then a form of the Univalence Axiom holds also for bipointed types, in the sense made precise by the next theorem, where we
+use notation analogous to the one introduced in Section~\ref{sec:bac}. 
 
 
 \begin{theorem}[$\Hint + \mathrm{UA}$] \label{thm:bipunivalence}
-For small bipointed types $A, B \co \Bip$, the function
+For small bipointed types $A, B \co \Bip$, the  canonical function
 \[ 
-\ext \co \Id \big(A,B\big) \to  \BipEquiv(A,B) \, .
+\ext^{\Bip}_{A,B} \co \Id_{\Bip} \big(A,B\big) \to  \BipEquiv(A,B) \, .
 \] 
 is an equivalence.
 \end{theorem} 
@@ -1828,7 +1843,7 @@ We now introduce the fibered versions of the notions of a $P$-algebra, $P$-algeb
 Let $C$ be a $P$-algebra. A \emph{fibered $P$-algebra} over $C$ consists of a dependent type $E \co C \to \U$
 and a function 
 \[
-e \co  (\Pi x \co A) (\Pi u \co B(x) \to C)   (\Pi y \co B(x))   E(u y)   \to E(\sup_C(x,u) 
+e \co  (\Pi x \co A) (\Pi u \co B(x) \to C)   (\Pi y \co B(x))   E(u y)   \to E(\sup_C(x,u))
  \] 
 \end{definition}
 
