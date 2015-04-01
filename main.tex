@@ -680,16 +680,11 @@ have families of canonical maps
 \ext^\U \co  \Id_\U(A, B) \to \mathsf{Weq}(A, B) \, ,  \label{equ:extu}
 \end{gather}
 where $\mathsf{Weq}(A,B)$ is the type of weak equivalences between $A$ and $B$, as defined in~\eqref{equ:weq}.
-Note that the functions in~\eqref{equ:exttimes} are special cases of the ones in~\eqref{equ:extsigma}. Now,
-the functions in~\eqref{equ:extsigma}, and hence those in~\eqref{equ:exttimes}, can be shown to be 
-equivalences within the type theory $\mathcal{M}$ by the $\eta$-rule for $\Sigma$-types in~\eqref{equ:etasigma}. 
-As shown in~\cite{VoevodskyV:notts}, the functions in~\eqref{equ:extpi} are equivalences can be proved
-assuming the Function 
-Extensionality principle in~\eqref{equ:funext}, that is part of $\Hint$ but not $\mathcal{M}$. Indeed, the assumption
-of Function Extensionality in the type theory $\mathcal{H}$ is due to the fact that it allows us to systematically
-identify a $\Pi$-type of a family of identity types with the identity type of a $\Pi$-type, thus allowing us to use
-its elimination rule. Finally, the functions in~\eqref{equ:extu} are equivalences once we assume also the
-Univalence Axiom (see~\cite{VoevodskyV:notts}). When these maps are weak equivalences, they have 
+Note that the functions in~\eqref{equ:exttimes} are special cases of the ones in~\eqref{equ:extsigma}.
+
+We then have that the functions in~\eqref{equ:extsigma} can be shown to be 
+equivalences within the type theory~$\mathcal{M}$ using the $\eta$-rule for $\Sigma$-types;
+the functions in~\eqref{equ:extpi} can be shown to be equivalences within the type theory $\Hint$, using the Function Extensionality principle; and the functions in \eqref{equ:extu} are equivalences in the extension of $\Hint$ with the  Univalence Axiom~\cite{VoevodskyV:notts}. When these maps are weak equivalences, they have 
 inverses, which we denote as 
 \begin{gather}
 \int^\Sigma_{c,d} \co   (\Sigma p \co \Id(c_1, d_1)) \Id( p_{!}(c_2), d_2) \to \Id_{(\Sigma x \co A)B(x)}(c, d) \, , 
@@ -936,13 +931,11 @@ where, for $k = 0,1$, we set
 (\Sigma \bar{\ell}_k \co \Id( \ell(b_k),  a_k))  \, \Id \big( \ell (\bar{f}_k) \ct \bar{\ell}_k \, ,  \alpha(a_k) \big) \\
 & S_k(r,\beta) \defeq (\Sigma \bar{r}_k \co \Id( r(b_k) , a_k)) \, \Id \big( f (\bar{r}_k) \ct \bar{f}_k \, ,  \beta(b_k) \big) 
 \end{align*}
-By a special case of Remark~\ref{thm:useful}, we have that $R_k(\ell,\alpha) \simeq \one$ and
- $S_k(\ell,\alpha) \simeq \one$. Thus,
+By Lemma~\ref{thm:useful}, we have that $R_k(\ell,\alpha)$ and
+ $S_k(\ell,\alpha)$ are contractible, and therefore we have 
 \begin{align*} 
 \isbipequiv(f,\bar{f}_0, \bar{f}_1) 
-  & \simeq  (\Sigma \ell \co B \to A)(\Sigma \alpha \co \ell \com f \sim 1_A) (\Sigma r  \co B \to A)
- (\Sigma \beta \co f \com r \sim 1_B)  \, \one \\
- & \simeq (\Sigma \ell \co B \to A)  \, \Hot( \ell \com f , 1_A ) \times 
+  & \simeq  (\Sigma \ell \co B \to A)  \, \Hot( \ell \com f , 1_A ) \times 
 (\Sigma r  \co B \to A) \,  \Hot( f \com r, 1_B ) \\
  & \simeq \isequiv(f) \, ,
 \end{align*} 
@@ -1698,91 +1691,135 @@ a mere proposition.
 \begin{proof} Let $(f, \bar{f}) \co (C, \sup_C) \to (D, \sup_D)$ be a  $P$-algebra morphism. Expanding the type of proofs that $f$ is a 
 $P$-algebra equivalence yields the type
 \begin{multline*}
- \Big(
-	 \sum_{\ell \co D \to C} \sum_{\bar{\ell} \co  (\Pi a \co A)( \Pi t \co C^{B(a)}) \Id( \ell (\sup_C(a,t)) ,\, \sup_D(a, \ell \circ t))}
- 		P(\ell, \bar{\ell})
-		\Big) \\
-\times\ \Big(
-	\sum_{r \co D \to C} \sum_{\bar{r} \co (\Pi a\co A) (\Pi s \co C^{B(a)}) \Id( r(\sup_C(a,s)), \sup_D(a, r \circ s))}
-		Q(r, \bar{r})  
-		\Big)\, , 
+	 (\Sigma \ell \co D \to C) 
+	 \big( \Sigma \bar{\ell} \co  (\Pi x \co A)( \Pi u \co B(x) \to C) \; 
+	 \Id( \ell (\sup_C(x,u)),  \sup_D(x, \ell \circ u)) \big) \; 
+ 		P(\ell, \bar{\ell}) \; \times
+	 \\
+	 (\Sigma r \co D \to C) 
+	 \big(\Sigma \bar{r} \co (\Pi x \co A) (\Pi u \co B(x) \to C) \Id( r (\sup_C(x,u)), \sup_D(x, r \circ u))\big)
+	 \;  Q(r, \bar{r}) \, , 
 \end{multline*}
 where
 \begin{align*}
-P(\ell,\bar{\ell}) & \defeq \Id \Big( \big( \ell \com f, (\lambda a)(\lambda t) (\ell(\bar{f}(a,t)) \ct \bar{\ell}(a, f \com t))\big), \big( 1_C, (\lambda a)(\lambda t) \refl(\sup_C(a,t))\big) \Big)  \, , \\
-Q(r,\bar{r})    & \defeq \Id \Big( \big( f \com r, (\lambda a)(\lambda s) (f(\bar{r}(a,s)) \ct \bar{f}(a, r \com s))\big) \, , \big( 1_D, (\lambda a)(\lambda s) \refl(\sup_D(a,s)) \big) \Big) \, .
+P(\ell,\bar{\ell}) & 
+\defeq 
+\Id \Big( \big( \ell \com f, (\lambda x)(\lambda u) (\ell(\bar{f}(x,u)) \ct \bar{\ell}(x, f \com u))\big), \big( 1_C, (\lambda x)(\lambda u) \,  \refl(\sup_C(x,u))\big) \Big)  \, , \\
+Q(r,\bar{r})    & \defeq \Id \Big( \big( f \com r, (\lambda x)(\lambda u) (f(\bar{r}(x,u)) \ct \bar{f}(x, r \com u))\big) \, , \big( 1_D, (\lambda x)(\lambda u) \, \refl(\sup_D(x,u)) \big) \Big) \, .
 \end{align*}
 Using the characterization of paths in $\Sigma$-types, the type $P(\ell,\bar{\ell})$ can be equivalently expressed as
 \begin{align*}
-\sum_{ p \co \ell \com f \Rightarrow 1{_C}} 
-	\Id\big((\lambda a) (\lambda t) (\ell(\bar{f}(a,t)) \ct \bar{\ell}(a, f \com t)) ,\, p_{!}((\lambda a) (\lambda t) \refl(\sup_C(a,t)) \big) \,.
+(\Sigma p \co \ell \com f \Rightarrow 1{_C}) 
+	\Id\big((\lambda x) (\lambda u) (\ell(\bar{f}(x,u)) \ct \bar{\ell}(x, f \com u)) ,\, p_{!}((\lambda x) (\lambda u) \, \refl(\sup_C(x,u)) \big) \,.
 \end{align*}
-By path induction on $p$, the transport $p_{!} ((\lambda a) (\lambda t) \refl(\sup_C(a,t)))$ is equal to the function
-\[ (\lambda a) (\lambda t) \big( \ext(p)_{\sup_C(a,t)} \ct \refl(\sup_C(a,t)) \ct \big(\sup_C(a, \ext^{-1}(\ext(p) \circ t))\big)^{-1}\big) \]
-where $\ext \co \Id(\ell \com f ,1_C ) \to \Hot(\ell \com f , 1_C )$ is the canonical equivalence. 
+By path induction on $p$, the transport $p_{!} ((\lambda x) (\lambda u) \, \refl(\sup_C(x,u)))$ is equal to the function
+\[
+ (\lambda x) 
+ (\lambda u) 
+ \big( 
+ \ext(p)_{\sup_C(x,u)} \ct \refl(\sup_C(x,u)) \ct \big(\sup_C(x, \ext^{-1}(\ext(p) \circ u))\big)^{-1}
+ \big) 
+ \]
+where $\ext$ is an instance of the functions  in~\eqref{equ:extpi}. 
 %SA: this term doesn't look right to me, are we sure of it?
 This is propositionally equal to
-\[ (\lambda a)(\lambda t)\big( \ext(p)_{\sup_C(a,t)} \ct \big(\sup_C(a, \ext^{-1}(\ext(p) \circ t))\big)^{-1}\big) .\]
-Using the characterization of paths in $\Pi$-spaces, the type $P(\ell,\bar{\ell})$ can thus be expressed as
-\begin{align*}
-\sum_{ p \co \ell \com f \Rightarrow 1{_C}} \prod_{a:A} \prod_{t: C^{B(a)}} 
-	\Id\Big(\ell(\bar{f}(a,t)) \ct \bar{\ell}(a, f \com t),\, \ext(p)_{\sup_C(a,t)} \ct \big(\sup_C(a, \ext^{-1}(\ext(p) \circ t))\big)^{-1}\Big).
-\end{align*}
-Since the function $\ext$ is an equivalence, this is equivalent to
-\begin{align*}
-\sum_{ \alpha \co \ell \circ f \sim 1{_C}} \prod_{a:A} \prod_{t: C^{B(a)}} 
-	\Id\Big(\ell(\bar{f}(a,t)) \ct \bar{\ell}(a, f \com t),\, \alpha(\sup_C(a,t)) \ct \big(\sup_C(a, \ext^{-1}(\alpha \circ t))\big)^{-1}\Big).
-\end{align*}
-Analogously, the type $Q(r,\bar{r})$ is equivalent to
-\begin{align*}
-\sum_{ \beta \co f \com r \sim 1{_D}} \prod_{a:A} \prod_{s: D^{B(a)}} 
-\Id\Big(f(\bar{r}(a,s)) \ct \bar{f}(a, r \com s),\, \beta(\sup_D(a,s)) \ct \big(\sup_D(a,\ext^{-1}(\beta \circ s))\big)^{-1}\Big).
-\end{align*}
-Therefore, we can express $\mathsf{isalgequiv}(f,\bar{f})$ as the type
-\[ \sum_{\ell \co C\to D} \sum_{\alpha \co \ell \circ f \sim 1_C} \sum_{r \co D\to C} \sum_{\beta \co f \circ r \sim 1_D}
-	R(\ell,\alpha) \times S(r,\beta)\]
-where
-\begin{align*}
-R(\ell,\alpha) \defeq& \sum_{\bar{\ell} \co (\prod a:A) (\prod s:D^{B(a)}) \Id(\ell(\sup_D(a,s)), \sup_C(a,\ell \circ s))}
-	 \prod_{a:A}\prod_{t: C^{B(a)}}\\
-		&\strut\qquad\qquad \Id\Big(\ell(\bar{f}(a,t)) \ct \bar{\ell}(a, f \com t),\, \alpha(\sup_C(a,t)) \ct \big(\sup_C(a,\ext^{-1}(\alpha \circ t))\big)^{-1}\Big) \\
-S(r,\beta) \defeq& \sum_{\bar{r} \co (\prod a:A) (\prod s:D^{B(a)}) \Id(r(\sup_D(a,s)), \sup_C(a,r\circ s))}
-	 \prod_{a:A}\prod_{s: D^{B(a)}}\\
-	 		&\strut\qquad\qquad \Id\Big(f(\bar{r}(a,s)) \ct \bar{f}(a, r \com s),\, \beta(\sup_D(a,s)) \ct \big(\sup_D(a,\ext^{-1}(\beta \circ s))\big)^{-1}\Big).
-\end{align*}
-Using the type-theoretic choice principle, we can express $S(r,\beta)$ equivalently as
-\[  
- \prod_{a:A}\prod_{s: D^{B(a)}}
-\sum_{\bar{r} \co \Id(r(\sup_D(a,s)), \sup_C(a,r \circ s))}
-\Id\Big(f(\bar{r}) \ct \bar{f}(a, r \com s) ,\, \beta(\sup_D(a,s)) \ct \big(\sup_D(a,\ext^{-1}(\beta \circ s))\big)^{-1}\Big) \, .
-\]
-Now we observe that for any equivalence $g \co C \to D$, and paths $q \co \Id(g(x_2),y)$ and $s \co \Id(g(x_1),y)$, the type $\sum_{p \co \Id_C(x_1,x_2)} \Id(g(p) \ct q,s)$ is contractible. Since $\ell, \alpha, r, \beta$ make $f$ into an equivalence, we have $S(r,\beta) \simeq \one$.
-
-Moreover, since $f$ is an equivalence between $C$ and $D$, the mapping $t \mapsto f \com t$ is an equivalence between $C^{B(a)}$ and $D^{B(a)}$. The mapping $\bar{\ell} \mapsto (\lambda a) (\lambda t) \bar{\ell}(a,f \com t)$ is therefore an equivalence between the types $$\prod_{a:A}\prod_{s: D^{B(a)}}\Id(\ell(\sup_D(a,s)), \sup_C(a,\ell \com s))$$ and $$ \prod_{a:A}\prod_{t: C^{B(a)}} \Id(\ell(\sup_D(a,f \com t)), \sup_C(a,\ell \com f \com t)).$$ 
-Thus, the type $R(\ell,\alpha)$ can be expressed equivalently as
-\[
-\begin{split}
-\sum_{\gamma \co \prod_{a:A}\prod_{t: C^{B(a)}} \Id(\ell(\sup_D(a,f \circ t)),\, \sup_C(a,\ell \circ f \circ t))}
-	 \prod_{a:A}\prod_{t: C^{B(a)}}\\
-	\Id\big(\ell(\bar{f}(a,t)) \ct \gamma(a,t),\, \alpha(c(a,t)) \ct \big(c(a)(\ext^{-1}(\alpha \circ t))\big)^{-1}\big)
-\end{split}
-\]
-Again using the choice principle, we see that this is equivalent to
 \[ 
- \prod_{a:A}\prod_{t: C^{B(a)}}
- \sum_{\gamma \co \Id(\ell(d(a,f \circ t)), c(a,\ell \circ f \circ t)}
-  \big(\ell(\bar{f}(a,t)) \ct \gamma = \alpha(\sup_C(a,t)) \ct \big(\sup_C(a, \ext^{-1}(\alpha \circ t))\big)^{-1}\big) 
-  \]
-Finally, we observe that for paths $q \co \Id(y,x_1)$, $s \co \Id(y,x_2)$, the type $\sum_{ p \co \Id_C(x_1,x_2)} \Id(q \ct p,s)$ is contractible. So we also have $R(\ell,\alpha) \simeq \one$. 
-
-Therefore,
+(\lambda x)
+(\lambda u)
+\big( 
+\ext(p)_{\sup_C(x,u)} \ct \big(\sup_C(x, \ext^{-1}(\ext(p) \circ u))\big)^{-1}
+\big) \, .
+\]
+Using the characterization of identity types of $\Pi$-spaces, the type $P(\ell,\bar{\ell})$ is equivalent to
+\begin{multline*} 
+(\Sigma p \co  \Id( \ell \com f , 1{_C}))
+(\Pi x \co A) 
+(\Pi u \co B(x) \to  C) \\
+	\Id\Big(\ell(\bar{f}(x,u)) \ct \bar{\ell}(x, f \com u),\, \ext(p)_{\sup_C(x,u)} \ct \big(\sup_C(x, \ext^{-1}(\ext(p) \circ u))\big)^{-1}\Big).
+\end{multline*}
+Since the function $\ext$ is an equivalence, this is equivalent to
+\begin{multline*}
+(\Sigma \alpha \co \Hot( \ell \circ f, 1{_C}))
+(\Pi x \co A) 
+(\Pi u \co B(x) \to C) \\
+	\Id\Big(\ell(\bar{f}(x,u)) \ct \bar{\ell}(x, f \com u),\, \alpha(\sup_C(x,u)) \ct \big(\sup_C(x, \ext^{-1}(\alpha \circ u))\big)^{-1}\Big).
+\end{multline*}
+Analogously, the type $Q(r,\bar{r})$ is equivalent to
+\begin{multline*}
+(\Sigma \beta \co \Hot( f \com r , 1_D))
+(\Pi x \co A) 
+(\Pi u \co B(x) \to D) \\ 
+\Id \Big(f(\bar{r}(x,u)) \ct \bar{f}(x, r \com u),\, \beta(\sup_D(x,u)) \ct \big(\sup_D(x,\ext^{-1}(\beta \circ u))\big)^{-1}\Big).
+\end{multline*}
+Therefore, we can express $\mathsf{isalgequiv}(f,\bar{f})$ as the type
+\[ 
+(\Sigma \ell \co C\to D) 
+(\Sigma \alpha \co \Hot(\ell \circ f, 1_C))
+(\Sigma r \co D\to C) 
+(\Sigma \beta \co \Hot(f \circ r , 1_D)) \, 
+	R(\ell,\alpha) \times S(r,\beta)
+	\]
+where
+\begin{multline*}
+R(\ell,\alpha) \defeq 
+(\Sigma \bar{\ell} \co 
+(\Pi x \co A) 
+(\Pi u \co B(x) \to D) \;
+\Id(\ell(\sup_D(x,u)), \sup_C(x,\ell \circ u)) \\
+(\Pi x \co A) 
+(\Pi u \co B(x) \to C) \;
+		 \Id\Big(\ell(\bar{f}(x,u)) \ct \bar{\ell}(x, f \com u),\, \alpha(\sup_C(x,u)) \ct \big(\sup_C(x,\ext^{-1}(\alpha \circ u))\big)^{-1}\Big) 
+		\end{multline*}
+		and
+\begin{multline*}
+S(r,\beta) \defeq 
+(\Sigma \bar{r} \co (\Pi x \co A) (\Pi u \co B(x) \to D) \; \Id(r(\sup_D(x,u)), \sup_C(x,r\circ u))) \\
+	 (\Pi x \co A) (\Pi u \co B(x) \to D) 
+	 		\Id\Big(f(\bar{r}(x,u)) \ct \bar{f}(x, r \com u),\, \beta(\sup_D(x,u)) \ct \big(\sup_D(x,\ext^{-1}(\beta \circ u))\big)^{-1}\Big).
+\end{multline*}
+Using the type-theoretic choice principle, we can express $S(r,\beta)$ equivalently as
+\begin{multline*}
+(\Pi x \co A) 
+(\Pi u \co B(x) \to D) 
+(\Sigma \bar{r} \co \Id(r(\sup_D(x,u)), \sup_C(x,r \circ u)))  \\ 
+\Id\Big(f(\bar{r}) \ct \bar{f}(x, r \com u) ,\, \beta(\sup_D(x,u)) \ct \big(\sup_D(x,\ext^{-1}(\beta \circ u))\big)^{-1}\Big) \, .
+\end{multline*} 
+Since $f$ is an equivalence,  the type $S(r,\beta)$ is contractible by Lemma~\ref{thm:useful}.
+Moreover, since $f$ is an equivalence between $C$ and $D$, the mapping $u  \mapsto f \com u$ is an equivalence between $B(x) \to C$ and~$B(x) \to D$. The mapping 
+$\bar{\ell} \mapsto (\lambda x) (\lambda u) \bar{\ell}(x,f \com u)$ is therefore an equivalence between the types 
+\[
+(\Pi x \co A) 
+(\Pi u \co B(x) \to  D) 
+\Id(\ell(\sup_D(x,u)), \sup_C(x,\ell \com u))
+\] and
+\[
+(\Pi x \co A) 
+(\Pi u \co B(x) \to C)
+ \Id(\ell(\sup_D(x,f \com u)), \sup_C(x,\ell \com f \com u) )\, .
+ \] 
+Thus, the type $R(\ell,\alpha)$ can be expressed equivalently as
+\begin{multline*}
+(\Sigma \gamma \co 
+(\Pi x \co A)
+(\Pi u \co B(x) \to C) 
+\Id(\ell(\sup_D(x,f \circ u)),\, \sup_C(x,\ell \circ f \circ u))) \\ 
+(\Pi x \co A) 
+(\Pi u \co B(x) \to C) 
+	\Id\big(\ell(\bar{f}(x,u)) \ct \gamma(x,u),\, \alpha(c(x,u)) \ct \big(c(x)(\ext^{-1}(\alpha \circ u))\big)^{-1}\big)
+\end{multline*}
+Again using the type-theoretic distributivity, we see that this is equivalent to
+\begin{multline*}
+(\Pi x \co A)
+(\Pi u \co B(x) \to C)
+(\Sigma \gamma \co \Id(\ell(d(x,f \circ u)), c(x,\ell \circ f \circ u))) \\
+  \Id \big(\ell(\bar{f}(x,u)) \ct \gamma , \alpha(\sup_C(x,u)) \ct \big(\sup_C(x, \ext^{-1}(\alpha \circ u))\big)^{-1}\big)
+  \end{multline*} 
+Therefore, by Lemma~\ref{thm:useful}, we have that also $R(\ell,\alpha)$ is contractible.  Therefore,
 \begin{align*} 
-\isalgequiv(f,\bar{f})\ 
-  & \simeq\  \sum_{\ell \co D \to C} \sum_{ \alpha \co \ell \com f \sim 1_C} \sum_{ r  \co D \to C}
-\sum_{\beta \co f \com r \sim 1_D} 1 \\
- & \simeq\ \sum_{\ell \co D \to C} \Hot( \ell \com f,1_C )\times 
-		\sum_{r  \co D \to C} \Hot( f \com r, 1_D)  \\
- & \simeq\ \isequiv(f) \, ,
+\isalgequiv(f,\bar{f}) 
+ & \simeq (\Sigma \ell \co D \to C) \, \Hot( \ell \com f,1_C )\times 
+		(\Sigma r  \co D \to C) \, \Hot( f \com r, 1_D)  \\
+ & \simeq  \isequiv(f) \, ,
 \end{align*} 
 as required.
 \end{proof}
@@ -1822,7 +1859,7 @@ $\Id \big( f \circ \sup_C \, ,  \sup_D \circ Pg \big)$. Also observe that $\alph
 \[
 \AlgHot \big( (f,\bar{f}), (g, \bar{g})  \big)
  \defeq  
-\sum_{\alpha \co  f \sim g} \, \Id\big( \bar{f} \cdot \sup_D(P \alpha),\, (\alpha(\sup_C))\cdot \bar{g} \big) \, .
+(\Sigma \alpha \co  f \sim g) \, \Id\big( \bar{f} \cdot \sup_D(P \alpha),\, (\alpha(\sup_C))\cdot \bar{g} \big) \, .
 \]
 
 
@@ -1957,15 +1994,17 @@ is an equivalence of types.
 sections $(f,\bar{f}), (g,\bar{g}) \co \PalgSec(C,E)$. We have
 \begin{align*}
  & \Id\big( (f,\bar{f}),  (g,\bar{g}) \big) \\ 
-& \quad \simeq \sum_{p \co \Id( f , g)} \Id \Big(\bar{g} , \trans_p ( \bar{f} ) \Big)  \\
-& \quad \simeq \sum_{p \co \Id( f , g)} \Id \Big(\bar{g}, 
-(\lambda x \co A)(\lambda u \co B(x) \to C) \, \ext(p)_{\sup_C(x,u)}^{-1} \ct \bar{f}(x,u) \ct
- \app_{e(x,u)}(\int (\lambda y 
-\co B(x) ) \, \ext(p)_{u  y})  \Big)  \\
-& \quad \simeq \sum_{\alpha \co \Hot( f, g)} \Id \Big(\bar{g},  (\lambda x \co A) (\lambda u \co B(x) \to C) \, \alpha_{\sup_C(x,u)}^{-1} \ct \bar{f}(x,u) \ct 
-\app_{e(x,u)} (\int (\lambda y \co B(x))  \,  \alpha_{u y}))  \Big)  \\
-&\quad \simeq \sum_{\alpha \co \Hot( f, g)} \prod_{x \co A}\prod_{u \co B(x) \to C } \Id \Big(\bar{g}(x,u) , \alpha_{\sup_C(x,u)}^{-1} \ct \bar{f}(x,u) \ct \app_{e(x,u)}(\int (\lambda y \co B(x)) \, \alpha_{u  y})) \Big)  \\ 
-& \quad \simeq \sum_{\alpha \co \Hot( f, g)} \prod_{x \co A}\prod_{u \co B(x) \to C } \Id \Big(\alpha_{\sup_C(x,u)} \ct \bar{g}(x,u) , \bar{f}(x,u) \ct 
+& \quad \simeq (\Sigma p \co \Id( f , g)) \Id \Big(\bar{g} , \trans_p ( \bar{f} ) \Big)  \\
+& \quad \simeq (\Sigma p \co \Id( f , g))  \Id \Big(\bar{g}, 
+(\lambda x)(\lambda u) \, \ext(p)_{\sup_C(x,u)}^{-1} \ct \bar{f}(x,u) \ct
+ \app_{e(x,u)}(\int (\lambda y) \, \ext(p)_{u  y})  \Big)  \\
+& \quad \simeq 
+(\Sigma \alpha \co \Hot( f, g)) \Id \Big(\bar{g},  (\lambda x) (\lambda u) \, \alpha_{\sup_C(x,u)}^{-1} \ct \bar{f}(x,u) \ct 
+\app_{e(x,u)} (\int (\lambda y)  \,  \alpha_{u y}))  \Big)  \\
+&\quad \simeq (\Sigma \alpha \co \Hot( f, g)) (\Pi x \co A)(\Pi u \co B(x) \to C ) \\
+ & \qquad \qquad \Id \Big(\bar{g}(x,u) , \alpha_{\sup_C(x,u)}^{-1} \ct \bar{f}(x,u) \ct \app_{e(x,u)}(\int (\lambda y \co B(x)) \, \alpha_{u  y})) \Big)  \\ 
+& \quad \simeq (\Sigma \alpha \co \Hot( f, g)) (\Pi x \co A)(\Pi u \co B(x) \to C ) \\
+& \qquad \qquad   \Id \Big(\alpha_{\sup_C(x,u)} \ct \bar{g}(x,u) , \bar{f}(x,u) \ct 
 \app_{e(x,u)}(\int  (\lambda y \co B(x)) \,  \alpha_{u  y})) \Big) \\[1ex]
 & \quad = \  \FibAlgHot \big( (f,\bar{f}) \; (g,\bar{g}) \big) \, . \qedhere
 \end{align*}  
