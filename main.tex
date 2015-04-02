@@ -684,19 +684,19 @@ Note that the functions in~\eqref{equ:exttimes} are special cases of the ones in
 
 We then have that the functions in~\eqref{equ:extsigma} can be shown to be 
 equivalences within the type theory~$\mathcal{M}$ using the $\eta$-rule for $\Sigma$-types;
-the functions in~\eqref{equ:extpi} can be shown to be equivalences within the type theory $\Hint$, using the Function Extensionality principle; and the functions in \eqref{equ:extu} are equivalences in the extension of $\Hint$ with the  Univalence Axiom~\cite{VoevodskyV:notts}. When these maps are weak equivalences, they have 
-inverses, which we denote as 
-\begin{gather}
-\int^\Sigma_{c,d} \co   (\Sigma p \co \Id(c_1, d_1)) \Id( p_{!}(c_2), d_2) \to \Id_{(\Sigma x \co A)B(x)}(c, d) \, , 
-\label{equ:intsigma} \\
-\int^\Pi_{f, g} \co  (\Pi x \co A) \Id_{B(x)}(f x, gx) \to   \Id_{(\Pi x \co A)B(x)}(f, g) \, , 
-\label{equ:intpi} \\
-\int^\U_{A,B} \co  \mathsf{Weq}(A, B) \to \Id_\U(A, B)  \, .  \label{equ:intu}
-\end{gather}
+the functions in~\eqref{equ:extpi} can be shown to be equivalences within the type theory $\Hint$, using the Function Extensionality principle; and the functions in \eqref{equ:extu} are equivalences in the extension of $\Hint$ with the  Univalence Axiom~\cite{VoevodskyV:notts}. In these circumstances, we have equivalences
+\begin{align*}
+\Id_{A \times B}(c,d) & \simeq \Id_A(\pi_1 c \, , \pi_1 d) \times \Id_B(\pi_2 c,\pi_2 d) \\
+\Id_{A \to B}(f, g) & \simeq (\Pi x \co A) \Id_B (fx, gx)  \, , \\
+\Id_{(\Sigma x \co A)B(x)}(c, d) &  \simeq    (\Sigma p \co \Id_A( \pi_1 c, \pi_1 d )) \Id_{B(\pi_2 c)}( p_{!} \pi_2 c, 
+\pi_2 d) \, ,   \\
+ \Id_{(\Pi x \co A)B(x)}(f, g)  & \simeq   (\Pi x \co A) \Id_{B(x)}(f x, gx)  \\ 
+\Id_\U(A, B) & \simeq   \mathsf{Weq}(A, B)   \, . 
+ \end{align*}
 In the following, we shall always omit  superscripts and subscripts when manipulating these functions,
 as the context makes it clear which one we are referring to. 
 
-
+\newpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Bipointed types}
@@ -817,7 +817,7 @@ by the following pasting diagram:
 Explicitly, for $k \in \{ 0, 1 \}$, the path $\overline{g \circ f}_k \co \Id( g f( a_0), c_0)$ is obtained as the composite
 \[
 \xymatrix@C=1.5cm{
-g f (a_0) \ar[r]^{g(\bar{f}_0)} & g(b_0) \ar[r]^{\bar{g}_0} & c_0 \, .}
+g f a_0 \ar[r]^{g(\bar{f}_0)} & g b_0 \ar[r]^{\bar{g}_0} & c_0 \, .}
 \]
 Also, for any bipointed type $A = (A, a_0, a_1)$, the identity function $1_A \co A \to A$ can be equipped with the structure of a bipointed by taking $\bar{1_A}_0 \co \Id( 1_A(a_0), a_0)$ to be $1_{a_0}$. We represent this as the
 diagram
@@ -838,15 +838,15 @@ We now discuss the notion of equivalence between bipointed types.
 
 
 \begin{definition} We say that a bipointed morphism $f \co A \to B$ is a \myemph{bipointed equivalence}
-if there exist bipointed morphisms $g \co B \to A$ and $h \co B \to A$ which provide a left and a right bipointed inverse for $f$, \ie such that there exist paths $p \co \Id_{\Bip(A,A)}(g \circ f, 1_A)$ 
-and $q \co \Id_{\Bip(B,B)} ( f \circ h, 1_B)$.
+if there exist bipointed morphisms $g \co B \to A$ and $h \co B \to A$ which provide a left and a right bipointed inverse for $f$, \ie such that there exist paths $p \co \Id_{\Bip(A,A)}(g  f, 1_A)$ 
+and $q \co \Id_{\Bip(B,B)} ( f  h, 1_B)$.
 \end{definition}
 
 For a bipointed morphism $f \co A \to B$, the type of proofs that $f$ is a bipointed equivalence is
 then defined by letting
 \[
-\isbipequiv(f) \defeq   (\Sigma g \co \BipHom(B,A)) \,  \Id_{\Bip(A,A)}( g\circ f, 1_A ) \times 
-    (\Sigma h \co \BipHom(A, B)) \, \Id_{\Bip(B,B)} (f \circ h , 1_B ) \, ,
+\isbipequiv(f) \defeq   (\Sigma g \co \BipHom(B,A)) \,  \Id_{\Bip(A,A)}( g  f, 1_A ) \times 
+    (\Sigma h \co \BipHom(A, B)) \, \Id_{\Bip(B,B)} (f  h , 1_B ) \, ,
 \]
 and type of bipointed equivalences between $A$ and $B$ is defined by letting
 \[
@@ -1068,27 +1068,25 @@ Let $A = (A, a_0, a_1)$ be a bipointed type. A \emph{fibered bipointed type over
 (E, e_0, e_1)
 \]  
 is a dependent type $x \co A \vdash E(x) \co \type$ together with elements $e_0 \co E(a_0)$ and $e_1 \co E(a_1)$.
-We say that a fibered bipointed type $E = (E, e_0, e_1)$ is \emph{small} if, for
+We say that  such a fibered bipointed type  is \emph{small} if, for
 $x \co A$, we have $E(x) \co \U$.  
 \end{definition}
 
-We write $E = (E,e_0, e_1)$ to denote a fibered bipointed type. 
-Given such a fibered bipointed type, its total type is defined by letting
-\[
-\Tot(E)  \defeq (\Sigma x \co A) E(x) \, .
-\] 
-Observe that $\Tot(E)$ is a bipointed type by considering $e'_k \defeq \pair(a_k, e_k)$, 
-for $k \in \{ 0, 1 \}$. In this way, the first projection $\pi_1 \co \Tot(E) \to A$ becomes a bipointed morphism:
-\[
-\xymatrix{
-1 \ar@/_1pc/[dr]_{a_0} \ar[r]^-{e'_0} & \Tot(E) \ar[d]^{\pi_1} & 1 \ar[l]_-{e'_1} \ar@/^1pc/[dl]^{a_1} \\ 
- & A \, .& }
- \]
 The type of  small fibered bipointed types over a bipointed type $A$ is then defined by letting
 \[
 \FibBip(A) \defeq (\Sigma E \co A \to \U) \big( E(a_0) \times E(a_1) \big) \, .
  \]
- Note that this type is not small. 
+ Note that this type is not small. Given a fibered bipointed type $E =(E, e_0, e_1)$ over $A = (A, a_0, a_1)$, its total type is defined by letting
+\[
+E'  \defeq (\Sigma x \co A) E(x) \, .
+\] 
+Observe that $E'$ is a bipointed type by considering $e'_k \defeq \pair(a_k, e_k)$, 
+for $k \in \{ 0, 1 \}$. In this way, the first projection $\pi_1 \co E' \to A$ becomes a bipointed morphism:
+\[
+\xymatrix{
+1 \ar@/_1pc/[dr]_{a_0} \ar[r]^-{e'_0} & E' \ar[d]^{\pi_1} & 1 \ar[l]_-{e'_1} \ar@/^1pc/[dl]^{a_1} \\ 
+ & A \, .& }
+ \]
 
 
 
@@ -1108,14 +1106,14 @@ The type of bipointed sections of $E = (E, e_0, e_1)$ is then defined to be
 \BipSec(A,E) \defeq (\Sigma f \co (\Pi x \co A)E(x) ) \; \big(
   \Id_{E(a_0)}(f a_0,  e_0)  \times \Id_{E(a_1)}( fa_1, e_1)  \big) \, .
 \]
-Given a bipointed section $s \co A \to E$, we can define a bipointed morphism~$f  \co A \to E'$, where $E'$ is the
+Given a bipointed section $f \co A \to E$, we can define a bipointed morphism~$f'  \co A \to E'$, where $E'$ is the
 total bipointed type associated to $E$. Its underlying function is given by 
 letting,  for~$x \co A$, 
 \[
-f(x) \defeq \pair(x, s(x)) \, .
+f'(x) \defeq \pair(x, s(x)) \, .
 \] 
 With this definition, it is 
-immediate to get the path~$\bar{s}_k \co \Id( f' a_k ,  e'_k)$, for $k \in \{ 0, 1\}$.
+immediate to get the path~$\bar{f'}_k \co \Id( f' a_k ,  e'_k)$, for $k \in \{ 0, 1\}$.
 The morphism $f' \co A \to E'$ provides a pointwise right inverse for~$\pi_1 \co E' \to A$,
  since, for~$x \co A$, we have judgemental equalities
 \[
@@ -1592,7 +1590,7 @@ by the assumption that $A$ and $B$ are homotopy-initial.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
+\newpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Polynomial functors and their algebras}
@@ -1981,12 +1979,12 @@ type $\mathsf{Tot}(E) \defeq (\Sigma x \co C) E(x)$ carries the structure of a $
 This terminology and notation used in the definition is justified by the following remark.
 
 \begin{remark}\label{thm:fibalg}
-Given a fibered $P$-algebra $E$ over $C$, the type $\Tot(E) =  (\Sigma x \co  C) E(x)$ can be equipped with 
-a $P$-algebra structure in such a way that  the projection function $\pi_1 \co \Tot(E) \to C$ becomes a $P$-algebra morphism:
+Given a fibered $P$-algebra $E$ over $C$, the type $E' =  (\Sigma x \co  C) E(x)$ can be equipped with 
+a $P$-algebra structure in such a way that  the projection function $\pi_1 \co E' \to C$ becomes a $P$-algebra morphism:
 \[
 \xymatrix@C=2cm{
-P(\Tot(E)) \ar[r]^-{P\pi_1} \ar[d]_-{\sup_{\Tot(E)}} \ar@{}[rd]|{p} & PC \ar[d]^{\sup_C} \\ 
-\Tot(E)  \ar[r]_-{\pi_1} & C \, .}
+P(E') \ar[r]^-{P\pi_1} \ar[d]_-{\sup_{E'}} \ar@{}[rd]|{p} & PC \ar[d]^{\sup_C} \\ 
+E'  \ar[r]_-{\pi_1} & C \, .}
  \]
  This follows by an application of the distributivity of $\Sigma$ and $\Pi$ (\ie what is sometimes
 referred to as the type-theoretic axiom of choice). 
