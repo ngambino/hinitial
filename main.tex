@@ -8,7 +8,7 @@
 \input{prooftree}
 
 % Numberings 
-\setcounter{tocdepth}{2}
+\setcounter{tocdepth}{1}
 \numberwithin{equation}{section}
 
 % Table of contents
@@ -213,7 +213,7 @@
 \newcommand{\FibAlgHot}{\mathsf{FibAlgHot}}
 \newcommand{\FibPalg}{\mathsf{FibAlg}}
 \newcommand{\PalgSec}{\mathsf{AlgSec}}
-\newcommand{\AlgSecHot}{\mathsf{AlgSec}}
+\newcommand{\AlgSecHot}{\mathsf{AlgSecHot}}
 
 
 
@@ -551,7 +551,7 @@ Axiom, the Function Extensionality axiom is valid also in set-theoretic models.
 \begin{remark} Our results continue to hold when the judgemental $\eta$-rule for $\Pi$-types in~\eqref{equ:etapi}
 is weakened by replacing the judgemental equality in its conclusion with a propositional one. However, since the
 current version of the Coq proof assistant assumes the rule~\eqref{equ:etapi} and some of the proofs can be 
-simplified in its presence, we prefer to work with it to keep our presentation simpler and 
+simplified in its presence, we prefer to work with it in order to keep our presentation simpler and 
 more faithful to the formalization.
 \end{remark}
 
@@ -1759,50 +1759,58 @@ Let us now fix $P$-algebras $C = (C, \sup_C)$ and $D = (D, \sup_D)$.
 \[
 (f, \bar{f}) \co (C, \sup_C) \rightarrow (D, \sup_D)
 \]
-consists of a function $f \co C \rightarrow D$ and a path $\bar{f} \co \Id( f \circ \sup_C \, ,  \sup_{D} \circ P f )$.
+consists of a function $f \co C \rightarrow D$ and a path $\bar{f} \co \Id(\sup_{D} \circ P f \, ,  f \circ \sup_C)$.
 \end{definition}
 
 A $P$-algebra morphism as above can be represented with a diagram of the form
 \[
 \xymatrix{
- PC \ar[d]_{\sup_C} \ar[r]^{Pf}  \ar@{}[dr]|{\bar{f}} &  PD \ar[d]^{\sup_D}\\
+ PC \ar[d]_{\sup_C} \ar[r]^{Pf}  \ar@{}[dr]|{\Downarrow \, \bar{f}} &  PD \ar[d]^{\sup_D}\\
 C \ar[r]_{f}   & D}
 \] 
-Informally, one can think of the path $\bar{f}$ as a proof that the square diagram commutes (which is the 
-requirement defining the notion of morphism of endofunctor algebras in category theory). For example, for a $P$-algebra $C$, 
-the identity function $1_C \co C \to C$ has an evident structure of $P$-algebra morphism. Accordingly, the type of $P$-algebra 
+Informally, one can think of the path $\bar{f}$ as a proof that the square diagram commutes, which is the 
+requirement defining the notion of morphism of endofunctor algebras in category theory, or as invertible
+2-cell, as in the notion of a pseudo-morphism between algebras in 2-dimensional category theory.  
+Accordingly, the type of $P$-algebra 
 morphisms between $C$ and $D$ is defined by
 \[
 \Palg(C,D)
  \defeq  
-(\Sigma f:  C \rightarrow D) \, \Id(f\circ \sup_C \, ,  \sup_D \circ P f )  \, .
+(\Sigma f:  C \rightarrow D) \, \Id(\sup_D \circ P f  \, , f\circ \sup_C  )  \, .
 \]
 We now define the composition operation for $P$-algebra morphisms. Given $(f, \bar{f}) \co C \to D$ and~$(g, \bar{g}) \co D \to E$,
 their composite 
 \[
 (g, \bar{g}) \circ (f, \bar{f}) \co (C, \sup_C) \to (E, \sup_E)
 \] 
-is obtained as follows. Its underlying function is given by $g\circ f\co C \to E$, and so the 
+is obtained as follows. Its underlying function is given by $gf\co C \to E$, and so the 
 the required path must be of the form
 \[
- \overline{ g \circ f} \co (g\circ f) \circ \sup_C \Rightarrow \sup_E \circ P(gf)\, .
+ \overline{ g \circ f} \co \Id\big(  \sup_E \circ P(gf) \, ,  (gf) \circ \sup_C \big)\, .
 \]
 Such a path is obtained by pasting the diagrams 
 \[
 \xymatrix@C=2cm{
- PC \ar[d]_{\sup_C} \ar[r]^{Pf}  \ar@{}[dr]|{\bar{f}} &  PD \ar[d]^{\sup_D}  \ar[r]^{Pg}  \ar@{}[dr]|{\bar{g}} &  PE \ar[d]^{\sup_E} \\
+ PC \ar[d]_{\sup_C} \ar[r]^{Pf}  \ar@{}[dr]|{\Downarrow \, \bar{f}} &  
+ PD \ar[d]^{\sup_D}  \ar[r]^{Pg}  \ar@{}[dr]|{\Downarrow \, \bar{g}} &  PE \ar[d]^{\sup_E} \\
 C \ar[r]_{f}   & D \ar[r]_{g}   & E \,  }
 \]
 More precisely, it is given by the following composition of paths:
-\begin{align*}
-(g\circ f) \circ \sup_C &  \Rightarrow g \circ (f \circ \sup_C) \\
- & \Rightarrow g \circ ( \sup_D \circ P f ) \\
- & \Rightarrow (g \circ \sup_D) \circ Pf \\
- & \Rightarrow (\sup_E \circ Pg) \circ Pf \\
- & \Rightarrow \sup_E \circ (Pg \circ Pf) \\
- & \Rightarrow \sup_E \circ P (g\circ f) \, .
- \end{align*}
-Note that we used the pre-composition and post-compositions of functions with paths. As in the case of bipointed types, the equations for a category do not hold up to judgemental equality, but only so up to a system of higher and higher identities. 
+\[
+\xymatrix@C=1.5cm{
+\sup_E \circ P (gf) \ar[r]^-{\sup_E \circ \psi_{f,g}} &
+ \sup_E \circ P(g) \circ P(f) \ar[r]^-{\bar{g} \circ P(f)} & 
+ g \circ \sup_D \circ P(f) \ar[r]^{g \circ \bar{f}} & 
+g \circ f \circ \sup_C\, .}
+\]
+Note that we used the pre-composition and post-compositions of functions with paths. 
+For a $P$-algebra $C$,  the identity function $1_C \co C \to C$ has an evident structure of $P$-algebra morphism:
+\[
+\xymatrix@C=1.5cm{
+PC \ar[r]^{P(1_C)}  \ar[d]_{\sup_C} \ar@{}[dr]|{\Downarrow \, \overline{1}_C} & PC \ar[d]^{\sup_C} \\
+C \ar[r]_{1_C} & C}
+\]
+As in the case of bipointed types, the equations for a category do not hold up to judgemental equality, but only so up to a system of higher and higher identities. 
 
 \medskip
 
@@ -1816,26 +1824,26 @@ For $P$-algebra morphisms $(f, \bar{f}) \, , (g, \bar{g}) \co C \to D$, a \emph{
 (\alpha, \bar{\alpha}) \co (f, \bar{f}) \sim (g, \bar{g})
 \] 
 consists of a homotopy $\alpha \co f \sim g$ and a path
-$\bar{\alpha} \co \Id( \bar{f} \cdot \sup_D (P \alpha) ,  \alpha(\sup_C)\cdot \bar{g})$. 
+$\bar{\alpha} \co \Id( \bar{g} \cdot \sup_D (P \alpha) ,  \alpha(\sup_C)\cdot \bar{f})$. 
 \end{definition}
 
 Such a $P$-algebra homotopy can be thought of as a proof that the two paths produced by the pasting diagrams
 \[
-\xymatrix@C=1.5cm{
-PC \ar@/^1pc/[r]^{Pg}   \ar[d]_{\sup_C}   \ar@/_1pc/[r]_{Pf} \ar@{}[r]|{P\alpha}
+\xymatrix@C=1.5cm@R=1.2cm{
+PC \ar@/^1pc/[r]^{Pf}   \ar[d]_{\sup_C}   \ar@/_1pc/[r]_{Pg} \ar@{}[r]|{\Downarrow \, P\alpha}
 & PD \ar[d]^{\sup_D}  \\
-C  \ar@/_1pc/[r]_f  \ar@{}[r]^{\bar{f}} & D }
+C  \ar@/_1pc/[r]_g  \ar@{}[r]^{\Downarrow \, \bar{g}} & D }
 \qquad
-\xymatrix{
-PC \ar@/^1pc/[r]^{Pg}   \ar[d]_{\sup_C} \ar@{}[r]_(.52){\bar{g}}  & PD \ar[d]^{\sup_D}  \\
-C \ar@/^1pc/[r]^g  \ar@/_1pc/[r]_f  \ar@{}[r]|{\alpha} & D }
+\xymatrix@C=1.5cm@R=1.2cm{
+PC \ar@/^1pc/[r]^{Pf}   \ar[d]_{\sup_C} \ar@{}[r]_(.52){\Downarrow \, \bar{f}}  & PD \ar[d]^{\sup_D}  \\
+C \ar@/^1pc/[r]^f  \ar@/_1pc/[r]_g  \ar@{}[r]|{\Downarrow \, \alpha} & D }
 \]
-are equal (which is the condition defining an algebra 2-cell in 2-dimensional category theory). Note that $\bar{\alpha}$ is a higher path, between elements of 
-$\Id \big( f \circ \sup_C \, ,  \sup_D \circ Pg \big)$. Also observe that $\alpha(\sup_C)$ and $\sup_D(P \alpha)$ are obtained by pre-composition and post-compositions, respectively, of maps with homotopies.  The type of homotopies of $P$-algebra morphisms is then defined by
+are equal, which is the condition defining an algebra 2-cell in 2-dimensional category theory. Note that $\bar{\alpha}$ is a higher path, between elements of 
+$\Id \big( f \circ \sup_C \, ,  \sup_D \circ Pg \big)$. Also observe that~$\alpha(\sup_C)$ and $\sup_D(P \alpha)$ are obtained by pre-composition and post-compositions, respectively, of maps with homotopies.  The type of homotopies of $P$-algebra morphisms is then defined by
 \[
 \AlgHot \big( (f,\bar{f}), (g, \bar{g})  \big)
  \defeq  
-(\Sigma \alpha \co  f \sim g) \, \Id\big( \bar{f} \cdot \sup_D(P \alpha),\, (\alpha(\sup_C))\cdot \bar{g} \big) \, .
+(\Sigma \alpha \co \Hot(  f , g)) \, \Id\big( \bar{g} \cdot \sup_D(P \alpha),\, (\alpha(\sup_C))\cdot \bar{f} \big) \, .
 \]
 
 
@@ -1856,29 +1864,230 @@ the canonical function
 This follows from a more general statement to be proved in Proposition~\ref{lem:fibhomeqid} below.
 \end{proof}
 
-\subsection{Algebra equivalences}  Next, we introduce the notion of equivalence between $P$-algebras.
+\subsection{Fibered algebras and algebra sections} We now introduce the fibered versions of the notions of a $P$-algebra, $P$-algebra morphism, and $P$-algebra homotopy. Let us make some
+preliminary remarks in order to motivate our definitions. 
+Suppose $C = (C, \sup_C)$ is a $P$-algebra and let $E \co C \to \U$ be a small fibered type.
+We wish to describe what data determines a $P$-algebra structure on the type $E' \defeq (\Sigma z \co C) E(z)$. First of all, observe that we have 
+\begin{align*}
+PE' & = (\Sigma x \co A)  (B(x) \to (\Sigma z \co C)E(z)) \\
+ & \simeq (\Sigma x \co A) (\Sigma u \co B(x) \to C) (\Pi y \co B(x)) E (uy) 
+\end{align*}
+using a special case of the $\Pi\Sigma$-distributivity recalled in~\eqref{equ:ac}. 
+Therefore, we have
+\begin{align*} 
+PE' \to E' \ & \simeq 
+ (\Sigma x \co A) (\Sigma u \co B(x) \to C) (\Pi y \co B(x)) E (uy)  \to (\Sigma z \co C) E(z) \\ 
+ & \simeq (\Pi x \co A)(\Pi u \co B(x) \to C) (\Pi v \co (\Pi y \co B(x)) E(uy)) (\Sigma z \co C) E(z) 
+\end{align*}
+and so a structure map $\sup_{E'} \co PE' \to E'$ can be viewed equivalently as a function $s$ which 
+takes arguments $x \co A$, $u \co B(x) \to C$, $v \co (\Pi y \co B(x))E(uy)$ and returns $s(x,u,v) \co (\Sigma z \co C) E(z)$.
+Thus, if we wish to ensure that the structure map $\sup_{E'} \co PE' \to E'$ is such that the projection function
+ $\pi_1 \co E' \to C$ is a $P$-algebra morphism,  \ie that we can find a path fitting in the diagram
+ \[
+ \xymatrix@C=1.2cm{
+ PE' \ar[r]^-{P \pi_1} \ar[d]_{\sup_{E'}} \ar@{}[dr]|{\Downarrow \,  \overline{\pi}_1} & PC \ar[d]^{\sup_C} \\
+ E' \ar[r]_{\pi_1} & \; C \, ,}
+ \]
+it is sufficient to have a function
+\[
+e \co (\Pi x \co A)(\Pi u \co B(x) \to C) (\Pi v \co (\Pi y \co B(x)) E(uy))  E(\sup_C(x,u)) \, . 
+ \]  
+ We are therefore led to make the following definition. 
+
+\begin{definition} \label{def:fibalg}
+Let $C$ be a $P$-algebra. A \emph{fibered $P$-algebra} over $C$ consists of a dependent type $E \co C \to \U$
+and a function 
+\[
+e \co  (\Pi x \co A) (\Pi u \co B(x) \to C)   ((\Pi y \co B(x))   E(u y))  \,  E(\sup_C(x,u))
+ \] 
+\end{definition}
+
+Let us also remark that a function $e$ as above appears also in one of the premisses of the
+elimination rule for $W$-types. For a $P$-algebra $C$, we then define the type of fibered $P$-algebras 
+over $C$ as follows:
+\[
+\Palg(C) \defeq (\Sigma E \co C \to \U) (\Pi x \co A) (\Pi u \co B(x) \to C) 
+ ((\Pi y \co B(x)) E(u y))\,  E(\sup_C(x,u))
+ \]
+ 
+ \begin{remark} 
+Given a fibered $P$-algebra $E = (E, e)$, we will refer to the $P$-algebra structure
+on $E' = (\Sigma z \co C) E(z)$ given by the function $\sup_{E'} \co PE' \to E'$ associated to 
+the function $e$ as the canonical $P$-algebra structure on $E'$. Explicitly, the structure
+map can be defined by $\Sigma$-elimination so that, for $x \co A$, $w \co B(x) \to E'$, we have
+\[
+\sup_{E'}(x,w) = 
+\pair \big( 
+\sup_C(x, \pi_1 w ) \, , 
+e( x, \pi_1 w, \pi_2 w) \big) \co E' \, .
+\]
+Here, note that $\pi_1 w \co B(x) \to C$ and $\pi_2 w \co (\Pi y \co B(x)) E(\pi_1 w (y))$ and so,
+by the type of $e$, we have that~$e(x, \pi_1 w, \pi_2 w) \co E( \sup_C(x, \pi_1 w))$, as required.
+\end{remark} 
+
+Analogously to the way we defined fibered $P$-algebras, it is possible to define 
+$P$-algebra sections. To state this definition, we need some preliminary notation.
+Given a fibered $P$-algebra $E = (E, e)$ and  $f \co (\Pi z \co C) E(z)$,
+we define $e_f \co (\Pi x \co A)(\Pi u \co B(x) \to C) E(\sup_C(x,u))$ by 
+mapping~$x \co A$ and $y \co B(x)$ to 
+\begin{equation}
+\label{equ:ef}
+ e_f(x,u) \defeq e(x, u, f u) \, .
+\end{equation}
+Here, note that for $y \co B(x)$, we have $u y \co C$ and hence $f u y \co E(uy)$,
+as required.
+
+
+\begin{definition} \label{def:fibalgsection} Let $E = (E, e)$ be a fibered $P$-algebra over a $P$-algebra $C$.  
+A \emph{$P$-algebra section} of $E$ consists of a function $f \co (\Pi x \co C) E(x)$ and a path 
+$\bar{f} \co  \Id \big( e_f \, , f \circ \sup_C \big)$.
+\end{definition} 
+
+\medskip
+
+We then define the type of $P$-algebra sections of $C$ by letting
+\[ 
+\PalgSec(C,E)  \defeq (\Sigma f  \co (\Pi x \co C) E(x)) \; \Id \big( e_f \, , f \circ \sup_C \big) \, .
+\]
 
 
 
-\begin{definition} We say that a $P$-algebra morphism $f \co C \to D$ is 
+\begin{remark*}
+Given a $P$-algebra section $(f, \bar{f})$ of a fibered $P$-algebra $E = (E, e)$, there is a $P$-algebra 
+morphism $f' \co C \to E'$, where $E' = (\Sigma x \co C) E(x)$ is considered as equipped with its canonical 
+$P$-algebra structure: 
+\[
+\xymatrix{
+PC \ar[r]^{Pf'} \ar[d]_{\sup_C} \ar@{}[dr]|{\Downarrow \, \overline{f'}} & PE' \ar[d]^{\sup_{E'}} \\
+C \ar[r]_{f'} & E'}
+\]
+Here, $f' \defeq (\lambda z \co C) \, \pair(z, fz)$. This $P$-algebra morphism provides
+a section of the $P$-algebra morphism~$\pi_1 \co E' \to C$ in the sense that the composite $P$-algebra
+morphism~$\pi_1 \circ f' \co C \to C$ can be shown to be propositionally equal to the identity $P$-algebra
+morphism~$1_C \co C \to C$. 
+\end{remark*}
+
+\medskip
+
+
+We will require an analysis of paths between of $P$-algebra sections and thus we introduce, in Definition~\ref{def:W2cellsection} below, the
+notion of a $P$-algebra section homotopy. In order to state the definition more briefly, let us introduce some
+notation. For a fibered $P$-algebra $E = (E,e)$, functions $f, g \co (\Pi z \co C) E(z)$ and a path $p \co
+\Id(f,g)$, we write $e_p \co \Id(e_f, e_g)$ for the evident path defined by $\Id$-elimination, 
+where~$e_f$ and~$e_g$ are defined as in~\eqref{equ:ef}. By the equivalence between homotopies
+and paths discussed in Section~\ref{sec:chait}, for a homotopy $\alpha \co \Hot(f,g)$ we also have
+a homotopy~$e_\alpha \co \Hot(e_f, e_g)$. 
+
+\begin{definition} \label{def:W2cellsection} Let $E = (E, e)$ be a fibered $P$algebra over $C$, and let $f = (f, \bar{f})$ and $g = (g, \bar{g})$ be two $P$-algebra sections of $E$.  A \emph{$P$-algebra section homotopy} 
+\[
+(\alpha , \bar{\alpha}) \co (f, \bar{f})  \rightarrow (g, \bar{g})
+\] 
+is a homotopy~$\alpha \co \Hot(f, g)$ and a homotopy
+\[
+\bar{\alpha} \co 
+(\Pi x \co A) (\Pi u \co B(x) \to C) \;
+\Hot\big( \ext( \bar{g})  \ct e_\alpha \, , 
+(\alpha \circ \sup_C) \ct \ext( \bar{f}) \big) \, .
+\]
+\end{definition} 
+
+For $P$-algebra section homotopy $(\alpha, \bar{\alpha})$ as above, the path $\bar{\alpha}$ can be
+represented diagrammatically as fitting in the following diagram
+\[
+\xymatrix@C=2cm{
+e_f(x,u) \ar[r]^{e_\alpha(x,u)} \ar[d]_{\ext(\bar{f})(x,u)} 
+\ar@{}[dr]|{\Downarrow \, \bar{\alpha}(x,u)}  
+& e_g(x,u) \ar[d]^{\ext(\bar{g})(x,u)}  \\
+f ( \sup_C(x,u)) \ar[r]_{\alpha( \sup_C(x,u))}  & g(\sup_C(x,u))}
+\]
+Accordingly, we define the type of $P$-algebra homotopies of sections as follows:
+\[
+\AlgSecHot( (f, \bar{f}) ,\, (g, \bar{g}) )  \defeq 
+(\Sigma \alpha \co \Hot( f , g)) 
+(\Pi x \co A) 
+(\Pi u \co B(x) \to C) \, 
+\Id\big(  \bar{g}  \ct e_\alpha \, , 
+(\alpha \circ \sup_C) \ct \bar{f} \big) \, .
+\]
+The choice of terminology is justified by the fact that  a 
+$P$-algebra section homotopy $(\alpha, \bar{\alpha}) \co (f, \bar{f}) \sim (g, \bar{g})$, 
+determines a $P$-algebra homotopy 
+$(\alpha', \overline{\alpha}')$ between the corresponding $P$-algebra morphisms $f', g' \co C \to E'$.
+In spite of the complexity of its definition, the notion of a $P$-algebra homotopy is essentially equivalent to
+that of an identity proof between $P$-algebra sections, as the next lemma makes precise. 
+
+\begin{lemma}\label{lem:fibhomeqid} Let $E = (E, e)$ be a fibered algebra over a $P$-algebra $C$.
+For every pair of $P$-algebra sections $(f, \bar{f})$ and $(g, \bar{g})$,  the function
+\[
+\ext_{(f, \bar{f}), (g, \bar{g})} \co \Id \big( (f, \bar{f}) ,\, (g, \bar{g}) \big) \, \to
+\AlgSecHot\big( (f, \bar{f}) ,\, (g, \bar{g}) \big) 
+\]
+is an equivalence of types.
+\end{lemma}
+
+\begin{proof} Let us recall that $f, g \co (\Pi z \co C) E(z)$ and, for $x \co A$, $u \co B(x) \to C$, 
+we have
+\[
+\bar{f} \co  \Id(e_f, f \circ \sup_C ) \, , \quad
+\bar{g}\co  \Id( e_g, g \circ \sup_C)  \, .
+\]
+Now, for $p \co \Id(f, g)$ we have $p_{!}(\bar{f}) \co  \Id( e_g ,  g \circ \sup_C)$ 
+and it can be shown by $\Id$-elimination that there exists a path 
+$q  \co \Id\big( p_{!}(\bar{f})  \ct e_p  \, , (p \circ \sup_C) \ct \bar{f}  \big)$, 
+which can be represented with the diagram
+\[
+\xymatrix@C=2cm{
+e_f  \ar[r]^-{e_p}  \ar[d]_{\bar{f}}  \ar@{}[dr]|{\Downarrow \, q } & e_g  
+\ar[d]^{ p_{!}(\bar{f})  }  \\
+f \circ \sup_C \ar[r]_-{p \circ \sup_C}  & g \circ \sup_C }
+\]
+We then have
+\begin{align*}
+  \Id\big( (f,\bar{f}),  (g,\bar{g}) \big) 
+& \simeq (\Sigma p \co \Id( f , g)) \; \Id ( p_{!} ( \bar{f} ) \, , \bar{g}  )  \\
+&  \simeq (\Sigma p \co \Id( f , g)) \; \Id (  \bar{g} \, , p_{!} ( \bar{f} )  )  \\
+& \simeq (\Sigma p \co \Id( f, g)) 
+\; \Id\big(  \bar{g}   \, , 
+(p \circ \sup_C) \ct \bar{f} \ct e_p^{-1}  \big)   \\ 
+& \simeq (\Sigma p \co \Id( f, g)) 
+\; \Id\big(  \bar{g}  \ct e_p  \, ,   (p \circ \sup_C) \ct \bar{f}  \big)   \\ 
+& \simeq (\Sigma p \co \Id( f, g)) 
+\; \Hot \big(  \ext(\bar{g}) \ct e_{\ext(p)}    \, , 
+(\ext(p) \circ \sup_C) \ct \ext(\bar{f})   \big)   \\ 
+&  \simeq (\Sigma \alpha \co \Hot( f, g)) \; \Id\big(  \ext(\bar{g})  \ct e_\alpha \, , 
+(\alpha \circ \sup_C) \ct \ext(\bar{f}) \big) \\
+&  =   \AlgSecHot \big( (f,\bar{f}) \; (g,\bar{g}) \big) \, . \qedhere
+\end{align*}  
+\end{proof}
+
+
+
+
+\subsection{Algebra equivalences}  We introduce the notion of equivalence between $P$-algebras, which
+will useful in Section~\ref{sec:univalencealgebras}, where will prove that assuming the Univalence Axiom, a form of univalence holds also for $P$-algebras. 
+
+
+
+\begin{definition}  
+We say that a $P$-algebra morphism $f \co C \to D$ is 
  a~\emph{$P$-algebra equivalence}
-if there exist $P$-algebra morphisms $\ell,r \co D \to C$  which provide a left and a right $P$-inverse for $f$ as a
+if there exist $P$-algebra morphisms $g, h \co D \to C$  which provide a left and a right $P$-inverse for $f$ as a
 $P$-algebra morphism, \ie for
 which there are paths of $P$-algebra morphisms
 \[ 
-p \co \Id_{\Palg(C,C)}( \ell \circ f,  1_C) \, , \quad q \co \Id_{\Palg(D,D)}( f \circ r , 1_D) \, .
+p \co \Id_{\Palg(C,C)}( g  f,  1_C) \, , \quad q \co \Id_{\Palg(D,D)}( f h , 1_D) \, .
 \]
 \end{definition}
-
-For example, the identity morphism on a $P$-algebra is a $P$-equivalence, with the left and right inverses given by the identity morphism itself.  Given a $P$-algebra morphism $f \co C \to D$, we define the type of proofs that $f$ is an equivalence of $P$-algebras as follows:
+ 
+Given a $P$-algebra morphism $f \co C \to D$, we define the type of proofs that $f$ is an equivalence of $P$-algebras as follows:
 \[
-\isalgequiv(f) \defeq  (\Sigma \ell \co  \Palg(C,D)) \Id( \ell \circ f, 1_C )  \times 
-    (\Sigma r  \co \Palg(D, C)) \Id( f \circ r , 1_D ) \, .
+\isalgequiv(f) \defeq  (\Sigma g \co  \Palg(C,D)) \Id( g f, 1_C )  \times 
+    (\Sigma h  \co \Palg(D, C)) \Id( f h , 1_D ) \, .
 \]
-We then define the type of \emph{$P$-algebra equivalences} between $C$ and $D$ as
+We then define the type of $P$-algebra equivalences between $C$ and $D$ as
 \[
 \AlgEquiv(C, D)
-\defeq   (\Sigma f \co \Palg(C,D)) \isalgequiv(f)  \, . 
+\defeq   (\Sigma f \co \Palg(C,D)) \, \isalgequiv(f)  \, . 
 \] 
 
 
@@ -1888,8 +2097,7 @@ if its underlying function $f \co C \to D$ is an equivalence of types. Furthermo
 \[
 \pi \co \isalgequiv(f, \bar{f})  \to \mathsf{isequiv}(f)  
 \]
-is an equivalence. Thus, for every $P$-algebra morphism $(f, \bar{f})$, the type $\isalgequiv(f, \bar{f})$ is
-a mere proposition. 
+is an equivalence. 
 \end{proposition}  
 
 
@@ -2030,139 +2238,9 @@ as required.
 \end{proof}
 
 
-\subsection{Fibered algebras and algebra sections} 
-
-
-
-We now introduce the fibered versions of the notions of a $P$-algebra, $P$-algebra morphism, and $P$-algebra homotopy.
-
-\begin{definition} \label{def:fibalg}
-Let $C$ be a $P$-algebra. A \emph{fibered $P$-algebra} over $C$ consists of a dependent type $E \co C \to \U$
-and a function 
-\[
-e \co  (\Pi x \co A) (\Pi u \co B(x) \to C)   (\Pi y \co B(x))   E(u y)   \to E(\sup_C(x,u))
- \] 
-\end{definition}
-
-The definition of a fibered $P$-algebra is intended to capture the data in the premiss of the elimination 
-rule for $\W$-types. Indeed, if $E = (E, e)$ is a fibered $P$-algebra, we can derive the following judgement:
-\[
-x \co A, u \co B(x) \to C \, , v \co (\Pi y \co B(x)) E(u y) \vdash e(x,y,u) \co E(\sup_C(x,u))
-\]
-Furthermore, as we will see in Remark~\ref{thm:fibalg} below, a fibered $P$-algebra amounts essentially to a dependent type whose total
-type $\mathsf{Tot}(E) \defeq (\Sigma x \co C) E(x)$ carries the structure of a $P$-algebra for which the projection $\pi_1 \co \mathsf{Tot}(E) 
-\to C$ is a $P$-algebra morphism.  For a $P$-algebra $C$, we then define the type of \emph{fibered $P$-algebras} over $C$ as follows:
-\[
-\Palg(C) \defeq (\Sigma E \co C \to \U) (\Pi x \co A) (\Pi u \co B(x) \to C) 
- (\Pi y \co B(x))  E(u y)  \to E(\sup_C(x,u))
- \]
-This terminology and notation used in the definition is justified by the following remark.
-
-\begin{remark}\label{thm:fibalg}
-Given a fibered $P$-algebra $E$ over $C$, the type $E' =  (\Sigma x \co  C) E(x)$ can be equipped with 
-a $P$-algebra structure in such a way that  the projection function $\pi_1 \co E' \to C$ becomes a $P$-algebra morphism:
-\[
-\xymatrix@C=2cm{
-P(E') \ar[r]^-{P\pi_1} \ar[d]_-{\sup_{E'}} \ar@{}[rd]|{p} & PC \ar[d]^{\sup_C} \\ 
-E'  \ar[r]_-{\pi_1} & C \, .}
- \]
- This follows by an application of the distributivity of $\Sigma$ and $\Pi$ (\ie what is sometimes
-referred to as the type-theoretic axiom of choice). 
-\end{remark}
-
-\begin{definition} \label{def:fibalgsection} Let $E = (E, e)$ be a fibered $P$-algebra over a $P$-algebra $C$.  
-A \emph{$P$-algebra section} of $E$ consists of a section $f \co (\Pi x \co C) E(x)$ and a path
-\[ 
-\bar{f} \co (\Pi x \co A) (\Pi u \co B(x) \to C) \, \Id \big( f(\sup_C(x,u)), e(x, u, f \circ u) \big)
-\]
-\end{definition} 
-
-According to the above definition, we define the type of $P$-algebra sections of $C$ by
-\[ 
-\PalgSec(C,E)  \defeq (\Sigma f  \co (\Pi x \co C) E(x)) (\Pi x \co A) (\Pi u \co  B(x) \to C) ) 
-\Id\big(   f(\sup_C(x,u)) ,  e(x,u,f  \circ u) \big) \, .
-\]
-We will usually leave out all but the last argument of an element of $\PalgSec(C,E)$. 
-
-
-
-\begin{remark*}
-Given a fibered $P$-algebra $(E, e)$ over $C$ and a $P$-algebra section $(f, \bar{f})$ of $E$, there is a $P$-algebra 
-morphism $f' \co C \to E'$, where the type $E' = (\Sigma x \co C) E(x)$ is equipped with its canonical 
-$P$-algebra structure. 
-\[
-\xymatrix@C=2cm@R=1.5cm{
-P(E')  \ar[d]_-{\sup_{E'}}   \ar[r]_{P(\pi_1)}   & P(C)  \ar[d]^-{\sup_C}   \ar@/_1.4pc/[l]_{Pf'}  \\ 
-E'  \ar[r]^{\pi_1}    & C \ar@/^1.4pc/[l]^{f'} }
- \]
-\end{remark*}
-
-
-
-We will require an analysis of paths between of $P$-algebra sections and thus we introduce, in Definition~\ref{def:W2cellsection}, the
-notion of a $P$-algebra homotopy.
-
-\begin{definition} \label{def:W2cellsection} Let $E = (E, e)$ be a fibered $P$algebra over $C$, and let $f = (f, \bar{f})$ and $g = (g, \bar{g})$ be two $P$-algebra sections of $E$.  A \emph{$P$-algebra homotopy} 
-\[
-(\alpha , \bar{\alpha}) \co (f, \bar{f})  \rightarrow (g, \bar{g})
-\] 
-is a homotopy~$\alpha \co f \sim g$ with a path
-$\bar{\alpha} \co 
-\Id\big( \bar{f}(x,u)  \ct e\big(x,u, \ext (\alpha \circ u) \big),
-\alpha(\sup_C(x,u)) \ct \bar{g}(x,u) \big)$. 
-\end{definition} 
-
-Accordingly, we define the type of $P$-algebra homotopies of sections as follows:
-\begin{multline*}
-\AlgSecHot( (f, \bar{f}) ,\, (g, \bar{g}) )  \defeq 
-(\Sigma \alpha \co f \sim g) 
-(\Pi x \co A) 
-(\Pi u \co B(x) \to C) \, \\ 
-\Id\big( \bar{f}(x,u)  \ct e \big(x,u, \ext (\alpha \circ u) \big),\ 
-\alpha(\sup_C(x,u)) \ct \bar{g}(x,u) \big) \, .
-\end{multline*}
-The choice of terminology is justified by the following.
-
-\begin{remark*} 
-Given a fibered $P$-algebra $(E, e)$ over $C$, two $P$-algebra sections $(f, \bar{f})$ and $(g, \bar{g})$, and a 
-$P$-algebra homotopy $(\alpha, \bar{\alpha}) \co (f, \bar{f}) \sim (g, \bar{g})$, there is a $P$-algebra homotopy between the corresponding $P$-algebra morphisms $f, g \co C \to E'$ 
-\[
-\xymatrix{ E' \ar@{}[r]|{\ \Downarrow \alpha}   \ar@/^1.2pc/[r]^{f}  \ar@/_1.2pc/[r]_{g} & C}
- \]
-\end{remark*}
-
-
-
-
-\begin{lemma}\label{lem:fibhomeqid} Let $E = (E, e)$ be a fibered algebra over a $P$-algebra $C$.
-For every pair of $P$-algebra sections $(f, \bar{f})$ and $(g, \bar{g})$,  the function
-\[
-\ext_{(f, \bar{f}), (g, \bar{g})} \co \Id \big( (f, \bar{f}) ,\, (g, \bar{g}) \big) \, \to
-\AlgSecHot\big( (f, \bar{f}) ,\, (g, \bar{g}) \big) 
-\]
-is an equivalence of types.
-\end{lemma}
-
-\begin{proof}Let $E = (E, e)$ be a fibered algebra over a $P$-algebra $C = (C, \sup_C)$ and consider two $P$-algebra
-sections $(f,\bar{f}), (g,\bar{g}) \co \PalgSec(C,E)$. We have
-\begin{align*}
- & \Id\big( (f,\bar{f}),  (g,\bar{g}) \big) \\ 
-& \quad \simeq (\Sigma p \co \Id( f , g)) \Id \Big(\bar{g} , \trans_p ( \bar{f} ) \Big)  \\
-& \quad \simeq (\Sigma p \co \Id( f , g))  \Id \Big(\bar{g}, 
-(\lambda x)(\lambda u) \, \ext(p)_{\sup_C(x,u)}^{-1} \ct \bar{f}(x,u) \ct
- \app_{e(x,u)}(\int (\lambda y) \, \ext(p)_{u  y})  \Big)  \\
-& \quad \simeq 
-(\Sigma \alpha \co \Hot( f, g)) \Id \Big(\bar{g},  (\lambda x) (\lambda u) \, \alpha_{\sup_C(x,u)}^{-1} \ct \bar{f}(x,u) \ct 
-\app_{e(x,u)} (\int (\lambda y)  \,  \alpha_{u y}))  \Big)  \\
-&\quad \simeq (\Sigma \alpha \co \Hot( f, g)) (\Pi x \co A)(\Pi u \co B(x) \to C ) \\
- & \qquad \qquad \Id \Big(\bar{g}(x,u) , \alpha_{\sup_C(x,u)}^{-1} \ct \bar{f}(x,u) \ct \app_{e(x,u)}(\int (\lambda y \co B(x)) \, \alpha_{u  y})) \Big)  \\ 
-& \quad \simeq (\Sigma \alpha \co \Hot( f, g)) (\Pi x \co A)(\Pi u \co B(x) \to C ) \\
-& \qquad \qquad   \Id \Big(\alpha_{\sup_C(x,u)} \ct \bar{g}(x,u) , \bar{f}(x,u) \ct 
-\app_{e(x,u)}(\int  (\lambda y \co B(x)) \,  \alpha_{u  y})) \Big) \\[1ex]
-& \quad = \  \FibAlgHot \big( (f,\bar{f}) \; (g,\bar{g}) \big) \, . \qedhere
-\end{align*}  
-\end{proof}
-
+\begin{corollary} For every $P$-algebra morphism $(f, \bar{f})$, the type $\isalgequiv(f, \bar{f})$ is
+a mere proposition. 
+\end{corollary} 
 
  
 
@@ -2682,7 +2760,7 @@ We note that there is no restriction on the homotopy level of the fibers of $B$ 
 illustrates: if $A \defeq 1$ and $B(x) \defeq 1$, then $(\W x:A) B(x) \simeq 0$, which is not contractible. 
 
 
-\subsection{Univalence for algebras}
+\subsection{Univalence for algebras} \label{sec:univalencealgebras}
 We conclude this section with some applications of the Univalence Axiom. The first is that, just as for bipointed 
 types, a form of univalence holds also for $P$-algebras, as the next theorem makes precise. 
 
