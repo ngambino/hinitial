@@ -539,7 +539,7 @@ which is considered here with propositional equalities:
 The particular choice of rules for $\Hint$ implies that this theory has a both set-theoretic
 models and a homotopy-theoretic ones.  In particular, $\Hint$ 
 does not include any global extensionality rules, like the identity reflection rule, the K rule, or 
-the Uniqueness of Identity Proofs principle~\cite{StreicherT:inviit}. This makes $\Hint$ it possible
+the Uniqueness of Identity Proofs principle~\cite{StreicherT:invitt}. This makes $\Hint$ it possible
 for $\Hint$ to have not only straightforward set-theoretic models (where those extensionality
 principles are valid) but also with homotopy-theoretic models, such as the groupoid model~\cite{HofmannM:gromtt}, in which the rules of $\Hint$, but not the extensionality principles mentioned above, remain valid. Indeed, $\Hint$ is a subsystem of the type theory 
 used in Voevodsky's Univalent Foundations of Mathematics programme~\cite{VoevodskyV:unifc}. 
@@ -573,23 +573,29 @@ in the most recent formulations of Martin-L\"of type theories~\cite{NordstromB:m
 
 
 
-\subsection{Homotopy-theoretic notions in type theory.} One of the main consequences of the 
-$\Id$-elimination rule is that  type dependency must respect propositional equality, in the following sense: given a dependent type
-\begin{equation*}
-x\co A \vdash B(x) \co \type \, ,
-\end{equation*} 
-and any $a,b\co A$ with $p\co \Id_A(a,b)$, there is then a \emph{transport} function 
+\subsection{Homotopy-theoretic notions in type theory} For the convenience of the reader, 
+we review some notions and basic facts from~\cite{HoTT,VoevodskyV:notts}. First of all, recall that for a dependent type
+\begin{equation}
+\label{equ:dependenttype}
+x\co A \vdash E(x) \co \type \, ,
+\end{equation} 
+and a path $p\co \Id_A(a,b)$, we have the \emph{transport functions} 
 \[
-p_{\, ! } \co B(a) \rightarrow B(b) \, ,
+p_{\, ! } \co E(a) \rightarrow E(b) \, , \quad p^* \co E(b) \to E(a) \, .
 \] 
-which is defined by $\Id$-elimination so that, for $x \co A$
-the function $\refl(x)_{\, !} \co B(x) \rightarrow B(x)$ is identity function on $B(x)$.  This transport operation is familiar from homotopy theory as the distinctive property of a fibration of spaces.  Indeed, as exploited
-in~\cite{AwodeyS:homtmi}, we shall think of the projection 
-\[
-\pi_1 \co (\Sigma x:A) B(x) \to A
-\] 
-as a fibration from the total space $(\Sigma x:A)B(x)$, with fiber $B(x)$ for $x\co A$.
-
+These are defined by $\Id$-elimination so that, for $x \co A$ the functions $\refl(x)_{\, !} \co B(x) \rightarrow B(x)$ 
+and~$\refl(x)^* \co B(x) \to B(x)$ are the identity function $1_{B(x)} \co B(x) \to B(x)$.  In order to emphasize the 
+that dependent types are interpreted as fibrations in homotopy-theoretic models, we sometimes refer to a dependent
+type as in~\eqref{equ:dependenttype} as a \emph{fibered type} over $A$. Correspondingly, we sometimes call
+the type $(\Sigma x \co A)E(x)$ as the \emph{total type} of the fibered type. Similarly, elements of the 
+type~$(\Pi x \co A)E(x)$~will be sometimes called \emph{sections} of the fibered type. This terminology is supported by the fact that a section $f \co (\Pi x \co A)E(x)$ determines a function $f' \co A \to (\Sigma x \co A)E(x)$, defined by
+$f' \defeq (\lambda x \co A) \pair(x, fx)$, such that $ \pi_1 f'(x) = x$ for every $x \co A$.  We represent such a situation in the diagram
+  \[
+   \xymatrix{
+    (\Sigma x \co A) E(x) \ar[d]_{\pi_1} \\
+    \;  A \, . \ar@/_2pc/[u]_{f'} }
+     \]
+Next, we recall the definition of the notion of a homotopy, which will play a fundamental role throughout the paper.
 
 \begin{definition} For $f \, , g \co (\Pi x \co A) B(x)$, a \emph{homotopy}
 between $f$ and $g$ is an element of the type $\Hot(f,g)$ defined by 
@@ -599,9 +605,7 @@ between $f$ and $g$ is an element of the type $\Hot(f,g)$ defined by
 We say that $f$ and $g$ are \emph{homotopic} if there exists a homotopy between them.
 \end{definition} 
 
-We sometimes write  $\alpha \co f \sim g$ rather than $\alpha \co \Hot(f,g)$. 
-Next, note that the topological notion of contractibility of a space admits the following type-theoretic counterpart, originally
- introduced by Voevodsky in~\cite{VoevodskyV:unifc}.
+We sometimes write  $\alpha \co f \sim g$ rather than $\alpha \co \Hot(f,g)$. The topological notion of contractibility of a space admits the following type-theoretic counterpart.
 
 \begin{definition}  A type $A$ is said to be \emph{contractible} if the  type 
  \begin{equation}
@@ -614,10 +618,9 @@ is inhabited.
 The type $\iscontr(A)$ can be seen as the propositions-as-types translation
 of the formula stating that $A$ has a unique element. However, its homotopical interpretation 
 is as a space that is inhabited if and only if the space interpreting $A$ is contractible in the usual
-topological sense. Note that if $A$ is a contractible type, then for every $a, b \co A$, the type $\Id(a,b)$ is again contractible. 
-This can be proved  by $\Id$-elimination. 
+topological sense. Note that if $A$ is a contractible type, then for every $a, b \co A$, the type $\Id(a,b)$ is again contractible.  
 The notion of contractibility can be used to articulate the world of types  into a hierarchy of so-called \emph{h-levels} according to their
-homotopical complexity~\cite{VoevodskyV:unifc}. We will need to recall only the notion of a type of h-level 1, or 
+homotopical complexity. We will need to recall only the notion of a type of h-level 1, or 
 mere proposition.
 
 \begin{definition} A type $A$ is said to be a \emph{mere proposition} if the type
@@ -627,78 +630,76 @@ mere proposition.
 is inhabilted.
 \end{definition}
 
-Let us also recall from~\cite{VoevodskyV:unifc} the notions of weak equivalence and homotopy equivalence. To do this, we need to fix some notation. For $f \co A \rightarrow B$ and $y \co B$, define the \emph{homotopy fiber} of $f$ at $y$ as the type
+Let us also recall the notions of a weak equivalence. To do this, we need to fix some notation. For $f \co A \rightarrow B$ and $y \co B$, define the \emph{homotopy fiber} of $f$ at $y$ as the type
 \[
  \hfiber(f,y) \defeq (\Sigma x \co A) \Id(f x, y) \, .
 \]
 
 
-\begin{definition} A function $f \co A \to B$ is  a \emph{weak equivalence} if and only if every fiber is contractible, \ie the type
+\begin{definition} A function $f \co A \to B$ is  a \emph{(weak) equivalence} if and only if every fiber is contractible, \ie the type
 \[
  \iswequiv(f) \defeq (\Pi y \co B)  \iscontr(\hfiber(f,y)) 
 \]
 is inhabited. 
 \end{definition}
 
- For types $A$ and $B$, the type $\mathsf{Weq}(A,B)$ of weak equivalences from $A$ to $B$ is  defined so that its canonical elements are pairs consisting of a function $f \co A \to B$ and a proof that it is a weak equivalence, \ie we let 
+ For types $A$ and $B$, the type $\mathsf{Weq}(A,B)$ of equivalences from $A$ to $B$ is  defined so that its canonical elements are pairs consisting of a function $f \co A \to B$ and a proof that it is an equivalence, \ie we let 
  \begin{equation}
  \label{equ:weq}
  \mathsf{Weq}(A,B) \defeq (\Sigma f \co A \to B) \iswequiv(f) \, .
  \end{equation}
- We write $A\simeq B$ if there is a weak equivalence from $A$ to $B$. Since we do not consider other kinds of
- equivalences, we shall simply say equivalence instead of weak equivalence\footnote{We stated the definitions as above so as to facilitate comparison with exisiting literature.}. 
- 
- \medskip
- 
+ We write $A\simeq B$ if there is an equivalence from $A$ to $B$. For example, the well-known distributivity of
+ $\Sigma$-formation and $\Pi$-formation, sometimes referred to as the type-theoretic axiom of choice, provides
+ an equivalence 
+ \begin{equation}
+ \label{equ:ac}
+ (\Pi x \co A)(\Sigma y \co B(x)) E(x,y) \simeq 
+ (\Sigma u  \co (\Pi x \co A)B(x)) (\Pi x \co A) E(x, ux) \, .
+ \end{equation}
  It can be shown that a function $f \co A \rightarrow B$ is an equivalence if and only if it has a two-sided inverse,
  \ie there exists a function $g \co B \to A$ such that the types $\Hot(gf, 1_A)$
  and $\Hot(fg, 1_B)$ are inhabited. However, the type of equivalences is not equivalent to
  the type of functions with a two-sided inverse as above, but instead (as originally suggested by Andr\'e Joyal) 
 to the type of functions that have a left inverse and a right inverse, \ie functions
 $g \co B \to A$ and $h \co B \to A$ such that the  types $ \Hot(g  f, 1_A)$ and $\Hot(f h, 1_B)$ are inhabited. 
-We recall this result for future reference. 
-
-\begin{proposition} \label{equ:equivtwosided}
- A function $f \co A \to B$ is an equivalence if and only if it has a right inverse and a left inverse. 
-Furhermore, the type
+More precisely, for every $f \co A \to B$, there is an equivalence
 \[
-(\Pi f \co A \to B) \big(  \iswequiv(f) \leftrightarrow 
- (\Sigma g \co B \to A) \Hot(gf, 1_A) \times (\Sigma h \co B \to A) \Hot(fg, 1_B) \big)
+ \iswequiv(f) \simeq 
+ \big( 
+ (\Sigma g \co B \to A) \Hot(gf, 1_A) \times (\Sigma h \co B \to A) \Hot(fh, 1_B) 
+ \big) \, .
  \]
- is inhabilted. 
-\end{proposition}
+For our purposes, the idea of equivalences as functions with a left and a right inverse will be most
+easily generalized to the situation where the types come equipped with additional structure. 
 
 
 
 
-\subsection{Aspects of extensionality} \label{sec:aspe} We need to recall some facts regarding the identity types, and in particular how  identity types of $\Sigma$-types and $\Pi$-types admit an equivalent description. In order to illustrate the general point, let us begin by considering the special case of binary products. So, let $A$ and $B$ be two types. For any 
-pair of elements $c, d  \co A \times B$, there is a canonical map
-\begin{equation}
-\label{equ:exttimes}
-\ext^{\times}_{A, B}  \co \Id_{A \times B}(c, d) \to \Id_{A}(c_1, d_1) \times \Id_{B}(c_2, d_2) \, , 
-\end{equation}
-where, for $k \in \{ 1, 2 \}$,  $c_k$ and $d_k$ are the $k$-th projections of $c$ and $d$, respectively. The existence of this map implies that, for every 
-propositional equality~$p \co c \Rightarrow d$ we can obtain a pair of propositional equalities~$p_1 \co c_1 \Rightarrow d_1$ and $p_2 \co c_2 \Rightarrow d_2$. Similarly, we
-have families of canonical maps
-\begin{gather}
-\ext^\Sigma_{A,B} \co  \Id_{(\Sigma x \co A)B(x)}(c, d) \to (\Sigma p \co \Id(c_1, d_1)) \, , \Id( p_{!}(c_2), d_2) \, , 
-\label{equ:extsigma} \\
-\ext^\Pi_{A,B} \co  \Id_{(\Pi x \co A)B(x)}(f, g) \to (\Pi x \co A) \Id_{B(x)}(f x, gx)  \, , 
-\label{equ:extpi} \\
-\ext^\U \co  \Id_\U(A, B) \to \mathsf{Weq}(A, B) \, ,  \label{equ:extu}
-\end{gather}
-where $\mathsf{Weq}(A,B)$ is the type of weak equivalences between $A$ and $B$, as defined in~\eqref{equ:weq}.
-Note that the functions in~\eqref{equ:exttimes} are special cases of the ones in~\eqref{equ:extsigma}.
-
-We then have that the functions in~\eqref{equ:extsigma} can be shown to be 
-equivalences within the type theory~$\mathcal{M}$ using the $\eta$-rule for $\Sigma$-types;
-the functions in~\eqref{equ:extpi} can be shown to be equivalences within the type theory $\Hint$, using the Function Extensionality principle; and the functions in \eqref{equ:extu} are equivalences in the extension of $\Hint$ with the  Univalence Axiom~\cite{VoevodskyV:notts}. In these circumstances, we have equivalences
+\subsection{Characterization of identity types} \label{sec:chait} We now recall that the identity types of various kinds of 
+types, such as product types and function types, admit an equivalent description. First of all, observe that 
+for $A$ and $B$ be two types. For any 
+pair of elements $c, d  \co A \times B$, and $f, g \co A \to B$, we have  canonical maps
+\begin{align*} 
+\ext^{\times}_{c,d}  \co & \Id_{A \times B}(c, d) \to \Id_{A}(\pi_1 c, \pi_1 d) \times \Id_{B}(\pi_2 c, \pi_2 d) \, , \\
+\ext^{\to}_{f,g} \co & \Id_{A \to B}(f, g) \to (\Pi x \co A) \Id_B(fx, gx) \, ,
+\intertext{These functions can be easily generalized to $\Sigma$-types and $\Pi$-types, so as to obtain functions}
+\ext^\Sigma_{c,d} \co &  \Id_{(\Sigma x \co A)B(x)}(c, d) \to (\Sigma p \co \Id(c_1, d_1)) \,  \Id( p_{!}(c_2), d_2) \, , \\ 
+\ext^\Pi_{f,g} \co & \Id_{(\Pi x \co A)B(x)}(f, g) \to (\Pi x \co A) \Id_{B(x)}(f x, gx)  \, . \\ 
+\intertext{Furthermore, for the type universe $\U$, we have a function}
+\ext^\U_{A,B} \co & \Id_\U(A,B) \to \mathsf{Weq}(A,B) \, .
+\end{align*}
+We refer to these functions as the \emph{extension functions} for product types, function types, $\Sigma$-types,
+$\Pi$-types and $\U$, respectively.  We then have that extension functions for product types and $\Sigma$-types 
+can be shown to be equivalences within the type theory~$\mathcal{M}$, using the (provable) $\eta$-rule for $\Sigma$-types.
+The extension functions for function types and $\Pi$-types, instead,  can be shown to be equivalences within the type theory $\Hint$, using the Function Extensionality principle that is part of it. Finally, the assertion that the extension function is 
+exactly the  Univalence Axiom. Thus, within the type theory $\Hint$ we have families of equivalences
 \begin{align*}
 \Id_{A \times B}(c,d) & \simeq \Id_A(\pi_1 c \, , \pi_1 d) \times \Id_B(\pi_2 c,\pi_2 d) \\
 \Id_{A \to B}(f, g) & \simeq (\Pi x \co A) \Id_B (fx, gx)  \, , \\
 \Id_{(\Sigma x \co A)B(x)}(c, d) &  \simeq    (\Sigma p \co \Id_A( \pi_1 c, \pi_1 d )) \Id_{B(\pi_2 c)}( p_{!} \pi_2 c, 
 \pi_2 d) \, ,   \\
- \Id_{(\Pi x \co A)B(x)}(f, g)  & \simeq   (\Pi x \co A) \Id_{B(x)}(f x, gx)  \\ 
+ \Id_{(\Pi x \co A)B(x)}(f, g)  & \simeq   (\Pi x \co A) \Id_{B(x)}(f x, gx)   \, ,\\ 
+ \intertext{and, in the extension of $\Hint$ with the Univalence Axiom, also equivalences}  
 \Id_\U(A, B) & \simeq   \mathsf{Weq}(A, B)   \, . 
  \end{align*}
 In the following, we shall always omit  superscripts and subscripts when manipulating these functions,
@@ -721,7 +722,7 @@ some insight into our development, we discuss informally some aspects of the rel
  \[
   h \circ (g \circ f) = (h \circ g) \circ f \, , \quad 1_B \circ f =  f \, , \quad  f \circ 1_A = f \, .
   \] 
-  Because of the strict associativity, we will sometimes write simply $gf$ instead of $g \circ f$. 
+  Because of the strict associativity, we omit bracketing of multiple composites and sometimes write simply $gf$ instead of $g \circ f$. 
 
 The presence of identity types in our type theories, however, equips this category with additional structure. In particular,
 each  type $A$ has the structure of a weak $\infty$-groupoid having  elements of $A$ as objects, paths
@@ -735,12 +736,12 @@ various composites as the \emph{groupoid laws}.
 The category of types and functions can then be considered as enriched in $\infty$-groupoids,
 (and hence as an $(\infty, 1)$-category),  since for each pair of types $A$ and $B$, the type of morphisms $A \to B$ has, like any other type, the structure of an $\infty$-groupoid. Explicitly, this $(\infty, 1)$-category has types as objects,
 functions as 1-morphisms, paths $p \co \Id_{A \to B}(f, g)$ as 2-morphisms, and higher paths as $n$-morphisms. We will not need all the structure of this higher-dimensional category, but only some low-dimensional layers of it,
-which we assumed defined.  For example, given functions $f \co A \to B$, $g_1, g_2 \co B \to C$ and a path $p \co \Id_{B \to C}(g_1, g_2)$, it is clear that it is possible to define a path~$p \circ f \co \Id_{A \to C} (g_1 \circ f,  g_2 \circ f)$.  For our development, it will be important that, because of the
-equivalences
+which we assumed defined.  For example, given functions $f \co A \to B$, $g_1, g_2 \co B \to C$ and a path $p \co \Id_{B \to C}(g_1, g_2)$, represented diagrammatically as 
 \[
-\ext_{A,B} \co \Id_{A \to B}(f,g) \to \Hot(f,g)
-\] 
-this $(\infty,1)$-category can be described equivalently
+\xymatrix{
+A \ar[r]^{f} & B \ar@/^1pc/[r]^{g_1} \ar@/_1pc/[r]_{g_2} \ar@{}[r]|{\Downarrow \, p}  & C \, ,}
+\]
+it is clear that it is possible to define a path~$p \circ f \co \Id_{A \to C} (g_1 \circ f,  g_2 \circ f)$. Because of the equivalences $\Id_{A \to B}(f,g) \simeq \Hot(f,g)$ recalled above, this $(\infty,1)$-category can be described equivalently
 as having  types as objects, functions as 1-morphisms, homotopies $\alpha \co \Hot(f, g)$ as 2-morphisms, and higher homotopies as $n$-morphisms. For example, given functions $f \co A \to B$, $g_1, g_2 \co B \to C$ and a homotopy $\alpha \co \Id(g_1, g_2)$, there is a homotopy $\alpha \circ f \co \Hot(g_1 \circ f, g_2 \circ f)$ which is defined so that, for every $p \co \Id_{B \to C}(g_1, g_2)$, the homotopies~$\ext_{A,C}( p \circ f )$ and  $\ext_{B,C}(p) \circ f$ are propositionally equal. 
 
 
@@ -880,7 +881,7 @@ The equations for associativity and unit laws in a category do not hold up to ju
 to a system of higher and higher homotopies, similarly to what happens in a weak $(\infty,1)$-category.  
 
 
-We have seen in Section~\ref{sec:aspe} that for types $A$ and $B$, the identity type of the function type
+We have seen in Section~\ref{sec:chait} that for types $A$ and $B$, the identity type of the function type
 $A \to B$ can be described equivalently as the type of homotopies between functions from $A$ to $B$. As
 we show next, it is possible to extend this equivalence to the identity type of the type of bipointed morphisms
 between two bipointed types. In order to do so, we  introduce the notion of a bipointed homotopy between bipointed morphisms in the next definition. 
@@ -1045,7 +1046,7 @@ H(h,\bar{h}_0,\bar{h}_1) & \defeq
  \rangle 
  \big) \, .
 \end{align*}
-We now proceed to find an equivalent, simpler description of the types $G(g, \bar{g}_0, \bar{g}_1)$ and $H(h, \bar{h}_0, \bar{h}_1)$.  Using the characterization of identity types of $\Sigma$-types in~\eqref{equ:extsigma}, the type $G(g,\bar{g}_0,\bar{g}_1)$ can be  expressed equivalently as
+We now proceed to find an equivalent, simpler description of the types $G(g, \bar{g}_0, \bar{g}_1)$ and $H(h, \bar{h}_0, \bar{h}_1)$.  Using the characterization of identity types of $\Sigma$-types in Section~\ref{sec:chait}, the type $G(g,\bar{g}_0,\bar{g}_1)$ can be  expressed equivalently as
 \[
 (\Sigma p \co  \Id( g f, 1_A)) \, 
 \Id 
@@ -1069,9 +1070,9 @@ we have that~$p^* \langle 1_{a_0}, 1_{a_1} \rangle$ is  propositionally equal to
 \langle 1_{a_0} \ct \alpha_p(a_0)  \, , \;   1_{a_1} \ct \alpha_p(a_1)  \rangle \, , 
 \]
 where we write $\alpha_p$ for the homotopy associated to the path $p$ via an instance of
-the functions in~\eqref{equ:extpi}. This pair is propositionally equal 
+the extension function for $\Pi$-types discussed in Section~\eqref{sec:chait}. This pair is propositionally equal 
 to the pair $\langle  \alpha_p(a_0), \alpha_p(a_1) \rangle$ by the groupoid laws and 
- therefore, by the characterization of identity types of product types in~\eqref{equ:exttimes},
+ therefore, by the characterization of identity types of product types, 
  the type $G(g,\bar{g}_0,\bar{g}_1)$ can be expressed as
 \[
 (\Sigma p \co \Id( g \com f, 1_A) 
@@ -1082,7 +1083,7 @@ to the pair $\langle  \alpha_p(a_0), \alpha_p(a_1) \rangle$ by the groupoid laws
 \Id( \overline{gf}_1 \, ,  \alpha_p(a_1))
 \big) \, .
 \]
-Since the functions in~\eqref{equ:extpi} is an equivalence, $G(g, \bar{g}_0, \bar{g}_1)$ is equivalent to
+Since the expansion functions for $\Pi$-types of Section~\ref{sec:chait} is an equivalence, $G(g, \bar{g}_0, \bar{g}_1)$ is equivalent to
 \begin{align*}
 (\Sigma \alpha \co \Hot( g \com f, 1_A))
 \big( \Id  ( \overline{gf}_0 \, ,  \alpha(a_0) ) 
@@ -1546,13 +1547,13 @@ But the identity $1_A \co A \to A$ is also a bipointed morphism and therefore, b
 \bar{\alpha}_k \co  \Id( \overline{(\pi_1 f)}_k \, , \;  \alpha(a_k) \cdot 1_{a_k} ) \, . 
 \end{equation*}
 for $k \in \{ 0, 1 \}$. We begin to define the required bipointed section as in~\eqref{equ:reqsec}, by defining, for~$x \co A$, 
-\begin{equation}
-\label{equ:defreqsection}
+\begin{equation*}
+% \label{equ:defreqsection}
 s(x) \defeq \alpha(x)_{!} \big( \pi_2 f  x \big) \, .
-\end{equation}
+\end{equation*}
 We now construct  paths~$\bar{s}_k \co \Id(s a_k, e_k)$, for $k \in \{ 0, 1 \}$. First of all, recall that 
 $\bar{f}_k \co \Id( f a_k, e'_k)$, where $e'_k = \pair(a_k, e_k) \co (\Sigma x \co A) E(x)$. Using the 
-characterization of identity types of $\Sigma$-types, as in~\eqref{equ:extsigma}, we obtain paths 
+characterization of identity types of $\Sigma$-types in Section~\ref{sec:chait}, we obtain paths 
 \begin{equation*}
 \label{equ:usefulpath}
 p \co  \Id( \pi_1 f  a_k \, ,\;   a_k )  \, , \quad q \co   \Id( p_{!}( \pi_2 f  a_k), e_k)   \, .
@@ -1614,7 +1615,7 @@ In particular, $\Bool$ is a homotopy-initial bipointed type.
 
 
 
-\subsection{Univalence for bipointed types}
+\subsection{Univalence for bipointed types} \label{sec:unibip}
 We conclude this section by showing that if the universe~$\U$ is assumed to be univalent, then a form of the Univalence Axiom holds also for bipointed types, in the sense made precise by the next theorem, where we
 use notation analogous to the one introduced in Section~\ref{sec:bac}. 
 
@@ -1924,7 +1925,7 @@ By path induction on $p$, the transport $p_{!} ((\lambda x) (\lambda u) \, \refl
  \ext(p)_{\sup_C(x,u)} \ct \refl(\sup_C(x,u)) \ct \big(\sup_C(x, \ext^{-1}(\ext(p) \circ u))\big)^{-1}
  \big) 
  \]
-where $\ext$ is an instance of the functions  in~\eqref{equ:extpi}. 
+where $\ext$ is an instance of the expansion functions  in Section~\ref{sec:chait}. 
 %SA: this term doesn't look right to me, are we sure of it?
 This is propositionally equal to
 \[ 
@@ -2538,10 +2539,10 @@ In particular, we have the path
 in $B(x) \to C$.
 
 To construct an algebra section $(s, \bar{s})$ of $(E, s_E)$, we define for~$x \co C$, 
-\begin{equation}
-\label{equ:defreqsection}
+\begin{equation*}
+% \label{equ:defreqsection}
 s(x) \defeq \alpha(x)_{!} \big( \pi_2 \com f (x) \big) \, ,
-\end{equation}
+\end{equation*}
 which indeed has type $E(x)$, since the transport along $\alpha(x) \co (\pi_1 \circ f)(x) \Rightarrow x$ has type $\alpha(x)_{!} : E(\pi_1 \com f (x)) \to E(x)$.
 %
 To construct a path 
