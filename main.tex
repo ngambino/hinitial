@@ -2105,9 +2105,75 @@ We then define the type of $P$-algebra equivalences between $C$ and $D$ as
 \] 
 
 
+\begin{lemma} The underlying function of a $P$-algebra equivalence is an equivalence. In particular, 
+for every $P$-algebra morphism $(f, \bar{f}) \co C \to D$ there is a function 
+\[
+\pi_f \co \isalgequiv(f, \bar{f})  \to \mathsf{isequiv}(f)  
+\]
+\end{lemma}
+
+\begin{proof} Let $(f, \bar{f}) \co C \to D$ be a $P$-algebra morphism. 
+Unfolding the definition, we have
+\begin{multline*}
+\isalgequiv(f, \bar{f}) \defeq \\	 (\Sigma g \co D \to C) 
+	 \big( \Sigma \bar{g} \co \mathsf{isalghom}(g) \, 
+ 		G(g, \bar{g})  \times
+	 (\Sigma h \co D \to C) 
+	 \big(\Sigma \bar{h} \co   \mathsf{isalghom}(h) )
+	 \,  H(h, \bar{h}) \, , 
+\end{multline*}
+where 
+$G(g, \bar{g})$ and $H(h, \bar{h})$ are the types of proofs that $(g, \bar{g})$ and $(h, \bar{h})$ are a left and right inverse for $(f, \bar{f})$ as 
+$P$-algebra morphisms, respectively. For the right inverse, this amounts to requiring that the pasting diagram
+\[
+\xymatrix@C=1.5cm{
+PC \ar[r]^{Pf} \ar[d]_{\sup_C} \ar@{}[dr]|{\Downarrow \, \bar{f}}  & PD \ar[r]^{Pg} \ar[d]^{\sup_D} 
+\ar@{}[dr]|{\Downarrow \, \bar{g}}  & PC \ar[d]^{\sup_C}  \\
+C \ar[r]_{f}   & D  \ar[r]_g & C \, .}
+\]
+is propositionally equal to the diagram for the identity $P$-algebra morphism on $C$ in~\eqref{equ:palgid}. 
+Explicitly, we have
+\begin{align*}
+G(g,\bar{g}) & 
+\defeq 
+\Id \big( ( g  f,  \overline{gf}), (1_C, \overline{1}_C) \big)  \\
+H(h,\bar{h})    & \defeq \Id \big( (   f h,  \overline{ f h}), (1_D, \overline{1}_D) \big)  \, .
+\end{align*}
+Using the characterization of paths in $\Sigma$-types, we have
+\begin{align*}
+G(g, \bar{g}) & \simeq (\Sigma p \co \Id(g f ,  1_C) ) \, 
+	\Id\big( \overline{gf}   ,\, p^*( \overline{1}_C)  \big) \, , \\
+H(h, \bar{h}) & \simeq (\Sigma q \co \Id( f h ,  1_C) ) \, 
+	\Id\big( \overline{fh}   ,\, q^*( \overline{1}_C)  \big) \,. \
+\end{align*}
+Thus, rearranging the $\Sigma$-types in the definition, we have
+\begin{multline}
+\label{equ:isalgequivequiv}
+\isalgequiv(f, \bar{f}) \simeq \\ 
+ (\Sigma g \co D \to C)  (\Sigma p \co \Id(g f ,  1_C) ) \, G'(g,p) \times
+   (\Sigma h \co D \to C)   (\Sigma q \co \Id( f h ,  1_C) )\,  H'(h,q) \, ,
+\end{multline}
+where 
+\begin{align} 
+G(g,p) & \defeq (\Sigma \bar{g} \co \mathsf{isalghom}(g)) \; \Id( \overline{gf}, p^*(\bar{1}_C)) \, , 
+\label{equ:alggp} \\
+H(h,q) & \defeq (\Sigma \bar{h} \co \mathsf{isalghom}(h)) \; \Id( \overline{fh}, q^*(\bar{1}_D)) ) \, .
+\label{equ:alghq}
+\end{align}
+The  canonical elements of~$G(g,p)$ are pairs $(\bar{g}, \bar{p})$ consisting of  a path~$\bar{g}$ making
+$g$ into a $P$-algebra morphism and a path~$\bar{p}$ making $p \co \Id(gf, 1_C)$ into a propositional
+equality between the~$P$-algebra morphisms~$(gf, \overline{gf})$ and~$(1_C, \bar{1}_C)$. It is now
+clear that we can obtain the required function $\pi_f$ by composing the equivalence in~\eqref{equ:isalgequivequiv}
+with the evident projection to $\isequiv(f)$. 
+\end{proof} 
+
+This amounts to saying that there is an essentially unique way of turning a left
+(respectively, right) inverse of $f$ as a function into a left (respectively, right) inverse of $f$
+as a $P$-algebra morphism.
+
 \begin{proposition}\label{WAlgSpace} A $P$-algebra morphism $(f, \bar{f}) \co C \to D$ is an equivalence of
 $P$-algebras if and only
-if its underlying function $f \co C \to D$ is an equivalence of types and the projection function
+if its underlying function $f \co C \to D$ is an equivalence of types. In particular, the function 
 \[
 \pi_f \co \isalgequiv(f, \bar{f})  \to \mathsf{isequiv}(f)  
 \]
@@ -2115,53 +2181,29 @@ is an equivalence.
 \end{proposition}  
 
 
+
+
 \begin{proof} Let $(f, \bar{f}) \co (C, \sup_C) \to (D, \sup_D)$ be a  $P$-algebra morphism. We will to
 show that all the homotopy fibers of the function $\pi_f$ are contractible.
-So, let us consider a canonical element of the codomain of $\pi_f$,  given by a 4-tuple 
-\[
- \langle g, h, p, q \rangle \co \mathsf{isequiv}(f) \, , 
- \]
-consisting of functions $g \co D \to C$ and $h \co D \to C$ and paths $p \co \Id(gf, 1_C)$, $q \co \Id(fh, 1_D)$,
+So, let us consider a canonical element of the codomain of $\pi_f$,  given by a 4-tuple $( g, h, p, q) \co \mathsf{isequiv}(f)$ consisting of functions $g \co D \to C$ and $h \co D \to C$ and paths $p \co \Id(gf, 1_C)$, $q \co \Id(fh, 1_D)$,
 exhibiting~$g$ and~$h$ as a right and a left inverse of $f$ (as a function, not as a $P$-algebra morphism), respectively. 
 
 The homotopy fiber of $\pi_f$ over this element can be thought of as the type consisting of all
 the data that is missing from having a left and a right inverse of $f$ as a $P$-algebra morphism. 
 In particular, we have
-\begin{equation}
-\label{equ:hfibergh}
-\hfiber(\pi_f, \langle g, h, p, q \rangle ) \simeq G(g,p) \times H(h,q) \, ,
-\end{equation}
-where~$G(g,p)$ and $H(h,q)$ are defined by letting
-\begin{align*} 
-G(g,p) & \defeq (\Sigma \bar{g} \co \mathsf{isalghom}(g)) \; \Id( \overline{gf}, p^*(\bar{1}_C)) \, , \\
-H(h,q) & \defeq (\Sigma \bar{h} \co \mathsf{isalghom}(h)) \; \Id( \overline{fh}, q^*(\bar{1}_D)) ) \, .
-\end{align*}
-The  canonical elements of~$G(g,p)$ are pairs $(\bar{g}, \bar{p})$ consisting of  a path~$\bar{g}$ making
-$g$ into a $P$-algebra morphism and a path~$\bar{p}$ making $p \co \Id(gf, 1_C)$ into a propositional
-equality between the~$P$-algebra morphisms~$(gf, \overline{gf})$ and~$(1_C, \bar{1}_C)$.  Indeed, by
-the characterization of identity types of $\Sigma$-types, we have
-\[
- \Id( (gf, \overline{gf}) \, , (1_C, \bar{1}_C)) \simeq
- (\Sigma p \co \Id(gf, 1_C) \,  \Id( \overline{gf}, p^*(\bar{1}_C)) \, .
- \]
+\begin{equation*}
+\hfiber(\pi_f, (g, h, p, q ) ) \simeq G'(g,p) \times H'(h,q) \, ,
+\end{equation*}
+where $G'(g,p)$ and $H'(h,q)$ are defined as in~\eqref{equ:alggp} and~\eqref{equ:alghq}, respectively.
+Therefore, it suffices to prove that $G'(g,p)$ and $H'(h,q)$ are  contractible.  The proof that $G'(g,p)$ and $H'(h,q)$ are 
+contractible is essentially the same, so we consider only $G'(h,p)$.
 
-By the equivalence in~\eqref{equ:hfibergh} and the fact that the binary products of contractible types
-is again contractible,  it suffices to prove that $G(g,p)$ and $H(h,q)$ are 
-contractible. This amounts to saying that there is an essentially unique way of turning a left
-(respectively, right) inverse of $f$ as a function into a left (respectively, right) inverse of $f$
-as a $P$-algebra morphism. The proof that $G(g,p)$ and $H(h,q)$ are 
-contractible is essentially the same, so we consider only $G(h,p)$.
-First of all,  recall that the path $\overline{gf} \co  \mathsf{isalghom}(gf) $ is obtained via the following pasting diagram:
+
+First of all,  recall that the path $\overline{gf} \co  \mathsf{isalghom}(gf) $ is given by 
 \[
-\xymatrix@C=1.5cm{
-PC \ar[r]^{Pf} \ar[d]_{\sup_C} \ar@{}[dr]|{\Downarrow \, \bar{f}}  & PD \ar[r]^{Pg} \ar[d]^{\sup_D} 
-\ar@{}[dr]|{\Downarrow \, \bar{g}}  & PC \ar[d]^{\sup_C}  \\
-C \ar[r]_{f}   & D  \ar[r]_g & C \, .}
+\overline{gf} \defeq (g \circ \bar{f}) \ct (\bar{g} \circ Pf ) \, ,
 \]
-Suppressing the path relative to the pseudo-functoriality of $P$, we have
-\[
-\overline{gf} \defeq (g \circ \bar{f}) \ct (\bar{g} \circ Pf ) \, .
-\]
+where we suppressed the path relative to the pseudo-functoriality of $P$ for convenience. 
 By $\Id$-elimination on $p$, the path $p^*(\overline{1}_C) \co \mathsf{isalghom}(gf)$ is propositionally equal to the composite path
 \[
 \xymatrix@C=1.7cm{
@@ -2179,7 +2221,7 @@ G(g,p)  & \simeq  (\Sigma \bar{g} \co  \mathsf{AlgHom}(g))  \;
   (p^{-1} \circ \sup_C) \ct \bar{1}_C \ct (\sup_C \circ P(p)) \big)
 \end{align*} 
 Now, since $f \co C \to D$ is an equivalence, $Pf \co PC \to PD$ is also an equivalence and hence so
-is the function mapping a path $r \co \Id_{PD \to C}(s,t)$ to the composite $r \circ Pf \co \Id_{PC \to C}( s \circ Pf, t \circ Pf)$. Thus, by  Lemma~\ref{thm:useful}, $G(g,p)$ is contractible, as required.
+is the function mapping a path $r \co \Id_{PD \to C}(s,t)$ to the composite $r \circ Pf \co \Id_{PC \to C}( s \circ Pf, t \circ Pf)$. Thus, by  Lemma~\ref{thm:useful}, $G'(g,p)$ is contractible, as required.
 \end{proof} 
 
 
