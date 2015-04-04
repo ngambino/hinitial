@@ -1,0 +1,137 @@
+
+\newpage
+
+
+
+Unfolding the definition of the type of proofs that $f$ is a $P$-algebra equivalence yields the type
+\begin{multline*}
+	 (\Sigma g \co D \to C) 
+	 \big( \Sigma \bar{g} \co \Id( \sup_C \circ Pg , g \circ \sup_D) \, 
+ 		G(g, \bar{g}) \; \times
+	 \\
+	 (\Sigma h \co D \to C) 
+	 \big(\Sigma \bar{h} \co  \Id( \sup_C \circ Ph, h \circ \sup_D) 
+	 \,  H(h, \bar{h}) \, , 
+\end{multline*}
+where $G(g, \bar{g})$ and $H(h, \bar{h})$ express that $g$ and $h$ are a left and right inverse for $f$ as 
+$P$-algebra morphisms, respectively. For the right inverse, this amounts to requiring that the pasting diagram
+
+is propositionally equal to the diagram for the identity $P$-algebra morphism on $C$ in~\eqref{equ:palgid}. 
+Explicitly, we have
+\begin{align*}
+G(g,\bar{g}) & 
+\defeq 
+\Id \big( ( g  f,  \overline{gf}), (1_C, \overline{1}_C) \big)  \\
+H(h,\bar{h})    & \defeq \Id \big( (   f h,  \overline{ f h}), (1_D, \overline{1}_D) \big)  \, .
+\end{align*}
+Using the characterization of paths in $\Sigma$-types, the type $G(g,\bar{g})$ can be equivalently expressed as
+\begin{align*}
+(\Sigma p \co \Id(g f ,  1_C) ) \, 
+	\Id\big( \overline{gf}   ,\, p^*( \overline{1}_C)  \big) \,.
+\end{align*}
+By path induction on $p$, the transport $p^*(\overline{1}_C)$ is propositionally equal to the composite path
+\[
+\xymatrix@C=1.7cm{
+\sup_C \circ P(gf) \ar[r]^{\sup_C \circ P(p)} & \sup_C \circ P(1_C) \ar[r]^{\bar{1}_C} & 1_C \circ \sup_C \ar[r]^{p^{-1} \circ \sup_C} & 
+(g f) \circ 1_C }
+\]
+This is propositionally equal to
+\[ 
+(\lambda x)
+(\lambda u)
+\big( 
+\ext(p)_{\sup_C(x,u)} \ct \big(\sup_C(x, \ext^{-1}(\ext(p) \circ u))\big)^{-1}
+\big) \, .
+\]
+Using the characterization of identity types of $\Pi$-spaces, the type $G(g,\bar{g})$ is equivalent to
+\begin{multline*} 
+(\Sigma p \co  \Id( g  f , 1{_C}))
+(\Pi x \co A) 
+(\Pi u \co B(x) \to  C) \\
+	\Id\Big(g(\bar{f}(x,u)) \ct \bar{g}(x, f \com u),\, \ext(p)_{\sup_C(x,u)} \ct \big(\sup_C(x, \ext^{-1}(\ext(p) \circ u))\big)^{-1}\Big).
+\end{multline*}
+Since the function $\ext$ is an equivalence, this is equivalent to
+\[
+(\Sigma \alpha \co \Hot( g \circ f, 1{_C}))
+(\Pi x \co A) 
+(\Pi u \co B(x) \to C) 
+	\Id\big( \ext( \overline{gf}) , \,  (\alpha^{-1} \circ \sup_C ) \ct ( \sup_{C} \circ P(\alpha) ) \big) \, .
+\]
+Analogously, the type $H(h,\bar{h})$ is equivalent to
+\[
+(\Sigma \beta \co \Hot( f \com h , 1_D))
+(\Pi x \co A) 
+(\Pi u \co B(x) \to D) 
+\Id \Big(f(\bar{h}(x,u)) \ct \bar{f}(x, h \com u),\, \beta(\sup_D(x,u)) \ct \big(\sup_D(x,\ext^{-1}(\beta \circ u))\big)^{-1}\Big).
+\]
+Therefore, we can express $\mathsf{isalgequiv}(f,\bar{f})$ as the type
+\[ 
+(\Sigma g \co C\to D) 
+(\Sigma \alpha \co \Hot(g \circ f, 1_C)) G'(g,\alpha) \times
+(\Sigma h \co D\to C) 
+(\Sigma \beta \co \Hot(f \circ h , 1_D)) \, 
+	  H'(h,\beta)
+	\]
+where
+\begin{multline*}
+G'(g,\alpha) \defeq 
+(\Sigma \bar{g} \co 
+(\Pi x \co A) 
+(\Pi u \co B(x) \to D) \;
+\Id(g(\sup_D(x,u)), \sup_C(x,g \circ u)) \\
+(\Pi x \co A) 
+(\Pi u \co B(x) \to C) \;
+		 \Id\Big(g(\bar{f}(x,u)) \ct \bar{g}(x, f \com u),\, \alpha(\sup_C(x,u)) \ct \big(\sup_C(x,\ext^{-1}(\alpha \circ u))\big)^{-1}\Big) 
+		\end{multline*}
+		and
+\begin{multline*}
+H'(h,\beta) \defeq 
+(\Sigma \bar{h} \co (\Pi x \co A) (\Pi u \co B(x) \to D) \; \Id(h(\sup_D(x,u)), \sup_C(x,h\circ u))) \\
+	 (\Pi x \co A) (\Pi u \co B(x) \to D) 
+	 		\Id\Big(f(\bar{h}(x,u)) \ct \bar{f}(x, h \com u),\, \beta(\sup_D(x,u)) \ct \big(\sup_D(x,\ext^{-1}(\beta \circ u))\big)^{-1}\Big).
+\end{multline*}
+Using the type-theoretic choice principle, we can express $H'(h,\beta)$ equivalently as
+\begin{multline*}
+(\Pi x \co A) 
+(\Pi u \co B(x) \to D) 
+(\Sigma \bar{h} \co \Id(h(\sup_D(x,u)), \sup_C(x,h \circ u)))  \\ 
+\Id\Big(f(\bar{h}) \ct \bar{f}(x, h \com u) ,\, \beta(\sup_D(x,u)) \ct \big(\sup_D(x,\ext^{-1}(\beta \circ u))\big)^{-1}\Big) \, .
+\end{multline*} 
+Since $f$ is an equivalence,  the type $H'(h,\beta)$ is contractible by Lemma~\ref{thm:useful}.
+Moreover, since $f$ is an equivalence between $C$ and $D$, the mapping $u  \mapsto f \com u$ is an equivalence between $B(x) \to C$ and~$B(x) \to D$. The mapping 
+$\bar{g} \mapsto (\lambda x) (\lambda u) \bar{g}(x,f \com u)$ is therefore an equivalence between the types 
+\[
+(\Pi x \co A) 
+(\Pi u \co B(x) \to  D) 
+\Id(g(\sup_D(x,u)), \sup_C(x,g \com u))
+\] and
+\[
+(\Pi x \co A) 
+(\Pi u \co B(x) \to C)
+ \Id(g(\sup_D(x,f \com u)), \sup_C(x,g \com f \com u) )\, .
+ \] 
+Thus, the type $G'(g,\alpha)$ can be expressed equivalently as
+\begin{multline*}
+(\Sigma \gamma \co 
+(\Pi x \co A)
+(\Pi u \co B(x) \to C) 
+\Id(g(\sup_D(x,f \circ u)),\, \sup_C(x,g \circ f \circ u))) \\ 
+(\Pi x \co A) 
+(\Pi u \co B(x) \to C) 
+	\Id\big(g(\bar{f}(x,u)) \ct \gamma(x,u),\, \alpha(c(x,u)) \ct \big(c(x)(\ext^{-1}(\alpha \circ u))\big)^{-1}\big)
+\end{multline*}
+Again using the type-theoretic distributivity, we see that this is equivalent to
+\begin{multline*}
+(\Pi x \co A)
+(\Pi u \co B(x) \to C)
+(\Sigma \gamma \co \Id(g(d(x,f \circ u)), c(x,g \circ f \circ u))) \\
+  \Id \big(g(\bar{f}(x,u)) \ct \gamma , \alpha(\sup_C(x,u)) \ct \big(\sup_C(x, \ext^{-1}(\alpha \circ u))\big)^{-1}\big)
+  \end{multline*} 
+Therefore, by Lemma~\ref{thm:useful}, we have that also $G'(g,\alpha)$ is contractible.  Therefore,
+\begin{align*} 
+\isalgequiv(f,\bar{f}) 
+ & \simeq (\Sigma g \co D \to C) \, \Hot( g \com f,1_C )\times 
+		(\Sigma h  \co D \to C) \, \Hot( f \com h, 1_D)  \\
+ & \simeq  \isequiv(f) \, ,
+\end{align*} 
+as required.

@@ -974,14 +974,15 @@ To prove it, we will make use of the following straightforward lemma.
 
 \begin{lemma} \hfill \label{thm:useful}
 \begin{enumerate}[(i)]
-\item Let $A$ be a type and $a_1, a_2, b \co A$. For paths $q \co \Id(b,a_1)$, $s \co \Id(b,a_2)$, the type 
+\item Let $A$ be a type and $a, a_1, a_2 \co A$. For paths $p_1 \co \Id(a,a_1)$, $p_2 \co \Id(a,a_2)$, the type 
 \[
-(\Sigma p \co \Id_A(a_1,a_2)) \, \Id(q \ct p,s)
+(\Sigma q \co \Id_A(a_1,a_2)) \, \Id( q \ct p_1 \, , p_2)
 \] 
 is contractible. 
-\item For any equivalence $f \co A \to B$, and paths $q \co \Id(f(a_2),b)$, $s \co \Id(f(a_1),b)$, the type 
+\item Let $f \co A \to B$ be an equivalence, $a_1, a_2 \co A$ and $b \co B$. For paths $p_1 \co \Id(b, f a_1)$, 
+$p_2 \co \Id(b, fa_2)$, the type 
 \[
-(\Sigma p \co \Id_A(a_1,a_2)) \, \Id(f(p) \ct q,s)
+(\Sigma q \co \Id_A(a_1,a_2)) \, \Id(f(q) \ct p_1 , p_2)
 \] 
 is contractible.
 \end{enumerate}
@@ -1002,7 +1003,7 @@ of  the type of proofs that $f$ is a bipointed equivalence yields the type
 \begin{multline*} 
 (\Sigma g \co B \to  A)
 (\Sigma \bar{g}_0 \co \Id( g b_0, a_0)) 
-(\Sigma  \bar{g}_1 \co \Id( g b_1, a_1) \, 
+(\Sigma  \bar{g}_1 \co \Id( g b_1, a_1)) \, 
  G(g,\bar{g}_0,\bar{g}_1) \, \times \\
  \textstyle
  (\Sigma h \co B \to A)
@@ -1075,7 +1076,7 @@ to the pair $\langle  \alpha_p(a_0), \alpha_p(a_1) \rangle$ by the groupoid laws
  therefore, by the characterization of identity types of product types, 
  the type $G(g,\bar{g}_0,\bar{g}_1)$ can be expressed as
 \[
-(\Sigma p \co \Id( g \com f, 1_A) 
+(\Sigma p \co \Id( g \com f, 1_A))
 \big(
 \Id(  
 \overline{gf}_0 \, ,  \alpha_p(a_0)) 
@@ -1805,11 +1806,12 @@ g \circ f \circ \sup_C\, .}
 \]
 Note that we used the pre-composition and post-compositions of functions with paths. 
 For a $P$-algebra $C$,  the identity function $1_C \co C \to C$ has an evident structure of $P$-algebra morphism:
-\[
+\begin{equation}
+\label{equ:palgid}
 \xymatrix@C=1.5cm{
 PC \ar[r]^{P(1_C)}  \ar[d]_{\sup_C} \ar@{}[dr]|{\Downarrow \, \overline{1}_C} & PC \ar[d]^{\sup_C} \\
 C \ar[r]_{1_C} & C}
-\]
+\end{equation}
 As in the case of bipointed types, the equations for a category do not hold up to judgemental equality, but only so up to a system of higher and higher identities. 
 
 \medskip
@@ -2093,149 +2095,82 @@ We then define the type of $P$-algebra equivalences between $C$ and $D$ as
 
 \begin{proposition}\label{WAlgSpace} A $P$-algebra morphism $(f, \bar{f}) \co C \to D$ is an equivalence of
 $P$-algebras if and only
-if its underlying function $f \co C \to D$ is an equivalence of types. Furthermore, the projection
+if its underlying function $f \co C \to D$ is an equivalence of types and the projection function
 \[
-\pi \co \isalgequiv(f, \bar{f})  \to \mathsf{isequiv}(f)  
+\pi_f \co \isalgequiv(f, \bar{f})  \to \mathsf{isequiv}(f)  
 \]
 is an equivalence. 
 \end{proposition}  
 
 
-\begin{proof} Let $(f, \bar{f}) \co (C, \sup_C) \to (D, \sup_D)$ be a  $P$-algebra morphism. Expanding the type of proofs that $f$ is a 
-$P$-algebra equivalence yields the type
-\begin{multline*}
-	 (\Sigma \ell \co D \to C) 
-	 \big( \Sigma \bar{\ell} \co  (\Pi x \co A)( \Pi u \co B(x) \to C) \; 
-	 \Id( \ell (\sup_C(x,u)),  \sup_D(x, \ell \circ u)) \big) \; 
- 		P(\ell, \bar{\ell}) \; \times
-	 \\
-	 (\Sigma r \co D \to C) 
-	 \big(\Sigma \bar{r} \co (\Pi x \co A) (\Pi u \co B(x) \to C) \Id( r (\sup_C(x,u)), \sup_D(x, r \circ u))\big)
-	 \;  Q(r, \bar{r}) \, , 
-\end{multline*}
-where
-\begin{align*}
-P(\ell,\bar{\ell}) & 
-\defeq 
-\Id \Big( \big( \ell \com f, (\lambda x)(\lambda u) (\ell(\bar{f}(x,u)) \ct \bar{\ell}(x, f \com u))\big), \big( 1_C, (\lambda x)(\lambda u) \,  \refl(\sup_C(x,u))\big) \Big)  \, , \\
-Q(r,\bar{r})    & \defeq \Id \Big( \big( f \com r, (\lambda x)(\lambda u) (f(\bar{r}(x,u)) \ct \bar{f}(x, r \com u))\big) \, , \big( 1_D, (\lambda x)(\lambda u) \, \refl(\sup_D(x,u)) \big) \Big) \, .
-\end{align*}
-Using the characterization of paths in $\Sigma$-types, the type $P(\ell,\bar{\ell})$ can be equivalently expressed as
-\begin{align*}
-(\Sigma p \co \ell \com f \Rightarrow 1{_C}) 
-	\Id\big((\lambda x) (\lambda u) (\ell(\bar{f}(x,u)) \ct \bar{\ell}(x, f \com u)) ,\, p_{!}((\lambda x) (\lambda u) \, \refl(\sup_C(x,u)) \big) \,.
-\end{align*}
-By path induction on $p$, the transport $p_{!} ((\lambda x) (\lambda u) \, \refl(\sup_C(x,u)))$ is equal to the function
+\begin{proof} Let $(f, \bar{f}) \co (C, \sup_C) \to (D, \sup_D)$ be a  $P$-algebra morphism. We will to
+show that all the homotopy fibers of the function $\pi_f$ are contractible.
+So, let us consider a canonical element of the codomain of $\pi_f$,  given by a 4-tuple 
 \[
- (\lambda x) 
- (\lambda u) 
- \big( 
- \ext(p)_{\sup_C(x,u)} \ct \refl(\sup_C(x,u)) \ct \big(\sup_C(x, \ext^{-1}(\ext(p) \circ u))\big)^{-1}
- \big) 
+ \langle g, h, p, q \rangle \co \mathsf{isequiv}(f) \, , 
  \]
-where $\ext$ is an instance of the expansion functions  in Section~\ref{sec:chait}. 
-%SA: this term doesn't look right to me, are we sure of it?
-This is propositionally equal to
-\[ 
-(\lambda x)
-(\lambda u)
-\big( 
-\ext(p)_{\sup_C(x,u)} \ct \big(\sup_C(x, \ext^{-1}(\ext(p) \circ u))\big)^{-1}
-\big) \, .
-\]
-Using the characterization of identity types of $\Pi$-spaces, the type $P(\ell,\bar{\ell})$ is equivalent to
-\begin{multline*} 
-(\Sigma p \co  \Id( \ell \com f , 1{_C}))
-(\Pi x \co A) 
-(\Pi u \co B(x) \to  C) \\
-	\Id\Big(\ell(\bar{f}(x,u)) \ct \bar{\ell}(x, f \com u),\, \ext(p)_{\sup_C(x,u)} \ct \big(\sup_C(x, \ext^{-1}(\ext(p) \circ u))\big)^{-1}\Big).
-\end{multline*}
-Since the function $\ext$ is an equivalence, this is equivalent to
-\begin{multline*}
-(\Sigma \alpha \co \Hot( \ell \circ f, 1{_C}))
-(\Pi x \co A) 
-(\Pi u \co B(x) \to C) \\
-	\Id\Big(\ell(\bar{f}(x,u)) \ct \bar{\ell}(x, f \com u),\, \alpha(\sup_C(x,u)) \ct \big(\sup_C(x, \ext^{-1}(\alpha \circ u))\big)^{-1}\Big).
-\end{multline*}
-Analogously, the type $Q(r,\bar{r})$ is equivalent to
-\begin{multline*}
-(\Sigma \beta \co \Hot( f \com r , 1_D))
-(\Pi x \co A) 
-(\Pi u \co B(x) \to D) \\ 
-\Id \Big(f(\bar{r}(x,u)) \ct \bar{f}(x, r \com u),\, \beta(\sup_D(x,u)) \ct \big(\sup_D(x,\ext^{-1}(\beta \circ u))\big)^{-1}\Big).
-\end{multline*}
-Therefore, we can express $\mathsf{isalgequiv}(f,\bar{f})$ as the type
-\[ 
-(\Sigma \ell \co C\to D) 
-(\Sigma \alpha \co \Hot(\ell \circ f, 1_C))
-(\Sigma r \co D\to C) 
-(\Sigma \beta \co \Hot(f \circ r , 1_D)) \, 
-	R(\ell,\alpha) \times S(r,\beta)
-	\]
-where
-\begin{multline*}
-R(\ell,\alpha) \defeq 
-(\Sigma \bar{\ell} \co 
-(\Pi x \co A) 
-(\Pi u \co B(x) \to D) \;
-\Id(\ell(\sup_D(x,u)), \sup_C(x,\ell \circ u)) \\
-(\Pi x \co A) 
-(\Pi u \co B(x) \to C) \;
-		 \Id\Big(\ell(\bar{f}(x,u)) \ct \bar{\ell}(x, f \com u),\, \alpha(\sup_C(x,u)) \ct \big(\sup_C(x,\ext^{-1}(\alpha \circ u))\big)^{-1}\Big) 
-		\end{multline*}
-		and
-\begin{multline*}
-S(r,\beta) \defeq 
-(\Sigma \bar{r} \co (\Pi x \co A) (\Pi u \co B(x) \to D) \; \Id(r(\sup_D(x,u)), \sup_C(x,r\circ u))) \\
-	 (\Pi x \co A) (\Pi u \co B(x) \to D) 
-	 		\Id\Big(f(\bar{r}(x,u)) \ct \bar{f}(x, r \com u),\, \beta(\sup_D(x,u)) \ct \big(\sup_D(x,\ext^{-1}(\beta \circ u))\big)^{-1}\Big).
-\end{multline*}
-Using the type-theoretic choice principle, we can express $S(r,\beta)$ equivalently as
-\begin{multline*}
-(\Pi x \co A) 
-(\Pi u \co B(x) \to D) 
-(\Sigma \bar{r} \co \Id(r(\sup_D(x,u)), \sup_C(x,r \circ u)))  \\ 
-\Id\Big(f(\bar{r}) \ct \bar{f}(x, r \com u) ,\, \beta(\sup_D(x,u)) \ct \big(\sup_D(x,\ext^{-1}(\beta \circ u))\big)^{-1}\Big) \, .
-\end{multline*} 
-Since $f$ is an equivalence,  the type $S(r,\beta)$ is contractible by Lemma~\ref{thm:useful}.
-Moreover, since $f$ is an equivalence between $C$ and $D$, the mapping $u  \mapsto f \com u$ is an equivalence between $B(x) \to C$ and~$B(x) \to D$. The mapping 
-$\bar{\ell} \mapsto (\lambda x) (\lambda u) \bar{\ell}(x,f \com u)$ is therefore an equivalence between the types 
-\[
-(\Pi x \co A) 
-(\Pi u \co B(x) \to  D) 
-\Id(\ell(\sup_D(x,u)), \sup_C(x,\ell \com u))
-\] and
-\[
-(\Pi x \co A) 
-(\Pi u \co B(x) \to C)
- \Id(\ell(\sup_D(x,f \com u)), \sup_C(x,\ell \com f \com u) )\, .
- \] 
-Thus, the type $R(\ell,\alpha)$ can be expressed equivalently as
-\begin{multline*}
-(\Sigma \gamma \co 
-(\Pi x \co A)
-(\Pi u \co B(x) \to C) 
-\Id(\ell(\sup_D(x,f \circ u)),\, \sup_C(x,\ell \circ f \circ u))) \\ 
-(\Pi x \co A) 
-(\Pi u \co B(x) \to C) 
-	\Id\big(\ell(\bar{f}(x,u)) \ct \gamma(x,u),\, \alpha(c(x,u)) \ct \big(c(x)(\ext^{-1}(\alpha \circ u))\big)^{-1}\big)
-\end{multline*}
-Again using the type-theoretic distributivity, we see that this is equivalent to
-\begin{multline*}
-(\Pi x \co A)
-(\Pi u \co B(x) \to C)
-(\Sigma \gamma \co \Id(\ell(d(x,f \circ u)), c(x,\ell \circ f \circ u))) \\
-  \Id \big(\ell(\bar{f}(x,u)) \ct \gamma , \alpha(\sup_C(x,u)) \ct \big(\sup_C(x, \ext^{-1}(\alpha \circ u))\big)^{-1}\big)
-  \end{multline*} 
-Therefore, by Lemma~\ref{thm:useful}, we have that also $R(\ell,\alpha)$ is contractible.  Therefore,
+consisting of functions $g \co D \to C$ and $h \co D \to C$ and paths $p \co \Id(gf, 1_C)$, $q \co \Id(fh, 1_D)$,
+exhibiting~$g$ and~$h$ as a right and a left inverse of $f$ (as a function, not as a $P$-algebra morphism), respectively. 
+
+The homotopy fiber of $\pi_f$ over this element can be thought of as the type consisting of all
+the data that is missing from having a left and a right inverse of $f$ as a $P$-algebra morphism. 
+In particular, we have
+\begin{equation}
+\label{equ:hfibergh}
+\hfiber(\pi_f, \langle g, h, p, q \rangle ) \simeq G(g,p) \times H(h,q) \, ,
+\end{equation}
+where~$G(g,p)$ and $H(h,q)$ are defined by letting
 \begin{align*} 
-\isalgequiv(f,\bar{f}) 
- & \simeq (\Sigma \ell \co D \to C) \, \Hot( \ell \com f,1_C )\times 
-		(\Sigma r  \co D \to C) \, \Hot( f \com r, 1_D)  \\
- & \simeq  \isequiv(f) \, ,
+G(g,p) & \defeq (\Sigma \bar{g} \co \mathsf{isalghom}(g)) \; \Id( \overline{gf}, p^*(\bar{1}_C)) \, , \\
+H(h,q) & \defeq (\Sigma \bar{h} \co \mathsf{isalghom}(h)) \; \Id( \overline{fh}, q^*(\bar{1}_D)) ) \, .
+\end{align*}
+The  canonical elements of~$G(g,p)$ are pairs $(\bar{g}, \bar{p})$ consisting of  a path~$\bar{g}$ making
+$g$ into a $P$-algebra morphism and a path~$\bar{p}$ making $p \co \Id(gf, 1_C)$ into a propositional
+equality between the~$P$-algebra morphisms~$(gf, \overline{gf})$ and~$(1_C, \bar{1}_C)$.  Indeed, by
+the characterization of identity types of $\Sigma$-types, we have
+\[
+ \Id( (gf, \overline{gf}) \, , (1_C, \bar{1}_C)) \simeq
+ (\Sigma p \co \Id(gf, 1_C) \,  \Id( \overline{gf}, p^*(\bar{1}_C)) \, .
+ \]
+
+By the equivalence in~\eqref{equ:hfibergh} and the fact that the binary products of contractible types
+is again contractible,  it suffices to prove that $G(g,p)$ and $H(h,q)$ are 
+contractible. This amounts to saying that there is an essentially unique way of turning a left
+(respectively, right) inverse of $f$ as a function into a left (respectively, right) inverse of $f$
+as a $P$-algebra morphism. The proof that $G(g,p)$ and $H(h,q)$ are 
+contractible is essentially the same, so we consider only $G(h,p)$.
+First of all,  recall that the path $\overline{gf} \co  \mathsf{isalghom}(gf) $ is obtained via the following pasting diagram:
+\[
+\xymatrix@C=1.5cm{
+PC \ar[r]^{Pf} \ar[d]_{\sup_C} \ar@{}[dr]|{\Downarrow \, \bar{f}}  & PD \ar[r]^{Pg} \ar[d]^{\sup_D} 
+\ar@{}[dr]|{\Downarrow \, \bar{g}}  & PC \ar[d]^{\sup_C}  \\
+C \ar[r]_{f}   & D  \ar[r]_g & C \, .}
+\]
+Suppressing the path relative to the pseudo-functoriality of $P$, we have
+\[
+\overline{gf} \defeq (g \circ \bar{f}) \ct (\bar{g} \circ Pf ) \, .
+\]
+By $\Id$-elimination on $p$, the path $p^*(\overline{1}_C) \co \mathsf{isalghom}(gf)$ is propositionally equal to the composite path
+\[
+\xymatrix@C=1.7cm{
+\sup_C \circ P(gf) \ar[r]^{\sup_C \circ P(p)} & \sup_C \circ P(1_C) \ar[r]^{\bar{1}_C} & 1_C \circ \sup_C \ar[r]^{p^{-1} \circ \sup_C} & 
+(g f) \circ 1_C }
+\]
+Hence, we have 
+\begin{align*} 
+G(g,p)  & \simeq  (\Sigma \bar{g} \co  \mathsf{AlgHom}(g))  \; 
+\Id \big( (g \circ \bar{f}) \ct (\bar{g} \circ Pf ) \, , 
+  (p^{-1} \circ \sup_C) \ct \bar{1}_C \ct (\sup_C \circ P(p)) \big) \\
+& \simeq 
+(\Sigma \bar{g} \co  \mathsf{AlgHom}(g))  \; 
+\Id \big( \bar{g} \circ Pf  \, , (g \circ \bar{f})^{-1} \ct 
+  (p^{-1} \circ \sup_C) \ct \bar{1}_C \ct (\sup_C \circ P(p)) \big)
 \end{align*} 
-as required.
-\end{proof}
+Now, since $f \co C \to D$ is an equivalence, $Pf \co PC \to PD$ is also an equivalence and hence so
+is the function mapping a path $r \co \Id_{PD \to C}(s,t)$ to the composite $r \circ Pf \co \Id_{PC \to C}( s \circ Pf, t \circ Pf)$. Thus, by  Lemma~\ref{thm:useful}, $G(g,p)$ is contractible, as required.
+\end{proof} 
+
+
 
 
 \begin{corollary} For every $P$-algebra morphism $(f, \bar{f})$, the type $\isalgequiv(f, \bar{f})$ is
