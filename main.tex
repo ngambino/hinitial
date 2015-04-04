@@ -945,6 +945,124 @@ as required.
 
 
 
+\subsection{Fibered bipointed types and bipointed sections} Recall that for a dependent type
+\[
+ x \co A \vdash E(x) \co \type
+\]
+we referred to an element $f \co (\Pi x \co A) E(x)$ as a \emph{section} of the dependent type,
+in analogy with the situation in homotopy-theoretic models, where the dependent type is modelled
+as a fibration and the type $(\Pi x \co A)E(x)$ is interpreted as the space of sections (in the usual
+category-theoretic sense) of the fibration. It will be convenient to extend these ideas to our 
+context by introducing the following definition. 
+
+
+\begin{definition} \label{def:fibbipointed}
+Let $A = (A, a_0, a_1)$ be a bipointed type. A \emph{fibered bipointed type over $A$}
+\[
+(E, e_0, e_1)
+\]  
+is a dependent type $x \co A \vdash E(x) \co \type$ together with elements $e_0 \co E(a_0)$ and $e_1 \co E(a_1)$.
+We say that  such a fibered bipointed type  is \emph{small} if, for
+$x \co A$, we have $E(x) \co \U$.  
+\end{definition}
+
+The type of  small fibered bipointed types over a bipointed type $A$ is then defined by letting
+\[
+\FibBip(A) \defeq (\Sigma E \co A \to \U) \big( E(a_0) \times E(a_1) \big) \, .
+ \]
+ Note that this type is not small. Given a fibered bipointed type $E =(E, e_0, e_1)$ over $A = (A, a_0, a_1)$, its total type is defined by letting
+\[
+E'  \defeq (\Sigma x \co A) E(x) \, .
+\] 
+Observe that $E'$ is a bipointed type by considering $e'_k \defeq \pair(a_k, e_k)$, 
+for $k \in \{ 0, 1 \}$. In this way, the first projection $\pi_1 \co E' \to A$ becomes a bipointed morphism:
+\[
+\xymatrix@C=2cm{
+1  \ar[r]^-{e'_0} \ar@{=}[d] \ar@{}[dr]|{\overline{(\pi_1)}_0} & E' \ar[d]^{\pi_1} & 1 \ar[l]_-{e'_1} \ar@{=}[d]
+\ar@{}[dl]|{\overline{(\pi_1)}_1}   \\ 
+ 1 \ar[r]_{a_0} & A  &  \ar[l]^{a_1} }
+ \]
+
+
+
+
+\begin{definition} \label{def:fibsection} Let $E = (E, e_0, e_1)$ be a fibered bipointed type over
+$A = (A, a_0, a_1)$.  A \emph{bipointed section} of $E$, 
+\[
+(f, \bar{f}_0, \bar{f}_1) \co A \to E \, ,
+\]
+is a function $f \co (\Pi x \co A) E(x)$ together with paths~$\bar{f}_0 \co \Id_{E(a_0)}(f a_0, e_0)$ 
+and $\bar{f}_1 \co  \Id_{E(a_1)}( f a_1 , e_1)$. 
+\end{definition} 
+
+
+The type of bipointed sections of $E = (E, e_0, e_1)$ is then defined to be
+\[
+\BipSec(A,E) \defeq (\Sigma f \co (\Pi x \co A)E(x) ) \; \big(
+  \Id_{E(a_0)}(f a_0,  e_0)  \times \Id_{E(a_1)}( fa_1, e_1)  \big) \, .
+\]
+Given a bipointed section $f \co A \to E$, we can define a bipointed morphism~$f'  \co A \to E'$, where $E'$ is the
+total bipointed type associated to $E$. Its underlying function is given by 
+letting,  for~$x \co A$, 
+\[
+f'(x) \defeq \pair(x, s(x)) \, .
+\] 
+With this definition, it is 
+immediate to get the path~$\bar{f'}_k \co \Id( f' a_k ,  e'_k)$, for $k \in \{ 0, 1\}$.
+The morphism $f' \co A \to E'$ provides a pointwise right inverse for~$\pi_1 \co E' \to A$,
+ since, for~$x \co A$, we have judgemental equalities
+\[
+ (\pi_1 \circ f')(x) \deq \pi_1 (f'(x)) \deq \pi_1 (\pair(x, f x)) \deq x \, .
+\]
+ We represent this situation with the diagram
+\[
+\xymatrix{
+E' \ar[d]_{\pi_1} \\
+A . \ar@/_1.2pc/[u]_{f'} }
+\]
+We characterize the identity type between two bipointed sections, using
+the notion of a bipointed homotopy. This is in complete analogy with the situation for bipointed
+morphisms discussed in Lemma~\ref{BoolHomSpace}. 
+
+
+\begin{definition} \label{def:2cellsection} Let $E$ be a fibered bipointed type over $A$. If $f = (f, \bar{f}_0,\bar{f}_1)$ and $g = (g, \bar{g}_0, \bar{g}_1)$ are bipointed sections of $E$, a \emph{bipointed homotopy} 
+\[
+(\alpha, \bar{\alpha}_0, \bar{\alpha}_1) \co (f, \bar{f}_0, \bar{f}_1)  \rightarrow (g, \bar{g}_0, \bar{g}_1)
+\]
+is a homotopy~$\alpha \co \Hot(f, g)$ together with paths $\bar{\alpha}_0 \co \Id(  \bar{f}_0 ,  \bar{g}_0 \ct \alpha(a_0)  )$ and $\bar{\alpha}_1 \co \Id(
+\bar{f}_1 , \bar{g}_1 \ct  \alpha(a_1))$.
+\end{definition} 
+
+
+
+The type of bipointed homotopies between bipointed sections $f$ and $g$ as above is then defined by letting:
+\[
+\BipHot \big( (f, \bar{f}_0, \bar{f}_1), (g, \bar{g}_0, \bar{g}_1) \big) \defeq
+(\Sigma \alpha \co \Hot( f, g)) 
+\Id\big( \bar{f}_0 ,  \alpha(a_0)  \ct \bar{g}_0 \big) \times 
+  \Id \big( \bar{f}_1,  \alpha(a_1) \ct  \bar{g}_1 \big) 
+ \, .
+\]
+
+
+\begin{lemma} \label{thm:biphot}
+Let $E = (E, e_0, e_1)$ be a fibered bipointed type over a bipointed type $A = (A, a_0, a_1)$. 
+For every pair of bipointed sections $f = (f, \bar{f}_0, \bar{f}_1)$ and $g = (g, \bar{g}_0, \bar{g}_1)$, 
+the canonical function
+\[
+\ext^{\BipHot}_{f,g} \co \Id\big( (f, \bar{f}_0, \bar{f}_1), (g, \bar{g}_0, \bar{g}_1) \big) \rightarrow
+\BipHot \big( (f, \bar{f}_0, \bar{f}_1), (g, \bar{g}_0, \bar{g}_1) \big) \, .
+\]
+is an equivalence of types. 
+\end{lemma}
+
+
+\begin{proof} The claim follows by an argument analogous to that of Lemma~\ref{BoolHomSpace}.
+\end{proof}
+
+
+
+
 \subsection{Bipointed equivalences} We introduce the notion of equivalence between bipointed types and show
 in Proposition~\ref{thm:usemere}  that a bipointed morphism is an equivalence of bipointed types if and only its underlying function is an equivalence of types. This fact will be used in Section~\ref{sec:unibip} where we consider the counterpart of the Univalence Axiom for bipointed types. 
 
@@ -1128,124 +1246,6 @@ as required.
 
 \begin{corollary} For any bipointed morphism $(f, \bar{f}_0, \bar{f}_1)$, the type $\isbipequiv(f, \bar{f}_0, \bar{f}_1)$ is a mere proposition.
 \end{corollary} 
-
-
-\subsection{Fibered bipointed types and bipointed sections} Recall that for a dependent type
-\[
- x \co A \vdash E(x) \co \type
-\]
-we referred to an element $f \co (\Pi x \co A) E(x)$ as a \emph{section} of the dependent type,
-in analogy with the situation in homotopy-theoretic models, where the dependent type is modelled
-as a fibration and the type $(\Pi x \co A)E(x)$ is interpreted as the space of sections (in the usual
-category-theoretic sense) of the fibration. It will be convenient to extend these ideas to our 
-context by introducing the following definition. 
-
-
-\begin{definition} \label{def:fibbipointed}
-Let $A = (A, a_0, a_1)$ be a bipointed type. A \emph{fibered bipointed type over $A$}
-\[
-(E, e_0, e_1)
-\]  
-is a dependent type $x \co A \vdash E(x) \co \type$ together with elements $e_0 \co E(a_0)$ and $e_1 \co E(a_1)$.
-We say that  such a fibered bipointed type  is \emph{small} if, for
-$x \co A$, we have $E(x) \co \U$.  
-\end{definition}
-
-The type of  small fibered bipointed types over a bipointed type $A$ is then defined by letting
-\[
-\FibBip(A) \defeq (\Sigma E \co A \to \U) \big( E(a_0) \times E(a_1) \big) \, .
- \]
- Note that this type is not small. Given a fibered bipointed type $E =(E, e_0, e_1)$ over $A = (A, a_0, a_1)$, its total type is defined by letting
-\[
-E'  \defeq (\Sigma x \co A) E(x) \, .
-\] 
-Observe that $E'$ is a bipointed type by considering $e'_k \defeq \pair(a_k, e_k)$, 
-for $k \in \{ 0, 1 \}$. In this way, the first projection $\pi_1 \co E' \to A$ becomes a bipointed morphism:
-\[
-\xymatrix@C=2cm{
-1  \ar[r]^-{e'_0} \ar@{=}[d] \ar@{}[dr]|{\overline{(\pi_1)}_0} & E' \ar[d]^{\pi_1} & 1 \ar[l]_-{e'_1} \ar@{=}[d]
-\ar@{}[dl]|{\overline{(\pi_1)}_1}   \\ 
- 1 \ar[r]_{a_0} & A  &  \ar[l]^{a_1} }
- \]
-
-
-
-
-\begin{definition} \label{def:fibsection} Let $E = (E, e_0, e_1)$ be a fibered bipointed type over
-$A = (A, a_0, a_1)$.  A \emph{bipointed section} of $E$, 
-\[
-(f, \bar{f}_0, \bar{f}_1) \co A \to E \, ,
-\]
-is a function $f \co (\Pi x \co A) E(x)$ together with paths~$\bar{f}_0 \co \Id_{E(a_0)}(f a_0, e_0)$ 
-and $\bar{f}_1 \co  \Id_{E(a_1)}( f a_1 , e_1)$. 
-\end{definition} 
-
-
-The type of bipointed sections of $E = (E, e_0, e_1)$ is then defined to be
-\[
-\BipSec(A,E) \defeq (\Sigma f \co (\Pi x \co A)E(x) ) \; \big(
-  \Id_{E(a_0)}(f a_0,  e_0)  \times \Id_{E(a_1)}( fa_1, e_1)  \big) \, .
-\]
-Given a bipointed section $f \co A \to E$, we can define a bipointed morphism~$f'  \co A \to E'$, where $E'$ is the
-total bipointed type associated to $E$. Its underlying function is given by 
-letting,  for~$x \co A$, 
-\[
-f'(x) \defeq \pair(x, s(x)) \, .
-\] 
-With this definition, it is 
-immediate to get the path~$\bar{f'}_k \co \Id( f' a_k ,  e'_k)$, for $k \in \{ 0, 1\}$.
-The morphism $f' \co A \to E'$ provides a pointwise right inverse for~$\pi_1 \co E' \to A$,
- since, for~$x \co A$, we have judgemental equalities
-\[
- (\pi_1 \circ f')(x) \deq \pi_1 (f'(x)) \deq \pi_1 (\pair(x, f x)) \deq x \, .
-\]
- We represent this situation with the diagram
-\[
-\xymatrix{
-E' \ar[d]_{\pi_1} \\
-A . \ar@/_1.2pc/[u]_{f'} }
-\]
-We conclude this section by characterizing the identity type between two bipointed sections, using
-the notion of a bipointed homotopy. This is in complete analogy with the situation for bipointed
-morphisms discussed in Lemma~\ref{BoolHomSpace}. 
-
-
-\begin{definition} \label{def:2cellsection} Let $E$ be a fibered bipointed type over $A$. If $f = (f, \bar{f}_0,\bar{f}_1)$ and $g = (g, \bar{g}_0, \bar{g}_1)$ are bipointed sections of $E$, a \emph{bipointed homotopy} 
-\[
-(\alpha, \bar{\alpha}_0, \bar{\alpha}_1) \co (f, \bar{f}_0, \bar{f}_1)  \rightarrow (g, \bar{g}_0, \bar{g}_1)
-\]
-is a homotopy~$\alpha \co \Hot(f, g)$ together with paths $\bar{\alpha}_0 \co \Id(  \bar{f}_0 ,  \bar{g}_0 \ct \alpha(a_0)  )$ and $\bar{\alpha}_1 \co \Id(
-\bar{f}_1 , \bar{g}_1 \ct  \alpha(a_1))$.
-\end{definition} 
-
-
-
-The type of bipointed homotopies between bipointed sections $f$ and $g$ as above is then defined by letting:
-\[
-\BipHot \big( (f, \bar{f}_0, \bar{f}_1), (g, \bar{g}_0, \bar{g}_1) \big) \defeq
-(\Sigma \alpha \co \Hot( f, g)) 
-\Id\big( \bar{f}_0 ,  \alpha(a_0)  \ct \bar{g}_0 \big) \times 
-  \Id \big( \bar{f}_1,  \alpha(a_1) \ct  \bar{g}_1 \big) 
- \, .
-\]
-
-
-\begin{lemma} \label{thm:biphot}
-Let $E = (E, e_0, e_1)$ be a fibered bipointed type over a bipointed type $A = (A, a_0, a_1)$. 
-For every pair of bipointed sections $f = (f, \bar{f}_0, \bar{f}_1)$ and $g = (g, \bar{g}_0, \bar{g}_1)$, 
-the canonical function
-\[
-\ext^{\BipHot}_{f,g} \co \Id\big( (f, \bar{f}_0, \bar{f}_1), (g, \bar{g}_0, \bar{g}_1) \big) \rightarrow
-\BipHot \big( (f, \bar{f}_0, \bar{f}_1), (g, \bar{g}_0, \bar{g}_1) \big) \, .
-\]
-is an equivalence of types. 
-\end{lemma}
-
-
-\begin{proof} The claim follows by an argument analogous to that of Lemma~\ref{BoolHomSpace}.
-\end{proof}
-
-
 
 
 
