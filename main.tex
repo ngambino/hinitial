@@ -623,6 +623,26 @@ The notion of contractibility can be used to articulate the world of types  into
 homotopical complexity. We will need to recall only the notion of a type of h-level 1, or 
 mere proposition.
 
+To prove it, we will make use of the following straightforward lemma. 
+
+\begin{lemma} \hfill \label{thm:useful}
+\begin{enumerate}[(i)]
+\item Let $A$ be a type and $a, a_1, a_2 \co A$. For paths $p_1 \co \Id(a,a_1)$, $p_2 \co \Id(a,a_2)$, the type 
+\[
+(\Sigma q \co \Id_A(a_1,a_2)) \, \Id( q \ct p_1 \, , p_2)
+\] 
+is contractible. 
+\item Let $f \co A \to B$ be an equivalence, $a_1, a_2 \co A$ and $b \co B$. For paths $p_1 \co \Id(b, f a_1)$, 
+$p_2 \co \Id(b, fa_2)$, the type 
+\[
+(\Sigma q \co \Id_A(a_1,a_2)) \, \Id(f(q) \ct p_1 , p_2)
+\] 
+is contractible.
+\end{enumerate}
+\end{lemma}
+
+
+
 \begin{definition} A type $A$ is said to be a \emph{mere proposition} if the type
 \[
 \isprop(A) \defeq (\Pi x \co A)(\Pi  y \co A) \iscontr( \Id(x,y)) 
@@ -1085,54 +1105,32 @@ and type of bipointed equivalences between $A$ and $B$ is defined by letting
 \defeq    
 (\Sigma f \co \BipHom(A,B)) \, \isbipequiv(f)  \, . 
 \] 
-Clearly, the identity morphism on a bipointed type is a bipointed equivalence. In
-Proposition~\ref{thm:usemere} we will give an alternative characterisation of bipointed 
-equivalences, which will be used in the proof of Theorem~\ref{thm:bipunivalence} and Corollary~\ref{BoolHInitIso}.
-To prove it, we will make use of the following straightforward lemma. 
-
-\begin{lemma} \hfill \label{thm:useful}
-\begin{enumerate}[(i)]
-\item Let $A$ be a type and $a, a_1, a_2 \co A$. For paths $p_1 \co \Id(a,a_1)$, $p_2 \co \Id(a,a_2)$, the type 
-\[
-(\Sigma q \co \Id_A(a_1,a_2)) \, \Id( q \ct p_1 \, , p_2)
-\] 
-is contractible. 
-\item Let $f \co A \to B$ be an equivalence, $a_1, a_2 \co A$ and $b \co B$. For paths $p_1 \co \Id(b, f a_1)$, 
-$p_2 \co \Id(b, fa_2)$, the type 
-\[
-(\Sigma q \co \Id_A(a_1,a_2)) \, \Id(f(q) \ct p_1 , p_2)
-\] 
-is contractible.
-\end{enumerate}
-\end{lemma}
 
 
-\begin{proposition}  \label{thm:usemere}  A bipointed morphism $(f, \bar{f}_0, \bar{f}_1) \co A \to B$ is a bipointed equivalence if and only
-if its underlying function $f \co A \to B$ is an equivalence. In fact,  the evident projection function
+\begin{lemma} The underlying function of a bipointed equivalence is an equivalence. In particular,
+for every bipointed morphism $(f, \bar{f}_0, \bar{f}_1) \co A \to B$  there is a  function 
 \[
- \isbipequiv(f, \bar{f}_0, \bar{f}_1)  \to \isequiv(f) \, .
+\pi_f \co \isbipequiv(f) \to \isequiv(f) \, .
 \]
-is an equivalence of types. 
-\end{proposition}  
+\end{lemma} 
 
-\begin{proof}
-Let  $(f, \bar{f}_0, \bar{f}_1) \co A \to B$ be a bipointed morphism between them. Unfolding the definition
-of  the type of proofs that $f$ is a bipointed equivalence yields the type
-\begin{multline*} 
+\begin{proof} Let $(f, \bar{f}_0, \bar{f}_1) \co A \to B$ be a bipointed morphism. Unfolding  the definition
+of  $\isbipequiv(f)$ yields the type
+\begin{multline}
+\label{equ:unfoldisbipequiv} 
 (\Sigma g \co B \to  A)
 (\Sigma \bar{g}_0 \co \Id( g b_0, a_0)) 
 (\Sigma  \bar{g}_1 \co \Id( g b_1, a_1)) \, 
  G(g,\bar{g}_0,\bar{g}_1) \, \times \\
- \textstyle
  (\Sigma h \co B \to A)
  (\Sigma \bar{h}_0 \co \Id ( h b_0,  a_0))
  (\Sigma \bar{h}_1 \co  \Id ( h b_1,  a_1)) \, 
  H(h,\bar{h}_0,\bar{h}_1)   \, ,
-\end{multline*}
+\end{multline}
 where $G(g, \bar{g}_0, \bar{g}_1)$ is the type of proofs that the
-bipointed morphism  $g \circ f \co A \to A$ is propositionally equal to the identity bipointed morphism
+bipointed morphism  $g  f \co A \to A$ is propositionally equal to the identity bipointed morphism
 $1_A \co A \to A$ and and  $H(h, \bar{h}_0, \bar{h}_1)$ is the type of proofs that the
-bipointed morphism  $f \circ h \co B \to B$ is propositionally equal to the identity bipointed morphism
+bipointed morphism  $f  h \co B \to B$ is propositionally equal to the identity bipointed morphism
 $1_B \co A \to B$. For example, the elements of $G(g, \bar{g}_0, \bar{g}_1)$ can be thought of as
 proofs that the pasting diagram 
 \[
@@ -1165,7 +1163,7 @@ H(h,\bar{h}_0,\bar{h}_1) & \defeq
  \rangle 
  \big) \, .
 \end{align*}
-We now proceed to find an equivalent, simpler description of the types $G(g, \bar{g}_0, \bar{g}_1)$ and $H(h, \bar{h}_0, \bar{h}_1)$.  Using the characterization of identity types of $\Sigma$-types in Section~\ref{sec:chait}, the type $G(g,\bar{g}_0,\bar{g}_1)$ can be  expressed equivalently as
+Using the characterization of identity types of $\Sigma$-types in Section~\ref{sec:chait}, the type $G(g,\bar{g}_0,\bar{g}_1)$ can be  expressed equivalently as
 \[
 (\Sigma p \co  \Id( g f, 1_A)) \, 
 \Id 
@@ -1183,64 +1181,82 @@ where, for $p \co \Id(gf, 1_A)$,
 \[
 p^* \co \Id( 1_A(a_0), a_0) \times \Id(1_A(a_1), a_1) \to \Id( gf(a_0), a_0) \times \Id( gf(a_1), a_1) 
 \]
-is the controvariant transport function associated to $p$. By $\Id$-elimination, 
-we have that~$p^* \langle 1_{a_0}, 1_{a_1} \rangle$ is  propositionally equal to the pair 
+is the controvariant version of the transport function associated to $p$. Similarly, the type~$H(h, \bar{h}_0, \bar{h}_1)$ is equivalent to 
 \[
-\langle 1_{a_0} \ct \alpha_p(a_0)  \, , \;   1_{a_1} \ct \alpha_p(a_1)  \rangle \, , 
+(\Sigma q \co  \Id( f h, 1_B)) \, 
+\Id 
+\big(  
+\langle 
+\overline{fh}_0  \, ,    \overline{fh}_1 
+\rangle \, ,  \; 
+ q^*
+ \langle 
+ 1_{b_0} \, , 1_{b_1}  
+ \rangle  
+ \big) \, ,
 \]
-where we write $\alpha_p$ for the homotopy associated to the path $p$ via an instance of
-the extension function for $\Pi$-types discussed in Section~\eqref{sec:chait}. This pair is propositionally equal 
-to the pair $\langle  \alpha_p(a_0), \alpha_p(a_1) \rangle$ by the groupoid laws and 
- therefore, by the characterization of identity types of product types, 
- the type $G(g,\bar{g}_0,\bar{g}_1)$ can be expressed as
+Thus, rearranging the order of the $\Sigma$-types in~\eqref{equ:unfoldisbipequiv} and using the
+characterization of identity types in product types, we get that 
+\begin{multline}
+\label{equ:equivdescisbipequiv}
+\isbipequiv(f) \simeq  \\ (\Sigma g \co B \to A)(\Sigma p \co \Id(gf, 1_A)\,  G'(g,p) \times
+(\Sigma h \co B \to A)(\Sigma q \co \Id(fh, 1_B) \, H'(h,q) \, , 
+\end{multline}
+where 
+\begin{align} 
+G'(g,p) & \defeq 
+(\Sigma \bar{g}_0 \co \Id( g b_0, a_0)) \, \Id( \overline{gf}_0, p^*(1_{a_0}) ) \times 
+(\Sigma  \bar{g}_1 \co \Id( g b_1, a_1)) \, \Id( \overline{gf}_1, p^*(1_{a_1}) ) \, ,
+ \label{equ:bipgp} \\
+ H'(h,q) & \defeq 
+ (\Sigma \bar{h}_0 \co \Id ( h b_0,  a_0)) \, \Id ( \overline{fh}_0 , q^*(1_{b_0})) \times 
+ (\Sigma \bar{h}_1 \co  \Id ( h b_1,  a_1)) \, \Id (   \overline{fh}_1 \, ,  q^*(1_{b_1})) \, .  \label{equ:biphq}
+ \end{align} 
+ Note that the elements of~$G'(g,p)$ are tuples consisting of paths $\bar{g}_0$, $\bar{g_1}$ making the function~$g$ into a bipointed morphism and of paths $\bar{p}_0$, $\bar{p}_1$ making the path $p$ into a path between
+bipointed morphisms. Of course, the elements $H'(h,q)$ admits a similar description. 
+The required  function  is then obtained 
+by composing the equivalence in~\eqref{equ:equivdescisbipequiv} with the projection 
+forgetting the components from $G'(g,p)$ and $H'(h,q)$. 
+\end{proof} 
+
+
+In Proposition~\ref{thm:usemere} we will give an alternative characterisation of bipointed 
+equivalences, which will be used in the proof of Theorem~\ref{thm:bipunivalence} and Corollary~\ref{BoolHInitIso}.
+Intuitively, it asserts that if the underlying function of a bipointed morphism is an equivalence, there is an 
+essentially unique way of making $f$ into a bipointed equivalence, \ie of equipping its left and right inverses
+with the structure of bipointed morphisms so as to obtain bipointed inverses. 
+
+\begin{proposition}  \label{thm:usemere}  A bipointed morphism $(f, \bar{f}_0, \bar{f}_1) \co A \to B$ is a bipointed equivalence if and only
+if its underlying function $f \co A \to B$ is an equivalence. In fact,  the  function
 \[
-(\Sigma p \co \Id( g \com f, 1_A))
-\big(
-\Id(  
-\overline{gf}_0 \, ,  \alpha_p(a_0)) 
-\times 
-\Id( \overline{gf}_1 \, ,  \alpha_p(a_1))
-\big) \, .
+\pi_f \co \isbipequiv(f, \bar{f}_0, \bar{f}_1)  \to \isequiv(f) \, .
 \]
-Since the expansion functions for $\Pi$-types of Section~\ref{sec:chait} is an equivalence, $G(g, \bar{g}_0, \bar{g}_1)$ is equivalent to
-\begin{align*}
-(\Sigma \alpha \co \Hot( g \com f, 1_A))
-\big( \Id  ( \overline{gf}_0 \, ,  \alpha(a_0) ) 
-\times 
-\Id ( \overline{gf}_1 \, ,  \alpha(a_1) ) 
-\big) \, .
-\end{align*}
-Analogously, the type $H(h,\bar{h}_0,\bar{h}_1)$ is equivalent to
+is an equivalence of types. 
+\end{proposition}  
+
+\begin{proof}
+Let  $(f, \bar{f}_0, \bar{f}_1) \co A \to B$ be a bipointed morphism. We wish to show that the homotopy fibers
+of the function $\pi_f$ are contractible. So, let us fix an element of $\isequiv(f)$, given by a functions $g \co B
+\to A$, $h \co B \to A$ and paths $p \co \Id(gf, 1_A)$ and $q \co \Id(fh, 1_B)$. By the definition of~$\pi_f$ we have
+an equivalence 
 \[
-(\Sigma \beta \co \Hot(f \com h, 1_B))
-\big(
-\Id  (  \overline{fh}_0 \, ,  \beta(b_0) ) 
-\times 
-\Id(  \overline{fh}_1 \, ,  \beta(b_1))
-\big) \, .
+\hfiber(\pi_f, (g,h, p, q)) \simeq G'(g,p) \times H'(h,q) \, ,
 \]
-Therefore, we can express $\isbipequiv(f, \bar{f}_0, \bar{f}_1)$ as the type
-\begin{multline*} 
-(\Sigma g \co B \to  A)
-(\Sigma \alpha \co \Hot(g \com f,  1_A))( G_0(g,\alpha) \times G_1(g,\alpha)) \times \\
-(\Sigma h \co B \to A)
-(\Sigma \beta \co\Hot( f \com h, 1_B)) (H_0(h,\beta) \times H_1(h,\beta)) \, ,
-\end{multline*} 
-where, for $k \in \{ 0,1 \}$, we set
-\begin{align*}
-& G_k(g,\alpha) \defeq 
-(\Sigma \bar{g}_k \co \Id( g b_k,  a_k))  \, \Id \big( \bar{g}_k \ct g (\bar{f}_k)  \, ,  \alpha(a_k) \big) \, , \\
-& H_k(h,\beta) \defeq (\Sigma \bar{h}_k \co \Id( h b_k , a_k)) \, \Id \big(\bar{f}_k \ct f (\bar{h}_k)  \, ,  \beta(b_k) \big)  \, .
-\end{align*}
-By Lemma~\ref{thm:useful}, we have that $G_k(g,\alpha)$ and
- $H_k(h,\beta)$ are contractible, and therefore we have 
-\begin{align*} 
-\isbipequiv(f,\bar{f}_0, \bar{f}_1) 
-  & \simeq  (\Sigma g \co B \to A)  \, \Hot( g \com f , 1_A ) \times 
-(\Sigma h  \co B \to A) \,  \Hot( f \com h, 1_B ) \\
- & \simeq \isequiv(f) \, ,
-\end{align*} 
-as required.
+ where $G'(g,p)$ and $H'(h,q)$ are defined
+in~\eqref{equ:bipgp} and~\eqref{equ:biphq}, respectively. 
+We claim that $G'(g,p)$ and $H'(h,q)$ are contractible. Since
+the proofs are essentially the same, we consider only $G'(g,p)$.  
+
+Let $k \in \{0, 1 \}$. For a path $p \co \Id(gf, 1_A)$, the path $p^*(1_{a_k}) \co \Id( gf a_k, b_k)$ can be proved by $\Id$-elimination to be propositionally equal to $\ext(p)(a_k) \co \Id(gfa_k, b_k)$, where $\ext(p) \co \Hot(gf, 1_A)$. Combining this fact with the definition of composition of bipointed morphisms, we obtain that
+$G'(g,p)$ is equivalent to the product of the types
+\[
+(\Sigma \bar{g}_k \co \Id( gb_k, a_k)) \, \Id ( \bar{g}_k \ct (g \circ \bar{f}_k), \ext(p)(a_k))
+\]
+for $k \in \{0, 1 \}$. But, for $k \in \{ 0, 1 \}$, the type above is equivalent to 
+\[
+(\Sigma \bar{g}_k \co \Id( gb_k, a_k)) \, \Id ( \bar{g}_k \, , \ext(p)(a_k) \ct  (g \circ \bar{f}_k)^{-1} )
+\]
+which is contractible by Lemma~\ref{thm:useful}. Hence $G'(h,p)$ is contractible, as required.
 \end{proof}
 
 
@@ -1564,16 +1580,12 @@ Furthermore, we have
 \overline{(\pi_1 f)}_k  & \Rightarrow  (\overline{\pi_1})_k \ct \pi_1(\bar{f}_k)  & & \qquad (\text{by definition of } \pi_1 f)   \\
 & \Rightarrow  1_{a_k}  \ct \pi_1(\bar{f}_k)  & & \qquad (\text{by definition of } \pi_1)  \\
  & \Rightarrow \pi_1(\bar{f}_k) & & \qquad (\text{by the groupoid laws}) \\
- & \Rightarrow p  & & \qquad (\text{by definition of } \ext_\Sigma) \,  .
-\end{alignat*}
-Therefore, we can construct the following chain of paths:
-\begin{alignat*}{4}
+ & \Rightarrow p  & & \qquad (\text{by definition of } \ext_\Sigma) \,  . \\
+ \intertext{Therefore, we can construct the following chain of paths:}
 p & \Rightarrow  \overline{(\pi_1 f)}_k & &  \qquad (\text{by what we just proved})  \\
   & \Rightarrow 1_{a_k} \ct  \alpha(a_k)  & &  \qquad (\text{by the path } \bar{\alpha}_k ) \\ 
-  & \Rightarrow  \alpha(a_k)  & & \qquad (\text{by the groupoid laws})
-\end{alignat*} 
-Hence,  the required path $\bar{s}_k \co  \Id(s a_k,  e_k)$ can be defined as the following composite:
-\begin{alignat*}{4}
+  & \Rightarrow  \alpha(a_k)  & & \qquad (\text{by the groupoid laws}) \\
+\intertext{Hence,  the required path $\bar{s}_k \co  \Id(s a_k,  e_k)$ can be defined as the following composite:}
 s(a_k) & \deq \alpha(a_k)_{!} \big( \pi_2 f a_k   \big) & & \qquad (\text{by the definition of } s) \\
  &              \Rightarrow   p_{!} \big( \pi_2 f a_k   \big) & & \qquad (\text{since there is a path } p \Rightarrow \alpha(a_k)) \\
    &            \Rightarrow  e_k  & &  \qquad (\text{by the path } q)  \, .

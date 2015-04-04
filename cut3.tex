@@ -1,6 +1,72 @@
 
 \newpage
 
+\begin{proof}
+Unfolding We now proceed to find an equivalent, simpler description of the types $G(g, \bar{g}_0, \bar{g}_1)$ and $H(h, \bar{h}_0, \bar{h}_1)$.  
+
+
+ By $\Id$-elimination, 
+we have that~$p^* \langle 1_{a_0}, 1_{a_1} \rangle$ is  propositionally equal to the pair 
+\[
+\langle 1_{a_0} \ct \alpha_p(a_0)  \, , \;   1_{a_1} \ct \alpha_p(a_1)  \rangle \, , 
+\]
+where we write $\alpha_p$ for the homotopy associated to the path $p$ via an instance of
+the extension function for $\Pi$-types discussed in Section~\eqref{sec:chait}. This pair is propositionally equal 
+to the pair $\langle  \alpha_p(a_0), \alpha_p(a_1) \rangle$ by the groupoid laws and 
+ therefore, by the characterization of identity types of product types, 
+ the type $G(g,\bar{g}_0,\bar{g}_1)$ can be expressed as
+\[
+(\Sigma p \co \Id( g \com f, 1_A))
+\big(
+\Id(  
+\overline{gf}_0 \, ,  \alpha_p(a_0)) 
+\times 
+\Id( \overline{gf}_1 \, ,  \alpha_p(a_1))
+\big) \, .
+\]
+Since the expansion functions for $\Pi$-types of Section~\ref{sec:chait} is an equivalence, $G(g, \bar{g}_0, \bar{g}_1)$ is equivalent to
+\begin{align*}
+(\Sigma \alpha \co \Hot( g \com f, 1_A))
+\big( \Id  ( \overline{gf}_0 \, ,  \alpha(a_0) ) 
+\times 
+\Id ( \overline{gf}_1 \, ,  \alpha(a_1) ) 
+\big) \, .
+\end{align*}
+Analogously, the type $H(h,\bar{h}_0,\bar{h}_1)$ is equivalent to
+\[
+(\Sigma \beta \co \Hot(f \com h, 1_B))
+\big(
+\Id  (  \overline{fh}_0 \, ,  \beta(b_0) ) 
+\times 
+\Id(  \overline{fh}_1 \, ,  \beta(b_1))
+\big) \, .
+\]
+Therefore, we can express $\isbipequiv(f, \bar{f}_0, \bar{f}_1)$ as the type
+\begin{multline*} 
+(\Sigma g \co B \to  A)
+(\Sigma \alpha \co \Hot(g \com f,  1_A))( G_0(g,\alpha) \times G_1(g,\alpha)) \times \\
+(\Sigma h \co B \to A)
+(\Sigma \beta \co\Hot( f \com h, 1_B)) (H_0(h,\beta) \times H_1(h,\beta)) \, ,
+\end{multline*} 
+where, for $k \in \{ 0,1 \}$, we set
+\begin{align*}
+& G_k(g,\alpha) \defeq 
+(\Sigma \bar{g}_k \co \Id( g b_k,  a_k))  \, \Id \big( \bar{g}_k \ct g (\bar{f}_k)  \, ,  \alpha(a_k) \big) \, , \\
+& H_k(h,\beta) \defeq (\Sigma \bar{h}_k \co \Id( h b_k , a_k)) \, \Id \big(\bar{f}_k \ct f (\bar{h}_k)  \, ,  \beta(b_k) \big)  \, .
+\end{align*}
+By Lemma~\ref{thm:useful}, we have that $G_k(g,\alpha)$ and
+ $H_k(h,\beta)$ are contractible, and therefore we have 
+\begin{align*} 
+\isbipequiv(f,\bar{f}_0, \bar{f}_1) 
+  & \simeq  (\Sigma g \co B \to A)  \, \Hot( g \com f , 1_A ) \times 
+(\Sigma h  \co B \to A) \,  \Hot( f \com h, 1_B ) \\
+ & \simeq \isequiv(f) \, ,
+\end{align*} 
+as required.
+\end{proof}
+
+\newpage
+
 
 
 Unfolding the definition of the type of proofs that $f$ is a $P$-algebra equivalence yields the type
