@@ -2521,25 +2521,25 @@ Let $C = (C, \sup_C)$ be an inductive $P$-algebra; we wish to show that it is ho
 For this, it suffices to observe that the rules in Proposition~\ref{thm:recursiveW} are a special case of those given in Proposition~\ref{thm:palgindrec} and Proposition~\ref{lem:Wetaind}.
 
 To show that $C = (C, \sup_C)$ is inductive if it is homotopy-initial, we proceed as in the proof of
-Theorem~\ref{thm:bipointedmain}. 
+Theorem~\ref{thm:bipointedmain}. We write simply $\sup \co PC \to C$ for brevity.
 Thus let $E = (E, e)$ be a fibered algebra over $C$. We need to show that there
 exists a $P$-algebra section $(s, \bar{s})$, where $s \co (\Pi x \co C) E(x)$ and 
 \[ 
-\bar{s} \co (\Pi x \co A)(\Pi u \co B(x) \to C) \Id \big( s(\sup_C(x,u)), e(x, u, s \circ u) \big)
+\bar{s} \co (\Pi x \co A)(\Pi u \co B(x) \to C) \Id \big( s(\sup(x,u)), e(x, u, s u) \big)
 \]
 We now consider the $P$-algebra $(E', \sup_{E'})$ associated to $E$, where $E' \defeq
-(\Sigma z \co C) E(z)$ and $\sup_{E'} \co PE' \to E'$ is defined so that, for $x \co A$ and $u' \co B(x) \to E'$, 
+(\Sigma z \co C) E(z)$ and $\sup_{E'} \co PE' \to E'$ is defined so that, for $x \co A$ and $u \co B(x) \to E'$, 
 we have
 \[
-\sup_{E'}(x,u') = \big( \sup_C(x,\pi_1  u') \, , e (x,\pi_1  u', \pi_2  u' )\big) \co E' \, .
+\sup_{E'}(x,u) = \big( \sup_C(x,\pi_1  u) \, , e (x,\pi_1  u, \pi_2  u )\big) \co E' \, .
 \]
 In this way, the first projection $\pi_1 \co E' \to C$  is an algebra morphism, represented by the diagram
 \[
 \xymatrix{
-PE' \ar[d]_{\sup_{E'}}  \ar[r]^{P\pi_1} \ar@{}[dr]|{\Downarrow \overline{\pi}_1} & PC \ar[d]^{\sup_C}  \\
+PE' \ar[d]_{\sup_{E'}}  \ar[r]^{P\pi_1} \ar@{}[dr]|{\Downarrow \overline{\pi}_1} & PC \ar[d]^{\sup}  \\
 E' \ar[r]_{\pi_1} & C \, .}
 \]
-By the homotopy-initiality of $C$, there exists an algebra morphism $(f, \bar{f}) \co (C, \sup_C)  \to (E', \sup_{E'})$,
+By the homotopy-initiality of $C$, there exists an algebra morphism $(f, \bar{f}) \co (C, \sup)  \to (E', \sup_{E'})$,
 which we represent with the diagram
 \[
 \xymatrix{
@@ -2547,59 +2547,41 @@ PC \ar[r]^{Pf} \ar[d]_-{\sup_{C}} \ar@{}[rd]|{\Downarrow \, \bar{f}} & PE' \ar[d
 C  \ar[r]_-{f} & E' \, .}
  \]
 %
-Composing $f \co C \to E'$ with $\pi_1 \co E' \to C$ we obtain an algebra morphism $\pi_1  f \co C \to C$, represented by the diagram
+Composing $f \co C \to E'$ with $\pi_1 \co E' \to C$ we obtain a $P$-algebra morphism $f_1 \co C \to C$, represented by the diagram
 \[
-\xymatrix@C=2cm{
-PC \ar[r]^{Pf} \ar[d]_-{\sup_{C}} \ar@{}[rd]|{\Downarrow \, \overline{f}} & 
-PE' \ar[r]^{P\pi_1}  \ar[d]^{\sup_{E'}} \ar@{}[rd]|{\Downarrow \, \overline{\pi}_1}
-& PC \ar[d]^{\sup_{C}} \\ 
-C  \ar[r]_-{f} & E' \ar[r]_{\pi_1} & C \, .}
+\xymatrix{
+PC \ar[r]^{Pf_1} \ar[d]_-{\sup_{C}} \ar@{}[rd]|{\Downarrow \, \overline{f}_1} & PC \ar[d]^{\sup_{C}} \\ 
+C  \ar[r]_-{f_1} & C \, .}
  \]
 Unfolding the definitions, we have that, for $(x, u) \co PC$, 
 \[
-(\ext^\Pi(\overline{\pi_1 f}))(x,u) =   \pi_1( \ext^\Sigma ( \ext^\Pi(\bar{f}) (x,u))) \co \Id(  
-\sup_C(x, \pi_1  f u) \, , \pi_1 f \, \sup_C(x,u)   ) \, .
+(\overline{f_1})_{x,u} =   \pi_1( \ext^\Sigma(\bar{f}_{x,u})) \co \Id(  
+\sup(x, f_1 u) \, , f_1 \, \sup(x,u)   ) \, .
 \] 
-By the homotopy-initiality of $C$,  there is a path in  $\Id_{\Palg(C,C)} ( \pi_1 f \, ,  1_C)$ and hence, 
-by Lemma~\ref{IdEqHo}, a $P$-algebra homotopy in $\Hot(\pi_1 f , 1_C)$,  consisting of 
-\[
-\alpha \co \Hot( \pi_1 f , 1_C)
-\]
-and a homotopy
-\begin{equation*}
-\overline{\alpha} \co  \Id \big( \overline{\pi_1 f} \cdot \sup_C (P \alpha) , \alpha(\sup_C) \cdot \overline{1}_C \big) \, .
-\end{equation*}
-Thus, for every $x \co A$ and $u \co B(x)\to C$, there is a path
-\begin{equation}\label{equ:alphabar}
-\overline{\alpha}_{x,u} \co \Id \big(  (\overline{ \pi_1  f})_{x,u} \ct \sup_C(x,\int(\alpha u)) \, , \alpha_{\sup_C(x,u)} \cdot 1_{\sup_C(x,u)} \big)  \, . 
+By the homotopy-initiality of $C$,  there is a path in  $\Id_{\Palg(C,C)} ( f_1  \, ,  1_C)$ and hence, 
+by Lemma~\ref{IdEqHo}, a $P$-algebra homotopy $(\alpha, \bar{\alpha}) \co \Hot(f_1 , 1_C)$,  where 
+$\alpha \co \Hot( f_1 , 1_C)$ and, for every $x \co A$, $u \co B(x)\to C$, 
+\begin{equation}
+\label{equ:alphabar}
+\overline{\alpha}_{x,u} \co \Id \big(  (\overline{f}_1)_{x,u} \ct \sup(x,\int(\alpha_u)) \, , \alpha_{\sup(x,u)} \cdot 1_{\sup(x,u)} \big)  \, . 
 \end{equation}
-In particular, we have the path 
-\[
-\int(\alpha u )\co \Id( \pi_1  f  u \, ,  u)
-\]
-in $B(x) \to C$.
-
-\bigskip
-
-\newpage
-
-\noindent 
+In particular, we have the path $\int(\alpha_u )\co \Id( f_1  u \, ,  u)$ in $B(x) \to C$. 
 We define $s \co (\Pi z \co C) E(z)$ by letting, for $z \co C$, 
 \begin{equation*}
-s(z) \defeq (\alpha_z)_{!} \big( \pi_2 f z \big) \, ,
+s(z) \defeq (\alpha_z)_{!} \big(  f_2 z \big) \, ,
 \end{equation*}
-where  $(\alpha_z)_{!} : E(\pi_1 f z) \to E(z)$ is the transport map associated to the path
-$\alpha_z \co \Id( \pi_1  f z,  z)$. It now remains to  define, for each $x \co A$ and $u \co B(x)\to C$, 
+where  $(\alpha_z)_{!} : E(f_1 z) \to E(z)$ is the transport map associated to the path
+$\alpha_z \co \Id( f_1 z,  z)$. It now remains to  define, for each $x \co A$ and $u \co B(x)\to C$, 
 a path
 \[
-\bar{s}(x,u) \co \Id\big( s(\sup_C(x,u)) \, , e(x, u, s  u) \big) \, .
+\bar{s}(x,u) \co \Id\big( s(\sup(x,u)) \, , e(x, u, s  u) \big) \, .
 \] 
 
 \noindent
 \textbf{Goal.} 
 \begin{equation}\label{eq:proof:thm:WMain:needpath}
-(\alpha_{\sup_C(x,u)})_{!} ( \pi_2  f \, \sup_C(x,u) )  \cong
-e(x, u, (\lambda y \co B(x)) (\alpha_{u y})_{!} ( \pi_2 f u y)   )  \, .
+(\alpha_{\sup(x,u)})_{!} (  f_2 \, \sup(x,u) )  \cong
+e(x, u, (\lambda y \co B(x)) (\alpha_{u y})_{!} ( f_2 u y)   )  \, .
 \end{equation}
 
 \bigskip
@@ -2607,7 +2589,7 @@ e(x, u, (\lambda y \co B(x)) (\alpha_{u y})_{!} ( \pi_2 f u y)   )  \, .
 \noindent
 \textbf{Claim 1.} 
 \[
-\alpha_{\sup(x,u)} \cong \sup_C(x, \int(\alpha u)) \ct (\overline{\pi_1 f})_{x,u} \, .
+\alpha_{\sup(x,u)} \cong \sup(x, \int(\alpha_u)) \ct (\overline{f}_1)_{x,u} \, .
 \]
 
 \medskip
@@ -2615,14 +2597,14 @@ e(x, u, (\lambda y \co B(x)) (\alpha_{u y})_{!} ( \pi_2 f u y)   )  \, .
 \noindent
 \textbf{Claim 2.} 
 \[
-((\overline{\pi_1 f})_{x,u})_{!} (\pi_2 f \sup_C(x,u)) \cong e(x, \pi_1 f u, \pi_2 f u) \, .
+((\overline{f}_1)_{x,u})_{!} (f_2 \, \sup(x,u)) \cong e(x,  f_1 u, f_2 u) \, .
 \]
 
 \noindent
 \textbf{Claim 3.}
 \[
-(\sup(x, \alpha u))_{!} e(x, \pi_1 f u, \pi_2 f u) \cong 
- e(x, u, (\lambda y \co B(x)) (\alpha_{uy})_{!}(\pi_2 f u y)) \, .
+(\sup(x, \alpha_u))_{!} \, e(x, f_1 u, f_2 u) \cong 
+ e\big(x, u, (\lambda y \co B(x)) (\alpha_{uy})_{!}(f_2 u y) \big) \, .
  \]
  
  
@@ -2630,10 +2612,10 @@ e(x, u, (\lambda y \co B(x)) (\alpha_{u y})_{!} ( \pi_2 f u y)   )  \, .
  
  \noindent
  \textbf{Proof of the goal assuming the claims.} 
- \begin{align*}   (\alpha_{\sup_C(x,u)})_{!} ( \pi_2  f \, \sup_C(x,u) )   
- &  \cong   (\sup_C(x, \int(\alpha u)))_{!} \;  ((\overline{\pi_1 f})_{x,u})_{!}  ( \pi_2  f \, \sup_C(x,u) ) \\
- & \cong   (\sup_C(x, \int(\alpha u)))_{!} \;   e(x, \pi_1 f u, \pi_2 f u)  \\
- & \cong   e(x, u, (\lambda y \co B(x)) (\alpha_{uy})_{!}(\pi_2 f u y))
+ \begin{align*}   (\alpha_{\sup(x,u)})_{!} ( f_2 \, \sup(x,u) )   
+ &  \cong   (\sup(x, \int(\alpha_u)))_{!} \;  ((\overline{f}_1)_{x,u})_{!}  (f_2 \, \sup(x,u) ) \\
+ & \cong   (\sup(x, \int(\alpha_u)))_{!} \;   e(x, f_1 u, f_2 u)  \\
+ & \cong   e(x, u, (\lambda y \co B(x)) (\alpha_{uy})_{!}( f_2 u y))
   \end{align*} 
  
   
@@ -2646,12 +2628,12 @@ e(x, u, (\lambda y \co B(x)) (\alpha_{u y})_{!} ( \pi_2 f u y)   )  \, .
  \textbf{Proof of claim 2.} Note that there is a path 
 \[
 \pi_2(\ext_\Sigma(\bar{f})_{x,u}) \co
- \big(\overline{(\pi_1  f)}_{x,u} \big)_{!} \; \big(\pi_2 f \, \sup_C(x,u) \big) \cong \pi_2 \,  \sup_{E'}(x, f  u)\, .
+ \big( (\overline{f}_1)_{x,u} \big)_{!} \; \big(f_2 \, \sup(x,u) \big) \cong \pi_2 \,  \sup_{E'}(x, f  u)\, .
 \]
 Expanding the definition of $\sup_{E'}$ on the right hand side, this becomes
 \[
- \big(\overline{(\pi_1 f)}_{x,u} \big)_{!} \; \big(\pi_2 f  \sup_C(x,u) \big)
-\cong  e\big(x,\pi_1 f  u, \pi_2  f  u \big) 
+ \big( (\overline{f}_1)_{x,u} \big)_{!} \; \big( f_2 \, \sup(x,u) \big)
+\cong  e\big(x,  f_1 u,  f_2 u \big) 
 \]
 as required.
 
@@ -2661,77 +2643,27 @@ as required.
  \textbf{Proof of claim 3.} Observe that for all $a \co A$, $p \co \Id_{B(a) \to C}(t_1, t_2)$  and 
 $v \co (\Pi y \co B(a))E(t_1y)$, we have
 \[ 
-(\sup_C(a,p))_{!}\, e(a,t_1,e) \cong 
-e \big( a, t_2,  (\lambda y \co B(a)) ( \ext(p) \, y )_{!}\, v(y) \big) \big) \, . 
+(\sup(a,p))_{!}\, e(a,t_1,v) \cong 
+e \big( a, t_2,  (\lambda y \co B(a)) ( \ext(p)_y )_{!}\, v y \big) \big) \, . 
 \]
-If we apply this to $x \co A$, $\int(\alpha u) \co \Id( \pi_1 f u, u)$, and $\pi_2 f u \co
-(\Pi y \co B(x)) E(\pi_1 f u y)$, we get
+If we apply this to $x \co A$, $\int(\alpha_u) \co \Id( f_1 u, u)$, and $f_2 u \co
+(\Pi y \co B(x)) E(f_1 u y)$, we get
 \[
-\big( \sup_C(x,\int(\alpha u)) \big)_{!} \; e(x,\pi_1  f u , \pi_2 f u) \cong 
-  e\big(x, u , (\lambda y \co B(x)) \big( (\alpha_{u y} \big)_{!} \; \pi_2 f u y  \big) \big) \Big)
+\big( \sup(x,\int(\alpha_u)) \big)_{!} \; e(x, f_1 u , f_2 u) \cong 
+  e\big(x, u , (\lambda y \co B(x)) \big( (\alpha_{u y} \big)_{!} \;  f_2 u y  \big) \big)
 \]
- 
- \newpage
-
-Now clearly 
-\[
-\Id \big( \alpha_{\sup_C(x,u)} \, , \; \alpha_{\sup_C(x,u)} \ct 1_{\sup_C(x,u)} ) \, .
-\]
-By~\eqref{equ:alphabar}, the latter path is equal to $\overline{(\pi_1 f)}_{x,u} \ct \sup_C(x,\int(\alpha u))$. 
-We thus have
-\begin{equation}
-\label{eqnstart}
-\Id \Big( ( \alpha_{\sup_C(x,u)})_{!}  \big( \pi_2 f  \sup_C(x,u) \big)  \, , 
- \big( (\overline{\pi_1 f})_{x,u} \ct \sup_C(x,\int(\alpha u))\big)_{!} \big( \pi_2  f \sup_C(x,u))  \big) 
-\end{equation}
-Expanding the transport function on the right hand side gives
-\begin{multline*}
-\Id
-\Big( 
-\big(\overline{(\pi_1  f)}_{x,u}  \ct \sup_C(x,\int(\alpha  u))\big)_{!} \, \big( \pi_2 f \sup_C(x,u)  \big) \, ,  \\\big(\sup_C(x,\int(\alpha  u))  \big)_{!} \; \big( (\overline{\pi_1  f})_{x,u} \big)_{!} \;  \big(\pi_2 f \sup_C(x,u) \big)
-\Big)
-\end{multline*}
-%
-Next, note that there is a path 
-\[
-\pi_2(\ext_\Sigma(\bar{f}(x,u))) \co \Id ( \big(\overline{(\pi_1  f)}_{x,u} \big)_{!} \; \big(\pi_2 f \sup_C(x,u) \big)
-\, , \;  \pi_2 \sup_{E'}(x, f  u) ) \, .
-\]
-Expanding the definition of $\sup_{E'}$ on the right hand side, this becomes
-\begin{align*}
-\pi_2(\ext_\Sigma(\bar{f}(x,u))) \co \Id \Big( \big(\overline{(\pi_1 f)}_{x,u} \big)_{!} \; \big(\pi_2 f  \sup_C(x,u) \big)
-\, ,  e\big(x,\pi_1 f  u, \pi_2  f  u \big) \Big)
-\end{align*}
-We thus have
-\[
-\Id( \big(\sup_C(x,\int(\alpha  u))\big)_{!} \ \big( \big(\overline{(\pi_1  f)}(x,u)\big)_{!} \; \big(\pi_2 f \sup_C(x,u) \big) \big)  \, , \big(\sup_C(x,\int(\alpha  u))\big)_{!} \; e\big(x,\pi_1  f  u, \pi_2  f  u\big) ).
-\]
-%
-Now for any $x \co A$, any path $p \co \Id_{B(x) \to C}(u_1, u_2)$  and any 
-$v \co (\Pi y \co B(x))E(u_1(y))$, there is a path 
-\[ 
-\varepsilon(x,p,v) \co \Id \big (
-(\sup_C(x,p))_{!}\, e(x,u_1,e) \, , 
-e \big( x, u_2,  (\lambda y \co B(x)) ( \ext(p) \, y )_{!}\, v(y) \big) \big) \, . 
-\]
-Therefore, 
-\begin{multline} 
- \label{eqnend}
-\varepsilon(x,\int(\alpha  u),\pi_2  f  u) \co  
- \Id \Big(
-\big( \sup_C(x,\int(\alpha u)) \big)_{!} \; e(x,\pi_1  f u , \pi_2 f u) \, , \\
-  e\big(x, u , (\lambda y \co B(x)) \big( (\alpha  u)(y)\big)_{!} \; \pi_2 f u y  \big) \big) \Big)
-\end{multline}
-Composing \eqref{eqnstart}--\eqref{eqnend} provides the desired path $\bar{s}(x,u)$ as in \eqref{eq:proof:thm:WMain:needpath}.
+as required.
 \end{proof}
 
 
-
-Note that, by Theorem~\ref{thm:WMain}, for every $P$-algebra $C = (C, \sup_C)$ there is actually an equivalence 
+\begin{remark} By Theorem~\ref{thm:WMain}, for every $P$-algebra $C = (C, \sup_C)$ there is actually an equivalence 
 \[
 \isalgind(C) \simeq \isalghinit(C)
 \]
-since both types are mere propositions.  For the next corollary, we work in the type theory $\Hint + \W$, obtained by adding to $\Hint$ the rules for $W$-types.
+since both types are mere propositions.  
+\end{remark}
+
+For the next corollary, we work in the type theory $\Hint + \W$, obtained by adding to $\Hint$ the rules for $W$-types.
 We consider again~$A \co \U$ and $B \co A \to \U$ and let~$W \defeq (\W x \co A) B(x)$.
 
 \begin{corollary}[$\Hint + \W$]
