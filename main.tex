@@ -119,7 +119,6 @@
 \newcommand{\isntype}[1]{\mathsf{is}\text{-}\mathsf{#1}\text{-}\mathsf{type}}
 \newcommand{\isprop}{\mathsf{isprop}}
 \newcommand{\isequiv}{\mathsf{isequiv}}
-\newcommand{\iswequiv}{\mathsf{iswequiv}}
 \newcommand{\isind}{\mathsf{isind}}
 \newcommand{\isbipind}{\mathsf{isind}}
 \newcommand{\isalgind}{\mathsf{isind}}
@@ -128,6 +127,7 @@
 \newcommand{\isalghinit}{\mathsf{ishinit}}
 \newcommand{\trans}{\mathsf{tr}}
 \newcommand{\Hot}{\mathsf{Hot}}
+\newcommand{\Eq}{\mathsf{Equiv}}
 
 % Extensionality
 
@@ -595,104 +595,64 @@ $f' \defeq (\lambda x \co A) \pair(x, fx)$, such that $ \pi_1 f'(x) = x$ for eve
     (\Sigma x \co A) E(x) \ar[d]_{\pi_1} \\
     \;  A \, . \ar@/_2pc/[u]_{f'} }
      \]
-Next, we recall the definition of the notion of a homotopy, which will play a fundamental role throughout the paper.
 
-\begin{definition} For $f \, , g \co (\Pi x \co A) B(x)$, a \emph{homotopy}
-between $f$ and $g$ is an element of the type $\Hot(f,g)$ defined by 
-\[
-\Hot(f,g) \deq (\Pi x:A) \Id_{B(x)}(fx,gx) \, .
-\]
-We say that $f$ and $g$ are \emph{homotopic} if there exists a homotopy between them.
-\end{definition} 
-
-We sometimes write  $\alpha \co f \sim g$ rather than $\alpha \co \Hot(f,g)$. The topological notion of contractibility of a space admits the following type-theoretic counterpart.
-
-\begin{definition}  A type $A$ is said to be \emph{contractible} if the  type 
+Let us recall the notions of an equivalence. In order to do this, we need some auxiliary notions. Recall that a type $A$ is said to be \emph{contractible} if the  type 
  \begin{equation}
  \label{eq:contractible}
 \iscontr(A) \defeq (\Sigma x\co A) (\Pi y\co A) \Id(x,y)
 \end{equation}
-is inhabited.
-\end{definition} 
-
-The type $\iscontr(A)$ can be seen as the propositions-as-types translation
+is inhabited. The type $\iscontr(A)$ can be seen as the propositions-as-types translation
 of the formula stating that $A$ has a unique element. However, its homotopical interpretation 
 is as a space that is inhabited if and only if the space interpreting $A$ is contractible in the usual
-topological sense. Note that if $A$ is a contractible type, then for every $a, b \co A$, the type $\Id(a,b)$ is again contractible.  
-The notion of contractibility can be used to articulate the world of types  into a hierarchy of so-called \emph{h-levels} according to their
-homotopical complexity. We will need to recall only the notion of a type of h-level 1, or 
-mere proposition.
-
-To prove it, we will make use of the following straightforward lemma. 
-
-\begin{lemma} \hfill \label{thm:useful}
-\begin{enumerate}[(i)]
-\item Let $A$ be a type and $a, a_1, a_2 \co A$. For paths $p_1 \co \Id(a,a_1)$, $p_2 \co \Id(a,a_2)$, the type 
+topological sense. Next, we define the \emph{homotopy fiber} of a function $f \co A \to B$ over $y \co B$ as the type
 \[
-(\Sigma q \co \Id_A(a_1,a_2)) \, \Id( q \ct p_1 \, , p_2)
-\] 
-is contractible. 
-\item Let $f \co A \to B$ be an equivalence, $a_1, a_2 \co A$ and $b \co B$. For paths $p_1 \co \Id(b, f a_1)$, 
-$p_2 \co \Id(b, fa_2)$, the type 
-\[
-(\Sigma q \co \Id_A(a_1,a_2)) \, \Id(f(q) \ct p_1 , p_2)
-\] 
-is contractible.
-\end{enumerate}
-\end{lemma}
-
-
-
-\begin{definition} A type $A$ is said to be a \emph{mere proposition} if the type
-\[
-\isprop(A) \defeq (\Pi x \co A)(\Pi  y \co A) \iscontr( \Id(x,y)) 
+ \hfiber(f,y) \defeq (\Sigma x \co A)\, \Id(f x, y) \, .
 \]
-is inhabilted.
-\end{definition}
-
-Let us also recall the notions of a weak equivalence. To do this, we need to fix some notation. For $f \co A \rightarrow B$ and $y \co B$, define the \emph{homotopy fiber} of $f$ at $y$ as the type
+A function $f \co A \to B$ is then  said to be an \emph{equivalence} if and only if all of its homotopy fibers are contractible, \ie the type
 \[
- \hfiber(f,y) \defeq (\Sigma x \co A) \Id(f x, y) \, .
+\isequiv(f) \defeq (\Pi y \co B) \, \iscontr(\hfiber(f,y)) 
 \]
-
-
-\begin{definition} A function $f \co A \to B$ is  a \emph{(weak) equivalence} if and only if every fiber is contractible, \ie the type
-\[
- \iswequiv(f) \defeq (\Pi y \co B)  \iscontr(\hfiber(f,y)) 
-\]
-is inhabited. 
-\end{definition}
-
- For types $A$ and $B$, the type $\mathsf{Weq}(A,B)$ of equivalences from $A$ to $B$ is  defined so that its canonical elements are pairs consisting of a function $f \co A \to B$ and a proof that it is an equivalence, \ie we let 
+is inhabited.  For types $A$ and $B$, the type $\Eq(A,B)$ of equivalences from $A$ to $B$ is  defined so that its canonical elements are pairs consisting of a function $f \co A \to B$ and a proof that it is an equivalence, \ie we let 
  \begin{equation}
  \label{equ:weq}
- \mathsf{Weq}(A,B) \defeq (\Sigma f \co A \to B) \iswequiv(f) \, .
+ \Eq(A,B) \defeq (\Sigma f \co A \to B) \, \isequiv(f) \, .
  \end{equation}
- We write $A\simeq B$ if there is an equivalence from $A$ to $B$. For example, the well-known distributivity of
- $\Sigma$-formation and $\Pi$-formation, sometimes referred to as the type-theoretic axiom of choice, provides
- an equivalence 
+ We write $A\simeq B$ if there is an equivalence from $A$ to $B$. For example, the well-known $\Pi\Sigma$-distributivity, which is sometimes referred to as the type-theoretic axiom of choice, can be expressed as an equivalence 
  \begin{equation}
  \label{equ:ac}
  (\Pi x \co A)(\Sigma y \co B(x)) E(x,y) \simeq 
  (\Sigma u  \co (\Pi x \co A)B(x)) (\Pi x \co A) E(x, ux) \, .
  \end{equation}
  It can be shown that a function $f \co A \rightarrow B$ is an equivalence if and only if it has a two-sided inverse,
- \ie there exists a function $g \co B \to A$ such that the types $\Hot(gf, 1_A)$
- and $\Hot(fg, 1_B)$ are inhabited. However, the type of equivalences is not equivalent to
+ \ie there exists a function $g \co B \to A$ such that the types $\Id(gf, 1_A)$
+ and $\Id(fh, 1_B)$ are inhabited. However, the type of equivalences is not equivalent to
  the type of functions with a two-sided inverse as above, but instead (as originally suggested by Andr\'e Joyal) 
 to the type of functions that have a left inverse and a right inverse, \ie functions
-$g \co B \to A$ and $h \co B \to A$ such that the  types $ \Hot(g  f, 1_A)$ and $\Hot(f h, 1_B)$ are inhabited. 
+$g \co B \to A$ and $h \co B \to A$ such that the  types $ \Id(g  f, 1_A)$ and $\Id(f h, 1_B)$ are inhabited. 
 More precisely, for every $f \co A \to B$, there is an equivalence
 \[
- \iswequiv(f) \simeq 
+\isequiv(f) \simeq 
  \big( 
- (\Sigma g \co B \to A) \Hot(gf, 1_A) \times (\Sigma h \co B \to A) \Hot(fh, 1_B) 
+ (\Sigma g \co B \to A) \Id(gf, 1_A) \times (\Sigma h \co B \to A) \Id(fh, 1_B) 
  \big) \, .
  \]
 For our purposes, the idea of equivalences as functions with a left and a right inverse will be most
-easily generalized to the situation where the types come equipped with additional structure. 
+easily generalized when we consider types equipped with additional structure.
 
+As we will see below, identity types of function types admit an equivalent description.  For $f \, , g \co (\Pi x \co A) B(x)$, the type of homotopies between $f$ and $g$ 
+is defined by letting
+\[
+\Hot(f,g) \defeq (\Pi x:A) \Id_{B(x)}(fx,gx) \, .
+\]
+We sometimes write  $\alpha \co f \sim g$ rather than $\alpha \co \Hot(f,g)$. As we will see below, thanks to the
+principle of function extensionality, homotopies are essentially the same thing as 
 
+Finally, let us recall that the notion of contractibility introduced earlier can be used to articulate the world of types  
+into a hierarchy of so-called \emph{h-levels} according to their homotopical complexity. We will make use only the notion of a type of h-level 1, or mere proposition. By definition, a type $A$ is said to be a \emph{mere proposition} if the type
+\[
+\isprop(A) \defeq (\Pi x \co A)(\Pi  y \co A) \, \iscontr( \Id(x,y)) 
+\]
+is inhabited.
 
 
 \subsection{Characterization of identity types} \label{sec:chait} We now recall that the identity types of various kinds of 
@@ -706,7 +666,7 @@ pair of elements $c, d  \co A \times B$, and $f, g \co A \to B$, we have  canoni
 \ext^\Sigma_{c,d} \co &  \Id_{(\Sigma x \co A)B(x)}(c, d) \to (\Sigma p \co \Id(c_1, d_1)) \,  \Id( p_{!}(c_2), d_2) \, , \\ 
 \ext^\Pi_{f,g} \co & \Id_{(\Pi x \co A)B(x)}(f, g) \to (\Pi x \co A) \Id_{B(x)}(f x, gx)  \, . \\ 
 \intertext{Furthermore, for the type universe $\U$, we have a function}
-\ext^\U_{A,B} \co & \Id_\U(A,B) \to \mathsf{Weq}(A,B) \, .
+\ext^\U_{A,B} \co & \Id_\U(A,B) \to \Eq(A,B) \, .
 \end{align*}
 We refer to these functions as the \emph{extension functions} for product types, function types, $\Sigma$-types,
 $\Pi$-types and $\U$, respectively.  We then have that extension functions for product types and $\Sigma$-types 
@@ -720,7 +680,7 @@ exactly the  Univalence Axiom. Thus, within the type theory $\Hint$ we have fami
 \pi_2 d) \, ,   \\
  \Id_{(\Pi x \co A)B(x)}(f, g)  & \simeq   (\Pi x \co A) \Id_{B(x)}(f x, gx)   \, ,\\ 
  \intertext{and, in the extension of $\Hint$ with the Univalence Axiom, also equivalences}  
-\Id_\U(A, B) & \simeq   \mathsf{Weq}(A, B)   \, . 
+\Id_\U(A, B) & \simeq   \Eq(A, B)   \, . 
  \end{align*}
 In the following, we shall always omit  superscripts and subscripts when manipulating these functions,
 as the context makes it clear which one we are referring to. 
@@ -1199,8 +1159,8 @@ Thus, rearranging the order of the $\Sigma$-types in~\eqref{equ:unfoldisbipequiv
 characterization of identity types in product types, we get that 
 \begin{multline}
 \label{equ:equivdescisbipequiv}
-\isbipequiv(f) \simeq  \\ (\Sigma g \co B \to A)(\Sigma p \co \Id(gf, 1_A)\,  G'(g,p) \times
-(\Sigma h \co B \to A)(\Sigma q \co \Id(fh, 1_B) \, H'(h,q) \, , 
+\isbipequiv(f) \simeq  \\ (\Sigma g \co B \to A)(\Sigma p \co \Id(gf, 1_A))\,  G'(g,p) \times
+(\Sigma h \co B \to A)(\Sigma q \co \Id(fh, 1_B))\, H'(h,q) \, , 
 \end{multline}
 where 
 \begin{align} 
@@ -1224,7 +1184,29 @@ In Proposition~\ref{thm:usemere} we will give an alternative characterisation of
 equivalences, which will be used in the proof of Theorem~\ref{thm:bipunivalence} and Corollary~\ref{BoolHInitIso}.
 Intuitively, it asserts that if the underlying function of a bipointed morphism is an equivalence, there is an 
 essentially unique way of making $f$ into a bipointed equivalence, \ie of equipping its left and right inverses
-with the structure of bipointed morphisms so as to obtain bipointed inverses. 
+with the structure of bipointed morphisms so as to obtain bipointed inverses. In order to prove this result,
+we need the following straightforward lemma.
+
+
+
+\begin{lemma} \hfill \label{thm:useful}
+\begin{enumerate}[(i)]
+\item Let $A$ be a type and $a, a_1, a_2 \co A$. For paths $p_1 \co \Id(a,a_1)$, $p_2 \co \Id(a,a_2)$, the type 
+\[
+(\Sigma q \co \Id_A(a_1,a_2)) \, \Id( q \ct p_1 \, , p_2)
+\] 
+is contractible. 
+\item Let $f \co A \to B$ be an equivalence, $a_1, a_2 \co A$ and $b \co B$. For paths $p_1 \co \Id(b, f a_1)$, 
+$p_2 \co \Id(b, fa_2)$, the type 
+\[
+(\Sigma q \co \Id_A(a_1,a_2)) \, \Id(f(q) \ct p_1 , p_2)
+\] 
+is contractible.
+\end{enumerate}
+\end{lemma}
+
+
+
 
 \begin{proposition}  \label{thm:usemere}  A bipointed morphism $(f, \bar{f}_0, \bar{f}_1) \co A \to B$ is a bipointed equivalence if and only
 if its underlying function $f \co A \to B$ is an equivalence. In fact,  the  function
@@ -1655,7 +1637,7 @@ By $\Id$-elimination and the characterization of paths in product types, this ty
 where we write $f_p \co A \to B$ for the equivalence associated to a path $p \co \Id_\U(A,B)$.  By the Univalence Axiom,
 the above type is equivalent to
 \[ 
-(\Sigma f \co \mathsf{Weq}(A,B)) \, \Id \big( f a_0 ,  b_0\big) \times \Id \big( f a_1 , b_1\big)  \, .
+(\Sigma f \co \Eq(A,B)) \, \Id \big( f a_0 ,  b_0\big) \times \Id \big( f a_1 , b_1\big)  \, .
 \]
 After rearranging, we get
 \[
@@ -2287,7 +2269,7 @@ z \co C \vdash \elim(z,e) \co E(z)
 \begin{array}{c}
 z \co C \vdash E(z) \co \U \\ 
 \textstyle
-x \co A ,\, u \co  B(x) \to C ,\, v \co (\Pi y \co B(x)  E(uy) \vdash e(x,u,v) \co E(\sup_C(x,u))
+x \co A ,\, u \co  B(x) \to C ,\, v \co (\Pi y \co B(x))  E(uy) \vdash e(x,u,v) \co E(\sup_C(x,u))
 \end{array}
 \justifies
 x \co A,\, u \co B(x) \to C
@@ -2330,7 +2312,7 @@ z \co C \vdash \eta_z \co \Id( f(z),  \elim(z,e))
 \begin{prooftree}
 \begin{array}{c}
 z \co C \vdash E(z) \co \U   \\ 
-\textstyle x \co A,\,    u \co B(x) \to C,\, v \co (\Pi y \co B(x)E(uy) \vdash e(x,u,v) \co E(\sup_C(x,u))  \\  
+\textstyle x \co A,\,    u \co B(x) \to C,\, v \co (\Pi y \co B(x))E(uy) \vdash e(x,u,v) \co E(\sup_C(x,u))  \\  
  z \co C \vdash f(z) \co E(z) \\ 
 x \co A \, ,  u \co B(x) \to C \vdash \bar{f}(x,u) \co \Id  \big(  f(\sup_C(x,u)) ,  e\big(x,u, f \circ u ) \big) 
 \end{array}
@@ -2536,146 +2518,210 @@ is inhabited.
 
 \begin{proof}
 Let $C = (C, \sup_C)$ be an inductive $P$-algebra; we wish to show that it is homotopy initial.
-For this, it suffices to observe that the rules in Proposition~\ref{thm:recursiveW} are a special case of those given in Propositions~\ref{thm:palgindrec} and \ref{lem:Wetaind}, where the dependent type $x \co C \vdash E(x) \co \U$ is constant $D \co \U$.
+For this, it suffices to observe that the rules in Proposition~\ref{thm:recursiveW} are a special case of those given in Proposition~\ref{thm:palgindrec} and Proposition~\ref{lem:Wetaind}.
 
-To show that $C = (C, \sup_C)$ is inductive if it is homotopy-initial, we proceed as in the proof of~\ref{thm:bipointedmain}. 
-Thus let $E = (E, s_E)$ be a fibered algebra over $C$. We need to show that there
-exists an algebra section $(s, \bar{s})$, where $s \co (\Pi x \co C) E(x)$ and 
+To show that $C = (C, \sup_C)$ is inductive if it is homotopy-initial, we proceed as in the proof of
+Theorem~\ref{thm:bipointedmain}. 
+Thus let $E = (E, e)$ be a fibered algebra over $C$. We need to show that there
+exists a $P$-algebra section $(s, \bar{s})$, where $s \co (\Pi x \co C) E(x)$ and 
 \[ 
 \bar{s} \co (\Pi x \co A)(\Pi u \co B(x) \to C) \Id \big( s(\sup_C(x,u)), e(x, u, s \circ u) \big)
 \]
-%
-Consider the total algebra $(E', \sup_{E'})$ associated to $E$, as described in Remark~\ref{thm:fibalg}, with carrier 
+We now consider the $P$-algebra $(E', \sup_{E'})$ associated to $E$, where $E' \defeq
+(\Sigma z \co C) E(z)$ and $\sup_{E'} \co PE' \to E'$ is defined so that, for $x \co A$ and $u' \co B(x) \to E'$, 
+we have
 \[
-E' \defeq (\Sigma z \co C) E(z) 
+\sup_{E'}(x,u') = \big( \sup_C(x,\pi_1  u') \, , e (x,\pi_1  u', \pi_2  u' )\big) \co E' \, .
 \]
-and structure map $\sup_{E'} \co PE' \to E'$ defined by
-\[
-\sup_{E'}(x,u') \defeq \Big(\sup_C(x,\pi_1 \circ u'), s_E\big(x,\pi_1 \circ u', \pi_2 \circ u'\big)\Big) .
-\]
-The first projection $\pi_1 \co E' \to C$ is then an algebra morphism,
+In this way, the first projection $\pi_1 \co E' \to C$  is an algebra morphism, represented by the diagram
 \[
 \xymatrix{
-PE' \ar[r]^{P\pi_1} \ar[d]_-{\sup_{E'}} \ar@{}[rd]|{p} & PC \ar[d]^{\sup_C} \\ 
-E'  \ar[r]_-{\pi_1} & C \, .}
- \]
-%
-By the homotopy-initiality of $C$, we also have an algebra morphism 
-\[
-(f, \bar{f}) \co (C, \sup_C)  \to (E', \sup_{E'}) 
+PE' \ar[d]_{\sup_{E'}}  \ar[r]^{P\pi_1} \ar@{}[dr]|{\Downarrow \overline{\pi}_1} & PC \ar[d]^{\sup_C}  \\
+E' \ar[r]_{\pi_1} & C \, .}
 \]
-which we can represent with the diagram
+By the homotopy-initiality of $C$, there exists an algebra morphism $(f, \bar{f}) \co (C, \sup_C)  \to (E', \sup_{E'})$,
+which we represent with the diagram
 \[
 \xymatrix{
-PC \ar[r]^{Pf} \ar[d]_-{\sup_{C}} \ar@{}[rd]|{\bar{f}} & PE' \ar[d]^{\sup_{E'}} \\ 
+PC \ar[r]^{Pf} \ar[d]_-{\sup_{C}} \ar@{}[rd]|{\Downarrow \, \bar{f}} & PE' \ar[d]^{\sup_{E'}} \\ 
 C  \ar[r]_-{f} & E' \, .}
  \]
 %
-Composing $f \co C \to E'$ with $\pi_1 \co E' \to C$ we obtain an algebra morphism $\pi_1 \com f \co C \to C$, represented by the diagram
+Composing $f \co C \to E'$ with $\pi_1 \co E' \to C$ we obtain an algebra morphism $\pi_1  f \co C \to C$, represented by the diagram
 \[
-\xymatrix{
-PC \ar[rr]^{P(\pi_1 \com f)} \ar[d]_-{\sup_{C}} \ar@{}[rrd]|{\overline{\pi_1 \com f}} && PC \ar[d]^{\sup_{C}} \\ 
-C  \ar[rr]_-{\pi_1 \com f} && C \, .}
+\xymatrix@C=2cm{
+PC \ar[r]^{Pf} \ar[d]_-{\sup_{C}} \ar@{}[rd]|{\Downarrow \, \overline{f}} & 
+PE' \ar[r]^{P\pi_1}  \ar[d]^{\sup_{E'}} \ar@{}[rd]|{\Downarrow \, \overline{\pi}_1}
+& PC \ar[d]^{\sup_{C}} \\ 
+C  \ar[r]_-{f} & E' \ar[r]_{\pi_1} & C \, .}
  \]
-%
-The homotopy $\overline{(\pi_1 \com f)}$ is a function mapping each $(x,u)$ to
-a path $\pi_1(f(\sup_C(x,u))) \Rightarrow \sup_C(x, \pi_1 \circ f \circ u)$. We have
+Unfolding the definitions, we have that, for $(x, u) \co PC$, 
 \[
-\overline{(\pi_1 \com f)}(x,u) = \pi_1(\idtodpair(\bar{f}(x,u))) ,
+(\ext^\Pi(\overline{\pi_1 f}))(x,u) =   \pi_1( \ext^\Sigma ( \ext^\Pi(\bar{f}) (x,u))) \co \Id(  
+\sup_C(x, \pi_1  f u) \, , \pi_1 f \, \sup_C(x,u)   ) \, .
+\] 
+By the homotopy-initiality of $C$,  there is a path in  $\Id_{\Palg(C,C)} ( \pi_1 f \, ,  1_C)$ and hence, 
+by Lemma~\ref{IdEqHo}, a $P$-algebra homotopy in $\Hot(\pi_1 f , 1_C)$,  consisting of 
+\[
+\alpha \co \Hot( \pi_1 f , 1_C)
 \]
-where $\idtodpair$ is the canonical equivalence for paths in $\Sigma$-types. 
-By the homotopy-initiality of $C$,  there is then a path
+and a homotopy
 \begin{equation*}
-\pi_1 \circ f \Rightarrow 1_C 
+\overline{\alpha} \co  \Id \big( \overline{\pi_1 f} \cdot \sup_C (P \alpha) , \alpha(\sup_C) \cdot \overline{1}_C \big) \, .
 \end{equation*}
-in $\Palg(C,C)$ from the composite to the identity algebra morphism $1_C \co C \to C$.
-%
-By Lemma~\ref{IdEqHo}, there is a corresponding algebra homotopy $(\alpha,\bar{\alpha}) \co \pi_1 \circ f \sim 1_C$,  consisting of a homotopy of the underlying maps $\alpha \co \pi_1 \circ f \sim 1_C$ and a (higher) path
-\begin{equation*}
-\bar{\alpha} \co \overline{(\pi_1 \com f)} \cdot \sup_C (P \alpha) \Rightarrow \alpha(\sup_C) \cdot \overline{1_C}.
-\end{equation*}
-Thus, for every $x \co A$ and $t\co B(x)\to C$, there is a path
+Thus, for every $x \co A$ and $u \co B(x)\to C$, there is a path
 \begin{equation}\label{equ:alphabar}
-\bar{\alpha}(x,u) :   \overline{(\pi_1 \com f)}(x,u) \ct \sup_C(x,\ext_\Pi^{-1}(\alpha(u))) \Rightarrow \alpha(\sup_C(x,u)) \cdot \refl_{\sup_C(x,u)},
+\overline{\alpha}_{x,u} \co \Id \big(  (\overline{ \pi_1  f})_{x,u} \ct \sup_C(x,\int(\alpha u)) \, , \alpha_{\sup_C(x,u)} \cdot 1_{\sup_C(x,u)} \big)  \, . 
 \end{equation}
-where $\ext$ is the canonical equivalence for paths in $\Pi$-types. 
 In particular, we have the path 
 \[
-\ext^{-1}(\alpha(t))\co\pi_1 \circ f \circ u \Rightarrow u
+\int(\alpha u )\co \Id( \pi_1  f  u \, ,  u)
 \]
 in $B(x) \to C$.
 
-To construct an algebra section $(s, \bar{s})$ of $(E, s_E)$, we define for~$x \co C$, 
+\bigskip
+
+\newpage
+
+\noindent 
+We define $s \co (\Pi z \co C) E(z)$ by letting, for $z \co C$, 
 \begin{equation*}
-% \label{equ:defreqsection}
-s(x) \defeq \alpha(x)_{!} \big( \pi_2 \com f (x) \big) \, ,
+s(z) \defeq (\alpha_z)_{!} \big( \pi_2 f z \big) \, ,
 \end{equation*}
-which indeed has type $E(x)$, since the transport along $\alpha(x) \co (\pi_1 \circ f)(x) \Rightarrow x$ has type $\alpha(x)_{!} : E(\pi_1 \com f (x)) \to E(x)$.
-%
-To construct a path 
+where  $(\alpha_z)_{!} : E(\pi_1 f z) \to E(z)$ is the transport map associated to the path
+$\alpha_z \co \Id( \pi_1  f z,  z)$. It now remains to  define, for each $x \co A$ and $u \co B(x)\to C$, 
+a path
 \[
-\bar{s} \co (\Pi x  \co A) (\Pi u  \co B(x) \to C) \Id \big( s(\sup_C(x,u)), e(x, u, s \circ u) \big)
-\]
-for each $x \co A$ and $u \co B(x)\to C$ we require a path
-\[
-\bar{s}(x,u) \co s(\sup_C(x,u)) \Rightarrow e(x, u, s \circ u).
+\bar{s}(x,u) \co \Id\big( s(\sup_C(x,u)) \, , e(x, u, s  u) \big) \, .
 \] 
-Expanding the definition of $s$, this means we need a higher path
+
+\noindent
+\textbf{Goal.} 
 \begin{equation}\label{eq:proof:thm:WMain:needpath}
-\bar{s}(x,u) \co \alpha(\sup_C(x,u))_{!} \big( \pi_2 \com f (\sup_C(x,u)) \big) \Rightarrow 
-s_E\big(x, u, \lam{y}[\alpha(u y)_{!} \big( \pi_2 (f(u y))\big)]\big).
+(\alpha_{\sup_C(x,u)})_{!} ( \pi_2  f \, \sup_C(x,u) )  \cong
+e(x, u, (\lambda y \co B(x)) (\alpha_{u y})_{!} ( \pi_2 f u y)   )  \, .
 \end{equation}
+
+\bigskip
+
+\noindent
+\textbf{Claim 1.} 
+\[
+\alpha_{\sup(x,u)} \cong \sup_C(x, \int(\alpha u)) \ct (\overline{\pi_1 f})_{x,u} \, .
+\]
+
+\medskip
+
+\noindent
+\textbf{Claim 2.} 
+\[
+((\overline{\pi_1 f})_{x,u})_{!} (\pi_2 f \sup_C(x,u)) \cong e(x, \pi_1 f u, \pi_2 f u) \, .
+\]
+
+\noindent
+\textbf{Claim 3.}
+\[
+(\sup(x, \alpha u))_{!} e(x, \pi_1 f u, \pi_2 f u) \cong 
+ e(x, u, (\lambda y \co B(x)) (\alpha_{uy})_{!}(\pi_2 f u y)) \, .
+ \]
+ 
+ 
+ \medskip
+ 
+ \noindent
+ \textbf{Proof of the goal assuming the claims.} 
+ \begin{align*}   (\alpha_{\sup_C(x,u)})_{!} ( \pi_2  f \, \sup_C(x,u) )   
+ &  \cong   (\sup_C(x, \int(\alpha u)))_{!} \;  ((\overline{\pi_1 f})_{x,u})_{!}  ( \pi_2  f \, \sup_C(x,u) ) \\
+ & \cong   (\sup_C(x, \int(\alpha u)))_{!} \;   e(x, \pi_1 f u, \pi_2 f u)  \\
+ & \cong   e(x, u, (\lambda y \co B(x)) (\alpha_{uy})_{!}(\pi_2 f u y))
+  \end{align*} 
+ 
+  
+ \noindent
+ \textbf{Proof of claim 1.} This follows by~\eqref{equ:alphabar}.
+ 
+ \bigskip
+ 
+ \noindent
+ \textbf{Proof of claim 2.} Note that there is a path 
+\[
+\pi_2(\ext_\Sigma(\bar{f})_{x,u}) \co
+ \big(\overline{(\pi_1  f)}_{x,u} \big)_{!} \; \big(\pi_2 f \, \sup_C(x,u) \big) \cong \pi_2 \,  \sup_{E'}(x, f  u)\, .
+\]
+Expanding the definition of $\sup_{E'}$ on the right hand side, this becomes
+\[
+ \big(\overline{(\pi_1 f)}_{x,u} \big)_{!} \; \big(\pi_2 f  \sup_C(x,u) \big)
+\cong  e\big(x,\pi_1 f  u, \pi_2  f  u \big) 
+\]
+as required.
+
+ \bigskip
+ 
+  \noindent
+ \textbf{Proof of claim 3.} Observe that for all $a \co A$, $p \co \Id_{B(a) \to C}(t_1, t_2)$  and 
+$v \co (\Pi y \co B(a))E(t_1y)$, we have
+\[ 
+(\sup_C(a,p))_{!}\, e(a,t_1,e) \cong 
+e \big( a, t_2,  (\lambda y \co B(a)) ( \ext(p) \, y )_{!}\, v(y) \big) \big) \, . 
+\]
+If we apply this to $x \co A$, $\int(\alpha u) \co \Id( \pi_1 f u, u)$, and $\pi_2 f u \co
+(\Pi y \co B(x)) E(\pi_1 f u y)$, we get
+\[
+\big( \sup_C(x,\int(\alpha u)) \big)_{!} \; e(x,\pi_1  f u , \pi_2 f u) \cong 
+  e\big(x, u , (\lambda y \co B(x)) \big( (\alpha_{u y} \big)_{!} \; \pi_2 f u y  \big) \big) \Big)
+\]
+ 
+ \newpage
+
 Now clearly 
 \[
-\alpha(\sup_C(a,t)) \Rightarrow \alpha(\sup_C(a,t)) \ct \refl_{\sup_C(a,t)} \, .
+\Id \big( \alpha_{\sup_C(x,u)} \, , \; \alpha_{\sup_C(x,u)} \ct 1_{\sup_C(x,u)} ) \, .
 \]
-By $\bar{\alpha}(a,t)^{-1}$ from \eqref{equ:alphabar}, the latter path is equal to $\overline{(\pi_1 \com f)}(a,t) \ct \sup_C(a,\ext^{-1}(\alpha \circ t))$. 
+By~\eqref{equ:alphabar}, the latter path is equal to $\overline{(\pi_1 f)}_{x,u} \ct \sup_C(x,\int(\alpha u))$. 
 We thus have
-\begin{align}
-\alpha(\sup_C(x,u))_{!}& \big( \pi_2 \com f (\sup_C(x,u)) \big) \notag \\
- \Rightarrow\ &
- \Big(\overline{(\pi_1 \com f)}(x,u) \ct \sup_C(x,\ext^{-1}(\alpha \circ u))\Big)_{!} \big( \pi_2 (f (\sup_C(x,u))) \big) \label{eqnstart}
-\end{align}
-Expanding the transport on the right hand side gives
-\begin{align*}
-\Big(\overline{(\pi_1 \com f)}(x,u)& \ct \sup_C(x,\ext^{-1}(\alpha \circ t))\Big)_{!} \big( \pi_2 (f (\sup_C(x,u))) \big) \\
-\Rightarrow &\big(\sup_C(x,\ext^{-1}(\alpha \circ t))\big)_{!} \; \Big( \big(\overline{(\pi_1 \com f)}(x,u)\big)_{!} \; 
-\big(\pi_2 (f (\sup_C(x,u))) \big) \Big).
-\end{align*}
+\begin{equation}
+\label{eqnstart}
+\Id \Big( ( \alpha_{\sup_C(x,u)})_{!}  \big( \pi_2 f  \sup_C(x,u) \big)  \, , 
+ \big( (\overline{\pi_1 f})_{x,u} \ct \sup_C(x,\int(\alpha u))\big)_{!} \big( \pi_2  f \sup_C(x,u))  \big) 
+\end{equation}
+Expanding the transport function on the right hand side gives
+\begin{multline*}
+\Id
+\Big( 
+\big(\overline{(\pi_1  f)}_{x,u}  \ct \sup_C(x,\int(\alpha  u))\big)_{!} \, \big( \pi_2 f \sup_C(x,u)  \big) \, ,  \\\big(\sup_C(x,\int(\alpha  u))  \big)_{!} \; \big( (\overline{\pi_1  f})_{x,u} \big)_{!} \;  \big(\pi_2 f \sup_C(x,u) \big)
+\Big)
+\end{multline*}
 %
 Next, note that there is a path 
-\begin{align*}
-\pi_2(\ext_\Sigma(\bar{f}(a,t))) : \big(\overline{(\pi_1 \com f)}(x,u)\big)_{!} \; \big(\pi_2(f (\sup_C(x,u))) \big)
-\Rightarrow\ \pi_2(\sup_{E'}(x, f \circ u)).
-\end{align*}
+\[
+\pi_2(\ext_\Sigma(\bar{f}(x,u))) \co \Id ( \big(\overline{(\pi_1  f)}_{x,u} \big)_{!} \; \big(\pi_2 f \sup_C(x,u) \big)
+\, , \;  \pi_2 \sup_{E'}(x, f  u) ) \, .
+\]
 Expanding the definition of $\sup_{E'}$ on the right hand side, this becomes
 \begin{align*}
-\pi_2(\ext_\Sigma(\bar{f}(a,t))) : \big(\overline{(\pi_1 \com f)}(x,u)\big)_{!} \; \big(\pi_2(f (\sup_C(x,u))) \big)
-\Rightarrow\ s_E\big(x,\pi_1 \circ f \circ t, \pi_2 \circ f \circ t\big)
+\pi_2(\ext_\Sigma(\bar{f}(x,u))) \co \Id \Big( \big(\overline{(\pi_1 f)}_{x,u} \big)_{!} \; \big(\pi_2 f  \sup_C(x,u) \big)
+\, ,  e\big(x,\pi_1 f  u, \pi_2  f  u \big) \Big)
 \end{align*}
 We thus have
-\begin{align*}
-\big(\sup_C(x,\ext^{-1}(\alpha \circ u))\big)_{!} \;& \big( \big(\overline{(\pi_1 \com f)}(x,u)\big)_{!} \; \big(\pi_2 (f (\sup_C(x,u))) \big) \big) \\
-\Rightarrow\ &\big(\sup_C(x,\ext^{-1}(\alpha \circ t))\big)_{!} \; s_E\big(x,\pi_1 \circ f \circ u, \pi_2 \circ f \circ u\big).
-\end{align*}
-%
-Now for any $x \co A$, any path $p \co u_1 \Rightarrow u_2$ in $B(x) \to C$ and any 
-$v \co (\Pi y \co B(x))E(u_1(y))$, there is a higher path 
-\[ 
-\epsilon(x,p,v) : (\sup_C(x,p))_{!}\, s_E(x,u_1,e) \Rightarrow s_E\big(x,u_2, \lam{y} [\big(\ext(p)(y)\big)_{!}\, v(y)]\big)\,, 
+\[
+\Id( \big(\sup_C(x,\int(\alpha  u))\big)_{!} \ \big( \big(\overline{(\pi_1  f)}(x,u)\big)_{!} \; \big(\pi_2 f \sup_C(x,u) \big) \big)  \, , \big(\sup_C(x,\int(\alpha  u))\big)_{!} \; e\big(x,\pi_1  f  u, \pi_2  f  u\big) ).
 \]
-defined by path induction on $p$.
-The path $\epsilon(x,\ext^{-1}(\alpha \circ t),\pi_2 \circ f \circ u)$ therefore has the form
-\begin{align*}
-\big(\sup_C(a,\ext^{-1}(\alpha \circ u))\big)_{!} \; &s_E\big(a,\pi_1 \circ f \circ u , \pi_2 \circ f \circ u \big)\\
-\Rightarrow\ & s_E\big(a, u , \lam{y}[ \big(\ext(\ext^{-1}(\alpha \circ u)(y)\big)_{!} \; \pi_2(f(u y))]\big)
-\end{align*}
-Cancelling $\ext$ and $\ext^{-1}$  yields
-\begin{align}
-s_E\big(x,u, \lam{y}[ \big(\ext_2(\ext^{-1}_2(\alpha \circ u))(b)\big)_{!} \; \pi_2(f(u y))]\big) \Rightarrow 
-s_E\big(x,u , \lam{y}[ \big(\alpha(u y )\big)_{!} \; \pi_2(f(u y )))]\big)
+%
+Now for any $x \co A$, any path $p \co \Id_{B(x) \to C}(u_1, u_2)$  and any 
+$v \co (\Pi y \co B(x))E(u_1(y))$, there is a path 
+\[ 
+\varepsilon(x,p,v) \co \Id \big (
+(\sup_C(x,p))_{!}\, e(x,u_1,e) \, , 
+e \big( x, u_2,  (\lambda y \co B(x)) ( \ext(p) \, y )_{!}\, v(y) \big) \big) \, . 
+\]
+Therefore, 
+\begin{multline} 
  \label{eqnend}
-\end{align}
+\varepsilon(x,\int(\alpha  u),\pi_2  f  u) \co  
+ \Id \Big(
+\big( \sup_C(x,\int(\alpha u)) \big)_{!} \; e(x,\pi_1  f u , \pi_2 f u) \, , \\
+  e\big(x, u , (\lambda y \co B(x)) \big( (\alpha  u)(y)\big)_{!} \; \pi_2 f u y  \big) \big) \Big)
+\end{multline}
 Composing \eqref{eqnstart}--\eqref{eqnend} provides the desired path $\bar{s}(x,u)$ as in \eqref{eq:proof:thm:WMain:needpath}.
 \end{proof}
 
