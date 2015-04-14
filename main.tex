@@ -555,28 +555,28 @@ Function Extensionality axiom in~\eqref{equ:funext} is formally implied by Voevo
 Axiom, the Function Extensionality axiom is valid also in set-theoretic models. 
 
 
-\begin{remark} Our results continue to hold when the judgemental $\eta$-rule for $\Pi$-types in~\eqref{equ:etapi}
+\begin{remark*} Our results continue to hold when the judgemental $\eta$-rule for $\Pi$-types in~\eqref{equ:etapi}
 is weakened by replacing the judgemental equality in its conclusion with a propositional one. However, since the
 current version of the Coq proof assistant assumes the rule~\eqref{equ:etapi} and some of the proofs can be 
 simplified in its presence, we prefer to work with it in order to keep our presentation simpler and 
 more faithful to the formalization.
-\end{remark}
+\end{remark*}
 
-\begin{remark}[The extensional type theory $\Hext$] \label{thm:hext}
+
  We write $\Hext$ for the extensional type
-theory obtained from $\Hint$ by adding the following rule, known as the identity reflection rule, is also assumed:
+theory obtained from $\Hint$ by adding the following rule, known as the identity reflection rule:
 \begin{equation}
 \label{equ:collapse}
 \begin{prooftree}
  p \co  \Id_A(a,b)
   \justifies
-  a=b \co  A
-\end{prooftree}
+  a=b \co  A \, . 
+  \end{prooftree} \medskip
 \end{equation}
 This rule collapses propositional equality to definitional equality, thus making the overall system
 somewhat simpler to work with. However, it destroys part of the constructive character of the intensional system, since it makes type-checking undecidable~\cite{HofmannM:extcit}. For this reason, it is not assumed
 in the most recent formulations of Martin-L\"of type theories~\cite{NordstromB:marltt} or in automated proof assistants like Coq~\cite{BertotY:inttpp}. However, most work on inductive types to date (\eg~\cite{AbbottM:concsp,DybjerP:repids,GambinoN:weltdp,MoerdijkI:weltc}) has been in the setting of extensional type theories.
-\end{remark}
+
 
 
 
@@ -850,7 +850,7 @@ by the following pasting diagram:
 1 \ar[r]_{b_0}   \ar@{}[dr]|{\Downarrow \, \bar{g}_0}  \ar@{=}[d] & B \ar[d]^f   & 1 \ar[l]^{b_1} \ar@{=}[d] \ar@{}[dl]|{\Downarrow \,  \bar{g}_1} \\
 1 \ar[r]_{c_0}  & C   & 1 \ar[l]^{c_1}}
  \]
-Explicitly, for $k \in \{ 0, 1 \}$, the path $\overline{g \circ f}_k \co \Id( g f( a_0), c_0)$ is obtained as the composite
+Explicitly, for $k \in \{ 0, 1 \}$, the path $\overline{g \circ f}_k \co \Id( g f a_0, c_0)$ is obtained as the composite
 \[
 \xymatrix@C=1.5cm{
 g f a_0 \ar[r]^{g(\bar{f}_0)} & g b_0 \ar[r]^{\bar{g}_0} & c_0 \, .}
@@ -999,7 +999,7 @@ immediate to get the path~$\bar{f'}_k \co \Id( f' a_k ,  e'_k)$, for $k \in \{ 0
 The morphism $f' \co A \to E'$ provides a pointwise right inverse for~$\pi_1 \co E' \to A$,
  since, for~$x \co A$, we have judgemental equalities
 \[
- (\pi_1 \circ f')(x) \deq \pi_1 (f'(x)) \deq \pi_1 (\pair(x, f x)) \deq x \, .
+ (\pi_1 \circ f')(x) \deq \pi_1 (f' x) \deq \pi_1\, \pair(x, f x) \deq x \, .
 \]
  We represent this situation with the diagram
 \[
@@ -1525,7 +1525,11 @@ Let us begin by considering the total bipointed type associated to $E$, with car
 \[
 E' \defeq (\Sigma x \co A) E(x) 
 \]
-and distinguished elements $e'_k \defeq \pair(a_k, e_k)$ for $k = 0, 1$. In this way,  the first projection $\pi_1 \co 
+and distinguished elements 
+\[
+e'_k \defeq \pair(a_k, e_k) \, , 
+\]
+for $k \in \{ 0, 1 \}$. In this way,  the first projection $\pi_1 \co 
 E' \to A$ is a bipointed morphism. By the homotopy-initiality of $A$, we have a bipointed morphism 
 \[
 (f, \bar{f}_0, \bar{f}_1) \co (A, a_0, a_1)  \to (E', e'_0, e'_1) 
@@ -1537,7 +1541,7 @@ which we represent with the diagram
  \ar@{}[dl]|{\Downarrow \, \bar{f}_1}   \\
 1 \ar[r]_{e'_0}  & E' & 1 \ar[l]^{e'_1} }
  \]
- We can compose $f \co A \to E'$ with $\pi_1 \co E' \to A$ and obtain a bipointed morphism $\pi_1 \co f \co A \to A$, which is represented by the diagram
+ We can compose $f \co A \to E'$ with $\pi_1 \co E' \to A$ and obtain a bipointed morphism $\pi_1 \circ f \co A \to A$, which is represented by the diagram
   \[
 \xymatrix@C=2cm@R=1.2cm{
 1  \ar[r]^{a_0} \ar@{=}[d]  \ar@{}[dr]|{\Downarrow \, \bar{f}_0}  & A  \ar[d]^f & 1 \ar[l]_{a_1}  \ar@{=}[d]  
@@ -1548,32 +1552,36 @@ which we represent with the diagram
  \]
 But the identity $1_A \co A \to A$ is also a bipointed morphism and therefore, by the homotopy-initiality of $A$, there is an element of $\Id_{\Bip(A,A)}(\pi_1  f, 1_A)$. 
  By Lemma~\ref{BoolHomSpace}, this gives us a bipointed homotopy $(\alpha,
-\bar{\alpha}_0,\bar{\alpha}_1) \co \BipHot( \pi_1 f , 1_A)$. This amounts to a homotopy $\alpha \co \Hot(\pi_1  f, 1_A)$ and paths
+\bar{\alpha}_0,\bar{\alpha}_1) \co \BipHot( \pi_1 \circ f , 1_A)$. This amounts to a homotopy $\alpha \co \Hot(\pi_1 
+\circ f, 1_A)$ and paths
 \begin{equation*}
-\bar{\alpha}_k \co  \Id( \overline{(\pi_1 f)}_k \, , \;  \alpha(a_k) \cdot 1_{a_k} ) \, . 
+\bar{\alpha}_k \co  \Id( \overline{(\pi_1 \circ f)}_k \, , \;  \alpha_{a_k} \cdot 1_{a_k} ) \, . 
 \end{equation*}
 for $k \in \{ 0, 1 \}$. We begin to define the required bipointed section as in~\eqref{equ:reqsec}, by defining, for~$x \co A$, 
 \begin{equation*}
 % \label{equ:defreqsection}
-s(x) \defeq \alpha(x)_{!} \big( \pi_2 f  x \big) \, .
+s(x) \defeq (\alpha_x)_{!} \big( \pi_2 f  x \big) \, .
 \end{equation*}
 We now construct  paths~$\bar{s}_k \co \Id(s a_k, e_k)$, for $k \in \{ 0, 1 \}$. First of all, recall that 
 $\bar{f}_k \co \Id( f a_k, e'_k)$, where $e'_k = \pair(a_k, e_k) \co (\Sigma x \co A) E(x)$. Using the 
-characterization of identity types of $\Sigma$-types in Section~\ref{sec:chait}, we obtain paths 
-\begin{equation*}
-\label{equ:usefulpath}
-p \co  \Id( \pi_1 f  a_k \, ,\;   a_k )  \, , \quad q \co   \Id( p_{!}( \pi_2 f  a_k), e_k)   \, .
-\end{equation*}
+characterization of identity types of $\Sigma$-types, we define
+\[
+p \defeq \pi_1 \, \ext^\Sigma(\bar{f}_k)  \co  \Id( \pi_1 f  a_k \, ,\;   \pi_1 e'_k )  
+\]
+and
+\[
+q \defeq  \pi_2 \, \ext^\Sigma(\bar{f}_k) \co   \Id( p_{!}( \pi_2 f  a_k), \pi_2 e'_k)   \, .
+\]
 Furthermore, we have 
 \begin{alignat*}{4}  
-\overline{(\pi_1 f)}_k  & \Rightarrow  (\overline{\pi_1})_k \ct \pi_1(\bar{f}_k)  & & \qquad (\text{by definition of } \pi_1 f)   \\
-& \Rightarrow  1_{a_k}  \ct \pi_1(\bar{f}_k)  & & \qquad (\text{by definition of } \pi_1)  \\
- & \Rightarrow \pi_1(\bar{f}_k) & & \qquad (\text{by the groupoid laws}) \\
- & \Rightarrow p  & & \qquad (\text{by definition of } \ext_\Sigma) \,  . \\
+\overline{(\pi_1 \circ f)}_k  & \iso  (\overline{\pi_1})_k \ct (\pi_1 \circ \bar{f}_k)  & & \qquad (\text{by definition of } \pi_1 f)   \\
+& \iso  1_{a_k}  \ct (\pi_1 \circ \bar{f}_k)  & & \qquad (\text{by definition of } \pi_1)  \\
+ & \iso (\pi_1 \circ \bar{f}_k) & & \qquad (\text{by the groupoid laws}) \\
+ & \iso p  & & \qquad (\text{by definition of } \ext^\Sigma) \,  . \\
  \intertext{Therefore, we can construct the following chain of paths:}
-p & \Rightarrow  \overline{(\pi_1 f)}_k & &  \qquad (\text{by what we just proved})  \\
-  & \Rightarrow 1_{a_k} \ct  \alpha(a_k)  & &  \qquad (\text{by the path } \bar{\alpha}_k ) \\ 
-  & \Rightarrow  \alpha(a_k)  & & \qquad (\text{by the groupoid laws}) \\
+p & \iso  \overline{(\pi_1 f)}_k & &  \qquad (\text{by what we just proved})  \\
+  & \iso 1_{a_k} \ct  \alpha(a_k)  & &  \qquad (\text{by the path } \bar{\alpha}_k ) \\ 
+  & \iso  \alpha(a_k)  & & \qquad (\text{by the groupoid laws}) \\
 \intertext{Hence,  the required path $\bar{s}_k \co  \Id(s a_k,  e_k)$ can be defined as the following composite:}
 s(a_k) & \deq \alpha(a_k)_{!} \big( \pi_2 f a_k   \big) & & \qquad (\text{by the definition of } s) \\
  &              \Rightarrow   p_{!} \big( \pi_2 f a_k   \big) & & \qquad (\text{since there is a path } p \Rightarrow \alpha(a_k)) \\
@@ -1584,7 +1592,7 @@ s(a_k) & \deq \alpha(a_k)_{!} \big( \pi_2 f a_k   \big) & & \qquad (\text{by the
 
 
 The proof of Theorem~\ref{thm:bipointedmain} simplifies considerably within the extensional
-type theory~$\Hext$ introduced in Remark~\ref{thm:hext}. In that type theory, 
+type theory~$\Hext$ obtained by adding to $\Hint$ the identity reflection rule in~\eqref{equ:collapse}. In that type theory, 
 there is a judgemental equality 
 between the composite $\pi_1 f \co A \to A$ and the identity $1_A \co A \to A$, with which the
 rest of the argument can be shortened considerably. In that setting, one obtains the familiar characterisation 
@@ -1788,7 +1796,7 @@ their composite
 is obtained as follows. Its underlying function is given by $gf\co C \to E$, and so the 
 the required path must be of the form
 \[
- \overline{ g \circ f} \co \Id\big(  \sup_E \circ P(gf) \, ,  (gf) \circ \sup_C \big)\, .
+ \overline{(g \circ f)} \co \Id\big(  \sup_E \circ P(g \circ f) \, ,  (g \circ f) \circ \sup_C \big)\, .
 \]
 Such a path is obtained by pasting the diagrams 
 \[
@@ -1799,8 +1807,8 @@ C \ar[r]_{f}   & D \ar[r]_{g}   & E \,  }
 \]
 More precisely, it is given by the following composition of paths:
 \[
-\xymatrix@C=1.5cm{
-\sup_E \circ P (gf) \ar[r]^-{\sup_E \circ \psi_{f,g}} &
+\xymatrix@C=1.3cm{
+\sup_E \circ P (g \circ f) \ar[r]^-{\sup_E \circ \psi_{f,g}} &
  \sup_E \circ P(g) \circ P(f) \ar[r]^-{\bar{g} \circ P(f)} & 
  g \circ \sup_D \circ P(f) \ar[r]^{g \circ \bar{f}} & 
 g \circ f \circ \sup_C\, .}
@@ -1811,7 +1819,7 @@ For a $P$-algebra $C$,  the identity function $1_C \co C \to C$ has an evident s
 \label{equ:palgid}
 \xymatrix@C=1.5cm{
 PC \ar[r]^{P(1_C)}  \ar[d]_{\sup_C} \ar@{}[dr]|{\Downarrow \, \overline{1}_C} & PC \ar[d]^{\sup_C} \\
-C \ar[r]_{1_C} & C}
+C \ar[r]_{1_C} & \; C \, .}
 \end{equation}
 As in the case of bipointed types, the equations for a category do not hold up to judgemental equality, but only so up to a system of higher and higher identities. 
 
@@ -1826,7 +1834,7 @@ For $P$-algebra morphisms $(f, \bar{f}) \, , (g, \bar{g}) \co C \to D$, a \emph{
 \[
 (\alpha, \bar{\alpha}) \co (f, \bar{f}) \sim (g, \bar{g})
 \] 
-consists of a homotopy $\alpha \co f \sim g$ and a path
+consists of a homotopy $\alpha \co\Hot( f , g)$ and a path
 $\bar{\alpha} \co \Id( \bar{g} \cdot \sup_D (P \alpha) ,  \alpha(\sup_C)\cdot \bar{f})$. 
 \end{definition}
 
@@ -1841,8 +1849,7 @@ C  \ar@/_1pc/[r]_g  \ar@{}[r]^{\Downarrow \, \bar{g}} & D }
 PC \ar@/^1pc/[r]^{Pf}   \ar[d]_{\sup_C} \ar@{}[r]_(.52){\Downarrow \, \bar{f}}  & PD \ar[d]^{\sup_D}  \\
 C \ar@/^1pc/[r]^f  \ar@/_1pc/[r]_g  \ar@{}[r]|{\Downarrow \, \alpha} & D }
 \]
-are equal, which is the condition defining an algebra 2-cell in 2-dimensional category theory. Note that $\bar{\alpha}$ is a higher path, between elements of 
-$\Id \big( f \circ \sup_C \, ,  \sup_D \circ Pg \big)$. Also observe that~$\alpha(\sup_C)$ and $\sup_D(P \alpha)$ are obtained by pre-composition and post-compositions, respectively, of maps with homotopies.  The type of homotopies of $P$-algebra morphisms is then defined by
+are equal, which is the condition defining an algebra 2-cell in 2-dimensional category theory.  Also observe that~$\alpha(\sup_C)$ and $\sup_D(P \alpha)$ are obtained by pre-composition and post-compositions, respectively, of maps with homotopies.  The type of $P$-algebra homotopies is then defined by
 \[
 \AlgHot \big( (f,\bar{f}), (g, \bar{g})  \big)
  \defeq  
@@ -1917,15 +1924,15 @@ over $C$ as follows:
 Given a fibered $P$-algebra $E = (E, e)$, we will refer to the $P$-algebra structure
 on $E' = (\Sigma z \co C) E(z)$ given by the function $\sup_{E'} \co PE' \to E'$ associated to 
 the function $e$ as the canonical $P$-algebra structure on $E'$. Explicitly, the structure
-map can be defined by $\Sigma$-elimination so that, for $x \co A$, $w \co B(x) \to E'$, we have
+map can be defined by $\Sigma$-elimination so that, for $x \co A$, $u \co B(x) \to E'$, we have
 \[
-\sup_{E'}(x,w) = 
+\sup_{E'}(x,u) = 
 \pair \big( 
-\sup_C(x, \pi_1 w ) \, , 
-e( x, \pi_1 w, \pi_2 w) \big) \co E' \, .
+\sup_C(x, \pi_1 u ) \, , 
+e( x, \pi_1 u, \pi_2 u) \big) \co E' \, .
 \]
-Here, note that $\pi_1 w \co B(x) \to C$ and $\pi_2 w \co (\Pi y \co B(x)) E(\pi_1 w (y))$ and so,
-by the type of $e$, we have that~$e(x, \pi_1 w, \pi_2 w) \co E( \sup_C(x, \pi_1 w))$, as required.
+Here, note that $\pi_1 u \co B(x) \to C$ and $\pi_2 u \co (\Pi y \co B(x)) E(\pi_1 u y)$ and so,
+by the type of $e$, we have that~$e(x, \pi_1 u, \pi_2 u) \co E( \sup_C(x, \pi_1 u))$, as required.
 \end{remark} 
 
 Analogously to the way we defined fibered $P$-algebras, it is possible to define 
