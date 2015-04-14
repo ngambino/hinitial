@@ -258,7 +258,7 @@ Pittsburgh, PA  15213, USA}
 \label{sec:bac}
 
 
-\subsection{Review of type theory.} We begin by introducing a very simple  Martin-L\"of type 
+\subsection{Review of type theory.} We begin by introducing a very simple version of Martin-L\"of's type 
 theory, denoted by~$\mathcal{M}$, which provides the basis for the type theory $\Hint$, introduced later,
 with which will work in the paper.
 Our type theories will be formulated using the four standard forms of judgement
@@ -822,10 +822,10 @@ by the following pasting diagram:
 1 \ar[r]_{b_0}   \ar@{}[dr]|{\Downarrow \, \bar{g}_0}  \ar@{=}[d] & B \ar[d]^f   & 1 \ar[l]^{b_1} \ar@{=}[d] \ar@{}[dl]|{\Downarrow \,  \bar{g}_1} \\
 1 \ar[r]_{c_0}  & C   & 1 \ar[l]^{c_1}}
  \]
-Explicitly, for $k \in \{ 0, 1 \}$, the path $\overline{(g \circ f)}_k \co \Id( g f a_0, c_0)$ is obtained as the composite
+Explicitly, for $k \in \{ 0, 1 \}$, the path $\overline{(g \circ f)}_k \co \Id( g f a_k, c_k)$ is obtained as the composite
 \[
 \xymatrix@C=1.5cm{
-g f a_0 \ar[r]^{g \circ \bar{f}_0} & g b_0 \ar[r]^{\bar{g}_0} & c_0 \, .}
+g f a_k \ar[r]^{g \circ \bar{f}_k} & g b_k \ar[r]^{\bar{g}_k} & c_k \, .}
 \]
 Also, for any bipointed type $A = (A, a_0, a_1)$, the identity function $1_A \co A \to A$ can be equipped with the structure of a bipointed by taking $\overline{(1_A)}_0 \co \Id( 1_A(a_0), a_0)$ to be $1_{a_0} = \refl(a_0) \co \Id(a_0, a_0)$. We represent this as the
 diagram
@@ -1258,10 +1258,13 @@ is inhabited. \end{definition}
 
 
 
-\begin{remark} For every bipointed type $A = (A, a_0, a_1)$, the type $\isbipind(A)$ is a mere proposition. Indeed, recall that to prove that a type  is a mere proposition, it suffices to do so under the assumption that it is inhabited. Assume therefore that~$\isbipind(A)$ is inhabited. Since the dependent product of a family of mere propositions is again a mere proposition, it suffices to show that~$\BipSec(A,E)$ is a mere proposition for any $E$. But for any two bipointed sections~$f, g \co \BipSec(A,E)$, we know that there is a 
+\begin{proposition} \label{thm:isbipindisprop} For every bipointed type $A = (A, a_0, a_1)$, the type $\isbipind(A)$ is a mere proposition.
+\end{proposition}
+
+\begin{proof} Recall that to prove that a type  is a mere proposition, it suffices to do so under the assumption that it is inhabited. Assume therefore that~$\isbipind(A)$ is inhabited. Since the dependent product of a family of mere propositions is again a mere proposition, it suffices to show that~$\BipSec(A,E)$ is a mere proposition for any $E$. But for any two bipointed sections~$f, g \co \BipSec(A,E)$, we know that there is a 
 bipointed homotopy $\alpha \co \BipHot(f,g)$ by Lemma~\ref{thm:inductiveuniquesec} and hence, by 
 Lemma~\ref{thm:biphot}, there is a path $p \co \Id(f,g)$, as required. 
-\end{remark}
+\end{proof}
 
 We define the type of small inductive bipointed types by letting
 \[
@@ -1420,7 +1423,7 @@ is inhabited.
 
 Let us remark that the uniqueness implicit in Definition~\ref{def:BoolInit} requires that any two bipointed homomorphisms are propositionally equal as tuples. It should also be noted that the property of being  homotopy-initial  can be transported along equivalences, in the sense that if two bipointed types are equivalent, then one is homotopy-initial if and only if the other one is.  
 
-\begin{proposition} For every bipointed type $A = (A, a_0, a_1)$, the type $\ishinit(A)$ is a mere proposition.
+\begin{proposition} \label{thm:isbiphinitishprop} For every bipointed type $A = (A, a_0, a_1)$, the type $\ishinit(A)$ is a mere proposition.
 \end{proposition}
 
 \begin{proof} Recall that, for a type $X$, the type $\iscontr(X)$ is a mere proposition and that the dependent product of family of mere propositions is again a mere proposition. 
@@ -1595,13 +1598,13 @@ between the composite $\pi_1 f \co A \to A$ and the identity $1_A \co A \to A$, 
 rest of the argument can be shortened considerably. In that setting, one obtains the familiar characterisation 
 of an inductive type by means of a standard universal property.
 
-\begin{remark} 
-Let us remark that, for a bipointed type $A$, there is actually an equivalence  
-\[
-\isbiphinit(A) \simeq \isbipind(A) \, ,
-\]
-since $\isbiphinit(A)$ and $\isbipind(A)$ are a mere propositions. 
-\end{remark} 
+\begin{corollary} For a bipointed type $A$, there is an equivalence of types $\isbipind(A)\simeq   \isbiphinit(A)$.
+\end{corollary} 
+
+\begin{proof} Theorem~\ref{thm:bipointedmain} gives a logical equivalence, but  $\isbipind(A)$ is a 
+mere proposition by Proposition~\ref{thm:isbipindisprop} and $\isbiphinit(A)$ is a mere proposition
+by Proposition~\ref{thm:isbiphinitishprop}. 
+\end{proof}
 
 The next proposition characterises the
 type $\Bool$ up to equivalence.
@@ -2044,37 +2047,41 @@ For every pair of $P$-algebra sections $(f, \bar{f})$ and $(g, \bar{g})$,  the f
 is an equivalence of types.
 \end{lemma}
 
-\begin{proof} TO BE REVISED Let us recall that $f, g \co (\Pi z \co C) E(z)$ and, for $x \co A$, $u \co B(x) \to C$, 
+\begin{proof} Let us recall that $f, g \co (\Pi z \co C) E(z)$ and, for $x \co A$, $u \co B(x) \to C$, 
 we have
 \[
-\bar{f} \co  \Id(e_f, f \circ \sup_C ) \, , \quad
-\bar{g}\co  \Id( e_g, g \circ \sup_C)  \, .
+\bar{f} \co  \Id(f \circ \sup_C , e_f  ) \, , \quad
+\bar{g}\co  \Id( g \circ \sup_C , e_g, )  \, ,
 \]
-Now, for $p \co \Id(f, g)$ we have $p_{!}(\bar{f}) \co  \Id( e_g ,  g \circ \sup_C)$ 
+where $e_f$ and $e_g$ are defined with the formula in~\eqref{equ:ef}. 
+Now, for $p \co \Id(f, g)$ we have 
+\[
+p_{!}(\bar{f}) \co  \Id( g \circ \sup_C \, , e_g)
+\] 
 and it can be shown by $\Id$-elimination that there exists a path 
-$q  \co \Id\big( p_{!}(\bar{f})  \ct e_p  \, , (p \circ \sup_C) \ct \bar{f}  \big)$, 
+$q  \co \Id\big(  e_p \ct \bar{f}   \, ,  p_{!}(\bar{f})  \ct  (p \circ \sup_C)    \big)$, 
 which can be represented with the diagram
 \[
 \xymatrix@C=2cm{
-e_f  \ar[r]^-{e_p}  \ar[d]_{\bar{f}}  \ar@{}[dr]|{\Downarrow \, q } & e_g  
-\ar[d]^{ p_{!}(\bar{f})  }  \\
-f \circ \sup_C \ar[r]_-{p \circ \sup_C}  & g \circ \sup_C }
+f \circ \sup_C  \ar[d]_-{p \circ \sup_C}  \ar[r]^{\bar{f}}  \ar@{}[dr]|{\Downarrow \, q } & e_f 
+\ar[d]^{ e_p}  \\
+ g \circ \sup_C \ar[r]_-{ p_{!}(\bar{f}) }  & e_g    }
 \]
 We then have
 \begin{align*}
   \Id\big( (f,\bar{f}),  (g,\bar{g}) \big) 
 & \simeq (\Sigma p \co \Id( f , g)) \; \Id ( p_{!} ( \bar{f} ) \, , \bar{g}  )  \\
-&  \simeq (\Sigma p \co \Id( f , g)) \; \Id (  \bar{g} \, , p_{!} ( \bar{f} )  )  \\
 & \simeq (\Sigma p \co \Id( f, g)) 
-\; \Id\big(  \bar{g}   \, , 
-(p \circ \sup_C) \ct \bar{f} \ct e_p^{-1}  \big)   \\ 
+\; \Id\big(  
+e_p \ct  \bar{f} \ct (p \circ \sup_C)^{-1} \, , \bar{g}     \big)   \\ 
 & \simeq (\Sigma p \co \Id( f, g)) 
-\; \Id\big(  \bar{g}  \ct e_p  \, ,   (p \circ \sup_C) \ct \bar{f}  \big)   \\ 
+\; \Id\big( e_p  \ct \bar{f} \, ,   \bar{g} \ct ( p \circ \sup_C)   \big)   \\ 
 & \simeq (\Sigma p \co \Id( f, g)) 
-\; \Hot \big(  \ext(\bar{g}) \ct e_{\ext(p)}    \, , 
-(\ext(p) \circ \sup_C) \ct \ext(\bar{f})   \big)   \\ 
-&  \simeq (\Sigma \alpha \co \Hot( f, g)) \; \Id\big(  \ext(\bar{g})  \ct e_\alpha \, , 
-(\alpha \circ \sup_C) \ct \ext(\bar{f}) \big) \\
+\Hot\big(  e_{\ext p} \ct \ext( \bar{f}) \, , 
+ \ext( \bar{g}) \ct ( (\ext \, p) \circ \sup_C)   \big)  \\ 
+&  \simeq (\Sigma \alpha \co \Hot( f, g)) \; 
+\Hot\big(  e_\alpha \ct \ext( \bar{f}) \, , 
+ \ext( \bar{g}) \ct (\alpha \circ \sup_C)   \big)  \\
 &  =   \AlgSecHot \big( (f,\bar{f}) \; (g,\bar{g}) \big) \, . \qedhere
 \end{align*}  
 \end{proof}
@@ -2131,25 +2138,25 @@ $G(g, \bar{g})$ and $H(h, \bar{h})$ are the types of proofs that $(g, \bar{g})$ 
 $P$-algebra morphisms, respectively. For the right inverse, this amounts to requiring that the pasting diagram
 \[
 \xymatrix@C=1.5cm{
-PC \ar[r]^{Pf} \ar[d]_{\sup_C} \ar@{}[dr]|{\Downarrow \, \bar{f}}  & PD \ar[r]^{Pg} \ar[d]^{\sup_D} 
-\ar@{}[dr]|{\Downarrow \, \bar{g}}  & PC \ar[d]^{\sup_C}  \\
-C \ar[r]_{f}   & D  \ar[r]_g & C \, .}
+PC \ar[r]^{\sup_C} \ar[d]_{Pf}  \ar@{}[dr]|{\Downarrow \, \bar{f}} & C \ar[d]^f \\
+PD \ar[r]^{\sup_D} \ar[d]_{Pg} \ar@{}[dr]|{\Downarrow \, \bar{g}} & D\ar[d]^g  \\
+PC \ar[r]_{\sup_D} & C}
 \]
 is propositionally equal to the diagram for the identity $P$-algebra morphism on $C$ in~\eqref{equ:palgid}. 
 Explicitly, we have
-\begin{align*}
-G(g,\bar{g}) & 
+\[
+G(g,\bar{g}) 
 \defeq 
-\Id \big( ( g  f,  \overline{gf}), (1_C, \overline{1}_C) \big)  \\
-H(h,\bar{h})    & \defeq \Id \big( (   f h,  \overline{ f h}), (1_D, \overline{1}_D) \big)  \, .
-\end{align*}
-Using the characterization of paths in $\Sigma$-types, we have
-\begin{align*}
-G(g, \bar{g}) & \simeq (\Sigma p \co \Id(g f ,  1_C) ) \, 
-	\Id\big( \overline{gf}   ,\, p^*( \overline{1}_C)  \big) \, , \\
-H(h, \bar{h}) & \simeq (\Sigma q \co \Id( f h ,  1_C) ) \, 
-	\Id\big( \overline{fh}   ,\, q^*( \overline{1}_C)  \big) \,. \
-\end{align*}
+\Id \big( ( g  f,  \overline{gf}), (1_C, \overline{1}_C) \big)  \, , \quad 
+H(h,\bar{h})     \defeq \Id \big( (   f h,  \overline{ f h}), (1_D, \overline{1}_D) \big)  \, ,
+\]
+and therefore, by the characterization of paths in $\Sigma$-types, we have
+\[ 
+G(g, \bar{g})  \simeq (\Sigma p \co \Id(g f ,  1_C) ) \, 
+	\Id\big( \overline{gf}   ,\, p^*( \overline{1}_C)  \big) \, , \quad
+H(h, \bar{h})  \simeq (\Sigma q \co \Id( f h ,  1_C) ) \, 
+	\Id\big( \overline{fh}   ,\, q^*( \overline{1}_C)  \big) \,. 
+\]
 Thus, rearranging the $\Sigma$-types in the definition, we have
 \begin{multline}
 \label{equ:isalgequivequiv}
@@ -2158,11 +2165,9 @@ Thus, rearranging the $\Sigma$-types in the definition, we have
    (\Sigma h \co D \to C)   (\Sigma q \co \Id( f h ,  1_C) )\,  H'(h,q) \, ,
 \end{multline}
 where 
-\begin{align} 
-G(g,p) & \defeq (\Sigma \bar{g} \co \mathsf{isalghom}(g)) \; \Id( \overline{gf}, p^*(\bar{1}_C)) \, , 
-\label{equ:alggp} \\
-H(h,q) & \defeq (\Sigma \bar{h} \co \mathsf{isalghom}(h)) \; \Id( \overline{fh}, q^*(\bar{1}_D)) ) \, .
-\label{equ:alghq}
+\begin{align}
+G'(g,p)  & \defeq (\Sigma \bar{g} \co \mathsf{isalghom}(g)) \; \Id( \overline{gf}, p^*(\bar{1}_C)) \, , \label{equ:alggp} \\
+H'(h,q)  & \defeq (\Sigma \bar{h} \co \mathsf{isalghom}(h)) \; \Id( \overline{fh}, q^*(\bar{1}_D)) ) \, .  \label{equ:alghq}
 \end{align}
 The  canonical elements of~$G(g,p)$ are pairs $(\bar{g}, \bar{p})$ consisting of  a path~$\bar{g}$ making
 $g$ into a $P$-algebra morphism and a path~$\bar{p}$ making $p \co \Id(gf, 1_C)$ into a propositional
