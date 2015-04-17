@@ -1,0 +1,17 @@
+
+For example, for the type of natural numbers $\Nat$, the elimination rule is stated as follows:
+\[
+\begin{prooftree}
+x \co \Nat \vdash E(x) \co \type \quad
+c \co E(0) \quad
+x \co \Nat, y \co E(x) \vdash d(x,y) \co E(\suc(x)) 
+\justifies
+x \co \Nat \vdash  \natrec(x, c,d) \co E(x)
+\end{prooftree}
+\]
+while the elimination rule assert that, under the same premisses of the elimination rule, we have 
+judgemental equalities
+\[
+ \natrec(0, c,d)  = 0 \co E(0) \, , \quad
+ x \co \Nat \vdash \natrec(\suc(x), c, d) = d(x, [x] \natrec(x, c, d)) \co E(\suc(x)) \, .
+ \]
