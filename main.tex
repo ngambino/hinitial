@@ -242,11 +242,10 @@ Pittsburgh, PA  15213, USA}
 
 
 \begin{abstract}
-We investigate inductive types in dependent type theories. We do so by introducing the 
-type-theoretic notion of an homotopy-initial algebra, which is obtained by replacing the
-standard category-theoretic universal property (which involves the existence and uniqueness of appropriate
-morphisms) by a type-theoretic contractibility requirement. Our main result characterises the types that are
-equivalent to $\W$-types as homotopy-initial algebras. 
+REVISED: We investigate inductive types in homotopy type theory. We do so by introducing the 
+notion of a homotopy-initial algebra, which is obtained by replacing the standard category-theoretic universal property 
+(which involves the existence and uniqueness of appropriate morphisms) by a purely type-theoretic contractibility condition. 
+Our main result characterises the types that are equivalent to $\W$-types as homotopy-initial algebras. 
 \end{abstract}
 
 
@@ -260,9 +259,9 @@ equivalent to $\W$-types as homotopy-initial algebras.
 
 \section*{Introduction}
 
-Inductive types, such as the type of natural numbers and types of well-founded trees, and  are one of the fundamental ingredients of dependent type theories, including  Martin-L\"of's type theories~\cite{NordstromB:marltt} and the Calculus of Inductive Constructions~\cite{BertotY:inttpp,CoquandT:inddt}. Within Martin-Lof's type theories,
-the rules for inductive types are stated using the familiar pattern of formation, introduction, elimination and computation rules.
-The elimination rules can be seen as the propositions-as-types translation of appropriate induction principles. For example, the elimination rule for the type of natural numbers is stated as follows:
+Inductive types, such as the type of natural numbers and types of well-founded trees,  are one of the fundamental ingredients of dependent type theories, including  Martin-L\"of's type theories~\cite{NordstromB:marltt} and the Calculus of Inductive Constructions~\cite{BertotY:inttpp,CoquandT:inddt}. In the present work, we investigate inductive types in the setting of \emph{homotopy type theory}, a  modification of Martin-L\"of's intensional type theory motivated by a homotopical interpretation. 
+
+As an introduction to the general problem of induction in intensional type theory, consider the case of numerical recursion.  Within Martin-Lof's intensional type theory, the rules for inductive types are stated using the familiar pattern of formation, introduction, elimination and computation rules.  The elimination rules can be seen as the propositions-as-types translation of appropriate induction principles. For example, the elimination rule for the type of natural numbers is stated as follows:
 
 \begin{equation}
 \label{equ:natind}
@@ -275,7 +274,7 @@ x \co \Nat, y \co E(x) \vdash d(x,y) \co E(\suc(x))
 x \co \Nat \vdash  \natelim(x, c,d) \co E(x) \, .
 \end{prooftree} \medskip
 \end{equation}
-As is well-known, the elimination rules for inductive types have important special cases that provide counterparts of the familiar principles for defining functions by recursion. For example, the special case of the rule in~\eqref{equ:natind} obtained by considering the dependent type in its premiss to be constant gives us the following recursion rule:
+As is well-known, the elimination rule for an inductive type has an important special case that provides a counterpart of the familiar principle of defintion of a function by recursion. For example, the special case of the rule~\eqref{equ:natind} obtained by considering the dependent type in its premiss to be constant gives us the following recursion rule:
 
 \begin{equation}
 \label{equ:natrec}
@@ -299,33 +298,27 @@ it allows us to define a function $f \co \Nat \to A$ such that the following dia
 Within type theory, the commutativity of the diagram is expressed by judgemental equalities,
 which can be proved as a special case of the computation rules for~$\Nat$. 
 
-In the notion of a natural number object, one not only requires the existence of such a function~$f$, 
+In the notion of a natural number object, however, one not only requires the existence of such a function~$f$, 
 but also its uniqueness. Remarkably, within type theory, it is possible to use the elimination
 rule in~\eqref{equ:natind} to show that such a function $f$ is unique up to a pointwise propositional equality,
-\ie that given another function $g \co \Nat \to A$ making the appropriate diagram commute, there are
-propositional equalities $\phi_x  \co \Id_A(fx, gx)$ for every $x \co \Nat$. This suggests the possibility of 
+\ie that given another function $g \co \Nat \to A$ making the corresponding diagram commute, there are
+propositional equalities $\phi_n  \co \Id_A(fn, gn)$ for every $n \co \Nat$. This suggests the possibility of 
  characterizing inductive types, such as the type of natural numbers, by means of standard
-category-theoretic universal properties. Unfortunately, this seems to be the case only in the
-presence of additional extensionality principles, 
-such as the equality reflection rule (which forces 
-propositional equality to coincide with judgemental equality)~\cite{DybjerP:repids,GoguenH:inddtw,MoerdijkI:weltc}.  Without these principles, a key obstacle is that the uniqueness up
-to pointwise propositional equality of the functions defined by recursion  does not seem to
+category-theoretic universal properties. Unfortunately, this seems to be possible only in the
+presence of additional extensionality principles such as the equality reflection rule (which forces 
+propositional equality to coincide with judgemental equality)~\cite{DybjerP:repids,GoguenH:inddtw,MoerdijkI:weltc}.  Without these principles, the uniqueness up to pointwise propositional equality of the functions defined by recursion does not seem to
 be sufficient to derive the elimination and computation rules for inductive types. Indeed,
-the elimination rules imply not only the existence of pointwise propositional equalities
+the elimination rules imply not only the existence of pointwise propositional equalities,
 as above, but also their essential uniqueness, expressed by a system of higher and higher propositional equalities
-whose combinatorics is difficult to axiomatize directly. 
+whose combinatorics are difficult to axiomatize directly. 
 
 The aim of this paper is to solve this problem using ideas inspired by the
-recent connections 
-between type theory and homotopy theory~\cite{AwodeyS:homtmi,ssets}, which are at the core of 
-Voevodsky's univalent foundations of mathematics programme~\cite{VoevodskyV:notts} and of
-homotopy type theory~\cite{hott}. Our analysis
-focuses on well-ordering types (W-types for short),
-which can be easily characterized as initial algebras for polynomial functors
-within extensional type
+recent connections between type theory and homotopy theory~\cite{AwodeyS:homtmi,ssets}, which are at the core of homotopy type theory~\cite{hott} and Voevodsky's univalent foundations of mathematics programme~\cite{VoevodskyV:notts}. 
+Our analysis focuses on well-ordering types (W-types for short),
+which can be easily characterized as initial algebras for polynomial functors within extensional type
 theories~\cite{AbbottM:concsp,DybjerP:repids,GambinoN:weltdp,MoerdijkI:weltc}. Our
-results show that a type is equivalent to a W-type if and only if
-it is a \emph{homotopy-initial algebra} for a polynomial functor. The type-theoretic notion of homotopy-initial
+results show that in the system under consideration, a type is equivalent to a W-type if and only if
+it is a \emph{homotopy-initial algebra} for a polynomial functor. The notion of homotopy-initial
 algebra, which we introduce here, is intended as a generalization of the standard category-theoretic
 notion of an initial algebra, obtained by replacing the usual existence and uniqueness requirements
 by asking for the \emph{contractibility} of suitable types of algebra morphisms. Although the notion 
@@ -333,56 +326,48 @@ of homotopy-initial algebra is entirely type-theoretic, it is inspired by ideas 
 category theory, where standard-category theoretic universal properties are generalized using the topological
  notion of contractibility~\cite{LurieJ:higtt}. 
 
-As part of our development, we establish several results that do not have counterparts in the extensional setting.  
+As part of our development, we also establish several results that do not have counterparts in the extensional setting.  
 For  example, we show how the elements of the identity type between two algebra morphisms are essentially
-the same thing as type-theoretic counterparts of the notion of an algebra 2-cell~\cite{BlackwellR:twodmt}.
+ type-theoretic counterparts of the notion of an algebra 2-cell~\cite{BlackwellR:twodmt}.
 This surprising fact provides further evidence for the idea that the rules for identity types encapsulate 
 higher-dimensional categorical structure~\cite{LumsdaineP:weaci,vandenBergB:typwg}. We also
 analyze the complexity of the types of proofs that a given type is homotopy-initial, showing that it
-is a mere proposition, \ie a type of homotopy level 1. Finally, we show that, 
-under the assumption of the univalence axiom, a version of univalence holds also for
-algebras and that, if homotopy-initial algebras  exist, they are
+is a \emph{mere proposition}, \ie a type of homotopy level 1. Finally, we show that, 
+under the assumption of the univalence axiom, a version of univalence  also holds for
+algebras and that such algebras, when they exist, are
 essentially unique, \ie unique up to a contractible type of propositional equalities. 
 
-Our development can be extended without problems for other kinds of inductive types.
-In fact, in order to illustrate our ideas,  we begin the paper by considering the simpler case
+Our development can be extended without difficulty to other kinds of inductive types, such as coproducts $A + B$ and the natural numbers  $\Nat$.  In fact, in order to illustrate our ideas,  we begin the paper by considering the simpler case
 of the type $\Bool$ of Boolean truth values, establishing analogues of the results proved
 later for W-types. 
 
 \medskip
 
 \noindent
-\emph{Relationship to the conference version of the paper.} Some of the results presented here
-were announced in our extended abstract~\cite{wtypes}. The present paper expands that material
-by including all the proofs (which requires the statement of auxiliary lemmas), developing the
-analysis of the complexity of the types of proofs that a type is homotopy-initial, and investigating further the consequences of the univalence axiom.
+\emph{Related work.} Some of the results presented here were announced in our extended abstract~\cite{wtypes}, and are summarized in the book \cite{hott}. The present paper expands the material outlined there by including not only all of the omitted proofs (which requires the statement of auxiliary lemmas), but also a new, algebraic treatment of induction, as well as an analysis of the complexity of the type of proofs that a type is homotopy-initial, and an investigation of the further consequences of the univalence axiom.
 
 \smallskip
 
 \noindent
-\emph{Formalization.} All the results in the paper have been formally verified using the
-Coq proof assistant. The formalization files, which build on the existing libraries for
-univalent foundations of mathematics and homotopy type theory, are available from
-the third author's web page.
+\emph{Formalization.} All the results in this paper have been formally verified using the
+Coq proof assistant. The formalization files, which build on the existing libraries for homotopy type theory and 
+univalent foundations of mathematics, are available from the third author's GitHub repository.
 
 \smallskip
 
 \noindent
-\emph{Organization of the paper.} Section~\ref{sec:bac} reviews all the necessary preliminaries to
+\emph{Organization of the paper.} Section~\ref{sec:bac} reviews all of the  preliminaries necessary to
 read the paper and introduces the type theory $\Hint$ which will provide the background theory for
-our study. The rest of the paper is divided in two parts. The first part discusses the type $\Bool$.
+our investigations. The rest of the paper is divided in two parts. The first part considers the type $\Bool$.
 We begin in Section~\ref{sec:bip} by defining the notions of a bipointed type, bipointed morphism,
 fibered bipointed type, bipointed section analyzing homotopies between morphisms and 
 sections in terms of identity types. We also discuss the notion of equivalence between bipointed types.
 Section~\ref{sec:homibt} introduces the notions of inductive bipointed type and homotopy-initial
 bipointed type, so as to arrive at the main results, characterizing $\Bool$ up to equivalence and
-exploring consequences of the univalence axiom. The second part, which includes
-Section~\ref{section:wfiles} and Section~\ref{sec:homta}, proceeds in parallel with the 
+exploring consequences of the univalence axiom. The second part, which comprises
+Sections~\ref{section:wfiles} and~\ref{sec:homta}, proceeds in parallel with the 
 first part, but with algebras for a polynomial functor instead of bipointed types. 
-
-
-
-
+This second part forms the main contribution of the paper, while the first part provides a simpler setting in which to introduce the new concepts and methods of proof.  The formal structure of the two parts is intentionally parallel, in order to guide the reader through the more difficult, second part.
 
 
 \section{Homotopy-theoretic concepts in type theory}
@@ -700,7 +685,7 @@ a path $p\co \Id_A(a,b)$ determines the so-called \emph{transport functions}
 p_{\, ! } \co E(a) \rightarrow E(b) \, , \quad p^* \co E(b) \to E(a) \, .
 \] 
 These are defined so that, for $x \co A$, the functions $\refl(x)_{\, !}$ 
-and~$\refl(x)^*$ are the identity function $1_{E(x)} \co E(x) \to E(x)$.  In order to emphasize the 
+and~$\refl(x)^*$ are the identity function $1_{E(x)} \co E(x) \to E(x)$.  In order to emphasize the fact
 that dependent types are interpreted as fibrations in homotopy-theoretic models, we sometimes refer to a dependent
 type as in~\eqref{equ:dependenttype} as a \emph{fibered type} over $A$. Accordingly, elements of the 
 type~$(\Pi x \co A)E(x)$ may be referred to as~\emph{sections} of the fibered type. This terminology is supported by the fact that a section $f \co (\Pi x \co A)E(x)$ determines a function $f' \co A \to E'$, where $E' \defeq (\Sigma x \co A)E(x)$, defined by
@@ -766,7 +751,7 @@ We sometimes write  $\alpha \co f \sim g$ rather than $\alpha \co \Hot(f,g)$.
 
 One of the key insights derived from the homotopy-theoretic interpretation of type theories is that
 the notion of contractibility in~\eqref{eq:contractible}  can be used to articulate the world of types  
-into a hierarchy of so-called \emph{homotopy levels} (or h-levels for short) according to their homotopical complexity. These
+into a hierarchy of so-called \emph{homotopy levels} (or h-levels for short) according to their homotopical complexity \cite{VoevodskyV:notts}. These
 are defined inductively by saying that a type $A$ has level $0$ if it is contractible and it has level
 $n+1$ if for every $x, y \co A$ the type $\Id_A(x,y)$ has level $n$. Types of h-level 1 are called 
 here \emph{mere proposition}. By definition, a type $A$ is said to be a \emph{mere proposition} if the type
@@ -778,7 +763,7 @@ is inhabited.
 \subsection*{Characterization of identity types} \label{sec:chait} We now recall that the identity types of various kinds of 
 compound types admit an equivalent description. We begin by considering product types and function types.
 Let $A$ and $B$ be types. For any 
-pair of elements $c, d  \co A \times B$, and $f, g \co A \to B$, we have  canonical maps
+pair of elements $c, d  \co A \times B$, and any $f, g \co A \to B$, we have  canonical maps
 \begin{align*} 
 \ext^{\times}_{c,d}  \co & \Id_{A \times B}(c, d) \to \Id_{A}(\pi_1 c, \pi_1 d) \times \Id_{B}(\pi_2 c, \pi_2 d) \, , \\
 \ext^{\to}_{f,g} \co & \Id_{A \to B}(f, g) \to (\Pi x \co A) \Id_B(fx, gx) \, .
@@ -789,10 +774,9 @@ pair of elements $c, d  \co A \times B$, and $f, g \co A \to B$, we have  canoni
 \ext^\U_{A,B} \co & \Id_\U(A,B) \to \Eq(A,B) \, .
 \end{align*}
 We refer to these functions as the \emph{extension functions} for product types, function types, $\Sigma$-types,
-$\Pi$-types and $\U$, respectively.  We then have that extension functions for product types and $\Sigma$-types 
+$\Pi$-types and $\U$, respectively.  We then have that the extension functions for product types and $\Sigma$-types 
 can be shown to be equivalences within the type theory~$\mathcal{M}$, using the (provable) $\eta$-rule for $\Sigma$-types in~\eqref{equ:etasigma}.
-The extension functions for function types and $\Pi$-types, instead,  can be shown to be equivalences within the type theory $\Hint$, using the function extensionality principle in~\eqref{equ:funext} that is part of $\Hint$. Finally, the assertion that the extension function for the type universe is 
-exactly the univalence axiom. Thus, within the type theory $\Hint$ we have inverses to the
+The extension functions for function types and $\Pi$-types, for their part, can be shown to be equivalences within the type theory $\Hint$, using the function extensionality principle in~\eqref{equ:funext} that is part of $\Hint$. Finally, the assertion that the extension function for the type universe is an equivalence is exactly the univalence axiom. Thus, within the type theory $\Hint$ we have the following inverses to the
 extension functions
 \begin{align*}
 \int^{\times}_{c,d} \co & \big( \Id_A(\pi_1 c \, , \pi_1 d) \times \Id_B(\pi_2 c,\pi_2 d) \big) \to 
@@ -801,11 +785,11 @@ extension functions
 \int^{\Sigma}_{c,d} \co & \big( (\Sigma p \co \Id_A( \pi_1 c, \pi_1 d )) \Id_{B(\pi_2 c)}( p_{!} \pi_2 c, 
 \pi_2 d) \big) \to \Id_{(\Sigma x \co A)B(x)}(c, d)  \\
 \int^{\Pi}_{f,g} \co & (\Pi x \co A) \Id_{B(x)}(f x, gx) \to  \Id_{(\Pi x \co A)B(x)}(f, g)  \, ,\\ 
- \intertext{and, in the extension of $\Hint$ with the Univalence Axiom, also equivalences}  
+ \intertext{and, in the extension of $\Hint$ with the Univalence Axiom, also the inverse}  
 \int^{\U}_{A,B} \co & \Id_\U(A, B) \to  \Eq(A, B)   \, . 
  \end{align*}
-In the following, if the context does not create any confusion, we may omit  superscripts and subscripts when manipulating these functions. Let us also remark that for $\Sigma$-types we could have also used $p^*$ instead
-of $p_{!}$, making the evident changes. In the following, we shall use either depending on what is more convenient.
+In the following, if the context does not create any confusion, we may omit  superscripts and subscripts when manipulating these functions, writing simply $\ext$ and $\int$. Let us also remark that for $\Sigma$-types we could have also used $p^*$ instead
+of $p_{!}$, making the evident changes. In the following, we shall use both, depending on which is more convenient.
 
 \subsection*{Higher-dimensional categorical structure} Even if our development is entirely syntactic,
 many of the ideas presented in the paper are inspired by concepts of homotopy theory and higher-dimensional
