@@ -1528,9 +1528,9 @@ homotopy~$\alpha \co \Hot(f, g)$. Thus, by Lemma~\ref{BoolHomSpace}, there is a 
 \[
 p \co \Id((f, \bar{f}_0, \bar{f}_1), (g, \bar{g}_0, \bar{g}_1)) \, .
 \] 
-Furthermore, it can be shown that such a path is itself is unique up to a higher path, which in turn is unique up to a yet higher path, and so on. 
+Furthermore, it can be shown that such a path is itself unique up to a higher path, which in turn is unique up to a yet higher path, and so on. 
 
-The key point in our development (described for $\Bool$ below and for $\W$-types in Section~\ref{sec:homta}) is that this sort of weak $\infty$-universality, which apparently involves infinitely much data, can be captured \emph{fully within the system of type theory} (without resorting to coinduction) using ideas inspired by homotopy theory and higher-dimensional category theory. Indeed, in spite of the fact that bipointed types and morphisms do not form a category in a strict sense, it is possible to introduce the  notion of a homotopy-initial bipointed type in completely elementary and explicit terms, as in Definition~\ref{def:BoolInit} below. This provides the template for the notion of a homotopy-initial algebra, which we will introduce in Section~\ref{sec:homta} in relation to $\W$-types.
+The key point in our development (described for $\Bool$ below and for $\W$-types in Section~\ref{sec:homta}) is that this sort of weak $\infty$-universality, which apparently involves infinitely much data, can be captured \emph{fully within the system of type theory} (without resorting to coinduction) using ideas inspired by homotopy theory and higher-dimensional category theory. Indeed, in spite of the fact that bipointed types and morphisms do not form a category in a strict sense, it is possible to introduce the  notion of a homotopy-initial bipointed type in completely elementary and explicit terms, as in Definition~\ref{def:BoolInit} below. This provides the template for the definition of a homotopy-initial algebra, which we will introduce in Section~\ref{sec:homta} in relation to $\W$-types.
 
 
 
@@ -1551,7 +1551,27 @@ Let us remark that the uniqueness implicit in Definition~\ref{def:BoolInit} requ
 \begin{proof} Recall that, for a type $X$, the type $\iscontr(X)$ is a mere proposition and that the dependent product of family of mere propositions is again a mere proposition. 
 \end{proof} 
 
-The next proposition spells out spells out a  characterization of homotopy-initial bipointed types in terms of type-theoretic rules.
+
+\begin{proposition} \label{BoolHInitIso} 
+Assuming the univalence axiom, 
+homotopy-initial small bipointed types are unique up to a contractible type of bipointed equivalences, i.e. the type
+\[ 
+(\Pi A \co \Bip) (\Pi B \co \Bip)
+\big( \isbiphinit(A) \times \isbiphinit(B) \to \iscontr(\BipEquiv(A,B)) \big) \, .
+\] 
+is inhabited.
+\end{proposition}
+
+\begin{proof} 
+Let $A$ and $B$ be homotopy-initial bipointed types. The type 
+$\BipHom( A, B)$ is contractible by homotopy-initiality of $A$. Since the dependent sum of a family of mere propositions over a mere proposition is again a mere proposition, it suffices to prove that the type $\isbipequiv(f)$ is contractible for any bipointed morphism $f \co A \to B$. This type is a mere proposition by 
+Proposition~\ref{thm:usemere}, and thus it suffices to show it is inhabited. But the existence of a right and a left bipointed inverse for $f$ follows immediately
+by the assumption that $A$ and $B$ are homotopy-initial.
+\end{proof}
+
+
+
+The next proposition spells out a  characterization of homotopy-initial bipointed types in terms of type-theoretic rules.
 
 
 \begin{proposition} \label{thm:hinitrules}
@@ -1611,13 +1631,13 @@ x \co A \vdash \eta_x \co \Id(fx, \rec(x, b_0, b_1) ) \, ,
 inspired by the special case that arises by considering $B$ to be $A$ itself and $f$ to be the identity function.
 In this case, we obtain a function $(\lambda x \co A) \rec(x, a_0, a_1) \co A \to A$, paths $\beta_k \co
 \Id( \rec(a_k, a_0, a_1), a_k)$, for $k \in \{ 0, 1 \}$ and $\eta_x \co \Id(x, \rec(x, a_0, a_1)$ and higher paths
-fitting in the diagrams
+$\bar{\eta}_k$ fitting in the diagram
 \[
 \xymatrix@C=1.5cm{
 a_k \ar[r]^-{\eta_{a_k}} \ar@/_1pc/[dr]_{1_{a_k}} \ar@{}[dr]|{\qquad \overset{\bar{\eta}_k\; }{\Rightarrow}} & \rec(a_k, a_0, a_1) \ar[d]^{\beta_k} \\ 
  & a_k\, ,}
  \]
- which are clearly analogous to one of the triangle laws for an adjunction. 
+ for $k \in \{ 0, 1\}$,  which are analogous to one of the triangle laws for an adjunction. 
 \end{remark} 
 
 
@@ -1629,7 +1649,7 @@ The next theorem provides a characterisation of inductive bipointed types.
 
 
 \begin{theorem}\label{thm:bipointedmain} A small bipointed type 
-is  $A$ is inductive if and only if it is homotopy-initial, \ie  the type
+ $A$ is inductive if and only if it is homotopy-initial, \ie  the type
 \[
 (\Pi A \co \Bip) \big(  \isbiphinit(A) \leftrightarrow \isbipind(A) \big)
 \] 
@@ -1719,7 +1739,12 @@ type theory~$\Hext$ obtained by adding to $\Hint$ the identity reflection rule i
 there is a judgemental equality 
 between the composite $\pi_1 f \co A \to A$ and the identity $1_A \co A \to A$, with which the
 rest of the argument can be shortened considerably. In that setting, one obtains the familiar characterisation 
-of an inductive type as initial algebras.
+of an inductive type as strict initial algebras.
+
+\medskip
+
+Theorem~\ref{thm:bipointedmain} gives a logical equivalence between two types, but in fact we 
+have a genuine equivalence of types, as the following corollary shows.
 
 \begin{corollary} For a bipointed type $A$, there is an equivalence of types $\isbipind(A)\simeq   \isbiphinit(A)$.
 \end{corollary} 
@@ -1752,8 +1777,14 @@ over an arbitrary, \ie not necessarily small, dependent type. Instead, the defin
 type involve the existence of sections over small fibered bipointed types. In spite of this apparent difference,
 since $\Bool$ is assumed to be a small type, one can prove an equivalence between any inductive type $A$
 and $\Bool$ and hence derive counterparts of the elimination rules for $\Bool$ for any inductive bipointed type. 
-\end{remark} 
 
+Let us point out that there are at least two alternatives to the approach taken here regarding universes. The first involves avoiding the restriction
+to \emph{small} fibered bipointed types in the definition of the notion of an inductive bipointed type. Accordingly,
+one drops the restriction of mapping into \emph{small} bipointed types in the definition of a notion of a homotopy-initial
+algebra. With these changes, there is still a logical equivalence between the modified notions, but this is no longer an internal statement in the type theory, as in Theorem~\ref{thm:bipointedmain}. Alternatively, one could assume to
+have a hiearchy of type universes $\U_0 \co \U_1 \co \; \ldots \; \co \U_n \co \U_{n+1} \co \ldots$ and modify the elimination rules for $\Bool$ by specifying that the types into which we are eliminating belong to some universe. 
+A counterpart of Theorem~\ref{thm:bipointedmain}, now stated with appropriate universe levels, would still hold.
+ \end{remark}
 
 
 \subsection*{Univalence for bipointed types} \label{sec:unibip}
@@ -1792,7 +1823,10 @@ After rearranging, we get
 which is equivalent to $\BipEquiv(A,B)$ by Proposition~\ref{thm:usemere}. Finally, it is not hard to see that the composition of the above equivalences yields the  function $\ext^{\Bip}_{A,B}$ up to a homotopy, thus showing that it is an equivalence, as required.
 \end{proof} 
 
-\begin{corollary} \label{BoolHInitIso} 
+
+
+
+\begin{corollary} 
 Assuming the univalence axiom, 
 homotopy-initial small bipointed types are unique up to a contractible type of paths, i.e. the type
 \[ 
@@ -1802,12 +1836,9 @@ homotopy-initial small bipointed types are unique up to a contractible type of p
 is inhabited.
 \end{corollary}
 
-\begin{proof} Let $A$ and $B$ be homotopy-initial bipointed types. 
-By Theorem~\ref{thm:bipunivalence} it suffices to prove that the type $\BipEquiv(A,B)$ is contractible. The type 
-$\BipHom( A, B)$ is contractible by homotopy-initiality of $A$. Since the dependent sum of a family of mere propositions over a mere proposition is again a mere proposition, it suffices to prove that the type $\isbipequiv(f)$ is contractible for any bipointed morphism $f \co A \to B$. This type is a mere proposition by 
-Proposition~\ref{thm:usemere}, and thus it suffices to show it is inhabited. But the existence of a right and a left bipointed inverse for $f$ follows immediately
-by the assumption that $A$ and $B$ are homotopy-initial.
-\end{proof}
+\begin{proof} This is an immediate consequence of Proposition~\ref{BoolHInitIso} and 
+Theorem~~\ref{thm:bipunivalence}. 
+\end{proof} 
 
 
 
