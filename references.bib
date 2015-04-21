@@ -1,710 +1,650 @@
-%%% ====================================================================
-%%%  BibTeX-file{
-%%%     author          = "Gerry Murray",
-%%%     version         = "1.2",
-%%%     date            = "2 April 2012",
-%%%     filename        = "acmsmall-sample-bibfile.bib",
-%%%     address         = "ACM, NY",
-%%%     email           = "murray at hq.acm.org",
-%%%     codetable       = "ISO/ASCII",
-%%%     keywords        = "ACM Reference Format, bibliography, citation, references",
-%%%     supported       = "yes",
-%%%     docstring       = "This BibTeX database file contains 'bibdata' entries
-%%%                        that 'match' the examples provided in the Specifications Document
-%%%                        AND, also, 'legacy'-type bibs. It should assist authors in 
-%%%                        choosing the 'correct' at-bibtype and necessary bib-fields
-%%%                        so as to obtain the appropriate ACM Reference Format output. 
-%%%			   It also contains many 'Standard Abbreviations'. "
-%%%  }
-%%% ====================================================================
+%% This BibTeX bibliography file was created using BibDesk.
+%% http://bibdesk.sourceforge.net/
 
-% Journals
 
-% First the Full Name is given, then the abbreviation used in the AMS Math
-% Reviews, with an indication if it could not be found there.
-% Note the 2nd overwrites the 1st, so swap them if you want the full name.
+%% Created for Nicola Gambino at 2015-04-21 11:30:00 +0100 
 
- %{AMS}
- @String{AMSTrans = "American Mathematical Society Translations" }
- @String{AMSTrans = "Amer. Math. Soc. Transl." }
- @String{BullAMS = "Bulletin of the American Mathematical Society" }
- @String{BullAMS = "Bull. Amer. Math. Soc." }
- @String{ProcAMS = "Proceedings of the American Mathematical Society" }
- @String{ProcAMS = "Proc. Amer. Math. Soc." }
- @String{TransAMS = "Transactions of the American Mathematical Society" }
- @String{TransAMS = "Trans. Amer. Math. Soc." }
 
- %ACM
- @String{CACM = "Communications of the {ACM}" }
- @String{CACM = "Commun. {ACM}" }
- @String{CompServ = "Comput. Surveys" }
- @String{JACM = "J. ACM" }
- @String{ACMMathSoft = "{ACM} Transactions on Mathematical Software" }
- @String{ACMMathSoft = "{ACM} Trans. Math. Software" }
- @String{SIGNUM = "{ACM} {SIGNUM} Newsletter" }
- @String{SIGNUM = "{ACM} {SIGNUM} Newslett." }
+%% Saved with string encoding Unicode (UTF-8) 
 
- @String{AmerSocio = "American Journal of Sociology" }
- @String{AmerStatAssoc = "Journal of the American Statistical Association" }
- @String{AmerStatAssoc = "J. Amer. Statist. Assoc." }
- @String{ApplMathComp = "Applied Mathematics and Computation" }
- @String{ApplMathComp = "Appl. Math. Comput." }
- @String{AmerMathMonthly = "American Mathematical Monthly" }
- @String{AmerMathMonthly = "Amer. Math. Monthly" }
- @String{BIT = "{BIT}" }
- @String{BritStatPsych = "British Journal of Mathematical and Statistical
-          Psychology" }
- @String{BritStatPsych = "Brit. J. Math. Statist. Psych." }
- @String{CanMathBull = "Canadian Mathematical Bulletin" }
- @String{CanMathBull = "Canad. Math. Bull." }
- @String{CompApplMath = "Journal of Computational and Applied Mathematics" }
- @String{CompApplMath = "J. Comput. Appl. Math." }
- @String{CompPhys = "Journal of Computational Physics" }
- @String{CompPhys = "J. Comput. Phys." }
- @String{CompStruct = "Computers and Structures" }
- @String{CompStruct = "Comput. \& Structures" }
- @String{CompJour = "The Computer Journal" }
- @String{CompJour = "Comput. J." }
- @String{CompSysSci = "Journal of Computer and System Sciences" }
- @String{CompSysSci = "J. Comput. System Sci." }
- @String{Computing = "Computing" }
- @String{ContempMath = "Contemporary Mathematics" }
- @String{ContempMath = "Contemp. Math." }
- @String{Crelle = "Crelle's Journal" }
- @String{GiornaleMath = "Giornale di Mathematiche" }
- @String{GiornaleMath = "Giorn. Mat." } % didn't find in AMS MR., ibid.
 
- %IEEE
- @String{Computer = "{IEEE} Computer" }
- @String{IEEETransComp = "{IEEE} Transactions on Computers" }
- @String{IEEETransComp = "{IEEE} Trans. Comput." }
- @String{IEEETransAC = "{IEEE} Transactions on Automatic Control" }
- @String{IEEETransAC = "{IEEE} Trans. Automat. Control" }
- @String{IEEESpec = "{IEEE} Spectrum" } % didn't find in AMS MR
- @String{ProcIEEE = "Proceedings of the {IEEE}" }
- @String{ProcIEEE = "Proc. {IEEE}" } % didn't find in AMS MR
- @String{IEEETransAeroElec = "{IEEE} Transactions on Aerospace and Electronic
-     Systems" }
- @String{IEEETransAeroElec = "{IEEE} Trans. Aerospace Electron. Systems" }
+@string{academic = {Academic Press}}
 
- @String{IMANumerAna = "{IMA} Journal of Numerical Analysis" }
- @String{IMANumerAna = "{IMA} J. Numer. Anal." }
- @String{InfProcLet = "Information Processing Letters" }
- @String{InfProcLet = "Inform. Process. Lett." }
- @String{InstMathApp = "Journal of the Institute of Mathematics and
-     its Applications" }
- @String{InstMathApp = "J. Inst. Math. Appl." }
- @String{IntControl = "International Journal of Control" }
- @String{IntControl = "Internat. J. Control" }
- @String{IntNumerEng = "International Journal for Numerical Methods in
-     Engineering" }
- @String{IntNumerEng = "Internat. J. Numer. Methods Engrg." }
- @String{IntSuper = "International Journal of Supercomputing Applications" }
- @String{IntSuper = "Internat. J. Supercomputing Applic." } % didn't find
-%% in AMS MR
- @String{Kibernetika = "Kibernetika" }
- @String{JResNatBurStand = "Journal of Research of the National Bureau
-     of Standards" }
- @String{JResNatBurStand = "J. Res. Nat. Bur. Standards" }
- @String{LinAlgApp = "Linear Algebra and its Applications" }
- @String{LinAlgApp = "Linear Algebra Appl." }
- @String{MathAnaAppl = "Journal of Mathematical Analysis and Applications" }
- @String{MathAnaAppl = "J. Math. Anal. Appl." }
- @String{MathAnnalen = "Mathematische Annalen" }
- @String{MathAnnalen = "Math. Ann." }
- @String{MathPhys = "Journal of Mathematical Physics" }
- @String{MathPhys = "J. Math. Phys." }
- @String{MathComp = "Mathematics of Computation" }
- @String{MathComp = "Math. Comp." }
- @String{MathScand = "Mathematica Scandinavica" }
- @String{MathScand = "Math. Scand." }
- @String{TablesAidsComp = "Mathematical Tables and Other Aids to Computation" }
- @String{TablesAidsComp = "Math. Tables Aids Comput." }
- @String{NumerMath = "Numerische Mathematik" }
- @String{NumerMath = "Numer. Math." }
- @String{PacificMath = "Pacific Journal of Mathematics" }
- @String{PacificMath = "Pacific J. Math." }
- @String{ParDistComp = "Journal of Parallel and Distributed Computing" }
- @String{ParDistComp = "J. Parallel and Distrib. Comput." } % didn't find
-%% in AMS MR
- @String{ParComputing = "Parallel Computing" }
- @String{ParComputing = "Parallel Comput." }
- @String{PhilMag = "Philosophical Magazine" }
- @String{PhilMag = "Philos. Mag." }
- @String{ProcNAS = "Proceedings of the National Academy of Sciences
-                    of the USA" }
- @String{ProcNAS = "Proc. Nat. Acad. Sci. U. S. A." }
- @String{Psychometrika = "Psychometrika" }
- @String{QuartMath = "Quarterly Journal of Mathematics, Oxford, Series (2)" }
- @String{QuartMath = "Quart. J. Math. Oxford Ser. (2)" }
- @String{QuartApplMath = "Quarterly of Applied Mathematics" }
- @String{QuartApplMath = "Quart. Appl. Math." }
- @String{RevueInstStat = "Review of the International Statisical Institute" }
- @String{RevueInstStat = "Rev. Inst. Internat. Statist." }
+@string{acmmathsoft = {{ACM} Trans. Math. Software}}
 
- %SIAM
- @String{JSIAM = "Journal of the Society for Industrial and Applied
-     Mathematics" }
- @String{JSIAM = "J. Soc. Indust. Appl. Math." }
- @String{JSIAMB = "Journal of the Society for Industrial and Applied
-     Mathematics, Series B, Numerical Analysis" }
- @String{JSIAMB = "J. Soc. Indust. Appl. Math. Ser. B Numer. Anal." }
- @String{SIAMAlgMeth = "{SIAM} Journal on Algebraic and Discrete Methods" }
- @String{SIAMAlgMeth = "{SIAM} J. Algebraic Discrete Methods" }
- @String{SIAMAppMath = "{SIAM} Journal on Applied Mathematics" }
- @String{SIAMAppMath = "{SIAM} J. Appl. Math." }
- @String{SIAMComp = "{SIAM} Journal on Computing" }
- @String{SIAMComp = "{SIAM} J. Comput." }
- @String{SIAMMatrix = "{SIAM} Journal on Matrix Analysis and Applications" }
- @String{SIAMMatrix = "{SIAM} J. Matrix Anal. Appl." }
- @String{SIAMNumAnal = "{SIAM} Journal on Numerical Analysis" }
- @String{SIAMNumAnal = "{SIAM} J. Numer. Anal." }
- @String{SIAMReview = "{SIAM} Review" }
- @String{SIAMReview = "{SIAM} Rev." }
- @String{SIAMSciStat = "{SIAM} Journal on Scientific and Statistical
-     Computing" }
- @String{SIAMSciStat = "{SIAM} J. Sci. Statist. Comput." }
+@string{acmpress = {{ACM} Press}}
 
- @String{SoftPracExp = "Software Practice and Experience" }
- @String{SoftPracExp = "Software Prac. Experience" } % didn't find in AMS MR
- @String{StatScience = "Statistical Science" }
- @String{StatScience = "Statist. Sci." }
- @String{Techno = "Technometrics" }
- @String{USSRCompMathPhys = "{USSR} Computational Mathematics and Mathematical
-     Physics" }
- @String{USSRCompMathPhys = "{U. S. S. R.} Comput. Math. and Math. Phys." }
- @String{VLSICompSys = "Journal of {VLSI} and Computer Systems" }
- @String{VLSICompSys = "J. {VLSI} Comput. Syst." }
- @String{ZAngewMathMech = "Zeitschrift fur Angewandte Mathematik und
-     Mechanik" }
- @String{ZAngewMathMech = "Z. Angew. Math. Mech." }
- @String{ZAngewMathPhys = "Zeitschrift fur Angewandte Mathematik und Physik" }
- @String{ZAngewMathPhys = "Z. Angew. Math. Phys." }
+@string{adamhilger = {Adam Hilger}}
 
-% Publishers % ================================================= |
+@string{addisonwesley = {Addison-Wesley}}
 
- @String{Academic = "Academic Press" }
- @String{ACMPress = "{ACM} Press" }
- @String{AdamHilger = "Adam Hilger" }
- @String{AddisonWesley = "Addison-Wesley" }
- @String{AllynBacon = "Allyn and Bacon" }
- @String{AMS = "American Mathematical Society" }
- @String{Birkhauser = "Birkha{\"u}ser" }
- @String{CambridgePress = "Cambridge University Press" }
- @String{Chelsea = "Chelsea" }
- @String{ClaredonPress = "Claredon Press" }
- @String{DoverPub = "Dover Publications" }
- @String{Eyolles = "Eyolles" }
- @String{HoltRinehartWinston = "Holt, Rinehart and Winston" }
- @String{Interscience = "Interscience" }
- @String{JohnsHopkinsPress = "The Johns Hopkins University Press" }
- @String{JohnWileySons = "John Wiley and Sons" }
- @String{Macmillan = "Macmillan" }
- @String{MathWorks = "The Math Works Inc." }
- @String{McGrawHill = "McGraw-Hill" }
- @String{NatBurStd = "National Bureau of Standards" }
- @String{NorthHolland = "North-Holland" }
- @String{OxfordPress = "Oxford University Press" }  %address Oxford or London?
- @String{PergamonPress = "Pergamon Press" }
- @String{PlenumPress = "Plenum Press" }
- @String{PrenticeHall = "Prentice-Hall" }
- @String{SIAMPub = "{SIAM} Publications" }
- @String{Springer = "Springer-Verlag" }
- @String{TexasPress = "University of Texas Press" }
- @String{VanNostrand = "Van Nostrand" }
- @String{WHFreeman = "W. H. Freeman and Co." }
+@string{allynbacon = {Allyn and Bacon}}
 
-%Entries
+@string{amermathmonthly = {Amer. Math. Monthly}}
+
+@string{amersocio = {American Journal of Sociology}}
+
+@string{amerstatassoc = {J. Amer. Statist. Assoc.}}
+
+@string{ams = {American Mathematical Society}}
+
+@string{amstrans = {Amer. Math. Soc. Transl.}}
+
+@string{applmathcomp = {Appl. Math. Comput.}}
+
+@string{birkhauser = {Birkha{\"u}ser}}
+
+@string{bit = {{BIT}}}
+
+@string{britstatpsych = {Brit. J. Math. Statist. Psych.}}
+
+@string{bullams = {Bull. Amer. Math. Soc.}}
+
+@string{cacm = {Commun. {ACM}}}
+
+@string{cambridgepress = {Cambridge University Press}}
+
+@string{canmathbull = {Canad. Math. Bull.}}
+
+@string{chelsea = {Chelsea}}
+
+@string{claredonpress = {Claredon Press}}
+
+@string{compapplmath = {J. Comput. Appl. Math.}}
+
+@string{compjour = {Comput. J.}}
+
+@string{compphys = {J. Comput. Phys.}}
+
+@string{compserv = {Comput. Surveys}}
+
+@string{compstruct = {Comput. \& Structures}}
+
+@string{compsyssci = {J. Comput. System Sci.}}
+
+@string{computer = {{IEEE} Computer}}
+
+@string{computing = {Computing}}
+
+@string{contempmath = {Contemp. Math.}}
+
+@string{crelle = {Crelle's Journal}}
+
+@string{doverpub = {Dover Publications}}
+
+@string{eyolles = {Eyolles}}
+
+@string{giornalemath = {Giorn. Mat.}}
+
+@string{holtrinehartwinston = {Holt, Rinehart and Winston}}
+
+@string{ieeespec = {{IEEE} Spectrum}}
+
+@string{ieeetransac = {{IEEE} Trans. Automat. Control}}
+
+@string{ieeetransaeroelec = {{IEEE} Trans. Aerospace Electron. Systems}}
+
+@string{ieeetranscomp = {{IEEE} Trans. Comput.}}
+
+@string{imanumerana = {{IMA} J. Numer. Anal.}}
+
+@string{infproclet = {Inform. Process. Lett.}}
+
+@string{instmathapp = {J. Inst. Math. Appl.}}
+
+@string{intcontrol = {Internat. J. Control}}
+
+@string{interscience = {Interscience}}
+
+@string{intnumereng = {Internat. J. Numer. Methods Engrg.}}
+
+@string{intsuper = {Internat. J. Supercomputing Applic.}}
+
+@string{jacm = {J. ACM}}
+
+@string{johnshopkinspress = {The Johns Hopkins University Press}}
+
+@string{johnwileysons = {John Wiley and Sons}}
+
+@string{jresnatburstand = {J. Res. Nat. Bur. Standards}}
+
+@string{jsiam = {J. Soc. Indust. Appl. Math.}}
+
+@string{jsiamb = {J. Soc. Indust. Appl. Math. Ser. B Numer. Anal.}}
+
+@string{kibernetika = {Kibernetika}}
+
+@string{linalgapp = {Linear Algebra Appl.}}
+
+@string{macmillan = {Macmillan}}
+
+@string{mathanaappl = {J. Math. Anal. Appl.}}
+
+@string{mathannalen = {Math. Ann.}}
+
+@string{mathcomp = {Math. Comp.}}
+
+@string{mathphys = {J. Math. Phys.}}
+
+@string{mathscand = {Math. Scand.}}
+
+@string{mathworks = {The Math Works Inc.}}
+
+@string{mcgrawhill = {McGraw-Hill}}
+
+@string{natburstd = {National Bureau of Standards}}
+
+@string{northholland = {North-Holland}}
+
+@string{numermath = {Numer. Math.}}
+
+@string{oxfordpress = {Oxford University Press}}
+
+@string{pacificmath = {Pacific J. Math.}}
+
+@string{parcomputing = {Parallel Comput.}}
+
+@string{pardistcomp = {J. Parallel and Distrib. Comput.}}
+
+@string{pergamonpress = {Pergamon Press}}
+
+@string{philmag = {Philos. Mag.}}
+
+@string{plenumpress = {Plenum Press}}
+
+@string{prenticehall = {Prentice-Hall}}
+
+@string{procams = {Proc. Amer. Math. Soc.}}
+
+@string{procieee = {Proc. {IEEE}}}
+
+@string{procnas = {Proc. Nat. Acad. Sci. U. S. A.}}
+
+@string{psychometrika = {Psychometrika}}
+
+@string{quartapplmath = {Quart. Appl. Math.}}
+
+@string{quartmath = {Quart. J. Math. Oxford Ser. (2)}}
+
+@string{revueinststat = {Rev. Inst. Internat. Statist.}}
+
+@string{siamalgmeth = {{SIAM} J. Algebraic Discrete Methods}}
+
+@string{siamappmath = {{SIAM} J. Appl. Math.}}
+
+@string{siamcomp = {{SIAM} J. Comput.}}
+
+@string{siammatrix = {{SIAM} J. Matrix Anal. Appl.}}
+
+@string{siamnumanal = {{SIAM} J. Numer. Anal.}}
+
+@string{siampub = {{SIAM} Publications}}
+
+@string{siamreview = {{SIAM} Rev.}}
+
+@string{siamscistat = {{SIAM} J. Sci. Statist. Comput.}}
+
+@string{signum = {{ACM} {SIGNUM} Newslett.}}
+
+@string{softpracexp = {Software Prac. Experience}}
+
+@string{springer = {Springer-Verlag}}
+
+@string{statscience = {Statist. Sci.}}
+
+@string{tablesaidscomp = {Math. Tables Aids Comput.}}
+
+@string{techno = {Technometrics}}
+
+@string{texaspress = {University of Texas Press}}
+
+@string{transams = {Trans. Amer. Math. Soc.}}
+
+@string{ussrcompmathphys = {{U. S. S. R.} Comput. Math. and Math. Phys.}}
+
+@string{vannostrand = {Van Nostrand}}
+
+@string{vlsicompsys = {J. {VLSI} Comput. Syst.}}
+
+@string{whfreeman = {W. H. Freeman and Co.}}
+
+@string{zangewmathmech = {Z. Angew. Math. Mech.}}
+
+@string{zangewmathphys = {Z. Angew. Math. Phys.}}
+
+
+@misc{Joyal:cathtt,
+	Author = {A. Joyal},
+	Date-Added = {2015-04-21 10:28:32 +0000},
+	Date-Modified = {2015-04-21 10:29:59 +0000},
+	Howpublished = {Slides of a seminar given at {MIT}. Available from \url{http://ncatlab.org/homotopytypetheory/files/Joyal.pdf}},
+	Title = {Categorical homotopy type theory},
+	Year = {2014}}
 
 @article{AbbottM:concsp,
-    author  = {M. Abbott and T. Altenkirch and N. Ghani},
-    title   = {Containers: {C}onstructing strictly positive types},
-    year    = {2005},
-    journal = {Theoretical Computer Science},
-    volume  = {342},
-    number  = {1},
-    pages   = {3--27},
-}
+	Author = {M. Abbott and T. Altenkirch and N. Ghani},
+	Journal = {Theoretical Computer Science},
+	Number = {1},
+	Pages = {3--27},
+	Title = {Containers: {C}onstructing strictly positive types},
+	Volume = {342},
+	Year = {2005}}
 
 @inproceedings{AltenkirchT:obsen,
-    author = {T. Altenkirch and C. McBride and W. Swierstra},
-    title = {Observational equality, now},
-	booktitle = {Programming languages meets program verification (PLPV '07)},
-	year = {2007},
-	pages = {57--68},
-    publisher = {ACM}
-}
+	Author = {T. Altenkirch and C. McBride and W. Swierstra},
+	Booktitle = {Programming languages meets program verification (PLPV '07)},
+	Pages = {57--68},
+	Publisher = {ACM},
+	Title = {Observational equality, now},
+	Year = {2007}}
 
 @misc{AwodeyS:typth,
-  author = {S. Awodey},
-  title = {Type theory and homotopy},
-  note = {Available from the author's web page},
-  year = {2010},
-}
+	Author = {S. Awodey},
+	Note = {Available from the author's web page},
+	Title = {Type theory and homotopy},
+	Year = {2010}}
 
 @article{AwodeyS:prot,
-  author = {S. Awodey and A. Bauer},
-  title = {Propositions as [types]},
-  journal = {Journal of Logic and Computation},
-  number = {4},
-  pages = {447--471},
-  volume = {14},
-  year = {2004}, 
-}
+	Author = {S. Awodey and A. Bauer},
+	Journal = {Journal of Logic and Computation},
+	Number = {4},
+	Pages = {447--471},
+	Title = {Propositions as [types]},
+	Volume = {14},
+	Year = {2004}}
 
 @misc{AwodeyS:indtht,
-  author = {S. Awodey and N. Gambino and K. Sojakova},
-  title = {Inductive types in {H}omotopy {T}ype {T}heory: {C}oq proofs},
-  note = {Available at: www.andrew.cmu.edu/$\sim$awodey/hott/ithottCoq.zip},
-  year = {2011},
-}
+	Author = {S. Awodey and N. Gambino and K. Sojakova},
+	Note = {Available at: www.andrew.cmu.edu/$\sim$awodey/hott/ithottCoq.zip},
+	Title = {Inductive types in {H}omotopy {T}ype {T}heory: {C}oq proofs},
+	Year = {2011}}
 
 @article{AwodeyS:homtmi,
-    author  = {S. Awodey and M. Warren},
-    title   = {Homotopy-theoretic models of identity types},
-    year    = {2009},
-    journal = {Mathematical Proceedings of the Cambridge Philosophical Society},
-    volume  = {146},
-    number  = {1},
-    pages   = {45--55},
-}
+	Author = {S. Awodey and M. Warren},
+	Journal = {Mathematical Proceedings of the Cambridge Philosophical Society},
+	Number = {1},
+	Pages = {45--55},
+	Title = {Homotopy-theoretic models of identity types},
+	Volume = {146},
+	Year = {2009}}
 
 @article{BataninM:mongcn,
-  author = {M. Batanin},
-  title = {Monoidal globular categories as a natural environment for the theory of weak $n$-categories},
-  journal = {Advances in Mathematics},
-  volume = {136},
-  number = {1},
-  pages = {39--103},  
-  year = {1998}, 
-}
-
-
+	Author = {M. Batanin},
+	Journal = {Advances in Mathematics},
+	Number = {1},
+	Pages = {39--103},
+	Title = {Monoidal globular categories as a natural environment for the theory of weak $n$-categories},
+	Volume = {136},
+	Year = {1998}}
 
 @book{BoardmanM:homiast,
-  author = {M. Boardman and R. Vogt},
-  title = {Homotopy-invariant algebraic structures on topological spaces},
-  year = {1973},
-  series = {Lecture Notes in Mathematics},
-  number={347},
-  publisher = {Springer-Verlag},
-}
-
-
+	Author = {M. Boardman and R. Vogt},
+	Number = {347},
+	Publisher = {Springer-Verlag},
+	Series = {Lecture Notes in Mathematics},
+	Title = {Homotopy-invariant algebraic structures on topological spaces},
+	Year = {1973}}
 
 @book{BertotY:inttpp,
-  author = {Y. Bertot and P. Cast{\'e}ran},
-  title = {Interactive Theorem Proving and Program Development. {C}oq'{A}rt: the {C}alculus of {I}nductive {C}onstructions},
-  year = {2004},
-  publisher = {Springer-Verlag},
-}
+	Author = {Y. Bertot and P. Cast{\'e}ran},
+	Publisher = {Springer-Verlag},
+	Title = {Interactive Theorem Proving and Program Development. {C}oq'{A}rt: the {C}alculus of {I}nductive {C}onstructions},
+	Year = {2004}}
 
 @inproceedings{CoquandT:inddt,
-    author = {T. Coquand and C. Paulin-Mohring},
-    title = {Inductively defined types},
-	booktitle = {International Conference on Computer Logic (COLOG '88)},
-	volume = {417},
-	series = {LNCS},
-	year = {1990},
-	publisher = {Springer}
-}
+	Author = {T. Coquand and C. Paulin-Mohring},
+	Booktitle = {International Conference on Computer Logic (COLOG '88)},
+	Publisher = {Springer},
+	Series = {LNCS},
+	Title = {Inductively defined types},
+	Volume = {417},
+	Year = {1990}}
 
 @article{DybjerP:repids,
-    author  = {P. Dybjer},
-    title   = {Representing inductively defined sets by well-orderings in {M}artin-{L}{\"o}f's type theory},
-    year    = {1997},
-    journal = {Theoretical Computer Science},
-    volume  = {176},
-    pages   = {329--335},
-}
+	Author = {P. Dybjer},
+	Journal = {Theoretical Computer Science},
+	Pages = {329--335},
+	Title = {Representing inductively defined sets by well-orderings in {M}artin-{L}{\"o}f's type theory},
+	Volume = {176},
+	Year = {1997}}
 
 @inproceedings{GambinoN:weltdp,
-    author = {N. Gambino and M. Hyland},
-    title = {Well-founded trees and dependent polynomial functors},
-	editor = {S. Berardi and M. Coppo and F. Damiani},
-	booktitle = {Types for Proofs and Programs (TYPES '03)},
-	volume = {3085},
-	series = {LNCS},
-	year = {2004},
-	pages = {210--225},
-}
+	Author = {N. Gambino and M. Hyland},
+	Booktitle = {Types for Proofs and Programs (TYPES '03)},
+	Editor = {S. Berardi and M. Coppo and F. Damiani},
+	Pages = {210--225},
+	Series = {LNCS},
+	Title = {Well-founded trees and dependent polynomial functors},
+	Volume = {3085},
+	Year = {2004}}
 
 @article{GarnerR:strdpt,
-    author  = {R. Garner},
-    title   = {On the strength of dependent products in the type theory of {M}artin-{L}\"of},
-    year    = {2009},
-    journal = {Annals of Pure and Applied Logic},
-    volume  = {160},
-	pages   = {1--12},
-}
+	Author = {R. Garner},
+	Journal = {Annals of Pure and Applied Logic},
+	Pages = {1--12},
+	Title = {On the strength of dependent products in the type theory of {M}artin-{L}\"of},
+	Volume = {160},
+	Year = {2009}}
 
 @inproceedings{GoguenH:inddtw,
-    author = {H. Goguen and Z. Luo},
-    title = {Inductive data types: well-ordering types revisited},
-	editor = {G. Huet and G. Plotkin},
-	booktitle = {Logical Environments},
-	year = {1993},
-	pages = {198--218},
-	publisher = {Cambridge University Press},
-}
+	Author = {H. Goguen and Z. Luo},
+	Booktitle = {Logical Environments},
+	Editor = {G. Huet and G. Plotkin},
+	Pages = {198--218},
+	Publisher = {Cambridge University Press},
+	Title = {Inductive data types: well-ordering types revisited},
+	Year = {1993}}
 
 @article{GrifforE:strsml,
-    author  = {E. Griffor and M. Rathjen},
-    title   = {The strength of some {M}artin-{L}\"of type theories},
-    year    = {1994},
-    journal = {Archive for Mathematical Logic},
-    volume  = {33},
-	number  = {5},
-	pages   = {347--385},
-}
+	Author = {E. Griffor and M. Rathjen},
+	Journal = {Archive for Mathematical Logic},
+	Number = {5},
+	Pages = {347--385},
+	Title = {The strength of some {M}artin-{L}\"of type theories},
+	Volume = {33},
+	Year = {1994}}
 
 @article{BlackwellR:twodmt,
-    author  = {R. Blackwell and G. M. Kelly and A. J. Power},
-    title   = {Two-dimensional monad theory},
-    year    = {1989},
-    journal = {Journal of Pure and Applied Algebra},
-    volume  = {59},
-	number  = {1},
-	pages   = {1--41},
-}
+	Author = {R. Blackwell and G. M. Kelly and A. J. Power},
+	Journal = {Journal of Pure and Applied Algebra},
+	Number = {1},
+	Pages = {1--41},
+	Title = {Two-dimensional monad theory},
+	Volume = {59},
+	Year = {1989}}
 
 @inproceedings{HofmannM:gromtt,
-    author = {M. Hofmann and T. Streicher},
-    title = {The groupoid interpretation of type theory},
-	booktitle = {Twenty-five years of constructive type theory 1995},
-	series = {Oxford Logic Guides},
-    year = {1998},
-	volume = {36},
-    pages = {83--111},
-    publisher = {Oxford Univ. Press}
-}
+	Author = {M. Hofmann and T. Streicher},
+	Booktitle = {Twenty-five years of constructive type theory 1995},
+	Pages = {83--111},
+	Publisher = {Oxford Univ. Press},
+	Series = {Oxford Logic Guides},
+	Title = {The groupoid interpretation of type theory},
+	Volume = {36},
+	Year = {1998}}
 
 @book{HofmannM:extcit,
-  author = {M. Hofmann},
-  title = {Extensional constructs in intensional type theory},
-  year = {1997},
-  publisher = {Springer-Verlag},
-}
+	Author = {M. Hofmann},
+	Publisher = {Springer-Verlag},
+	Title = {Extensional constructs in intensional type theory},
+	Year = {1997}}
 
 @inproceedings{HowardWH:foratn,
-    author = {W. Howard},
-    title = {The formulae-as-types notion of construction},
-	editor = {J. Seldin and J. Hindley},
-	booktitle = {To {H}.{B}. {C}urry: {E}ssays on {C}ombinatory {L}ogic, {L}ambda {C}alculus and {F}ormalism},
-	year = {1980},
-	pages = {479--490},
-    publisher = {Academic Press}
-}
-
-
-
+	Author = {W. Howard},
+	Booktitle = {To {H}.{B}. {C}urry: {E}ssays on {C}ombinatory {L}ogic, {L}ambda {C}alculus and {F}ormalism},
+	Editor = {J. Seldin and J. Hindley},
+	Pages = {479--490},
+	Publisher = {Academic Press},
+	Title = {The formulae-as-types notion of construction},
+	Year = {1980}}
 
 @book{LurieJ:higtt,
-  author = {J. Lurie},
-  title = {Higher topos theory},
-  year = {2009},
-  publisher = {Princeton University Press},
-}
-
+	Author = {J. Lurie},
+	Publisher = {Princeton University Press},
+	Title = {Higher topos theory},
+	Year = {2009}}
 
 @book{LeinsterT:higohc,
-  author = {T. Leinster},
-  title = {Higher operads, higher categories},
-  year = {2004},
-  publisher = {Cambridge University Press},
-}
+	Author = {T. Leinster},
+	Publisher = {Cambridge University Press},
+	Title = {Higher operads, higher categories},
+	Year = {2004}}
 
 @article{LumsdaineP:weaci,
-  author = {P. Lumsdaine},
-  title = {Weak $\omega$-categories from intensional type theory},
-  journal = {Logical Methods in Computer Science},
-  pages = {1--19},
-  volume = {6},
-  year = {2010},
-}
+	Author = {P. Lumsdaine},
+	Journal = {Logical Methods in Computer Science},
+	Pages = {1--19},
+	Title = {Weak $\omega$-categories from intensional type theory},
+	Volume = {6},
+	Year = {2010}}
 
 @phdthesis{Lumsdaine:higcft,
-    author = {P. Lumsdaine},
-	title = {Higher categories from type theories},
-	year = {2010},
-	school = {Carnegie Mellon University},
-}
+	Author = {P. Lumsdaine},
+	School = {Carnegie Mellon University},
+	Title = {Higher categories from type theories},
+	Year = {2010}}
 
 @misc{LumsdaineP:higit,
-  author = {P. Lumsdaine},
-  title = {Higher inductive types: a tour of the menagerie},
-  note = {Post on the Homotopy Type Theory blog},
-  year = {2011},
-}
+	Author = {P. Lumsdaine},
+	Note = {Post on the Homotopy Type Theory blog},
+	Title = {Higher inductive types: a tour of the menagerie},
+	Year = {2011}}
 
 @inproceedings{MartinLofP:intttp,
-  author    = {P. Martin-L{\"o}f},
-  title     = {An Intuitionistic Theory of Types: {P}redicative Part},
-  booktitle = {Logic Colloquium 1973},
-  editor    = {H. Rose and J. Shepherdson},
-  year      = {1975},
-  pages     = {73–-118},
-  publisher = {North-Holland}, 
-}
+	Author = {P. Martin-L{\"o}f},
+	Booktitle = {Logic Colloquium 1973},
+	Editor = {H. Rose and J. Shepherdson},
+	Pages = {73---118},
+	Publisher = {North-Holland},
+	Title = {An Intuitionistic Theory of Types: {P}redicative Part},
+	Year = {1975}}
 
 @inproceedings{MartinLofP:conmcp,
-  author    = {P. Martin-L{\"o}f},
-  title     = {Constructive mathematics and computer programming},
-  booktitle = {Logic, Methodology and Philosophy of Science},
-  year      = {1982},
-  pages     = {153–-175},
-  publisher = {North-Holland},
-}
+	Author = {P. Martin-L{\"o}f},
+	Booktitle = {Logic, Methodology and Philosophy of Science},
+	Pages = {153---175},
+	Publisher = {North-Holland},
+	Title = {Constructive mathematics and computer programming},
+	Year = {1982}}
 
 @misc{MartinLofP:inttt,
-  author = {P. Martin-L{\"o}f},
-  title = {Intuitionistic Type Theory. Notes by {G}. {S}ambin of a series of lectures given in {P}adua, 1980},
-  note = {Bibliopolis},
-  year = {1984},
-}
+	Author = {P. Martin-L{\"o}f},
+	Note = {Bibliopolis},
+	Title = {Intuitionistic Type Theory. Notes by {G}. {S}ambin of a series of lectures given in {P}adua, 1980},
+	Year = {1984}}
 
 @misc{McBrideC:wtygnb,
-  author = {C. McBride},
-  title = {W-types: good news and bad news},
-  note = {Post on the Epigram blog},
-  year = {2010},
-}
+	Author = {C. McBride},
+	Note = {Post on the Epigram blog},
+	Title = {W-types: good news and bad news},
+	Year = {2010}}
 
 @article{McBrideC:viefl,
-  author = {C. McBride and J. McKinna},
-  title = {The view from the left},
-  journal = {Journal of Functional Programming},
-  pages = {16--111},
-  volume = {14},
-  number = {1},
-  year = {2004},
-}
+	Author = {C. McBride and J. McKinna},
+	Journal = {Journal of Functional Programming},
+	Number = {1},
+	Pages = {16--111},
+	Title = {The view from the left},
+	Volume = {14},
+	Year = {2004}}
 
 @article{MoerdijkI:weltc,
-    author  = {I. Moerdijk and E. Palmgren},
-    title   = {Well-founded trees in categories},
-    year    = {2000},
-    journal = {Annals of Pure and Applied Logic},
-    volume  = {104},
-	pages   = {189--218},
-}
+	Author = {I. Moerdijk and E. Palmgren},
+	Journal = {Annals of Pure and Applied Logic},
+	Pages = {189--218},
+	Title = {Well-founded trees in categories},
+	Volume = {104},
+	Year = {2000}}
 
 @book{NordstromB:promlt,
-  author = {B. Nordstrom and K. Petersson and J. Smith},
-  title = {Programming in {M}artin-{L}\"of type theory},
-  year = {1990},
-  publisher = {Oxford University Press},
-}
+	Author = {B. Nordstrom and K. Petersson and J. Smith},
+	Publisher = {Oxford University Press},
+	Title = {Programming in {M}artin-{L}\"of type theory},
+	Year = {1990}}
 
 @inproceedings{NordstromB:marltt,
-  author    = {B. Nordstrom and K. Petersson and J. Smith},
-  title     = {{M}artin-{L}\"of type theory},
-  booktitle = {Handbook of Logic in Computer Science},
-  year      = {2000},
-  volume    = {5},
-  pages     = {1–-37},
-  publisher = {Oxford University Press},
-}
+	Author = {B. Nordstrom and K. Petersson and J. Smith},
+	Booktitle = {Handbook of Logic in Computer Science},
+	Pages = {1---37},
+	Publisher = {Oxford University Press},
+	Title = {{M}artin-{L}\"of type theory},
+	Volume = {5},
+	Year = {2000}}
 
 @phdthesis{NorellU:towppl,
-    author = {U. Norell},
-	title = {Towards a Practical Programming Language Based on Dependent Type Theory},
-	year = {2007},
-	school = {Chalmers University of Technology},
-}
+	Author = {U. Norell},
+	School = {Chalmers University of Technology},
+	Title = {Towards a Practical Programming Language Based on Dependent Type Theory},
+	Year = {2007}}
 
 @inproceedings{PaulinMorhringC:inddsc,
-  author    = {C. Paulin-Mohring},
-  title     = {Inductive definitions in the system {C}oq - rules and properties},
-  booktitle = {Typed Lambda Calculi and Applications (TLCA '93)},
-  year      = {1993},
-  volume    = {664},
-  publisher = {Springer},
-}
+	Author = {C. Paulin-Mohring},
+	Booktitle = {Typed Lambda Calculi and Applications (TLCA '93)},
+	Publisher = {Springer},
+	Title = {Inductive definitions in the system {C}oq - rules and properties},
+	Volume = {664},
+	Year = {1993}}
 
 @inproceedings{PeterssonK:setcis,
-  author    = {K. Petersson and D. Synek},
-  title     = {A set constructor for inductive sets in {M}artin-{L}\"of type theory},
-  booktitle = {Category Theory and Computer Science},
-  year      = {1989},
-  volume    = {389},
-  series    = {LNCS},
-  publisher = {Springer-Verlag},
-}
+	Author = {K. Petersson and D. Synek},
+	Booktitle = {Category Theory and Computer Science},
+	Publisher = {Springer-Verlag},
+	Series = {LNCS},
+	Title = {A set constructor for inductive sets in {M}artin-{L}\"of type theory},
+	Volume = {389},
+	Year = {1989}}
 
 @misc{ShulmanM:higit,
-  author = {M. Shulman},
-  title = {{Homotopy Type Theory, VI}},
-  note = {Post on the n-category cafe blog},
-  year = {2011},
-}
+	Author = {M. Shulman},
+	Note = {Post on the n-category cafe blog},
+	Title = {{Homotopy Type Theory, VI}},
+	Year = {2011}}
 
 @misc{StreicherT:invitt,
-  author = {T. Streicher},
-  title = {Investigations into intensional type theory},
-  note = {{H}abilitation Thesis. Available from the author's web page.},
-  year = {1993},
-}
+	Author = {T. Streicher},
+	Note = {{H}abilitation Thesis. Available from the author's web page.},
+	Title = {Investigations into intensional type theory},
+	Year = {1993}}
 
 @article{vandenBergB:topsmi,
-    author  = {B. van den Berg and R. Garner},
-    title   = {Topological and Simplicial Models of Identity Types},
-    year    = {2012},
-    journal = {ACM Transactions on Computational Logic},
-    volume  = {13},
-    number  = {1},    
-}
+	Author = {B. van den Berg and R. Garner},
+	Journal = {ACM Transactions on Computational Logic},
+	Number = {1},
+	Title = {Topological and Simplicial Models of Identity Types},
+	Volume = {13},
+	Year = {2012}}
 
 @article{vandenBergB:typwg,
-    author  = {B. van den Berg and R. Garner},
-    title   = {Types are weak $\omega$-groupoids},
-    year    = {2011},
-    journal = {Journal of the London Mathematical Society},
-    volume  = {102},
-    number  = {2},
-    pages   = {370--394},    
-}
+	Author = {B. van den Berg and R. Garner},
+	Journal = {Journal of the London Mathematical Society},
+	Number = {2},
+	Pages = {370--394},
+	Title = {Types are weak $\omega$-groupoids},
+	Volume = {102},
+	Year = {2011}}
 
 @misc{VoevodskyV:notts,
-  author = {V. Voevodsky},
-  title = {Notes on type systems},
-  note = {Available from the author's web page},
-  year = {2009},
-}
+	Author = {V. Voevodsky},
+	Note = {Available from the author's web page},
+	Title = {Notes on type systems},
+	Year = {2009}}
 
 @misc{VoevodskyV:unifc,
-  author = {V. Voevodsky},
-  title = {Univalent foundations {C}oq files},
-  note = {Available from the author's web page},
-  year = {2010},
-}
+	Author = {V. Voevodsky},
+	Note = {Available from the author's web page},
+	Title = {Univalent foundations {C}oq files},
+	Year = {2010}}
 
 @misc{VoevodskyV:unifp,
-  author = {V. Voevodsky},
-  title = {Univalent foundations project},
-  note = {Available from the author's web page},
-  year = {2010},
-}
+	Author = {V. Voevodsky},
+	Note = {Available from the author's web page},
+	Title = {Univalent foundations project},
+	Year = {2010}}
 
 @phdthesis{warren_phd,
-    author = {M. Warren},
-	title = {Homotopy-theoretic aspects of constructive type theory},
-	year = {2008},
-	school = {Carnegie Mellon University},
-}
+	Author = {M. Warren},
+	School = {Carnegie Mellon University},
+	Title = {Homotopy-theoretic aspects of constructive type theory},
+	Year = {2008}}
 
 @article{garner,
-    author  = {R. Garner},
-    title   = {Two-dimensional models of type theory},
-    year    = {2009},
-    journal = {Mathematical Structures in Computer Science},
-    volume  = {19},
-    number  = {4},
-    pages   = {687--736},
-}
+	Author = {R. Garner},
+	Journal = {Mathematical Structures in Computer Science},
+	Number = {4},
+	Pages = {687--736},
+	Title = {Two-dimensional models of type theory},
+	Volume = {19},
+	Year = {2009}}
 
 @unpublished{ssets,
-    author  = {C. Kapulkin and P. Lumsdaine and V. Voevodsky},
-    title   = {The Simplicial Model of Univalent Foundations},
-    year    = {2012},
-    note    = {Available at arxiv.org as arXiv:1211.2851v1},
-}
+	Author = {C. Kapulkin and P. Lumsdaine and V. Voevodsky},
+	Note = {Available at arxiv.org as arXiv:1211.2851v1},
+	Title = {The Simplicial Model of Univalent Foundations},
+	Year = {2012}}
 
 @book{hott,
-    author    = {{The Univalent Foundations Program, Institute for Advanced Study}},
-    title     = {{Homotopy Type Theory} - {U}nivalent Foundations of Mathematics},
-    year      = {2013},
-    publisher = {Univalent Foundations Project},
-}
+	Author = {{The Univalent Foundations Program, Institute for Advanced Study}},
+	Publisher = {Univalent Foundations Project},
+	Title = {{Homotopy Type Theory} - {U}nivalent Foundations of Mathematics},
+	Year = {2013}}
 
 @unpublished{streichersk,
-    author = {T. Streicher},
-	title = {Investigations into intensional type theory, 1993},	
-	note = {Habilitation Thesis. Available from the author’s web page},
-}
+	Author = {T. Streicher},
+	Note = {Habilitation Thesis. Available from the author's web page},
+	Title = {Investigations into intensional type theory, 1993}}
 
 @inproceedings{licata_shulman,
-  author    = {D. Licata and M. Shulman},
-  title     = {Calculating the Fundamental Group of the Circle in {Homotopy Type Theory}},
-  booktitle = {Logic in Computer Science (LICS 2013)},
-  year      = {2013},
-  pages     = {223--232},
-  publisher = {IEEE Computer Society},  
-}
+	Author = {D. Licata and M. Shulman},
+	Booktitle = {Logic in Computer Science (LICS 2013)},
+	Pages = {223--232},
+	Publisher = {IEEE Computer Society},
+	Title = {Calculating the Fundamental Group of the Circle in {Homotopy Type Theory}},
+	Year = {2013}}
 
 @misc{trunc_inverse,
-  author = {N. Kraus},
-  title = {The truncation map {$|\_| : \mathbb{N} \to ||\mathbb{N}||$} is nearly invertible},
-  note = {Post on the Homotopy Type Theory blog},
-  year = {2013},
-}
+	Author = {N. Kraus},
+	Note = {Post on the Homotopy Type Theory blog},
+	Title = {The truncation map {$|\_| : \mathbb{N} \to ||\mathbb{N}||$} is nearly invertible},
+	Year = {2013}}
 
 @inproceedings{wtypes,
-  author    = {S. Awodey and N. Gambino and K. Sojakova},
-  title     = {Inductive types in {Homotopy Type Theory}},
-  booktitle = {Logic in Computer Science (LICS 2012)},
-  year      = {2012},
-  pages     = {95--104},
-  publisher = {IEEE Computer Society},  
-}
+	Author = {S. Awodey and N. Gambino and K. Sojakova},
+	Booktitle = {Logic in Computer Science (LICS 2012)},
+	Pages = {95--104},
+	Publisher = {IEEE Computer Society},
+	Title = {Inductive types in {Homotopy Type Theory}},
+	Year = {2012}}
 
 @techreport{tech_report,
-  author =        {K. Sojakova},
-  title =         {Higher inductive types as homotopy-initial algebras},
-  number =        {CMU-CS-14-101},
-  institution =   {Carnegie Mellon University},
-  year  =         {2014},
-  note =          {Available at \url{http://reports-archive.adm.cs.cmu.edu/}},
-}
+	Author = {K. Sojakova},
+	Institution = {Carnegie Mellon University},
+	Note = {Available at \url{http://reports-archive.adm.cs.cmu.edu/}},
+	Number = {CMU-CS-14-101},
+	Title = {Higher inductive types as homotopy-initial algebras},
+	Year = {2014}}
 
 @article{gambino_garner,
-  author = {N. Gambino and R. Garner},
-  title = {The identity type weak factorisation system},
-  journal = {Theoretical Computer Science},
-  volume = {409},
-  number = {3},
-  pages = {94-–109},
-  year = {2008},
- }
- 
- @inproceedings{licata_harper,
-  author    = {D. Licata and R. Harper},
-  title     = {Canonicity for 2-dimensional type theory},
-  booktitle = {Principles of Programming Languages (POPL 2012)},
-  year      = {2012},
-  pages     = {337-348},
-  publisher = {ACM},
-}
+	Author = {N. Gambino and R. Garner},
+	Journal = {Theoretical Computer Science},
+	Number = {3},
+	Pages = {94---109},
+	Title = {The identity type weak factorisation system},
+	Volume = {409},
+	Year = {2008}}
+
+@inproceedings{licata_harper,
+	Author = {D. Licata and R. Harper},
+	Booktitle = {Principles of Programming Languages (POPL 2012)},
+	Pages = {337-348},
+	Publisher = {ACM},
+	Title = {Canonicity for 2-dimensional type theory},
+	Year = {2012}}
 
 @manual{coq,
-  author = {Coq Development Team},
-  title = {The {Coq} Proof Assistant Reference Manual, version 8.4pl3},
-  organization = {INRIA},
-  year = {2012},
-  note = {Available at \url{coq.inria.fr}},
-}
+	Author = {Coq Development Team},
+	Note = {Available at \url{coq.inria.fr}},
+	Organization = {INRIA},
+	Title = {The {Coq} Proof Assistant Reference Manual, version 8.4pl3},
+	Year = {2012}}
 
 @inproceedings{licata_brunerie,
-  author    = {D. Licata and G. Brunerie},
-  title     = {$\Pi_n(\mathbf{S}^n)$ in {Homotopy Type Theory}},
-  booktitle = {Certified Programs and Proofs},
-  year      = {2013},
-  pages     = {1-16},
-  publisher = {Springer},
-  series    = {LNCS},
-  volume    = {8307},
-} 
+	Author = {D. Licata and G. Brunerie},
+	Booktitle = {Certified Programs and Proofs},
+	Pages = {1-16},
+	Publisher = {Springer},
+	Series = {LNCS},
+	Title = {$\Pi_n(\mathbf{S}^n)$ in {Homotopy Type Theory}},
+	Volume = {8307},
+	Year = {2013}}
 
 @misc{uf_talk,
-  author = {V. Voevodsky},
-  title = {Univalent foundations of mathematics},
-  year = {2011},
-  note = {Invited talk at the Workshop on Logic, Language, Information and Computation (WoLLIC 2011)},
-}
+	Author = {V. Voevodsky},
+	Note = {Invited talk at the Workshop on Logic, Language, Information and Computation (WoLLIC 2011)},
+	Title = {Univalent foundations of mathematics},
+	Year = {2011}}
 
 @misc{uni_poly,
-  author = {M. Sozeau},
-  title = {Universe polymorphism: {S}ubtyping and unification},
-  year = {2013},
-  note = {Talk at the Typex meeting. Available from the author's webpage},
-}
+	Author = {M. Sozeau},
+	Note = {Talk at the Typex meeting. Available from the author's webpage},
+	Title = {Universe polymorphism: {S}ubtyping and unification},
+	Year = {2013}}
