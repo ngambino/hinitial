@@ -274,6 +274,13 @@ x \co \Nat, y \co E(x) \vdash d(x,y) \co E(\suc(x))
 x \co \Nat \vdash  \natelim(x, c,d) \co E(x) \, .
 \end{prooftree} \medskip
 \end{equation}
+The computation rules assert that, under the same assuptions of the elimination rule, we have
+\begin{equation}
+\tag{C}
+\natelim(0, c, d) = c \co E(0) \, , \quad
+x \co \Nat \vdash \natelim(\suc(x), c, d) = d(x, [x] \natelim(x, c, d) \co E(\suc(x)) \, .
+\end{equation}
+
 As is well-known, the elimination rule for an inductive type has an important special case that provides a counterpart of the familiar principle of defintion of a function by recursion. For example, the special case of the rule~\eqref{equ:natind} obtained by considering the dependent type in its premiss to be constant gives us the following recursion rule:
 
 \begin{equation}
@@ -1551,10 +1558,10 @@ Let us remark that the uniqueness implicit in Definition~\ref{def:BoolInit} requ
 \begin{proof} Recall that, for a type $X$, the type $\iscontr(X)$ is a mere proposition and that the dependent product of family of mere propositions is again a mere proposition. 
 \end{proof} 
 
+The next result is the counterpart of the familiar fact that objects characterized by universal properties are unique up to a unique isomorphism.
 
 \begin{proposition} \label{BoolHInitIso} 
-Assuming the univalence axiom, 
-homotopy-initial small bipointed types are unique up to a contractible type of bipointed equivalences, i.e. the type
+Homotopy-initial small bipointed types are unique up to a contractible type of bipointed equivalences, i.e. the type
 \[ 
 (\Pi A \co \Bip) (\Pi B \co \Bip)
 \big( \isbiphinit(A) \times \isbiphinit(B) \to \iscontr(\BipEquiv(A,B)) \big) \, .
@@ -1789,7 +1796,8 @@ A counterpart of Theorem~\ref{thm:bipointedmain}, now stated with appropriate un
 
 \subsection*{Univalence for bipointed types} \label{sec:unibip}
 We conclude this section by showing that if the type universe~$\U$ is assumed to be univalent, then a form of the univalence axiom holds also for bipointed types, in the sense made precise by the next theorem, where we
-use notation analogous to the one introduced for extension functions in Section~\ref{sec:bac}. 
+use notation analogous to the one introduced for extension functions in Section~\ref{sec:bac}. This is an
+instance of the Structure Identity Principle considered by Aczel~\cite{AczelP:stripu}.
 
 
 \begin{theorem}  \label{thm:bipunivalence} Assuming the univalence axiom, 
@@ -2437,7 +2445,28 @@ over it has a $P$-algebra section, \ie the type
 is inhabited.
 \end{definition}
 
-In complete analogy with the case of bipointed types, for a $P$-algebra $C$, the type $\isalgind(C)$ is a mere proposition. The next proposition characterizes
+In complete analogy with the case of bipointed types, for a $P$-algebra $C$, the type $\isalgind(C)$ is a mere proposition. We also have the following analogue of Proposition~\ref{BoolInitIso}. 
+
+
+
+\begin{proposition} \label{WHInitIso} 
+Homotopy-initial $P$-algebras are unique up to a  contractible type of algebra equivalences, i.e. the type
+\[ 
+(\Pi C \co \Palg) (\Pi D \co \Palg) \big( \isalghinit(C) \times \isalghinit(D)  \to 
+\iscontr(\AlgEquiv(C,D)) \big) \, .
+\] 
+is inhabited.
+\end{proposition}
+
+\begin{proof} Let $C$ and $D$ be $P$-algebras. The type $\Palg(C,D)$ is contractible by homotopy-initiality of $C$. Since the dependent sum of a family of mere propositions over a mere proposition is again a mere proposition, it suffices to prove $\iscontr(\isalgequiv(f))$ for any $P$-algebra morphism $f$. This type is a mere proposition, as remarked earlier; thus it suffices to show it is inhabited.
+Since $D$ is homotopy-initial, there exists a $P$-algebra morphism $g \co D \to C$. Again by homotopy-initiality of $C$ and 
+$D$, we have $\Id(g \circ f, 1_C)$ and $\Id(f \circ g, 1_D)$, which gives us the desired $P$-algebra equivalence between 
+$C$ and $D$.
+\end{proof}
+
+
+
+ The next proposition characterizes
 inductive $P$-algebras by means of deduction rules, where we display premisses in multiple lines for
 lack of space.
 
@@ -3008,7 +3037,7 @@ By Proposition~\ref{WAlgSpace}, this type is equivalent to $\AlgEquiv \big( (C,\
 The following corollary, still obtained under the assumption of the Univalence Axiom, shows that
 homotopy-initial algebras are unique up to a unique path.
 
-\begin{corollary} \label{WHInitIso} Assuming the univalence axiom,
+\begin{corollary}  Assuming the univalence axiom,
 homotopy-initial $P$-algebras are unique up to a  contractible type of paths, i.e. the type
 \[ 
 (\Pi C \co \Palg) (\Pi D \co \Palg) \big( \isalghinit(C) \times \isalghinit(D)  \to 
@@ -3017,12 +3046,11 @@ homotopy-initial $P$-algebras are unique up to a  contractible type of paths, i.
 is inhabited.
 \end{corollary}
 
-\begin{proof}
-By Theorem~\ref{thm:Punivalence} it suffices to prove $\iscontr(\AlgEquiv(C,D))$. The type $\Palg(C,D)$ is contractible by homotopy-initiality of $C$. Since the dependent sum of a family of mere propositions over a mere proposition is again a mere proposition, it suffices to prove $\iscontr(\isalgequiv(f))$ for any $P$-algebra morphism $f$. This type is a mere proposition, as remarked earlier; thus it suffices to show it is inhabited.
-Since $D$ is homotopy-initial, there exists a $P$-algebra morphism $g \co D \to C$. Again by homotopy-initiality of $C$ and 
-$D$, we have $\Id(g \circ f, 1_C)$ and $\Id(f \circ g, 1_D)$, which gives us the desired $P$-algebra equivalence between 
-$C$ and $D$.
-\end{proof}
+\begin{proof} This is an immediate consequence of Theorem~\ref{thm:Punivalence} and Proposition~\ref{WHInitIso}. 
+\end{proof} 
+
+
+
 
 
 
