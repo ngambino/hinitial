@@ -1,6 +1,6 @@
 \documentclass[10pt,a4paper,oneside,reqno]{amsart}
 
-\usepackage{amsmath,geometry,amssymb,mathpartir,mathtools,latexsym,amsthm,enumerate,leftidx,tikz}
+\usepackage{amsmath,geometry,amssymb,mathpartir,mathtools,latexsym,amsthm,enumerate,leftidx,tikz,url}
 
 \usepackage[all]{xy}
 \newcommand{\xycenter}[1]{\vcenter{\hbox{\xymatrix{#1}}}}
@@ -1369,7 +1369,7 @@ for $k \in \{0, 1 \}$, which are contractible by part~(i) of Lemma~\ref{thm:usef
 As we mentioned at the beginning of Section~\ref{sec:biptm}, if a type $A$ is equivalent to~$\Bool$, then 
 it satisfies the counterparts of the elimination and computation rules for $\Bool$ in which the computation rule is 
 weakened by replacing the judgmental equality in its conclusion with a propositional equality. Using the notions of a fibered bipointed type and of a bipointed section introduced in Section~\ref{sec:bip}, it is immediate to see that the these rules rules can be expressed equivalently by saying  that every fibered  bipointed type over $A$ has a bipointed 
-section (cf.~\cite{JoyalA:cathtt}). Since bipointed types $A$ of this kind  play an important role in the following, we introduce some terminology\footnote{We use `inductive' in analogy with the terminology used in set theory. This is not to be confused with the general notion of an inductive type.} to refer to them.
+section (cf.~\cite{Joyal:cathtt}). Since bipointed types $A$ of this kind  play an important role in the following, we introduce some terminology\footnote{We use `inductive' in analogy with the terminology used in set theory. This is not to be confused with the general notion of an inductive type.} to refer to them.
 
 
  
@@ -1528,7 +1528,10 @@ homotopy~$\alpha \co \Hot(f, g)$. Thus, by Lemma~\ref{BoolHomSpace}, there is a 
 \[
 p \co \Id((f, \bar{f}_0, \bar{f}_1), (g, \bar{g}_0, \bar{g}_1)) \, .
 \] 
-Furthermore, it can be shown that such a path is itself is unique up to a higher path, which in turn is unique up to a yet higher path, etc... As we will show in the reminder of this section, this sort of weak $\infty$-universality, which apparently involves infinitely much data, can nonetheless be captured fully within the system of type theory (without resorting to coinduction) using ideas inspired by homotopy theory and higher-dimensional category theory. Indeed, in spite of the fact that bipointed types and morphisms do not form a category in a strict sense, it is possible to introduce the  notion of a homotopy-initial bipointed type in completely elementary and explicit terms, as we do in the next definition.
+Furthermore, it can be shown that such a path is itself is unique up to a higher path, which in turn is unique up to a yet higher path, and so on. 
+
+The key point in our development (described for $\Bool$ below and for $\W$-types in Section~\ref{sec:homta}) is that this sort of weak $\infty$-universality, which apparently involves infinitely much data, can be captured \emph{fully within the system of type theory} (without resorting to coinduction) using ideas inspired by homotopy theory and higher-dimensional category theory. Indeed, in spite of the fact that bipointed types and morphisms do not form a category in a strict sense, it is possible to introduce the  notion of a homotopy-initial bipointed type in completely elementary and explicit terms, as in Definition~\ref{def:BoolInit} below. This provides the template for the notion of a homotopy-initial algebra, which we will introduce in Section~\ref{sec:homta} in relation to $\W$-types.
+
 
 
 \begin{definition}\label{def:BoolInit}
