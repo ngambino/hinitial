@@ -563,7 +563,10 @@ A \co \type
 
 Let us establish some notation and recall some
 basic facts and  terminogy. First of all, for~$f \co (\Pi x \co A) B(x)$ and $a \co A$, we write~$f(a)$ or~$f  a$ instead of $\app(f,a)$. We may also write~$(a,b)$ instead of $\pair(a,b)$ to denote canonical elements of $\Sigma$-types.
-Given types $A$ and~$B$, the product type $A \times B$ and the function $A \rightarrow B$  are defined via $\Sigma$-types and $\Pi$-types in the usual way.  The rules for $\Sigma$-types allow us to derive the rules for projections
+Given types $A$ and~$B$, the product type $A \times B$ and the function $A \rightarrow B$  are defined via $\Sigma$-types and $\Pi$-types in the usual way.  As is standard, we let 
+$
+A \leftrightarrow B \defeq (A\to B) \times (B\to A)$.
+The rules for $\Sigma$-types allow us to derive the rules for projections
 
 \[
 \begin{prooftree}
@@ -605,7 +608,7 @@ theory obtained from $\mathcal{M}$ by adding the following rule, known as the \e
 \end{equation}
 This rule collapses propositional equality to definitional equality, thus making the overall system
 somewhat simpler to work with, but makes type-checking undecidable~\cite{HofmannM:extcit}. For this reason, it is not assumed
-in the most recent formulations of Martin-L\"of type theories~\cite{NordstromB:marltt} or in automated proof assistants like Coq~\cite{BertotY:inttpp}. 
+in the most recent formulations of Martin-L\"of type theories~\cite{NordstromB:marltt} or in automated proof assistants like Coq~\cite{BertotY:inttpp}.  Rather than working in $\mathcal{M}^{\mathrm{ext}}$, we work in a weaker extension of $\mathcal{M}$ which we now describe.
 
 
  
@@ -633,7 +636,7 @@ which is considered here with propositional equalities:
  \begin{prooftree} 
  f \co (\Pi x \co A)B(x) \qquad
  g \co (\Pi x \co A) B(x) \qquad
- x \co A \vdash \alpha(x) \co \Id_{B(x)}(f(x), g(x))
+ x \co A \vdash \alpha_x \co \Id_{B(x)}(f(x), g(x))
  \justifies
  \mathsf{funext}(f, g, \alpha) \co \Id_{(\Pi x \co A)B(x)}(f,g) \, .
  \end{prooftree}
@@ -643,15 +646,15 @@ which is considered here with propositional equalities:
 
 Note that $\Hint$ does not have any ground types apart from the type universe $\U$. This is because these type theories are intended as background
 theories for our study of inductive types. The type theory~$\Hint$ 
-does not include any global extensionality rules, like the identity reflection rule, the K rule, or 
-the Uniqueness of Identity Proofs (UIP) principle~\cite{StreicherT:invitt}. This makes it possible
+does not include any global extensionality principles, like the identity reflection rule, the K rule, or 
+the uniqueness of identity proofs (UIP) principle~\cite{StreicherT:invitt}. This makes it possible
 for~$\Hint$ to have not only straightforward set-theoretic models (where those extensionality
 principles are valid), but also with homotopy-theoretic models, such as the groupoid model~\cite{HofmannM:gromtt}
 and the simplicial model~\cite{ssets}, in which the rules of~$\Hint$, but not the extensionality principles mentioned above, remain valid. Indeed, $\Hint$ is a subsystem of the type theory 
 used in Voevodsky's univalent foundations of Mathematics programme~\cite{VoevodskyV:unifc}. 
 In particular, the 
 function extensionality axiom in~\eqref{equ:funext} is formally implied by the univalence axiom~\cite{VoevodskyV:notts} (using the fact that function extensionality, as stated in~\eqref{equ:funext}, follows from its special case for function types). But, in contrast with the univalence
-axiom, the function extensionality axiom is valid also in set-theoretic models. 
+axiom, the function extensionality axiom is valid also in set-theoretic models. Uses of the univalence axiom will be explicitely noted.
 
 We write~$\Hext$ for the  extension of~$\Hint$ with the identity reflection rule in~\eqref{equ:collapse}.
 
@@ -672,7 +675,7 @@ more faithful to the formalization.
 
 
 \subsection*{Homotopy-theoretic notions in type theory} For the convenience of the reader, 
-we review some terminology, notation  and basic facts from~\cite{hott,VoevodskyV:notts}. 
+we review some ideas developed in more detail in~\cite{hott,VoevodskyV:notts}. 
 First of all, we will frequently refer to elements of identity types of the form 
 $p \co \Id_A(a,b)$ as \emph{paths} (from $a$ to $b$ in $A$). By the $\Id$-elimination rules, 
 for every dependent type
@@ -754,7 +757,7 @@ the notion of contractibility in~\eqref{eq:contractible}  can be used to articul
 into a hierarchy of so-called \emph{homotopy levels} (or h-levels for short) according to their homotopical complexity \cite{VoevodskyV:notts}. These
 are defined inductively by saying that a type $A$ has level $0$ if it is contractible and it has level
 $n+1$ if for every $x, y \co A$ the type $\Id_A(x,y)$ has level $n$. Types of h-level 1 are called 
-here \emph{mere proposition}. By definition, a type $A$ is said to be a \emph{mere proposition} if the type
+here \emph{mere propositions}. By definition, a type $A$ is said to be a \emph{mere proposition} if the type
 \[
 \isprop(A) \defeq (\Pi x \co A)(\Pi  y \co A) \, \iscontr( \Id_A(x,y)) 
 \]
@@ -762,8 +765,7 @@ is inhabited.
 
 \subsection*{Characterization of identity types} \label{sec:chait} We now recall that the identity types of various kinds of 
 compound types admit an equivalent description. We begin by considering product types and function types.
-Let $A$ and $B$ be types. For any 
-pair of elements $c, d  \co A \times B$, and any $f, g \co A \to B$, we have  canonical maps
+Let $A$ and $B$ be types. For any  $c, d  \co A \times B$, and any $f, g \co A \to B$, we have  canonical maps
 \begin{align*} 
 \ext^{\times}_{c,d}  \co & \Id_{A \times B}(c, d) \to \Id_{A}(\pi_1 c, \pi_1 d) \times \Id_{B}(\pi_2 c, \pi_2 d) \, , \\
 \ext^{\to}_{f,g} \co & \Id_{A \to B}(f, g) \to (\Pi x \co A) \Id_B(fx, gx) \, .
@@ -811,7 +813,7 @@ algebra. Therefore, we conclude this preliminary section by  discussing some asp
   Because of the strict associativity, we may omit bracketing of multiple composites and sometimes write simply $gf$ instead of $g \circ f$. 
 
 The presence of identity types in our type theories, however, equips this category with additional structure. Each  
-type~$A$ is a weak $\infty$-groupoid\footnote{We follow convention of using $(\infty, n)$-category to denote an $\infty$-category in which $k$-morphisms, for $k > n$, are invertible. An $\infty$-groupoid is then the same thing as an $(\infty,0)$-category.}  having  elements of~$A$ as objects, paths
+type~$A$ is a weak $\infty$-groupoid, having  elements of~$A$ as objects, paths
 $p \co \Id_A(a,b)$ as 1-morphisms (from~$a$ to~$b$) and elements of iterated identity types as 
 $n$-morphisms~\cite{LumsdaineP:weaci,vandenBergB:typwg}. 
 We may write 
@@ -824,10 +826,10 @@ for the path obtained by composing $p \co \Id_A(a,b)$ and~$q \co \Id_A(a,c)$,  f
 When manipulating this structure, we  refer to the  propositional equalities holding between 
 various composites as the \emph{groupoid laws}.
 
-The category of types and functions can then be considered as enriched in $\infty$-groupoids,
-(and hence as an $(\infty, 1)$-category),  since function types  $A \to B$, just like any other type,
-are $\infty$-groupoids. Explicitly, this $(\infty, 1)$-category has types as objects,
-functions as 1-morphisms, paths $p \co \Id_{A \to B}(f, g)$ as 2-morphisms, and higher paths as $n$-morphisms. We will not need all the structure of this higher-dimensional category (which has yet to be established formally). but only some low-dimensional layers of it (which can be defined easily).  For example, given functions $f \co A \to B$, $g_1, g_2 \co B \to C$ and a path~$p \co \Id_{B \to C}(g_1, g_2)$, represented diagrammatically as 
+The category of types and functions can then be considered informally as enriched in $\infty$-groupoids
+(and hence as an $(\infty, 1)$-category\footnote{We follow convention of using $(\infty, n)$-category to denote an $\infty$-category in which $k$-morphisms, for $k > n$, are invertible. An $\infty$-groupoid is then the same thing as an $(\infty,0)$-category.}), since function types  $A \to B$, just like any other type,
+are $\infty$-groupoids. This $(\infty, 1)$-category has types as objects,
+functions as 1-morphisms, paths $p \co \Id_{A \to B}(f, g)$ as 2-morphisms, and higher paths as $n$-morphisms. We will not need all the structure of this higher-dimensional category (for which see \cite{Lumsdaine:thesis}), but only some low-dimensional layers of it which can be defined easily.  For example, given functions $f \co A \to B$, $g_1, g_2 \co B \to C$ and a path~$p \co \Id_{B \to C}(g_1, g_2)$, represented diagrammatically as 
 \[
 \xymatrix{
 A \ar[r]^{f} & B \ar@/^1pc/[r]^{g_1} \ar@/_1pc/[r]_{g_2} \ar@{}[r]|{\Downarrow \, p}  & C \, ,}
@@ -843,7 +845,7 @@ as having  types as objects, functions as 1-morphisms, homotopies $\alpha \co \H
 \label{sec:bip}
 
 \subsection*{Bipointed types and bipointed morphisms} \label{sec:biptm}
-In order to motivate our development in this section and the next, 
+In order to motivate the development in this section and the next, 
 let us consider the rules for the type $\Bool$ of Boolean truth values, as in Table~\ref{tab:boolrules}. The introduction rules state that we have two canonical elements in $\Bool$, written~$0$ and~$1$ here. The elimination rule can be understood as the propositions-as-types translation of an induction principle for $\Bool$. Finally, the computation rules specify what happens if one applies the elimination rule immediately after applying the introduction rule.
 
 
