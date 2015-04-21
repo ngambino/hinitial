@@ -296,7 +296,10 @@ it allows us to define a function $f \co \Nat \to A$ such that the following dia
  1 \ar[ur]^{0} \ar[dr]_{c} & & \\ 
   & A \ar[r]_{d}  & \; A \, . }
   \]
-Within type theory, the commutativity of the diagram is expressed by judgemental equalities,
+Within type theory, the commutativity of the diagram is expressed by judgemental equalities
+\[
+f(0) =  c \co A \, , \quad x \co \Nat \vdash f(\suc(x)) = d(f(x)) \co A \, ,
+\]
 which can be proved as a special case of the computation rules for~$\Nat$. 
 
 In the notion of a natural number object, however, one not only requires the existence of such a function~$f$, 
@@ -325,14 +328,16 @@ notion of an initial algebra, obtained by replacing the usual existence and uniq
 by asking for the \emph{contractibility} of suitable types of algebra morphisms. Although the notion 
 of homotopy-initial algebra is entirely type-theoretic, it is inspired by ideas of higher-dimensional
 category theory, where standard-category theoretic universal properties are generalized using the topological
- notion of contractibility~\cite{LurieJ:higtt}. It would be of interest to relate this notion with the interpretation of
+ notion of contractibility~\cite{LurieJ:higtt}. Although we do not consider the semantics of homotopy-initial
+ algebras in
+ this paper, let us mention that it would be of interest to relate it with the interpretation of
  $\W$-types in the simplicial model of type theory presented in~\cite{vandenBergMoerdijk:Wtypes}. 
 
 As part of our development, we also establish several results that do not have counterparts in the extensional setting.  
 For  example, we show how the elements of the identity type between two algebra morphisms are essentially
  type-theoretic counterparts of the notion of an algebra 2-cell~\cite{BlackwellR:twodmt}.
 This surprising fact provides further evidence for the idea that the rules for identity types encapsulate 
-higher-dimensional categorical structure~\cite{LumsdaineP:weaci,vandenBergB:typwg}. We also
+higher-dimensional categorical structure~\cite{vandenBergB:typwg,LumsdaineP:weaci}. We also
 analyze the complexity of the types of proofs that a given type is homotopy-initial, showing that it
 is a \emph{mere proposition}, \ie a type of homotopy level 1~\cite{VoevodskyV:unifc}. Finally, we show that, 
 under the assumption of Voevodsky's univalence axiom, a version of univalence  also holds for
@@ -350,7 +355,10 @@ Some of the results presented here were announced in our extended abstract~\cite
 \noindent
 \emph{Formalization.} All the results in this paper have been formally verified using the
 Coq proof assistant. The formalization files, which build on the existing libraries for homotopy type theory and 
-univalent foundations of mathematics, are available from the third author's GitHub repository.
+univalent foundations of mathematics, are available from the third author's GitHub repository:
+\begin{center}
+\url{https://github.com/kristinas/hinitiality}
+\end{center}
 
 \smallskip
 
@@ -437,7 +445,7 @@ z \co (\Sigma x \co A) B(x) \vdash  \mysplit(z,e) \co  E(z)
 z \co (\Sigma x \co A) B(x) \vdash E(z) \co  \type \quad
  x \co  A, y \co B(x) \vdash  e(x,y) \co  E(\pair(x,y))  
  \justifies
-x \co A, y \co B(x) \vdash \mysplit(\pair(x,y),e) = e(x,y) \co  E(\pair(x,y)) \, .
+x \co A, y \co B(x) \vdash \mysplit(\pair(x,y),e) = e(x,y) \co  E(\pair(x,y)) 
 \end{prooftree} \medskip
 \]
 \end{minipage}} \smallskip
@@ -473,7 +481,7 @@ a \co A
 \begin{prooftree}
 x \co A \vdash b(x) \co B(x) 
 \justifies
-\app( (\lambda x \co A) b(x), a) = b(a) \co B(a)
+\app( (\lambda x \co A) b(x), a) = b(a) \co B(a) 
 \end{prooftree} \medskip 
 \]
 \end{minipage}} \medskip
@@ -513,7 +521,7 @@ x, y \co A, u \co  \id{A}(x,y) \vdash  \idrec(x,y,u,e) \co E(x,y,u)
 x, y \co  A, u \co  \id{A}(x,y) \vdash E(x,y,u) \co \type \qquad
  x \co  A \vdash  e(x) \co  E(x,x,\refl(x)) 
  \justifies
-x \co A \vdash \idrec(x,x,\refl(x), e) = e(x) \co  E(x, x, \refl(x)) \, .
+x \co A \vdash \idrec(x,x,\refl(x), e) = e(x) \co  E(x, x, \refl(x)) 
 \end{prooftree}
 \] \smallskip
 \end{minipage}} \smallskip
@@ -786,7 +794,7 @@ extension functions
 \int^{\Sigma}_{c,d} \co & \big( (\Sigma p \co \Id_A( \pi_1 c, \pi_1 d )) \Id_{B(\pi_2 c)}( p_{!} \pi_2 c, 
 \pi_2 d) \big) \to \Id_{(\Sigma x \co A)B(x)}(c, d)  \\
 \int^{\Pi}_{f,g} \co & (\Pi x \co A) \Id_{B(x)}(f x, gx) \to  \Id_{(\Pi x \co A)B(x)}(f, g)  \, ,\\ 
- \intertext{and, in the extension of $\Hint$ with the Univalence Axiom, also the inverse}  
+ \intertext{and, in the extension of $\Hint$ with the univalence axiom, also the inverse}  
 \int^{\U}_{A,B} \co & \Id_\U(A, B) \to  \Eq(A, B)   \, . 
  \end{align*}
 In the following, if the context does not create any confusion, we may omit  superscripts and subscripts when manipulating these functions, writing simply $\ext$ and $\int$. Let us also remark that for $\Sigma$-types we could have also used $p^*$ instead
@@ -1789,7 +1797,7 @@ A counterpart of Theorem~\ref{thm:bipointedmain}, now stated with appropriate un
 \subsection*{Univalence for bipointed types} \label{sec:unibip}
 We conclude this section by showing that if the type universe~$\U$ is assumed to be univalent, then a form of the univalence axiom holds also for bipointed types, in the sense made precise by the next theorem, where we
 use notation analogous to the one introduced for extension functions in Section~\ref{sec:bac}. This is an
-instance of the Structure Identity Principle considered by Aczel~\cite{AczelP:stripu}.
+instance of the Structure Identity Principle considered in~\cite{AczelP:stripu}.
 
 
 \begin{theorem}  \label{thm:bipunivalence} Assuming the univalence axiom, 
@@ -2981,11 +2989,11 @@ type~$\Id_W(uy ,  u'(p_{!} \, y))$ has h-level $n$ by the
 induction hypothesis in~$(\ast)$. The claim follows by recalling that the h-levels are closed under arbitrary dependent products and under dependent sums over types of the same h-level. 
 \end{proof}
 
-We note that the h-level of $(\W x:A) B(x)$ does not depend on that of $B(x)$. Furthermore, assuming that we have a unit type $1$, the lemma is no longer true if $n+1$ is replaced by $n$, as the following example illustrates : if $A \defeq 1$ and~$B(x) \defeq 1$, then $(\W x:A) B(x) \simeq 0$, which is not contractible. 
+We note that the h-level of $(\W x \co A) B(x)$ does not depend on that of $B(x)$. Furthermore, assuming that we have a unit type $1$, the lemma is no longer true if $n+1$ is replaced by $n$, as the following example illustrates: if $A \defeq 1$ and~$B(x) \defeq 1$, then $(\W x \co A) B(x) \simeq 0$, which is not contractible. 
 
 
 \subsection*{Univalence for algebras} \label{sec:univalencealgebras}
-We conclude the paper with some applications of the Univalence Axiom. The first is that, just as for bipointed 
+We conclude the paper with some applications of the univalence axiom. The first is that, just as for bipointed 
 types, a form of univalence holds also for $P$-algebras, as the next theorem makes precise. 
 
 
@@ -3025,7 +3033,7 @@ After rearranging, we get
 By Proposition~\ref{WAlgSpace}, this type is equivalent to $\AlgEquiv \big( (C,\sup_C),  (D,\sup_D)\big)$, as desired. Finally, it is not hard to see that the composition of the above equivalences yields, up to a homotopy, the canonical function $\ext$ which is therefore an equivalence, as required.
 \end{proof} 
 
-The following corollary, still obtained under the assumption of the Univalence Axiom, shows that
+The following corollary, still obtained under the assumption of the univalence axiom, shows that
 homotopy-initial algebras are unique up to a unique path.
 
 \begin{corollary}  Assuming the univalence axiom,
