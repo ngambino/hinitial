@@ -1528,7 +1528,7 @@ homotopy~$\alpha \co \Hot(f, g)$. Thus, by Lemma~\ref{BoolHomSpace}, there is a 
 \[
 p \co \Id((f, \bar{f}_0, \bar{f}_1), (g, \bar{g}_0, \bar{g}_1)) \, .
 \] 
-Furthermore, it can be shown that such a path is itself is unique up to a higher path, which in turn is unique up to a yet higher path, etc... As we will show in the reminder of this section, this sort of weak $\infty$-universality, which apparently involves infinitely much data, can nonetheless be captured fully within the system of type theory (without resorting to coinduction) using ideas inspired by homotopy theory and higher-dimensional category theory. Indeed, in spite of the fact that bipointed types and morphisms do not form a category in a strict sense, it is possible to introduce the  notion of a homotopy-initial bipointed type in completely elementary and explicit terms, as we do in the next definition.
+Furthermore, it can be shown that such a path is itself is unique up to a higher path, which in turn is unique up to a yet higher path, and so on. As we will show in the reminder of this section, this sort of weak $\infty$-universality, which apparently involves infinitely much data, can nonetheless be captured fully within the system of type theory (without resorting to coinduction) using ideas inspired by homotopy theory and higher-dimensional category theory. Indeed, in spite of the fact that bipointed types and morphisms do not form a category in a strict sense, it is possible to introduce the  notion of a homotopy-initial bipointed type in completely elementary and explicit terms, as we do in the next definition.
 
 
 \begin{definition}\label{def:BoolInit}
@@ -1814,14 +1814,10 @@ by the assumption that $A$ and $B$ are homotopy-initial.
 \label{section:wfiles}
 
 \subsection*{Algebras and algebra morphisms}
-The aim of the rest of the paper is to carry out an analysis
-analogous to the one we did for the type $\Bool$  for well-ordering types, or W-types. 
-We recall
-the rules for W-types in Table~\ref{tab:wrules}. There, we sometimes write $W$ for~$(\W x \co A) B(x)$ for
-brevity.  Informally, 
-a W-type can be seen as the free algebra for a signature
+The main aim of this paper is to carry out an analysis for well-ordering types (introduced in \cite{MartinLofP:intttp}), or W-types, analogous to the one we have just done for the type $\Bool$. We recall the rules for W-types in Table~\ref{tab:wrules}. There, we sometimes write $W$ for~$(\W x \co A) B(x)$ for
+brevity.  Informally, a W-type can be seen as the free algebra for a signature
 with arbitrarily many operations of possibly infinite arity, but no equations. The premises of the formation rule can be thought of as specifying a signature that has the elements of the type $A$ as~(names of) operations and in which the arity of~$a \co A$ is (the cardinality of) the type~$B(a)$. Then the introduction rule specifies the canonical way of forming an element of the free algebra, and the elimination rule can be seen as the propositions-as-types translation of the appropriate induction principle. As usual, the computation rule states what happens if we apply the
-the elimination rule to a canonical element of the inductive type. Finally, we have a reflection rule expressing the
+the elimination rule to a canonical element of the inductive type. Finally, we have a rule expressing the
 closure of the type universe $\U$ under the formation of $W$-types.
 
 \begin{table}[htb]
@@ -1883,7 +1879,7 @@ In this way, we obtain a function $P \co \U \to \U$. This operation on types ext
 as follows. For $f \co C \to D$, we define $P f  \co PC \to PD$ by $\Sigma$-elimination
 so that, for~$x \co A$ and $u \co B(x) \to C$, we have 
 \[
-(Pf )( \pair(x, u)) = (x, f u) \, .
+(Pf )((x, u)) = (x, f u) \, .
 \] 
 This assignment is pseudo-functorial in the sense that we have propositional, rather than judgemental, equalities:
 \begin{equation}
@@ -2050,6 +2046,8 @@ the canonical function
 \begin{proof}
 This follows from a more general statement to be proved in Lemma~\ref{lem:fibhomeqid} below.
 \end{proof}
+This is another case of the identity type encoding higher-categorical structure; we note that the proof of Lemma \ref{IdEqHo}
+does not require the univalence axiom.
 
 \subsection*{Fibered algebras and algebra sections} We now introduce the fibered versions of the notions of a $P$-algebra, $P$-algebra morphism, and $P$-algebra homotopy. Some preliminary remarks will help us to motivate our definitions. Let us consider a fixed $P$-algebra   $C = (C, \sup_C)$.
 Given a dependent type $E \co C \to \U$,
@@ -2083,7 +2081,7 @@ A \emph{fibered $P$-algebra} over $C$ consists of a dependent type $E \co C \to 
 and a function  $e \co  (\Pi x \co A) (\Pi u \co B(x) \to C)   ((\Pi y \co B(x))   E(u y))  \,  E(\sup_C(x,u))$.
 \end{definition}
 
- We define the type of fibered $P$-algebras 
+We define the type of fibered $P$-algebras 
 over $C$ as follows:
 \[
 \FibPalg(C) \defeq (\Sigma E \co C \to \U) (\Pi x \co A) (\Pi u \co B(x) \to C) 
@@ -2094,8 +2092,8 @@ over $C$ as follows:
  
  \medskip
  
- We define the $P$-algebra $E' = (E', \sup_{E'})$, to
-which we shall refer as the \emph{associated $P$-algebra} associated to $E$, as follows. As before,
+We define the $P$-algebra $E' = (E', \sup_{E'})$, to which we shall refer as the \emph{$P$-algebra associated to $E$}, 
+as follows. As before,
 we define $E' \defeq (\Sigma z \co C) E(z)$ and  $\sup_{E'} \co PE' \to E'$  by $\Sigma$-elimination 
 so that, for $x \co A$ and~$u \co B(x) \to E'$, we have
 \[
@@ -2163,7 +2161,7 @@ $\int(\alpha_u)$ is the path associated to the homotopy $(\lambda y \co B(x)) \a
 Let us now fix two $P$-algebra sections  of $E$,  $f = (f, \bar{f})$ and $g = (g, \bar{g})$. 
 
 \begin{definition} \label{def:W2cellsection}  A \emph{$P$-algebra section homotopy} 
-$(\alpha , \bar{\alpha}) \co f  \rightarrow g$  
+$(\alpha , \bar{\alpha}) \co f  \sim g$  
 is a homotopy~$\alpha \co \Hot(f, g)$ equipped with a homotopy
 $\bar{\alpha} \co 
 (\Pi x \co A) (\Pi u \co B(x) \to C) \;
@@ -2231,7 +2229,7 @@ e_p \ct  \bar{f} \ct (p \circ \sup_C)^{-1} \, , \bar{g}     \big)   \\
 \end{align*}  
 \end{proof}
 
-Note that Lemma~\ref{IdEqHo}, which we left unproven, follows as a special case of Lemma~\ref{lem:fibhomeqid}. 
+Note that Lemma~\ref{IdEqHo}, which we left without proof, follows as a special case of Lemma~\ref{lem:fibhomeqid}. 
 
 \subsection*{Algebra equivalences}  We introduce the notion of equivalence between $P$-algebras. This
 will useful in Section~\ref{sec:univalencealgebras}, where will prove that assuming the univalence axiom, a form of univalence holds also for $P$-algebras. 
@@ -2261,7 +2259,7 @@ We then define the type of $P$-algebra equivalences between $C$ and $D$ as
 \] 
 
 
-\begin{lemma} The underlying function of a $P$-algebra equivalence is an equivalence. In particular, 
+\begin{lemma} The underlying function of a $P$-algebra equivalence is an equivalence, \ie 
 for every $P$-algebra morphism $(f, \bar{f}) \co C \to D$ there is a function 
 \[
 \pi_f \co \isalgequiv(f, \bar{f})  \to \mathsf{isequiv}(f)  \, .
@@ -2320,13 +2318,11 @@ clear that we can obtain the required function $\pi_f$ by composing the equivale
 with the evident projections and the equivalence in~\eqref{equ:equivalternative}. 
 \end{proof} 
 
-Proposition~\ref{WAlgSpace} below can be understood informally as saying that there is an essentially unique way of turning a left
-(respectively, right) inverse of $f$ as a function into a left (respectively, right) inverse of $f$
-as a $P$-algebra morphism.
+Proposition~\ref{WAlgSpace} below can be understood informally as saying that for a $P$-algebra morphism $f$, there is an essentially unique way of turning an inverse of $f$ as a function into an inverse of $f$ as a $P$-algebra morphism.
 
 \begin{proposition}\label{WAlgSpace} A $P$-algebra morphism $(f, \bar{f}) \co C \to D$ is an equivalence of
 $P$-algebras if and only
-if its underlying function $f \co C \to D$ is an equivalence of types. In particular, the function 
+if its underlying function $f \co C \to D$ is an equivalence of types, \ie the function 
 \[
 \pi_f \co \isalgequiv(f, \bar{f})  \to \mathsf{isequiv}(f)  
 \]
@@ -2444,7 +2440,7 @@ x \co A ,\, u \co  B(x) \to C ,\, v \co (\Pi y \co B(x))  E(uy) &  \vdash & e(x,
 x \co A,\, u \co B(x) \to C
    \vdash 
    \comp(x,u,e) \co
-    \Id \big( \elim(\sup_C(x,u),e),  e(x,u, (\lambda y \co B(x)) \elim(u y, e)) \big)
+    \Id \big( \elim(\sup_C(x,u),e),  e(x,u, (\lambda y \co B(x)) \elim(u y, e)) \big)\,.
 \end{prooftree}
 \]
 \end{enumerate}
@@ -2548,7 +2544,7 @@ The path required to prove  the coherence rule is then obtained using the groupo
 \subsection*{Homotopy-initial algebras}
 Exactly as in the case of bipointed types, the hypothesis that a $P$-algebra $C$ is inductive allows us to show that for any
 $P$-algebra $D$, there is a $P$-algebra morphism $f \co C \to D$ which is unique up to a $P$-algebra path, itself is unique up 
-to a higher path, which in turn is unique up to a yet higher path, etc... As before, we shall characterize this kind of universal property
+to a higher path, which in turn is unique up to a yet higher path, and so on.  As before, we shall characterize this kind of universal property
 using the notion of a homotopy-initial $P$-algebra, which we define next.
 
 \begin{definition}\label{def:AlgInit}
@@ -2564,7 +2560,7 @@ is contractible, \ie the following type is inhabilited
 We stress again that homotopy-initiality is a purely type-theoretic notion. Also note that, exactly as for 
 homotopy-initiality of bipointed types, for a $P$-algebra $C$, the type
 $\isalghinit(C)$ is a mere proposition. 
-We have the following type-theoretic analogue of Lambek's lemma.
+We have the following type-theoretic analogue of Lambek's lemma, which will be used in the proof of Proposition \ref{thm:Whlevel} below.
 
 
 \begin{lemma}\label{lem:IntLambek} Let $C = (C, \sup_C)$ be a $P$-algebra. 
@@ -2906,7 +2902,7 @@ By Lemma~\ref{lem:IntLambek} and Corollary~\ref{lem:WInitInt}, $\sup_W \co PW \t
 
 We  remark that $W$-types  preserve homotopy levels, in the following sense.
 
-\begin{theorem} Assuming the rules for $W$-types,
+\begin{theorem}\label{thm:Whlevel} Assuming the rules for $W$-types,
 if $A$ is an $(n+1)$-type, then so is $W$.
 \end{theorem}
 
