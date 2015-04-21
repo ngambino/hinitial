@@ -242,9 +242,8 @@ Pittsburgh, PA  15213, USA}
 
 
 \begin{abstract}
-REVISED: We investigate inductive types in homotopy type theory. We do so by introducing the 
-notion of a homotopy-initial algebra, which is obtained by replacing the standard category-theoretic universal property 
-(which involves the existence and uniqueness of appropriate morphisms) by a purely type-theoretic contractibility condition. 
+We investigate inductive types in type theory, using the insights provided by homotopy type theory and univalent foundations of mathematics. We do so by introducing the new notion of a homotopy-initial algebra. This notion is defined by a purely type-theoretic contractibility condition which replaces the standard, category-theoretic universal property 
+involving the existence and uniqueness of appropriate morphisms. 
 Our main result characterises the types that are equivalent to $\W$-types as homotopy-initial algebras. 
 \end{abstract}
 
@@ -258,10 +257,11 @@ Our main result characterises the types that are equivalent to $\W$-types as hom
 
 
 \section*{Introduction}
+Inductive types, such as the type of natural numbers and types of well-founded trees,  are one of the fundamental ingredients of dependent type theories, including  Martin-L\"of's type theories~\cite{NordstromB:marltt} and the Calculus of Inductive Constructions~\cite{BertotY:inttpp,CoquandT:inddt}. In the present work, we investigate inductive types using the
+insights provided by homotopy type theory~\cite{hott} and univalent foundations of mathematics~\cite{VoevodskyV:unifc}.
 
-Inductive types, such as the type of natural numbers and types of well-founded trees,  are one of the fundamental ingredients of dependent type theories, including  Martin-L\"of's type theories~\cite{NordstromB:marltt} and the Calculus of Inductive Constructions~\cite{BertotY:inttpp,CoquandT:inddt}. In the present work, we investigate inductive types in the setting of \emph{homotopy type theory}, a  modification of Martin-L\"of's intensional type theory motivated by a homotopical interpretation. 
 
-As an introduction to the general problem of induction in intensional type theory, consider the case of numerical recursion.  Within Martin-Lof's intensional type theory, the rules for inductive types are stated using the familiar pattern of formation, introduction, elimination and computation rules.  The elimination rules can be seen as the propositions-as-types translation of appropriate induction principles. For example, the elimination rule for the type of natural numbers is stated as follows:
+As an introduction to the general problem that we will investigate, let us consider the case of the type of natural numbers. Its elimination rule can be seen as the propositions-as-types translation of the familiar induction principle:
 
 \begin{equation}
 \label{equ:natind}
@@ -274,14 +274,8 @@ x \co \Nat, y \co E(x) \vdash d(x,y) \co E(\suc(x))
 x \co \Nat \vdash  \natelim(x, c,d) \co E(x) \, .
 \end{prooftree} \medskip
 \end{equation}
-The computation rules assert that, under the same assuptions of the elimination rule, we have
-\begin{equation}
-\tag{C}
-\natelim(0, c, d) = c \co E(0) \, , \quad
-x \co \Nat \vdash \natelim(\suc(x), c, d) = d(x, [x] \natelim(x, c, d) \co E(\suc(x)) \, .
-\end{equation}
-
-As is well-known, the elimination rule for an inductive type has an important special case that provides a counterpart of the familiar principle of defintion of a function by recursion. For example, the special case of the rule~\eqref{equ:natind} obtained by considering the dependent type in its premiss to be constant gives us the following recursion rule:
+As is well-known, the special case of the rule~\eqref{equ:natind} obtained by considering the dependent type in its premiss to be constant
+ provides a counterpart of the familiar principle of defintion of a function by recursion:
 
 \begin{equation}
 \label{equ:natrec}
@@ -307,9 +301,9 @@ which can be proved as a special case of the computation rules for~$\Nat$.
 
 In the notion of a natural number object, however, one not only requires the existence of such a function~$f$, 
 but also its uniqueness. Remarkably, within type theory, it is possible to use the elimination
-rule in~\eqref{equ:natind} to show that such a function $f$ is unique up to a pointwise propositional equality,
+rule~\eqref{equ:natind} to show that such a function $f$ is unique up to a pointwise propositional equality,
 \ie that given another function $g \co \Nat \to A$ making the corresponding diagram commute, there are
-propositional equalities $\phi_n  \co \Id_A(fn, gn)$ for every $n \co \Nat$. This suggests the possibility of 
+propositional equalities $\phi_x  \co \Id_A(fx, gx)$ for every $x \co \Nat$. This suggests the possibility of 
  characterizing inductive types, such as the type of natural numbers, by means of standard
 category-theoretic universal properties. Unfortunately, this seems to be possible only in the
 presence of additional extensionality principles such as the equality reflection rule (which forces 
@@ -331,7 +325,8 @@ notion of an initial algebra, obtained by replacing the usual existence and uniq
 by asking for the \emph{contractibility} of suitable types of algebra morphisms. Although the notion 
 of homotopy-initial algebra is entirely type-theoretic, it is inspired by ideas of higher-dimensional
 category theory, where standard-category theoretic universal properties are generalized using the topological
- notion of contractibility~\cite{LurieJ:higtt}. 
+ notion of contractibility~\cite{LurieJ:higtt}. It would be of interest to relate this notion with the interpretation of
+ $\W$-types in the simplicial model of type theory presented in~\cite{vandenBergMoerdijk:Wtypes}. 
 
 As part of our development, we also establish several results that do not have counterparts in the extensional setting.  
 For  example, we show how the elements of the identity type between two algebra morphisms are essentially
@@ -339,20 +334,17 @@ For  example, we show how the elements of the identity type between two algebra 
 This surprising fact provides further evidence for the idea that the rules for identity types encapsulate 
 higher-dimensional categorical structure~\cite{LumsdaineP:weaci,vandenBergB:typwg}. We also
 analyze the complexity of the types of proofs that a given type is homotopy-initial, showing that it
-is a \emph{mere proposition}, \ie a type of homotopy level 1. Finally, we show that, 
-under the assumption of the univalence axiom, a version of univalence  also holds for
+is a \emph{mere proposition}, \ie a type of homotopy level 1~\cite{VoevodskyV:unifc}. Finally, we show that, 
+under the assumption of Voevodsky's univalence axiom, a version of univalence  also holds for
 algebras and that such algebras, when they exist, are
-essentially unique, \ie unique up to a contractible type of propositional equalities. 
+essentially unique, \ie unique up to a contractible type of propositional equalities.  It may be noted that, because of the higher-dimensional structure provided by identity types, polynomial functors may acquire further aspects, not present in the extensional setting 
+({cf.}~\cite{KockJ:dattsp}).
 
 Our development can be extended without difficulty to other kinds of inductive types, such as coproducts $A + B$ and the natural numbers  $\Nat$.  In fact, in order to illustrate our ideas,  we begin the paper by considering the simpler case
 of the type $\Bool$ of Boolean truth values, establishing analogues of the results proved
 later for W-types. 
 
-\medskip
-
-\noindent
-\emph{Related work.} Some of the results presented here were announced in our extended abstract~\cite{wtypes}, and are summarized in the book \cite{hott}. The present paper expands the material outlined there by including not only all of the omitted proofs (which requires the statement of auxiliary lemmas), but also a new, algebraic treatment of induction, as well as an analysis of the complexity of the type of proofs that a type is homotopy-initial, and an investigation of the further consequences of the univalence axiom.  Also see \cite{vandenBergMoerdijk:Wtypes} for a related result in a special case.
-
+Some of the results presented here were announced in our extended abstract~\cite{wtypes}, and are summarized in the book \cite{hott}. The present paper expands the material outlined there by including not only all of the omitted proofs (which requires the statement of auxiliary lemmas), but also a new, more algebraic treatment of the elimination and computation rules for inductive types, as well as an analysis of the complexity of the type of proofs that a type is homotopy-initial, and an investigation of the further consequences of the univalence axiom.  
 \smallskip
 
 \noindent
@@ -2445,8 +2437,7 @@ over it has a $P$-algebra section, \ie the type
 is inhabited.
 \end{definition}
 
-In complete analogy with the case of bipointed types, for a $P$-algebra $C$, the type $\isalgind(C)$ is a mere proposition. We also have the following analogue of Proposition~\ref{BoolInitIso}. 
-
+In complete analogy with the case of bipointed types, for a $P$-algebra $C$, the type $\isalgind(C)$ is a mere proposition. We also have the following analogue of Proposition~\ref{BoolHInitIso}. 
 
 
 \begin{proposition} \label{WHInitIso} 
