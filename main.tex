@@ -354,12 +354,17 @@ Some of the results presented here were announced in our extended abstract~\cite
 \smallskip
 
 \noindent
-\emph{Formalization.} All the results in this paper have been formally verified using the
-Coq proof assistant. The formalization files, which build on the existing libraries for homotopy type theory and 
+\emph{Formalization.} All the results in this paper have been formally proved in the current version of 
+the Coq proof assistant. The formalization files, which build on the existing libraries for homotopy type theory and 
 univalent foundations of mathematics, are available from the third author's GitHub repository:
 \begin{center}
 \url{https://github.com/kristinas/hinitiality}
 \end{center}
+One should note that the type theory underlying the current version of Coq differs from that used in this
+paper in several respects. Although the formalization uses only a small fragment of the type theory implemented
+in Coq, it does use its judgemental $\eta$-rules for both $\Pi$-types and $\Sigma$-types (see below for details).
+The results in this paper are obtained  working instead in a  type theory that assumes the former, but not the latter. 
+
 
 \smallskip
 
@@ -675,7 +680,7 @@ derivable if $\Pi$-types are defined as inductive types, as done in~\cite{Nordst
 some of our proofs can be  simplified in its presence and the
 current version of the Coq proof assistant assumes the rule~\eqref{equ:etapi}, 
 we prefer to work with it in order to keep our presentation simpler and 
-more faithful to the formalization.
+closer to the formalization.
 \end{remark*}
 
 
@@ -837,15 +842,16 @@ various composites as the \emph{groupoid laws}.
 The category of types and functions can then be considered informally as enriched in $\infty$-groupoids
 (and hence as an $(\infty, 1)$-category\footnote{We follow convention of using $(\infty, n)$-category to denote an $\infty$-category in which $k$-morphisms, for $k > n$, are invertible. An $\infty$-groupoid is then the same thing as an $(\infty,0)$-category.}), since function types  $A \to B$, just like any other type,
 are $\infty$-groupoids. This $(\infty, 1)$-category has types as objects,
-functions as 1-morphisms, paths $p \co \Id_{A \to B}(f, g)$ as 2-morphisms, and higher paths as $n$-morphisms. We will not need all the structure of this higher-dimensional category (for which see \cite{Lumsdaine:higcft}), but only some low-dimensional layers of it which can be defined easily.  For example, given functions $f \co A \to B$, $g_1, g_2 \co B \to C$ and a path~$p \co \Id_{B \to C}(g_1, g_2)$, represented diagrammatically as 
+functions as 1-morphisms, paths $p \co \Id_{A \to B}(f, g)$ as 2-morphisms, and higher paths as $n$-morphisms. We will not need all the structure of this higher-dimensional category (for which see \cite{Lumsdaine:higcft}), but only some low-dimensional layers of it which can be defined easily.  For example, given functions $f_1, f_2 \co A \to B$, 
+$g  \co B \to C$ and a path~$p \co \Id_{A \to B}(f_1, f_2)$, represented diagrammatically as 
 \[
 \xymatrix{
-A \ar[r]^{f} & B \ar@/^1pc/[r]^{g_1} \ar@/_1pc/[r]_{g_2} \ar@{}[r]|{\Downarrow \, p}  & C \, ,}
+ A \ar@/^1pc/[r]^{f_1} \ar@/_1pc/[r]_{f_2} \ar@{}[r]|{\Downarrow \, p}  & B \ar[r]^{g} & C \, ,}
 \]
-it is possible to define a path~$p \circ f \co \Id_{A \to C} (g_1 \circ f,  g_2 \circ f)$. 
+it is possible to define a path~$g \circ p \co \Id_{A \to C} (g \circ f_1 \, ,  g \circ f_2)$. 
 
-Because of the equivalences $\Id_{A \to B}(f,g) \simeq \Hot(f,g)$ recalled above, this $(\infty,1)$-category can be described equivalently
-as having  types as objects, functions as 1-morphisms, homotopies $\alpha \co \Hot(f, g)$ as 2-morphisms, and higher homotopies as $n$-morphisms. For example, given functions $f \co A \to B$, $g_1, g_2 \co B \to C$ and a homotopy $\alpha \co \Id(g_1, g_2)$, there is a homotopy~$\alpha \circ f \co \Hot(g_1 \circ f, g_2 \circ f)$ which is defined so that, for every $p \co \Id_{B \to C}(g_1, g_2)$, the homotopies~$\ext( p \circ f )$ and~$\ext(p) \circ f$ are propositionally equal, where $\ext$ denotes the extension function for function types.
+Because of the equivalences $\Id(f,g) \simeq \Hot(f,g)$ recalled above, this $(\infty,1)$-category can be described equivalently
+as having  types as objects, functions as 1-morphisms, homotopies $\alpha \co \Hot(f, g)$ as 2-morphisms, and higher homotopies as $n$-morphisms. For example, given functions $f_1, f_2 \co A \to B$, $g \co B \to C$ and a homotopy $\alpha \co \Id(f_1, f_2)$, there is a homotopy~$g \circ \alpha \co \Hot(g \circ f_1, g \circ f_2)$ which is defined so that, for every path $p \co \Id_{A \to B}(f_1, f_2)$, the homotopies~$\ext( g \circ p )$ and~$g \circ \ext(p)$ are propositionally equal, where $\ext$ denotes the extension function for function types.
 
 
 
@@ -1048,7 +1054,7 @@ for the corresponding homotopy. We then have
   &  \simeq (\Sigma p \co \Id( f, g))  \, 
   \Id \big(  (\bar{f}_0, p^*(\bar{g}_0) \big) \times \Id \big( \bar{f}_1,   p^{\ast} (\bar{g}_1) \big) \\
  & \simeq (\Sigma p  \co \Id(f,g))  \, \Id(\bar{f}_0,  \bar{g}_0 \ct (\ext \, p)_{a_0} ) \times \Id( \bar{f}_1, 
- \bar{g}_1\ct (\ext \, p)_{a_1} ) \\
+ \bar{g}_1\ct (\ext \, p)_{a_1} ) \big) \\
 & \simeq (\Sigma \alpha \co \Hot(f, g)) \,  \Id(\bar{f}_0,  \bar{g}_0 \ct \alpha_{a_0} ) \times \Id(\bar{f}_1, \bar{g}_1
 \ct \alpha_{a_1} ) \\
 & = \BipHot \big( (f,\bar{f}_0,\bar{f}_1) \; (g,\bar{g}_0,\bar{g}_1) \big) \, , 
@@ -1528,14 +1534,11 @@ Lemma~\ref{thm:biphot}, there is a path $p \co \Id(f,g)$, as required.
 \subsection*{Homotopy-initial bipointed types} 
  Let $A$ be a small bipointed type and assume that it is inductive. 
  We focus on the special case of fibered bipointed types that 
-are constant, \ie we have $E(x) = B$ for all $x \co A$, where $B = (B, b_0, b_1)$  is
+are constant, \ie we have~$E(x) = B$ for all $x \co A$, where $B = (B, b_0, b_1)$  is
 a small bipointed type. 
  Proposition~\ref{thm:inductiverules} and Proposition~\ref{thm:inductiveuniquesec}
-imply that there exists a bipointed morphism~$f \co A \to B$, which is unique in the sense that  for any two bipointed morphisms $(f, \bar{f}_0, \bar{f}_1), (g, \bar{g}_0, \bar{g}_1) \co A \to B$  there is a bipointed 
-homotopy~$\alpha \co \Hot(f, g)$. Thus, by Lemma~\ref{BoolHomSpace}, there is a path 
-\[
-p \co \Id((f, \bar{f}_0, \bar{f}_1), (g, \bar{g}_0, \bar{g}_1)) \, .
-\] 
+imply that there exists a bipointed morphism~$f \co A \to B$, which is unique in the sense that  for any  bipointed morphism $g \co A \to B$  there is a bipointed 
+homotopy~$\alpha \co \BipHot(f, g)$. Thus, by Lemma~\ref{BoolHomSpace}, there is a path $p \co \Id_{\Bip(A,B)}(f,g)$.
 Furthermore, it can be shown that such a path is itself unique up to a higher path, which in turn is unique up to a yet higher path, and so on. 
 
 The key point in our development (described for $\Bool$ below and for $\W$-types in Section~\ref{sec:homta}) is that this sort of weak $\infty$-universality, which apparently involves infinitely much data, can be captured \emph{fully within the system of type theory} (without resorting to coinduction) using ideas inspired by homotopy theory and higher-dimensional category theory. Indeed, in spite of the fact that bipointed types and morphisms do not form a category in a strict sense, it is possible to introduce the  notion of a homotopy-initial bipointed type in completely elementary and explicit terms, as in Definition~\ref{def:BoolInit} below. This provides the template for the definition of a homotopy-initial algebra, which we will introduce in Section~\ref{sec:homta} in relation to $\W$-types.
@@ -1571,9 +1574,14 @@ is inhabited.
 \end{proposition}
 
 \begin{proof} 
-Let $A$ and $B$ be homotopy-initial bipointed types. The type 
-$\BipHom( A, B)$ is contractible by homotopy-initiality of $A$. Since the dependent sum of a family of mere propositions over a mere proposition is again a mere proposition, it suffices to prove that the type $\isbipequiv(f)$ is contractible for any bipointed morphism $f \co A \to B$. This type is a mere proposition by 
-Proposition~\ref{thm:usemere}, and thus it suffices to show it is inhabited. But the existence of a right and a left bipointed inverse for $f$ follows immediately
+Let $A$ and $B$ be homotopy-initial bipointed types. Recall that
+\[
+\BipEquiv(A,B) = (\Sigma f \co \Bip(A,B)) \isbipequiv(f) \, .
+\]
+We know that $\Bip(A,B)$ is contractible. Recalling that the dependent sum of a family of contractible types
+over a contractible type is contractible, it suffices to show that, for $f \co \Bip(A,B)$, the type $\isbipequiv(f)$
+is contractible. Since $\isbipequiv(f)$ is a mere proposition by Proposition~\ref{thm:usemere}, we only
+need to prove that it is inhabited.  But the existence of a right and a left bipointed inverse for $f$ follows immediately
 by the assumption that $A$ and $B$ are homotopy-initial.
 \end{proof}
 
@@ -1930,7 +1938,16 @@ This assignment is pseudo-functorial in the sense that we have propositional, ra
 \phi_{f, g} \co \Id( P(g \circ f), Pg \circ Pf) \, , \quad \phi_A \co \Id( P(1_A), 1_{PA})
 \end{equation}
 for $f \co C \to D$, $g \co D \to E$. We still refer to $P$ as the \emph{polynomial functor} associated to $A \co \U$ 
-and $B \co A \to \U$, so as to highlight the analogy with the theory of polynomial functors on locally cartesian closed categories~\cite{GambinoN:weltdp,MoerdijkI:weltc}.
+and $B \co A \to \U$, so as to highlight the analogy with the theory of polynomial functors on locally cartesian closed categories~\cite{GambinoN:weltdp,MoerdijkI:weltc}. We shall also use that $P$ acts on homotopies: given
+functions $f, g \co C \to D$ and a homotopy $\alpha \co \Hot(f, g)$, it is possible to define a homotopy 
+$P \alpha \co \Hot( Pf, Pg)$. Explicitly, for $x \co A$ and $u \co B(x) \to C$, we define $(P \alpha)_{x, u}
+\co \Id( (x, fu), (x, gu))$ by letting
+\begin{equation}
+\label{equ:palpha}
+(P \alpha)_{x, u} \defeq (x, \int( \alpha_u ) ) \, ,
+\end{equation}
+where $\alpha_u$ is the evident homotopy between $fu$ and $gu$, and $\int$ is the function transforming
+homotopies into paths discussed in Section~\ref{sec:bac}.
 
 \begin{definition} A \emph{$P$-algebra} 
 \[
@@ -2028,7 +2045,8 @@ We will require an alternative description of the identity type between two $P$-
 
 \medskip
 
-Let us fix $P$-algebra morphisms $f = (f, \bar{f})$ and $g =  (g, \bar{g})$ from $C$ to $D$. 
+Let us fix $P$-algebra morphisms $f = (f, \bar{f})$ and $g =  (g, \bar{g})$ from $C$ to $D$. The next
+definition makes use of the action of $P$ on homotopies defined in~\eqref{equ:palpha}.
 
 
 
@@ -2041,12 +2059,12 @@ $\bar{\alpha} \co
 Note that in the definition $\alpha \circ \sup_C$ and $\sup_D \circ P \alpha$ are obtained by pre-composition and post-compositions, respectively, of functions with homotopies. The homotopy $\bar{\alpha}$ can be thought of as a proof that the two homotopies produced by the pasting diagrams
 \[
 \xymatrix@C=2cm@R=1.5cm{
-PC \ar[r]^{\sup_C} \ar@/_1.3pc/[d]_{Pg}  \ar@/^1.3pc/[d]^{Pf}  \ar@{}[dr]|{\qquad \Downarrow \, \bar{f}}
-\ar@{}[d]|{\Downarrow \, P\alpha}
+PC \ar[r]^{\sup_C} \ar@/_1.3pc/[d]_{Pg}  \ar@/^1.3pc/[d]^{Pf}  \ar@{}[dr]|{\qquad \Leftarrow \; \bar{f} }
+\ar@{}[d]|{\Leftarrow \, P\alpha}
   & C \ar@/^1.3pc/[d]^{f} \\ 
 PD \ar[r]_{\sup_D} & D} \qquad
 \xymatrix@C=2cm@R=1.5cm{
-PC \ar[r]^{\sup_C} \ar@/_1.3pc/[d]_{Pg}  \ar@{}[dr]|{\Downarrow \, \bar{g} \qquad} & C \ar@/^1.3pc/[d]^{f} \ar@/_1.3pc/[d]_{g} \ar@{}[d]|{\Downarrow \, \alpha} \\ 
+PC \ar[r]^{\sup_C} \ar@/_1.3pc/[d]_{Pg}  \ar@{}[dr]|{\Leftarrow \, \bar{g} \qquad} & C \ar@/^1.3pc/[d]^{f} \ar@/_1.3pc/[d]_{g} \ar@{}[d]|{\Leftarrow \, \alpha} \\ 
 PD \ar[r]_{\sup_D} & D} 
 \]
 are equal, which is analogous to the condition defining an algebra 2-cell in 2-dimensional category 
@@ -2067,8 +2085,8 @@ The type of $P$-algebra homotopies is then defined by
 \[
 \AlgHot \big( (f,\bar{f}), (g, \bar{g})  \big)
  \defeq  
-(\Sigma \alpha \co \Hot(  f , g)) \, \Id\big( 
-( \sup_D \circ P \alpha ) \ct  (\ext \, \bar{f}) \, , \;  ( (\ext \, \bar{g}) \circ \sup_C) \cdot (\alpha \circ \sup_C)
+(\Sigma \alpha \co \Hot(  f , g)) \, \Hot \big( 
+( \sup_D \circ P \alpha ) \ct  (\ext \, \bar{f}) \, , \;  ( (\ext \, \bar{g}))  \cdot (\alpha \circ \sup_C)
  \big) \, .
 \]
 
@@ -2151,10 +2169,11 @@ by the type of $e$, we have that~$e(x, \pi_1 u, \pi_2 u) \co E( \sup_C(x, \pi_1 
 In analogy with the way we defined fibered $P$-algebras, it is possible to define 
 $P$-algebra sections. To state this definition, we need some preliminary notation.
 For  $f \co (\Pi z \co C) E(z)$,
-we define $e_f \co (\Pi x \co A)(\Pi u \co B(x) \to C) E(\sup_C(x,u))$ by letting
+we define $e_f \co (\Pi v \co PC) E(\sup_C(v))$ so that, for 
+$x \co A$, $u \co B(x) \to C$, we have 
 \begin{equation}
 \label{equ:ef}
- e_f \defeq (\lambda x \co A)(\lambda u \co B(x) \to C) \, e(x, u, f u) \, .
+ e_f(x,u) \defeq  e(x, u, f u) \, .
 \end{equation}
 Here, note that for $y \co B(x)$, we have $u y \co C$ and hence $f u y \co E(uy)$,
 as required.
@@ -2207,7 +2226,6 @@ Let us now fix two $P$-algebra sections  of $E$,  $f = (f, \bar{f})$ and $g = (g
 $(\alpha , \bar{\alpha}) \co f  \sim g$  
 is a homotopy~$\alpha \co \Hot(f, g)$ equipped with a homotopy
 $\bar{\alpha} \co 
-(\Pi x \co A) (\Pi u \co B(x) \to C) \;
 \Hot\big(  e_\alpha \ct \ext( \bar{f}) \, , 
  \ext( \bar{g}) \ct (\alpha \circ \sup_C)   \big)$.
 \end{definition} 
@@ -2221,14 +2239,12 @@ f ( \sup_C(x,u)) \ar[d]_{\alpha_{\sup_C(x,u)}} \ar[r]^{(\ext \, \bar{f})_{x,u}}
 g(\sup_C(x,u)) ) \ar[r]_{(\ext \, \bar{g})_{x,u}} & \;  e(x, u, gu) \, .}
 \]
 Accordingly, we define the type of $P$-algebra homotopies of sections as follows:
-\begin{multline*} 
-\AlgSecHot( (f, \bar{f}) ,\, (g, \bar{g}) )  \defeq  \\ 
-(\Sigma \alpha \co \Hot( f , g)) 
-(\Pi x \co A) 
-(\Pi u \co B(x) \to C) \, 
+\[
+\AlgSecHot( (f, \bar{f}) ,\, (g, \bar{g}) )  \defeq  
+(\Sigma \alpha \co \Hot( f , g)) \, 
 \Hot\big(  e_\alpha \ct \ext( \bar{f}) \, , 
  \ext( \bar{g}) \ct (\alpha \circ \sup_C)   \big) \, .
-\end{multline*}
+\]
 Remarkably, in spite of the complexity of its definition, the notion of a $P$-algebra homotopy is equivalent to
 that of an identity proof between $P$-algebra sections, as the next lemma makes precise.
 
@@ -2393,20 +2409,23 @@ First of all,  recall that the path $\overline{gf} \co  \mathsf{isalghom}(gf) $ 
 $\overline{gf} \defeq (g \circ \bar{f}) \ct (\bar{g} \circ Pf )$, 
 where we suppressed the path relative to the pseudo-functoriality of $P$, as in~\eqref{equ:pseudofunP}, for convenience. 
 By $\Id$-elimination on $p$, the path $p^*(\overline{1}_C) \co \mathsf{isalghom}(gf)$ is propositionally equal to the composite path
+
 \[
-\xymatrix@C=1.7cm{
-\sup_C \circ P(gf) \ar[r]^{\sup_C \circ P(p)} & \sup_C \circ P(1_C) \ar[r]^{\bar{1}_C} & 1_C \circ \sup_C \ar[r]^{p^{-1} \circ \sup_C} & 
-(g f) \circ \sup_C \, .}
+\xymatrix@C=1.9cm{
+(g f) \circ \sup_C  \ar[r]^{p \circ \sup_C}  &
+1_C \circ \sup_C \ar[r]^{\bar{1}_C}  &
+ \sup_C \circ P(1_C)  \ar[r]^{\sup_C \circ P(p^{-1})} & 
+\sup_C \circ P(gf)   \, .}
 \]
 Hence, we have 
 \begin{align*} 
 G(g,p)  & \simeq  (\Sigma \bar{g} \co  \mathsf{AlgHom}(g))  \; 
 \Id \big( (g \circ \bar{f}) \ct (\bar{g} \circ Pf ) \, , 
-  (p^{-1} \circ \sup_C) \ct \bar{1}_C \ct (\sup_C \circ P(p)) \big) \\
+  ( \sup_C \circ P(p^{-1})) \ct \bar{1}_C \ct (p \circ \sup_C)    \big) \\
 & \simeq 
 (\Sigma \bar{g} \co  \mathsf{AlgHom}(g))  \; 
 \Id \big( \bar{g} \circ Pf  \, , (g \circ \bar{f})^{-1} \ct 
-  (p^{-1} \circ \sup_C) \ct \bar{1}_C \ct (\sup_C \circ P(p)) \big) \, .
+( \sup_C \circ P(p^{-1})) \ct \bar{1}_C \ct (p \circ \sup_C)   \big) \, .
 \end{align*} 
 Now, since $f \co C \to D$ is an equivalence, $Pf \co PC \to PD$ is also an equivalence and hence so
 is the function mapping a path $r \co \Id_{PD \to C}(s,t)$ to the composite $r \circ Pf \co \Id_{PC \to C}( s \circ Pf, t \circ Pf)$. Thus, by part~(ii) of Lemma~\ref{thm:useful}, $G'(g,p)$ is contractible, as required.
@@ -2579,11 +2598,11 @@ is
 \[
 t(x,u,v) \co   T(\sup_C(x,u)) \, .
 \]
-Note that $(\lambda y \co B(x)) \, v_{uy}$ is a homotopy between $fu$ and $(\lambda y \co B(x)) \, \elim(uy, e)$.
-Hence, we have a corresponding path $\int(v_u)$. We can construct the required path  as follows:
+Note that $v$ is a homotopy between $fu$ and $(\lambda y \co B(x)) \, \elim(uy, e)$.
+Hence, we have a corresponding path $\int(v)$. We can construct the required path  as follows:
 \begin{align*}
 f(\sup_C(x,u)) &\iso e\big(x,u , f u \big)   \by{\phi_{x,u}}\\
-	&\iso e\big(x,u, (\lambda y \co B(x) )\, \elim(u y ,e) \big) \by{\int( v_u)} \\
+	&\iso e\big(x,u, (\lambda y \co B(x) )\, \elim(u y ,e) \big) \by{\int( v)} \\
 	& \iso \elim(\sup_C(x,u),e) \by{\comp(x,u,e)^{-1}}.
 \end{align*}
 For $z \co C$, we can then define
@@ -2730,7 +2749,7 @@ x \co A, u \co B(x) \to C \vdash
 \begin{proof} The rules can be read as follows. The recursion rule says that, given any type $D$ together 
 with the function $\sup_D \co PD \to D$, \ie any $P$-algebra, there is a function $r \co C \to D$
 defined by letting,  for $z \co C$, $r(z) = \rec(z, \sup_D)$.  The $\beta$-rule implies that we have a homotopy 
-$\beta \co \Hot( r \circ \sup_C \, , \sup_D \circ Pr)$ and so, by Proposition~\ref{lem:fibhomeqid}, we get a path $\bar{r}$ fitting in the diagram
+$\beta \co \Hot( r \circ \sup_C \, , \sup_D \circ Pr)$ and so, by function extensionality, we get a path $\bar{r}$ fitting in the diagram
 \[
 \xymatrix@C=1.5cm{
 PC \ar[d]_{r} \ar[r]^{\sup_C} \ar@{}[dr]|{\Downarrow \, \bar{r}} & C \ar[d]^{r} \\
@@ -2752,10 +2771,10 @@ The $\beta$-rule gives a homotopy with components $\beta_{x,u} \co \Id( r (\sup_
 the $\eta$-rule gives a homotopy with components $\eta_z \co \Id( z, r(z))$ and, finally, the $(\beta, \eta)$-coherence rule, gives us a homotopy with components fitting in the diagram
 \[
 \xymatrix@C=1.5cm{
-\sup_C(x,u) \ar[r]^-{\eta_{x,u}} 
+\sup_C(x,u) \ar[r]^-{\eta_{\sup_C(x,u)}} 
 \ar@/_1pc/[dr]_{\sup_C(x, \int(\eta_u)) \qquad}
  \ar@{}[dr]|{\qquad \overset{\bar{\eta}_{x,u}}{\Rightarrow}} &
-  r(\sup(x,u)) \ar[d]^{\beta_{x,u}} \\ 
+  r(\sup_C(x,u)) \ar[d]^{\beta_{x,u}} \\ 
  & \sup_C(x, ru) \, .}
  \]
  \end{remark}
@@ -2828,7 +2847,11 @@ Unfolding the definitions, we have that, for $x \co A,  u \co B(x) \to C$,
 \label{equ:smallkey}
 (\phi_1)_{x,u} \iso   \pi_1\, \ext^\Sigma \, \phi_{x,u}   \, .
 \end{equation}
-By the homotopy-initiality of $C$ and Lemma~\ref{IdEqHo}, there exists a $P$-algebra 
+Furthermore, let us define $f_2 \co (\Pi z \co C) E(f_1 z)$ by setting
+\[
+ f_2 \defeq (\lambda z \co C) \, \pi_2 f z  \, . 
+ \]
+In order to define the required section, observe that, by the homotopy-initiality of $C$ and Lemma~\ref{IdEqHo}, there exists a $P$-algebra 
 homotopy 
 \[
 (\alpha, \bar{\alpha}) \co \AlgHot(f_1 , 1_C) \, ,
@@ -2850,7 +2873,7 @@ We define the required section $s \co (\Pi z \co C) E(z)$ so that, for $z \co C$
 s z \defeq (\alpha_z)_{!} \big(  f_2 z \big) \, ,
 \end{equation*}
 where  $(\alpha_z)_{!} : E(f_1 z) \to E(z)$ is a transport map associated to the path
-$\alpha_z \co \Id( f_1 z,  z)$. It now remains to  define, for each $x \co A$ and $u \co B(x)\to C$, 
+$\alpha_z \co \Id( f_1 z,  z)$. It now suffices to  define, for each $x \co A$ and $u \co B(x)\to C$, 
 a path
 \[
 \bar{s}(x,u) \co \Id\big(  s(\sup_C(x,u)) \, ,  e_s(x,u)  \big) \, ,
@@ -2963,9 +2986,9 @@ By Lemma~\ref{lem:IntLambek} and Corollary~\ref{lem:WInitInt}, $\sup_W \co PW \t
 
 
 
-We  remark that $W$-types  preserve homotopy levels, in the following sense (see \cite{Danielsson:Wtypes}).
+We  remark that $W$-types  preserve homotopy levels, as shown in~\cite{Danielsson:Wtypes}).
 
-\begin{proposition}\label{thm:Whlevel}
+\begin{proposition}[Danielsson] \label{thm:Whlevel}
 Assuming the rules for $W$-types, if $A$ has h-level $n+1$, then so does the $W$-type $(\W x:A)B(x)$.
 \end{proposition}
 
