@@ -2396,7 +2396,7 @@ By $\Id$-elimination on $p$, the path $p^*(\overline{1}_C) \co \mathsf{isalghom}
 \[
 \xymatrix@C=1.7cm{
 \sup_C \circ P(gf) \ar[r]^{\sup_C \circ P(p)} & \sup_C \circ P(1_C) \ar[r]^{\bar{1}_C} & 1_C \circ \sup_C \ar[r]^{p^{-1} \circ \sup_C} & 
-(g f) \circ 1_C \, .}
+(g f) \circ \sup_C \, .}
 \]
 Hence, we have 
 \begin{align*} 
@@ -2683,7 +2683,7 @@ z \co C \vdash \rec(z,\sup_D) \co D
 \[
 \begin{prooftree}
 D \co \U \qquad 
-x \co A \, ,  y \co B(x) \to D \vdash \sup_D(x,y) \co D 
+x \co A \, ,  u \co B(x) \to D \vdash \sup_D(x,u) \co D 
 \justifies
 x \co A,\, u \co B(x) \to D \vdash
  \beta(x,u ,\sup_D) \co \Id \big( \rec(\sup_C(x,u),\sup_D) \, ,  \sup_D\big(x, (\lambda y \co B(x)) \,  \rec(u y, \sup_D)\big) \big)
@@ -2698,7 +2698,7 @@ x \co A,\, u \co B(x) \to D \vdash
  & & D \co \U  \\ 
 x \co A,\, u \co B(x) \to D  & \vdash &  \sup_D(x,u) \co D \\ 
 z \co C  & \vdash & f(z) \co D \\ 
-x \co A, u \co B(x) \to D  & \vdash  & \phi_{x,u} \co \Id( f(\sup_C(x,y)),  \sup_D(x , f u )) 
+x \co A, u \co B(x) \to D  & \vdash  & \phi_{x,u} \co \Id( f(\sup_C(x,u)),  \sup_D(x , f u )) 
 \end{array}
 \justifies
 z  \co A \vdash \eta_z \co \Id( f(z) , \rec(z,\sup_D))
@@ -2748,7 +2748,7 @@ proving the contractibility of $\Palg(C,D)$.
 \begin{remark} As for bipointed types, the special case of the rules in Proposition~\ref{thm:recursiveW} 
 obtained by considering $C = D$ and $f = 1_C$ provides some explanation for the terminology used to denote them. 
 By the recursion rule, we obtain a function $r \co C \to C$ defined by $r = (\lambda z \co C) \rec(z, \sup_C)$. 
-The $\beta$-rule gives a homotopy with components $\beta_{x,u} \co \Id( r (\sup_C(x,u), \sup_C( x, r u)$, 
+The $\beta$-rule gives a homotopy with components $\beta_{x,u} \co \Id( r (\sup_C(x,u)), \sup_C( x, r u))$, 
 the $\eta$-rule gives a homotopy with components $\eta_z \co \Id( z, r(z))$ and, finally, the $(\beta, \eta)$-coherence rule, gives us a homotopy with components fitting in the diagram
 \[
 \xymatrix@C=1.5cm{
@@ -2807,7 +2807,7 @@ which we represent with the diagram
  PC \ar[r]^{\sup_C} \ar[d]_{Pf}  \ar@{}[dr]|{\Downarrow \, \bar{f}} &  C \ar[d]^{f}\\
 PE' \ar[r]_{\sup_{E'}}   & \; E' \, .}
 \] 
-Let $\phi \defeq (\ext \bar{f})$ the homotopy associated to the path $\bar{f}$. 
+Let $\phi \defeq (\ext \bar{f})$ be the homotopy associated to the path $\bar{f}$. 
 We write $f_1 \co C \to C$ for the composite $\pi_1 f \co C \to C$, which is a $P$-algebra morphism. The 
 path
 \[
@@ -2909,7 +2909,7 @@ Observe that for all $a \co A$, $p \co \Id_{B(a) \to C}(t_1, t_2)$  and
 $v \co (\Pi y \co B(a))E(t_1y)$, we have
 \[ 
 (\sup_C(a,p))_{!}\, e(a,t_1,v)  \iso 
-e \big( a, t_2,  (\lambda y \co B(a)) ( (\ext \, p)_y )_{!}\, v y \big) \big)   \, . 
+e \big( a, t_2,  (\lambda y \co B(a)) ( (\ext \, p)_y )_{!}\, v y \big)   \, . 
 \]
 by $\Id$-elimination. If we apply this to $x \co A$, $\int(\alpha_u) \co \Id( f_1 u, u)$, and $f_2 u \co
 (\Pi y \co B(x)) E(f_1 u y)$, we get
@@ -3015,7 +3015,7 @@ $\Id \big( (C,\sup_C) ,  (D,\sup_D) \big)$ can be expressed as the type
 By path induction on $p$ and the characterization of paths in $\Pi$-types, this type is equivalent to
 \[  
 (\Sigma p \co \Id(C,D))
-(\Pi x \in A) 
+(\Pi x : A) 
 (\Pi u \co B(x) \to W)
 \Id \big(  (\ext \, p)( \sup_C(x,u)),  \sup_D(x, (\ext \, p ) \circ u) \big) \, , 
 \]
