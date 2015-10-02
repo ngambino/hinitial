@@ -34,7 +34,7 @@
 
 \def\noqed{\renewcommand{\qedsymbol}{}}
 
-% Theorems
+% Theorem
 
 \newtheoremstyle{mythm}% 
 {10pt}% Space above 
@@ -274,6 +274,8 @@ x \co \Nat, y \co E(x) \vdash d(x,y) \co E(\suc(x))
 x \co \Nat \vdash  \natelim(x, c,d) \co E(x) \, .
 \end{prooftree} \medskip
 \end{equation}
+Here, $E$ is considered as a predicate on the type $\Nat$, $c$ as a proof that $E$ holds for $0$, and $d$ as a program that transforms
+a proof $y$ that $E$ holds for $x \co \Nat$ into a proof $d(x,y)$ that $E$ holds for the successor~$\suc(x)$.
 As is well-known, the special case of the rule~\eqref{equ:natind} obtained by considering the dependent type in its premiss to be constant
  provides a counterpart of the familiar principle of defintion of a function by recursion:
 
@@ -289,7 +291,7 @@ x \co \Nat \vdash  \natrec(x, c, d) \co A \, .
 \end{prooftree} \medskip
 \end{equation}
 This rule is closely related to Lawvere's notion of a natural number object in a category \cite{Lawvere:NNO}. Indeed, 
-it allows us to define a function $f \co \Nat \to A$ such that the following diagram commutes:
+it allows us to define a function $f \co \Nat \to A$ such that each face in the the following diagram commutes:
 \[
 \xymatrix@R=0.4cm@C=1.4cm{
  & \Nat \ar[r]^{\suc}  \ar[dd]^{f}  & \Nat \ar[dd]^{f}  \\
@@ -303,7 +305,7 @@ f(0) =  c \co A \, , \quad x \co \Nat \vdash f(\suc(x)) = d(f(x)) \co A \, ,
 which can be proved as a special case of the computation rules for~$\Nat$. 
 
 In the notion of a natural number object, however, one not only requires the existence of such a function~$f$, 
-but also its uniqueness. Remarkably, within type theory, it is possible to use the elimination
+but also its uniqueness. Remarkably, within type theories, it is possible to use the elimination
 rule~\eqref{equ:natind} to show that such a function $f$ is unique up to a pointwise propositional equality,
 \ie that given another function $g \co \Nat \to A$ making the corresponding diagram commute, there are
 propositional equalities $\phi_x  \co \Id_A(fx, gx)$ for every $x \co \Nat$. This suggests the possibility of 
@@ -329,22 +331,21 @@ notion of an initial algebra, obtained by replacing the usual existence and uniq
 by asking for the \emph{contractibility} of suitable types of algebra morphisms. The notion 
 of homotopy-initial algebra is entirely type-theoretic, but it is inspired by ideas of higher-dimensional
 category theory, where standard category-theoretic universal properties are generalized using the topological
- notion of contractibility~\cite{LurieJ:higtt}. Although we do not consider the semantics of homotopy-initial
- algebras in
- this paper, we expect it to be given by homotopy-invariant versions of initial
- algebras for polynomial functors (cf.~\cite{vandenBergMoerdijk:Wtypes}). 
+ notion of contractibility~\cite{LurieJ:higtt}.  Our account of homotopy-initial algebras is entirely syntactic, and we
+ expect future semantic accounts would be given using homotopy-invariant versions of initials algebras for polynomial
+ functors (cf.~\cite{vandenBergMoerdijk:Wtypes}). 
 
 As part of our development, we also establish several results that do not have counterparts in the extensional setting.  
 For  example, we show how the elements of the identity type between two algebra morphisms are essentially
  type-theoretic counterparts of the notion of an algebra 2-cell~\cite{BlackwellR:twodmt}.
 This surprising fact provides further evidence for the idea that the rules for identity types encapsulate 
-higher-dimensional categorical structure~\cite{vandenBergB:typwg,LumsdaineP:weaci}. We also
+some higher-dimensional categorical structure~\cite{vandenBergB:typwg,LumsdaineP:weaci}. We also
 analyze the complexity of the types of proofs that a given type is homotopy-initial, showing that it
 is a \emph{mere proposition}, \ie a type of homotopy level 1~\cite{VoevodskyV:unifc}. Finally, we show that, 
 under the assumption of Voevodsky's univalence axiom, a version of univalence  also holds for
 algebras and that such algebras, when they exist, are
-essentially unique, \ie unique up to a contractible type of propositional equalities.  It may be noted that, because of the higher-dimensional structure provided by identity types, polynomial functors may acquire further aspects, not present in the extensional setting 
-({cf.}~\cite{KockJ:dattsp}).
+essentially unique, \ie unique up to a contractible type of propositional equalities.  It may be noted that, because of the higher-dimensional structure provided by identity types, polynomial functors may acquire further aspects, not present in the extensional setting, since 
+the dependent types that determine polynomial functors may have homotopy level greater than~$1$ ({cf.}~\cite{KockJ:dattsp}).
 
 Our development can be extended without difficulty to other kinds of inductive types, such as coproducts $A + B$ and the natural numbers  $\Nat$.  In fact, in order to illustrate our ideas,  we begin the paper by considering the simpler case
 of the type $\Bool$ of Boolean truth values, establishing analogues of the results proved
@@ -363,7 +364,10 @@ univalent foundations of mathematics, are available from the third author's GitH
 One should note that the type theory underlying the current version of Coq differs from that used in this
 paper in several respects. Although the formalization uses only a small fragment of the type theory implemented
 in Coq, it does use its judgemental $\eta$-rules for both $\Pi$-types and $\Sigma$-types (see below for details).
-The results in this paper are obtained  working instead in a  type theory that assumes the former, but not the latter. 
+The results in this paper are obtained  working instead in a  type theory that assumes 
+the  judgemental $\eta$-rules for $\Pi$-types, but not for $\Sigma$-types.
+
+
 
 
 \smallskip
@@ -605,7 +609,7 @@ c \co (\Sigma x \co A) B(x)
 \end{prooftree}
 \end{equation}
 This rule asserts that every element of a $\Sigma$-type is propositionally equal to one of canonical form.
-Note that neither $\mathcal{M}$ nor $\Hint$ include the judgemental form of the $\eta$-rules for $\Sigma$-types, 
+Note that none of the type theories we consider in this paper include the judgemental form of the $\eta$-rules for $\Sigma$-types, 
 as is done in~\cite{GoguenH:inddtw}.  The presence of the type universe $\U$ allows us to define the notion of a small type:
 as usual, we say that a type  $A$ is \emph{small} if it is an element of  the type universe, \ie $A\co\U$. 
 
@@ -701,7 +705,7 @@ a path $p\co \Id_A(a,b)$ determines the so-called \emph{transport functions}
 p_{\, ! } \co E(a) \rightarrow E(b) \, , \quad p^* \co E(b) \to E(a) \, .
 \] 
 These are defined so that, for $x \co A$, the functions $\refl(x)_{\, !}$ 
-and~$\refl(x)^*$ are the identity function $1_{E(x)} \co E(x) \to E(x)$.  In order to emphasize the fact
+and~$\refl(x)^*$ are definitionally equal to the identity function $1_{E(x)} \co E(x) \to E(x)$.  In order to emphasize the fact
 that dependent types are interpreted as fibrations in homotopy-theoretic models, we sometimes refer to a dependent
 type as in~\eqref{equ:dependenttype} as a \emph{fibered type} over $A$. Accordingly, elements of the 
 type~$(\Pi x \co A)E(x)$ may be referred to as~\emph{sections} of the fibered type. This terminology is supported by the fact that a section $f \co (\Pi x \co A)E(x)$ determines a function $f' \co A \to E'$, where $E' \defeq (\Sigma x \co A)E(x)$, defined by
@@ -728,7 +732,9 @@ A function $f \co A \to B$ is then  said to be an \emph{equivalence} if and only
 \[
 \isequiv(f) \defeq (\Pi y \co B) \, \iscontr(\hfiber(f,y)) 
 \]
-is inhabited.  For types $A$ and $B$, the type $\Eq(A,B)$ of equivalences from $A$ to $B$ is  defined so that its canonical elements are pairs consisting of a function $f \co A \to B$ and a proof that it is an equivalence, \ie we let 
+is inhabited.  The notion of an equivalence was defined in~\cite{VoevodskyV:unifc} inspired by homotopy-theoretic ideas. It is of
+particular importance since it provides a very internal notion of isomorphism between types. 
+For types $A$ and $B$, the type $\Eq(A,B)$ of equivalences from $A$ to $B$ is  defined so that its canonical elements are pairs consisting of a function $f \co A \to B$ and a proof that it is an equivalence, \ie we let 
  \begin{equation}
  \label{equ:weq}
  \Eq(A,B) \defeq (\Sigma f \co A \to B) \, \isequiv(f) \, .
@@ -739,10 +745,11 @@ is inhabited.  For types $A$ and $B$, the type $\Eq(A,B)$ of equivalences from $
  (\Pi x \co A)(\Sigma y \co B(x)) E(x,y) \simeq 
  (\Sigma u  \co (\Pi x \co A)B(x)) (\Pi x \co A) E(x, ux) \, .
  \end{equation}
- It can be shown that a function $f \co A \rightarrow B$ is an equivalence if and only if it has a two-sided inverse,
+ It can be shown within the type theory $\Hint$ that a function $f \co A \rightarrow B$ is an equivalence if and only if it has a two-sided inverse,
  \ie there exists a function $g \co B \to A$ such that the types $\Id(gf, 1_A)$
  and $\Id(fg, 1_B)$ are inhabited. However, the type of equivalences is not equivalent to
- the type of functions with a two-sided inverse as above, but instead (as suggested by Andr\'e Joyal) 
+ the type of functions with a two-sided inverse as above, but instead (as suggested by Andr\'e Joyal, 
+ {cf.}~\cite[Definition~3.1.1]{voevodsky-simplicial})
 to the type of functions that have a left inverse and a right inverse, \ie functions
 $g \co B \to A$ and $h \co B \to A$ such that the  types $ \Id(g  f, 1_A)$ and $\Id(f h, 1_B)$ are inhabited. 
 More precisely, for every $f \co A \to B$, there is an equivalence
@@ -853,6 +860,24 @@ it is possible to define a path~$g \circ p \co \Id_{A \to C} (g \circ f_1 \, ,  
 Because of the equivalences $\Id(f,g) \simeq \Hot(f,g)$ recalled above, this $(\infty,1)$-category can be described equivalently
 as having  types as objects, functions as 1-morphisms, homotopies $\alpha \co \Hot(f, g)$ as 2-morphisms, and higher homotopies as $n$-morphisms. For example, given functions $f_1, f_2 \co A \to B$, $g \co B \to C$ and a homotopy $\alpha \co \Id(f_1, f_2)$, there is a homotopy~$g \circ \alpha \co \Hot(g \circ f_1, g \circ f_2)$ which is defined so that, for every path $p \co \Id_{A \to B}(f_1, f_2)$, the homotopies~$\ext( g \circ p )$ and~$g \circ \ext(p)$ are propositionally equal, where $\ext$ denotes the extension function for function types.
 
+For the convenience of the reader, we list the different kinds of equalities (including logical equivalence) used in the paper in 
+Table~\ref{tab:equalities}.
+
+\begin{table}[htb]
+\fbox{\begin{minipage}{14cm}
+\begin{center}
+\begin{tabular}{cl}
+$A =  B$ & Definitional equality of types. \\
+$A \simeq B$ & Equivalence of types. \\ 
+$A \leftrightarrow B$ & Logical equivalence of types.  \\
+$a = b$ &  Definitional equality of elements. \\
+$a \iso b$ & Propositional equality of elements. 
+\end{tabular}
+\end{center}
+\end{minipage}} \smallskip
+\caption{Symbols for equality relations.}
+\label{tab:equalities}
+\end{table}
 
 
 \section{Bipointed types}
@@ -931,7 +956,8 @@ diagrammatically as follows:
 \xymatrix{
 1 \ar[r]^-{a_0}&  A & 1 \ar[l]_-{a_1} \, .}
  \]
-Here, the symbol $1$ does not represent the unit type, which is not assumed as part the type theory $\Hint$.
+Here, the symbol $1$ is
+ purely a notational device, and does not represent the unit type, which is not assumed as part the type theory $\Hint$.
 The type $\Bool$ and its canonical elements $0, 1 \co \Bool$ give us a bipointed type:
 \[
 \xymatrix{
@@ -975,7 +1001,7 @@ by the following pasting diagram:
 \[
 \xymatrix@C=2cm@R=1.2cm{
 1 \ar[r]   \ar[r]^{a_0} \ar@{=}[d]  \ar@{}[dr]|{\Downarrow \, \bar{f}_0} & A  \ar[d]^{f} & 1  \ar[l]_{a_1} \ar@{=}[d] \ar@{}[dl]|{\Downarrow \,  \bar{f}_1} \\
-1 \ar[r]_{b_0}   \ar@{}[dr]|{\Downarrow \, \bar{g}_0}  \ar@{=}[d] & B \ar[d]^f   & 1 \ar[l]^{b_1} \ar@{=}[d] \ar@{}[dl]|{\Downarrow \,  \bar{g}_1} \\
+1 \ar[r]_{b_0}   \ar@{}[dr]|{\Downarrow \, \bar{g}_0}  \ar@{=}[d] & B \ar[d]^g   & 1 \ar[l]^{b_1} \ar@{=}[d] \ar@{}[dl]|{\Downarrow \,  \bar{g}_1} \\
 1 \ar[r]_{c_0}  & C   & \; 1 \, .\ar[l]^{c_1}}
  \]
 Explicitly, for $k \in \{ 0, 1 \}$, the path $\overline{(g  f)}_k \co \Id( g f a_k, c_k)$ is obtained as the composite
@@ -1031,7 +1057,7 @@ f a_k  \ar[r]^{\alpha_{a_k}}  \ar@/_1pc/[dr]_{\bar{f}_k}
   \Id \big( \bar{f}_1,    \bar{g}_1 \ct \alpha_{a_1}  \big) \big) \, .
 \]
 Lemma~\ref{BoolHomSpace} essentially says that paths between bipointed morphisms
-essentially the same thing as bipointed homotopies. This  is
+are essentially the same thing as bipointed homotopies. This  is
 the first instance of the suprising phenomenon, mentioned in the introduction,
 that identity types capture higher-dimensional algebraic structures in an apparently
 automatic way. It should also be pointed out that, as a consequence of the lemma, types of bipointed homotopies satisfy
@@ -1168,7 +1194,7 @@ is an equivalence of types.
 
 
 \subsection*{Bipointed equivalences} We introduce the notion of equivalence between bipointed types and show
-in Proposition~\ref{thm:usemere}  that a bipointed morphism is an equivalence of bipointed types if and only its underlying function is an equivalence of types. For this, we will use the characterization of equivalence of types
+in Proposition~\ref{thm:usemere}  that a bipointed morphism is an equivalence of bipointed types if and only if its underlying function is an equivalence of types. For this, we will use the characterization of equivalence of types
 as functions with a left and right inverse, which we recalled in Section~\ref{sec:bac}. The characterization of
 bipointed equivalences given below will be used in Section~\ref{sec:unibip} where we consider the counterpart of the univalence axiom for bipointed types. 
 
@@ -1191,9 +1217,13 @@ and type of bipointed equivalences between $A$ and $B$ is defined by letting
 \defeq    
 (\Sigma f \co \BipHom(A,B)) \, \isbipequiv(f)  \, . 
 \] 
+Since a bipointed equivalence is an equivalence with additional
+structure which ensures that it is well-behaved with respect to the bipointed structure,
+Lemma~\ref{thm:addexplan} below is essentially straightforward, but we include the
+details of the proof since we will need them to establish Proposition~\ref{thm:usemere}.
 
-
-\begin{lemma} The underlying function of a bipointed equivalence is an equivalence of types. In particular,
+\begin{lemma} \label{thm:addexplan}
+ The underlying function of a bipointed equivalence is an equivalence of types. In particular,
 for every bipointed morphism $f \co A \to B$  there is a  function 
 \[
 \pi_f \co \isbipequiv(f) \to \isequiv(f) \, .
@@ -1382,7 +1412,7 @@ for $k \in \{0, 1 \}$, which are contractible by part~(i) of Lemma~\ref{thm:usef
 \subsection*{Inductive bipointed types} 
 As we mentioned at the beginning of Section~\ref{sec:biptm}, if a type $A$ is equivalent to~$\Bool$, then 
 it satisfies the counterparts of the elimination and computation rules for $\Bool$ in which the computation rule is 
-weakened by replacing the judgmental equality in its conclusion with a propositional equality. Using the notions of a fibered bipointed type and of a bipointed section introduced in Section~\ref{sec:bip}, it is immediate to see that the these rules rules can be expressed equivalently by saying  that every fibered  bipointed type over $A$ has a bipointed 
+weakened by replacing the judgmental equality in its conclusion with a propositional equality. Using the notions of a fibered bipointed type and of a bipointed section introduced in Section~\ref{sec:bip}, it is immediate to see that the these rules  can be expressed equivalently by saying  that every fibered  bipointed type over $A$ has a bipointed 
 section (cf.~\cite{Joyal:cathtt}). Since bipointed types $A$ of this kind  play an important role in the following, we introduce some terminology\footnote{We use `inductive' in analogy with the terminology used in set theory. This is not to be confused with the general notion of an inductive type.} to refer to them.
 
 
@@ -1412,7 +1442,7 @@ characterisation of inductive bipointed types in Theorem~\ref{thm:bipointedmain}
 
 
 \begin{proposition} \label{thm:inductiverules}
-Let $A = (A, a_0, a_1)$ be a bipointed type. Then $A$ is inductive if only if it satisfies the following rules:
+Let $A = (A, a_0, a_1)$ be a bipointed type. Then $A$ is inductive if only if we can derive rules of the form
 \begin{enumerate}[(i)]
 \item the elimination rule
 \[
@@ -1591,8 +1621,7 @@ The next proposition spells out a  characterization of homotopy-initial bipointe
 
 
 \begin{proposition} \label{thm:hinitrules}
-A small bipointed type $A = (A, a_0, a_1)$ is homotopy-initial if and only if it satisfies
- the following rules:
+A small bipointed type $A = (A, a_0, a_1)$ is homotopy-initial if and only if we can derive rules of the following form:
  
  \begin{enumerate}[(i)]
  \item the recursion rule
@@ -2490,8 +2519,7 @@ inductive $P$-algebras by means of deduction rules, where we display premisses i
 lack of space.
 
 \begin{proposition} \label{thm:palgindrec}
-Let $C = (C, \sup_C)$ be a $P$-algebra. Then $C$ is inductive if and only if it satisfies the following rules:
-
+Let $C = (C, \sup_C)$ be a $P$-algebra. Then $C$ is inductive if and only if we can derive rules of the form
 \smallskip
 
 \begin{enumerate}[(i)]
@@ -2537,7 +2565,7 @@ Below, when working with an inductive $P$-algebra, we will always assume to have
 fibered algebras. 
 
 \begin{proposition} \label{lem:Wetaind}
-Let $C = (C, \sup_C)$ be a $P$-algebra. If $C$ is inductive, then it satisfies the following rules:
+Let $C = (C, \sup_C)$ be a $P$-algebra. If $C$ is inductive, then we can derive rules of the following form:
 
 
 \begin{enumerate}[(i)]
@@ -2684,7 +2712,7 @@ as in~\eqref{equ:pseudofunP}.
 
 
 \begin{proposition} \label{thm:recursiveW}
-A $P$-algebra $C = (C, \sup_C)$  is  homotopy-initial if and only if it satisfies the following rules:
+A $P$-algebra $C = (C, \sup_C)$  is  homotopy-initial if and only if we can derive rules of the following form:
 
 \medskip
 
@@ -2986,7 +3014,7 @@ By Lemma~\ref{lem:IntLambek} and Corollary~\ref{lem:WInitInt}, $\sup_W \co PW \t
 
 
 
-We  remark that $W$-types  preserve homotopy levels, as shown in~\cite{Danielsson:Wtypes}).
+We  remark that $W$-types  preserve homotopy levels, as already shown by N. A. Danielsson.\footnote{Post on the Homotopy Type Theory blog, 2012.}
 
 \begin{proposition}[Danielsson] \label{thm:Whlevel}
 Assuming the rules for $W$-types, if $A$ has h-level $n+1$, then so does the $W$-type $(\W x:A)B(x)$.
