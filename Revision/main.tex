@@ -291,7 +291,7 @@ x \co \Nat \vdash  \natrec(x, c, d) \co A \, .
 \end{prooftree} \medskip
 \end{equation}
 This rule is closely related to Lawvere's notion of a natural number object in a category \cite{Lawvere:NNO}. Indeed, 
-it allows us to define a function $f \co \Nat \to A$ such that each face in the the following diagram commutes:
+it allows us to define a function $f \co \Nat \to A$ such that each face in the following diagram commutes:
 \[
 \xymatrix@R=0.4cm@C=1.4cm{
  & \Nat \ar[r]^{\suc}  \ar[dd]^{f}  & \Nat \ar[dd]^{f}  \\
@@ -344,8 +344,8 @@ analyze the complexity of the types of proofs that a given type is homotopy-init
 is a \emph{mere proposition}, \ie a type of homotopy level 1~\cite{VoevodskyV:unifc}. Finally, we show that, 
 under the assumption of Voevodsky's univalence axiom, a version of univalence  also holds for
 algebras and that such algebras, when they exist, are
-essentially unique, \ie unique up to a contractible type of propositional equalities.  It may be noted that, because of the higher-dimensional structure provided by identity types, polynomial functors may acquire further aspects, not present in the extensional setting, since 
-the dependent types that determine polynomial functors may have homotopy level greater than~$1$ ({cf.}~\cite{KockJ:dattsp}).
+essentially unique, \ie unique up to a contractible type of propositional equalities.  It may be noted that, because of the higher-dimensional structure provided by identity types, polynomial functors may acquire further aspects not present in the extensional setting, since 
+the dependent types that determine polynomial functors may have homotopy level greater than~$2$ ({cf.}~\cite{KockJ:dattsp}).
 
 Our development can be extended without difficulty to other kinds of inductive types, such as coproducts $A + B$ and the natural numbers  $\Nat$.  In fact, in order to illustrate our ideas,  we begin the paper by considering the simpler case
 of the type $\Bool$ of Boolean truth values, establishing analogues of the results proved
@@ -732,9 +732,9 @@ A function $f \co A \to B$ is then  said to be an \emph{equivalence} if and only
 \[
 \isequiv(f) \defeq (\Pi y \co B) \, \iscontr(\hfiber(f,y)) 
 \]
-is inhabited.  The notion of an equivalence was defined in~\cite{VoevodskyV:unifc} inspired by homotopy-theoretic ideas. It is of
-particular importance since it provides a very internal notion of isomorphism between types. 
-For types $A$ and $B$, the type $\Eq(A,B)$ of equivalences from $A$ to $B$ is  defined so that its canonical elements are pairs consisting of a function $f \co A \to B$ and a proof that it is an equivalence, \ie we let 
+is inhabited.  The notion of an equivalence was defined in~\cite{VoevodskyV:unifc} and is inspired by homotopy-theoretic ideas. It is of
+particular importance since it provides a fully internal notion of isomorphism between types. 
+For types $A$ and $B$, the type $\Eq(A,B)$ of equivalences from $A$ to $B$ is defined so that its canonical elements are pairs consisting of a function $f \co A \to B$ and a proof that it is an equivalence, \ie we let 
  \begin{equation}
  \label{equ:weq}
  \Eq(A,B) \defeq (\Sigma f \co A \to B) \, \isequiv(f) \, .
@@ -860,7 +860,7 @@ it is possible to define a path~$g \circ p \co \Id_{A \to C} (g \circ f_1 \, ,  
 Because of the equivalences $\Id(f,g) \simeq \Hot(f,g)$ recalled above, this $(\infty,1)$-category can be described equivalently
 as having  types as objects, functions as 1-morphisms, homotopies $\alpha \co \Hot(f, g)$ as 2-morphisms, and higher homotopies as $n$-morphisms. For example, given functions $f_1, f_2 \co A \to B$, $g \co B \to C$ and a homotopy $\alpha \co \Id(f_1, f_2)$, there is a homotopy~$g \circ \alpha \co \Hot(g \circ f_1, g \circ f_2)$ which is defined so that, for every path $p \co \Id_{A \to B}(f_1, f_2)$, the homotopies~$\ext( g \circ p )$ and~$g \circ \ext(p)$ are propositionally equal, where $\ext$ denotes the extension function for function types.
 
-For the convenience of the reader, we list the different kinds of equalities (including logical equivalence) used in the paper in 
+For the convenience of the reader, we summarize the different kinds of equalities (including logical equivalence) used in the paper in 
 Table~\ref{tab:equalities}.
 
 \begin{table}[htb]
@@ -871,7 +871,8 @@ $A =  B$ & Definitional equality of types. \\
 $A \simeq B$ & Equivalence of types. \\ 
 $A \leftrightarrow B$ & Logical equivalence of types.  \\
 $a = b$ &  Definitional equality of elements. \\
-$a \iso b$ & Propositional equality of elements. 
+$a \iso b$ & Propositional equality of elements. \\
+$f \sim g$ & Homotopy of functions.
 \end{tabular}
 \end{center}
 \end{minipage}} \smallskip
