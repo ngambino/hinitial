@@ -1,0 +1,118 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;\red56\green110\blue255;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww12980\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs24 \cf0 \expnd0\expndtw0\kerning0
+REFEREE COMMENTS ON THE PAPER\
+\
+Lack of eta for Sigma:\
+\
+- Why are you not assuming eta-rules for Sigma-types? Do you have models in mind where this is not validated? (It should be true in e.g. the cubical sets model, right?)\
+\
+STILL TO BE DONE\
+\
+- How do you know that you are not using eta-rules in the formalisation? The HoTT library assumes eta for Sigma: {\field{\*\fldinst{HYPERLINK "http://hott.github.io/HoTT/coqdoc-html/HoTT.types.Sigma.html#eta_sigma"}}{\fldrslt \cf2 \ul \ulc2 http://hott.github.io/HoTT/coqdoc-html/HoTT.types.Sigma.html#eta_sigma}}\
+\
+\pard\pardeftab720\partightenfactor0
+\cf0 STILL TO BE DONE\
+\
+- If you did use eta for Sigma, your polynomial pseudofunctors would be strict functors, and your life would be easier (for instance, it would mean that in diagram 4.4, we could define \\bar\{1\} = refl, instead of \\bar\{1\} = ap_\{- \\circ sup\} q, where q : P(id) = id). So unless you have good reasons not to, I would suggest to adopt eta-rules also for Sigma.\
+\
+STILL TO BE DONE\
+\
+- Having said that, "pretending" that P is a pseudofunctor only is good for paving the way towards dealing with given unknown (non-polynomial) functors, where we will have no choice but to also ask for proofs of pseudofunctoriality.\
+\
+Similarities(?) between your coherence rules and triangular laws for adjunctions:\
+\
+- In several places, you point out that your coherence rules are reminiscent of one of the triangular laws for an adjunction. I'm not sure if I see this... Yes, there is the coincidence that two different things are traditionally called eta, and if (on e.g. page 17) one chooses f = id, then the "type" of eta is at least the same as the type of the unit of an adjunction, and the triangle really has id on one side, but why does it make sense to think of the\
+\'a0beta-equality as a counit? And what about arbitrary f?\
+\
+STILL TO BE DONE\
+\
+- If you have more insight, I would appreciate if you could expand on this point; if not, I would recommend to remove it from the paper.\
+\
+STILL TO BE DONE\
+\
+\
+\
+Minor comments:\
+\
+- page 5, line 40: when I reached this line, I was wondering if you would need the "non-naive" version of function extensionality which states that happly is an equivalence. Maybe put in a forward reference to where you say that this is derivable from the naive version on page 8? Also, how about including a reference (e.g. to\
+\'a0the HoTT book, or Voevodsky) for naive funext implies funext there?\
+\
+DONE\
+\
+- page 21, line 35: as a matter of style, I would prefer it if you just combined Corollary 3.11 and Theorem 3.10; the proof of Corollary 3.11 would become the first sentence of the proof of Theorem 3.10, and then nothing else needs to change. This would also help prevent the rash conclusion that there probably is no\
+\'a0equivalence isind(A) <~> ishinit(A) when reaching Theorem 3.10, because otherwise why didn't you say so?\
+\
+DONE\
+\
+- page 23, line 52: you are creating an identity proof between two pairs by giving a pair of identity proofs; I don't think you have introduced this notation -- probably easiest (but noisier) to use your int function.\
+\
+DONE\
+\
+- page 27, lines 12--30: this feels a bit messy, and some definitions come completely out of the blue (for instance, it would be good if e_f could be motivated and not just given). I think a second pass through this paragraph would be good.\
+\
+STILL TO BE DONE\
+\
+- page 28, line 43: spell out how Lemma 4.4 is a special case of Lemma 4.8 -- I don't think it is completely trivial or immediately obvious.\
+\
+STILL TO BE DONE\
+\
+- page 34, line 48: say that you get the special case by considering a constant family E(z) = D.\
+\
+DONE\
+\
+- page 36, line 50: same comment as page 21, line 35.\
+\
+DONE\
+\
+Some typos:\
+\
+p4, line 50: "function A -> B" should be "function type A -> B"\
+\
+DONE\
+\
+p5, line 47: "but also with homotopy-theoretic" should be "but also homotopy-theoretic"\
+\
+DONE\
+\
+p6, line 7: "explicitely" should be "explicitly"\
+\
+DONE\
+\
+p6, line 50: "The notion" would be better replaced by "This notion"\
+\
+DONE\
+\
+p11, line 34: "bypointed by" should be "bipointed morphism by"\
+\
+DONE\
+\
+p16, line 44: "if only if" should be "if and only if"\
+\
+DONE\
+\
+p20, line 9: changing "ishinit(A) <-> isind(A)" to "isind(A) <-> ishinit(A)" is the logical order I expect, and also matches the order in the proof.\
+\
+DONE\
+\
+p20, line 10: full stop missing.\
+\
+DONE\
+\
+p26, line 12: "HotAlg" should be "AlgHot"\
+\
+DONE\
+\
+p27, line 15: "we define e_f : [...] so that [...] we have e_f(x, u) =_def ..." sounds convoluted (of course we define e_f to be defined to be equal to what it is...), why not replace this with "we define e_f : [...] by e_f(x,u) =_def ... for x : [...]"?\
+\
+DONE\
+\
+p36, line 13: see typo for p27, line 15, but for section s.\
+\
+DONE\
+}
