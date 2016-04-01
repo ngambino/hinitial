@@ -277,7 +277,7 @@ x \co \Nat \vdash  \natelim(x, c,d) \co E(x) \, .
 Here, $E$ is considered as a predicate on the type $\Nat$, $c$ as a proof that $E$ holds for $0$, and $d$ as a program that transforms
 a proof $y$ that $E$ holds for $x \co \Nat$ into a proof $d(x,y)$ that $E$ holds for the successor~$\suc(x)$.
 As is well-known, the special case of the rule~\eqref{equ:natind} obtained by considering the dependent type in its premiss to be constant
- provides a counterpart of the familiar principle of defintion of a function by recursion:
+ provides a counterpart of the familiar principle of definition of a function by recursion:
 
 \begin{equation}
 \label{equ:natrec}
@@ -872,16 +872,16 @@ Table~\ref{tab:equalities}.
 \fbox{\begin{minipage}{14cm}
 \begin{center}
 \begin{tabular}{cl}
-$A =  B$ & Definitional equality of types. \\
-$A \simeq B$ & Equivalence of types. \\ 
-$A \leftrightarrow B$ & Logical equivalence of types.  \\
-$a = b$ &  Definitional equality of elements. \\
-$a \iso b$ & Propositional equality of elements. \\
-$f \sim g$ & Homotopy of functions.
+$A =  B$ & Definitional equality of types \\
+$A \simeq B$ & Equivalence of types \\ 
+$A \leftrightarrow B$ & Logical equivalence of types  \\
+$a = b$ &  Definitional equality of elements \\
+$a \iso b$ & Propositional equality of elements \\
+$f \sim g$ & Homotopy of functions
 \end{tabular}
 \end{center}
 \end{minipage}} \smallskip
-\caption{Symbols for equality relations.}
+\caption{Symbols for equivalence relations.}
 \label{tab:equalities}
 \end{table}
 
@@ -1970,11 +1970,7 @@ $P \alpha \co \Hot( Pf, Pg)$. Explicitly, for $x \co A$ and $u \co B(x) \to C$, 
 where $\alpha_u$ is the evident homotopy between $fu$ and $gu$, and $\int$ is the function transforming
 homotopies into paths discussed in Section~\ref{sec:bac}.
 
-\begin{definition} A \emph{$P$-algebra} 
-\[
-(C, \sup_C)
-\] 
-is a small type $C \co \U$ equipped with a function~$\sup_C~\co~PC~\to~C$. 
+\begin{definition} A \emph{$P$-algebra} $(C, \sup_C)$ is a small type $C \co \U$ equipped with a function $\sup_C~\co~PC~\to~C$. 
 \end{definition}
 
 \smallskip
@@ -2200,7 +2196,7 @@ over $C$ as follows:
  
  \medskip
  
-We define the $P$-algebra $E' = (E', \sup_{E'})$, to which we shall refer as the \emph{$P$-algebra associated to $E$}, 
+We define the $P$-algebra $E' = (E', \sup_{E'})$, to which we shall refer as the \emph{$P$-algebra associated to~$E$}, 
 as follows. As before,
 we define $E' \defeq (\Sigma z \co C) E(z)$ and  $\sup_{E'} \co PE' \to E'$  by $\Sigma$-elimination 
 so that, for $x \co A$ and~$u \co B(x) \to E'$, we have
@@ -2212,18 +2208,37 @@ e( x, \pi_1 u, \pi_2 u) \big)  \, .
 \]
 Here, note that $\pi_1 u \co B(x) \to C$ and $\pi_2 u \co (\Pi y \co B(x)) E(\pi_1 u y)$ and so,
 by the type of $e$, we have that~$e(x, \pi_1 u, \pi_2 u) \co E( \sup_C(x, \pi_1 u))$, as required.
+It can be then checked that this $P$-algebra structure on~$E'$ is such that the projection 
+function $\pi_1 \co E' \to C$ is a $P$-algebra morphism. 
 
-In analogy with the way we defined fibered $P$-algebras, it is possible to define 
-$P$-algebra sections. To state this definition, we need some preliminary notation.
-For  $f \co (\Pi z \co C) E(z)$,
-we define $e_f \co (\Pi v \co PC) E(\sup_C(v))$ by letting
+\medskip
+
+Below, in Definition~\ref{def:fibalgsection}, we introduce the notion of a $P$-algebra section. This 
+notion isolates structure
+on a section $f \co (\Pi z \co C) E(z)$ that suffices make $f' \co C \to E'$, defined by 
+letting 
+\begin{equation}
+\label{equ:fprime}
+f'(z) \defeq \pair(z, f(z)) \, , 
+\end{equation}
+into a $P$-algebra section to $\pi_1 \co E' \to C$, \ie 
+into a  morphism such that  $\pi_1  f' \co C \to C$ is 
+propositionally equal to~$1_C \co C \to C$. In order describe
+this structure succintly, it is convenient to give an alternative description of the composite
+\[
+\xymatrix@C=1.2cm{PE' \ar[r]^-{P(f')} & E' \ar[r]^-{\sup_{E'}} & E' \, .} 
+\]
+We define $e_f \co (\Pi v \co PC) E(\sup_C(v))$ by letting
 \begin{equation}
 \label{equ:ef}
  e_f(x,u) \defeq  e(x, u, f u) 
 \end{equation}
-for $x \co A$, $u \co B(x) \to C$. Here, note that for $y \co B(x)$, we have $u y \co C$ and hence $f u y \co E(uy)$,
-as required.
-
+where $x \co A$, $u \co B(x) \to C$. Here, note that for $y \co B(x)$, we have $u y \co C$ and hence $f u y \co E(uy)$, as required. It is now immediate to check that
+\begin{equation}
+\label{equ:referee}
+\big( \sup_{E'} \circ P(f') \big) \pair(x,u) = 
+\pair( \sup_{C}(x,u), e_f(x,u) ) \, .
+\end{equation}
 
 \begin{definition} \label{def:fibalgsection} 
 A \emph{$P$-algebra section} $(f, \bar{f})$ of $E$ is a section~$f \co (\Pi z \co C) E(z)$ equipped
@@ -2231,23 +2246,33 @@ with a path
 $\bar{f} \co  \Id \big( f \,  \sup_C \, , e_f \big)$.
 \end{definition} 
 
-Note that the components of the homotopy $\ext \, \bar{f}$ associated to a path $\bar{f}$ as above have the 
+Observe that the components of the homotopy $\ext \, \bar{f}$ associated to a path $\bar{f}$ as above have the 
 form $(\ext \, \bar{f})_{x,u} \co \Id \big( f(\sup_C(x,u)) \, , e(x, u, fu) \big)$.   We define the type of $P$-algebra sections of $E$ by letting
 \[ 
 \PalgSec(C,E)  \defeq (\Sigma f  \co (\Pi x \co C) E(x)) \; \Id \big( f \, \sup_C \, , e_f  \big) \, .
 \]
-This terminology is justified by the fact that, given an algebra section $(f, \bar{f})$ of $E$, there is an algebra 
-morphism $f' \co C \to E'$, where  $E' = (E', \sup_{E'})$ is  the $P$-algebra associated to $E$. 
-Its underlying function is defined by letting $f' \defeq (\lambda z \co C) \, \pair(z, fz)$
-and direct calculations show that there is a path fitting in the diagram
+
+
+It can be checked easily that a $P$-algebra section $(f, \bar{f})$ has the expected 
+properties. In particular, the function $f' \co C \to E'$ defined in~\eqref{equ:fprime} has the structure of a $P$-algebra morphism,
+given by  a path fitting in the diagram
 \[
 \xymatrix@C=2cm{
-PC \ar[d]_{Pf'} \ar[r]^{\sup_C} \ar@{}[dr]|{\Downarrow \, \overline{f'}} & C \ar[d]^{f'} \\
+PC \ar[d]_{P(f')} \ar[r]^{\sup_C} \ar@{}[dr]|{\Downarrow \, \overline{f'}} & C \ar[d]^{f'} \\
 PE' \ar[r]_{\sup_{E'} } & \; E' \, .}
 \]
+Indeed,
+ \begin{alignat*}{2} 
+ f' \, \sup_C(x,u) & = \pair \big( \sup_C(x,u), f \, \sup_C(x,u) \big)  \, ,  & \qquad &  \text{by definition of $f'$,} \\
+& \cong  \pair \big( \sup_C(x,u), e_f(x,u) \big) \, , & \qquad & \text{by $\bar{f}$,} \\
+& =  \big(  \sup_{E'} \circ P(f') \big) \, \pair(x,u) \, ,  & \qquad  & \text{by~\eqref{equ:referee}.} 
+  \end{alignat*}
+  
+
+
 This $P$-algebra morphism provides
-a section of the $P$-algebra morphism~$\pi_1 \co E' \to C$ in the sense that the composite $P$-algebra
-morphism~$\pi_1  f' \co C \to C$ can be shown to be propositionally equal to the identity $P$-algebra
+a section of the $P$-algebra morphism~$\pi_1 \co E' \to C$, in the sense that the composite $P$-algebra
+morphism~$\pi_1  f' \co C \to C$ is propositionally equal to the identity $P$-algebra
 morphism~$1_C \co C \to C$. 
 
 
