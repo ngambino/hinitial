@@ -355,20 +355,16 @@ Some of the results presented here were announced in our extended abstract~\cite
 \smallskip
 
 \noindent
-\emph{Formalization.} All the results in this paper have been formally proved in the current version of 
-the Coq proof assistant. The formalization files, which build on the existing libraries for homotopy type theory and 
-univalent foundations of mathematics, are available from the third author's GitHub repository:
+\emph{Formalization.} This paper is accompanied by computer files with formalized versions of our results, written for the Coq proof assistant. 
+The files, which are available from the third author's GitHub repository
 \begin{center}
-\url{https://github.com/kristinas/hinitiality}
+\url{https://github.com/kristinas/hinitiality}, 
 \end{center}
-One should note that the type theory underlying the current version of Coq differs from that used in this
-paper in several respects. Although the formalization uses only a small fragment of the type theory implemented
-in Coq, it does use its judgemental $\eta$-rules for both $\Pi$-types and $\Sigma$-types (see below for details).
-The results in this paper are obtained  working instead in a  type theory that assumes 
-the  judgemental $\eta$-rules for $\Pi$-types, but not for $\Sigma$-types.
-
-
-
+ can be compiled with version 8.5 of the Coq proof assistant, on top of
+the existing library for homotopy type theory (see the files for details). Let us point out that, although the formalization uses only a small fragment of the type theory implemented in Coq 8.5,  it does make use of the judgemental $\eta$-rules for both~$\Pi$-types and $\Sigma$-types that are part of it; the results in this paper, instead, use  the  judgemental $\eta$-rule for $\Pi$-types, but not that for~$\Sigma$-types\footnote{In fact, an earlier version of the paper~\cite{wtypes} avoided the use of the judgemental rule for $\Pi$-types as
+well.}. Because of this, we expect that our results can be formalized in other  proof-checkers, such as Agda and Lean, in which the  judgemental $\eta$-rule for~$\Sigma$-types is not assumed. The reader is invited to
+refer to Remark~\ref{thm:eta-gives-functoriality} for a discussion of
+how the assumption of the  judgemental $\eta$-rule for~$\Sigma$-types  would allow minor simplifcations of some of our proofs.
 
 \smallskip
 
@@ -609,8 +605,26 @@ c \co (\Sigma x \co A) B(x)
 \end{prooftree}
 \end{equation}
 This rule asserts that every element of a $\Sigma$-type is propositionally equal to one of canonical form.
-Note that none of the type theories we consider in this paper include the judgemental form of the $\eta$-rules for $\Sigma$-types, 
-as is done in~\cite{GoguenH:inddtw}.  The presence of the type universe $\U$ allows us to define the notion of a small type:
+
+\begin{remark} 
+\label{thm:assuming-eta-for-sigma}
+The judgemental version of the $\eta$-rule for $\Sigma$-types, instead, is stated as follows:
+\begin{equation}
+\label{equ:etasigmadef}
+\begin{prooftree}
+c \co (\Sigma x \co A) B(x)
+\justifies
+ c = \pair(\pi_1(c), \pi_2(c)) \co (\Sigma x \co A) B(x) \, .
+\end{prooftree}
+\end{equation}
+None of the type theories  considered in this paper include this rule, which 
+is instead part of the type theory implemented in version 8.5 of the Coq proof assistant (see the formalisation files for details). We prefer not to assume it to keep our type theories as close as possible to Martin-L\"of's type theories, where judgemental 
+$\eta$-rules for inductive types are  not assumed.
+\end{remark} 
+
+\medskip
+
+  The presence of the type universe $\U$ allows us to define the notion of a small type:
 as usual, we say that a type  $A$ is \emph{small} if it is an element of  the type universe, \ie $A\co\U$. 
 
 We write $\mathcal{M}^{\mathrm{ext}}$ for the extensional type
@@ -1886,7 +1900,7 @@ Theorem~~\ref{thm:bipunivalence}.
 \label{section:wfiles}
 
 \subsection*{Algebras and algebra morphisms}
-The main aim of this paper is to carry out an analysis for well-ordering types (introduced in \cite{MartinLofP:intttp}), or W-types, analogous to the one we have just done for the type $\Bool$. We recall the rules for W-types in Table~\ref{tab:wrules}. There, we sometimes write $W$ for~$(\W x \co A) B(x)$ for
+The main aim of this paper is to carry out an analysis for well-ordering types (introduced in \cite{MartinLofP:intttp}), or W-types for short, analogous to the one we have just done for the type $\Bool$. We recall the rules for W-types in Table~\ref{tab:wrules}. There, we sometimes write $W$ for~$(\W x \co A) B(x)$ for
 brevity.  Informally, a W-type can be seen as the free algebra for a signature
 with arbitrarily many operations of possibly infinite arity, but no equations. The premises of the formation rule can be thought of as specifying a signature that has the elements of the type $A$ as~(names of) operations and in which the arity of~$a \co A$ is (the cardinality of) the type~$B(a)$. Then the introduction rule specifies the canonical way of forming an element of the free algebra, and the elimination rule can be seen as the propositions-as-types translation of the appropriate induction principle. As usual, the computation rule states what happens if we apply the
 the elimination rule to a canonical element of the inductive type. Finally, we have a rule expressing the
@@ -1953,13 +1967,31 @@ so that, for~$x \co A$ and $u \co B(x) \to C$, we have
 \[
 (Pf )((x, u)) = (x, f u) \, .
 \] 
-This assignment is pseudo-functorial in the sense that we have propositional, rather than judgemental, equalities:
+This assignment is pseudo-functorial in the sense that we have propositional equalities:
 \begin{equation}
 \label{equ:pseudofunP}
 \phi_{f, g} \co \Id( P(g \circ f), Pg \circ Pf) \, , \quad \phi_A \co \Id( P(1_A), 1_{PA})
 \end{equation}
 for $f \co C \to D$, $g \co D \to E$. We still refer to $P$ as the \emph{polynomial functor} associated to $A \co \U$ 
-and $B \co A \to \U$, so as to highlight the analogy with the theory of polynomial functors on locally cartesian closed categories~\cite{GambinoN:weltdp,MoerdijkI:weltc}. We shall also use that $P$ acts on homotopies: given
+and $B \co A \to \U$, so as to highlight the analogy with the theory of polynomial functors on locally cartesian closed categories~\cite{GambinoN:weltdp,MoerdijkI:weltc}. 
+
+\begin{remark} 
+\label{thm:eta-gives-functoriality} 
+If one assumes the judgemental version of the $\eta$-rule for $\Sigma$-types, as in~\eqref{equ:etasigmadef}, then~$P$ becomes
+a strict functor, in the sense that we have judgemental equalities:
+\begin{equation*}
+ P(g \circ f) = Pg \circ Pf  \, , \quad   P(1_A) = 1_{PA} \, .
+\end{equation*}
+This would allow for some minor simplifications of the proofs below. 
+\end{remark} 
+
+
+
+
+
+
+
+We shall also use that $P$ acts on homotopies: given
 functions $f, g \co C \to D$ and a homotopy $\alpha \co \Hot(f, g)$, it is possible to define a homotopy 
 $P \alpha \co \Hot( Pf, Pg)$. Explicitly, for $x \co A$ and $u \co B(x) \to C$, we define $(P \alpha)_{x, u}
 \co \Id( (x, fu), (x, gu))$ by letting
@@ -2850,7 +2882,7 @@ We can now state and prove our main result.
 
 \begin{theorem}\label{thm:WMain} The type 
 \[ 
-(\Pi C \co \Palg) \big( \isalgind(C) \leftrightarrow \isalghinit(C) \big)
+(\Pi C \co \Palg) \big( \isalgind(C) \simeq \isalghinit(C) \big)
 \]
 is inhabited. In particular, a $P$-algebra is inductive if and only if
 it is homotopy-initial.

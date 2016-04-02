@@ -1,0 +1,108 @@
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for for rotated page geometry
+\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex		
+\usepackage{amssymb}
+
+\title{Summary of revisions}
+\author{S. Awodey \and N. Gambino \and K. Sojakova}
+\date{April 2nd, 2016}							% Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+%\section{}
+%\subsection{}
+
+\section{Main comments}
+
+\subsection{Lack of $\eta$-rules for $\Sigma$-types}
+
+We prefer to avoid the assumption of the judgemental $\eta$-rule for $\Sigma$-types in the paper, since we would like keep the type theories in which we work as close as possible to Martin-L\"of type theories, where judgemental $\eta$-rules for inductive types are  not assumed.
+
+However, we have added a remark (Remark 4.1 of the revised version) where we explain how some proofs would simplify if the judgemental $\eta$-rule for $\Sigma$-types is assumed. 
+
+We have also rewritten the paragraph `Formalization' of the Introduction to clariify the relationship between the results in the paper and those in the formalisation files. The files have been written for compilation with the current version of Coq and therefore they use the judgemental $\eta$-rule for $\Sigma$-types (precisely as explained in Remark 4.1), but the results in the paper should be formalizable also in other proof-checkers
+where that rule is not assumed.
+
+
+
+
+\subsection{Coherence rules and triangular laws for adjunctions}
+
+We have removed the confusing remarks from the paper. We left the diagrams and rephrased the surrounding text.  See the text before the proof of Proposition 3.3, after the proof of Proposition 3.8, after the proof of Proposition 5.8  for details.
+
+\section{The Coq formalization}
+
+- \emph{It would be nice if you could write some more comments and/or change theorem names in the Coq source files linking the formalization with the paper -- the source files are quite terse to read at the moment.} \\ 
+
+ADD SOMETHING \\ 
+
+
+
+-  \emph{Some lemmas are (harmlessly) mislabelled in the formalisation:}
+
+\begin{itemize}
+\item  two.v:
+ \begin{itemize}
+ \item isind2hasfibetacoh is not all of Prop 3.3 as claimed.
+ \item ishinitEQisrechasetacoh is not Prop 3.8.
+ \item ishinitEQeq2hinit is not Cor 3.12
+\end{itemize}
+\item  w.v:
+\begin{itemize}
+ \item "(** Lemma 5.8 **)" should be Lemma 4.8
+ \item isind2hasfibetacoh is not all of Prop 5.4 as claimed.
+ \item ishinitEQisrechasetacoh is not Prop 5.8.
+ \item ishinitEQeq2hinit is not Cor 5.12 \\ 
+\end{itemize}
+\end{itemize}
+
+ADD SOMETHING \\ 
+
+
+- In the statement of Lambek's Lemma (Lemma lambek), wouldn't things be nicer if you actually used Sigma-types when defining algebras and fibered algebras? \\
+
+ADD SOMETHING 
+
+\section{Minor comments}
+
+
+- \emph{page 5, line 40: when I reached this line, I was wondering if you would need the "non-naive" version of function extensionality which states that happly is an equivalence. Maybe put in a forward reference to where you say that this is derivable from the naive version on page 8? Also, how about including a reference (e.g. to
+ the HoTT book, or Voevodsky) for naive funext implies funext there?} \\
+
+We have added a forward reference below equation (1.5).  \\
+
+- \emph{page 21, line 35: as a matter of style, I would prefer it if you just combined Corollary 3.11 and Theorem 3.10; the proof of Corollary 3.11 would become the first sentence of the proof of Theorem 3.10, and then nothing else needs to change. This would also help prevent the rash conclusion that there probably is no
+ equivalence isind(A) <~> ishinit(A) when reaching Theorem 3.10, because otherwise why didn't you say so?} \\ 
+
+The two results have been merged into what is now Theorem 3.9. \\
+
+- \emph{page 23, line 52: you are creating an identity proof between two pairs by giving a pair of identity proofs; I don't think you have introduced this notation -- probably easiest (but noisier) to use your int function.} \\
+
+We have added the use of $\mathsf{int}$, see equation (4.2) on page 24. \\
+
+- \emph{page 27, lines 12--30: this feels a bit messy, and some definitions come completely out of the blue (for instance, it would be good if $e_f$ could be motivated and not just given). I think a second pass through this paragraph would be good.} \\
+
+The paragraph has been completely rephased: it now starts at the bottom of page 27 and the explanation of the definition of $e_f$ ends after the diagram in the middle of page 28.
+
+- \emph{page 28, line 43: spell out how Lemma 4.4 is a special case of Lemma 4.8 -- I don't think it is completely trivial or immediately obvious.} \\
+
+We gave a direct proof of (what is now) Lemma 4.5. The derivation of it from (what is now) Lemma 4.9 is indeed rather laborious and would require adding further material, not needed elsewhere. \\
+
+- \emph{page 34, line 48: say that you get the special case by considering a constant family $E(z) = D$.} \\ 
+
+This has been done, see proof of Theorem 5.9. \\ 
+
+- \emph{page 36, line 50: same comment as page 21, line 35.} \\
+
+We merged the two results into Theorem 5.9. 
+
+
+\subsection{Typos}
+
+All typos have been fixed. 
+
+\end{document}  
