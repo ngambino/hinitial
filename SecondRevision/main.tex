@@ -321,10 +321,10 @@ whose combinatorics are difficult to axiomatize directly.
 The aim of this paper is to solve this problem using ideas inspired by the
 recent connections between type theory, homotopy theory
 and higher-dimensional category theory~\cite{AwodeyS:homtmi,vandenBergB:typwg,gambino_garner,ssets,LumsdaineP:weaci}, which are at the core of homotopy type theory~\cite{hott} and Voevodsky's univalent foundations of mathematics programme~\cite{VoevodskyV:notts}. 
-Our analysis focuses on well-ordering types (W-types for short),
+Our analysis focuses on well-ordering types ($\W$-types for short),
 which can be easily characterized as initial algebras for polynomial functors within extensional type
 theories~\cite{AbbottM:concsp,DybjerP:repids,GambinoN:weltdp,MoerdijkI:weltc}. Our
-results show that in the system under consideration, a type is equivalent to a W-type if and only if
+results show that in the system under consideration, a type is equivalent to a $\W$-type if and only if
 it is a \emph{homotopy-initial algebra} for a polynomial functor. The notion of homotopy-initial
 algebra, which we introduce here, is intended as a generalization of the standard category-theoretic
 notion of an initial algebra, obtained by replacing the usual existence and uniqueness requirements
@@ -349,7 +349,7 @@ the dependent types that determine polynomial functors may have homotopy level g
 
 Our development can be extended without difficulty to other kinds of inductive types, such as coproducts $A + B$ and the natural numbers  $\Nat$.  In fact, in order to illustrate our ideas,  we begin the paper by considering the simpler case
 of the type $\Bool$ of Boolean truth values, establishing analogues of the results proved
-later for W-types. 
+later for $\W$-types. 
 
 Some of the results presented here were announced in our extended abstract~\cite{wtypes}, and are summarized in the book \cite{hott}. The present paper expands the material outlined there by including not only all of the omitted proofs (which requires the statement of auxiliary lemmas), but also a new, more algebraic treatment of the elimination and computation rules for inductive types, as well as an analysis of the complexity of the type of proofs that a type is homotopy-initial, and an investigation of the further consequences of the univalence axiom.  
 \smallskip
@@ -1900,8 +1900,8 @@ Theorem~~\ref{thm:bipunivalence}.
 \label{section:wfiles}
 
 \subsection*{Algebras and algebra morphisms}
-The main aim of this paper is to carry out an analysis for well-ordering types (introduced in \cite{MartinLofP:intttp}), or W-types for short, analogous to the one we have just done for the type $\Bool$. We recall the rules for W-types in Table~\ref{tab:wrules}. There, we sometimes write $W$ for~$(\W x \co A) B(x)$ for
-brevity.  Informally, a W-type can be seen as the free algebra for a signature
+The main aim of this paper is to carry out an analysis for well-ordering types (introduced in \cite{MartinLofP:intttp}), or $\W$-types for short, analogous to the one we have just done for the type $\Bool$. We recall the rules for $\W$-types in Table~\ref{tab:wrules}. There, we sometimes write $W$ for~$(\W x \co A) B(x)$ for
+brevity.  Informally, a $\W$-type can be seen as the free algebra for a signature
 with arbitrarily many operations of possibly infinite arity, but no equations. The premises of the formation rule can be thought of as specifying a signature that has the elements of the type $A$ as~(names of) operations and in which the arity of~$a \co A$ is (the cardinality of) the type~$B(a)$. Then the introduction rule specifies the canonical way of forming an element of the free algebra, and the elimination rule can be seen as the propositions-as-types translation of the appropriate induction principle. As usual, the computation rule states what happens if we apply the
 the elimination rule to a canonical element of the inductive type. Finally, we have a rule expressing the
 closure of the type universe $\U$ under the formation of $W$-types.
@@ -2014,7 +2014,7 @@ homotopies into paths discussed in Section~\ref{sec:bac}.
  Given a $P$-algebra $C = (C, \sup_C)$,
  we refer to the type $C$ as the \emph{carrier} or \emph{underlying type} of the algebra and to the function $\sup_C \co PC\to C$ as the \emph{structure map} of the $P$-algebra. 
   In the
- presence of W-types, an example of $P$-algebra is given by the type $W \defeq (\W x\co A)B(x)$, with structure map given by the introduction rule for W-types. 
+ presence of $\W$-types, an example of $P$-algebra is given by the type $W \defeq (\W x\co A)B(x)$, with structure map given by the introduction rule for $\W$-types. 
  
  \medskip
  
@@ -3068,7 +3068,7 @@ In particular, the type $W$ is a homotopy-initial $P$-algebra. \qed
 \end{corollary}
 
 
-Corollary~\ref{lem:WInitInt} provides the analogue in our setting of the characterization of W-types as a strict initial algebra in extensional type theory. It makes precise the informal idea that, in intensional type theory, W-types are a kind of initial algebra in the weak $(\infty, 1)$-category of types, functions, paths and higher paths.  
+Corollary~\ref{lem:WInitInt} provides the analogue in our setting of the characterization of $\W$-types as a strict initial algebra in extensional type theory. It makes precise the informal idea that, in intensional type theory, $\W$-types are a kind of initial algebra in the weak $(\infty, 1)$-category of types, functions, paths and higher paths.  
 
 \begin{lemma} \label{lem:suppath}
 Assuming the rules for $W$-types, 
@@ -3094,11 +3094,11 @@ Assuming the rules for $W$-types, if $A$ has h-level $n+1$, then so does the $W$
 
 \begin{proof}
 We need to show that for all $w, w' \co W$ the type $\Id_W(w, w')$ has h-level $n$. We do so applying the elimination
-rule for W-types on $w \co W$.  So, let $x \co A, u \co B(x) \to W$ and assume the induction hypothesis 
+rule for $\W$-types on $w \co W$.  So, let $x \co A, u \co B(x) \to W$ and assume the induction hypothesis 
 \begin{itemize}
 \item[$(\ast)$] for every $y \co B(x)$, for every $w' \co W$,  the type $\Id_W( uy ,w')$ has h-level $n$, 
 \end{itemize}
-and show that for every $w' \co W$ the type $\Id(\sup_W(x,u), w')$ has h-level $n$. We apply again the elimination rule for W-types. So, let   $x' \co A$, $u' \co B(x') \to W$ and assume the induction hypothesis (which we do not spell out since we will not need it) and show that $\Id( \sup_W(x,u) , \sup_W(x',u'))$ has h-level $n$. We have
+and show that for every $w' \co W$ the type $\Id(\sup_W(x,u), w')$ has h-level $n$. We apply again the elimination rule for $\W$-types. So, let   $x' \co A$, $u' \co B(x') \to W$ and assume the induction hypothesis (which we do not spell out since we will not need it) and show that $\Id( \sup_W(x,u) , \sup_W(x',u'))$ has h-level $n$. We have
 \begin{align*} 
 \Id_W(\sup_W(x,u), \sup_W(x',u'))
 & \simeq \Id_{PW}((x,u) , (x',u')) \\
@@ -3173,8 +3173,121 @@ is inhabited.
 \end{proof} 
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Conclusion}\label{section:conclusion}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\noindent We have shown how the familiar theory of $\W$-types as initial algebras for polynomial endofunctors can be recovered in the setting of homotopy type theory by introducing the new concept of a \emph{homotopy-initial algebra}.  Using this notion, much of the classical theory carries over \emph{mutatis mutandis}, including the equivalence between the induction principle and the combination of a recursion rule and a uniqueness principle.
+
+We conclude by mentioning two related topics for possible further investigation  using the concept of homotopy initiality: reduction of more general forms of inductive types, and higher inductive types.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{General inductive types}
+
+\noindent Recall that in extensional type theory, many inductive types can be reduced to $\W$-types (see \cite{MartinLofP:inttt}, \cite{DybjerP:repids}, \cite{GoguenH:inddtw}, \cite{MoerdijkI:weltc}, \cite{GambinoN:weltdp}, \cite{AbbottM:concsp}).
+For instance, in that setting the usual rules for $\nat$ as an inductive type can be derived from its formalization as the following $\W$-type. Consider the signature with two operations, one of which has arity $0$ and one of which has arity $1$; it is presented type-theoretically by a dependent type with corresponding polynomial functor (naturally isomorphic to)
+\[
+P(X) = \mathsf{1} + X \, ,
+\]
+%
+and the natural numbers $\nat$ together with the canonical element $0:\nat$ and the successor function $s : \nat\rightarrow\nat$ form an initial $P$-algebra
+\[
+(0, s) : \mathsf{1} + \nat \rightarrow \nat\, .
+\]
+%%
+%\item \emph{Second number class.}
+%As shown in~\cite{MartinLofP:inttt}, the second number class can be obtained as a W-type determined by the polynomial functor 
+%\[
+%P(X) = \mathsf{1} + X + (\nat \rightarrow X) \, .
+%\]
+%This has algebras with three operations, one of arity $0$, one of arity $1$, and one of arity (the cardinality of) $\nat$.
+%
+%\item \emph{Lists.}  The type $\List(A)$ of finite lists of elements of type $A$ can be built as a W-type determined by the polynomial functor 
+%\[
+%P(X) = \mathsf{1} + A\!\times\! X \, .
+%\]
+%We refer to \cite{xxx} % need a reference here !
+% for details.
+%\end{enumerate}
+As remarked in \cite{DybjerP:repids}, this reduction of $\nat$ to a $\W$-type is not available in conventional intensional type theory, because the elimination and computation rules for the former are not derivable from those for the latter.
+
+The limited form of extensionality that is assumed in the type theory~$\Hint$ used here, namely the principle of function extensionality, allows us to overcome the obstacles in defining various inductive types as $\W$-types, provided that both are understood in the appropriate  way as homotopy-initial algebras, \emph{i.e.} with all types  formulated with propositional computation rules. 
+In particular, in the paradigmatic case of the natural numbers, we work in an extension of the type theory $\Hint$ with:
+\begin{itemize}
+\item formation, introduction, elimination and propositional computation rules 
+for types $\mathsf{0}$, $\mathsf{1}$ and $\mathsf{2}$ that have zero, one and two canonical elements,
+respectively; 
+\item the rules for homotopy $\W$-types, as stated above;
+\item rules for a type universe $\U$ reflecting all the forms of types of $\Hint$, $\W$-types, and
+$\mathsf{0}$, $\mathsf{1}$ and~$\mathsf{2}$.
+\end{itemize}
+In particular, the rules for $\mathsf{2}$ are those given for $\Bool$ in Section~\ref{sec:bip}.
+We then proceed as follows. We begin by setting $A =\mathsf{2}$, as in the extensional case.  
+We then define a dependent type
+\[
+x : A \vdash B(x) : \U
+\]
+by $\mathsf{2}$-elimination, so that the propositional $\mathsf{2}$-computation rules give us 
+propositional equalities
+\[
+ p_0 : \id{U}( \mathsf{0}, B(0)) \, , \qquad
+ p_1 : \id{U}( \mathsf{1}, B(1)) \, .
+\]
+Because of the invariance of the rules for $\mathsf{0}$ and $\mathsf{1}$ under propositional
+equalities,
+%(as observed in Remark~\ref{thm:wtypesinvariance}), 
+we can then derive that the types~$B(0)$ and~$B(1)$ satisfy rules analogous to those for $\mathsf{0}$ and $\mathsf{1}$, respectively. This allows us to show that the type 
+\[
+\nat \defeq (\W x : A) B(x)
+\]
+satisfies the introduction, elimination and propositional computation rules for the type of natural numbers. 
+Observe that as a $\W$-type, $\nat$ is therefore also an h-initial algebra for the equivalent polynomial functor $P(X) = \mathsf{1}+ X$, as expected.
+
+%The proof of this fact proceeds essentially as one would expect, but to derive the propositional computation rules it is useful to observe that for every type $X : \U$, there are adjoint homotopy equivalences,
+%in the sense of Definition \ref{thm:weq}, between the types $\mathsf{0}  \rightarrow X$ and $\mathsf{1}$, 
+%and between $\mathsf{1} \rightarrow X$ and $X$. Indeed, the propositional identities witnessing 
+%the triangular laws are useful in the verification of the propositional computation rules for $\nat$. 
+
+%For details, see the formal development in Coq provided in~\cite{AwodeyS:indtht}.  
 
 
+%Let us also observe that the definition of a type representing the second number class as a W-type,
+%as discussed in~\cite{MartinLofP:inttt}, carries over equally well. Indeed, one
+%now must represent type-theoretically a signature with three operations: the first of arity zero, 
+%the second of arity one, and the third of arity $\nat$. For the first two we can proceed exactly as
+%before, while for the third there is no need to prove auxiliary results on adjoint homotopy 
+%equivalences. As before, the second number class supports an h-initial algebra structure for the corresponding polynomial functor $P(X) = \mathsf{1} + X + (\nat \rightarrow X)$.
+% Again, the formal development of this result in Coq can be found in~\cite{AwodeyS:indtht}.
+
+%%%%%%%
+
+%The treatment of W-types presented here is part of a larger investigation of general inductive types in homotopy type theory.  We sketch the projected course of our further research.
+
+More generally, in the setting of extensional type theory, Dybjer \cite{DybjerP:repids} showed that every strictly positive definable functor can be represented as a polynomial functor, so that all such inductive types are in fact $\W$-types.  This result should also generalize to the present setting in a straightforward way.
+
+Also in the extensional setting, Gambino and Hyland~\cite{GambinoN:weltdp} showed that 
+general tree types~\cite{PeterssonK:setcis}~\cite[Chapter~16]{NordstromB:promlt}, viewed as 
+initial algebras for general polynomial functors, can be constructed from $\W$-types in
+locally cartesian closed categories, using equalizers. We expect this result to carry over to the present setting as well, using $\id{}$-types in place of equalizers.
+
+Finally, in \cite{VoevodskyV:notts} it is conjectured that all inductive types of the Predicative Calculus of Inductive Constructions can be reduced to the following special cases:
+\begin{itemize}
+\item $\mathsf{0}$,\ $\mathsf{1}$,\ $A+B$,\  $(\Sigma x : A)B(x)$,
+\item $\id{A}(a,b)$,
+\item general tree types.
+\end{itemize}
+Combining this with the foregoing, we expect that our our main theorem \ref{thm:WMain} can be extended to the full system of predicative inductive types underlying Coq.
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Higher inductive types}
+
+One of the most exciting developments in homotopy type theory is the idea of Higher Inductive Types (HITs), which can also involve (possibly higher) identity terms in their signature~\cite{LumsdaineP:higit,ShulmanM:higit}.   This allows, firstly, for algebras with equations between terms, like associative laws, coherence laws, etc., representing an important extension of the range of generalized inductive types available in type theory.  Moreover, a vast further extension comes from the homotopical interpretation of identity terms as paths.  Viewed thus, HITs also permit direct formalization of many basic geometric spaces and constructions, such as the spheres $S^n$; cell complexes; truncations, such as the [bracket] types \cite{AwodeyS:prot}; various kinds of quotient types; general homotopy colimits; and many more fundamental and fascinating objects not previously captured by type-theoretic formalizations.  
+
+Our investigation of conventional inductive types in the homotopical setting should lead to a deeper understanding of these new and important geometric analogues. Indeed, the extension of our main results to some special cases of HITs is the subject of recent work by the third author \cite{Sojakova:techreport,Sojakova:types,Sojakova:thesis}. 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \section*{Acknowledgements}
@@ -3201,7 +3314,7 @@ number FA8655-13-1-3038. \item This research was supported by a grant from the J
 \noindent
 \emph{Acknowledgements for Kristina Sojakova.} The support of CyLab at Carnegie
 Mellon under grants DAAD19-02-1-0389 and W911NF-09-1-0273 from the Army
-Research Office is gratefully acknowledged.
+Research Office is gratefully acknowledged, as is the support of the Air Force OSR through MURI Grant Number FA9550-15-1-0053.
 
 
 
