@@ -38,11 +38,9 @@ We have removed the confusing remarks from the paper. We left the diagrams and r
 
 - \emph{It would be nice if you could write some more comments and/or change theorem names in the Coq source files linking the formalization with the paper -- the source files are quite terse to read at the moment.} \\ 
 
-ADD SOMETHING \\ 
+We have added comments to all definitions and lemmas, linking the formalization with the paper and explaining, where applicable, any differences from the paper version. 
 
-
-
--  \emph{Some lemmas are (harmlessly) mislabelled in the formalisation:}
+- \emph{Some lemmas are (harmlessly) mislabelled in the formalisation:}
 
 \begin{itemize}
 \item  two.v:
@@ -60,12 +58,13 @@ ADD SOMETHING \\
 \end{itemize}
 \end{itemize}
 
-ADD SOMETHING \\ 
-
+We fixed all of the above.
 
 - In the statement of Lambek's Lemma (Lemma lambek), wouldn't things be nicer if you actually used Sigma-types when defining algebras and fibered algebras? \\
 
-ADD SOMETHING 
+We prefer to use the uncurried form of the structure map for P-algebras two reasons : 
+   i) it is more in line with the dependent form of the structure map, which does not use Sigma-types and
+   ii) many of the definitions (and some proofs) in the formalization become simpler since we do not have to perform pattern matching on an argument of a Sigma-type. 
 
 \section{Minor comments}
 
@@ -98,7 +97,9 @@ This has been done, see proof of Theorem 5.9. \\
 
 - \emph{page 36, line 50: same comment as page 21, line 35.} \\
 
-We merged the two results into Theorem 5.9. 
+We merged the two results into Theorem 5.9.
+
+
 
 
 \subsection{Typos}
