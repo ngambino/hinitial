@@ -675,7 +675,7 @@ which is considered here with propositional equalities:
  \end{prooftree}
 \end{equation}
 As we recall below, this axiom implies that the types $\Id_{(\Pi x \co A)B(x)}(f,g)$
-and $(\Pi x \co A) \Id_{B(x)} (fx, gx)$ are equivalent, which is an apparently stronger
+and $(\Pi x \co A) \Id_{B(x)} (fx, gx)$ are equivalent, which is a seemingly stronger
 form of function extensionality. 
 
  
@@ -2184,8 +2184,8 @@ We then have
 \end{proof}
 
 
-Note that Lemma~\ref{IdEqHo} is another case of the identity type encoding higher-categorical structure; also observe that the proof of Lemma \ref{IdEqHo}
-does not require the univalence axiom.
+Lemma~\ref{IdEqHo} is another case of the identity type encoding higher-categorical structure. It should be
+noted that its proof does not require the univalence axiom.
 
 \subsection*{Fibered algebras and algebra sections} We now introduce the fibered versions of the notions of a $P$-algebra, $P$-algebra morphism, and $P$-algebra homotopy. Some preliminary remarks will help us to motivate our definitions. Let us consider a fixed $P$-algebra   $C = (C, \sup_C)$.
 Given a dependent type $E \co C \to \U$,
@@ -2249,7 +2249,7 @@ function $\pi_1 \co E' \to C$ is a $P$-algebra morphism.
 
 Below, in Definition~\ref{def:fibalgsection}, we introduce the notion of a $P$-algebra section. This 
 notion isolates structure
-on a section $f \co (\Pi z \co C) E(z)$ that suffices make $f' \co C \to E'$, defined by 
+on an element $f \co (\Pi z \co C) E(z)$ that suffices make the function $f' \co C \to E'$, defined by 
 letting 
 \begin{equation}
 \label{equ:fprime}
@@ -2262,7 +2262,7 @@ this structure succintly, it is convenient to give an alternative description of
 \[
 \xymatrix@C=1.2cm{PE' \ar[r]^-{P(f')} & E' \ar[r]^-{\sup_{E'}} & E' \, .} 
 \]
-We define $e_f \co (\Pi v \co PC) E(\sup_C(v))$ by letting
+In order to do this, we define $e_f \co (\Pi v \co PC) E(\sup_C(v))$ by letting
 \begin{equation}
 \label{equ:ef}
  e_f(x,u) \defeq  e(x, u, f u) 
@@ -2301,14 +2301,8 @@ Indeed,
 & \cong  \pair \big( \sup_C(x,u), e_f(x,u) \big) \, , & \qquad & \text{by $\bar{f}$,} \\
 & =  \big(  \sup_{E'} \circ P(f') \big) \, \pair(x,u) \, ,  & \qquad  & \text{by~\eqref{equ:referee}.} 
   \end{alignat*}
-  
-
-
-This $P$-algebra morphism provides
-a section of the $P$-algebra morphism~$\pi_1 \co E' \to C$, in the sense that the composite $P$-algebra
-morphism~$\pi_1  f' \co C \to C$ is propositionally equal to the identity $P$-algebra
-morphism~$1_C \co C \to C$. 
-
+Furthermore, this $P$-algebra morphism provides
+a section of the $P$-algebra morphism~$\pi_1 \co E' \to C$, in the sense specified above.
 
 \medskip
 
