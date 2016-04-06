@@ -1,47 +1,286 @@
-\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
-\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
-\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
-%\geometry{landscape}                		% Activate for for rotated page geometry
-\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
-\usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
-								% TeX will automatically convert eps --> pdf in pdflatex		
-\usepackage{amssymb}
 
-\title{Summary of revisions}
-\author{S. Awodey \and N. Gambino \and K. Sojakova}
-\date{April 2nd, 2016}							% Activate to display a given date or no date
+
+
+\documentclass[10pt,a4paper,oneside,reqno]{amsart}
+\usepackage[parfill]{parskip} 
+
+
+\usepackage{amsmath,geometry,amssymb,mathpartir,mathtools,latexsym,amsthm,enumerate,leftidx,tikz,url}
+ 
+\usepackage[all]{xy}
+\newcommand{\xycenter}[1]{\vcenter{\hbox{\xymatrix{#1}}}}
+\SelectTips{cm}{}
+\input{prooftree}
+
+% Numberings 
+\setcounter{tocdepth}{1}
+\numberwithin{equation}{section}
+
+% Table of contents
+\makeatletter
+\def\@tocline#1#2#3#4#5#6#7{\relax
+\ifnum #1>\c@tocdepth % then omit
+  \else 
+    \par \addpenalty\@secpenalty\addvspace{#2}% 
+\begingroup \hyphenpenalty\@M
+    \@ifempty{#4}{%
+      \@tempdima\csname r@tocindent\number#1\endcsname\relax
+ }{%
+   \@tempdima#4\relax
+ }%
+ \parindent\z@ \leftskip#3\relax \advance\leftskip\@tempdima\relax
+ \rightskip\@pnumwidth plus4em \parfillskip-\@pnumwidth
+ #5\leavevmode\hskip-\@tempdima #6\nobreak\relax
+ \ifnum#1<0\hfill\else\dotfill\fi\hbox to\@pnumwidth{\@tocpagenum{#7}}\par
+ \nobreak
+ \endgroup
+  \fi}
+\makeatother
+
+\def\noqed{\renewcommand{\qedsymbol}{}}
+
+% Theorem
+
+\newtheoremstyle{mythm}% 
+{10pt}% Space above 
+{}% Space below 
+{\itshape}% Body font 
+{}% Indent amount 
+{\bfseries}%  Theorem head font 
+{.}% Punctuation after theorem head 
+{.5em}% Space after theorem head 
+{}% 
+
+\newtheoremstyle{mydef}% 
+{10pt}% Space above 
+{3pt}% Space below 
+{}% Body font 
+{}% Indent amount 
+{\bfseries}%  Theorem head font 
+{.}% Punctuation after theorem head 
+{.5em}% Space after theorem head 
+{}% 
+
+\newtheoremstyle{myrmk}% 
+{10pt}% Space above 
+{3pt}% Space below 
+{}% Body font 
+{}% Indent amount 
+{\itshape}%  Theorem head font 
+{.}% Punctuation after theorem head 
+{.5em}% Space after theorem head 
+{}% 
+
+\theoremstyle{mythm}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma} 
+\newtheorem{proposition}[theorem]{Proposition} 
+\newtheorem{corollary}[theorem]{Corollary}  
+\newtheorem{apptheorem}{Theorem}
+\newtheorem{atheorem}{Theorem}
+\renewcommand*{\theatheorem}{\Alph{atheorem}}
+\theoremstyle{mydef}
+\newtheorem{definition}[theorem]{Definition}	
+\newtheorem*{definition*}{Definition}	
+\theoremstyle{myrmk}
+\newtheorem{remark}[theorem]{Remark} 
+\newtheorem{remarks}[theorem]{Remarks} 
+\newtheorem*{remark*}{Remark} 
+\newtheorem*{remarks*}{Remarks} 
+\newtheorem{example}[theorem]{Example}
+\newtheorem{examples}[theorem]{Examples}
+\newtheorem*{example*}{Example}
+\newtheorem*{examples*}{Examples}
+
+% Text commands
+\newcommand{\ie}{\text{i.e.\ }}
+\newcommand{\eg}{\text{e.g.}}
+\newcommand{\resp}{\text{resp.\ }}
+\newcommand{\myemph}[1]{\textit{#1}}
+\newcommand{\by}[1]{\quad&&\text{by {$#1$}}}
+
+% Judgemental equality, path equality, homotopy, definitions
+\newcommand{\deq}{=}
+\newcommand{\peq}{\Rightarrow}
+\newcommand{\ho}{\sim}
+\newcommand{\defeq}{=_{\mathrm{def}}}
+\newcommand{\co}{\,{:}\,}
+\newcommand{\type}{\mathsf{type}}
+\newcommand{\com}{\circ}
+\newcommand{\iso}{\cong}
+
+% Composition and identiies
+\newcommand{\idfun}[1]{\mathsf{id}_{#1}}
+% \newcommand{\comp}{\circ}
+\newcommand{\ct}{\cdot}
+
+% Names for type theories
+\newcommand{\Hint}{\mathcal{H}}
+\newcommand{\Hext}{\mathcal{H}^{\mathrm{ext}}}
+\newcommand{\Mint}{\mathcam{M}^{\mathrm{ext}}}
+\newcommand{\Mext}{\mathcal{M}}
+\newcommand{\UA}{\mathrm{UA}}
+
+% General notions
+
+\newcommand{\hfiber}{\mathsf{hfiber}}
+\newcommand{\iscontr}{\mathsf{iscontr}}
+\newcommand{\isntype}[1]{\mathsf{is}\text{-}\mathsf{#1}\text{-}\mathsf{type}}
+\newcommand{\isprop}{\mathsf{isprop}}
+\newcommand{\isequiv}{\mathsf{isequiv}}
+\newcommand{\isind}{\mathsf{isind}}
+\newcommand{\isbipind}{\mathsf{isind}}
+\newcommand{\isalgind}{\mathsf{isind}}
+\newcommand{\ishinit}{\mathsf{ishinit}}
+\newcommand{\isbiphinit}{\mathsf{ishinit}}
+\newcommand{\isalghinit}{\mathsf{ishinit}}
+\newcommand{\trans}{\mathsf{tr}}
+\newcommand{\Hot}{\mathsf{Hot}}
+\newcommand{\Eq}{\mathsf{Equiv}}
+
+% Extensionality
+
+\newcommand{\ext}{\mathsf{ext}}
+\renewcommand{\int}{\mathsf{int}}
+\newcommand{\idtodpair}{\ext}
+\newcommand{\happly}{\exti}
+\newcommand{\funext}{\int}       
+\newcommand{\idtoeq}{\ext}
+
+% Bool
+
+\newcommand{\Bool}{\mathsf{Bool}}
+\newcommand{\true}{1}
+\newcommand{\false}{0}
+\newcommand{\one}{\mathsf{1}}
+\newcommand{\zero}{\mathsf{0}}
+\newcommand{\boolind}{\mathsf{boolelim}}
+\newcommand{\boolrec}{\mathsf{boolrec}}
+
+% Nat
+
+\newcommand{\nat}{\ensuremath{\mathbb{N}}} 
+\newcommand{\suc}{\mathsf{succ}}
+
+% Id-types
+
+\newcommand{\Id}{\mathsf{Id}}
+\newcommand{\id}[1]{\Id_{#1}}
+\newcommand{\refl}{\mathsf{refl}}
+\newcommand{\idrec}{\mathsf{J}}
+
+% Pi-types
+
+\newcommand{\prd}[1]{\Pi_{#1}}
+\newcommand{\lam}[1]{\lambda_{#1}}   
+\newcommand{\app}{\mathsf{app}}
+
+% Sigma-types
+
+\newcommand{\sm}[1]{\Sigma_{#1}}    
+\newcommand{\pair}{\mathsf{pair}}
+\newcommand{\mysplit}{\mathsf{split}}
+\newcommand{\fst}{\mathsf{fst}}
+\newcommand{\snd}{\mathsf{snd}}
+
+% W-types
+
+\newcommand{\W}{\mathrm{W}}
+\newcommand{\wsup}{\mathsf{sup}}
+\newcommand{\wrec}{\mathsf{wrec}}
+\newcommand{\wind}{\mathsf{elim}}
+\newcommand{\wcomp}{\mathsf{wcomp}}
+
+% Universes
+
+\newcommand{\U}{\mathsf{U}}
+
+% Bipointed types
+
+\newcommand{\ind}{\mathsf{ind}}
+\newcommand{\Hom}{\mathsf{Hom}}
+\newcommand{\Bip}{\mathsf{Bip}}
+\newcommand{\BipHom}{\mathsf{Bip}}
+\newcommand{\BipHot}{\mathsf{BipHot}}
+\newcommand{\FibBip}{\mathsf{FibBip}}
+\newcommand{\BipSec}{\mathsf{BipSec}}
+\newcommand{\isbipequiv}{\mathsf{isbipequiv}}
+\newcommand{\BipEquiv}{\mathsf{BipEquiv}}
+\newcommand{\HoSec}{\mathsf{BipSecHo}}
+\newcommand{\elim}{\mathsf{elim}}
+\newcommand{\comp}{\mathsf{comp}}
+\newcommand{\rec}{\mathsf{rec}}
+\newcommand{\Tot}{\mathsf{Tot}}
+
+% P-algebras
+
+\newcommand{\Palg}{\mathsf{Alg}}
+\renewcommand{\sup}{\mathrm{sup}}
+\newcommand{\isalgequiv}{\mathsf{isalgequiv}}
+\newcommand{\AlgEquiv}{\mathsf{AlgEquiv}}
+\newcommand{\AlgHot}{\mathsf{AlgHot}}
+\newcommand{\FibAlgHot}{\mathsf{FibAlgHot}}
+\newcommand{\FibPalg}{\mathsf{FibAlg}}
+\newcommand{\PalgSec}{\mathsf{AlgSec}}
+\newcommand{\AlgSecHot}{\mathsf{AlgSecHot}}
+
+
+
+% DOCUMENT 
 
 \begin{document}
+
+\title[]{Summary of revisions}
+\author[S. Awodey]{STEVE AWODEY}
+
+\author[N. Gambino]{NICOLA GAMBINO}
+
+\author[K. Sojakova]{KRISTINA SOJAKOVA}
+
+\date{\today}
+
 \maketitle
-%\section{}
-%\subsection{}
 
-\section{Main comments}
+\section{Main referee comments}
 
-\subsection{Lack of $\eta$-rules for $\Sigma$-types}
+\subsection*{Lack of $\eta$-rule for $\Sigma$-types} \hfill 
+
+-- \emph{Why are you not assuming eta-rules for Sigma-types? Do you have models in mind where this is not validated? (It should be true in e.g. the cubical sets model, right?)}
+
+-- \emph{How do you know that you are not using eta-rules in the formalisation? The HoTT library assumes eta for Sigma: \url{http://hott.github.io/HoTT/coqdoc-html/HoTT.types.Sigma.html}\#\url{eta_sigma}}
+
+-- \emph{If you did use eta for Sigma, your polynomial pseudofunctors would be strict functors, and your life would be easier (for instance, it would mean that in diagram 4.4, we could define $\bar{1} = \refl$, instead of $\bar{1} = ap_{- \circ sup} q$, where $q : P(id) = id$). So unless you have good reasons not to, I would suggest to adopt eta-rules also for Sigma.}
+
+-- \emph{Having said that, "pretending" that P is a pseudofunctor only is good for paving the way towards dealing with given unknown (non-polynomial) functors, where we will have no choice but to also ask for proofs of pseudofunctoriality.}
+
 
 We prefer to avoid the assumption of the judgemental $\eta$-rule for $\Sigma$-types in the paper, since we would like keep the type theories in which we work as close as possible to Martin-L\"of type theories, where judgemental $\eta$-rules for inductive types are  not assumed.
 
-However, we have added a remark (Remark 4.1 of the revised version) where we explain how some proofs would simplify if the judgemental $\eta$-rule for $\Sigma$-types is assumed. 
+However, we have added a remark (Remark 4.1 of the revised version) to explain which proofs would simplify if the judgemental $\eta$-rule for $\Sigma$-types is assumed (along the lines suggested by the referee).
 
-We have also rewritten the paragraph `Formalization' of the Introduction to clariify the relationship between the results in the paper and those in the formalisation files. The files have been written for compilation with the current version of Coq and therefore they use the judgemental $\eta$-rule for $\Sigma$-types (precisely as explained in Remark 4.1), but the results in the paper should be formalizable also in other proof-checkers
+We have also rewritten the paragraph `Formalization' of the Introduction to clarify the relationship between the results in the paper and those in the formalisation files. The files have been written for compilation with the current version of Coq and therefore they use the judgemental $\eta$-rule for $\Sigma$-types (precisely as explained in Remark 4.1), but the results in the paper should be formalizable also in other proof-checkers
 where that rule is not assumed.
 
 
+\subsection*{Similarities(?) between your coherence rules and triangular laws for adjunctions}  \hfill
 
+-- \emph{In several places, you point out that your coherence rules are reminiscent of one of the triangular laws for an adjunction. I'm not sure if I see this... Yes, there is the coincidence that two different things are traditionally called eta, and if (on e.g. page 17) one chooses f = id, then the "type" of eta is at least the same as the type of the unit of an adjunction, and the triangle really has id on one side, but why does it make sense to think of the
+ beta-equality as a counit? And what about arbitrary f?}
 
-\subsection{Coherence rules and triangular laws for adjunctions}
+- \emph{If you have more insight, I would appreciate if you could expand on this point; if not, I would recommend to remove it from the paper.}
+
 
 We have removed the confusing remarks from the paper. We left the diagrams and rephrased the surrounding text.  See the text before the proof of Proposition 3.3, after the proof of Proposition 3.8, after the proof of Proposition 5.8  for details.
 
-\section{The Coq formalization}
+\section{Referee comments on the Coq formalization}
 
-- \emph{It would be nice if you could write some more comments and/or change theorem names in the Coq source files linking the formalization with the paper -- the source files are quite terse to read at the moment.} \\ 
+\emph{It would be nice if you could write some more comments and/or change theorem names in the Coq
+source files linking the formalization with the paper -- the source files are quite terse to read at the moment.} 
 
 We have added comments to all definitions and lemmas, linking the formalization with the paper and explaining, where applicable, any differences from the paper version. 
 
-- \emph{Some lemmas are (harmlessly) mislabelled in the formalisation:}
-
+\emph{Some lemmas are (harmlessly) mislabelled in the formalisation:
 \begin{itemize}
 \item  two.v:
  \begin{itemize}
@@ -56,59 +295,59 @@ We have added comments to all definitions and lemmas, linking the formalization 
  \item ishinitEQisrechasetacoh is not Prop 5.8.
  \item ishinitEQeq2hinit is not Cor 5.12 \\ 
 \end{itemize}
-\end{itemize}
+\end{itemize}}
 
 We fixed all of the above.
 
-- In the statement of Lambek's Lemma (Lemma lambek), wouldn't things be nicer if you actually used Sigma-types when defining algebras and fibered algebras? \\
+\emph{In the statement of Lambek's Lemma (Lemma lambek), wouldn't things be nicer if you actually used Sigma-types when defining algebras and fibered algebras?}
 
-We prefer to use the uncurried form of the structure map for P-algebras two reasons : 
-   i) it is more in line with the dependent form of the structure map, which does not use Sigma-types and
-   ii) many of the definitions (and some proofs) in the formalization become simpler since we do not have to perform pattern matching on an argument of a Sigma-type. 
+We prefer to use the uncurried form of the structure map for $P$-algebras 
+since it is more in line with the dependent form of the structure map, which does not use $\Sigma$-types,
+ and because many of the definitions (and some proofs) in the formalization become simpler since we do not have to perform pattern matching on an argument of a $\Sigma$-type. 
 
-\section{Minor comments}
+\section{Minor referee comments}
 
 
-- \emph{page 5, line 40: when I reached this line, I was wondering if you would need the "non-naive" version of function extensionality which states that happly is an equivalence. Maybe put in a forward reference to where you say that this is derivable from the naive version on page 8? Also, how about including a reference (e.g. to
- the HoTT book, or Voevodsky) for naive funext implies funext there?} \\
+-- \emph{page 5, line 40: when I reached this line, I was wondering if you would need the "non-naive" version of function extensionality which states that happly is an equivalence. Maybe put in a forward reference to where you say that this is derivable from the naive version on page 8? Also, how about including a reference (e.g. to
+ the HoTT book, or Voevodsky) for naive funext implies funext there?}
 
-We have added a forward reference below equation (1.5).  \\
+We have added a forward reference below equation (1.5).  
 
-- \emph{page 21, line 35: as a matter of style, I would prefer it if you just combined Corollary 3.11 and Theorem 3.10; the proof of Corollary 3.11 would become the first sentence of the proof of Theorem 3.10, and then nothing else needs to change. This would also help prevent the rash conclusion that there probably is no
- equivalence isind(A) <~> ishinit(A) when reaching Theorem 3.10, because otherwise why didn't you say so?} \\ 
+-- \emph{page 21, line 35: as a matter of style, I would prefer it if you just combined Corollary 3.11 and Theorem 3.10; the proof of Corollary 3.11 would become the first sentence of the proof of Theorem 3.10, and then nothing else needs to change. This would also help prevent the rash conclusion that there probably is no
+ equivalence isind(A) <~> ishinit(A) when reaching Theorem 3.10, because otherwise why didn't you say so?}  
 
-The two results have been merged into what is now Theorem 3.9. \\
+The two results have been merged into what is now Theorem 3.9. 
 
-- \emph{page 23, line 52: you are creating an identity proof between two pairs by giving a pair of identity proofs; I don't think you have introduced this notation -- probably easiest (but noisier) to use your int function.} \\
+-- \emph{page 23, line 52: you are creating an identity proof between two pairs by giving a pair of identity proofs; I don't think you have introduced this notation -- probably easiest (but noisier) to use your int function.} 
 
-We have added the use of $\mathsf{int}$, see equation (4.2) on page 24. \\
+We have added the use of $\mathsf{int}$, see equation (4.2) on page 24. 
 
-- \emph{page 27, lines 12--30: this feels a bit messy, and some definitions come completely out of the blue (for instance, it would be good if $e_f$ could be motivated and not just given). I think a second pass through this paragraph would be good.} \\
+-- \emph{page 27, lines 12--30: this feels a bit messy, and some definitions come completely out of the blue (for instance, it would be good if $e_f$ could be motivated and not just given). I think a second pass through this paragraph would be good.} 
 
 The paragraph has been completely rephased: it now starts at the bottom of page 27 and the explanation of the definition of $e_f$ ends after the diagram in the middle of page 28.
 
-- \emph{page 28, line 43: spell out how Lemma 4.4 is a special case of Lemma 4.8 -- I don't think it is completely trivial or immediately obvious.} \\
+-- \emph{page 28, line 43: spell out how Lemma 4.4 is a special case of Lemma 4.8 -- I don't think it is completely trivial or immediately obvious.} 
 
-We gave a direct proof of (what is now) Lemma 4.5. The derivation of it from (what is now) Lemma 4.9 is indeed rather laborious and would require adding further material, not needed elsewhere. \\
+We gave a direct proof of (what is now) Lemma 4.5. The derivation of it from (what is now) Lemma 4.9 is indeed rather laborious and would require adding further material, not needed elsewhere. 
 
-- \emph{page 34, line 48: say that you get the special case by considering a constant family $E(z) = D$.} \\ 
+-- \emph{page 34, line 48: say that you get the special case by considering a constant family $E(z) = D$.} 
 
-This has been done, see proof of Theorem 5.9. \\ 
+This has been done, see proof of Theorem 5.9. 
 
-- \emph{page 36, line 50: same comment as page 21, line 35.} \\
+-- \emph{page 36, line 50: same comment as page 21, line 35.} 
 
 We merged the two results into Theorem 5.9.
 
 
 
 
-\subsection{Typos}
+\subsection*{Typos} \hfill 
 
 All typos have been fixed. 
 
 \section{Conclusion}
 
-As requested, a substantial concluding section has been added. The main results are indicated, as are several topics for future investigation.
+As requested by the Editor, we have also added a substantial concluding section. The main results are indicated, as are several topics for future investigation.
 
 
 \end{document}  
