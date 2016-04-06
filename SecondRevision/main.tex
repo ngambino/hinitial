@@ -242,9 +242,10 @@ Pittsburgh, PA  15213, USA}
 
 
 \begin{abstract}
-We investigate inductive types in type theory, using the insights provided by homotopy type theory and univalent foundations of mathematics. We do so by introducing the new notion of a homotopy-initial algebra. This notion is defined by a purely type-theoretic contractibility condition which replaces the standard, category-theoretic universal property 
-involving the existence and uniqueness of appropriate morphisms. 
-Our main result characterises the types that are equivalent to $\W$-types as homotopy-initial algebras. 
+We investigate inductive types in type theory, using the insights provided by homotopy type theory and univalent foundations. We do so by introducing the new notion of a homotopy-initial algebra,
+which is obtained from the standard notion of an initial algebra by replacing the usual existence and uniqueness property by a purely type-theoretic contractibility condition. Our main result characterises the types that are equivalent to $\W$-types as homotopy-initial algebras. 
+
+
 \end{abstract}
 
 
@@ -380,7 +381,8 @@ bipointed type, so as to arrive at the main results, characterizing $\Bool$ up t
 exploring consequences of the univalence axiom. The second part, which comprises
 Sections~\ref{section:wfiles} and~\ref{sec:homta}, proceeds in parallel with the 
 first part, but with algebras for a polynomial functor instead of bipointed types. 
-This second part forms the main contribution of the paper, while the first part provides a simpler setting in which to introduce the new concepts and methods of proof.  The formal structure of the two parts is intentionally parallel, in order to guide the reader through the more difficult, second part.
+This second part forms the main contribution of the paper, while the first part provides a simpler setting in which to introduce the new concepts and methods of proof.  The formal structure of the two parts is intentionally parallel, in order to guide the reader through the more difficult, second part. We conclude
+the paper in Section~\ref{section:conclusion} oulining some directions for future research.
 
 
 \section{Homotopy-theoretic concepts in type theory}
@@ -1181,14 +1183,14 @@ for bipointed morphisms  in Lemma~\ref{BoolHomSpace}.
 
 Let us now fix two bipointed sections $f = (f, \bar{f}_0,\bar{f}_1)$ and $g = (g, \bar{g}_0, \bar{g}_1)$  of $E$.
 
-\begin{definition} \label{def:2cellsection} A \emph{bipointed homotopy}  $(\alpha, \bar{\alpha_0},
+\begin{definition} \label{def:2cellsection} A \emph{bipointed section homotopy}  $(\alpha, \bar{\alpha_0},
 \bar{\alpha}_1) \co f \to g$ is  a homotopy~$\alpha \co \Hot(f, g)$ equipped with paths $\bar{\alpha}_0 \co \Id(  \bar{f}_0 ,  \bar{g}_0 \ct \alpha_{a_0}  )$ and $\bar{\alpha}_1 \co \Id(
 \bar{f}_1 , \bar{g}_1 \ct  \alpha_{a_1})$.
 \end{definition} 
 
 
 
-The type of bipointed homotopies between $f$ and $g$ as above is then defined by letting:
+The type of bipointed section homotopies between $f$ and $g$ as above is then defined by letting:
 \[
 \BipHot \big( (f, \bar{f}_0, \bar{f}_1), (g, \bar{g}_0, \bar{g}_1) \big) \defeq
 (\Sigma \alpha \co \Hot( f, g)) \, \big( 
@@ -1769,28 +1771,28 @@ We now construct  paths~$\bar{s}_k \co \Id(s a_k, e_k)$, for $k \in \{ 0, 1 \}$.
 $\bar{f}_k \co \Id( f a_k, e'_k)$, where $e'_k = \pair(a_k, e_k) \co (\Sigma x \co A) E(x)$. Using the 
 characterization of identity types of $\Sigma$-types, we define
 \[
-p \defeq \pi_1 \, \ext^\Sigma(\bar{f}_k)  \co  \Id( \pi_1 f  a_k \, ,\;   \pi_1 e'_k )  \, ,  \quad 
-q \defeq  \pi_2 \, \ext^\Sigma(\bar{f}_k) \co   \Id( p_{!}( \pi_2 f  a_k), \pi_2 e'_k)   \, .
+p_k \defeq \pi_1 \, \ext^\Sigma(\bar{f}_k)  \co  \Id( \pi_1 f  a_k \, ,\;   \pi_1 e'_k )  \, ,  \quad 
+q_k \defeq  \pi_2 \, \ext^\Sigma(\bar{f}_k) \co   \Id( (p_k)_{!}( \pi_2 f  a_k), \pi_2 e'_k)   \, .
 \]
 Now, note that
 \[
  \Id_A( \pi_1 f  a_k \, ,\;   \pi_1 e'_k )  = \Id_A(\pi_1 f a_k, a_k) \, , \quad 
- \Id_{E(a_k)}( p_{!}( \pi_2 f  a_k), \pi_2 e'_k)  = \Id_{E(a_k)}( sa_k, e_k) 
+ \Id_{E(a_k)}( (p_k)_{!}( \pi_2 f  a_k), \pi_2 e'_k)  = \Id_{E(a_k)}( sa_k, e_k) 
  \]
 and that we have 
 \begin{alignat*}{4}  
 \overline{(\pi_1  f)}_k  & \iso  (\overline{\pi_1})_k \ct (\pi_1 \circ \bar{f}_k)  & & \qquad (\text{by definition of } \pi_1 f)   \\
 & \iso  1_{a_k}  \ct (\pi_1 \circ \bar{f}_k)  & & \qquad (\text{by definition of } \pi_1)  \\
  & \iso (\pi_1 \circ \bar{f}_k) & & \qquad (\text{by the groupoid laws}) \\
- & \iso p  & & \qquad (\text{by definition of } \ext^\Sigma) \,  . \\
+ & \iso p_k  & & \qquad (\text{by definition of } \ext^\Sigma) \,  . \\
  \intertext{Therefore, we can construct the following chain of paths:}
-p & \iso  \overline{(\pi_1 f)}_k & &  \qquad (\text{by what we just proved})  \\
+p_k & \iso  \overline{(\pi_1 f)}_k & &  \qquad (\text{by what we just proved})  \\
   & \iso 1_{a_k} \ct  \alpha_{a_k}  & &  \qquad (\text{by the path } \bar{\alpha}_k ) \\ 
   & \iso  \alpha_{a_k}  & & \qquad (\text{by the groupoid laws}) \\
 \intertext{Hence,  the required path $\bar{s}_k \co  \Id(s a_k,  e_k)$ can be defined as the following composite:}
 s a_k & \deq (\alpha_{a_k})_{!} \big( \pi_2 f a_k   \big) & & \qquad (\text{by the definition of } s) \\
- &              \iso  p_{!} \big( \pi_2 f a_k   \big) & & \qquad (\text{since } p  \iso \alpha_{a_k}) \\
-   &            \iso  e_k  & &  \qquad (\text{by the path } q)  \, .
+ &              \iso  (p_k)_{!} \big( \pi_2 f a_k   \big) & & \qquad (\text{since } p_k  \iso \alpha_{a_k}) \\
+   &            \iso  e_k  & &  \qquad (\text{by the path } q_k)  \, .
    \end{alignat*} 
    This concludes the proof.
 \end{proof}
@@ -3174,23 +3176,22 @@ is inhabited.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Conclusion}\label{section:conclusion}
+\section{Conclusion}
+\label{section:conclusion}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\noindent We have shown how the familiar theory of $\W$-types as initial algebras for polynomial endofunctors can be recovered in the setting of homotopy type theory by introducing the new concept of a \emph{homotopy-initial algebra}.  Using this notion, much of the classical theory carries over \emph{mutatis mutandis}, including the equivalence between the induction principle and the combination of a recursion rule and a uniqueness principle.
-
-We conclude by mentioning two related topics for possible further investigation  using the concept of homotopy initiality: reduction of more general forms of inductive types, and higher inductive types.
+We have shown how the familiar characterization of $\W$-types as initial algebras for polynomial endofunctors can be recovered in the setting of homotopy type theory by introducing the new concept of a \emph{homotopy-initial algebra}.  Using this notion, much of the classical theory carries over \emph{mutatis mutandis}, including the equivalence between the induction principle and the combination of a recursion rule and a uniqueness principle. We conclude the paper by mentioning two  possible directions of research on the concept of homotopy initiality: reduction of more general forms of inductive types and higher inductive types.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{General inductive types}
+\subsection*{General inductive types}
 
-\noindent Recall that in extensional type theory, many inductive types can be reduced to $\W$-types (see \cite{MartinLofP:inttt}, \cite{DybjerP:repids}, \cite{GoguenH:inddtw}, \cite{MoerdijkI:weltc}, \cite{GambinoN:weltdp}, \cite{AbbottM:concsp}).
-For instance, in that setting the usual rules for $\nat$ as an inductive type can be derived from its formalization as the following $\W$-type. Consider the signature with two operations, one of which has arity $0$ and one of which has arity $1$; it is presented type-theoretically by a dependent type with corresponding polynomial functor (naturally isomorphic to)
+\noindent Recall that in extensional type theories, many inductive types can be reduced to $\W$-types 
+(see~\cite{AbbottM:concsp,DybjerP:repids,GambinoN:weltdp,GoguenH:inddtw,MartinLofP:inttt,MoerdijkI:weltc}). For instance, in that setting the usual rules for $\nat$ as an inductive type can be derived from its formalization as the following $\W$-type. Consider the signature with two operations, one of which has arity zero (\ie a constant) and one of which has arity one (\ie a unary operation); it is presented type-theoretically by a dependent type with corresponding polynomial functor (naturally isomorphic to)
 \[
-P(X) = \mathsf{1} + X \, ,
+P(X) = \mathsf{1} + X \, .
 \]
 %
-and the natural numbers $\nat$ together with the canonical element $0:\nat$ and the successor function $s : \nat\rightarrow\nat$ form an initial $P$-algebra
+The natural numbers $\nat$, together with the canonical element $0:\nat$ and the successor function $s : \nat\rightarrow\nat$, form an initial $P$-algebra
 \[
 (0, s) : \mathsf{1} + \nat \rightarrow \nat\, .
 \]
@@ -3217,11 +3218,13 @@ In particular, in the paradigmatic case of the natural numbers, we work in an ex
 \item formation, introduction, elimination and propositional computation rules 
 for types $\mathsf{0}$, $\mathsf{1}$ and $\mathsf{2}$ that have zero, one and two canonical elements,
 respectively; 
-\item the rules for homotopy $\W$-types, as stated above;
-\item rules for a type universe $\U$ reflecting all the forms of types of $\Hint$, $\W$-types, and
-$\mathsf{0}$, $\mathsf{1}$ and~$\mathsf{2}$.
+\item formation, introduction, elimination and propositional computation rules 
+for $\W$-types;
+\item rules for a type universe $\U$ reflecting all the forms of types of $\Hint$, 
+$\mathsf{0}$, $\mathsf{1}$, $\mathsf{2}$, and $\W$-types.
 \end{itemize}
-In particular, the rules for $\mathsf{2}$ are those given for $\Bool$ in Section~\ref{sec:bip}.
+In particular, the rules for $\mathsf{2}$ are those given for $\Bool$ in Table~\ref{tab:boolrules}
+at the start of Section~\ref{sec:bip}.
 We then proceed as follows. We begin by setting $A =\mathsf{2}$, as in the extensional case.  
 We then define a dependent type
 \[
@@ -3241,7 +3244,7 @@ we can then derive that the types~$B(0)$ and~$B(1)$ satisfy rules analogous to t
 \nat \defeq (\W x : A) B(x)
 \]
 satisfies the introduction, elimination and propositional computation rules for the type of natural numbers. 
-Observe that as a $\W$-type, $\nat$ is therefore also an h-initial algebra for the equivalent polynomial functor $P(X) = \mathsf{1}+ X$, as expected.
+Observe that, as a $\W$-type, $\nat$ is therefore also an homotopy-initial algebra for the equivalent polynomial functor $P(X) = \mathsf{1}+ X$, as expected.
 
 %The proof of this fact proceeds essentially as one would expect, but to derive the propositional computation rules it is useful to observe that for every type $X : \U$, there are adjoint homotopy equivalences,
 %in the sense of Definition \ref{thm:weq}, between the types $\mathsf{0}  \rightarrow X$ and $\mathsf{1}$, 
@@ -3265,26 +3268,30 @@ Observe that as a $\W$-type, $\nat$ is therefore also an h-initial algebra for t
 
 More generally, in the setting of extensional type theory, Dybjer \cite{DybjerP:repids} showed that every strictly positive definable functor can be represented as a polynomial functor, so that all such inductive types are in fact $\W$-types.  This result should also generalize to the present setting in a straightforward way.
 
-Also in the extensional setting, Gambino and Hyland~\cite{GambinoN:weltdp} showed that 
-general tree types~\cite{PeterssonK:setcis}~\cite[Chapter~16]{NordstromB:promlt}, viewed as 
-initial algebras for general polynomial functors, can be constructed from $\W$-types in
-locally cartesian closed categories, using equalizers. We expect this result to carry over to the present setting as well, using $\id{}$-types in place of equalizers.
+Also in the extensional setting, 
+general tree types (see \cite[Chapter~16]{NordstromB:promlt} and~~\cite{PeterssonK:setcis}), 
+viewed as initial algebras for general polynomial functors, can be constructed from $\W$-types in
+locally cartesian closed categories, using equalizers~\cite{GambinoN:weltdp}. We expect this result to carry over to the present setting as well, using $\id{}$-types in place of equalizers.
 
-Finally, in \cite{VoevodskyV:notts} it is conjectured that all inductive types of the Predicative Calculus of Inductive Constructions can be reduced to the following special cases:
+Finally, in \cite{VoevodskyV:notts} it is described how all inductive types of the 
+Calculus of Inductive Constructions~\cite{CoquandT:inddt,PaulinMorhringC:inddsc} can be reduced to the following special cases:
 \begin{itemize}
 \item $\mathsf{0}$,\ $\mathsf{1}$,\ $A+B$,\  $(\Sigma x : A)B(x)$,
 \item $\id{A}(a,b)$,
 \item general tree types.
 \end{itemize}
-Combining this with the foregoing, we expect that our our main theorem \ref{thm:WMain} can be extended to the full system of predicative inductive types underlying Coq.
+Combining this with the foregoing, we expect that our our main result, Theorem \ref{thm:WMain}, 
+can be extended to the full system of inductive types underlying the 
+Calculus of Inductive Constructions.
 
-%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%I%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Higher inductive types}
+\subsection*{Higher inductive types}
 
 One of the most exciting developments in homotopy type theory is the idea of Higher Inductive Types (HITs), which can also involve (possibly higher) identity terms in their signature~\cite{LumsdaineP:higit,ShulmanM:higit}.   This allows, firstly, for algebras with equations between terms, like associative laws, coherence laws, etc., representing an important extension of the range of generalized inductive types available in type theory.  Moreover, a vast further extension comes from the homotopical interpretation of identity terms as paths.  Viewed thus, HITs also permit direct formalization of many basic geometric spaces and constructions, such as the spheres $S^n$; cell complexes; truncations, such as the [bracket] types \cite{AwodeyS:prot}; various kinds of quotient types; general homotopy colimits; and many more fundamental and fascinating objects not previously captured by type-theoretic formalizations.  
 
-Our investigation of conventional inductive types in the homotopical setting should lead to a deeper understanding of these new and important geometric analogues. Indeed, the extension of our main results to some special cases of HITs is the subject of recent work by the third author \cite{Sojakova:techreport,Sojakova:types,Sojakova:thesis}. 
+Our investigation of conventional inductive types in the homotopical setting should lead to a deeper understanding of these new and important geometric analogues. Indeed, the extension of our main results to some special cases of HITs is the subject of recent work by the third-named 
+author~\cite{Sojakova:techreport,Sojakova:types,Sojakova:thesis}. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -3300,14 +3307,10 @@ proof that an inductive $P$-algebra is homotopy-initial. \smallskip
  \emph{Acknowledgements for Steve Awodey.}  Steve Awodey gratefully acknowledges the support of the National Science Foundation, Grant DMS-1001191 and the Air Force OSR, Grant Number 11NL035 and MURI Grant Number FA9550-15-1-0053. \smallskip
  
  \noindent
- \emph{Acknowledgements for Nicola Gambino.}   
- \begin{enumerate}[(i)]
- \item This work was supported by the National Science Foundation 
-under agreement No.\ DMS-0635607. 
-\item This material is based on research sponsored by the Air Force Research Laboratory, under agreement 
-number FA8655-13-1-3038. \item This research was supported by a grant from the John Templeton Foundation.
-\item This research was supported by an EPSRC grant (EP/M01729X/1). 
-\end{enumerate}
+ \emph{Acknowledgements for Nicola Gambino.}   This work was supported by the National Science Foundation 
+under agreement No.\ DMS-0635607. This material is based on research sponsored by the Air Force Research Laboratory, under agreement 
+number FA8655-13-1-3038. This research was supported by a grant from the John Templeton Foundation.This research was supported by an EPSRC grant (EP/M01729X/1). 
+
 
 \smallskip
 
