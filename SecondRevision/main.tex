@@ -621,7 +621,8 @@ c \co (\Sigma x \co A) B(x)
 \end{equation}
 None of the type theories  considered in this paper include this rule, which 
 is instead part of the type theory implemented in version 8.5 of the Coq proof assistant (see the formalisation files for details). We prefer not to assume it to keep our type theories as close as possible to Martin-L\"of's type theories, where judgemental 
-$\eta$-rules for inductive types are  not assumed.
+$\eta$-rules for inductive types are  not assumed. Remark~\ref{thm:eta-gives-functoriality} explains the
+effect of assuming the rule in~\eqref{equ:etasigmadef} for our development.
 \end{remark} 
 
 \medskip
@@ -1979,12 +1980,12 @@ and $B \co A \to \U$, so as to highlight the analogy with the theory of polynomi
 
 \begin{remark} 
 \label{thm:eta-gives-functoriality} 
-If one assumes the judgemental version of the $\eta$-rule for $\Sigma$-types, as in~\eqref{equ:etasigmadef}, then~$P$ becomes
-a strict functor, in the sense that we have judgemental equalities:
+If one assumes the judgemental version of the $\eta$-rule for $\Sigma$-types, as in~\eqref{equ:etasigmadef}, then~$P$ becomes a strict functor, in the sense that we have judgemental equalities
 \begin{equation*}
  P(g \circ f) = Pg \circ Pf  \, , \quad   P(1_A) = 1_{PA} \, .
 \end{equation*}
-This would allow for some minor simplifications of the proofs below. 
+The strict functoriality of $P$ would allow us to make some minor simplifications in our development. For example, it would lead to a more direct definition of the composition operation for $P$-algebra morphisms and of identity $P$-algebra morphisms, represented in~\eqref{equ:palgmorcomp} and~\eqref{equ:palgid}, respectively. But, as far as we know, it is the only consequence of the judgemental $\eta$-rule for $\Sigma$-types that 
+would play a role in our development.
 \end{remark} 
 
 
@@ -2066,28 +2067,29 @@ the required path must be of the form
  \overline{(g  f)} \co \Id\big( (g \circ f) \circ \sup_C   \, ,  \sup_E \circ P(g \circ f)  \big)\, .
 \]
 Such a path is obtained by pasting the diagrams 
-\[
-\xymatrix@C=1.5cm{
+\begin{equation}
+\label{equ:palgmorcomp}
+{\vcenter{\hbox{\xymatrix@C=1.5cm{
  PC \ar[r]^{\sup_C} \ar[d]_{Pf}  \ar@{}[dr]|{\Downarrow \, \bar{f}} &  C \ar[d]^{f}\\
 PD \ar[r]_{\sup_D}  \ar[d]_{Pg}   \ar@{}[dr]|{\Downarrow \, \bar{g}} & D \ar[d]^g  \\
-PE \ar[r]_{\sup_E} & \; E  \, .}
-\] 
+PE \ar[r]_{\sup_E} & \; E  \, .}}}}
+\end{equation}
 More precisely, it is given by the following composition of paths:
-\[
+\begin{equation*}
 \xymatrix@C=1.7cm{
 g \circ f \circ \sup_C \ar[r]^{g \circ \bar{f}} & 
 g \circ \sup_D \circ Pf \ar[r]^{\bar{g} \circ Pf} & 
 \sup_E \circ Pg \circ Pf \ar[r]^{\sup_E \circ \phi_{f,g}^{-1}} &
 \sup_E \circ P(g \circ f) \, ,}
-\]
+\end{equation*}
 where we used the pseudo-functoriality of $P$ in~\eqref{equ:pseudofunP}. 
 For a $P$-algebra $C$,  the identity function $1_C \co C \to C$ has an evident structure of $P$-algebra morphism,
 represented in the diagram
 \begin{equation}
 \label{equ:palgid}
-\xymatrix@C=1.5cm{
+{\vcenter{\hbox{\xymatrix@C=1.5cm{
 PC \ar[d]_{P(1_C)}  \ar[r]^{\sup_C} \ar@{}[dr]|{\Downarrow \, \overline{1}_C} & C \ar[d]^{1_C} \\
-PC \ar[r]_{\sup_C} & \; C \, .}
+PC \ar[r]_{\sup_C} & \; C \, .}}}}
 \end{equation}
 As in the case of bipointed types, the associativity and unit laws for a category do not hold up to judgemental equality, but only so up to a system of higher and higher paths.
 
@@ -3267,7 +3269,7 @@ general tree types (see \cite[Chapter~16]{NordstromB:promlt} and~~\cite{Petersso
 viewed as initial algebras for general polynomial functors, can be constructed from $\W$-types in
 locally cartesian closed categories, using equalizers~\cite{GambinoN:weltdp}. We expect this result to carry over to the present setting as well, using $\id{}$-types in place of equalizers.
 
-Finally, in \cite{VoevodskyV:notts} it is described how all inductive types of the 
+Finally, in \cite{VoevodskyV:notts}, Voevodsky described how all inductive types of the 
 Calculus of Inductive Constructions~\cite{CoquandT:inddt,PaulinMorhringC:inddsc} can be reduced to the following special cases:
 \begin{itemize}
 \item $\mathsf{0}$,\ $\mathsf{1}$,\ $A+B$,\  $(\Sigma x : A)B(x)$,
